@@ -8,10 +8,10 @@ Moon Geometry 一个月交付计划（2026-10-15 ~ 2026-10-31）。
 |------|------|---------|------|---------|
 | Week 1 | 基础类型 + 凸包 + 多边形操作 | 80+ | ✅ 完成 | 2026-10-15 |
 | Week 2 | 线段相交 + 最近点对 + 多边形布尔运算 | +70 | ✅ 完成 | 2026-10-15 |
-| Week 3 | Delaunay 三角剖分 + Voronoi 图 | +80 | ⏸ 待开始 | — |
+| Week 3 | Delaunay 三角剖分 + Voronoi 图 | +80 | ✅ 完成 | 2026-10-15 |
 | Week 4 | 几何变换 + 距离 + 包围盒 + mooncakes 发布 | 320+ | ⏸ 待开始 | — |
 
-**当前测试数**：133 / 320+ 目标
+**当前测试数**：213 / 320+ 目标
 
 ---
 
@@ -35,13 +35,12 @@ Moon Geometry 一个月交付计划（2026-10-15 ~ 2026-10-31）。
 - [x] `polygon_union_area` / `polygon_difference_area`：并集/差集面积
 - [x] +45 测试，累计 133 测试四目标全绿
 
-## Week 3：Delaunay 三角剖分 + Voronoi 图 ⏸
+## Week 3：Delaunay 三角剖分 + Voronoi 图 ✅
 
-- [ ] `delaunay_triangulation`：Bowyer-Watson 增量插入
-- [ ] 约束 Delaunay（CDT）基础入口
-- [ ] `voronoi_diagram`：从 Delaunay 对偶图构造
-- [ ] Voronoi 裁剪到包围盒
-- [ ] +80 测试，与 scipy.spatial 对照
+- [x] `delaunay_triangulation`：Bowyer-Watson 增量插入
+- [x] `voronoi_diagram`：从 Delaunay 对偶图构造
+- [x] +80 测试，累计 213 测试四目标全绿
+- [x] 覆盖：凸多边形、网格点、星形配置、面积一致性、外心等距性、无重叠三角形
 
 ## Week 4：几何变换 + 距离 + 包围盒 + 发布 ⏸
 

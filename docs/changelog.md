@@ -3,6 +3,23 @@
 All notable changes to Moon Geometry are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.3.0] - 2026-10-15
+
+### Added — Week 3: Delaunay 三角剖分 + Voronoi 图
+
+- **Delaunay 三角剖分**：
+  - `delaunay_triangulation`：Bowyer-Watson 增量插入法，O(n²) 期望
+  - 超三角形包围、坏三角形检测、空洞重三角化
+  - 返回 CCW 方向的顶点索引三元组 `TriangleIdx`
+- **Voronoi 图**：
+  - `voronoi_diagram`：Delaunay 对偶，返回 (顶点, 边)
+  - 顶点为 Delaunay 三角形外心，边连接相邻三角形外心
+
+### Tests
+
+- 新增 80 测试，累计 213 测试，四目标全绿
+- 覆盖：空/退化输入、凸多边形、网格点、星形配置、面积一致性、外心等距性、无重叠三角形
+
 ## [0.2.0] - 2026-10-15
 
 ### Added — Week 2: 线段相交 + 最近点对 + 多边形布尔运算
