@@ -1,0 +1,33 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/src/constants"
+
+// Values
+pub let deg2rad : Double
+
+pub let e : Double
+
+pub let eps : Double
+
+pub let golden_ratio : Double
+
+pub let half_pi : Double
+
+pub let pi : Double
+
+pub let quarter_pi : Double
+
+pub let rad2deg : Double
+
+pub let sqrt2 : Double
+
+pub let sqrt3 : Double
+
+pub let two_pi : Double
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

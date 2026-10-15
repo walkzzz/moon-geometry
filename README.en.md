@@ -5,7 +5,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![MoonBit](https://img.shields.io/badge/MoonBit-0.1.20260920-blue.svg)](https://moonbitlang.com)
-[![Tests](https://img.shields.io/badge/tests-596-brightgreen.svg)]()
+[![Tests](https://img.shields.io/badge/tests-646-brightgreen.svg)]()
 [![Targets](https://img.shields.io/badge/targets-native%20%7C%20wasm--gc%20%7C%20js%20%7C%20wasm-green.svg)]()
 
 Moon Geometry is a **pure MoonBit** computational geometry library with **zero C FFI dependencies**, supporting all four backends (3natively. It provides reusable geometric algorithm primitives for CAD, collision detection, GIS, path planning, and image processing.
@@ -90,6 +90,16 @@ src/
   convex_hull3d/  # 3D convex hull | 三维凸包
   support/        # Support functions | 支持函数
   separating/     # Separating axis | 分离轴
+  polygon_offset/ # Polygon offset | 多边形偏移
+  polygon_holes/  # Polygon with holes | 带孔多边形
+  visibility/     # Visibility | 可见性
+  art_gallery/    # Art gallery | 美术馆问题
+  polygon_kernel/ # Polygon kernel | 多边形核
+  convex_decomp/  # Convex decomposition | 凸分解
+  polygon_symmetry/ # Polygon symmetry | 多边形对称
+  polygon_cover/  # Polygon cover | 多边形覆盖
+  ear_clip/       # Ear clipping | 耳裁剪
+  monotone/       # Monotone triangulation | 单调三角剖分
 ```
 
 ## Quick Example | 快速示例
@@ -160,20 +170,30 @@ let hull = @hull.convex_hull_andrew(points)  // hull vertices (CCW) | 凸包顶�
 | 3D convex hull | 三维凸包 | `HullFace`, `convex_hull_3d`, `hull_face_count` | `hull_volume` |
 | Support | 支持函数 | `support_point_set`, `support_circle`, `support_value` | `support_segment`, `width_in_direction` |
 | Separating | 分离轴 | `find_separating_axis`, `separating_distance` | `are_separated` |
+| Polygon offset | 多边形偏移 | `polygon_offset_outward`, `polygon_offset_inward` | `polygon_offset_area`, `polygon_offset_valid` |
+| Polygon holes | 带孔多边形 | `PolygonWithHoles`, `polygon_with_holes_area` | `polygon_with_holes_contains`, `polygon_with_holes_perimeter` |
+| Visibility | 可见性 | `is_visible`, `visibility_polygon` | `visibility_polygon_convex`, `visible_vertex_count` |
+| Art gallery | 美术馆 | `art_gallery_guard_count`, `art_gallery_place_guards` | `art_gallery_covers_vertices`, `art_gallery_estimate` |
+| Polygon kernel | 多边形核 | `polygon_kernel`, `is_star_shaped` | `polygon_kernel_area`, `kernel_point` |
+| Convex decomp | 凸分解 | `convex_decomposition`, `convex_decomp_count` | `convex_decomp_lower_bound`, `convex_decomp_area` |
+| Polygon symmetry | 多边形对称 | `has_reflection_symmetry`, `has_rotation_symmetry` | `polygon_symmetry_order`, `has_any_symmetry` |
+| Polygon cover | 多边形覆盖 | `cover_by_rectangles`, `cover_by_triangles` | `cover_area_rectangles`, `cover_area_triangles` |
+| Ear clip | 耳裁剪 | `is_ear`, `find_ear`, `ear_clip_triangulate` | `ear_clip_count`, `ear_clip_area` |
+| Monotone | 单调剖分 | `is_y_monotone`, `is_x_monotone` | `triangulate_monotone`, `monotone_triangulate_count` |
 
 Full interface in `.mbti` files. 完整接口见 `.mbti` 文件。
 
 ## Tests | 测试
 
 ```bash
-moon test                          # all 596 tests | 全部 596 测试
+moon test                          # all 646 tests | 全部 646 测试
 moon test --target native          # verify each backend | 四目标分别验证
 moon test --target wasm-gc
 moon test --target js
 moon test --target wasm
 ```
 
-All four targets pass: 596 × 4 = 2384. 四目标全绿：596 × 4 = 2384。
+All four targets pass: 646 × 4 = 2584. 四目标全绿：646 × 4 = 2584。
 
 ## Roadmap | 交付路线图
 
@@ -190,6 +210,7 @@ All four targets pass: 596 × 4 = 2384. 四目标全绿：596 × 4 = 2384。
 | v0.9.0 | AABB tree + hash + compare + ray + plane | ✅ Done |
 | v1.0.0 | Spatial data structures (8 modules) | ✅ Done |
 | v1.1.0 | Convexity & optimization (8 modules) | ✅ Done |
+| v1.2.0 | Polygon algorithms (10 modules) | ✅ Done |
 
 See [docs/roadmap.md](docs/roadmap.md) and [docs/changelog.md](docs/changelog.md).
 

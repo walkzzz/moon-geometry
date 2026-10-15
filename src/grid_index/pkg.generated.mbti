@@ -1,0 +1,32 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/src/grid_index"
+
+import {
+  "moonbitlang/core/debug",
+  "walkzzz/moon-geometry/src/core",
+}
+
+// Values
+pub fn build_grid_index(Array[@core.Point2D], Double) -> GridIndex
+
+pub fn grid_query_cell(GridIndex, @core.Point2D) -> Array[Int]
+
+pub fn grid_query_radius(GridIndex, @core.Point2D, Double) -> Array[Int]
+
+pub fn grid_query_rect(GridIndex, @core.Rectangle) -> Array[Int]
+
+pub fn grid_size(GridIndex) -> Int
+
+// Errors
+
+// Types and methods
+pub struct GridIndex {
+  points : Array[@core.Point2D]
+  cell_size : Double
+  cell_keys : Array[Int]
+} derive(@debug.Debug)
+pub fn GridIndex::to_repr(Self) -> @debug.Repr
+
+// Type aliases
+
+// Traits

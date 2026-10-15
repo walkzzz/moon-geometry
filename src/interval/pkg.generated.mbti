@@ -1,0 +1,29 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/src/interval"
+
+import {
+  "moonbitlang/core/debug",
+}
+
+// Values
+
+// Errors
+
+// Types and methods
+pub struct Interval {
+  lo : Double
+  hi : Double
+} derive(@debug.Debug)
+pub fn Interval::contains(Self, Double) -> Bool
+pub fn Interval::contains_interval(Self, Self) -> Bool
+pub fn Interval::intersect(Self, Self) -> Self?
+pub fn Interval::length(Self) -> Double
+pub fn Interval::midpoint(Self) -> Double
+pub fn Interval::new(Double, Double) -> Self
+pub fn Interval::overlaps(Self, Self) -> Bool
+pub fn Interval::to_repr(Self) -> @debug.Repr
+pub fn Interval::union(Self, Self) -> Self
+
+// Type aliases
+
+// Traits

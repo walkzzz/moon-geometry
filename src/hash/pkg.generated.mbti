@@ -1,0 +1,29 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/src/hash"
+
+import {
+  "walkzzz/moon-geometry/src/core",
+}
+
+// Values
+pub fn cell_hash(@core.Point2D, Double, Int) -> Int
+
+pub fn cell_hash_3d(@core.Point3D, Double, Int) -> Int
+
+pub fn cell_index(@core.Point2D, Double) -> (Int, Int)
+
+pub fn cell_index_3d(@core.Point3D, Double) -> (Int, Int, Int)
+
+pub fn hash_combine(Int, Int) -> Int
+
+pub fn segment_cells(@core.Segment, Double) -> ((Int, Int), (Int, Int))
+
+pub fn segment_hash(@core.Segment, Double, Int) -> Int
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

@@ -2,10 +2,25 @@
 package "walkzzz/moon-geometry"
 
 import {
+  "walkzzz/moon-geometry/src/aabb_tree",
   "walkzzz/moon-geometry/src/bezier",
+  "walkzzz/moon-geometry/src/bucket_pr",
+  "walkzzz/moon-geometry/src/bvh",
+  "walkzzz/moon-geometry/src/convex_hull3d",
   "walkzzz/moon-geometry/src/core",
   "walkzzz/moon-geometry/src/ellipse",
   "walkzzz/moon-geometry/src/fitting",
+  "walkzzz/moon-geometry/src/grid_index",
+  "walkzzz/moon-geometry/src/half_plane",
+  "walkzzz/moon-geometry/src/interval",
+  "walkzzz/moon-geometry/src/kdtree",
+  "walkzzz/moon-geometry/src/linear_prog",
+  "walkzzz/moon-geometry/src/matrix",
+  "walkzzz/moon-geometry/src/plane",
+  "walkzzz/moon-geometry/src/quadtree",
+  "walkzzz/moon-geometry/src/range_tree",
+  "walkzzz/moon-geometry/src/ray",
+  "walkzzz/moon-geometry/src/spatial_hash",
   "walkzzz/moon-geometry/src/triangulation",
 }
 
@@ -18,7 +33,15 @@ pub fn affine_transform(@core.Point2D, Double, Double, Double, Double, Double, D
 
 pub fn affine_transform_points(Array[@core.Point2D], Double, Double, Double, Double, Double, Double) -> Array[@core.Point2D]
 
+pub fn angle_bisector(Double, Double) -> Double
+
+pub fn angle_diff(Double, Double) -> Double
+
+pub fn angle_is_between(Double, Double, Double) -> Bool
+
 pub fn approx_eq(Double, Double, Double) -> Bool
+
+pub fn are_separated(@core.Polygon, @core.Polygon) -> Bool
 
 pub fn bezier2_bbox(@bezier.Bezier2) -> (Double, Double, Double, Double)
 
@@ -44,9 +67,45 @@ pub fn bezier3_new(@core.Point2D, @core.Point2D, @core.Point2D, @core.Point2D) -
 
 pub fn bezier3_subdivide(@bezier.Bezier3, Double) -> (@bezier.Bezier3, @bezier.Bezier3)
 
+pub fn binary_search(Array[Double], Double) -> Int?
+
 pub fn bounding_circle(Array[@core.Point2D]) -> (@core.Point2D, Double)
 
+pub fn bucket_pr_count(Array[@bucket_pr.BucketPRNode]) -> Int
+
+pub fn bucket_pr_nearest(Array[@bucket_pr.BucketPRNode], Array[@core.Point2D], @core.Point2D) -> (Int, Double)?
+
+pub fn build_aabb_tree(Array[@core.Rectangle]) -> Array[@aabb_tree.AABBNode]
+
+pub fn build_bucket_pr(Array[@core.Point2D], Int) -> Array[@bucket_pr.BucketPRNode]
+
+pub fn build_bvh(Array[@core.Rectangle]) -> Array[@bvh.BVHNode]
+
+pub fn build_grid_index(Array[@core.Point2D], Double) -> @grid_index.GridIndex
+
+pub fn build_kdtree(Array[@core.Point2D]) -> Array[@kdtree.KDNode]
+
+pub fn build_quadtree(Array[@core.Point2D], @core.Rectangle) -> Array[@quadtree.QuadNode]
+
+pub fn build_range_tree(Array[@core.Point2D]) -> @range_tree.RangeTree
+
+pub fn build_spatial_hash(Array[@core.Point2D], Double) -> @spatial_hash.SpatialHash
+
+pub fn bvh_count_leaves(Array[@bvh.BVHNode]) -> Int
+
+pub fn bvh_query(Array[@bvh.BVHNode], @core.Rectangle) -> Array[Int]
+
+pub fn bvh_query_point(Array[@bvh.BVHNode], @core.Point2D) -> Array[Int]
+
 pub fn ccw(@core.Point2D, @core.Point2D, @core.Point2D) -> @core.Orientation
+
+pub fn cell_hash(@core.Point2D, Double, Int) -> Int
+
+pub fn cell_hash_3d(@core.Point3D, Double, Int) -> Int
+
+pub fn cell_index(@core.Point2D, Double) -> (Int, Int)
+
+pub fn cell_index_3d(@core.Point3D, Double) -> (Int, Int, Int)
 
 pub fn centroid(Array[@core.Point2D]) -> @core.Point2D?
 
@@ -58,9 +117,21 @@ pub fn circle_polygon_intersect(@core.Circle, @core.Polygon) -> Array[@core.Poin
 
 pub fn circle_segment_intersect(@core.Circle, @core.Segment) -> Array[@core.Point2D]
 
+pub fn clip_convex_by_half_plane(@core.Polygon, Double, Double, Double) -> Array[@core.Point2D]
+
+pub fn clip_convex_by_line(@core.Polygon, @core.Line) -> Array[@core.Point2D]
+
 pub fn clip_polygon(@core.Polygon, @core.Rectangle) -> Array[@core.Point2D]
 
 pub fn closest_pair(Array[@core.Point2D]) -> (@core.Point2D, @core.Point2D, Double)?
+
+pub fn compare_points(@core.Point2D, @core.Point2D) -> Int
+
+pub fn compare_segments(@core.Segment, @core.Segment) -> Int
+
+pub fn convex_area(Array[@core.Point2D]) -> Double
+
+pub fn convex_hull_3d(Array[@core.Point3D]) -> Array[@convex_hull3d.HullFace]
 
 pub fn convex_hull_andrew(Array[@core.Point2D]) -> Array[@core.Point2D]
 
@@ -76,7 +147,13 @@ pub fn convex_polygons_intersect(@core.Polygon, @core.Polygon) -> Bool
 
 pub fn count_intersections(Array[@core.Segment]) -> Int
 
+pub fn count_leaves(Array[@aabb_tree.AABBNode]) -> Int
+
 pub let default_eps : Double
+
+pub let deg2rad : Double
+
+pub fn deg_to_rad(Double) -> Double
 
 pub fn delaunay_triangulation(Array[@core.Point2D]) -> Array[@triangulation.TriangleIdx]
 
@@ -94,6 +171,8 @@ pub fn ellipse_on_boundary(@ellipse.Ellipse, @core.Point2D, Double) -> Bool
 
 pub fn ellipse_perimeter(@ellipse.Ellipse) -> Double
 
+pub let euler_e : Double
+
 pub fn extreme_point(@core.Polygon, @core.Point2D) -> Int
 
 pub fn farthest_point_pair(Array[@core.Point2D]) -> (@core.Point2D, @core.Point2D, Double)?
@@ -102,19 +181,97 @@ pub fn find_all_intersections(Array[@core.Segment]) -> Array[(Int, Int)]
 
 pub fn find_intersection_points(Array[@core.Segment]) -> Array[(Int, Int, @core.Point2D)]
 
+pub fn find_separating_axis(@core.Polygon, @core.Polygon) -> @core.Line?
+
 pub fn fit_circle(Array[@core.Point2D]) -> @fitting.CircleFit?
 
 pub fn fit_line(Array[@core.Point2D]) -> @fitting.LineFit?
 
 pub fn fit_line_orthogonal(Array[@core.Point2D]) -> (Double, Double, Double)?
 
+pub let geom_eps : Double
+
+pub let golden_ratio : Double
+
+pub fn grid_query_cell(@grid_index.GridIndex, @core.Point2D) -> Array[Int]
+
+pub fn grid_query_radius(@grid_index.GridIndex, @core.Point2D, Double) -> Array[Int]
+
+pub fn grid_query_rect(@grid_index.GridIndex, @core.Rectangle) -> Array[Int]
+
+pub fn grid_size(@grid_index.GridIndex) -> Int
+
+pub let half_pi : Double
+
+pub fn half_plane_contains(@half_plane.HalfPlane, @core.Point2D) -> Bool
+
+pub fn half_plane_intersect(Array[@half_plane.HalfPlane]) -> Array[@core.Point2D]
+
+pub fn half_plane_new(Double, Double, Double) -> @half_plane.HalfPlane
+
 pub fn has_any_intersection(Array[@core.Segment]) -> Bool
+
+pub fn hash_combine(Int, Int) -> Int
+
+pub fn hull_volume(Array[@core.Point3D], Array[@convex_hull3d.HullFace]) -> Double
+
+pub fn interval_contains(@interval.Interval, Double) -> Bool
+
+pub fn interval_contains_interval(@interval.Interval, @interval.Interval) -> Bool
+
+pub fn interval_intersect(@interval.Interval, @interval.Interval) -> @interval.Interval?
+
+pub fn interval_length(@interval.Interval) -> Double
+
+pub fn interval_midpoint(@interval.Interval) -> Double
+
+pub fn interval_new(Double, Double) -> @interval.Interval
+
+pub fn interval_overlaps(@interval.Interval, @interval.Interval) -> Bool
+
+pub fn interval_union(@interval.Interval, @interval.Interval) -> @interval.Interval
 
 pub fn is_convex(@core.Polygon) -> Bool
 
+pub fn is_feasible(Array[(Double, Double, Double)]) -> Bool
+
 pub fn is_simple_polygon_chain(Array[@core.Segment]) -> Bool
 
+pub fn is_sorted(Array[Double]) -> Bool
+
+pub fn kdtree_nearest(Array[@kdtree.KDNode], @core.Point2D) -> (Int, Double)?
+
+pub fn kdtree_range_query(Array[@kdtree.KDNode], @core.Rectangle) -> Array[Int]
+
+pub fn kth_element(Array[Double], Int) -> Double?
+
+pub fn less_than(@core.Point2D, @core.Point2D) -> Bool
+
 pub fn line_segment_intersection(@core.Line, @core.Segment) -> @core.Point2D?
+
+pub fn linear_program_2d(Array[(Double, Double, Double)], Double, Double) -> @linear_prog.LPResult?
+
+pub fn lower_bound(Array[Double], Double) -> Int
+
+pub fn mat2_det(@matrix.Mat2) -> Double
+
+pub fn mat2_identity() -> @matrix.Mat2
+
+pub fn mat2_inverse(@matrix.Mat2) -> @matrix.Mat2?
+
+pub fn mat2_mul(@matrix.Mat2, @matrix.Mat2) -> @matrix.Mat2
+
+pub fn mat2_new(Double, Double, Double, Double) -> @matrix.Mat2
+
+pub fn mat2_rotation(Double) -> @matrix.Mat2
+
+pub fn mat2_scaling(Double, Double) -> @matrix.Mat2
+
+pub fn mat2_trace(@matrix.Mat2) -> Double
+
+pub fn mat2_transform(@matrix.Mat2, @core.Point2D) -> @core.Point2D
+
+pub fn merge_sorted(Array[Double], Array[Double]) -> Array[Double]
 
 pub fn min_area_bounding_rect(Array[@core.Point2D]) -> (Double, Double, Double, Double, Double)
 
@@ -134,9 +291,37 @@ pub fn mirror_x(@core.Point2D) -> @core.Point2D
 
 pub fn mirror_y(@core.Point2D) -> @core.Point2D
 
+pub fn normalize_angle(Double) -> Double
+
+pub fn normalize_angle_signed(Double) -> Double
+
+pub fn origin_inside(@core.Polygon) -> Bool
+
+pub let pi : Double
+
+pub fn plane_contains(@plane.Plane, @core.Point3D, Double) -> Bool
+
+pub fn plane_distance(@plane.Plane, @core.Point3D) -> Double
+
+pub fn plane_from_normal_point(@core.Point3D, @core.Point3D) -> @plane.Plane
+
+pub fn plane_from_three_points(@core.Point3D, @core.Point3D, @core.Point3D) -> @plane.Plane
+
+pub fn plane_line_intersect(@plane.Plane, @core.Point3D, @core.Point3D) -> @core.Point3D?
+
+pub fn plane_normalize(@plane.Plane) -> @plane.Plane
+
+pub fn plane_project(@plane.Plane, @core.Point3D) -> @core.Point3D
+
 pub fn point_in_convex_polygon(@core.Polygon, @core.Point2D) -> Bool
 
 pub fn point_in_polygon(@core.Point2D, @core.Polygon) -> Bool
+
+pub fn point_set_centroid(Array[@core.Point2D]) -> @core.Point2D?
+
+pub fn point_set_difference(Array[@core.Point2D], Array[@core.Point2D]) -> Array[@core.Point2D]
+
+pub fn point_set_sum(Array[@core.Point2D], Array[@core.Point2D]) -> Array[@core.Point2D]
 
 pub fn point_to_convex_polygon_distance(@core.Polygon, @core.Point2D) -> Double
 
@@ -145,6 +330,12 @@ pub fn point_to_line_distance(@core.Point2D, @core.Line) -> Double
 pub fn point_to_polygon_distance(@core.Point2D, @core.Polygon) -> Double
 
 pub fn point_to_segment_distance(@core.Point2D, @core.Segment) -> Double
+
+pub fn points_equal(@core.Point2D, @core.Point2D, Double) -> Bool
+
+pub fn polar_dual(@core.Polygon) -> Array[@core.Point2D]
+
+pub fn polar_dual_point(@core.Point2D) -> @core.Point2D
 
 pub fn polygon_area(@core.Polygon) -> Double
 
@@ -164,6 +355,50 @@ pub fn polygon_to_polygon_distance(@core.Polygon, @core.Polygon) -> Double
 
 pub fn polygon_union_area(@core.Polygon, @core.Polygon) -> Double
 
+pub fn quadtree_count(Array[@quadtree.QuadNode]) -> Int
+
+pub fn quadtree_range_query(Array[@quadtree.QuadNode], @core.Rectangle) -> Array[Int]
+
+pub let quarter_pi : Double
+
+pub fn query_aabb(Array[@aabb_tree.AABBNode], @core.Rectangle) -> Array[Int]
+
+pub fn query_point_aabb(Array[@aabb_tree.AABBNode], @core.Point2D) -> Array[Int]
+
+pub let rad2deg : Double
+
+pub fn rad_to_deg(Double) -> Double
+
+pub fn range_query(@range_tree.RangeTree, Double, Double, Double, Double) -> Array[Int]
+
+pub fn range_query_x(@range_tree.RangeTree, Double, Double) -> Array[Int]
+
+pub fn range_query_y(@range_tree.RangeTree, Double, Double) -> Array[Int]
+
+pub fn range_tree_size(@range_tree.RangeTree) -> Int
+
+pub fn ray_eval(@ray.Ray, Double) -> @core.Point2D
+
+pub fn ray_from_points(@core.Point2D, @core.Point2D) -> @ray.Ray
+
+pub fn ray_line_intersect(@ray.Ray, @core.Line) -> @core.Point2D?
+
+pub fn ray_new(@core.Point2D, @core.Point2D) -> @ray.Ray
+
+pub fn ray_polygon_contains(@ray.Ray, @core.Polygon) -> Bool
+
+pub fn ray_polygon_intersect(@ray.Ray, @core.Polygon) -> Array[@core.Point2D]
+
+pub fn ray_segment_intersect(@ray.Ray, @core.Segment) -> @core.Point2D?
+
+pub fn robust_collinear(@core.Point2D, @core.Point2D, @core.Point2D, Double) -> Bool
+
+pub fn robust_left_turn(@core.Point2D, @core.Point2D, @core.Point2D) -> Bool
+
+pub fn robust_orientation(@core.Point2D, @core.Point2D, @core.Point2D) -> Int
+
+pub fn robust_right_turn(@core.Point2D, @core.Point2D, @core.Point2D) -> Bool
+
 pub fn rotate(@core.Point2D, Double) -> @core.Point2D
 
 pub fn rotate_around(@core.Point2D, @core.Point2D, Double) -> @core.Point2D
@@ -174,17 +409,39 @@ pub fn scale(@core.Point2D, Double, Double) -> @core.Point2D
 
 pub fn scale_around(@core.Point2D, @core.Point2D, Double, Double) -> @core.Point2D
 
+pub fn segment_cells(@core.Segment, Double) -> ((Int, Int), (Int, Int))
+
+pub fn segment_hash(@core.Segment, Double, Int) -> Int
+
 pub fn segment_intersection(@core.Segment, @core.Segment) -> @core.Point2D?
 
 pub fn segment_to_segment_distance(@core.Segment, @core.Segment) -> Double
 
 pub fn segments_intersect(@core.Segment, @core.Segment) -> Bool
 
+pub fn separating_distance(@core.Polygon, @core.Polygon) -> Double
+
 pub fn shear(@core.Point2D, Double, Double) -> @core.Point2D
 
 pub fn simplify_polygon(@core.Polygon, Double) -> Array[@core.Point2D]
 
+pub fn spatial_hash_nearby(@spatial_hash.SpatialHash, @core.Point2D) -> Array[Int]
+
+pub fn spatial_hash_query_radius(@spatial_hash.SpatialHash, @core.Point2D, Double) -> Array[Int]
+
+pub fn spatial_hash_query_rect(@spatial_hash.SpatialHash, @core.Rectangle) -> Array[Int]
+
+pub fn spatial_hash_size(@spatial_hash.SpatialHash) -> Int
+
+pub let sqrt2 : Double
+
+pub let sqrt3 : Double
+
+pub fn support_circle(@core.Point2D, Double, @core.Point2D) -> @core.Point2D
+
 pub fn support_function(@core.Polygon, @core.Point2D) -> Double
+
+pub fn support_point_set(Array[@core.Point2D], @core.Point2D) -> Int?
 
 pub fn tangent_from_point(@core.Polygon, @core.Point2D) -> (Int, Int)
 
@@ -196,16 +453,46 @@ pub fn triangulate_polygon(@core.Polygon) -> Array[(Int, Int, Int)]
 
 pub fn turn(@core.Point2D, @core.Point2D, @core.Point2D) -> Double
 
+pub let two_pi : Double
+
+pub fn unique_sorted(Array[Double]) -> Array[Double]
+
+pub fn upper_bound(Array[Double], Double) -> Int
+
+pub fn vec_angle_between(@core.Point2D, @core.Point2D) -> Double
+
+pub fn vec_length(@core.Point2D) -> Double
+
+pub fn vec_lerp(@core.Point2D, @core.Point2D, Double) -> @core.Point2D
+
+pub fn vec_normalize(@core.Point2D) -> @core.Point2D
+
+pub fn vec_perp(@core.Point2D) -> @core.Point2D
+
+pub fn vec_project(@core.Point2D, @core.Point2D) -> @core.Point2D
+
+pub fn vec_reflect(@core.Point2D, @core.Point2D) -> @core.Point2D
+
+pub fn vec_reject(@core.Point2D, @core.Point2D) -> @core.Point2D
+
 pub fn voronoi_diagram(Array[@core.Point2D]) -> (Array[@core.Point2D], Array[(Int, Int)])
+
+pub fn width_in_direction(Array[@core.Point2D], @core.Point2D) -> Double
 
 // Errors
 
 // Types and methods
 
 // Type aliases
+pub using @aabb_tree {type AABBNode}
+
+pub using @bvh {type BVHNode}
+
 pub using @bezier {type Bezier2}
 
 pub using @bezier {type Bezier3}
+
+pub using @bucket_pr {type BucketPRNode}
 
 pub using @core {type Circle}
 
@@ -213,11 +500,27 @@ pub using @fitting {type CircleFit}
 
 pub using @ellipse {type Ellipse}
 
+pub using @grid_index {type GridIndex}
+
+pub using @half_plane {type HalfPlane}
+
+pub using @convex_hull3d {type HullFace}
+
+pub using @interval {type Interval}
+
+pub using @kdtree {type KDNode}
+
+pub using @linear_prog {type LPResult}
+
 pub using @core {type Line}
 
 pub using @fitting {type LineFit}
 
+pub using @matrix {type Mat2}
+
 pub using @core {type Orientation}
+
+pub using @plane {type Plane}
 
 pub using @core {type Point2D}
 
@@ -225,9 +528,17 @@ pub using @core {type Point3D}
 
 pub using @core {type Polygon}
 
+pub using @quadtree {type QuadNode}
+
+pub using @range_tree {type RangeTree}
+
+pub using @ray {type Ray}
+
 pub using @core {type Rectangle}
 
 pub using @core {type Segment}
+
+pub using @spatial_hash {type SpatialHash}
 
 pub using @core {type Triangle}
 

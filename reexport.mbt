@@ -1724,3 +1724,310 @@ pub fn separating_distance(poly1 : Polygon, poly2 : Polygon) -> Double {
 pub fn are_separated(poly1 : Polygon, poly2 : Polygon) -> Bool {
   @separating.are_separated(poly1, poly2)
 }
+// ---------------------------------------------------------------------------
+// polygon_offset: polygon offset / 多边形偏移
+// ---------------------------------------------------------------------------
+
+///|
+/// Offset a polygon outward by a distance. / 将多边形向外偏移指定距离。
+pub fn polygon_offset_outward(poly : Array[Point2D], dist : Double) -> Array[Point2D] {
+  @polygon_offset.polygon_offset_outward(poly, dist)
+}
+
+///|
+/// Offset a polygon inward by a distance. / 将多边形向内偏移指定距离。
+pub fn polygon_offset_inward(poly : Array[Point2D], dist : Double) -> Array[Point2D] {
+  @polygon_offset.polygon_offset_inward(poly, dist)
+}
+
+///|
+/// Compute offset polygon area (Steiner formula). / 使用 Steiner 公式计算偏移面积。
+pub fn polygon_offset_area(poly : Array[Point2D], dist : Double) -> Double {
+  @polygon_offset.polygon_offset_area(poly, dist)
+}
+
+///|
+/// Check if offset polygon is valid. / 检查偏移多边形是否有效。
+pub fn polygon_offset_valid(poly : Array[Point2D], dist : Double) -> Bool {
+  @polygon_offset.polygon_offset_valid(poly, dist)
+}
+
+// ---------------------------------------------------------------------------
+// polygon_holes: polygon with holes / 带孔多边形
+// ---------------------------------------------------------------------------
+
+///|
+/// Polygon with holes type. / 带孔多边形类型。
+pub type PolygonWithHoles = @polygon_holes.PolygonWithHoles
+
+///|
+/// Create a polygon with holes. / 创建带孔多边形。
+pub fn polygon_with_holes_new(
+  outer : Array[Point2D],
+  holes : Array[Array[Point2D]],
+) -> PolygonWithHoles {
+  @polygon_holes.polygon_with_holes_new(outer, holes)
+}
+
+///|
+/// Area of polygon with holes. / 带孔多边形面积。
+pub fn polygon_with_holes_area(p : PolygonWithHoles) -> Double {
+  @polygon_holes.polygon_with_holes_area(p)
+}
+
+///|
+/// Check if point is in polygon with holes. / 检查点是否在带孔多边形内。
+pub fn polygon_with_holes_contains(p : PolygonWithHoles, pt : Point2D) -> Bool {
+  @polygon_holes.polygon_with_holes_contains(p, pt)
+}
+
+///|
+/// Perimeter of polygon with holes. / 带孔多边形周长。
+pub fn polygon_with_holes_perimeter(p : PolygonWithHoles) -> Double {
+  @polygon_holes.polygon_with_holes_perimeter(p)
+}
+
+///|
+/// Count holes. / 计算孔数。
+pub fn polygon_with_holes_count(p : PolygonWithHoles) -> Int {
+  @polygon_holes.polygon_with_holes_count(p)
+}
+
+// ---------------------------------------------------------------------------
+// visibility: visibility polygon / 可见性多边形
+// ---------------------------------------------------------------------------
+
+///|
+/// Check if two points are mutually visible. / 检查两点是否互相可见。
+pub fn is_visible(poly : Array[Point2D], from : Point2D, to : Point2D) -> Bool {
+  @visibility.is_visible(poly, from, to)
+}
+
+///|
+/// Visibility polygon from a point in convex polygon. / 凸多边形内一点的可见多边形。
+pub fn visibility_polygon_convex(poly : Array[Point2D], pt : Point2D) -> Array[Point2D] {
+  @visibility.visibility_polygon_convex(poly, pt)
+}
+
+///|
+/// Visibility polygon (general). / 可见多边形（通用）。
+pub fn visibility_polygon(poly : Array[Point2D], pt : Point2D) -> Array[Point2D] {
+  @visibility.visibility_polygon(poly, pt)
+}
+
+///|
+/// Count visible vertices. / 计算可见顶点数。
+pub fn visible_vertex_count(poly : Array[Point2D], pt : Point2D) -> Int {
+  @visibility.visible_vertex_count(poly, pt)
+}
+
+// ---------------------------------------------------------------------------
+// art_gallery: art gallery problem / 美术馆问题
+// ---------------------------------------------------------------------------
+
+///|
+/// Upper bound on guards (floor(n/3)). / 守卫数上界。
+pub fn art_gallery_guard_count(n : Int) -> Int {
+  @art_gallery.art_gallery_guard_count(n)
+}
+
+///|
+/// Place guards at vertices. / 在顶点放置守卫。
+pub fn art_gallery_place_guards(poly : Array[Point2D]) -> Array[Point2D] {
+  @art_gallery.art_gallery_place_guards(poly)
+}
+
+///|
+/// Check if guards cover all vertices. / 检查守卫是否覆盖所有顶点。
+pub fn art_gallery_covers_vertices(
+  poly : Array[Point2D],
+  guards : Array[Point2D],
+) -> Bool {
+  @art_gallery.art_gallery_covers_vertices(poly, guards)
+}
+
+///|
+/// Estimate guard count. / 估计守卫数。
+pub fn art_gallery_estimate(poly : Array[Point2D]) -> Int {
+  @art_gallery.art_gallery_estimate(poly)
+}
+
+// ---------------------------------------------------------------------------
+// polygon_kernel: polygon kernel / 多边形核
+// ---------------------------------------------------------------------------
+
+///|
+/// Compute polygon kernel. / 计算多边形核。
+pub fn polygon_kernel(poly : Array[Point2D]) -> Array[Point2D] {
+  @polygon_kernel.polygon_kernel(poly)
+}
+
+///|
+/// Check if polygon is star-shaped. / 检查多边形是否为星形。
+pub fn is_star_shaped(poly : Array[Point2D]) -> Bool {
+  @polygon_kernel.is_star_shaped(poly)
+}
+
+///|
+/// Kernel area. / 核面积。
+pub fn polygon_kernel_area(poly : Array[Point2D]) -> Double {
+  @polygon_kernel.polygon_kernel_area(poly)
+}
+
+///|
+/// Find a point in the kernel. / 在核中找一点。
+pub fn kernel_point(poly : Array[Point2D]) -> Point2D? {
+  @polygon_kernel.kernel_point(poly)
+}
+
+// ---------------------------------------------------------------------------
+// convex_decomp: convex decomposition / 凸分解
+// ---------------------------------------------------------------------------
+
+///|
+/// Check if polygon is convex. / 检查多边形是否为凸。
+pub fn is_convex_polygon(poly : Array[Point2D]) -> Bool {
+  @convex_decomp.is_convex_polygon(poly)
+}
+
+///|
+/// Decompose polygon into convex pieces. / 分解为凸块。
+pub fn convex_decomposition(poly : Array[Point2D]) -> Array[Array[Point2D]] {
+  @convex_decomp.convex_decomposition(poly)
+}
+
+///|
+/// Count convex pieces. / 凸块数量。
+pub fn convex_decomp_count(poly : Array[Point2D]) -> Int {
+  @convex_decomp.convex_decomp_count(poly)
+}
+
+///|
+/// Lower bound on convex pieces. / 凸块下界。
+pub fn convex_decomp_lower_bound(poly : Array[Point2D]) -> Int {
+  @convex_decomp.convex_decomp_lower_bound(poly)
+}
+
+///|
+/// Total area of convex pieces. / 凸块总面积。
+pub fn convex_decomp_area(poly : Array[Point2D]) -> Double {
+  @convex_decomp.convex_decomp_area(poly)
+}
+
+// ---------------------------------------------------------------------------
+// polygon_symmetry: symmetry detection / 对称性检测
+// ---------------------------------------------------------------------------
+
+///|
+/// Check reflection symmetry. / 检查反射对称。
+pub fn has_reflection_symmetry(poly : Array[Point2D], axis_angle : Double) -> Bool {
+  @polygon_symmetry.has_reflection_symmetry(poly, axis_angle)
+}
+
+///|
+/// Check rotational symmetry. / 检查旋转对称。
+pub fn has_rotation_symmetry(poly : Array[Point2D], order : Int) -> Bool {
+  @polygon_symmetry.has_rotation_symmetry(poly, order)
+}
+
+///|
+/// Find rotational symmetry order. / 求旋转对称阶。
+pub fn polygon_symmetry_order(poly : Array[Point2D]) -> Int {
+  @polygon_symmetry.polygon_symmetry_order(poly)
+}
+
+///|
+/// Check any symmetry. / 检查任何对称性。
+pub fn has_any_symmetry(poly : Array[Point2D]) -> Bool {
+  @polygon_symmetry.has_any_symmetry(poly)
+}
+
+// ---------------------------------------------------------------------------
+// polygon_cover: polygon covering / 多边形覆盖
+// ---------------------------------------------------------------------------
+
+///|
+/// Cover by rectangles. / 矩形覆盖。
+pub fn cover_by_rectangles(poly : Array[Point2D]) -> Array[Rectangle] {
+  @polygon_cover.cover_by_rectangles(poly)
+}
+
+///|
+/// Cover by triangles. / 三角形覆盖。
+pub fn cover_by_triangles(poly : Array[Point2D]) -> Array[Triangle] {
+  @polygon_cover.cover_by_triangles(poly)
+}
+
+///|
+/// Rectangle cover area. / 矩形覆盖面积。
+pub fn cover_area_rectangles(poly : Array[Point2D]) -> Double {
+  @polygon_cover.cover_area_rectangles(poly)
+}
+
+///|
+/// Triangle cover area. / 三角形覆盖面积。
+pub fn cover_area_triangles(poly : Array[Point2D]) -> Double {
+  @polygon_cover.cover_area_triangles(poly)
+}
+
+// ---------------------------------------------------------------------------
+// ear_clip: ear clipping triangulation / 耳裁剪三角剖分
+// ---------------------------------------------------------------------------
+
+///|
+/// Check if vertex is an ear. / 检查顶点是否为耳。
+pub fn is_ear(poly : Array[Point2D], indices : Array[Int], i : Int) -> Bool {
+  @ear_clip.is_ear(poly, indices, i)
+}
+
+///|
+/// Find an ear vertex. / 找耳顶点。
+pub fn find_ear(poly : Array[Point2D], indices : Array[Int]) -> Int? {
+  @ear_clip.find_ear(poly, indices)
+}
+
+///|
+/// Triangulate via ear clipping. / 耳裁剪三角剖分。
+pub fn ear_clip_triangulate(poly : Array[Point2D]) -> Array[(Int, Int, Int)] {
+  @ear_clip.ear_clip_triangulate(poly)
+}
+
+///|
+/// Count ear clip triangles. / 耳裁剪三角形数。
+pub fn ear_clip_count(poly : Array[Point2D]) -> Int {
+  @ear_clip.ear_clip_count(poly)
+}
+
+///|
+/// Ear clip total area. / 耳裁剪总面积。
+pub fn ear_clip_area(poly : Array[Point2D]) -> Double {
+  @ear_clip.ear_clip_area(poly)
+}
+
+// ---------------------------------------------------------------------------
+// monotone: monotone polygon triangulation / 单调多边形三角剖分
+// ---------------------------------------------------------------------------
+
+///|
+/// Check if polygon is y-monotone. / 检查多边形是否 y-单调。
+pub fn is_y_monotone(poly : Array[Point2D]) -> Bool {
+  @monotone.is_y_monotone(poly)
+}
+
+///|
+/// Check if polygon is x-monotone. / 检查多边形是否 x-单调。
+pub fn is_x_monotone(poly : Array[Point2D]) -> Bool {
+  @monotone.is_x_monotone(poly)
+}
+
+///|
+/// Triangulate y-monotone polygon. / 三角剖分 y-单调多边形。
+pub fn triangulate_monotone(poly : Array[Point2D]) -> Array[(Int, Int, Int)] {
+  @monotone.triangulate_monotone(poly)
+}
+
+///|
+/// Count monotone triangles. / 单调三角剖分三角形数。
+pub fn monotone_triangulate_count(poly : Array[Point2D]) -> Int {
+  @monotone.monotone_triangulate_count(poly)
+}

@@ -1,0 +1,27 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/src/linear_prog"
+
+import {
+  "moonbitlang/core/debug",
+  "walkzzz/moon-geometry/src/core",
+}
+
+// Values
+pub fn find_feasible_point(Array[(Double, Double, Double)]) -> @core.Point2D?
+
+pub fn is_feasible(Array[(Double, Double, Double)]) -> Bool
+
+pub fn linear_program_2d(Array[(Double, Double, Double)], Double, Double) -> LPResult?
+
+// Errors
+
+// Types and methods
+pub struct LPResult {
+  point : @core.Point2D
+  value : Double
+} derive(@debug.Debug)
+pub fn LPResult::to_repr(Self) -> @debug.Repr
+
+// Type aliases
+
+// Traits

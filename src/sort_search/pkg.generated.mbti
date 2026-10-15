@@ -1,0 +1,25 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/src/sort_search"
+
+// Values
+pub fn binary_search(Array[Double], Double) -> Int?
+
+pub fn is_sorted(Array[Double]) -> Bool
+
+pub fn kth_element(Array[Double], Int) -> Double?
+
+pub fn lower_bound(Array[Double], Double) -> Int
+
+pub fn merge_sorted(Array[Double], Array[Double]) -> Array[Double]
+
+pub fn unique_sorted(Array[Double]) -> Array[Double]
+
+pub fn upper_bound(Array[Double], Double) -> Int
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

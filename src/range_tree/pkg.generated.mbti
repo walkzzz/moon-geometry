@@ -1,0 +1,32 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/src/range_tree"
+
+import {
+  "moonbitlang/core/debug",
+  "walkzzz/moon-geometry/src/core",
+}
+
+// Values
+pub fn build_range_tree(Array[@core.Point2D]) -> RangeTree
+
+pub fn range_query(RangeTree, Double, Double, Double, Double) -> Array[Int]
+
+pub fn range_query_x(RangeTree, Double, Double) -> Array[Int]
+
+pub fn range_query_y(RangeTree, Double, Double) -> Array[Int]
+
+pub fn range_tree_size(RangeTree) -> Int
+
+// Errors
+
+// Types and methods
+pub struct RangeTree {
+  points : Array[@core.Point2D]
+  sorted_x : Array[Int]
+  sorted_y : Array[Int]
+} derive(@debug.Debug)
+pub fn RangeTree::to_repr(Self) -> @debug.Repr
+
+// Type aliases
+
+// Traits

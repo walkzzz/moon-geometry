@@ -6,6 +6,27 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
 Moon Geometry 的所有重要变更记录于此。
 格式基于 [Keep a Changelog](https://keepachangelog.com/)。
 
+## [1.2.0] - 2026-10-16
+
+### Added — Polygon Algorithms | 多边形算法（10 个模块）
+
+- **Polygon Offset | 多边形偏移** (`polygon_offset` module)：`polygon_offset_outward`, `polygon_offset_inward`, `polygon_offset_area`, `polygon_offset_valid`
+- **Polygon with Holes | 带孔多边形** (`polygon_holes` module)：`PolygonWithHoles`, `polygon_with_holes_area`, `polygon_with_holes_contains`, `polygon_with_holes_perimeter`
+- **Visibility | 可见性** (`visibility` module)：`is_visible`, `visibility_polygon`, `visibility_polygon_convex`, `visible_vertex_count`
+- **Art Gallery | 美术馆问题** (`art_gallery` module)：`art_gallery_guard_count`, `art_gallery_place_guards`, `art_gallery_covers_vertices`, `art_gallery_estimate`
+- **Polygon Kernel | 多边形核** (`polygon_kernel` module)：`polygon_kernel`, `is_star_shaped`, `polygon_kernel_area`, `kernel_point`
+- **Convex Decomposition | 凸分解** (`convex_decomp` module)：`convex_decomposition`, `convex_decomp_count`, `convex_decomp_lower_bound`, `convex_decomp_area`
+- **Polygon Symmetry | 多边形对称** (`polygon_symmetry` module)：`has_reflection_symmetry`, `has_rotation_symmetry`, `polygon_symmetry_order`, `has_any_symmetry`
+- **Polygon Cover | 多边形覆盖** (`polygon_cover` module)：`cover_by_rectangles`, `cover_by_triangles`, `cover_area_rectangles`, `cover_area_triangles`
+- **Ear Clipping | 耳裁剪** (`ear_clip` module)：`is_ear`, `find_ear`, `ear_clip_triangulate`, `ear_clip_count`, `ear_clip_area`
+- **Monotone Triangulation | 单调三角剖分** (`monotone` module)：`is_y_monotone`, `is_x_monotone`, `triangulate_monotone`, `monotone_triangulate_count`
+
+### Tests | 测试
+
+- Added 50 tests, total 646 tests | 新增 50 测试，累计 646 测试
+- All four targets green, zero warnings | 四目标全绿，零警告
+- 55 modules total | 共 55 个模块
+
 ## [1.1.0] - 2026-10-16
 
 ### Added — Convexity & Optimization | 凸性与优化（8 个模块）

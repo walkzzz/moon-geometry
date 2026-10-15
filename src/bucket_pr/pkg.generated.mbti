@@ -1,0 +1,31 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/src/bucket_pr"
+
+import {
+  "moonbitlang/core/debug",
+  "walkzzz/moon-geometry/src/core",
+}
+
+// Values
+pub fn bucket_pr_count(Array[BucketPRNode]) -> Int
+
+pub fn bucket_pr_nearest(Array[BucketPRNode], Array[@core.Point2D], @core.Point2D) -> (Int, Double)?
+
+pub fn build_bucket_pr(Array[@core.Point2D], Int) -> Array[BucketPRNode]
+
+// Errors
+
+// Types and methods
+pub struct BucketPRNode {
+  is_leaf : Bool
+  bucket : Array[Int]
+  axis : Int
+  split_val : Double
+  left : Int
+  right : Int
+} derive(@debug.Debug)
+pub fn BucketPRNode::to_repr(Self) -> @debug.Repr
+
+// Type aliases
+
+// Traits
