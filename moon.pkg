@@ -28,4 +28,12 @@ import {
   "walkzzz/moon-geometry/src/compare",
   "walkzzz/moon-geometry/src/ray",
   "walkzzz/moon-geometry/src/plane",
+  "walkzzz/moon-geometry/src/kdtree",
+  "walkzzz/moon-geometry/src/quadtree",
+  "walkzzz/moon-geometry/src/grid_index",
+  "walkzzz/moon-geometry/src/range_tree",
+  "walkzzz/moon-geometry/src/sort_search",
+  "walkzzz/moon-geometry/src/bucket_pr",
+  "walkzzz/moon-geometry/src/spatial_hash",
+  "walkzzz/moon-geometry/src/bvh",
 }

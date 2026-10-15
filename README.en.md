@@ -5,7 +5,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![MoonBit](https://img.shields.io/badge/MoonBit-0.1.20260920-blue.svg)](https://moonbitlang.com)
-[![Tests](https://img.shields.io/badge/tests-518-brightgreen.svg)]()
+[![Tests](https://img.shields.io/badge/tests-560-brightgreen.svg)]()
 [![Targets](https://img.shields.io/badge/targets-native%20%7C%20wasm--gc%20%7C%20js%20%7C%20wasm-green.svg)]()
 
 Moon Geometry is a **pure MoonBit** computational geometry library with **zero C FFI dependencies**, supporting all four backends (3natively. It provides reusable geometric algorithm primitives for CAD, collision detection, GIS, path planning, and image processing.
@@ -74,6 +74,14 @@ src/
   compare/        # Comparison predicates | 比较谓词
   ray/            # Ray operations | 射线运算
   plane/          # 3D plane | 三维平面
+  kdtree/         # K-d tree | K-d树
+  quadtree/       # Quadtree | 四叉树
+  grid_index/     # Grid index | 网格索引
+  range_tree/     # Range tree | 范围树
+  sort_search/    # Sorted search | 有序搜索
+  bucket_pr/      # Bucket PR k-d tree | 桶PR树
+  spatial_hash/   # Spatial hash | 空间哈希
+  bvh/            # BVH | 层次包围体
 ```
 
 ## Quick Example | 快速示例
@@ -128,20 +136,28 @@ let hull = @hull.convex_hull_andrew(points)  // hull vertices (CCW) | 凸包顶�
 | Compare | 比较 | `robust_orientation`, `robust_left_turn`, `compare_points` | `robust_collinear`, `points_equal` |
 | Ray | 射线 | `ray_new`, `ray_segment_intersect`, `ray_polygon_contains` | `ray_line_intersect`, `ray_polygon_intersect` |
 | Plane | 平面 | `plane_from_normal_point`, `plane_distance`, `plane_project` | `plane_from_three_points`, `plane_line_intersect` |
+| K-d tree | K-d树 | `build_kdtree`, `kdtree_nearest`, `kdtree_range_query` | Nearest neighbor |
+| Quadtree | 四叉树 | `build_quadtree`, `quadtree_range_query` | `quadtree_count` |
+| Grid index | 网格索引 | `build_grid_index`, `grid_query_radius`, `grid_query_rect` | `grid_query_cell`, `grid_size` |
+| Range tree | 范围树 | `build_range_tree`, `range_query` | `range_query_x`, `range_query_y` |
+| Sort search | 有序搜索 | `binary_search`, `lower_bound`, `upper_bound` | `unique_sorted`, `kth_element`, `merge_sorted` |
+| Bucket PR | 桶PR树 | `build_bucket_pr`, `bucket_pr_nearest` | `bucket_pr_count` |
+| Spatial hash | 空间哈希 | `build_spatial_hash`, `spatial_hash_query_radius` | `spatial_hash_nearby`, `spatial_hash_size` |
+| BVH | 层次包围体 | `build_bvh`, `bvh_query`, `bvh_query_point` | `bvh_count_leaves` |
 
 Full interface in `.mbti` files. 完整接口见 `.mbti` 文件。
 
 ## Tests | 测试
 
 ```bash
-moon test                          # all 518 tests | 全部 518 测试
+moon test                          # all 560 tests | 全部 560 测试
 moon test --target native          # verify each backend | 四目标分别验证
 moon test --target wasm-gc
 moon test --target js
 moon test --target wasm
 ```
 
-All four targets pass: 518 × 4 = 2072. 四目标全绿：518 × 4 = 2072。
+All four targets pass: 560 × 4 = 2240. 四目标全绿：560 × 4 = 2240。
 
 ## Roadmap | 交付路线图
 

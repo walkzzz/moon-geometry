@@ -1257,3 +1257,286 @@ pub fn plane_normalize(plane : Plane) -> Plane {
 pub fn plane_project(plane : Plane, p : Point3D) -> Point3D {
   @plane.Plane::project(plane, p)
 }
+// ---------------------------------------------------------------------------
+// kdtree: k-d tree / K-d 树
+// ---------------------------------------------------------------------------
+
+///|
+/// K-d tree node type. / K-d 树节点类型。
+pub type KDNode = @kdtree.KDNode
+
+///|
+/// Build a k-d tree. / 构建 k-d 树。
+pub fn build_kdtree(points : Array[Point2D]) -> Array[KDNode] {
+  @kdtree.build_kdtree(points)
+}
+
+///|
+/// Nearest neighbor search. / 最近邻搜索。
+pub fn kdtree_nearest(nodes : Array[KDNode], query : Point2D) -> (Int, Double)? {
+  @kdtree.kdtree_nearest(nodes, query)
+}
+
+///|
+/// Range query in k-d tree. / K-d 树范围查询。
+pub fn kdtree_range_query(nodes : Array[KDNode], rect : Rectangle) -> Array[Int] {
+  @kdtree.kdtree_range_query(nodes, rect)
+}
+
+// ---------------------------------------------------------------------------
+// quadtree: quadtree / 四叉树
+// ---------------------------------------------------------------------------
+
+///|
+/// Quadtree node type. / 四叉树节点类型。
+pub type QuadNode = @quadtree.QuadNode
+
+///|
+/// Build a quadtree. / 构建四叉树。
+pub fn build_quadtree(points : Array[Point2D], bounds : Rectangle) -> Array[QuadNode] {
+  @quadtree.build_quadtree(points, bounds)
+}
+
+///|
+/// Range query in quadtree. / 四叉树范围查询。
+pub fn quadtree_range_query(nodes : Array[QuadNode], rect : Rectangle) -> Array[Int] {
+  @quadtree.quadtree_range_query(nodes, rect)
+}
+
+///|
+/// Count points in quadtree. / 统计四叉树点数。
+pub fn quadtree_count(nodes : Array[QuadNode]) -> Int {
+  @quadtree.quadtree_count(nodes)
+}
+
+// ---------------------------------------------------------------------------
+// grid_index: uniform grid / 均匀网格
+// ---------------------------------------------------------------------------
+
+///|
+/// Grid index type. / 网格索引类型。
+pub type GridIndex = @grid_index.GridIndex
+
+///|
+/// Build a grid index. / 构建网格索引。
+pub fn build_grid_index(points : Array[Point2D], cell_size : Double) -> GridIndex {
+  @grid_index.build_grid_index(points, cell_size)
+}
+
+///|
+/// Query points within radius. / 查询半径内的点。
+pub fn grid_query_radius(grid : GridIndex, center : Point2D, radius : Double) -> Array[Int] {
+  @grid_index.grid_query_radius(grid, center, radius)
+}
+
+///|
+/// Query points within rectangle. / 查询矩形内的点。
+pub fn grid_query_rect(grid : GridIndex, rect : Rectangle) -> Array[Int] {
+  @grid_index.grid_query_rect(grid, rect)
+}
+
+///|
+/// Query points in a grid cell. / 查询网格单元内的点。
+pub fn grid_query_cell(grid : GridIndex, p : Point2D) -> Array[Int] {
+  @grid_index.grid_query_cell(grid, p)
+}
+
+///|
+/// Number of points in grid. / 网格中的点数。
+pub fn grid_size(grid : GridIndex) -> Int {
+  @grid_index.grid_size(grid)
+}
+
+// ---------------------------------------------------------------------------
+// range_tree: range tree / 范围树
+// ---------------------------------------------------------------------------
+
+///|
+/// Range tree type. / 范围树类型。
+pub type RangeTree = @range_tree.RangeTree
+
+///|
+/// Build a range tree. / 构建范围树。
+pub fn build_range_tree(points : Array[Point2D]) -> RangeTree {
+  @range_tree.build_range_tree(points)
+}
+
+///|
+/// Orthogonal range query. / 正交范围查询。
+pub fn range_query(
+  tree : RangeTree,
+  x_lo : Double,
+  x_hi : Double,
+  y_lo : Double,
+  y_hi : Double,
+) -> Array[Int] {
+  @range_tree.range_query(tree, x_lo, x_hi, y_lo, y_hi)
+}
+
+///|
+/// Query by x-range. / 按 x 范围查询。
+pub fn range_query_x(tree : RangeTree, x_lo : Double, x_hi : Double) -> Array[Int] {
+  @range_tree.range_query_x(tree, x_lo, x_hi)
+}
+
+///|
+/// Query by y-range. / 按 y 范围查询。
+pub fn range_query_y(tree : RangeTree, y_lo : Double, y_hi : Double) -> Array[Int] {
+  @range_tree.range_query_y(tree, y_lo, y_hi)
+}
+
+///|
+/// Number of points in tree. / 范围树中的点数。
+pub fn range_tree_size(tree : RangeTree) -> Int {
+  @range_tree.range_tree_size(tree)
+}
+
+// ---------------------------------------------------------------------------
+// sort_search: sorted array search / 有序数组搜索
+// ---------------------------------------------------------------------------
+
+///|
+/// Binary search. / 二分查找。
+pub fn binary_search(arr : Array[Double], target : Double) -> Int? {
+  @sort_search.binary_search(arr, target)
+}
+
+///|
+/// Lower bound. / 下界。
+pub fn lower_bound(arr : Array[Double], target : Double) -> Int {
+  @sort_search.lower_bound(arr, target)
+}
+
+///|
+/// Upper bound. / 上界。
+pub fn upper_bound(arr : Array[Double], target : Double) -> Int {
+  @sort_search.upper_bound(arr, target)
+}
+
+///|
+/// Remove duplicates from sorted array. / 去重有序数组。
+pub fn unique_sorted(arr : Array[Double]) -> Array[Double] {
+  @sort_search.unique_sorted(arr)
+}
+
+///|
+/// Check if array is sorted. / 检查数组是否有序。
+pub fn is_sorted(arr : Array[Double]) -> Bool {
+  @sort_search.is_sorted(arr)
+}
+
+///|
+/// K-th smallest element. / 第 k 小元素。
+pub fn kth_element(arr : Array[Double], k : Int) -> Double? {
+  @sort_search.kth_element(arr, k)
+}
+
+///|
+/// Merge two sorted arrays. / 合并两个有序数组。
+pub fn merge_sorted(a : Array[Double], b : Array[Double]) -> Array[Double] {
+  @sort_search.merge_sorted(a, b)
+}
+
+// ---------------------------------------------------------------------------
+// bucket_pr: bucket PR k-d tree / 桶 PR k-d 树
+// ---------------------------------------------------------------------------
+
+///|
+/// Bucket PR node type. / 桶 PR 节点类型。
+pub type BucketPRNode = @bucket_pr.BucketPRNode
+
+///|
+/// Build a bucket PR k-d tree. / 构建桶 PR k-d 树。
+pub fn build_bucket_pr(points : Array[Point2D], bucket_size : Int) -> Array[BucketPRNode] {
+  @bucket_pr.build_bucket_pr(points, bucket_size)
+}
+
+///|
+/// Nearest neighbor in bucket PR tree. / 桶 PR 树最近邻。
+pub fn bucket_pr_nearest(
+  nodes : Array[BucketPRNode],
+  points : Array[Point2D],
+  query : Point2D,
+) -> (Int, Double)? {
+  @bucket_pr.bucket_pr_nearest(nodes, points, query)
+}
+
+///|
+/// Count points in bucket PR tree. / 统计桶 PR 树点数。
+pub fn bucket_pr_count(nodes : Array[BucketPRNode]) -> Int {
+  @bucket_pr.bucket_pr_count(nodes)
+}
+
+// ---------------------------------------------------------------------------
+// spatial_hash: spatial hash table / 空间哈希表
+// ---------------------------------------------------------------------------
+
+///|
+/// Spatial hash type. / 空间哈希类型。
+pub type SpatialHash = @spatial_hash.SpatialHash
+
+///|
+/// Build a spatial hash. / 构建空间哈希。
+pub fn build_spatial_hash(points : Array[Point2D], cell_size : Double) -> SpatialHash {
+  @spatial_hash.build_spatial_hash(points, cell_size)
+}
+
+///|
+/// Query points within radius. / 查询半径内的点。
+pub fn spatial_hash_query_radius(
+  hash : SpatialHash,
+  center : Point2D,
+  radius : Double,
+) -> Array[Int] {
+  @spatial_hash.spatial_hash_query_radius(hash, center, radius)
+}
+
+///|
+/// Query points within rectangle. / 查询矩形内的点。
+pub fn spatial_hash_query_rect(hash : SpatialHash, rect : Rectangle) -> Array[Int] {
+  @spatial_hash.spatial_hash_query_rect(hash, rect)
+}
+
+///|
+/// Query nearby points. / 查询邻近点。
+pub fn spatial_hash_nearby(hash : SpatialHash, p : Point2D) -> Array[Int] {
+  @spatial_hash.spatial_hash_nearby(hash, p)
+}
+
+///|
+/// Number of points. / 点数。
+pub fn spatial_hash_size(hash : SpatialHash) -> Int {
+  @spatial_hash.spatial_hash_size(hash)
+}
+
+// ---------------------------------------------------------------------------
+// bvh: bounding volume hierarchy / 层次包围体
+// ---------------------------------------------------------------------------
+
+///|
+/// BVH node type. / BVH 节点类型。
+pub type BVHNode = @bvh.BVHNode
+
+///|
+/// Build a BVH. / 构建 BVH。
+pub fn build_bvh(rects : Array[Rectangle]) -> Array[BVHNode] {
+  @bvh.build_bvh(rects)
+}
+
+///|
+/// Query overlapping rectangles. / 查询重叠矩形。
+pub fn bvh_query(nodes : Array[BVHNode], rect : Rectangle) -> Array[Int] {
+  @bvh.bvh_query(nodes, rect)
+}
+
+///|
+/// Query rectangles containing a point. / 查询包含点的矩形。
+pub fn bvh_query_point(nodes : Array[BVHNode], p : Point2D) -> Array[Int] {
+  @bvh.bvh_query_point(nodes, p)
+}
+
+///|
+/// Count leaf nodes. / 统计叶子节点数。
+pub fn bvh_count_leaves(nodes : Array[BVHNode]) -> Int {
+  @bvh.bvh_count_leaves(nodes)
+}

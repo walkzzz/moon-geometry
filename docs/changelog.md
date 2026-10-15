@@ -6,6 +6,25 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
 Moon Geometry 的所有重要变更记录于此。
 格式基于 [Keep a Changelog](https://keepachangelog.com/)。
 
+## [1.0.0] - 2026-10-15
+
+### Added — Spatial Data Structures | 空间数据结构（8 个模块）
+
+- **K-d Tree | K-d树** (`kdtree` module)：`build_kdtree`, `kdtree_nearest`, `kdtree_range_query`
+- **Quadtree | 四叉树** (`quadtree` module)：`build_quadtree`, `quadtree_range_query`, `quadtree_count`
+- **Grid Index | 网格索引** (`grid_index` module)：`build_grid_index`, `grid_query_radius`, `grid_query_rect`, `grid_query_cell`
+- **Range Tree | 范围树** (`range_tree` module)：`build_range_tree`, `range_query`, `range_query_x`, `range_query_y`
+- **Sorted Search | 有序搜索** (`sort_search` module)：`binary_search`, `lower_bound`, `upper_bound`, `unique_sorted`, `kth_element`, `merge_sorted`
+- **Bucket PR k-d Tree | 桶PR树** (`bucket_pr` module)：`build_bucket_pr`, `bucket_pr_nearest`, `bucket_pr_count`
+- **Spatial Hash | 空间哈希** (`spatial_hash` module)：`build_spatial_hash`, `spatial_hash_query_radius`, `spatial_hash_nearby`
+- **BVH | 层次包围体** (`bvh` module)：`build_bvh`, `bvh_query`, `bvh_query_point`, `bvh_count_leaves`
+
+### Tests | 测试
+
+- Added 42 tests, total 560 tests | 新增 42 测试，累计 560 测试
+- All four targets green, zero warnings | 四目标全绿，零警告
+- 37 modules total | 共 37 个模块
+
 ## [0.9.0] - 2026-10-15
 
 ### Added — AABB Tree + Hash + Compare + Ray + Plane | AABB树 + 哈希 + 比较 + 射线 + 平面
