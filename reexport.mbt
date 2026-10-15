@@ -440,3 +440,39 @@ pub fn circle_polygon_intersect(
 pub fn triangulate_polygon(poly : Polygon) -> Array[(Int, Int, Int)] {
   @triangulate.triangulate_polygon(poly)
 }
+// ---------------------------------------------------------------------------
+// minkowski: Minkowski operations / Minkowski 运算
+// ---------------------------------------------------------------------------
+
+///|
+/// Minkowski sum of two convex polygons. / 两个凸多边形的 Minkowski 和。
+pub fn minkowski_sum_convex(
+  poly1 : Polygon,
+  poly2 : Polygon
+) -> Array[Point2D] {
+  @minkowski.minkowski_sum_convex(poly1, poly2)
+}
+
+///|
+/// Minkowski difference of two convex polygons. / 两个凸多边形的 Minkowski 差。
+pub fn minkowski_difference_convex(
+  poly1 : Polygon,
+  poly2 : Polygon
+) -> Array[Point2D] {
+  @minkowski.minkowski_difference_convex(poly1, poly2)
+}
+
+///|
+/// Minkowski sum of a circle and a convex polygon. / 圆与凸多边形的 Minkowski 和。
+pub fn minkowski_sum_circle_polygon(
+  circle : Circle,
+  poly : Polygon
+) -> (Array[Point2D], Double) {
+  @minkowski.minkowski_sum_circle_polygon(circle, poly)
+}
+
+///|
+/// Check if two convex polygons collide via Minkowski difference. / 用 Minkowski 差检查两凸多边形碰撞。
+pub fn convex_polygons_collide(poly1 : Polygon, poly2 : Polygon) -> Bool {
+  @minkowski.convex_polygons_collide(poly1, poly2)
+}
