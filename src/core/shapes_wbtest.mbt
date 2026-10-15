@@ -151,3 +151,19 @@ test "Rectangle::intersection disjoint" {
   let r2 = Rectangle::new(2.0, 2.0, 3.0, 3.0)
   assert_true(r1.intersection(r2) is None)
 }
+///|
+test "Circle::contains center" {
+  let c = Circle::new(Point2D::new(3.0, 4.0), 5.0)
+  assert_true(c.contains(Point2D::new(3.0, 4.0)))
+}
+
+///|
+test "Rectangle::union area" {
+  let r1 = Rectangle::new(0.0, 0.0, 2.0, 2.0)
+  let r2 = Rectangle::new(1.0, 1.0, 3.0, 3.0)
+  let u = r1.union(r2)
+  assert_true(approx_eq(u.min_x, 0.0, 0.000000001))
+  assert_true(approx_eq(u.max_x, 3.0, 0.000000001))
+  assert_true(approx_eq(u.min_y, 0.0, 0.000000001))
+  assert_true(approx_eq(u.max_y, 3.0, 0.000000001))
+}

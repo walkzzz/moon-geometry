@@ -227,3 +227,85 @@ test "polygon_perimeter degenerate" {
   let poly = @core.Polygon::new([@core.Point2D::new(0.0, 0.0)])
   assert_true(@core.approx_eq(polygon_perimeter(poly), 0.0, 0.000000001))
 }
+///|
+test "polygon_area concave" {
+  let poly = @core.Polygon::new([
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(4.0, 0.0),
+    @core.Point2D::new(2.0, 2.0),
+    @core.Point2D::new(4.0, 4.0),
+    @core.Point2D::new(0.0, 4.0),
+  ])
+  let a = polygon_area(poly)
+  assert_true(a > 0.0)
+  assert_true(a < 16.0)
+}
+
+///|
+test "polygon_centroid triangle" {
+  let poly = @core.Polygon::new([
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(6.0, 0.0),
+    @core.Point2D::new(0.0, 6.0),
+  ])
+  let c = polygon_centroid(poly)
+  assert_true(@core.approx_eq(c.x, 2.0, 0.000000001))
+  assert_true(@core.approx_eq(c.y, 2.0, 0.000000001))
+}
+
+///|
+test "is_convex concave polygon" {
+  let poly = @core.Polygon::new([
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(4.0, 0.0),
+    @core.Point2D::new(2.0, 1.0),
+    @core.Point2D::new(4.0, 4.0),
+    @core.Point2D::new(0.0, 4.0),
+  ])
+  assert_false(is_convex(poly))
+}
+
+///|
+test "point_in_polygon on edge" {
+  let poly = @core.Polygon::new([
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(4.0, 0.0),
+    @core.Point2D::new(4.0, 4.0),
+    @core.Point2D::new(0.0, 4.0),
+  ])
+  let p = @core.Point2D::new(2.0, 0.0)
+  assert_true(point_in_polygon(p, poly))
+}
+
+///|
+test "point_in_polygon at vertex" {
+  let poly = @core.Polygon::new([
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(4.0, 0.0),
+    @core.Point2D::new(4.0, 4.0),
+    @core.Point2D::new(0.0, 4.0),
+  ])
+  assert_true(point_in_polygon(@core.Point2D::new(0.5, 0.5), poly))
+  assert_true(point_in_polygon(@core.Point2D::new(3.5, 3.5), poly))
+}
+
+///|
+test "polygon_orientation clockwise" {
+  let poly = @core.Polygon::new([
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(0.0, 4.0),
+    @core.Point2D::new(4.0, 4.0),
+    @core.Point2D::new(4.0, 0.0),
+  ])
+  assert_eq(polygon_orientation(poly), @core.Clockwise)
+}
+
+///|
+test "polygon_orientation collinear extra" {
+  let poly = @core.Polygon::new([
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(1.0, 1.0),
+    @core.Point2D::new(2.0, 2.0),
+  ])
+  assert_eq(polygon_orientation(poly), @core.Collinear)
+}

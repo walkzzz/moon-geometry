@@ -138,3 +138,88 @@ test "approx_eq helper" {
   assert_true(approx_eq(1.0, 1.0 + 0.0000000001, 0.000000001))
   assert_false(approx_eq(1.0, 1.1, 0.000000001))
 }
+///|
+test "Point2D add commutative" {
+  let p = Point2D::new(3.0, 5.0)
+  let q = Point2D::new(7.0, 2.0)
+  let s1 = p.add(q)
+  let s2 = q.add(p)
+  assert_true(approx_eq(s1.x, s2.x, 0.000000001))
+  assert_true(approx_eq(s1.y, s2.y, 0.000000001))
+}
+
+///|
+test "Point2D add associative" {
+  let p = Point2D::new(1.0, 2.0)
+  let q = Point2D::new(3.0, 4.0)
+  let r = Point2D::new(5.0, 6.0)
+  let a1 = p.add(q).add(r)
+  let a2 = p.add(q.add(r))
+  assert_true(approx_eq(a1.x, a2.x, 0.000000001))
+  assert_true(approx_eq(a1.y, a2.y, 0.000000001))
+}
+
+///|
+test "Point2D sub equals add negative" {
+  let p = Point2D::new(10.0, 20.0)
+  let q = Point2D::new(3.0, 7.0)
+  let d1 = p.sub(q)
+  let d2 = p.add(q.mul(-1.0))
+  assert_true(approx_eq(d1.x, d2.x, 0.000000001))
+  assert_true(approx_eq(d1.y, d2.y, 0.000000001))
+}
+
+///|
+test "Point2D mul distributive" {
+  let p = Point2D::new(3.0, 4.0)
+  let a = 2.0
+  let b = 5.0
+  let m1 = p.mul(a + b)
+  let m2 = p.mul(a).add(p.mul(b))
+  assert_true(approx_eq(m1.x, m2.x, 0.000000001))
+  assert_true(approx_eq(m1.y, m2.y, 0.000000001))
+}
+
+///|
+test "Point2D dot commutative" {
+  let p = Point2D::new(3.0, 5.0)
+  let q = Point2D::new(7.0, 2.0)
+  assert_true(approx_eq(p.dot(q), q.dot(p), 0.000000001))
+}
+
+///|
+test "Point2D cross anti-symmetric" {
+  let p = Point2D::new(3.0, 5.0)
+  let q = Point2D::new(7.0, 2.0)
+  assert_true(approx_eq(p.cross(q), -q.cross(p), 0.000000001))
+}
+
+///|
+test "Point2D dist symmetric" {
+  let p = Point2D::new(1.0, 2.0)
+  let q = Point2D::new(5.0, 6.0)
+  assert_true(approx_eq(p.dist(q), q.dist(p), 0.000000001))
+}
+
+///|
+test "Point2D dist_sq zero to self" {
+  let p = Point2D::new(42.0, -17.0)
+  assert_true(approx_eq(p.dist_sq(p), 0.0, 0.000000001))
+}
+
+///|
+test "Point2D zero vector identity" {
+  let z = Point2D::new(0.0, 0.0)
+  let p = Point2D::new(3.0, 7.0)
+  let s = z.add(p)
+  assert_true(approx_eq(s.x, p.x, 0.000000001))
+  assert_true(approx_eq(s.y, p.y, 0.000000001))
+}
+
+///|
+test "Point2D mul by one identity" {
+  let p = Point2D::new(3.0, 7.0)
+  let m = p.mul(1.0)
+  assert_true(approx_eq(m.x, p.x, 0.000000001))
+  assert_true(approx_eq(m.y, p.y, 0.000000001))
+}

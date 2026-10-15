@@ -164,3 +164,58 @@ test "closest_pair three points" {
     None => assert_true(false)
   }
 }
+///|
+test "closest_pair duplicate points extra" {
+  let pts = [
+    @core.Point2D::new(3.0, 4.0),
+    @core.Point2D::new(3.0, 4.0),
+    @core.Point2D::new(10.0, 10.0),
+  ]
+  match closest_pair(pts) {
+    Some((_, _, d)) => assert_true(@core.approx_eq(d, 0.0, 0.000000001))
+    None => assert_true(false)
+  }
+}
+
+///|
+test "closest_pair two points extra" {
+  let pts = [@core.Point2D::new(0.0, 0.0), @core.Point2D::new(3.0, 4.0)]
+  match closest_pair(pts) {
+    Some((_, _, d)) => assert_true(@core.approx_eq(d, 5.0, 0.000000001))
+    None => assert_true(false)
+  }
+}
+
+///|
+test "closest_pair horizontal line" {
+  let pts = [
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(5.0, 0.0),
+    @core.Point2D::new(2.0, 0.0),
+    @core.Point2D::new(8.0, 0.0),
+  ]
+  match closest_pair(pts) {
+    Some((_, _, d)) => assert_true(@core.approx_eq(d, 2.0, 0.000000001))
+    None => assert_true(false)
+  }
+}
+
+///|
+test "closest_pair vertical line" {
+  let pts = [
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(0.0, 5.0),
+    @core.Point2D::new(0.0, 2.0),
+    @core.Point2D::new(0.0, 8.0),
+  ]
+  match closest_pair(pts) {
+    Some((_, _, d)) => assert_true(@core.approx_eq(d, 2.0, 0.000000001))
+    None => assert_true(false)
+  }
+}
+
+///|
+test "closest_pair single point none" {
+  let pts = [@core.Point2D::new(1.0, 2.0)]
+  assert_true(closest_pair(pts) is None)
+}

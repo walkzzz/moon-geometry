@@ -19,7 +19,7 @@ Moon Geometry 一个月交付计划（2026-10-15 ~ 2026-10-31）。
 | Week 3 | Delaunay 三角剖分 + Voronoi 图 | +80 | ✅ 完成 | 2026-10-15 |
 | Week 4 | 几何变换 + 距离 + 包围盒 + mooncakes 发布 | 320+ | ✅ 完成 | 2026-10-15 |
 
-**Current tests | 当前测试数**: 271 / 320+ target
+**Current tests | 当前测试数**: 321 / 320+ target
 
 ---
 

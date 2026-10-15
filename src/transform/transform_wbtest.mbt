@@ -196,3 +196,34 @@ test "rotate then inverse returns original" {
   assert_true(@core.approx_eq(q.x, 3.0, 0.0001))
   assert_true(@core.approx_eq(q.y, 4.0, 0.0001))
 }
+///|
+test "scale by zero" {
+  let p = @core.Point2D::new(5.0, 7.0)
+  let q = scale(p, 0.0, 0.0)
+  assert_true(@core.approx_eq(q.x, 0.0, 0.000000001))
+  assert_true(@core.approx_eq(q.y, 0.0, 0.000000001))
+}
+
+///|
+test "affine_transform identity extra" {
+  let p = @core.Point2D::new(3.0, 7.0)
+  let q = affine_transform(p, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0)
+  assert_true(@core.approx_eq(q.x, 3.0, 0.000000001))
+  assert_true(@core.approx_eq(q.y, 7.0, 0.000000001))
+}
+
+///|
+test "mirror_y double returns original" {
+  let p = @core.Point2D::new(3.0, 4.0)
+  let q = mirror_y(mirror_y(p))
+  assert_true(@core.approx_eq(q.x, 3.0, 0.000000001))
+  assert_true(@core.approx_eq(q.y, 4.0, 0.000000001))
+}
+
+///|
+test "shear zero is identity" {
+  let p = @core.Point2D::new(3.0, 4.0)
+  let q = shear(p, 0.0, 0.0)
+  assert_true(@core.approx_eq(q.x, 3.0, 0.000000001))
+  assert_true(@core.approx_eq(q.y, 4.0, 0.000000001))
+}

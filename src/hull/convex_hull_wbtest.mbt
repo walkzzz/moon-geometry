@@ -183,3 +183,65 @@ test "convex_hull_andrew excludes collinear edge points" {
   let hull = convex_hull_andrew(pts)
   assert_eq(hull.length(), 4)
 }
+///|
+test "convex_hull_andrew all collinear" {
+  let pts = [
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(1.0, 1.0),
+    @core.Point2D::new(2.0, 2.0),
+    @core.Point2D::new(3.0, 3.0),
+  ]
+  let hull = convex_hull_andrew(pts)
+  assert_eq(hull.length(), 2)
+}
+
+///|
+test "convex_hull_andrew duplicate points extra" {
+  let pts = [
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(4.0, 0.0),
+    @core.Point2D::new(4.0, 0.0),
+    @core.Point2D::new(0.0, 4.0),
+    @core.Point2D::new(0.0, 4.0),
+  ]
+  let hull = convex_hull_andrew(pts)
+  assert_eq(hull.length(), 3)
+}
+
+///|
+test "convex_hull of hull is hull" {
+  let pts = [
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(5.0, 0.0),
+    @core.Point2D::new(5.0, 5.0),
+    @core.Point2D::new(0.0, 5.0),
+    @core.Point2D::new(2.0, 2.0),
+    @core.Point2D::new(3.0, 1.0),
+  ]
+  let hull = convex_hull_andrew(pts)
+  let hull2 = convex_hull_andrew(hull)
+  assert_eq(hull.length(), hull2.length())
+}
+
+///|
+test "convex_hull_graham empty" {
+  let pts : Array[@core.Point2D] = []
+  assert_eq(convex_hull_graham(pts).length(), 0)
+}
+
+///|
+test "convex_hull_graham single" {
+  let pts = [@core.Point2D::new(1.0, 2.0)]
+  assert_eq(convex_hull_graham(pts).length(), 1)
+}
+
+///|
+test "convex_hull_graham collinear extra" {
+  let pts = [
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(1.0, 0.0),
+    @core.Point2D::new(2.0, 0.0),
+  ]
+  assert_eq(convex_hull_graham(pts).length(), 2)
+}

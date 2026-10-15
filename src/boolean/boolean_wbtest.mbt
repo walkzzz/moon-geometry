@@ -221,3 +221,51 @@ test "clip_polygon edge touching" {
   let area = @polygon.polygon_area(@core.Polygon::new(clipped))
   assert_true(@core.approx_eq(area, 16.0, 0.000000001))
 }
+///|
+test "clip_polygon no overlap" {
+  let poly = @core.Polygon::new([
+    @core.Point2D::new(10.0, 10.0),
+    @core.Point2D::new(14.0, 10.0),
+    @core.Point2D::new(14.0, 14.0),
+    @core.Point2D::new(10.0, 14.0),
+  ])
+  let rect = @core.Rectangle::new(0.0, 0.0, 4.0, 4.0)
+  let clipped = clip_polygon(poly, rect)
+  assert_eq(clipped.length(), 0)
+}
+
+///|
+test "polygon_union_area identical" {
+  let sq = @core.Polygon::new([
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(3.0, 0.0),
+    @core.Point2D::new(3.0, 3.0),
+    @core.Point2D::new(0.0, 3.0),
+  ])
+  assert_true(@core.approx_eq(polygon_union_area(sq, sq), 9.0, 0.000000001))
+}
+
+///|
+test "polygon_difference_area full overlap" {
+  let sq = @core.Polygon::new([
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(3.0, 0.0),
+    @core.Point2D::new(3.0, 3.0),
+    @core.Point2D::new(0.0, 3.0),
+  ])
+  assert_true(@core.approx_eq(polygon_difference_area(sq, sq), 0.0, 0.000000001))
+}
+
+///|
+test "clip_polygon partial overlap" {
+  let poly = @core.Polygon::new([
+    @core.Point2D::new(-2.0, -2.0),
+    @core.Point2D::new(6.0, -2.0),
+    @core.Point2D::new(6.0, 6.0),
+    @core.Point2D::new(-2.0, 6.0),
+  ])
+  let rect = @core.Rectangle::new(0.0, 0.0, 4.0, 4.0)
+  let clipped = clip_polygon(poly, rect)
+  let area = @polygon.polygon_area(@core.Polygon::new(clipped))
+  assert_true(@core.approx_eq(area, 16.0, 0.000000001))
+}
