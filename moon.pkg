@@ -23,4 +23,9 @@ import {
   "walkzzz/moon-geometry/src/angle",
   "walkzzz/moon-geometry/src/constants",
   "walkzzz/moon-geometry/src/interval",
+  "walkzzz/moon-geometry/src/aabb_tree",
+  "walkzzz/moon-geometry/src/hash",
+  "walkzzz/moon-geometry/src/compare",
+  "walkzzz/moon-geometry/src/ray",
+  "walkzzz/moon-geometry/src/plane",
 }

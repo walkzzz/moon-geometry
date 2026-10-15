@@ -1024,3 +1024,236 @@ pub fn interval_overlaps(a : Interval, b : Interval) -> Bool {
 pub fn interval_contains_interval(a : Interval, b : Interval) -> Bool {
   @interval.Interval::contains_interval(a, b)
 }
+// ---------------------------------------------------------------------------
+// aabb_tree: AABB tree / AABB 树
+// ---------------------------------------------------------------------------
+
+///|
+/// AABB tree node type. / AABB 树节点类型。
+pub type AABBNode = @aabb_tree.AABBNode
+
+///|
+/// Build an AABB tree from rectangles. / 由矩形数组构建 AABB 树。
+pub fn build_aabb_tree(rects : Array[Rectangle]) -> Array[AABBNode] {
+  @aabb_tree.build_aabb_tree(rects)
+}
+
+///|
+/// Query overlapping rectangle indices. / 查询重叠矩形索引。
+pub fn query_aabb(nodes : Array[AABBNode], query : Rectangle) -> Array[Int] {
+  @aabb_tree.query_aabb(nodes, query)
+}
+
+///|
+/// Query rectangle indices containing a point. / 查询包含点的矩形索引。
+pub fn query_point_aabb(nodes : Array[AABBNode], p : Point2D) -> Array[Int] {
+  @aabb_tree.query_point_aabb(nodes, p)
+}
+
+///|
+/// Count leaf nodes. / 统计叶子节点数。
+pub fn count_leaves(nodes : Array[AABBNode]) -> Int {
+  @aabb_tree.count_leaves(nodes)
+}
+
+// ---------------------------------------------------------------------------
+// hash: geometric hashing / 几何哈希
+// ---------------------------------------------------------------------------
+
+///|
+/// Grid cell index of a 2D point. / 二维点网格单元索引。
+pub fn cell_index(p : Point2D, cell_size : Double) -> (Int, Int) {
+  @hash.cell_index(p, cell_size)
+}
+
+///|
+/// Grid cell index of a 3D point. / 三维点网格单元索引。
+pub fn cell_index_3d(p : Point3D, cell_size : Double) -> (Int, Int, Int) {
+  @hash.cell_index_3d(p, cell_size)
+}
+
+///|
+/// Hash a 2D point to table index. / 二维点哈希到表索引。
+pub fn cell_hash(p : Point2D, cell_size : Double, table_size : Int) -> Int {
+  @hash.cell_hash(p, cell_size, table_size)
+}
+
+///|
+/// Hash a 3D point to table index. / 三维点哈希到表索引。
+pub fn cell_hash_3d(p : Point3D, cell_size : Double, table_size : Int) -> Int {
+  @hash.cell_hash_3d(p, cell_size, table_size)
+}
+
+///|
+/// Combine two hash values. / 合并两个哈希值。
+pub fn hash_combine(a : Int, b : Int) -> Int {
+  @hash.hash_combine(a, b)
+}
+
+///|
+/// Cell indices of segment endpoints. / 线段端点单元索引。
+pub fn segment_cells(seg : Segment, cell_size : Double) -> ((Int, Int), (Int, Int)) {
+  @hash.segment_cells(seg, cell_size)
+}
+
+///|
+/// Hash a segment to table index. / 线段哈希到表索引。
+pub fn segment_hash(seg : Segment, cell_size : Double, table_size : Int) -> Int {
+  @hash.segment_hash(seg, cell_size, table_size)
+}
+
+// ---------------------------------------------------------------------------
+// compare: comparison predicates / 比较谓词
+// ---------------------------------------------------------------------------
+
+///|
+/// Robust orientation test. / 鲁棒方向判定。
+pub fn robust_orientation(a : Point2D, b : Point2D, c : Point2D) -> Int {
+  @compare.robust_orientation(a, b, c)
+}
+
+///|
+/// Robust left turn test. / 鲁棒左转判定。
+pub fn robust_left_turn(a : Point2D, b : Point2D, c : Point2D) -> Bool {
+  @compare.robust_left_turn(a, b, c)
+}
+
+///|
+/// Robust right turn test. / 鲁棒右转判定。
+pub fn robust_right_turn(a : Point2D, b : Point2D, c : Point2D) -> Bool {
+  @compare.robust_right_turn(a, b, c)
+}
+
+///|
+/// Robust collinearity test. / 鲁棒共线判定。
+pub fn robust_collinear(a : Point2D, b : Point2D, c : Point2D, eps : Double) -> Bool {
+  @compare.robust_collinear(a, b, c, eps)
+}
+
+///|
+/// Lexicographic comparison of points. / 点的字典序比较。
+pub fn compare_points(a : Point2D, b : Point2D) -> Int {
+  @compare.compare_points(a, b)
+}
+
+///|
+/// Compare segments by start point. / 按起点比较线段。
+pub fn compare_segments(s1 : Segment, s2 : Segment) -> Int {
+  @compare.compare_segments(s1, s2)
+}
+
+///|
+/// Lexicographic less-than. / 字典序小于。
+pub fn less_than(a : Point2D, b : Point2D) -> Bool {
+  @compare.less_than(a, b)
+}
+
+///|
+/// Check if two points are equal within epsilon. / 检查两点是否在精度内相等。
+pub fn points_equal(a : Point2D, b : Point2D, eps : Double) -> Bool {
+  @compare.points_equal(a, b, eps)
+}
+
+// ---------------------------------------------------------------------------
+// ray: ray operations / 射线运算
+// ---------------------------------------------------------------------------
+
+///|
+/// Ray type. / 射线类型。
+pub type Ray = @ray.Ray
+
+///|
+/// Construct a ray. / 构造射线。
+pub fn ray_new(origin : Point2D, dir : Point2D) -> Ray {
+  @ray.Ray::new(origin, dir)
+}
+
+///|
+/// Construct a ray from two points. / 由两点构造射线。
+pub fn ray_from_points(origin : Point2D, through : Point2D) -> Ray {
+  @ray.Ray::from_points(origin, through)
+}
+
+///|
+/// Evaluate ray at parameter t. / 计算射线上参数 t 处的点。
+pub fn ray_eval(r : Ray, t : Double) -> Point2D {
+  @ray.Ray::eval(r, t)
+}
+
+///|
+/// Ray-segment intersection. / 射线与线段交点。
+pub fn ray_segment_intersect(r : Ray, seg : Segment) -> Point2D? {
+  @ray.ray_segment_intersect(r, seg)
+}
+
+///|
+/// Ray-line intersection. / 射线与直线交点。
+pub fn ray_line_intersect(r : Ray, line : Line) -> Point2D? {
+  @ray.ray_line_intersect(r, line)
+}
+
+///|
+/// Ray-polygon boundary intersections. / 射线与多边形边界交点。
+pub fn ray_polygon_intersect(r : Ray, poly : Polygon) -> Array[Point2D] {
+  @ray.ray_polygon_intersect(r, poly)
+}
+
+///|
+/// Check if ray origin is inside polygon. / 检查射线起点是否在多边形内。
+pub fn ray_polygon_contains(r : Ray, poly : Polygon) -> Bool {
+  @ray.ray_polygon_contains(r, poly)
+}
+
+// ---------------------------------------------------------------------------
+// plane: 3D plane operations / 三维平面
+// ---------------------------------------------------------------------------
+
+///|
+/// 3D plane type. / 三维平面类型。
+pub type Plane = @plane.Plane
+
+///|
+/// Plane from normal and point. / 由法向量和点构造平面。
+pub fn plane_from_normal_point(normal : Point3D, point : Point3D) -> Plane {
+  @plane.Plane::from_normal_point(normal, point)
+}
+
+///|
+/// Plane from three points. / 由三点构造平面。
+pub fn plane_from_three_points(a : Point3D, b : Point3D, c : Point3D) -> Plane {
+  @plane.Plane::from_three_points(a, b, c)
+}
+
+///|
+/// Signed distance from point to plane. / 点到平面有符号距离。
+pub fn plane_distance(plane : Plane, p : Point3D) -> Double {
+  @plane.Plane::distance(plane, p)
+}
+
+///|
+/// Check if point is on plane. / 检查点是否在平面上。
+pub fn plane_contains(plane : Plane, p : Point3D, eps : Double) -> Bool {
+  @plane.Plane::contains(plane, p, eps)
+}
+
+///|
+/// Plane-line intersection. / 平面与直线交点。
+pub fn plane_line_intersect(
+  plane : Plane,
+  origin : Point3D,
+  dir : Point3D,
+) -> Point3D? {
+  @plane.Plane::line_intersect(plane, origin, dir)
+}
+
+///|
+/// Normalize plane normal. / 归一化平面法向量。
+pub fn plane_normalize(plane : Plane) -> Plane {
+  @plane.Plane::normalize(plane)
+}
+
+///|
+/// Project point onto plane. / 将点投影到平面。
+pub fn plane_project(plane : Plane, p : Point3D) -> Point3D {
+  @plane.Plane::project(plane, p)
+}

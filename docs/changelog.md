@@ -6,6 +6,38 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
 Moon Geometry 的所有重要变更记录于此。
 格式基于 [Keep a Changelog](https://keepachangelog.com/)。
 
+## [0.9.0] - 2026-10-15
+
+### Added — AABB Tree + Hash + Compare + Ray + Plane | AABB树 + 哈希 + 比较 + 射线 + 平面
+
+- **AABB Tree | AABB树** (`aabb_tree` module)：
+  - `build_aabb_tree`: build BVH from rectangles | 由矩形构建层次包围盒
+  - `query_aabb`: overlap query | 重叠查询
+  - `query_point_aabb`: point containment query | 点包含查询
+  - `count_leaves` | 叶子节点计数
+- **Geometric Hashing | 几何哈希** (`hash` module)：
+  - `cell_index`, `cell_index_3d` | 网格单元索引
+  - `cell_hash`, `cell_hash_3d` | 空间哈希
+  - `segment_cells`, `segment_hash` | 线段哈希
+  - `hash_combine` | 哈希合并
+- **Comparison Predicates | 比较谓词** (`compare` module)：
+  - `robust_orientation`, `robust_left_turn`, `robust_right_turn` | 鲁棒方向判定
+  - `robust_collinear` | 共线判定
+  - `compare_points`, `compare_segments`, `less_than`, `points_equal` | 字典序比较
+- **Ray Operations | 射线运算** (`ray` module)：
+  - `Ray::new`, `Ray::from_points`, `Ray::eval` | 射线构造与求值
+  - `ray_segment_intersect`, `ray_line_intersect` | 射线相交
+  - `ray_polygon_intersect`, `ray_polygon_contains` | 射线与多边形
+- **3D Plane | 三维平面** (`plane` module)：
+  - `Plane::from_normal_point`, `Plane::from_three_points` | 平面构造
+  - `Plane::distance`, `Plane::contains` | 距离与包含
+  - `Plane::line_intersect`, `Plane::normalize`, `Plane::project` | 相交、归一化、投影
+
+### Tests | 测试
+
+- Added 41 tests (7 aabb_tree + 8 hash + 10 compare + 8 ray + 8 plane), total 518 tests | 新增 41 测试，累计 518 测试
+- All four targets green, zero warnings | 四目标全绿，零警告
+
 ## [0.8.0] - 2026-10-15
 
 ### Added — Vector + Matrix + Angle + Constants + Interval | 向量 + 矩阵 + 角度 + 常数 + 区间
