@@ -12,4 +12,7 @@ import {
   "walkzzz/moon-geometry/src/circle_ops",
   "walkzzz/moon-geometry/src/triangulate",
   "walkzzz/moon-geometry/src/minkowski",
+  "walkzzz/moon-geometry/src/rotating_calipers",
+  "walkzzz/moon-geometry/src/ellipse",
+  "walkzzz/moon-geometry/src/bezier",
 }

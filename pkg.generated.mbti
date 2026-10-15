@@ -2,7 +2,9 @@
 package "walkzzz/moon-geometry"
 
 import {
+  "walkzzz/moon-geometry/src/bezier",
   "walkzzz/moon-geometry/src/core",
+  "walkzzz/moon-geometry/src/ellipse",
   "walkzzz/moon-geometry/src/triangulation",
 }
 
@@ -16,6 +18,30 @@ pub fn affine_transform(@core.Point2D, Double, Double, Double, Double, Double, D
 pub fn affine_transform_points(Array[@core.Point2D], Double, Double, Double, Double, Double, Double) -> Array[@core.Point2D]
 
 pub fn approx_eq(Double, Double, Double) -> Bool
+
+pub fn bezier2_bbox(@bezier.Bezier2) -> (Double, Double, Double, Double)
+
+pub fn bezier2_derivative(@bezier.Bezier2, Double) -> @core.Point2D
+
+pub fn bezier2_eval(@bezier.Bezier2, Double) -> @core.Point2D
+
+pub fn bezier2_length(@bezier.Bezier2) -> Double
+
+pub fn bezier2_new(@core.Point2D, @core.Point2D, @core.Point2D) -> @bezier.Bezier2
+
+pub fn bezier2_subdivide(@bezier.Bezier2, Double) -> (@bezier.Bezier2, @bezier.Bezier2)
+
+pub fn bezier3_bbox(@bezier.Bezier3) -> (Double, Double, Double, Double)
+
+pub fn bezier3_derivative(@bezier.Bezier3, Double) -> @core.Point2D
+
+pub fn bezier3_eval(@bezier.Bezier3, Double) -> @core.Point2D
+
+pub fn bezier3_length(@bezier.Bezier3) -> Double
+
+pub fn bezier3_new(@core.Point2D, @core.Point2D, @core.Point2D, @core.Point2D) -> @bezier.Bezier3
+
+pub fn bezier3_subdivide(@bezier.Bezier3, Double) -> (@bezier.Bezier3, @bezier.Bezier3)
 
 pub fn bounding_circle(Array[@core.Point2D]) -> (@core.Point2D, Double)
 
@@ -37,17 +63,39 @@ pub fn convex_hull_andrew(Array[@core.Point2D]) -> Array[@core.Point2D]
 
 pub fn convex_hull_graham(Array[@core.Point2D]) -> Array[@core.Point2D]
 
+pub fn convex_polygon_diameter(@core.Polygon) -> (@core.Point2D, @core.Point2D, Double)
+
+pub fn convex_polygon_width(@core.Polygon) -> Double
+
 pub fn convex_polygons_collide(@core.Polygon, @core.Polygon) -> Bool
 
 pub let default_eps : Double
 
 pub fn delaunay_triangulation(Array[@core.Point2D]) -> Array[@triangulation.TriangleIdx]
 
+pub fn ellipse_area(@ellipse.Ellipse) -> Double
+
+pub fn ellipse_contains(@ellipse.Ellipse, @core.Point2D) -> Bool
+
+pub fn ellipse_eccentricity(@ellipse.Ellipse) -> Double
+
+pub fn ellipse_foci(@ellipse.Ellipse) -> (@core.Point2D, @core.Point2D)
+
+pub fn ellipse_new(@core.Point2D, Double, Double, Double) -> @ellipse.Ellipse
+
+pub fn ellipse_on_boundary(@ellipse.Ellipse, @core.Point2D, Double) -> Bool
+
+pub fn ellipse_perimeter(@ellipse.Ellipse) -> Double
+
+pub fn farthest_point_pair(Array[@core.Point2D]) -> (@core.Point2D, @core.Point2D, Double)?
+
 pub fn is_convex(@core.Polygon) -> Bool
 
 pub fn line_segment_intersection(@core.Line, @core.Segment) -> @core.Point2D?
 
 pub fn min_area_bounding_rect(Array[@core.Point2D]) -> (Double, Double, Double, Double, Double)
+
+pub fn min_perimeter_bounding_rect(@core.Polygon) -> (Double, Double, Double, Double, Double)
 
 pub fn minkowski_difference_convex(@core.Polygon, @core.Polygon) -> Array[@core.Point2D]
 
@@ -124,7 +172,13 @@ pub fn voronoi_diagram(Array[@core.Point2D]) -> (Array[@core.Point2D], Array[(In
 // Types and methods
 
 // Type aliases
+pub using @bezier {type Bezier2}
+
+pub using @bezier {type Bezier3}
+
 pub using @core {type Circle}
+
+pub using @ellipse {type Ellipse}
 
 pub using @core {type Line}
 

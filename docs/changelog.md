@@ -6,6 +6,29 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
 Moon Geometry 的所有重要变更记录于此。
 格式基于 [Keep a Changelog](https://keepachangelog.com/)。
 
+## [0.6.0] - 2026-10-15
+
+### Added — Rotating Calipers + Ellipse + Bezier | 旋转卡壳 + 椭圆 + 贝塞尔曲线
+
+- **Rotating Calipers | 旋转卡壳** (`rotating_calipers` module)：
+  - `convex_polygon_diameter`: farthest vertex pair, O(n) | 最远顶点对
+  - `convex_polygon_width`: min parallel supporting line distance | 最小宽度
+  - `farthest_point_pair`: from point set via hull + calipers | 点集最远点对
+  - `min_perimeter_bounding_rect`: min perimeter enclosing rectangle | 最小周长包围矩形
+- **Ellipse Geometry | 椭圆几何** (`ellipse` module)：
+  - `Ellipse` type with center, semi-axes, rotation | 椭圆类型
+  - `area`, `perimeter` (Ramanujan), `eccentricity`, `foci` | 面积、周长、离心率、焦点
+  - `contains`, `on_boundary`, `line_intersect` | 包含、边界、直线相交
+- **Bezier Curves | 贝塞尔曲线** (`bezier` module)：
+  - `Bezier2` / `Bezier3`: quadratic and cubic curves | 二次/三次贝塞尔曲线
+  - `eval`, `derivative`, `length` (numerical integration) | 求值、导数、弧长
+  - `bbox`, `subdivide` | 包围盒、细分
+
+### Tests | 测试
+
+- Added 41 tests (13 rotating_calipers + 14 ellipse + 14 bezier), total 396 tests | 新增 41 测试，累计 396 测试
+- All four targets (native/wasm-gc/js/wasm) green, zero warnings | 四目标全绿，零警告
+
 ## [0.5.0] - 2026-10-15
 
 ### Added — Phase 1-2: Tests + Circle Ops + Triangulate + Minkowski | 测试补充 + 圆相交 + 三角剖分 + Minkowski

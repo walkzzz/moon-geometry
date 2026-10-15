@@ -473,3 +473,178 @@ pub fn minkowski_sum_circle_polygon(
 pub fn convex_polygons_collide(poly1 : Polygon, poly2 : Polygon) -> Bool {
   @minkowski.convex_polygons_collide(poly1, poly2)
 }
+// ---------------------------------------------------------------------------
+// rotating_calipers: rotating calipers / 旋转卡壳
+// ---------------------------------------------------------------------------
+
+///|
+/// Convex polygon diameter (farthest vertex pair). / 凸多边形直径（最远顶点对）。
+pub fn convex_polygon_diameter(poly : Polygon) -> (Point2D, Point2D, Double) {
+  @rotating_calipers.convex_polygon_diameter(poly)
+}
+
+///|
+/// Convex polygon width (min parallel supporting line distance). / 凸多边形宽度。
+pub fn convex_polygon_width(poly : Polygon) -> Double {
+  @rotating_calipers.convex_polygon_width(poly)
+}
+
+///|
+/// Farthest point pair from a point set. / 点集最远点对。
+pub fn farthest_point_pair(
+  points : Array[Point2D],
+) -> (Point2D, Point2D, Double)? {
+  @rotating_calipers.farthest_point_pair(points)
+}
+
+///|
+/// Min perimeter bounding rectangle of convex polygon. / 凸多边形最小周长包围矩形。
+pub fn min_perimeter_bounding_rect(
+  poly : Polygon,
+) -> (Double, Double, Double, Double, Double) {
+  @rotating_calipers.min_perimeter_bounding_rect(poly)
+}
+
+// ---------------------------------------------------------------------------
+// ellipse: ellipse geometry / 椭圆几何
+// ---------------------------------------------------------------------------
+
+///|
+/// Ellipse type. / 椭圆类型。
+pub type Ellipse = @ellipse.Ellipse
+
+///|
+/// Construct an ellipse. / 构造椭圆。
+pub fn ellipse_new(
+  center : Point2D,
+  a : Double,
+  b : Double,
+  angle : Double,
+) -> Ellipse {
+  @ellipse.Ellipse::new(center, a, b, angle)
+}
+
+///|
+/// Area of the ellipse. / 椭圆面积。
+pub fn ellipse_area(e : Ellipse) -> Double {
+  @ellipse.Ellipse::area(e)
+}
+
+///|
+/// Perimeter of the ellipse (Ramanujan approximation). / 椭圆周长。
+pub fn ellipse_perimeter(e : Ellipse) -> Double {
+  @ellipse.Ellipse::perimeter(e)
+}
+
+///|
+/// Eccentricity of the ellipse. / 椭圆离心率。
+pub fn ellipse_eccentricity(e : Ellipse) -> Double {
+  @ellipse.Ellipse::eccentricity(e)
+}
+
+///|
+/// Check if a point is inside the ellipse. / 检查点是否在椭圆内。
+pub fn ellipse_contains(e : Ellipse, p : Point2D) -> Bool {
+  @ellipse.Ellipse::contains(e, p)
+}
+
+///|
+/// Check if a point is on the ellipse boundary. / 检查点是否在椭圆边界上。
+pub fn ellipse_on_boundary(e : Ellipse, p : Point2D, eps : Double) -> Bool {
+  @ellipse.Ellipse::on_boundary(e, p, eps)
+}
+
+///|
+/// Focal points of the ellipse. / 椭圆焦点。
+pub fn ellipse_foci(e : Ellipse) -> (Point2D, Point2D) {
+  @ellipse.Ellipse::foci(e)
+}
+
+// ---------------------------------------------------------------------------
+// bezier: Bezier curves / 贝塞尔曲线
+// ---------------------------------------------------------------------------
+
+///|
+/// Quadratic Bezier curve type. / 二次贝塞尔曲线类型。
+pub type Bezier2 = @bezier.Bezier2
+
+///|
+/// Cubic Bezier curve type. / 三次贝塞尔曲线类型。
+pub type Bezier3 = @bezier.Bezier3
+
+///|
+/// Construct a quadratic Bezier curve. / 构造二次贝塞尔曲线。
+pub fn bezier2_new(p0 : Point2D, p1 : Point2D, p2 : Point2D) -> Bezier2 {
+  @bezier.Bezier2::new(p0, p1, p2)
+}
+
+///|
+/// Evaluate quadratic Bezier at t. / 计算二次贝塞尔曲线在 t 处的值。
+pub fn bezier2_eval(b : Bezier2, t : Double) -> Point2D {
+  @bezier.Bezier2::eval(b, t)
+}
+
+///|
+/// Derivative of quadratic Bezier at t. / 二次贝塞尔曲线在 t 处的导数。
+pub fn bezier2_derivative(b : Bezier2, t : Double) -> Point2D {
+  @bezier.Bezier2::derivative(b, t)
+}
+
+///|
+/// Arc length of quadratic Bezier. / 二次贝塞尔曲线弧长。
+pub fn bezier2_length(b : Bezier2) -> Double {
+  @bezier.Bezier2::length(b)
+}
+
+///|
+/// Bounding box of quadratic Bezier. / 二次贝塞尔曲线包围盒。
+pub fn bezier2_bbox(b : Bezier2) -> (Double, Double, Double, Double) {
+  @bezier.Bezier2::bbox(b)
+}
+
+///|
+/// Subdivide quadratic Bezier at t. / 细分二次贝塞尔曲线。
+pub fn bezier2_subdivide(b : Bezier2, t : Double) -> (Bezier2, Bezier2) {
+  @bezier.Bezier2::subdivide(b, t)
+}
+
+///|
+/// Construct a cubic Bezier curve. / 构造三次贝塞尔曲线。
+pub fn bezier3_new(
+  p0 : Point2D,
+  p1 : Point2D,
+  p2 : Point2D,
+  p3 : Point2D,
+) -> Bezier3 {
+  @bezier.Bezier3::new(p0, p1, p2, p3)
+}
+
+///|
+/// Evaluate cubic Bezier at t. / 计算三次贝塞尔曲线在 t 处的值。
+pub fn bezier3_eval(b : Bezier3, t : Double) -> Point2D {
+  @bezier.Bezier3::eval(b, t)
+}
+
+///|
+/// Derivative of cubic Bezier at t. / 三次贝塞尔曲线在 t 处的导数。
+pub fn bezier3_derivative(b : Bezier3, t : Double) -> Point2D {
+  @bezier.Bezier3::derivative(b, t)
+}
+
+///|
+/// Arc length of cubic Bezier. / 三次贝塞尔曲线弧长。
+pub fn bezier3_length(b : Bezier3) -> Double {
+  @bezier.Bezier3::length(b)
+}
+
+///|
+/// Bounding box of cubic Bezier. / 三次贝塞尔曲线包围盒。
+pub fn bezier3_bbox(b : Bezier3) -> (Double, Double, Double, Double) {
+  @bezier.Bezier3::bbox(b)
+}
+
+///|
+/// Subdivide cubic Bezier at t. / 细分三次贝塞尔曲线。
+pub fn bezier3_subdivide(b : Bezier3, t : Double) -> (Bezier3, Bezier3) {
+  @bezier.Bezier3::subdivide(b, t)
+}
