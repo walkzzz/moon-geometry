@@ -5,7 +5,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![MoonBit](https://img.shields.io/badge/MoonBit-0.1.20260920-blue.svg)](https://moonbitlang.com)
-[![Tests](https://img.shields.io/badge/tests-434-brightgreen.svg)]()
+[![Tests](https://img.shields.io/badge/tests-477-brightgreen.svg)]()
 [![Targets](https://img.shields.io/badge/targets-native%20%7C%20wasm--gc%20%7C%20js%20%7C%20wasm-green.svg)]()
 
 Moon Geometry is a **pure MoonBit** computational geometry library with **zero C FFI dependencies**, supporting all four backends (3natively. It provides reusable geometric algorithm primitives for CAD, collision detection, GIS, path planning, and image processing.
@@ -64,6 +64,11 @@ src/
   fitting/        # Geometric fitting | 几何拟合
   sweep_line/     # Sweep line | 扫描线
   convex_polygon/ # Convex polygon ops | 凸多边形操作
+  vector/         # Vector operations | 向量运算
+  matrix/         # 2x2 matrices | 矩阵
+  angle/          # Angle utilities | 角度工具
+  constants/      # Geometric constants | 几何常数
+  interval/       # Interval operations | 区间运算
 ```
 
 ## Quick Example | 快速示例
@@ -108,20 +113,25 @@ let hull = @hull.convex_hull_andrew(points)  // hull vertices (CCW) | 凸包顶�
 | Fitting | 拟合 | `fit_line`, `fit_circle`, `fit_line_orthogonal` | `centroid` |
 | Sweep line | 扫描线 | `has_any_intersection`, `count_intersections` | `is_simple_polygon_chain` |
 | Convex polygon | 凸多边形 | `point_in_convex_polygon`, `convex_polygons_intersect` | `tangent_from_point` |
+| Vector | 向量 | `vec_normalize`, `vec_reflect`, `vec_project` | `vec_lerp`, `vec_perp`, `vec_angle_between` |
+| Matrix | 矩阵 | `mat2_new`, `mat2_det`, `mat2_mul`, `mat2_inverse` | `mat2_rotation`, `mat2_scaling`, `mat2_trace` |
+| Angle | 角度 | `deg_to_rad`, `rad_to_deg`, `normalize_angle` | `normalize_angle_signed`, `angle_diff`, `angle_bisector` |
+| Constants | 常数 | `pi`, `two_pi`, `half_pi`, `euler_e` | `sqrt2`, `sqrt3`, `golden_ratio`, `geom_eps` |
+| Interval | 区间 | `interval_new`, `interval_contains`, `interval_intersect` | `interval_union`, `interval_overlaps`, `interval_length` |
 
 Full interface in `.mbti` files. 完整接口见 `.mbti` 文件。
 
 ## Tests | 测试
 
 ```bash
-moon test                          # all 434 tests | 全部 434 测试
+moon test                          # all 477 tests | 全部 477 测试
 moon test --target native          # verify each backend | 四目标分别验证
 moon test --target wasm-gc
 moon test --target js
 moon test --target wasm
 ```
 
-All four targets pass: 434 × 4 = 1736. 四目标全绿：434 × 4 = 1736。
+All four targets pass: 477 × 4 = 1908. 四目标全绿：477 × 4 = 1908。
 
 ## Roadmap | 交付路线图
 

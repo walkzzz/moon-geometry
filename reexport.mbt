@@ -761,3 +761,266 @@ pub fn convex_polygons_intersect(poly1 : Polygon, poly2 : Polygon) -> Bool {
 pub fn point_to_convex_polygon_distance(poly : Polygon, p : Point2D) -> Double {
   @convex_polygon.point_to_convex_polygon_distance(poly, p)
 }
+// ---------------------------------------------------------------------------
+// vector: vector operations / 向量运算
+// ---------------------------------------------------------------------------
+
+///|
+/// Normalize a 2D vector to unit length. / 2D向量归一化。
+pub fn vec_normalize(v : Point2D) -> Point2D {
+  @vector.normalize(v)
+}
+
+///|
+/// Reflect vector v across normal n. / 向量 v 关于法线 n 反射。
+pub fn vec_reflect(v : Point2D, n : Point2D) -> Point2D {
+  @vector.reflect(v, n)
+}
+
+///|
+/// Project vector v onto vector u. / 向量 v 投影到向量 u。
+pub fn vec_project(v : Point2D, u : Point2D) -> Point2D {
+  @vector.project(v, u)
+}
+
+///|
+/// Linear interpolation between a and b. / 线性插值。
+pub fn vec_lerp(a : Point2D, b : Point2D, t : Double) -> Point2D {
+  @vector.lerp(a, b, t)
+}
+
+///|
+/// Perpendicular vector (rotated 90° CCW). / 垂直向量（逆时针旋转90°）。
+pub fn vec_perp(v : Point2D) -> Point2D {
+  @vector.perp(v)
+}
+
+///|
+/// Vector length. / 向量长度。
+pub fn vec_length(v : Point2D) -> Double {
+  @vector.length(v)
+}
+
+///|
+/// Angle between two vectors in radians. / 两向量夹角（弧度）。
+pub fn vec_angle_between(a : Point2D, b : Point2D) -> Double {
+  @vector.angle_between(a, b)
+}
+
+///|
+/// Reject component of v along u. / 拒绝分量。
+pub fn vec_reject(v : Point2D, u : Point2D) -> Point2D {
+  @vector.reject(v, u)
+}
+
+// ---------------------------------------------------------------------------
+// matrix: 2x2 matrix / 2x2 矩阵
+// ---------------------------------------------------------------------------
+
+///|
+/// 2x2 matrix type. / 2x2 矩阵类型。
+pub type Mat2 = @matrix.Mat2
+
+///|
+/// Construct a 2x2 matrix. / 构造 2x2 矩阵。
+pub fn mat2_new(a11 : Double, a12 : Double, a21 : Double, a22 : Double) -> Mat2 {
+  @matrix.Mat2::new(a11, a12, a21, a22)
+}
+
+///|
+/// Identity matrix. / 单位矩阵。
+pub fn mat2_identity() -> Mat2 {
+  @matrix.Mat2::identity()
+}
+
+///|
+/// Determinant. / 行列式。
+pub fn mat2_det(m : Mat2) -> Double {
+  @matrix.Mat2::det(m)
+}
+
+///|
+/// Matrix multiplication. / 矩阵乘法。
+pub fn mat2_mul(m : Mat2, other : Mat2) -> Mat2 {
+  @matrix.Mat2::mul(m, other)
+}
+
+///|
+/// Apply matrix to a 2D point. / 矩阵作用于点。
+pub fn mat2_transform(m : Mat2, p : Point2D) -> Point2D {
+  @matrix.Mat2::transform(m, p)
+}
+
+///|
+/// Inverse matrix. Returns None if singular. / 逆矩阵。奇异返回 None。
+pub fn mat2_inverse(m : Mat2) -> Mat2? {
+  @matrix.Mat2::inverse(m)
+}
+
+///|
+/// Rotation matrix. / 旋转矩阵。
+pub fn mat2_rotation(angle : Double) -> Mat2 {
+  @matrix.Mat2::rotation(angle)
+}
+
+///|
+/// Scaling matrix. / 缩放矩阵。
+pub fn mat2_scaling(sx : Double, sy : Double) -> Mat2 {
+  @matrix.Mat2::scaling(sx, sy)
+}
+
+///|
+/// Trace of the matrix. / 矩阵的迹。
+pub fn mat2_trace(m : Mat2) -> Double {
+  @matrix.Mat2::trace(m)
+}
+
+// ---------------------------------------------------------------------------
+// angle: angle utilities / 角度工具
+// ---------------------------------------------------------------------------
+
+///|
+/// Degrees to radians. / 角度转弧度。
+pub fn deg_to_rad(deg : Double) -> Double {
+  @angle.deg_to_rad(deg)
+}
+
+///|
+/// Radians to degrees. / 弧度转角度。
+pub fn rad_to_deg(rad : Double) -> Double {
+  @angle.rad_to_deg(rad)
+}
+
+///|
+/// Normalize angle to [0, 2π). / 归一化角度到 [0, 2π)。
+pub fn normalize_angle(angle : Double) -> Double {
+  @angle.normalize_angle(angle)
+}
+
+///|
+/// Normalize angle to [-π, π). / 归一化角度到 [-π, π)。
+pub fn normalize_angle_signed(angle : Double) -> Double {
+  @angle.normalize_angle_signed(angle)
+}
+
+///|
+/// Angular difference (b - a) normalized to [-π, π]. / 角差归一化到 [-π, π]。
+pub fn angle_diff(a : Double, b : Double) -> Double {
+  @angle.angle_diff(a, b)
+}
+
+///|
+/// Bisector angle of two angles. / 两角平分线角度。
+pub fn angle_bisector(a : Double, b : Double) -> Double {
+  @angle.bisector(a, b)
+}
+
+///|
+/// Check if angle c is between a and b (CCW). / 检查角度 c 是否在 a 和 b 之间（逆时针）。
+pub fn angle_is_between(a : Double, c : Double, b : Double) -> Bool {
+  @angle.is_between(a, c, b)
+}
+
+// ---------------------------------------------------------------------------
+// constants: geometric constants / 几何常数
+// ---------------------------------------------------------------------------
+
+///|
+/// Pi. / 圆周率。
+pub let pi : Double = @constants.pi
+
+///|
+/// 2 * Pi. / 2倍圆周率。
+pub let two_pi : Double = @constants.two_pi
+
+///|
+/// Pi / 2. / 半圆周率。
+pub let half_pi : Double = @constants.half_pi
+
+///|
+/// Pi / 4. / 四分之一圆周率。
+pub let quarter_pi : Double = @constants.quarter_pi
+
+///|
+/// Euler's number. / 自然常数。
+pub let euler_e : Double = @constants.e
+
+///|
+/// Square root of 2. / 根号2。
+pub let sqrt2 : Double = @constants.sqrt2
+
+///|
+/// Square root of 3. / 根号3。
+pub let sqrt3 : Double = @constants.sqrt3
+
+///|
+/// Golden ratio. / 黄金比例。
+pub let golden_ratio : Double = @constants.golden_ratio
+
+///|
+/// Degrees to radians factor. / 角度转弧度因子。
+pub let deg2rad : Double = @constants.deg2rad
+
+///|
+/// Radians to degrees factor. / 弧度转角度因子。
+pub let rad2deg : Double = @constants.rad2deg
+
+///|
+/// Epsilon for geometric comparisons. / 几何比较精度。
+pub let geom_eps : Double = @constants.eps
+
+// ---------------------------------------------------------------------------
+// interval: interval operations / 区间运算
+// ---------------------------------------------------------------------------
+
+///|
+/// Closed interval type. / 闭区间类型。
+pub type Interval = @interval.Interval
+
+///|
+/// Construct an interval. / 构造区间。
+pub fn interval_new(lo : Double, hi : Double) -> Interval {
+  @interval.Interval::new(lo, hi)
+}
+
+///|
+/// Check if value is in the interval. / 检查值是否在区间内。
+pub fn interval_contains(i : Interval, x : Double) -> Bool {
+  @interval.Interval::contains(i, x)
+}
+
+///|
+/// Intersection of two intervals. / 两区间交集。
+pub fn interval_intersect(a : Interval, b : Interval) -> Interval? {
+  @interval.Interval::intersect(a, b)
+}
+
+///|
+/// Union of two overlapping intervals. / 两区间并集。
+pub fn interval_union(a : Interval, b : Interval) -> Interval {
+  @interval.Interval::union(a, b)
+}
+
+///|
+/// Length of the interval. / 区间长度。
+pub fn interval_length(i : Interval) -> Double {
+  @interval.Interval::length(i)
+}
+
+///|
+/// Midpoint of the interval. / 区间中点。
+pub fn interval_midpoint(i : Interval) -> Double {
+  @interval.Interval::midpoint(i)
+}
+
+///|
+/// Check if two intervals overlap. / 检查两区间是否重叠。
+pub fn interval_overlaps(a : Interval, b : Interval) -> Bool {
+  @interval.Interval::overlaps(a, b)
+}
+
+///|
+/// Check if interval a contains interval b. / 检查区间 a 是否包含区间 b。
+pub fn interval_contains_interval(a : Interval, b : Interval) -> Bool {
+  @interval.Interval::contains_interval(a, b)
+}

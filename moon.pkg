@@ -18,4 +18,9 @@ import {
   "walkzzz/moon-geometry/src/fitting",
   "walkzzz/moon-geometry/src/sweep_line",
   "walkzzz/moon-geometry/src/convex_polygon",
+  "walkzzz/moon-geometry/src/vector",
+  "walkzzz/moon-geometry/src/matrix",
+  "walkzzz/moon-geometry/src/angle",
+  "walkzzz/moon-geometry/src/constants",
+  "walkzzz/moon-geometry/src/interval",
 }

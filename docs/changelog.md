@@ -6,6 +6,35 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
 Moon Geometry 的所有重要变更记录于此。
 格式基于 [Keep a Changelog](https://keepachangelog.com/)。
 
+## [0.8.0] - 2026-10-15
+
+### Added — Vector + Matrix + Angle + Constants + Interval | 向量 + 矩阵 + 角度 + 常数 + 区间
+
+- **Vector Operations | 向量运算** (`vector` module)：
+  - `normalize`, `length`, `perp` | 归一化、长度、垂直向量
+  - `reflect`, `project`, `reject` | 反射、投影、拒绝分量
+  - `lerp`, `angle_between` | 线性插值、向量夹角
+- **2x2 Matrix | 2x2 矩阵** (`matrix` module)：
+  - `Mat2::new`, `identity`, `det`, `trace` | 构造、单位阵、行列式、迹
+  - `mul`, `transform`, `inverse` | 矩阵乘法、变换、求逆
+  - `rotation`, `scaling` | 旋转矩阵、缩放矩阵
+- **Angle Utilities | 角度工具** (`angle` module)：
+  - `deg_to_rad`, `rad_to_deg` | 角度弧度转换
+  - `normalize_angle`, `normalize_angle_signed` | 归一化到 [0,2π) / [-π,π)
+  - `angle_diff`, `bisector`, `is_between` | 角差、平分线、区间判定
+- **Geometric Constants | 几何常数** (`constants` module)：
+  - `pi`, `two_pi`, `half_pi`, `quarter_pi` | 圆周率族
+  - `e`, `sqrt2`, `sqrt3`, `golden_ratio` | 数学常数
+  - `deg2rad`, `rad2deg`, `eps` | 转换因子与精度
+- **Interval Operations | 区间运算** (`interval` module)：
+  - `Interval::new`, `contains`, `length`, `midpoint` | 构造、包含、长度、中点
+  - `intersect`, `union`, `overlaps`, `contains_interval` | 交并集、重叠判定
+
+### Tests | 测试
+
+- Added 43 tests (9 vector + 9 matrix + 8 angle + 8 constants + 9 interval), total 477 tests | 新增 43 测试，累计 477 测试
+- All four targets green, zero warnings | 四目标全绿，零警告
+
 ## [0.7.0] - 2026-10-15
 
 ### Added — Fitting + Sweep Line + Convex Polygon | 几何拟合 + 扫描线 + 凸多边形操作
