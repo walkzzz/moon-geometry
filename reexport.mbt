@@ -430,3 +430,13 @@ pub fn circle_polygon_intersect(
 ) -> Array[Point2D] {
   @circle_ops.circle_polygon_intersect(circle, poly)
 }
+// ---------------------------------------------------------------------------
+// triangulate: polygon triangulation / 多边形三角剖分
+// ---------------------------------------------------------------------------
+
+///|
+/// Triangulate a simple polygon via ear clipping.
+/// Returns vertex index triples. / 简单多边形三角剖分（ear clipping），返回顶点索引三元组。
+pub fn triangulate_polygon(poly : Polygon) -> Array[(Int, Int, Int)] {
+  @triangulate.triangulate_polygon(poly)
+}

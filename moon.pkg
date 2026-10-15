@@ -10,4 +10,5 @@ import {
   "walkzzz/moon-geometry/src/distance",
   "walkzzz/moon-geometry/src/bounding",
   "walkzzz/moon-geometry/src/circle_ops",
+  "walkzzz/moon-geometry/src/triangulate",
 }
