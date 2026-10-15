@@ -5,7 +5,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![MoonBit](https://img.shields.io/badge/MoonBit-0.1.20260920-blue.svg)](https://moonbitlang.com)
-[![Tests](https://img.shields.io/badge/tests-396-brightgreen.svg)]()
+[![Tests](https://img.shields.io/badge/tests-434-brightgreen.svg)]()
 [![Targets](https://img.shields.io/badge/targets-native%20%7C%20wasm--gc%20%7C%20js%20%7C%20wasm-green.svg)]()
 
 Moon Geometry is a **pure MoonBit** computational geometry library with **zero C FFI dependencies**, supporting all four backends (3natively. It provides reusable geometric algorithm primitives for CAD, collision detection, GIS, path planning, and image processing.
@@ -28,6 +28,9 @@ Moon Geometry 是一个**纯 MoonBit** 实现的计算几何库，**零 C FFI �
 - **Rotating calipers | 旋转卡壳**: diameter, width, farthest pair, min-perimeter rect
 - **Ellipse | 椭圆**: area, perimeter, eccentricity, foci, contains, line intersection
 - **Bezier | 贝塞尔曲线**: quadratic/cubic eval, derivative, length, bbox, subdivide
+- **Fitting | 几何拟合**: least-squares line/circle, orthogonal regression, centroid
+- **Sweep line | 扫描线**: segment intersection detection, simple polygon test
+- **Convex polygon | 凸多边形**: O(log n) point query, tangent, SAT intersect
 - **Unified import | 统一导入**: `import "walkzzz/moon-geometry"` re-exports all APIs
 - **Pure MoonBit, zero deps | 纯 MoonBit 零依赖**: no C FFI, single codebase for all targets
 - **Full degenerate coverage | 退化情况全覆盖**: collinear, coincident, empty, single/two-point
@@ -58,6 +61,9 @@ src/
   rotating_calipers/ # Rotating calipers | 旋转卡壳
   ellipse/        # Ellipse geometry | 椭圆几何
   bezier/         # Bezier curves | 贝塞尔曲线
+  fitting/        # Geometric fitting | 几何拟合
+  sweep_line/     # Sweep line | 扫描线
+  convex_polygon/ # Convex polygon ops | 凸多边形操作
 ```
 
 ## Quick Example | 快速示例
@@ -99,20 +105,23 @@ let hull = @hull.convex_hull_andrew(points)  // hull vertices (CCW) | 凸包顶�
 | Rotating calipers | 旋转卡壳 | `convex_polygon_diameter`, `convex_polygon_width` | `farthest_point_pair` |
 | Ellipse | 椭圆 | `ellipse_new`, `ellipse_area`, `ellipse_perimeter` | `ellipse_contains`, `ellipse_foci` |
 | Bezier | 贝塞尔 | `bezier2_new`, `bezier2_eval`, `bezier3_new` | `bezier2_length`, `bezier3_subdivide` |
+| Fitting | 拟合 | `fit_line`, `fit_circle`, `fit_line_orthogonal` | `centroid` |
+| Sweep line | 扫描线 | `has_any_intersection`, `count_intersections` | `is_simple_polygon_chain` |
+| Convex polygon | 凸多边形 | `point_in_convex_polygon`, `convex_polygons_intersect` | `tangent_from_point` |
 
 Full interface in `.mbti` files. 完整接口见 `.mbti` 文件。
 
 ## Tests | 测试
 
 ```bash
-moon test                          # all 396 tests | 全部 396 测试
+moon test                          # all 434 tests | 全部 434 测试
 moon test --target native          # verify each backend | 四目标分别验证
 moon test --target wasm-gc
 moon test --target js
 moon test --target wasm
 ```
 
-All four targets pass: 396 × 4 = 1584. 四目标全绿：396 × 4 = 1584。
+All four targets pass: 434 × 4 = 1736. 四目标全绿：434 × 4 = 1736。
 
 ## Roadmap | 交付路线图
 
@@ -124,6 +133,7 @@ All four targets pass: 396 × 4 = 1584. 四目标全绿：396 × 4 = 1584。
 | Week 4 | Transform + distance + bounding + publish | ✅ Done |
 | Phase 1-2 | Tests + circle ops + triangulate + Minkowski | ✅ Done |
 | v0.6.0 | Rotating calipers + ellipse + bezier | ✅ Done |
+| v0.7.0 | Fitting + sweep line + convex polygon | ✅ Done |
 
 See [docs/roadmap.md](docs/roadmap.md) and [docs/changelog.md](docs/changelog.md).
 

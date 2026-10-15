@@ -6,6 +6,31 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
 Moon Geometry 的所有重要变更记录于此。
 格式基于 [Keep a Changelog](https://keepachangelog.com/)。
 
+## [0.7.0] - 2026-10-15
+
+### Added — Fitting + Sweep Line + Convex Polygon | 几何拟合 + 扫描线 + 凸多边形操作
+
+- **Geometric Fitting | 几何拟合** (`fitting` module)：
+  - `fit_line`: least-squares line fit with R² | 最小二乘直线拟合（含 R²）
+  - `fit_line_orthogonal`: total least squares (PCA-based) | 正交距离回归
+  - `fit_circle`: Kåsa method circle fit | Kåsa 方法圆拟合
+  - `centroid`: point set centroid | 点集质心
+- **Sweep Line | 扫描线** (`sweep_line` module)：
+  - `has_any_intersection`, `count_intersections`, `find_all_intersections` | 相交检测
+  - `find_intersection_points` | 交点计算
+  - `is_simple_polygon_chain` | 简单多边形链检测
+- **Convex Polygon Ops | 凸多边形操作** (`convex_polygon` module)：
+  - `support_function`, `extreme_point` | 支持函数、极点查询
+  - `point_in_convex_polygon`: O(log n) binary search | O(log n) 点包含
+  - `tangent_from_point` | 外部点切线
+  - `convex_polygons_intersect`: SAT O(n+m) | 分离轴定理相交检测
+  - `point_to_convex_polygon_distance` | 点到凸多边形距离
+
+### Tests | 测试
+
+- Added 38 tests (13 fitting + 11 sweep_line + 14 convex_polygon), total 434 tests | 新增 38 测试，累计 434 测试
+- All four targets green, zero warnings | 四目标全绿，零警告
+
 ## [0.6.0] - 2026-10-15
 
 ### Added — Rotating Calipers + Ellipse + Bezier | 旋转卡壳 + 椭圆 + 贝塞尔曲线

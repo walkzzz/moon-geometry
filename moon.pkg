@@ -15,4 +15,7 @@ import {
   "walkzzz/moon-geometry/src/rotating_calipers",
   "walkzzz/moon-geometry/src/ellipse",
   "walkzzz/moon-geometry/src/bezier",
+  "walkzzz/moon-geometry/src/fitting",
+  "walkzzz/moon-geometry/src/sweep_line",
+  "walkzzz/moon-geometry/src/convex_polygon",
 }

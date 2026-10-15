@@ -5,6 +5,7 @@ import {
   "walkzzz/moon-geometry/src/bezier",
   "walkzzz/moon-geometry/src/core",
   "walkzzz/moon-geometry/src/ellipse",
+  "walkzzz/moon-geometry/src/fitting",
   "walkzzz/moon-geometry/src/triangulation",
 }
 
@@ -47,6 +48,8 @@ pub fn bounding_circle(Array[@core.Point2D]) -> (@core.Point2D, Double)
 
 pub fn ccw(@core.Point2D, @core.Point2D, @core.Point2D) -> @core.Orientation
 
+pub fn centroid(Array[@core.Point2D]) -> @core.Point2D?
+
 pub fn circle_circle_intersect(@core.Circle, @core.Circle) -> Array[@core.Point2D]
 
 pub fn circle_line_intersect(@core.Circle, @core.Line) -> Array[@core.Point2D]
@@ -69,6 +72,10 @@ pub fn convex_polygon_width(@core.Polygon) -> Double
 
 pub fn convex_polygons_collide(@core.Polygon, @core.Polygon) -> Bool
 
+pub fn convex_polygons_intersect(@core.Polygon, @core.Polygon) -> Bool
+
+pub fn count_intersections(Array[@core.Segment]) -> Int
+
 pub let default_eps : Double
 
 pub fn delaunay_triangulation(Array[@core.Point2D]) -> Array[@triangulation.TriangleIdx]
@@ -87,9 +94,25 @@ pub fn ellipse_on_boundary(@ellipse.Ellipse, @core.Point2D, Double) -> Bool
 
 pub fn ellipse_perimeter(@ellipse.Ellipse) -> Double
 
+pub fn extreme_point(@core.Polygon, @core.Point2D) -> Int
+
 pub fn farthest_point_pair(Array[@core.Point2D]) -> (@core.Point2D, @core.Point2D, Double)?
 
+pub fn find_all_intersections(Array[@core.Segment]) -> Array[(Int, Int)]
+
+pub fn find_intersection_points(Array[@core.Segment]) -> Array[(Int, Int, @core.Point2D)]
+
+pub fn fit_circle(Array[@core.Point2D]) -> @fitting.CircleFit?
+
+pub fn fit_line(Array[@core.Point2D]) -> @fitting.LineFit?
+
+pub fn fit_line_orthogonal(Array[@core.Point2D]) -> (Double, Double, Double)?
+
+pub fn has_any_intersection(Array[@core.Segment]) -> Bool
+
 pub fn is_convex(@core.Polygon) -> Bool
+
+pub fn is_simple_polygon_chain(Array[@core.Segment]) -> Bool
 
 pub fn line_segment_intersection(@core.Line, @core.Segment) -> @core.Point2D?
 
@@ -111,7 +134,11 @@ pub fn mirror_x(@core.Point2D) -> @core.Point2D
 
 pub fn mirror_y(@core.Point2D) -> @core.Point2D
 
+pub fn point_in_convex_polygon(@core.Polygon, @core.Point2D) -> Bool
+
 pub fn point_in_polygon(@core.Point2D, @core.Polygon) -> Bool
+
+pub fn point_to_convex_polygon_distance(@core.Polygon, @core.Point2D) -> Double
 
 pub fn point_to_line_distance(@core.Point2D, @core.Line) -> Double
 
@@ -157,6 +184,10 @@ pub fn shear(@core.Point2D, Double, Double) -> @core.Point2D
 
 pub fn simplify_polygon(@core.Polygon, Double) -> Array[@core.Point2D]
 
+pub fn support_function(@core.Polygon, @core.Point2D) -> Double
+
+pub fn tangent_from_point(@core.Polygon, @core.Point2D) -> (Int, Int)
+
 pub fn translate(@core.Point2D, Double, Double) -> @core.Point2D
 
 pub fn translate_points(Array[@core.Point2D], Double, Double) -> Array[@core.Point2D]
@@ -178,9 +209,13 @@ pub using @bezier {type Bezier3}
 
 pub using @core {type Circle}
 
+pub using @fitting {type CircleFit}
+
 pub using @ellipse {type Ellipse}
 
 pub using @core {type Line}
+
+pub using @fitting {type LineFit}
 
 pub using @core {type Orientation}
 

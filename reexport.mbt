@@ -648,3 +648,116 @@ pub fn bezier3_bbox(b : Bezier3) -> (Double, Double, Double, Double) {
 pub fn bezier3_subdivide(b : Bezier3, t : Double) -> (Bezier3, Bezier3) {
   @bezier.Bezier3::subdivide(b, t)
 }
+// ---------------------------------------------------------------------------
+// fitting: geometric fitting / 几何拟合
+// ---------------------------------------------------------------------------
+
+///|
+/// Line fit result. / 直线拟合结果。
+pub type LineFit = @fitting.LineFit
+
+///|
+/// Circle fit result. / 圆拟合结果。
+pub type CircleFit = @fitting.CircleFit
+
+///|
+/// Least-squares line fit. / 最小二乘直线拟合。
+pub fn fit_line(points : Array[Point2D]) -> LineFit? {
+  @fitting.fit_line(points)
+}
+
+///|
+/// Orthogonal distance regression line fit. / 正交距离回归直线拟合。
+pub fn fit_line_orthogonal(
+  points : Array[Point2D],
+) -> (Double, Double, Double)? {
+  @fitting.fit_line_orthogonal(points)
+}
+
+///|
+/// Least-squares circle fit. / 最小二乘圆拟合。
+pub fn fit_circle(points : Array[Point2D]) -> CircleFit? {
+  @fitting.fit_circle(points)
+}
+
+///|
+/// Centroid of a point set. / 点集质心。
+pub fn centroid(points : Array[Point2D]) -> Point2D? {
+  @fitting.centroid(points)
+}
+
+// ---------------------------------------------------------------------------
+// sweep_line: segment intersection / 线段相交检测
+// ---------------------------------------------------------------------------
+
+///|
+/// Check if any pair of segments intersects. / 检测是否有任何线段对相交。
+pub fn has_any_intersection(segments : Array[Segment]) -> Bool {
+  @sweep_line.has_any_intersection(segments)
+}
+
+///|
+/// Find all intersecting pairs. / 找出所有相交线段对。
+pub fn find_all_intersections(segments : Array[Segment]) -> Array[(Int, Int)] {
+  @sweep_line.find_all_intersections(segments)
+}
+
+///|
+/// Count intersecting pairs. / 计数相交线段对。
+pub fn count_intersections(segments : Array[Segment]) -> Int {
+  @sweep_line.count_intersections(segments)
+}
+
+///|
+/// Find all intersection points. / 找出所有线段交点。
+pub fn find_intersection_points(
+  segments : Array[Segment],
+) -> Array[(Int, Int, Point2D)] {
+  @sweep_line.find_intersection_points(segments)
+}
+
+///|
+/// Check if segments form a simple polygon. / 检测线段是否构成简单多边形。
+pub fn is_simple_polygon_chain(segments : Array[Segment]) -> Bool {
+  @sweep_line.is_simple_polygon_chain(segments)
+}
+
+// ---------------------------------------------------------------------------
+// convex_polygon: convex polygon ops / 凸多边形操作
+// ---------------------------------------------------------------------------
+
+///|
+/// Support function value. / 支持函数值。
+pub fn support_function(poly : Polygon, dir : Point2D) -> Double {
+  @convex_polygon.support_function(poly, dir)
+}
+
+///|
+/// Extreme point index in a direction. / 沿方向的极点索引。
+pub fn extreme_point(poly : Polygon, dir : Point2D) -> Int {
+  @convex_polygon.extreme_point(poly, dir)
+}
+
+///|
+/// O(log n) point-in-convex-polygon test. / O(log n) 凸多边形点包含检测。
+pub fn point_in_convex_polygon(poly : Polygon, p : Point2D) -> Bool {
+  @convex_polygon.point_in_convex_polygon(poly, p)
+}
+
+///|
+/// Tangent indices from external point. / 外部点到凸多边形的切线索引。
+pub fn tangent_from_point(poly : Polygon, p : Point2D) -> (Int, Int) {
+  @convex_polygon.tangent_from_point(poly, p)
+}
+
+///|
+/// Check if two convex polygons intersect (SAT). / 检测两凸多边形是否相交（分离轴定理）。
+pub fn convex_polygons_intersect(poly1 : Polygon, poly2 : Polygon) -> Bool {
+  @convex_polygon.convex_polygons_intersect(poly1, poly2)
+}
+
+///|
+/// Distance from point to convex polygon. / 点到凸多边形距离。
+pub fn point_to_convex_polygon_distance(poly : Polygon, p : Point2D) -> Double {
+  @convex_polygon.point_to_convex_polygon_distance(poly, p)
+}
