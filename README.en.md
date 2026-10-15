@@ -5,7 +5,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![MoonBit](https://img.shields.io/badge/MoonBit-0.1.20260920-blue.svg)](https://moonbitlang.com)
-[![Tests](https://img.shields.io/badge/tests-560-brightgreen.svg)]()
+[![Tests](https://img.shields.io/badge/tests-596-brightgreen.svg)]()
 [![Targets](https://img.shields.io/badge/targets-native%20%7C%20wasm--gc%20%7C%20js%20%7C%20wasm-green.svg)]()
 
 Moon Geometry is a **pure MoonBit** computational geometry library with **zero C FFI dependencies**, supporting all four backends (3natively. It provides reusable geometric algorithm primitives for CAD, collision detection, GIS, path planning, and image processing.
@@ -82,6 +82,14 @@ src/
   bucket_pr/      # Bucket PR k-d tree | 桶PR树
   spatial_hash/   # Spatial hash | 空间哈希
   bvh/            # BVH | 层次包围体
+  half_plane/     # Half-plane | 半平面
+  convex_clip/    # Convex clipping | 凸多边形裁剪
+  convex_sum/     # Point set ops | 点集运算
+  polar_dual/     # Polar duality | 极对偶
+  linear_prog/    # 2D linear programming | 二维线性规划
+  convex_hull3d/  # 3D convex hull | 三维凸包
+  support/        # Support functions | 支持函数
+  separating/     # Separating axis | 分离轴
 ```
 
 ## Quick Example | 快速示例
@@ -144,20 +152,28 @@ let hull = @hull.convex_hull_andrew(points)  // hull vertices (CCW) | 凸包顶�
 | Bucket PR | 桶PR树 | `build_bucket_pr`, `bucket_pr_nearest` | `bucket_pr_count` |
 | Spatial hash | 空间哈希 | `build_spatial_hash`, `spatial_hash_query_radius` | `spatial_hash_nearby`, `spatial_hash_size` |
 | BVH | 层次包围体 | `build_bvh`, `bvh_query`, `bvh_query_point` | `bvh_count_leaves` |
+| Half-plane | 半平面 | `HalfPlane`, `half_plane_contains`, `half_plane_intersect` | `half_plane_eval` |
+| Convex clip | 凸裁剪 | `clip_convex_by_line`, `clip_convex_by_half_plane` | `convex_area` |
+| Convex sum | 点集运算 | `point_set_sum`, `point_set_difference`, `point_set_scale` | `point_set_centroid`, `point_set_equal` |
+| Polar dual | 极对偶 | `polar_dual_point`, `polar_dual` | `origin_inside`, `dual_area` |
+| Linear prog | 线性规划 | `LPResult`, `linear_program_2d`, `is_feasible` | `find_feasible_point` |
+| 3D convex hull | 三维凸包 | `HullFace`, `convex_hull_3d`, `hull_face_count` | `hull_volume` |
+| Support | 支持函数 | `support_point_set`, `support_circle`, `support_value` | `support_segment`, `width_in_direction` |
+| Separating | 分离轴 | `find_separating_axis`, `separating_distance` | `are_separated` |
 
 Full interface in `.mbti` files. 完整接口见 `.mbti` 文件。
 
 ## Tests | 测试
 
 ```bash
-moon test                          # all 560 tests | 全部 560 测试
+moon test                          # all 596 tests | 全部 596 测试
 moon test --target native          # verify each backend | 四目标分别验证
 moon test --target wasm-gc
 moon test --target js
 moon test --target wasm
 ```
 
-All four targets pass: 560 × 4 = 2240. 四目标全绿：560 × 4 = 2240。
+All four targets pass: 596 × 4 = 2384. 四目标全绿：596 × 4 = 2384。
 
 ## Roadmap | 交付路线图
 
@@ -170,6 +186,10 @@ All four targets pass: 560 × 4 = 2240. 四目标全绿：560 × 4 = 2240。
 | Phase 1-2 | Tests + circle ops + triangulate + Minkowski | ✅ Done |
 | v0.6.0 | Rotating calipers + ellipse + bezier | ✅ Done |
 | v0.7.0 | Fitting + sweep line + convex polygon | ✅ Done |
+| v0.8.0 | Vector + matrix + angle + constants + interval | ✅ Done |
+| v0.9.0 | AABB tree + hash + compare + ray + plane | ✅ Done |
+| v1.0.0 | Spatial data structures (8 modules) | ✅ Done |
+| v1.1.0 | Convexity & optimization (8 modules) | ✅ Done |
 
 See [docs/roadmap.md](docs/roadmap.md) and [docs/changelog.md](docs/changelog.md).
 

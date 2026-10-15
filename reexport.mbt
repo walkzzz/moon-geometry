@@ -1540,3 +1540,187 @@ pub fn bvh_query_point(nodes : Array[BVHNode], p : Point2D) -> Array[Int] {
 pub fn bvh_count_leaves(nodes : Array[BVHNode]) -> Int {
   @bvh.bvh_count_leaves(nodes)
 }
+// ---------------------------------------------------------------------------
+// half_plane: half-plane intersection / 半平面交
+// ---------------------------------------------------------------------------
+
+///|
+/// Half-plane type. / 半平面类型。
+pub type HalfPlane = @half_plane.HalfPlane
+
+///|
+/// Construct a half-plane. / 构造半平面。
+pub fn half_plane_new(a : Double, b : Double, c : Double) -> HalfPlane {
+  @half_plane.HalfPlane::new(a, b, c)
+}
+
+///|
+/// Check if point is in half-plane. / 检查点是否在半平面内。
+pub fn half_plane_contains(hp : HalfPlane, p : Point2D) -> Bool {
+  @half_plane.HalfPlane::contains(hp, p)
+}
+
+///|
+/// Intersection of half-planes. / 半平面交。
+pub fn half_plane_intersect(planes : Array[HalfPlane]) -> Array[Point2D] {
+  @half_plane.half_plane_intersect(planes)
+}
+
+// ---------------------------------------------------------------------------
+// convex_clip: convex polygon clipping / 凸多边形裁剪
+// ---------------------------------------------------------------------------
+
+///|
+/// Clip convex polygon by a line. / 用直线裁剪凸多边形。
+pub fn clip_convex_by_line(poly : Polygon, line : Line) -> Array[Point2D] {
+  @convex_clip.clip_convex_by_line(poly, line)
+}
+
+///|
+/// Clip convex polygon by half-plane. / 用半平面裁剪凸多边形。
+pub fn clip_convex_by_half_plane(
+  poly : Polygon,
+  a : Double,
+  b : Double,
+  c : Double,
+) -> Array[Point2D] {
+  @convex_clip.clip_convex_by_half_plane(poly, a, b, c)
+}
+
+///|
+/// Area of convex polygon from vertex array. / 凸多边形面积。
+pub fn convex_area(vertices : Array[Point2D]) -> Double {
+  @convex_clip.convex_area(vertices)
+}
+
+// ---------------------------------------------------------------------------
+// convex_sum: point set operations / 点集运算
+// ---------------------------------------------------------------------------
+
+///|
+/// All pairwise sums of two point sets. / 两个点集的成对和。
+pub fn point_set_sum(p1 : Array[Point2D], p2 : Array[Point2D]) -> Array[Point2D] {
+  @convex_sum.point_set_sum(p1, p2)
+}
+
+///|
+/// All pairwise differences. / 两个点集的成对差。
+pub fn point_set_difference(p1 : Array[Point2D], p2 : Array[Point2D]) -> Array[Point2D] {
+  @convex_sum.point_set_difference(p1, p2)
+}
+
+///|
+/// Centroid of a point set. / 点集质心。
+pub fn point_set_centroid(points : Array[Point2D]) -> Point2D? {
+  @convex_sum.point_set_centroid(points)
+}
+
+// ---------------------------------------------------------------------------
+// polar_dual: polar duality / 极对偶
+// ---------------------------------------------------------------------------
+
+///|
+/// Polar dual of a point. / 点的极对偶。
+pub fn polar_dual_point(p : Point2D) -> Point2D {
+  @polar_dual.polar_dual_point(p)
+}
+
+///|
+/// Polar dual of a convex polygon. / 凸多边形的极对偶。
+pub fn polar_dual(poly : Polygon) -> Array[Point2D] {
+  @polar_dual.polar_dual(poly)
+}
+
+///|
+/// Check if origin is inside polygon. / 检查原点是否在多边形内。
+pub fn origin_inside(poly : Polygon) -> Bool {
+  @polar_dual.origin_inside(poly)
+}
+
+// ---------------------------------------------------------------------------
+// linear_prog: 2D linear programming / 二维线性规划
+// ---------------------------------------------------------------------------
+
+///|
+/// LP result type. / 线性规划结果类型。
+pub type LPResult = @linear_prog.LPResult
+
+///|
+/// Solve 2D LP. / 求解二维线性规划。
+pub fn linear_program_2d(
+  constraints : Array[(Double, Double, Double)],
+  cx : Double,
+  cy : Double,
+) -> LPResult? {
+  @linear_prog.linear_program_2d(constraints, cx, cy)
+}
+
+///|
+/// Check if constraints are feasible. / 检查约束是否可行。
+pub fn is_feasible(constraints : Array[(Double, Double, Double)]) -> Bool {
+  @linear_prog.is_feasible(constraints)
+}
+
+// ---------------------------------------------------------------------------
+// convex_hull3d: 3D convex hull / 三维凸包
+// ---------------------------------------------------------------------------
+
+///|
+/// 3D hull face type. / 三维凸包面类型。
+pub type HullFace = @convex_hull3d.HullFace
+
+///|
+/// Compute 3D convex hull. / 三维凸包。
+pub fn convex_hull_3d(points : Array[Point3D]) -> Array[HullFace] {
+  @convex_hull3d.convex_hull_3d(points)
+}
+
+///|
+/// Volume of 3D convex hull. / 三维凸包体积。
+pub fn hull_volume(points : Array[Point3D], faces : Array[HullFace]) -> Double {
+  @convex_hull3d.hull_volume(points, faces)
+}
+
+// ---------------------------------------------------------------------------
+// support: support functions / 支持函数
+// ---------------------------------------------------------------------------
+
+///|
+/// Support point index in a direction. / 支持点索引。
+pub fn support_point_set(points : Array[Point2D], dir : Point2D) -> Int? {
+  @support.support_point_set(points, dir)
+}
+
+///|
+/// Support point of a circle. / 圆的支持点。
+pub fn support_circle(center : Point2D, radius : Double, dir : Point2D) -> Point2D {
+  @support.support_circle(center, radius, dir)
+}
+
+///|
+/// Width in a direction. / 方向宽度。
+pub fn width_in_direction(points : Array[Point2D], dir : Point2D) -> Double {
+  @support.width_in_direction(points, dir)
+}
+
+// ---------------------------------------------------------------------------
+// separating: separating axis / 分离轴
+// ---------------------------------------------------------------------------
+
+///|
+/// Find separating axis. / 寻找分离轴。
+pub fn find_separating_axis(poly1 : Polygon, poly2 : Polygon) -> Line? {
+  @separating.find_separating_axis(poly1, poly2)
+}
+
+///|
+/// Separating distance. / 分离距离。
+pub fn separating_distance(poly1 : Polygon, poly2 : Polygon) -> Double {
+  @separating.separating_distance(poly1, poly2)
+}
+
+///|
+/// Check if two convex polygons are separated. / 检查两凸多边形是否分离。
+pub fn are_separated(poly1 : Polygon, poly2 : Polygon) -> Bool {
+  @separating.are_separated(poly1, poly2)
+}

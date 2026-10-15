@@ -36,4 +36,12 @@ import {
   "walkzzz/moon-geometry/src/bucket_pr",
   "walkzzz/moon-geometry/src/spatial_hash",
   "walkzzz/moon-geometry/src/bvh",
+  "walkzzz/moon-geometry/src/half_plane",
+  "walkzzz/moon-geometry/src/convex_clip",
+  "walkzzz/moon-geometry/src/convex_sum",
+  "walkzzz/moon-geometry/src/polar_dual",
+  "walkzzz/moon-geometry/src/linear_prog",
+  "walkzzz/moon-geometry/src/convex_hull3d",
+  "walkzzz/moon-geometry/src/support",
+  "walkzzz/moon-geometry/src/separating",
 }

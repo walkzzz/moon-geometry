@@ -6,6 +6,25 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
 Moon Geometry 的所有重要变更记录于此。
 格式基于 [Keep a Changelog](https://keepachangelog.com/)。
 
+## [1.1.0] - 2026-10-16
+
+### Added — Convexity & Optimization | 凸性与优化（8 个模块）
+
+- **Half-Plane | 半平面** (`half_plane` module)：`HalfPlane` struct, `half_plane_contains`, `half_plane_eval`, `half_plane_intersect`
+- **Convex Clip | 凸多边形裁剪** (`convex_clip` module)：`clip_convex_by_line`, `clip_convex_by_half_plane`, `convex_area`
+- **Convex Sum | 点集运算** (`convex_sum` module)：`point_set_sum`, `point_set_difference`, `point_set_scale`, `point_set_translate`, `point_set_centroid`, `point_set_equal`
+- **Polar Dual | 极对偶** (`polar_dual` module)：`polar_dual_point`, `polar_dual`, `origin_inside`, `dual_area`
+- **Linear Programming | 二维线性规划** (`linear_prog` module)：`LPResult`, `linear_program_2d`, `is_feasible`, `find_feasible_point`
+- **3D Convex Hull | 三维凸包** (`convex_hull3d` module)：`HullFace`, `convex_hull_3d`, `hull_face_count`, `hull_volume`
+- **Support Function | 支持函数** (`support` module)：`support_point_set`, `support_circle`, `support_value`, `support_segment`, `width_in_direction`
+- **Separating Axis | 分离轴** (`separating` module)：`find_separating_axis`, `separating_distance`, `are_separated`
+
+### Tests | 测试
+
+- Added 36 tests, total 596 tests | 新增 36 测试，累计 596 测试
+- All four targets green, zero warnings | 四目标全绿，零警告
+- 45 modules total | 共 45 个模块
+
 ## [1.0.0] - 2026-10-15
 
 ### Added — Spatial Data Structures | 空间数据结构（8 个模块）
