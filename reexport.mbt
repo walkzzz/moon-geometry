@@ -397,3 +397,36 @@ pub fn min_area_bounding_rect(
 pub fn bounding_circle(points : Array[Point2D]) -> (Point2D, Double) {
   @bounding.bounding_circle(points)
 }
+// ---------------------------------------------------------------------------
+// circle_ops: circle intersection / 圆相交
+// ---------------------------------------------------------------------------
+
+///|
+/// Circle-segment intersection points (0/1/2). / 圆与线段交点。
+pub fn circle_segment_intersect(
+  circle : Circle,
+  seg : Segment
+) -> Array[Point2D] {
+  @circle_ops.circle_segment_intersect(circle, seg)
+}
+
+///|
+/// Circle-circle intersection points (0/1/2). / 两圆交点。
+pub fn circle_circle_intersect(c1 : Circle, c2 : Circle) -> Array[Point2D] {
+  @circle_ops.circle_circle_intersect(c1, c2)
+}
+
+///|
+/// Circle-line intersection points (0/1/2). / 圆与直线交点。
+pub fn circle_line_intersect(circle : Circle, line : Line) -> Array[Point2D] {
+  @circle_ops.circle_line_intersect(circle, line)
+}
+
+///|
+/// Circle-polygon boundary intersection points. / 圆与多边形边界交点。
+pub fn circle_polygon_intersect(
+  circle : Circle,
+  poly : Polygon
+) -> Array[Point2D] {
+  @circle_ops.circle_polygon_intersect(circle, poly)
+}
