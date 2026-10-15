@@ -3,6 +3,25 @@
 All notable changes to Moon Geometry are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.2.0] - 2026-10-15
+
+### Added — Week 2: 线段相交 + 最近点对 + 多边形布尔运算
+
+- **线段相交**：
+  - `segments_intersect`：线段相交检测（含端点接触、共线重叠）
+  - `segment_intersection`：线段交点计算（参数化求解，含共线重叠）
+  - `line_segment_intersection`：直线与线段交点
+- **最近点对**：
+  - `closest_pair`：分治法 O(n log n)，返回最近点对及距离
+- **多边形布尔运算**：
+  - `clip_polygon`：Sutherland-Hodgman 矩形裁剪
+  - `polygon_intersection`：凸多边形交集（Sutherland-Hodgman）
+  - `polygon_union_area` / `polygon_difference_area`：并集/差集面积（容斥原理）
+
+### Tests
+
+- 新增 45 测试，累计 133 测试，四目标全绿
+
 ## [0.1.0] - 2026-10-15
 
 ### Added — Week 1: 基础类型 + 凸包 + 多边形操作

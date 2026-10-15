@@ -10,6 +10,10 @@ pub fn approx_eq(Double, Double, Double) -> Bool
 
 pub fn ccw(Point2D, Point2D, Point2D) -> Orientation
 
+pub fn clip_polygon(Polygon, Rectangle) -> Array[Point2D]
+
+pub fn closest_pair(Array[Point2D]) -> (Point2D, Point2D, Double)?
+
 pub fn convex_hull_andrew(Array[Point2D]) -> Array[Point2D]
 
 pub fn convex_hull_graham(Array[Point2D]) -> Array[Point2D]
@@ -18,17 +22,29 @@ pub let default_eps : Double
 
 pub fn is_convex(Polygon) -> Bool
 
+pub fn line_segment_intersection(Line, Segment) -> Point2D?
+
 pub fn point_in_polygon(Point2D, Polygon) -> Bool
 
 pub fn polygon_area(Polygon) -> Double
 
 pub fn polygon_centroid(Polygon) -> Point2D
 
+pub fn polygon_difference_area(Polygon, Polygon) -> Double
+
+pub fn polygon_intersection(Polygon, Polygon) -> Polygon?
+
 pub fn polygon_orientation(Polygon) -> Orientation
 
 pub fn polygon_perimeter(Polygon) -> Double
 
 pub fn polygon_signed_area(Polygon) -> Double
+
+pub fn polygon_union_area(Polygon, Polygon) -> Double
+
+pub fn segment_intersection(Segment, Segment) -> Point2D?
+
+pub fn segments_intersect(Segment, Segment) -> Bool
 
 pub fn simplify_polygon(Polygon, Double) -> Array[Point2D]
 
