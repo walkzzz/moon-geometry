@@ -159,7 +159,11 @@ pub fn point_in_polygon(p : @core.Point2D, poly : @core.Polygon) -> Bool {
 ///|
 /// Perpendicular distance from point p to line segment (a, b).
 /// 点 p 到线段 (a, b) 的垂直距离。
-fn point_segment_dist(p : @core.Point2D, a : @core.Point2D, b : @core.Point2D) -> Double {
+fn point_segment_dist(
+  p : @core.Point2D,
+  a : @core.Point2D,
+  b : @core.Point2D,
+) -> Double {
   let dx = b.x - a.x
   let dy = b.y - a.y
   let len_sq = dx * dx + dy * dy
@@ -176,7 +180,10 @@ fn point_segment_dist(p : @core.Point2D, a : @core.Point2D, b : @core.Point2D) -
 /// Douglas-Peucker polygon simplification.
 /// Returns a simplified vertex array preserving shape within `epsilon`.
 /// 返回在 `epsilon` 精度内保持形状的简化顶点数组。
-pub fn simplify_polygon(poly : @core.Polygon, epsilon : Double) -> Array[@core.Point2D] {
+pub fn simplify_polygon(
+  poly : @core.Polygon,
+  epsilon : Double,
+) -> Array[@core.Point2D] {
   let verts = poly.vertices
   let n = verts.length()
   if n <= 2 {

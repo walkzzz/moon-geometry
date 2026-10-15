@@ -1,4 +1,3 @@
 import {
   "walkzzz/moon-geometry/src/core",
-  "moonbitlang/core/math",
 }

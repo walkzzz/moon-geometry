@@ -196,6 +196,7 @@ test "rotate then inverse returns original" {
   assert_true(@core.approx_eq(q.x, 3.0, 0.0001))
   assert_true(@core.approx_eq(q.y, 4.0, 0.0001))
 }
+
 ///|
 test "scale by zero" {
   let p = @core.Point2D::new(5.0, 7.0)

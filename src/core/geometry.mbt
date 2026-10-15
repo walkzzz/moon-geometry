@@ -198,6 +198,7 @@ pub extend Point2D with @moonbitlang/core/debug.Debug::{to_repr}
 
 ///|
 pub extend Point3D with @moonbitlang/core/debug.Debug::{to_repr}
+
 ///|
 /// Cross product of vectors OA and OB: (a-o) × (b-o).
 /// 向量 OA 和 OB 的叉积：(a-o) × (b-o)。

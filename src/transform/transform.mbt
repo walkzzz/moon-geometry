@@ -11,7 +11,7 @@ pub fn translate(p : @core.Point2D, dx : Double, dy : Double) -> @core.Point2D {
 pub fn translate_points(
   points : Array[@core.Point2D],
   dx : Double,
-  dy : Double
+  dy : Double,
 ) -> Array[@core.Point2D] {
   let result : Array[@core.Point2D] = []
   for p in points {
@@ -35,7 +35,7 @@ pub fn rotate(p : @core.Point2D, angle : Double) -> @core.Point2D {
 pub fn rotate_around(
   p : @core.Point2D,
   center : @core.Point2D,
-  angle : Double
+  angle : Double,
 ) -> @core.Point2D {
   let c = @math.cos(angle)
   let s = @math.sin(angle)
@@ -50,7 +50,7 @@ pub fn rotate_around(
 pub fn rotate_points(
   points : Array[@core.Point2D],
   center : @core.Point2D,
-  angle : Double
+  angle : Double,
 ) -> Array[@core.Point2D] {
   let result : Array[@core.Point2D] = []
   for p in points {
@@ -73,9 +73,12 @@ pub fn scale_around(
   p : @core.Point2D,
   center : @core.Point2D,
   sx : Double,
-  sy : Double
+  sy : Double,
 ) -> @core.Point2D {
-  @core.Point2D::new(center.x + (p.x - center.x) * sx, center.y + (p.y - center.y) * sy)
+  @core.Point2D::new(
+    center.x + (p.x - center.x) * sx,
+    center.y + (p.y - center.y) * sy,
+  )
 }
 
 ///|
@@ -88,7 +91,7 @@ pub fn affine_transform(
   c : Double,
   d : Double,
   e : Double,
-  f : Double
+  f : Double,
 ) -> @core.Point2D {
   @core.Point2D::new(a * p.x + b * p.y + c, d * p.x + e * p.y + f)
 }
@@ -103,7 +106,7 @@ pub fn affine_transform_points(
   c : Double,
   d : Double,
   e : Double,
-  f : Double
+  f : Double,
 ) -> Array[@core.Point2D] {
   let result : Array[@core.Point2D] = []
   for p in points {
@@ -148,10 +151,6 @@ pub fn mirror_line(p : @core.Point2D, line : @core.Line) -> @core.Point2D {
 ///|
 /// Shear a point: (x, y) -> (x + kx * y, y + ky * x).
 /// 剪切变换：(x, y) -> (x + kx * y, y + ky * x)。
-pub fn shear(
-  p : @core.Point2D,
-  kx : Double,
-  ky : Double
-) -> @core.Point2D {
+pub fn shear(p : @core.Point2D, kx : Double, ky : Double) -> @core.Point2D {
   @core.Point2D::new(p.x + kx * p.y, p.y + ky * p.x)
 }

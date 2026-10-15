@@ -1,9 +1,14 @@
 ///|
 
+///|
 /// Three-point orientation test.
 /// 三点方向判定。
 /// Returns @core.CounterClockwise, @core.Clockwise, or @core.Collinear.
-pub fn ccw(a : @core.Point2D, b : @core.Point2D, c : @core.Point2D) -> @core.Orientation {
+pub fn ccw(
+  a : @core.Point2D,
+  b : @core.Point2D,
+  c : @core.Point2D,
+) -> @core.Orientation {
   let cr = (b.x - a.x) * (c.y - a.y) - (b.y - a.y) * (c.x - a.x)
   if cr > 0.0 {
     @core.CounterClockwise
@@ -32,7 +37,9 @@ fn dedup_sorted(pts : Array[@core.Point2D]) -> Array[@core.Point2D] {
 /// Andrew's monotone chain convex hull. O(n log n), numerically stable.
 /// Returns hull vertices in counter-clockwise order, excluding collinear points.
 /// 返回逆时针排列的凸包顶点，排除共线点。
-pub fn convex_hull_andrew(points : Array[@core.Point2D]) -> Array[@core.Point2D] {
+pub fn convex_hull_andrew(
+  points : Array[@core.Point2D],
+) -> Array[@core.Point2D] {
   let n = points.length()
   if n <= 1 {
     return points.copy()
@@ -60,7 +67,11 @@ pub fn convex_hull_andrew(points : Array[@core.Point2D]) -> Array[@core.Point2D]
   let lower : Array[@core.Point2D] = []
   for i in 0..<m {
     while lower.length() >= 2 &&
-          @core.turn(lower[lower.length() - 2], lower[lower.length() - 1], unique[i]) <=
+          @core.turn(
+            lower[lower.length() - 2],
+            lower[lower.length() - 1],
+            unique[i],
+          ) <=
           0.0 {
       ignore(lower.pop())
     }
@@ -71,7 +82,11 @@ pub fn convex_hull_andrew(points : Array[@core.Point2D]) -> Array[@core.Point2D]
   let mut i = m - 1
   while i >= 0 {
     while upper.length() >= 2 &&
-          @core.turn(upper[upper.length() - 2], upper[upper.length() - 1], unique[i]) <=
+          @core.turn(
+            upper[upper.length() - 2],
+            upper[upper.length() - 1],
+            unique[i],
+          ) <=
           0.0 {
       ignore(upper.pop())
     }
@@ -91,7 +106,9 @@ pub fn convex_hull_andrew(points : Array[@core.Point2D]) -> Array[@core.Point2D]
 /// Graham scan convex hull. O(n log n).
 /// Returns hull vertices in counter-clockwise order, excluding collinear points.
 /// 返回逆时针排列的凸包顶点，排除共线点。
-pub fn convex_hull_graham(points : Array[@core.Point2D]) -> Array[@core.Point2D] {
+pub fn convex_hull_graham(
+  points : Array[@core.Point2D],
+) -> Array[@core.Point2D] {
   let n = points.length()
   if n <= 1 {
     return points.copy()

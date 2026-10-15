@@ -151,6 +151,7 @@ test "Rectangle::intersection disjoint" {
   let r2 = Rectangle::new(2.0, 2.0, 3.0, 3.0)
   assert_true(r1.intersection(r2) is None)
 }
+
 ///|
 test "Circle::contains center" {
   let c = Circle::new(Point2D::new(3.0, 4.0), 5.0)

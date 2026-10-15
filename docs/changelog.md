@@ -6,6 +6,35 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
 Moon Geometry 的所有重要变更记录于此。
 格式基于 [Keep a Changelog](https://keepachangelog.com/)。
 
+## [0.5.0] - 2026-10-15
+
+### Added — Phase 1-2: Tests + Circle Ops + Triangulate + Minkowski | 测试补充 + 圆相交 + 三角剖分 + Minkowski
+
+- **Circle Intersection | 圆相交** (`circle_ops` module)：
+  - `circle_segment_intersect`: circle-segment intersection points (0/1/2) | 圆与线段交点
+  - `circle_circle_intersect`: circle-circle intersection points (0/1/2) | 两圆交点
+  - `circle_line_intersect`: circle-line intersection points (0/1/2) | 圆与直线交点
+  - `circle_polygon_intersect`: circle-polygon boundary intersection | 圆与多边形边界交点
+- **Polygon Triangulation | 多边形三角剖分** (`triangulate` module)：
+  - `triangulate_polygon`: ear clipping algorithm for simple polygon | ear clipping 简单多边形三角剖分
+  - Returns vertex index triples `(i, j, k)` | 返回顶点索引三元组
+- **Minkowski Operations | Minkowski 运算** (`minkowski` module)：
+  - `minkowski_sum_convex`: Minkowski sum of two convex polygons | 两凸多边形 Minkowski 和
+  - `minkowski_difference_convex`: Minkowski difference A ⊖ B = A ⊕ (-B) | Minkowski 差
+  - `minkowski_sum_circle_polygon`: rounded polygon (circle + convex polygon) | 圆角多边形
+  - `convex_polygons_collide`: collision detection via Minkowski difference | 碰撞检测
+- **Test Coverage | 测试覆盖**：
+  - Phase 1: added 50+ boundary/degenerate/property tests across 10 modules | 为 10 个模块补充边界/退化/属性测试
+  - Phase 2: added 34 tests (13 circle_ops + 10 triangulate + 11 minkowski) | 新增 34 测试
+
+### Tests | 测试
+
+- Total 355 tests, all four targets (native/wasm-gc/js/wasm) green | 累计 355 测试，四目标全绿
+
+### Fixed | 修复
+
+- Eliminated all compiler warnings (unused package, deprecated APIs) | 消除所有编译器警告
+
 ## [0.4.0] - 2026-10-15
 
 ### Added — Week 4: Transforms + Distance + Bounding + Re-export | 几何变换 + 距离 + 包围盒 + 重导出

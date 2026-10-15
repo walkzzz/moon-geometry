@@ -4,7 +4,7 @@
 fn is_convex_vertex(
   a : @core.Point2D,
   b : @core.Point2D,
-  c : @core.Point2D
+  c : @core.Point2D,
 ) -> Bool {
   @core.turn(a, b, c) > 0.0
 }
@@ -16,13 +16,12 @@ fn point_in_triangle(
   p : @core.Point2D,
   a : @core.Point2D,
   b : @core.Point2D,
-  c : @core.Point2D
+  c : @core.Point2D,
 ) -> Bool {
   let d1 = @core.turn(a, b, p)
   let d2 = @core.turn(b, c, p)
   let d3 = @core.turn(c, a, p)
-  (d1 > 0.0 && d2 > 0.0 && d3 > 0.0) ||
-  (d1 < 0.0 && d2 < 0.0 && d3 < 0.0)
+  (d1 > 0.0 && d2 > 0.0 && d3 > 0.0) || (d1 < 0.0 && d2 < 0.0 && d3 < 0.0)
 }
 
 ///|
@@ -35,7 +34,7 @@ fn is_ear(
   indices : Array[Int],
   prev_idx : Int,
   curr_idx : Int,
-  next_idx : Int
+  next_idx : Int,
 ) -> Bool {
   let a = vertices[indices[prev_idx]]
   let b = vertices[indices[curr_idx]]
@@ -67,9 +66,7 @@ fn is_ear(
 /// 返回顶点索引三元组数组 `(i, j, k)`。
 /// 每个三元组是原始多边形的顶点索引。
 /// 反复寻找并移除"耳朵"（凸顶点且其三角形内无其他多边形顶点）。
-pub fn triangulate_polygon(
-  poly : @core.Polygon
-) -> Array[(Int, Int, Int)] {
+pub fn triangulate_polygon(poly : @core.Polygon) -> Array[(Int, Int, Int)] {
   let n = poly.size()
   let result : Array[(Int, Int, Int)] = []
   if n < 3 {

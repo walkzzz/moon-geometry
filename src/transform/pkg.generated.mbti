@@ -1,0 +1,43 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/src/transform"
+
+import {
+  "walkzzz/moon-geometry/src/core",
+}
+
+// Values
+pub fn affine_transform(@core.Point2D, Double, Double, Double, Double, Double, Double) -> @core.Point2D
+
+pub fn affine_transform_points(Array[@core.Point2D], Double, Double, Double, Double, Double, Double) -> Array[@core.Point2D]
+
+pub fn mirror_line(@core.Point2D, @core.Line) -> @core.Point2D
+
+pub fn mirror_origin(@core.Point2D) -> @core.Point2D
+
+pub fn mirror_x(@core.Point2D) -> @core.Point2D
+
+pub fn mirror_y(@core.Point2D) -> @core.Point2D
+
+pub fn rotate(@core.Point2D, Double) -> @core.Point2D
+
+pub fn rotate_around(@core.Point2D, @core.Point2D, Double) -> @core.Point2D
+
+pub fn rotate_points(Array[@core.Point2D], @core.Point2D, Double) -> Array[@core.Point2D]
+
+pub fn scale(@core.Point2D, Double, Double) -> @core.Point2D
+
+pub fn scale_around(@core.Point2D, @core.Point2D, Double, Double) -> @core.Point2D
+
+pub fn shear(@core.Point2D, Double, Double) -> @core.Point2D
+
+pub fn translate(@core.Point2D, Double, Double) -> @core.Point2D
+
+pub fn translate_points(Array[@core.Point2D], Double, Double) -> Array[@core.Point2D]
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

@@ -1,0 +1,23 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/src/circle_ops"
+
+import {
+  "walkzzz/moon-geometry/src/core",
+}
+
+// Values
+pub fn circle_circle_intersect(@core.Circle, @core.Circle) -> Array[@core.Point2D]
+
+pub fn circle_line_intersect(@core.Circle, @core.Line) -> Array[@core.Point2D]
+
+pub fn circle_polygon_intersect(@core.Circle, @core.Polygon) -> Array[@core.Point2D]
+
+pub fn circle_segment_intersect(@core.Circle, @core.Segment) -> Array[@core.Point2D]
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

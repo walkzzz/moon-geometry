@@ -79,7 +79,7 @@ fn remove_collinear(pts : Array[@core.Point2D]) -> Array[@core.Point2D] {
 /// Both inputs must be convex. / 两个凸多边形的 Minkowski 和，返回 CCW 点数组。输入必须为凸。
 pub fn minkowski_sum_convex(
   poly1 : @core.Polygon,
-  poly2 : @core.Polygon
+  poly2 : @core.Polygon,
 ) -> Array[@core.Point2D] {
   let n1 = poly1.size()
   let n2 = poly2.size()
@@ -93,7 +93,7 @@ pub fn minkowski_sum_convex(
   let result : Array[@core.Point2D] = []
   let start = @core.Point2D::new(
     pts1[start1].x() + pts2[start2].x(),
-    pts1[start1].y() + pts2[start2].y()
+    pts1[start1].y() + pts2[start2].y(),
   )
   result.push(start)
   let mut i = 0
@@ -132,7 +132,7 @@ pub fn minkowski_sum_convex(
 /// / 两个凸多边形的 Minkowski 差：A ⊖ B = A ⊕ (-B)，返回 CCW 点数组。
 pub fn minkowski_difference_convex(
   poly1 : @core.Polygon,
-  poly2 : @core.Polygon
+  poly2 : @core.Polygon,
 ) -> Array[@core.Point2D] {
   let n2 = poly2.size()
   if n2 == 0 {
@@ -153,7 +153,7 @@ pub fn minkowski_difference_convex(
 /// / 圆与凸多边形的 Minkowski 和（圆角多边形），返回 (多边形顶点, 半径)。
 pub fn minkowski_sum_circle_polygon(
   circle : @core.Circle,
-  poly : @core.Polygon
+  poly : @core.Polygon,
 ) -> (Array[@core.Point2D], Double) {
   let n = poly.size()
   if n == 0 {
@@ -175,7 +175,7 @@ pub fn minkowski_sum_circle_polygon(
 /// They collide iff origin is inside (A ⊖ B). / 用 Minkowski 差检查两凸多边形是否碰撞。
 pub fn convex_polygons_collide(
   poly1 : @core.Polygon,
-  poly2 : @core.Polygon
+  poly2 : @core.Polygon,
 ) -> Bool {
   let diff = minkowski_difference_convex(poly1, poly2)
   if diff.length() < 3 {

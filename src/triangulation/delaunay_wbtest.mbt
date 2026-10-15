@@ -495,14 +495,14 @@ test "norm_edge equal" {
 
 ///|
 test "tri_edges count" {
-  let t : TriangleIdx = { a: 0, b: 1, c: 2 }
+  let t : TriangleIdx = { a: 0, b: 1, c: 2, }
   let edges = tri_edges(t)
   assert_eq(edges.length(), 3)
 }
 
 ///|
 test "tri_edges normalized" {
-  let t : TriangleIdx = { a: 2, b: 0, c: 1 }
+  let t : TriangleIdx = { a: 2, b: 0, c: 1, }
   let edges = tri_edges(t)
   // All edges should have first <= second
   for e in edges {
@@ -991,7 +991,7 @@ test "delaunay total triangle area pentagon" {
   let n = pts.length()
   for i in 0..<n {
     let j = (i + 1) % n
-    poly_area += (pts[i].x * pts[j].y - pts[j].x * pts[i].y)
+    poly_area += pts[i].x * pts[j].y - pts[j].x * pts[i].y
   }
   poly_area = poly_area / 2.0
   assert_true((total_area - poly_area).abs() < 0.0001)
@@ -1019,7 +1019,7 @@ test "delaunay total triangle area hexagon" {
   let n = pts.length()
   for i in 0..<n {
     let j = (i + 1) % n
-    poly_area += (pts[i].x * pts[j].y - pts[j].x * pts[i].y)
+    poly_area += pts[i].x * pts[j].y - pts[j].x * pts[i].y
   }
   poly_area = poly_area / 2.0
   assert_true((total_area - poly_area).abs() < 0.0001)

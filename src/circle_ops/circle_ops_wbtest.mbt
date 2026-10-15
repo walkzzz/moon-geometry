@@ -1,7 +1,10 @@
 ///|
 test "circle_segment_intersect two points" {
   let c = @core.Circle::new(@core.Point2D::new(0.0, 0.0), 5.0)
-  let seg = @core.Segment::new(@core.Point2D::new(-10.0, 0.0), @core.Point2D::new(10.0, 0.0))
+  let seg = @core.Segment::new(
+    @core.Point2D::new(-10.0, 0.0),
+    @core.Point2D::new(10.0, 0.0),
+  )
   let pts = circle_segment_intersect(c, seg)
   assert_eq(pts.length(), 2)
   assert_true(@core.approx_eq(pts[0].x, -5.0, 0.000000001))
@@ -11,7 +14,10 @@ test "circle_segment_intersect two points" {
 ///|
 test "circle_segment_intersect one point tangent" {
   let c = @core.Circle::new(@core.Point2D::new(0.0, 0.0), 5.0)
-  let seg = @core.Segment::new(@core.Point2D::new(-10.0, 5.0), @core.Point2D::new(10.0, 5.0))
+  let seg = @core.Segment::new(
+    @core.Point2D::new(-10.0, 5.0),
+    @core.Point2D::new(10.0, 5.0),
+  )
   let pts = circle_segment_intersect(c, seg)
   assert_true(pts.length() <= 2)
   assert_true(pts.length() >= 1)
@@ -20,7 +26,10 @@ test "circle_segment_intersect one point tangent" {
 ///|
 test "circle_segment_intersect no intersection" {
   let c = @core.Circle::new(@core.Point2D::new(0.0, 0.0), 5.0)
-  let seg = @core.Segment::new(@core.Point2D::new(-10.0, 10.0), @core.Point2D::new(10.0, 10.0))
+  let seg = @core.Segment::new(
+    @core.Point2D::new(-10.0, 10.0),
+    @core.Point2D::new(10.0, 10.0),
+  )
   let pts = circle_segment_intersect(c, seg)
   assert_eq(pts.length(), 0)
 }
@@ -28,7 +37,10 @@ test "circle_segment_intersect no intersection" {
 ///|
 test "circle_segment_intersect outside segment" {
   let c = @core.Circle::new(@core.Point2D::new(0.0, 0.0), 1.0)
-  let seg = @core.Segment::new(@core.Point2D::new(5.0, 0.0), @core.Point2D::new(10.0, 0.0))
+  let seg = @core.Segment::new(
+    @core.Point2D::new(5.0, 0.0),
+    @core.Point2D::new(10.0, 0.0),
+  )
   let pts = circle_segment_intersect(c, seg)
   assert_eq(pts.length(), 0)
 }

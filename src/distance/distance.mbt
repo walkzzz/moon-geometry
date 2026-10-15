@@ -3,7 +3,7 @@
 /// 点到线段的距离。
 pub fn point_to_segment_distance(
   p : @core.Point2D,
-  seg : @core.Segment
+  seg : @core.Segment,
 ) -> Double {
   let a = seg.start
   let b = seg.end
@@ -24,15 +24,21 @@ pub fn point_to_segment_distance(
 /// 点到多边形的距离（在内部或边界上时为 0）。
 pub fn point_to_polygon_distance(
   p : @core.Point2D,
-  poly : @core.Polygon
+  poly : @core.Polygon,
 ) -> Double {
   if @polygon.point_in_polygon(p, poly) {
     return 0.0
   }
   let n = poly.size()
-  let mut min_dist = point_to_segment_distance(p, @core.Segment::new(poly.get(0), poly.get(1)))
+  let mut min_dist = point_to_segment_distance(
+    p,
+    @core.Segment::new(poly.get(0), poly.get(1)),
+  )
   for i in 1..<n {
-    let d = point_to_segment_distance(p, @core.Segment::new(poly.get(i), poly.get((i + 1) % n)))
+    let d = point_to_segment_distance(
+      p,
+      @core.Segment::new(poly.get(i), poly.get((i + 1) % n)),
+    )
     if d < min_dist {
       min_dist = d
     }
@@ -45,7 +51,7 @@ pub fn point_to_polygon_distance(
 /// 两线段之间的最小距离。
 pub fn segment_to_segment_distance(
   s1 : @core.Segment,
-  s2 : @core.Segment
+  s2 : @core.Segment,
 ) -> Double {
   if @intersect.segments_intersect(s1, s2) {
     return 0.0
@@ -59,9 +65,15 @@ pub fn segment_to_segment_distance(
   let d3 = point_to_segment_distance(p3, s1)
   let d4 = point_to_segment_distance(p4, s1)
   let mut min_d = d1
-  if d2 < min_d { min_d = d2 }
-  if d3 < min_d { min_d = d3 }
-  if d4 < min_d { min_d = d4 }
+  if d2 < min_d {
+    min_d = d2
+  }
+  if d3 < min_d {
+    min_d = d3
+  }
+  if d4 < min_d {
+    min_d = d4
+  }
   min_d
 }
 
@@ -70,11 +82,14 @@ pub fn segment_to_segment_distance(
 /// 两多边形之间的最小距离（重叠时为 0）。
 pub fn polygon_to_polygon_distance(
   p1 : @core.Polygon,
-  p2 : @core.Polygon
+  p2 : @core.Polygon,
 ) -> Double {
   let n1 = p1.size()
   let n2 = p2.size()
-  let mut min_dist = point_to_segment_distance(p1.get(0), @core.Segment::new(p2.get(0), p2.get(1)))
+  let mut min_dist = point_to_segment_distance(
+    p1.get(0),
+    @core.Segment::new(p2.get(0), p2.get(1)),
+  )
   for i in 0..<n1 {
     let seg1 = @core.Segment::new(p1.get(i), p1.get((i + 1) % n1))
     for j in 0..<n2 {
@@ -91,9 +106,6 @@ pub fn polygon_to_polygon_distance(
 ///|
 /// Distance from a point to a line (infinite).
 /// 点到直线（无限长）的距离。
-pub fn point_to_line_distance(
-  p : @core.Point2D,
-  line : @core.Line
-) -> Double {
+pub fn point_to_line_distance(p : @core.Point2D, line : @core.Line) -> Double {
   line.point_distance(p)
 }

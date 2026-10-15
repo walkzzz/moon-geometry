@@ -164,6 +164,7 @@ test "closest_pair three points" {
     None => assert_true(false)
   }
 }
+
 ///|
 test "closest_pair duplicate points extra" {
   let pts = [

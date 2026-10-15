@@ -43,7 +43,7 @@ fn in_circumcircle(
   a : @core.Point2D,
   b : @core.Point2D,
   c : @core.Point2D,
-  d : @core.Point2D
+  d : @core.Point2D,
 ) -> Bool {
   let ax = a.x - d.x
   let ay = a.y - d.y
@@ -54,7 +54,9 @@ fn in_circumcircle(
   let aa = ax * ax + ay * ay
   let bb = bx * bx + by * by
   let cc = cx * cx + cy * cy
-  let det = ax * (by * cc - cy * bb) - ay * (bx * cc - cx * bb) + aa * (bx * cy - by * cx)
+  let det = ax * (by * cc - cy * bb) -
+    ay * (bx * cc - cx * bb) +
+    aa * (bx * cy - by * cx)
   det > 0.0
 }
 
@@ -65,12 +67,12 @@ fn make_tri_ccw(
   i : Int,
   j : Int,
   k : Int,
-  pts : Array[@core.Point2D]
+  pts : Array[@core.Point2D],
 ) -> TriangleIdx {
   if @core.turn(pts[i], pts[j], pts[k]) < 0.0 {
-    { a: i, b: k, c: j }
+    { a: i, b: k, c: j, }
   } else {
-    { a: i, b: j, c: k }
+    { a: i, b: j, c: k, }
   }
 }
 
@@ -79,7 +81,9 @@ fn make_tri_ccw(
 /// Bowyer-Watson 增量插入法 Delaunay 三角剖分。期望 O(n^2)。
 /// Returns an array of triangles as vertex index triples (CCW).
 /// 返回逆时针顶点索引三元组数组。
-pub fn delaunay_triangulation(points : Array[@core.Point2D]) -> Array[TriangleIdx] {
+pub fn delaunay_triangulation(
+  points : Array[@core.Point2D],
+) -> Array[TriangleIdx] {
   let n = points.length()
   if n < 3 {
     return []
@@ -181,7 +185,7 @@ pub extend TriangleIdx with @moonbitlang/core/debug.Debug::{to_repr}
 /// triangles and edges connect circumcenters of adjacent triangles.
 /// 三角形的外心，边连接相邻三角形的外心。
 pub fn voronoi_diagram(
-  points : Array[@core.Point2D]
+  points : Array[@core.Point2D],
 ) -> (Array[@core.Point2D], Array[(Int, Int)]) {
   let tris = delaunay_triangulation(points)
   let vertices : Array[@core.Point2D] = []

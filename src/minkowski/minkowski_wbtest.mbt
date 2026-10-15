@@ -1,3 +1,4 @@
+///|
 test "minkowski: sum of two squares" {
   let sq1 = @core.Polygon::new([
     @core.Point2D::new(0.0, 0.0),
@@ -15,6 +16,7 @@ test "minkowski: sum of two squares" {
   assert_eq(result.length(), 4)
 }
 
+///|
 test "minkowski: sum of two triangles" {
   let tri1 = @core.Polygon::new([
     @core.Point2D::new(0.0, 0.0),
@@ -30,6 +32,7 @@ test "minkowski: sum of two triangles" {
   assert_true(result.length() >= 3 && result.length() <= 6)
 }
 
+///|
 test "minkowski: sum with CW polygon" {
   let sq1 = @core.Polygon::new([
     @core.Point2D::new(0.0, 0.0),
@@ -47,6 +50,7 @@ test "minkowski: sum with CW polygon" {
   assert_eq(result.length(), 4)
 }
 
+///|
 test "minkowski: difference of two squares" {
   let sq1 = @core.Polygon::new([
     @core.Point2D::new(0.0, 0.0),
@@ -64,6 +68,7 @@ test "minkowski: difference of two squares" {
   assert_true(result.length() >= 4)
 }
 
+///|
 test "minkowski: sum of circle and polygon" {
   let circle = @core.Circle::new(@core.Point2D::new(0.0, 0.0), 2.0)
   let sq = @core.Polygon::new([
@@ -77,6 +82,7 @@ test "minkowski: sum of circle and polygon" {
   assert_eq(r, 2.0)
 }
 
+///|
 test "minkowski: collide overlapping squares" {
   let sq1 = @core.Polygon::new([
     @core.Point2D::new(0.0, 0.0),
@@ -93,6 +99,7 @@ test "minkowski: collide overlapping squares" {
   assert_true(convex_polygons_collide(sq1, sq2))
 }
 
+///|
 test "minkowski: collide non-overlapping squares" {
   let sq1 = @core.Polygon::new([
     @core.Point2D::new(0.0, 0.0),
@@ -109,6 +116,7 @@ test "minkowski: collide non-overlapping squares" {
   assert_false(convex_polygons_collide(sq1, sq2))
 }
 
+///|
 test "minkowski: collide touching squares" {
   let sq1 = @core.Polygon::new([
     @core.Point2D::new(0.0, 0.0),
@@ -125,6 +133,7 @@ test "minkowski: collide touching squares" {
   assert_true(convex_polygons_collide(sq1, sq2))
 }
 
+///|
 test "minkowski: empty polygon sum" {
   let empty = @core.Polygon::new([])
   let sq = @core.Polygon::new([
@@ -137,6 +146,7 @@ test "minkowski: empty polygon sum" {
   assert_eq(result.length(), 0)
 }
 
+///|
 test "minkowski: sum of same square" {
   let sq = @core.Polygon::new([
     @core.Point2D::new(0.0, 0.0),
@@ -148,6 +158,7 @@ test "minkowski: sum of same square" {
   assert_eq(result.length(), 4)
 }
 
+///|
 test "minkowski: sum of hexagon and triangle" {
   let hex = @core.Polygon::new([
     @core.Point2D::new(6.0, 0.0),

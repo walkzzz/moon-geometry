@@ -58,7 +58,9 @@ test "polygon_signed_area cw negative" {
 
 ///|
 test "polygon_perimeter unit square" {
-  assert_true(@core.approx_eq(polygon_perimeter(unit_square()), 4.0, 0.000000001))
+  assert_true(
+    @core.approx_eq(polygon_perimeter(unit_square()), 4.0, 0.000000001),
+  )
 }
 
 ///|
@@ -149,7 +151,10 @@ test "is_convex concave false" {
 
 ///|
 test "is_convex degenerate false" {
-  let poly = @core.Polygon::new([@core.Point2D::new(0.0, 0.0), @core.Point2D::new(1.0, 1.0)])
+  let poly = @core.Polygon::new([
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(1.0, 1.0),
+  ])
   assert_false(is_convex(poly))
 }
 
@@ -218,7 +223,10 @@ test "simplify_polygon small epsilon" {
 
 ///|
 test "polygon_area degenerate" {
-  let poly = @core.Polygon::new([@core.Point2D::new(0.0, 0.0), @core.Point2D::new(1.0, 1.0)])
+  let poly = @core.Polygon::new([
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(1.0, 1.0),
+  ])
   assert_true(@core.approx_eq(polygon_area(poly), 0.0, 0.000000001))
 }
 
@@ -227,6 +235,7 @@ test "polygon_perimeter degenerate" {
   let poly = @core.Polygon::new([@core.Point2D::new(0.0, 0.0)])
   assert_true(@core.approx_eq(polygon_perimeter(poly), 0.0, 0.000000001))
 }
+
 ///|
 test "polygon_area concave" {
   let poly = @core.Polygon::new([

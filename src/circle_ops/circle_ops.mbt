@@ -5,7 +5,7 @@
 /// 返回 0、1 或 2 个交点。
 pub fn circle_segment_intersect(
   circle : @core.Circle,
-  seg : @core.Segment
+  seg : @core.Segment,
 ) -> Array[@core.Point2D] {
   let cx = circle.center.x
   let cy = circle.center.y
@@ -45,7 +45,7 @@ pub fn circle_segment_intersect(
 /// 返回 0、1 或 2 个交点。
 pub fn circle_circle_intersect(
   c1 : @core.Circle,
-  c2 : @core.Circle
+  c2 : @core.Circle,
 ) -> Array[@core.Point2D] {
   let dx = c2.center.x - c1.center.x
   let dy = c2.center.y - c1.center.y
@@ -83,7 +83,7 @@ pub fn circle_circle_intersect(
 /// 返回 0、1 或 2 个交点。
 pub fn circle_line_intersect(
   circle : @core.Circle,
-  line : @core.Line
+  line : @core.Line,
 ) -> Array[@core.Point2D] {
   let cx = circle.center.x
   let cy = circle.center.y
@@ -121,7 +121,7 @@ pub fn circle_line_intersect(
 /// 检查多边形每条边与圆的交点。
 pub fn circle_polygon_intersect(
   circle : @core.Circle,
-  poly : @core.Polygon
+  poly : @core.Polygon,
 ) -> Array[@core.Point2D] {
   let n = poly.size()
   let result : Array[@core.Point2D] = []

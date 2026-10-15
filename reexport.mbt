@@ -212,7 +212,7 @@ pub fn delaunay_triangulation(points : Array[Point2D]) -> Array[TriangleIdx] {
 ///|
 /// Voronoi diagram from Delaunay. / 由 Delaunay 构造 Voronoi 图。
 pub fn voronoi_diagram(
-  points : Array[Point2D]
+  points : Array[Point2D],
 ) -> (Array[Point2D], Array[(Int, Int)]) {
   @triangulation.voronoi_diagram(points)
 }
@@ -232,7 +232,7 @@ pub fn translate(p : Point2D, dx : Double, dy : Double) -> Point2D {
 pub fn translate_points(
   points : Array[Point2D],
   dx : Double,
-  dy : Double
+  dy : Double,
 ) -> Array[Point2D] {
   @transform.translate_points(points, dx, dy)
 }
@@ -254,7 +254,7 @@ pub fn rotate_around(p : Point2D, center : Point2D, angle : Double) -> Point2D {
 pub fn rotate_points(
   points : Array[Point2D],
   center : Point2D,
-  angle : Double
+  angle : Double,
 ) -> Array[Point2D] {
   @transform.rotate_points(points, center, angle)
 }
@@ -271,7 +271,7 @@ pub fn scale_around(
   p : Point2D,
   center : Point2D,
   sx : Double,
-  sy : Double
+  sy : Double,
 ) -> Point2D {
   @transform.scale_around(p, center, sx, sy)
 }
@@ -285,7 +285,7 @@ pub fn affine_transform(
   c : Double,
   d : Double,
   e : Double,
-  f : Double
+  f : Double,
 ) -> Point2D {
   @transform.affine_transform(p, a, b, c, d, e, f)
 }
@@ -299,7 +299,7 @@ pub fn affine_transform_points(
   c : Double,
   d : Double,
   e : Double,
-  f : Double
+  f : Double,
 ) -> Array[Point2D] {
   @transform.affine_transform_points(points, a, b, c, d, e, f)
 }
@@ -387,7 +387,7 @@ pub fn aabb_polygon(poly : Polygon) -> Rectangle {
 ///|
 /// Minimum-area bounding rectangle (rotating calipers). / 最小面积包围矩形。
 pub fn min_area_bounding_rect(
-  points : Array[Point2D]
+  points : Array[Point2D],
 ) -> (Double, Double, Double, Double, Double) {
   @bounding.min_area_bounding_rect(points)
 }
@@ -405,7 +405,7 @@ pub fn bounding_circle(points : Array[Point2D]) -> (Point2D, Double) {
 /// Circle-segment intersection points (0/1/2). / 圆与线段交点。
 pub fn circle_segment_intersect(
   circle : Circle,
-  seg : Segment
+  seg : Segment,
 ) -> Array[Point2D] {
   @circle_ops.circle_segment_intersect(circle, seg)
 }
@@ -426,7 +426,7 @@ pub fn circle_line_intersect(circle : Circle, line : Line) -> Array[Point2D] {
 /// Circle-polygon boundary intersection points. / 圆与多边形边界交点。
 pub fn circle_polygon_intersect(
   circle : Circle,
-  poly : Polygon
+  poly : Polygon,
 ) -> Array[Point2D] {
   @circle_ops.circle_polygon_intersect(circle, poly)
 }
@@ -446,10 +446,7 @@ pub fn triangulate_polygon(poly : Polygon) -> Array[(Int, Int, Int)] {
 
 ///|
 /// Minkowski sum of two convex polygons. / 两个凸多边形的 Minkowski 和。
-pub fn minkowski_sum_convex(
-  poly1 : Polygon,
-  poly2 : Polygon
-) -> Array[Point2D] {
+pub fn minkowski_sum_convex(poly1 : Polygon, poly2 : Polygon) -> Array[Point2D] {
   @minkowski.minkowski_sum_convex(poly1, poly2)
 }
 
@@ -457,7 +454,7 @@ pub fn minkowski_sum_convex(
 /// Minkowski difference of two convex polygons. / 两个凸多边形的 Minkowski 差。
 pub fn minkowski_difference_convex(
   poly1 : Polygon,
-  poly2 : Polygon
+  poly2 : Polygon,
 ) -> Array[Point2D] {
   @minkowski.minkowski_difference_convex(poly1, poly2)
 }
@@ -466,7 +463,7 @@ pub fn minkowski_difference_convex(
 /// Minkowski sum of a circle and a convex polygon. / 圆与凸多边形的 Minkowski 和。
 pub fn minkowski_sum_circle_polygon(
   circle : Circle,
-  poly : Polygon
+  poly : Polygon,
 ) -> (Array[Point2D], Double) {
   @minkowski.minkowski_sum_circle_polygon(circle, poly)
 }

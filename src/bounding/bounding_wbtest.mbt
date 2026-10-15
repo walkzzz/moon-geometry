@@ -30,10 +30,7 @@ test "aabb empty" {
 
 ///|
 test "aabb negative coords" {
-  let pts = [
-    @core.Point2D::new(-3.0, -5.0),
-    @core.Point2D::new(2.0, 1.0),
-  ]
+  let pts = [@core.Point2D::new(-3.0, -5.0), @core.Point2D::new(2.0, 1.0)]
   let rect = aabb(pts)
   assert_true(@core.approx_eq(rect.min_x, -3.0, 0.000000001))
   assert_true(@core.approx_eq(rect.min_y, -5.0, 0.000000001))
@@ -189,6 +186,7 @@ test "min_area_bounding_rect triangle" {
   assert_true(@core.approx_eq(w, 6.0, 0.001))
   assert_true(@core.approx_eq(h, 4.0, 0.001))
 }
+
 ///|
 test "aabb single point extra" {
   let pts = [@core.Point2D::new(5.0, 7.0)]

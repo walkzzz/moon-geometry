@@ -44,7 +44,10 @@ pub fn segments_intersect(s1 : @core.Segment, s2 : @core.Segment) -> Bool {
 /// Compute the intersection point of two segments, if any.
 /// Returns None for parallel/collinear cases with no unique intersection.
 /// 平行/共线且无唯一交点时返回 None。
-pub fn segment_intersection(s1 : @core.Segment, s2 : @core.Segment) -> @core.Point2D? {
+pub fn segment_intersection(
+  s1 : @core.Segment,
+  s2 : @core.Segment,
+) -> @core.Point2D? {
   let p = s1.start
   let r = s1.end.sub(s1.start)
   let q = s2.start
@@ -74,7 +77,9 @@ pub fn segment_intersection(s1 : @core.Segment, s2 : @core.Segment) -> @core.Poi
     if overlap_lo > overlap_hi {
       return None
     }
-    return Some(@core.Point2D::new(p.x + overlap_lo * r.x, p.y + overlap_lo * r.y))
+    return Some(
+      @core.Point2D::new(p.x + overlap_lo * r.x, p.y + overlap_lo * r.y),
+    )
   }
   let t = qmp.cross(s) / rxs
   let u = qpxr / rxs
@@ -88,7 +93,10 @@ pub fn segment_intersection(s1 : @core.Segment, s2 : @core.Segment) -> @core.Poi
 ///|
 /// Intersection of a line (general form) with a segment.
 /// 直线（一般式）与线段的交点。
-pub fn line_segment_intersection(line : @core.Line, seg : @core.Segment) -> @core.Point2D? {
+pub fn line_segment_intersection(
+  line : @core.Line,
+  seg : @core.Segment,
+) -> @core.Point2D? {
   let d = seg.end.sub(seg.start)
   let denom = line.a * d.x + line.b * d.y
   if denom == 0.0 {

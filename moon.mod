@@ -1,6 +1,6 @@
 name = "walkzzz/moon-geometry"
 
-version = "0.4.0"
+version = "0.5.0"
 
 readme = "README.md"
 
@@ -18,4 +18,4 @@ keywords = [
 
 preferred_target = "wasm"
 
-description = "Pure MoonBit computational geometry library: convex hull, Delaunay, Voronoi, polygon boolean ops"
+description = "Pure MoonBit computational geometry library: convex hull, Delaunay, Voronoi, polygon boolean ops, transforms, Minkowski"

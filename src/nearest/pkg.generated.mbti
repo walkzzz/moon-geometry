@@ -1,0 +1,17 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/src/nearest"
+
+import {
+  "walkzzz/moon-geometry/src/core",
+}
+
+// Values
+pub fn closest_pair(Array[@core.Point2D]) -> (@core.Point2D, @core.Point2D, Double)?
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

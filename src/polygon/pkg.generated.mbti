@@ -1,0 +1,31 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/src/polygon"
+
+import {
+  "walkzzz/moon-geometry/src/core",
+}
+
+// Values
+pub fn is_convex(@core.Polygon) -> Bool
+
+pub fn point_in_polygon(@core.Point2D, @core.Polygon) -> Bool
+
+pub fn polygon_area(@core.Polygon) -> Double
+
+pub fn polygon_centroid(@core.Polygon) -> @core.Point2D
+
+pub fn polygon_orientation(@core.Polygon) -> @core.Orientation
+
+pub fn polygon_perimeter(@core.Polygon) -> Double
+
+pub fn polygon_signed_area(@core.Polygon) -> Double
+
+pub fn simplify_polygon(@core.Polygon, Double) -> Array[@core.Point2D]
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

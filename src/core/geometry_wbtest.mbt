@@ -138,6 +138,7 @@ test "approx_eq helper" {
   assert_true(approx_eq(1.0, 1.0 + 0.0000000001, 0.000000001))
   assert_false(approx_eq(1.0, 1.1, 0.000000001))
 }
+
 ///|
 test "Point2D add commutative" {
   let p = Point2D::new(3.0, 5.0)

@@ -1,0 +1,147 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry"
+
+import {
+  "walkzzz/moon-geometry/src/core",
+  "walkzzz/moon-geometry/src/triangulation",
+}
+
+// Values
+pub fn aabb(Array[@core.Point2D]) -> @core.Rectangle
+
+pub fn aabb_polygon(@core.Polygon) -> @core.Rectangle
+
+pub fn affine_transform(@core.Point2D, Double, Double, Double, Double, Double, Double) -> @core.Point2D
+
+pub fn affine_transform_points(Array[@core.Point2D], Double, Double, Double, Double, Double, Double) -> Array[@core.Point2D]
+
+pub fn approx_eq(Double, Double, Double) -> Bool
+
+pub fn bounding_circle(Array[@core.Point2D]) -> (@core.Point2D, Double)
+
+pub fn ccw(@core.Point2D, @core.Point2D, @core.Point2D) -> @core.Orientation
+
+pub fn circle_circle_intersect(@core.Circle, @core.Circle) -> Array[@core.Point2D]
+
+pub fn circle_line_intersect(@core.Circle, @core.Line) -> Array[@core.Point2D]
+
+pub fn circle_polygon_intersect(@core.Circle, @core.Polygon) -> Array[@core.Point2D]
+
+pub fn circle_segment_intersect(@core.Circle, @core.Segment) -> Array[@core.Point2D]
+
+pub fn clip_polygon(@core.Polygon, @core.Rectangle) -> Array[@core.Point2D]
+
+pub fn closest_pair(Array[@core.Point2D]) -> (@core.Point2D, @core.Point2D, Double)?
+
+pub fn convex_hull_andrew(Array[@core.Point2D]) -> Array[@core.Point2D]
+
+pub fn convex_hull_graham(Array[@core.Point2D]) -> Array[@core.Point2D]
+
+pub fn convex_polygons_collide(@core.Polygon, @core.Polygon) -> Bool
+
+pub let default_eps : Double
+
+pub fn delaunay_triangulation(Array[@core.Point2D]) -> Array[@triangulation.TriangleIdx]
+
+pub fn is_convex(@core.Polygon) -> Bool
+
+pub fn line_segment_intersection(@core.Line, @core.Segment) -> @core.Point2D?
+
+pub fn min_area_bounding_rect(Array[@core.Point2D]) -> (Double, Double, Double, Double, Double)
+
+pub fn minkowski_difference_convex(@core.Polygon, @core.Polygon) -> Array[@core.Point2D]
+
+pub fn minkowski_sum_circle_polygon(@core.Circle, @core.Polygon) -> (Array[@core.Point2D], Double)
+
+pub fn minkowski_sum_convex(@core.Polygon, @core.Polygon) -> Array[@core.Point2D]
+
+pub fn mirror_line(@core.Point2D, @core.Line) -> @core.Point2D
+
+pub fn mirror_origin(@core.Point2D) -> @core.Point2D
+
+pub fn mirror_x(@core.Point2D) -> @core.Point2D
+
+pub fn mirror_y(@core.Point2D) -> @core.Point2D
+
+pub fn point_in_polygon(@core.Point2D, @core.Polygon) -> Bool
+
+pub fn point_to_line_distance(@core.Point2D, @core.Line) -> Double
+
+pub fn point_to_polygon_distance(@core.Point2D, @core.Polygon) -> Double
+
+pub fn point_to_segment_distance(@core.Point2D, @core.Segment) -> Double
+
+pub fn polygon_area(@core.Polygon) -> Double
+
+pub fn polygon_centroid(@core.Polygon) -> @core.Point2D
+
+pub fn polygon_difference_area(@core.Polygon, @core.Polygon) -> Double
+
+pub fn polygon_intersection(@core.Polygon, @core.Polygon) -> @core.Polygon?
+
+pub fn polygon_orientation(@core.Polygon) -> @core.Orientation
+
+pub fn polygon_perimeter(@core.Polygon) -> Double
+
+pub fn polygon_signed_area(@core.Polygon) -> Double
+
+pub fn polygon_to_polygon_distance(@core.Polygon, @core.Polygon) -> Double
+
+pub fn polygon_union_area(@core.Polygon, @core.Polygon) -> Double
+
+pub fn rotate(@core.Point2D, Double) -> @core.Point2D
+
+pub fn rotate_around(@core.Point2D, @core.Point2D, Double) -> @core.Point2D
+
+pub fn rotate_points(Array[@core.Point2D], @core.Point2D, Double) -> Array[@core.Point2D]
+
+pub fn scale(@core.Point2D, Double, Double) -> @core.Point2D
+
+pub fn scale_around(@core.Point2D, @core.Point2D, Double, Double) -> @core.Point2D
+
+pub fn segment_intersection(@core.Segment, @core.Segment) -> @core.Point2D?
+
+pub fn segment_to_segment_distance(@core.Segment, @core.Segment) -> Double
+
+pub fn segments_intersect(@core.Segment, @core.Segment) -> Bool
+
+pub fn shear(@core.Point2D, Double, Double) -> @core.Point2D
+
+pub fn simplify_polygon(@core.Polygon, Double) -> Array[@core.Point2D]
+
+pub fn translate(@core.Point2D, Double, Double) -> @core.Point2D
+
+pub fn translate_points(Array[@core.Point2D], Double, Double) -> Array[@core.Point2D]
+
+pub fn triangulate_polygon(@core.Polygon) -> Array[(Int, Int, Int)]
+
+pub fn turn(@core.Point2D, @core.Point2D, @core.Point2D) -> Double
+
+pub fn voronoi_diagram(Array[@core.Point2D]) -> (Array[@core.Point2D], Array[(Int, Int)])
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+pub using @core {type Circle}
+
+pub using @core {type Line}
+
+pub using @core {type Orientation}
+
+pub using @core {type Point2D}
+
+pub using @core {type Point3D}
+
+pub using @core {type Polygon}
+
+pub using @core {type Rectangle}
+
+pub using @core {type Segment}
+
+pub using @core {type Triangle}
+
+pub using @triangulation {type TriangleIdx}
+
+// Traits

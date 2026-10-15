@@ -183,6 +183,7 @@ test "convex_hull_andrew excludes collinear edge points" {
   let hull = convex_hull_andrew(pts)
   assert_eq(hull.length(), 4)
 }
+
 ///|
 test "convex_hull_andrew all collinear" {
   let pts = [

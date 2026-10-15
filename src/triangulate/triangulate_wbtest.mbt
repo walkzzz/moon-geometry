@@ -1,3 +1,4 @@
+///|
 test "triangulate: triangle returns one triangle" {
   let p1 = @core.Point2D::new(0.0, 0.0)
   let p2 = @core.Point2D::new(4.0, 0.0)
@@ -8,6 +9,7 @@ test "triangulate: triangle returns one triangle" {
   assert_eq(tris[0], (0, 1, 2))
 }
 
+///|
 test "triangulate: square returns two triangles" {
   let p0 = @core.Point2D::new(0.0, 0.0)
   let p1 = @core.Point2D::new(4.0, 0.0)
@@ -18,6 +20,7 @@ test "triangulate: square returns two triangles" {
   assert_eq(tris.length(), 2)
 }
 
+///|
 test "triangulate: pentagon returns three triangles" {
   let p0 = @core.Point2D::new(0.0, 0.0)
   let p1 = @core.Point2D::new(4.0, 0.0)
@@ -29,6 +32,7 @@ test "triangulate: pentagon returns three triangles" {
   assert_eq(tris.length(), 3)
 }
 
+///|
 test "triangulate: hexagon returns four triangles" {
   let p0 = @core.Point2D::new(6.0, 0.0)
   let p1 = @core.Point2D::new(3.0, 5.196)
@@ -41,6 +45,7 @@ test "triangulate: hexagon returns four triangles" {
   assert_eq(tris.length(), 4)
 }
 
+///|
 test "triangulate: concave polygon" {
   let p0 = @core.Point2D::new(0.0, 0.0)
   let p1 = @core.Point2D::new(6.0, 0.0)
@@ -52,12 +57,14 @@ test "triangulate: concave polygon" {
   assert_eq(tris.length(), 3)
 }
 
+///|
 test "triangulate: degenerate empty polygon" {
   let poly = @core.Polygon::new([])
   let tris = triangulate_polygon(poly)
   assert_eq(tris.length(), 0)
 }
 
+///|
 test "triangulate: degenerate single point" {
   let p0 = @core.Point2D::new(1.0, 1.0)
   let poly = @core.Polygon::new([p0])
@@ -65,6 +72,7 @@ test "triangulate: degenerate single point" {
   assert_eq(tris.length(), 0)
 }
 
+///|
 test "triangulate: degenerate two points" {
   let p0 = @core.Point2D::new(0.0, 0.0)
   let p1 = @core.Point2D::new(1.0, 1.0)
@@ -73,6 +81,7 @@ test "triangulate: degenerate two points" {
   assert_eq(tris.length(), 0)
 }
 
+///|
 test "triangulate: all indices valid and unique per triangle" {
   let p0 = @core.Point2D::new(0.0, 0.0)
   let p1 = @core.Point2D::new(5.0, 0.0)
@@ -90,13 +99,19 @@ test "triangulate: all indices valid and unique per triangle" {
   }
 }
 
+///|
 test "triangulate: fan triangulation of convex polygon count" {
   let n = 8
-  let pts : Array[@core.Point2D] = []
-  for i in 0..<n {
-    let angle = 2.0 * 3.141592653589793 * i.to_double() / 8.0
-    pts.push(@core.Point2D::new(10.0 * @math.cos(angle), 10.0 * @math.sin(angle)))
-  }
+  let pts : Array[@core.Point2D] = [
+    @core.Point2D::new(10.0, 0.0),
+    @core.Point2D::new(7.0710678, 7.0710678),
+    @core.Point2D::new(0.0, 10.0),
+    @core.Point2D::new(-7.0710678, 7.0710678),
+    @core.Point2D::new(-10.0, 0.0),
+    @core.Point2D::new(-7.0710678, -7.0710678),
+    @core.Point2D::new(0.0, -10.0),
+    @core.Point2D::new(7.0710678, -7.0710678),
+  ]
   let poly = @core.Polygon::new(pts)
   let tris = triangulate_polygon(poly)
   assert_eq(tris.length(), n - 2)

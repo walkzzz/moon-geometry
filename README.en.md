@@ -5,7 +5,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![MoonBit](https://img.shields.io/badge/MoonBit-0.1.20260920-blue.svg)](https://moonbitlang.com)
-[![Tests](https://img.shields.io/badge/tests-321-brightgreen.svg)]()
+[![Tests](https://img.shields.io/badge/tests-355-brightgreen.svg)]()
 [![Targets](https://img.shields.io/badge/targets-native%20%7C%20wasm--gc%20%7C%20js%20%7C%20wasm-green.svg)]()
 
 Moon Geometry is a **pure MoonBit** computational geometry library with **zero C FFI dependencies**, supporting all four backends (3natively. It provides reusable geometric algorithm primitives for CAD, collision detection, GIS, path planning, and image processing.
@@ -22,6 +22,9 @@ Moon Geometry 是一个**纯 MoonBit** 实现的计算几何库，**零 C FFI �
 - **Transforms | 几何变换**: translate, rotate, scale, affine, mirror, shear
 - **Distance | 距离计算**: point-to-segment/polygon, segment-to-segment, polygon-to-polygon
 - **Bounding | 包围体**: AABB, min-area bounding rect (rotating calipers), bounding circle
+- **Circle intersection | 圆相交**: circle-segment, circle-circle, circle-line, circle-polygon
+- **Polygon triangulation | 多边形三角剖分**: ear clipping for simple polygons
+- **Minkowski ops | Minkowski 运算**: sum/difference of convex polygons, collision detection
 - **Unified import | 统一导入**: `import "walkzzz/moon-geometry"` re-exports all APIs
 - **Pure MoonBit, zero deps | 纯 MoonBit 零依赖**: no C FFI, single codebase for all targets
 - **Full degenerate coverage | 退化情况全覆盖**: collinear, coincident, empty, single/two-point
@@ -46,6 +49,9 @@ src/
   transform/      # Geometric transforms | 几何变换
   distance/       # Distance computations | 距离计算
   bounding/       # Bounding boxes | 包围盒
+  circle_ops/     # Circle intersection | 圆相交
+  triangulate/    # Polygon triangulation | 多边形三角剖分
+  minkowski/      # Minkowski operations | Minkowski 运算
 ```
 
 ## Quick Example | 快速示例
@@ -81,20 +87,23 @@ let hull = @hull.convex_hull_andrew(points)  // hull vertices (CCW) | 凸包顶�
 | Transform | 变换 | `translate`, `rotate`, `scale` | `affine_transform`, `mirror_line` |
 | Distance | 距离 | `point_to_segment_distance`, `polygon_to_polygon_distance` | `segment_to_segment_distance` |
 | Bounding | 包围体 | `aabb`, `aabb_polygon` | `min_area_bounding_rect`, `bounding_circle` |
+| Circle ops | 圆相交 | `circle_segment_intersect`, `circle_circle_intersect` | `circle_polygon_intersect` |
+| Triangulate | 三角剖分 | `triangulate_polygon` | ear clipping |
+| Minkowski | Minkowski | `minkowski_sum_convex`, `minkowski_difference_convex` | `convex_polygons_collide` |
 
 Full interface in `.mbti` files. 完整接口见 `.mbti` 文件。
 
 ## Tests | 测试
 
 ```bash
-moon test                          # all 321 tests | 全部 321 测试
+moon test                          # all 355 tests | 全部 355 测试
 moon test --target native          # verify each backend | 四目标分别验证
 moon test --target wasm-gc
 moon test --target js
 moon test --target wasm
 ```
 
-All four targets pass: 321 × 4 = 1284. 四目标全绿：321 × 4 = 1284。
+All four targets pass: 355 × 4 = 1420. 四目标全绿：355 × 4 = 1420。
 
 ## Roadmap | 交付路线图
 
@@ -104,6 +113,7 @@ All four targets pass: 321 × 4 = 1284. 四目标全绿：321 × 4 = 1284。
 | Week 2 | Intersection + closest pair + boolean | ✅ Done |
 | Week 3 | Delaunay + Voronoi | ✅ Done |
 | Week 4 | Transform + distance + bounding + publish | ✅ Done |
+| Phase 1-2 | Tests + circle ops + triangulate + Minkowski | ✅ Done |
 
 See [docs/roadmap.md](docs/roadmap.md) and [docs/changelog.md](docs/changelog.md).
 
