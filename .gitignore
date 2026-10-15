@@ -1,0 +1,47 @@
+# MoonBit build output
+target/
+_build/
+
+# Mooncakes cache
+.mooncakes/
+
+# MoonBit IDE / tooling
+.moonbit/
+
+# Build artifacts
+*.exe
+*.dll
+*.so
+*.dylib
+*.wasm
+*.o
+*.obj
+
+# Node / JS FFI artifacts
+node_modules/
+package-lock.json
+yarn.lock
+
+# Python (FFI / scripts)
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs & temp
+*.log
+*.tmp
+*.bak
