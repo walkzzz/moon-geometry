@@ -55,6 +55,7 @@ pub fn Line::new(a : Double, b : Double, c : Double) -> Line {
 
 ///|
 /// Construct a line from two distinct points.
+/// 从两个不同点构造直线。
 pub fn Line::from_points(p1 : Point2D, p2 : Point2D) -> Line {
   // a = y1 - y2, b = x2 - x1, c = x1*y2 - x2*y1
   { a: p1.y - p2.y, b: p2.x - p1.x, c: p1.x * p2.y - p2.x * p1.y, }
@@ -62,6 +63,7 @@ pub fn Line::from_points(p1 : Point2D, p2 : Point2D) -> Line {
 
 ///|
 /// Perpendicular distance from a point to the line.
+/// 点到直线的垂直距离。
 pub fn Line::point_distance(self : Line, p : Point2D) -> Double {
   let denom = (self.a * self.a + self.b * self.b).sqrt()
   if denom == 0.0 {
@@ -73,6 +75,7 @@ pub fn Line::point_distance(self : Line, p : Point2D) -> Double {
 
 ///|
 /// Evaluate the line equation at a point (sign indicates side).
+/// 在某点求直线方程值（符号表示所在侧）。
 pub fn Line::evaluate(self : Line, p : Point2D) -> Double {
   self.a * p.x + self.b * p.y + self.c
 }

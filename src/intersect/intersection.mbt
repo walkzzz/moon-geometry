@@ -87,6 +87,7 @@ pub fn segment_intersection(s1 : @core.Segment, s2 : @core.Segment) -> @core.Poi
 
 ///|
 /// Intersection of a line (general form) with a segment.
+/// 直线（一般式）与线段的交点。
 pub fn line_segment_intersection(line : @core.Line, seg : @core.Segment) -> @core.Point2D? {
   let d = seg.end.sub(seg.start)
   let denom = line.a * d.x + line.b * d.y

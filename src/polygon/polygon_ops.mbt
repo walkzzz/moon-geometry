@@ -1,6 +1,8 @@
 ///|
 /// Signed area of a polygon using the Shoelace formula.
 /// Positive for counter-clockwise, negative for clockwise.
+/// 使用 Shoelace 公式计算多边形有符号面积。
+/// 逆时针为正，顺时针为负。
 pub fn polygon_signed_area(poly : @core.Polygon) -> Double {
   let verts = poly.vertices
   let n = verts.length()
@@ -17,6 +19,7 @@ pub fn polygon_signed_area(poly : @core.Polygon) -> Double {
 
 ///|
 /// Absolute area of a polygon (Shoelace formula).
+/// 多边形绝对面积（Shoelace 公式）。
 pub fn polygon_area(poly : @core.Polygon) -> Double {
   polygon_signed_area(poly).abs()
 }
@@ -82,6 +85,7 @@ pub fn polygon_centroid(poly : @core.Polygon) -> @core.Point2D {
 
 ///|
 /// @core.Orientation of a polygon (CW / CCW / @core.Collinear) based on signed area.
+/// 基于有符号面积的多边形方向（CW / CCW / Collinear）。
 pub fn polygon_orientation(poly : @core.Polygon) -> @core.Orientation {
   let a = polygon_signed_area(poly)
   if a > 0.0 {
@@ -128,6 +132,8 @@ pub fn is_convex(poly : @core.Polygon) -> Bool {
 ///|
 /// Ray-casting point-in-polygon test.
 /// Returns true if the point lies inside or on the boundary.
+/// 射线法点在多边形内测试。
+/// 点在内部或边界上时返回 true。
 pub fn point_in_polygon(p : @core.Point2D, poly : @core.Polygon) -> Bool {
   let verts = poly.vertices
   let n = verts.length()
@@ -152,6 +158,7 @@ pub fn point_in_polygon(p : @core.Point2D, poly : @core.Polygon) -> Bool {
 
 ///|
 /// Perpendicular distance from point p to line segment (a, b).
+/// 点 p 到线段 (a, b) 的垂直距离。
 fn point_segment_dist(p : @core.Point2D, a : @core.Point2D, b : @core.Point2D) -> Double {
   let dx = b.x - a.x
   let dy = b.y - a.y
@@ -190,6 +197,7 @@ pub fn simplify_polygon(poly : @core.Polygon, epsilon : Double) -> Array[@core.P
 
 ///|
 /// Recursive core of Douglas-Peucker.
+/// Douglas-Peucker 递归核心。
 fn dp_recursive(
   pts : Array[@core.Point2D],
   start : Int,

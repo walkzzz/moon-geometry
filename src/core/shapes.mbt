@@ -16,6 +16,7 @@ pub struct Polygon {
 
 ///|
 /// Construct a polygon from a vertex array.
+/// 从顶点数组构造多边形。
 pub fn Polygon::new(vertices : Array[Point2D]) -> Polygon {
   { vertices, }
 }
@@ -29,6 +30,7 @@ pub fn Polygon::size(self : Polygon) -> Int {
 
 ///|
 /// Get the i-th vertex (with modular wraparound).
+/// 获取第 i 个顶点（带模环绕）。
 pub fn Polygon::get(self : Polygon, i : Int) -> Point2D {
   let n = self.vertices.length()
   if n == 0 {
@@ -40,6 +42,7 @@ pub fn Polygon::get(self : Polygon, i : Int) -> Point2D {
 
 ///|
 /// A triangle defined by three vertices.
+/// 由三个顶点定义的三角形。
 pub struct Triangle {
   a : Point2D
   b : Point2D
@@ -55,6 +58,7 @@ pub fn Triangle::new(a : Point2D, b : Point2D, c : Point2D) -> Triangle {
 
 ///|
 /// Signed area of the triangle (positive if CCW).
+/// 三角形有符号面积（逆时针为正）。
 pub fn Triangle::signed_area(self : Triangle) -> Double {
   (
     (self.b.x - self.a.x) * (self.c.y - self.a.y) -
@@ -65,12 +69,14 @@ pub fn Triangle::signed_area(self : Triangle) -> Double {
 
 ///|
 /// Absolute area of the triangle.
+/// 三角形绝对面积。
 pub fn Triangle::area(self : Triangle) -> Double {
   self.signed_area().abs()
 }
 
 ///|
 /// Centroid (intersection of medians).
+/// 重心（中线交点）。
 pub fn Triangle::centroid(self : Triangle) -> Point2D {
   Point2D::new(
     (self.a.x + self.b.x + self.c.x) / 3.0,
@@ -155,12 +161,14 @@ pub fn Circle::perimeter(self : Circle) -> Double {
 
 ///|
 /// Whether a point lies inside or on the circle.
+/// 点是否在圆内或圆上。
 pub fn Circle::contains(self : Circle, p : Point2D) -> Bool {
   self.center.dist_sq(p) <= self.radius * self.radius
 }
 
 ///|
 /// An axis-aligned bounding box (AABB) rectangle.
+/// 轴对齐包围盒（AABB）矩形。
 pub struct Rectangle {
   min_x : Double
   min_y : Double
@@ -170,6 +178,7 @@ pub struct Rectangle {
 
 ///|
 /// Construct a rectangle from corner coordinates.
+/// 从角坐标构造矩形。
 pub fn Rectangle::new(
   min_x : Double,
   min_y : Double,
@@ -181,6 +190,7 @@ pub fn Rectangle::new(
 
 ///|
 /// Construct a rectangle from two opposite corners.
+/// 从两个对角构造矩形。
 pub fn Rectangle::from_corners(p1 : Point2D, p2 : Point2D) -> Rectangle {
   {
     min_x: if p1.x < p2.x {
@@ -236,6 +246,7 @@ pub fn Rectangle::height(self : Rectangle) -> Double {
 
 ///|
 /// Whether a point lies inside or on the rectangle.
+/// 点是否在矩形内或矩形上。
 pub fn Rectangle::contains(self : Rectangle, p : Point2D) -> Bool {
   p.x >= self.min_x &&
   p.x <= self.max_x &&
@@ -245,6 +256,7 @@ pub fn Rectangle::contains(self : Rectangle, p : Point2D) -> Bool {
 
 ///|
 /// Union (smallest enclosing AABB) of two rectangles.
+/// 两矩形的并集（最小包围 AABB）。
 pub fn Rectangle::union(self : Rectangle, other : Rectangle) -> Rectangle {
   {
     min_x: if self.min_x < other.min_x {

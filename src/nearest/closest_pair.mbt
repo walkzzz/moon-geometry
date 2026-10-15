@@ -1,5 +1,6 @@
 ///|
 /// Brute-force closest pair O(n^2). Used as fallback and for validation.
+/// 暴力最近点对 O(n^2)。用作回退和验证。
 fn closest_pair_brute(
   pts : Array[@core.Point2D],
   lo : Int,
@@ -55,6 +56,7 @@ pub fn closest_pair(points : Array[@core.Point2D]) -> (@core.Point2D, @core.Poin
 
 ///|
 /// Recursive core of closest pair divide and conquer.
+/// 最近点对分治法的递归核心。
 fn closest_pair_rec(
   pts : Array[@core.Point2D],
   lo : Int,

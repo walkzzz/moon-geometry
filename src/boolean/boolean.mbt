@@ -1,6 +1,8 @@
 ///|
 /// Sutherland-Hodgman polygon clipping by a convex clip polygon.
 /// `subject` may be any simple polygon; `clip` must be convex (CCW).
+/// Sutherland-Hodgman 凸裁剪多边形裁剪。
+/// `subject` 可为任意简单多边形；`clip` 必须为凸（逆时针）。
 fn sutherland_hodgman(
   subject : Array[@core.Point2D],
   clip : Array[@core.Point2D],
@@ -46,12 +48,14 @@ fn sutherland_hodgman(
 
 ///|
 /// Whether point p is on the inside (left side) of CCW edge a->b.
+/// 点 p 是否在 CCW 边 a->b 的内侧（左侧）。
 fn is_inside_edge(p : @core.Point2D, a : @core.Point2D, b : @core.Point2D) -> Bool {
   @core.turn(a, b, p) >= 0.0
 }
 
 ///|
 /// Intersection point of segment (p1,p2) with line through (p3,p4).
+/// 线段 (p1,p2) 与过 (p3,p4) 直线的交点。
 fn line_intersect_pt(
   p1 : @core.Point2D,
   p2 : @core.Point2D,
@@ -85,6 +89,8 @@ pub fn clip_polygon(poly : @core.Polygon, clip_rect : @core.Rectangle) -> Array[
 ///|
 /// Intersection of two polygons. Uses Sutherland-Hodgman; requires `clip`
 /// (the second polygon) to be convex. Returns None if no overlap.
+/// 两多边形交集。使用 Sutherland-Hodgman 算法；要求 `clip`
+/// （第二个多边形）为凸。无重叠时返回 None。
 pub fn polygon_intersection(subject : @core.Polygon, clip : @core.Polygon) -> @core.Polygon? {
   let result = sutherland_hodgman(subject.vertices, clip.vertices)
   if result.length() < 3 {
@@ -110,6 +116,7 @@ pub fn polygon_union_area(p1 : @core.Polygon, p2 : @core.Polygon) -> Double {
 
 ///|
 /// Difference area (p1 minus p2).
+/// 差集面积（p1 减 p2）。
 pub fn polygon_difference_area(p1 : @core.Polygon, p2 : @core.Polygon) -> Double {
   let a1 = @polygon.polygon_area(p1)
   let inter = match polygon_intersection(p1, p2) {
