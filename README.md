@@ -1,94 +1,123 @@
 # Moon Geometry
 
 > 纯 MoonBit 计算几何库 | 2026 MoonBit 十月赛参赛项目
+> Pure MoonBit computational geometry library | 2026 MoonBit October Hackathon entry
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![MoonBit](https://img.shields.io/badge/MoonBit-0.1.20260920-blue.svg)](https://moonbitlang.com)
-[![Tests](https://img.shields.io/badge/tests-213-brightgreen.svg)]()
+[![Tests](https://img.shields.io/badge/tests-271-brightgreen.svg)]()
 [![Targets](https://img.shields.io/badge/targets-native%20%7C%20wasm--gc%20%7C%20js%20%7C%20wasm-green.svg)]()
 
 Moon Geometry 是一个**纯 MoonBit** 实现的计算几何库，**零 C FFI 依赖**，四目标（native / wasm-gc / js / wasm）原生支持。为 CAD、碰撞检测、GIS、路径规划、图像处理等场景提供可复用的几何算法基础组件。
 
-## 特性
+Moon Geometry is a **pure MoonBit** computational geometry library with **zero C FFI dependencies**, supporting all four backends natively. It provides reusable geometric algorithm primitives for CAD, collision detection, GIS, path planning, and image processing.
 
-- **基础几何类型**：`Point2D` / `Point3D` / `Segment` / `Line` / `Polygon` / `Triangle` / `Circle` / `Rectangle`
-- **凸包**：Graham 扫描法、Andrew 单调链法（O(n log n)）
-- **多边形操作**：面积（Shoelace）、周长、质心、点在多边形内（射线法）、凸性判断、方向判定、Douglas-Peucker 简化
-- **方向判定**：`ccw` 三点方向测试
-- **Delaunay 三角剖分**：Bowyer-Watson 增量插入法（O(n²) 期望）
-- **Voronoi 图**：Delaunay 对偶，外心为顶点
-- **纯 MoonBit 零依赖**：无 C FFI，四目标共用代码库，无条件编译
-- **退化情况全覆盖**：共线点、重合点、空输入、单点/两点退化均有处理
+## 特性 | Features
 
-## 安装
+- **基础几何类型 | Basic types**: `Point2D` / `Point3D` / `Segment` / `Line` / `Polygon` / `Triangle` / `Circle` / `Rectangle`
+- **凸包 | Convex hull**: Graham scan, Andrew's monotone chain (O(n log n)) | Graham 扫描法、Andrew 单调链法
+- **多边形操作 | Polygon ops**: area (Shoelace), perimeter, centroid, point-in-polygon, convexity, orientation, Douglas-Peucker | 面积、周长、质心、点在多边形内、凸性判断、方向判定、Douglas-Peucker 简化
+- **Delaunay 三角剖分 | Delaunay triangulation**: Bowyer-Watson incremental insertion (O(n²) expected) | Bowyer-Watson 增量插入法
+- **Voronoi 图 | Voronoi diagram**: Delaunay duality, circumcenters as vertices | Delaunay 对偶，外心为顶点
+- **几何变换 | Transforms**: translate, rotate, scale, affine, mirror, shear | 平移、旋转、缩放、仿射、镜像、剪切
+- **距离计算 | Distance**: point-to-segment/polygon, segment-to-segment, polygon-to-polygon | 点到线段/多边形、线段间、多边形间
+- **包围体 | Bounding**: AABB, min-area bounding rect (rotating calipers), bounding circle | 轴对齐包围盒、最小面积包围矩形、包围圆
+- **统一导入 | Unified import**: `import "walkzzz/moon-geometry"` re-exports all APIs | 单包导入重导出全部 API
+- **纯 MoonBit 零依赖 | Pure MoonBit, zero deps**: no C FFI, single codebase for all targets | 无 C FFI，四目标共用代码库
+- **退化情况全覆盖 | Full degenerate coverage**: collinear, coincident, empty, single/two-point | 共线点、重合点、空输入、单点/两点退化
+
+## 安装 | Installation
 
 ```bash
 moon add walkzzz/moon-geometry
 ```
 
-## 快速示例
+## 项目结构 | Project Structure
 
-```moonbit
-let points = [
-  Point2D::new(0.0, 0.0),
-  Point2D::new(4.0, 0.0),
-  Point2D::new(4.0, 4.0),
-  Point2D::new(0.0, 4.0),
-  Point2D::new(2.0, 2.0),  // 内部点
-]
-let hull = convex_hull_andrew(points)  // 凸包顶点（逆时针）
-let poly = Polygon::new(points)
-let area = polygon_area(poly)          // 多边形面积
+```
+src/
+  core/           # 基础类型 | Base types (Point2D, Segment, Polygon, ...)
+  hull/           # 凸包 | Convex hull
+  polygon/        # 多边形操作 | Polygon operations
+  intersect/      # 相交 | Intersection
+  nearest/        # 最近点对 | Closest pair
+  boolean/        # 布尔运算 | Boolean operations
+  triangulation/  # 三角剖分 | Delaunay/Voronoi
+  transform/      # 几何变换 | Geometric transforms
+  distance/       # 距离 | Distance computations
+  bounding/       # 包围盒 | Bounding boxes
 ```
 
-## API 概览
+## 快速示例 | Quick Example
 
-| 模块 | 主要 API |
-|------|---------|
-| 点 | `Point2D::new/dist/dot/cross/add/sub/mul`、`Point3D` 同构 |
-| 线段/直线 | `Segment::length/midpoint`、`Line::from_points/point_distance` |
-| 多边形 | `polygon_area/perimeter/centroid/orientation`、`is_convex`、`point_in_polygon`、`simplify_polygon` |
-| 凸包 | `convex_hull_andrew`、`convex_hull_graham`、`ccw` |
-| 相交 | `segments_intersect`、`segment_intersection`、`line_segment_intersection` |
-| 最近点对 | `closest_pair`（分治 O(n log n)） |
-| 布尔运算 | `clip_polygon`、`polygon_intersection`、`polygon_union_area`、`polygon_difference_area` |
-| 三角剖分 | `delaunay_triangulation`（Bowyer-Watson）、`voronoi_diagram`（对偶） |
-| 三角形 | `Triangle::area/centroid/circumcenter/incenter` |
-| 圆/矩形 | `Circle::area/perimeter/contains`、`Rectangle::area/union/intersection` |
+```moonbit
+// Import core types and algorithm packages
+// 导入核心类型和算法包
+// import { "walkzzz/moon-geometry/src/core" as geom }
+// import { "walkzzz/moon-geometry/src/hull" }
 
-完整接口见 `moon info` 生成的 `.mbti` 文件。
+let points = [
+  @geom.Point2D::new(0.0, 0.0),
+  @geom.Point2D::new(4.0, 0.0),
+  @geom.Point2D::new(4.0, 4.0),
+  @geom.Point2D::new(0.0, 4.0),
+  @geom.Point2D::new(2.0, 2.0),  // 内部点 | interior point
+]
+let hull = @hull.convex_hull_andrew(points)  // 凸包顶点（逆时针）| hull vertices (CCW)
+```
 
-## 测试
+## API 概览 | API Overview
+
+| 模块 | Module | 主要 API | Key APIs |
+|------|--------|---------|----------|
+| 点 | Points | `Point2D::new/dist/dot/cross/add/sub/mul` | `Point3D` 同构 |
+| 线段/直线 | Segment/Line | `Segment::length/midpoint` | `Line::from_points/point_distance` |
+| 多边形 | Polygon | `polygon_area/perimeter/centroid` | `is_convex`, `point_in_polygon`, `simplify_polygon` |
+| 凸包 | Convex hull | `convex_hull_andrew`, `convex_hull_graham` | `ccw` |
+| 相交 | Intersection | `segments_intersect`, `segment_intersection` | `line_segment_intersection` |
+| 最近点对 | Closest pair | `closest_pair` | 分治 O(n log n) |
+| 布尔运算 | Boolean ops | `clip_polygon`, `polygon_intersection` | `polygon_union_area`, `polygon_difference_area` |
+| 三角剖分 | Triangulation | `delaunay_triangulation` | `voronoi_diagram` |
+| 变换 | Transform | `translate`, `rotate`, `scale` | `affine_transform`, `mirror_line`, `shear` |
+| 距离 | Distance | `point_to_segment_distance`, `polygon_to_polygon_distance` | `segment_to_segment_distance` |
+| 包围体 | Bounding | `aabb`, `aabb_polygon` | `min_area_bounding_rect`, `bounding_circle` |
+
+完整接口见 `moon info` 生成的 `.mbti` 文件。Full interface in `.mbti` files generated by `moon info`.
+
+## 测试 | Tests
 
 ```bash
-moon test                          # 全部 213 测试
-moon test --target native          # 四目标分别验证
+moon test                          # 全部 271 测试 | all 271 tests
+moon test --target native          # 四目标分别验证 | verify each backend
 moon test --target wasm-gc
 moon test --target js
 moon test --target wasm
 ```
 
-四目标全绿：213 × 4 = 852 次测试通过。
+四目标全绿：271 × 4 = 1084 次测试通过。
+All four targets pass: 271 × 4 = 1084 test runs green.
 
-## 交付路线图
+## 交付路线图 | Roadmap
 
-| 阶段 | 内容 | 状态 |
-|------|------|------|
-| Week 1 | 基础类型 + 凸包 + 多边形操作 | ✅ 完成（88 测试） |
-| Week 2 | 线段相交 + 最近点对 + 多边形布尔运算 | ✅ 完成（累计 133 测试） |
-| Week 3 | Delaunay 三角剖分 + Voronoi 图 | ✅ 完成（累计 213 测试） |
-| Week 4 | 几何变换 + 距离 + 包围盒 + mooncakes 发布 | ⏸ 待开始 |
+| 阶段 | Phase | 内容 | Content | 状态 | Status |
+|------|-------|------|---------|------|--------|
+| Week 1 | Week 1 | 基础类型 + 凸包 + 多边形操作 | Basic types + hull + polygon ops | ✅ 完成 | ✅ Done |
+| Week 2 | Week 2 | 线段相交 + 最近点对 + 布尔运算 | Intersection + closest pair + boolean | ✅ 完成 | ✅ Done |
+| Week 3 | Week 3 | Delaunay 三角剖分 + Voronoi 图 | Delaunay + Voronoi | ✅ 完成 | ✅ Done |
+| Week 4 | Week 4 | 变换 + 距离 + 包围盒 + 发布 | Transform + distance + bounding + publish | ✅ 完成 | ✅ Done |
 
 详见 [docs/roadmap.md](docs/roadmap.md) 与 [docs/changelog.md](docs/changelog.md)。
+See [docs/roadmap.md](docs/roadmap.md) and [docs/changelog.md](docs/changelog.md).
 
-## 设计参考
+## 设计参考 | Design References
 
-- [CGAL](https://github.com/CGAL/cgal) — 算法参考
-- [Shapely](https://github.com/shapely/shapely) — API 设计参考
-- [scipy.spatial](https://docs.scipy.org/doc/scipy/reference/spatial.html) — Delaunay/Voronoi 对照验证
+- [CGAL](https://github.com/CGAL/cgal) — 算法参考 | algorithm reference
+- [Shapely](https://github.com/shapely/shapely) — API 设计参考 | API design reference
+- [scipy.spatial](https://docs.scipy.org/doc/scipy/reference/spatial.html) — Delaunay/Voronoi 对照验证 | validation
 
 本项目为原创实现，使用 Double 浮点运算，以 MoonBit 原生类型系统组织几何类型。
+Original implementation using Double floating-point arithmetic, organized with MoonBit's native type system.
 
-## 许可证
+## 许可证 | License
 
 [MIT](LICENSE)

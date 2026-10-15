@@ -1,5 +1,6 @@
 ///|
 /// A line segment defined by two endpoints.
+/// 由两个端点定义的线段。
 pub struct Segment {
   start : Point2D
   end : Point2D
@@ -7,24 +8,28 @@ pub struct Segment {
 
 ///|
 /// Construct a segment.
+/// 构造线段。
 pub fn Segment::new(start : Point2D, end : Point2D) -> Segment {
   { start, end, }
 }
 
 ///|
 /// Length of the segment.
+/// 线段长度。
 pub fn Segment::length(self : Segment) -> Double {
   self.start.dist(self.end)
 }
 
 ///|
 /// Direction vector of the segment (end - start).
+/// 线段方向向量（终点 - 起点）。
 pub fn Segment::direction(self : Segment) -> Point2D {
   self.end.sub(self.start)
 }
 
 ///|
 /// Midpoint of the segment.
+/// 线段中点。
 pub fn Segment::midpoint(self : Segment) -> Point2D {
   Point2D::new(
     (self.start.x + self.end.x) / 2.0,
@@ -34,6 +39,7 @@ pub fn Segment::midpoint(self : Segment) -> Point2D {
 
 ///|
 /// A line in general form: a*x + b*y + c = 0.
+/// 一般式直线：a*x + b*y + c = 0。
 pub struct Line {
   a : Double
   b : Double
@@ -42,6 +48,7 @@ pub struct Line {
 
 ///|
 /// Construct a line from general form coefficients.
+/// 从一般式系数构造直线。
 pub fn Line::new(a : Double, b : Double, c : Double) -> Line {
   { a, b, c, }
 }

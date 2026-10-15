@@ -1,77 +1,111 @@
-# Changelog
+# Changelog | 变更日志
 
 All notable changes to Moon Geometry are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
+Moon Geometry 的所有重要变更记录于此。
+格式基于 [Keep a Changelog](https://keepachangelog.com/)。
+
+## [0.4.0] - 2026-10-15
+
+### Added — Week 4: Transforms + Distance + Bounding + Re-export | 几何变换 + 距离 + 包围盒 + 重导出
+
+- **Geometric Transforms | 几何变换**：
+  - `translate` / `translate_points`: point and array translation | 点与数组平移
+  - `rotate` / `rotate_around` / `rotate_points`: rotation around origin/center | 绕原点/中心旋转
+  - `scale` / `scale_around`: scaling relative to origin/center | 相对原点/中心缩放
+  - `affine_transform` / `affine_transform_points`: general affine (a*x+b*y+c, d*x+e*y+f) | 一般仿射变换
+  - `mirror_x` / `mirror_y` / `mirror_origin` / `mirror_line`: reflections | 镜像反射
+  - `shear`: shear transform (x+kx*y, y+ky*x) | 剪切变换
+- **Distance Computations | 距离计算**：
+  - `point_to_segment_distance` / `point_to_polygon_distance` / `point_to_line_distance` | 点到线段/多边形/直线距离
+  - `segment_to_segment_distance`: with intersection check | 线段间距离（含相交检测）
+  - `polygon_to_polygon_distance`: edge-pair minimum distance | 多边形间最小距离
+- **Bounding Volumes | 包围体**：
+  - `aabb` / `aabb_polygon`: axis-aligned bounding box | 轴对齐包围盒
+  - `min_area_bounding_rect`: rotating calipers on convex hull, returns (cx, cy, w, h, angle) | 旋转卡壳最小面积包围矩形
+  - `bounding_circle`: centroid + max-distance approximation | 包围圆（质心+最大距离近似）
+- **Re-export Module | 重导出模块**：
+  - Root package `walkzzz/moon-geometry` re-exports all types and functions | 根包重导出全部类型和函数
+  - Single import: `import "walkzzz/moon-geometry"` | 单包导入即可访问全部 API
+
+### Tests | 测试
+
+- Added 58 tests (25 transform + 18 distance + 15 bounding), total 271 tests, all four targets green | 新增 58 测试，累计 271 测试，四目标全绿
+
+### Fixed | 修复
+
+- `segment_to_segment_distance`: added intersection check for overlapping segments | 增加相交检测修复重叠线段距离
+
 ## [0.3.0] - 2026-10-15
 
-### Added — Week 3: Delaunay 三角剖分 + Voronoi 图
+### Added — Week 3: Delaunay Triangulation + Voronoi Diagram | Delaunay 三角剖分 + Voronoi 图
 
-- **Delaunay 三角剖分**：
-  - `delaunay_triangulation`：Bowyer-Watson 增量插入法，O(n²) 期望
-  - 超三角形包围、坏三角形检测、空洞重三角化
-  - 返回 CCW 方向的顶点索引三元组 `TriangleIdx`
-- **Voronoi 图**：
-  - `voronoi_diagram`：Delaunay 对偶，返回 (顶点, 边)
-  - 顶点为 Delaunay 三角形外心，边连接相邻三角形外心
+- **Delaunay Triangulation | Delaunay 三角剖分**：
+  - `delaunay_triangulation`: Bowyer-Watson incremental insertion, O(n²) expected | Bowyer-Watson 增量插入法，O(n²) 期望
+  - Super-triangle enclosure, bad triangle detection, hole re-triangulation | 超三角形包围、坏三角形检测、空洞重三角化
+  - Returns CCW vertex index triples `TriangleIdx` | 返回 CCW 方向的顶点索引三元组 `TriangleIdx`
+- **Voronoi Diagram | Voronoi 图**：
+  - `voronoi_diagram`: Delaunay duality, returns (vertices, edges) | Delaunay 对偶，返回 (顶点, 边)
+  - Vertices are Delaunay triangle circumcenters, edges connect adjacent circumcenters | 顶点为 Delaunay 三角形外心，边连接相邻三角形外心
 
-### Tests
+### Tests | 测试
 
-- 新增 80 测试，累计 213 测试，四目标全绿
-- 覆盖：空/退化输入、凸多边形、网格点、星形配置、面积一致性、外心等距性、无重叠三角形
+- Added 80 tests, total 213 tests, all four targets green | 新增 80 测试，累计 213 测试，四目标全绿
+- Coverage: empty/degenerate input, convex polygons, grid points, star configurations, area consistency, circumcenter equidistance, no overlapping triangles | 覆盖：空/退化输入、凸多边形、网格点、星形配置、面积一致性、外心等距性、无重叠三角形
 
 ## [0.2.0] - 2026-10-15
 
-### Added — Week 2: 线段相交 + 最近点对 + 多边形布尔运算
+### Added — Week 2: Segment Intersection + Closest Pair + Polygon Boolean Ops | 线段相交 + 最近点对 + 多边形布尔运算
 
-- **线段相交**：
-  - `segments_intersect`：线段相交检测（含端点接触、共线重叠）
-  - `segment_intersection`：线段交点计算（参数化求解，含共线重叠）
-  - `line_segment_intersection`：直线与线段交点
-- **最近点对**：
-  - `closest_pair`：分治法 O(n log n)，返回最近点对及距离
-- **多边形布尔运算**：
-  - `clip_polygon`：Sutherland-Hodgman 矩形裁剪
-  - `polygon_intersection`：凸多边形交集（Sutherland-Hodgman）
-  - `polygon_union_area` / `polygon_difference_area`：并集/差集面积（容斥原理）
+- **Segment Intersection | 线段相交**：
+  - `segments_intersect`: segment intersection test (including endpoint contact, collinear overlap) | 线段相交检测（含端点接触、共线重叠）
+  - `segment_intersection`: intersection point computation (parametric, with collinear overlap) | 线段交点计算（参数化求解，含共线重叠）
+  - `line_segment_intersection`: line-segment intersection | 直线与线段交点
+- **Closest Pair | 最近点对**：
+  - `closest_pair`: divide & conquer O(n log n), returns closest pair and distance | 分治法 O(n log n)，返回最近点对及距离
+- **Polygon Boolean Ops | 多边形布尔运算**：
+  - `clip_polygon`: Sutherland-Hodgman rectangle clipping | Sutherland-Hodgman 矩形裁剪
+  - `polygon_intersection`: convex polygon intersection (Sutherland-Hodgman) | 凸多边形交集（Sutherland-Hodgman）
+  - `polygon_union_area` / `polygon_difference_area`: union/difference area (inclusion-exclusion) | 并集/差集面积（容斥原理）
 
-### Tests
+### Tests | 测试
 
-- 新增 45 测试，累计 133 测试，四目标全绿
+- Added 45 tests, total 133 tests, all four targets green | 新增 45 测试，累计 133 测试，四目标全绿
 
 ## [0.1.0] - 2026-10-15
 
-### Added — Week 1: 基础类型 + 凸包 + 多边形操作
+### Added — Week 1: Basic Types + Convex Hull + Polygon Ops | 基础类型 + 凸包 + 多边形操作
 
-- **基础几何类型**：
-  - `Point2D` / `Point3D`：距离、加减、数乘、点积、叉积、近似相等
-  - `Segment`：长度、方向、中点
-  - `Line`（一般式 ax+by+c=0）：从两点构造、点到直线距离、方程求值
-  - `Polygon`：顶点序列、大小、按索引取顶点（环绕）
-  - `Triangle`：有符号面积、面积、质心、外心、内心
-  - `Circle`：面积、周长、包含判定
-  - `Rectangle`（AABB）：面积、周长、宽高、包含、并集、交集
-  - `Orientation` 枚举（Clockwise / CounterClockwise / Collinear）
-- **凸包**：
-  - `convex_hull_andrew`：Andrew 单调链法，O(n log n)，数值稳定
-  - `convex_hull_graham`：Graham 扫描法，O(n log n)
-  - `ccw`：三点方向判定
-- **多边形操作**：
-  - `polygon_area` / `polygon_signed_area`：Shoelace 公式
-  - `polygon_perimeter`、`polygon_centroid`（加权面积法）
-  - `polygon_orientation`：方向判定
-  - `is_convex`：凸性判断
-  - `point_in_polygon`：射线法点在多边形内
-  - `simplify_polygon`：Douglas-Peucker 简化
-- **工具**：`approx_eq` 容差比较、`default_eps` 默认精度
+- **Basic Geometric Types | 基础几何类型**：
+  - `Point2D` / `Point3D`: distance, add/sub, scalar mul, dot/cross, approx_eq | 距离、加减、数乘、点积、叉积、近似相等
+  - `Segment`: length, direction, midpoint | 长度、方向、中点
+  - `Line` (general form ax+by+c=0): from two points, point-to-line distance, evaluate | 一般式 ax+by+c=0：从两点构造、点到直线距离、方程求值
+  - `Polygon`: vertex sequence, size, index access (wrapping) | 顶点序列、大小、按索引取顶点（环绕）
+  - `Triangle`: signed area, area, centroid, circumcenter, incenter | 有符号面积、面积、质心、外心、内心
+  - `Circle`: area, perimeter, contains | 面积、周长、包含判定
+  - `Rectangle` (AABB): area, perimeter, width/height, contains, union, intersection | 面积、周长、宽高、包含、并集、交集
+  - `Orientation` enum (Clockwise / CounterClockwise / Collinear) | 方向枚举
+- **Convex Hull | 凸包**：
+  - `convex_hull_andrew`: Andrew's monotone chain, O(n log n), numerically stable | Andrew 单调链法，O(n log n)，数值稳定
+  - `convex_hull_graham`: Graham scan, O(n log n) | Graham 扫描法，O(n log n)
+  - `ccw`: three-point orientation test | 三点方向判定
+- **Polygon Ops | 多边形操作**：
+  - `polygon_area` / `polygon_signed_area`: Shoelace formula | Shoelace 公式
+  - `polygon_perimeter`, `polygon_centroid` (area-weighted) | 周长、重心（加权面积法）
+  - `polygon_orientation`: orientation test | 方向判定
+  - `is_convex`: convexity test | 凸性判断
+  - `point_in_polygon`: ray casting point-in-polygon | 射线法点在多边形内
+  - `simplify_polygon`: Douglas-Peucker simplification | Douglas-Peucker 简化
+- **Utils | 工具**: `approx_eq` tolerance comparison, `default_eps` default precision | 容差比较、默认精度
 
-### Tests
+### Tests | 测试
 
-- 88 个 MoonBit 测试，覆盖四目标（native / wasm-gc / js / wasm）全绿
-- 含正确性测试 + 边界测试 + 退化情况测试（共线、重合、空输入、单点/两点）
+- 88 MoonBit tests, all four targets (native / wasm-gc / js / wasm) green | 88 个 MoonBit 测试，四目标全绿
+- Correctness + boundary + degenerate cases (collinear, coincident, empty, single/two-point) | 正确性 + 边界 + 退化情况测试
 
-### Infrastructure
+### Infrastructure | 基础设施
 
-- 项目骨架：`moon.mod` / `moon.pkg`，纯 MoonBit 零 C FFI
-- 中英文 README 同步
-- changelog / roadmap 文档治理
+- Project scaffold: `moon.mod` / `moon.pkg`, pure MoonBit zero C FFI | 项目骨架，纯 MoonBit 零 C FFI
+- Bilingual README (Chinese / English) | 中英文 README 同步
+- changelog / roadmap documentation governance | changelog / roadmap 文档治理

@@ -1,20 +1,20 @@
 ///|
 test "delaunay empty" {
-  let pts : Array[Point2D] = []
+  let pts : Array[@core.Point2D] = []
   let tris = delaunay_triangulation(pts)
   assert_eq(tris.length(), 0)
 }
 
 ///|
 test "delaunay single point" {
-  let pts = [Point2D::new(1.0, 2.0)]
+  let pts = [@core.Point2D::new(1.0, 2.0)]
   let tris = delaunay_triangulation(pts)
   assert_eq(tris.length(), 0)
 }
 
 ///|
 test "delaunay two points" {
-  let pts = [Point2D::new(0.0, 0.0), Point2D::new(3.0, 4.0)]
+  let pts = [@core.Point2D::new(0.0, 0.0), @core.Point2D::new(3.0, 4.0)]
   let tris = delaunay_triangulation(pts)
   assert_eq(tris.length(), 0)
 }
@@ -22,9 +22,9 @@ test "delaunay two points" {
 ///|
 test "delaunay three points - one triangle" {
   let pts = [
-    Point2D::new(0.0, 0.0),
-    Point2D::new(4.0, 0.0),
-    Point2D::new(2.0, 3.0),
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(4.0, 0.0),
+    @core.Point2D::new(2.0, 3.0),
   ]
   let tris = delaunay_triangulation(pts)
   assert_eq(tris.length(), 1)
@@ -33,10 +33,10 @@ test "delaunay three points - one triangle" {
 ///|
 test "delaunay square - two triangles" {
   let pts = [
-    Point2D::new(0.0, 0.0),
-    Point2D::new(4.0, 0.0),
-    Point2D::new(4.0, 4.0),
-    Point2D::new(0.0, 4.0),
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(4.0, 0.0),
+    @core.Point2D::new(4.0, 4.0),
+    @core.Point2D::new(0.0, 4.0),
   ]
   let tris = delaunay_triangulation(pts)
   assert_eq(tris.length(), 2)
@@ -45,11 +45,11 @@ test "delaunay square - two triangles" {
 ///|
 test "delaunay square with center point" {
   let pts = [
-    Point2D::new(0.0, 0.0),
-    Point2D::new(4.0, 0.0),
-    Point2D::new(4.0, 4.0),
-    Point2D::new(0.0, 4.0),
-    Point2D::new(2.0, 2.0),
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(4.0, 0.0),
+    @core.Point2D::new(4.0, 4.0),
+    @core.Point2D::new(0.0, 4.0),
+    @core.Point2D::new(2.0, 2.0),
   ]
   let tris = delaunay_triangulation(pts)
   assert_eq(tris.length(), 4)
@@ -59,11 +59,11 @@ test "delaunay square with center point" {
 test "delaunay triangle count for convex polygon" {
   // For n points in convex position, triangulation has n-2 triangles
   let pts = [
-    Point2D::new(0.0, 0.0),
-    Point2D::new(5.0, 0.0),
-    Point2D::new(6.0, 3.0),
-    Point2D::new(4.0, 5.0),
-    Point2D::new(1.0, 4.0),
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(5.0, 0.0),
+    @core.Point2D::new(6.0, 3.0),
+    @core.Point2D::new(4.0, 5.0),
+    @core.Point2D::new(1.0, 4.0),
   ]
   let tris = delaunay_triangulation(pts)
   assert_eq(tris.length(), 3)
@@ -72,12 +72,12 @@ test "delaunay triangle count for convex polygon" {
 ///|
 test "delaunay hexagon - 4 triangles" {
   let pts = [
-    Point2D::new(0.0, 0.0),
-    Point2D::new(2.0, 0.0),
-    Point2D::new(3.0, 2.0),
-    Point2D::new(2.0, 4.0),
-    Point2D::new(0.0, 4.0),
-    Point2D::new(-1.0, 2.0),
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(2.0, 0.0),
+    @core.Point2D::new(3.0, 2.0),
+    @core.Point2D::new(2.0, 4.0),
+    @core.Point2D::new(0.0, 4.0),
+    @core.Point2D::new(-1.0, 2.0),
   ]
   let tris = delaunay_triangulation(pts)
   assert_eq(tris.length(), 4)
@@ -86,11 +86,11 @@ test "delaunay hexagon - 4 triangles" {
 ///|
 test "delaunay all triangle indices in range" {
   let pts = [
-    Point2D::new(0.0, 0.0),
-    Point2D::new(4.0, 0.0),
-    Point2D::new(4.0, 4.0),
-    Point2D::new(0.0, 4.0),
-    Point2D::new(2.0, 2.0),
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(4.0, 0.0),
+    @core.Point2D::new(4.0, 4.0),
+    @core.Point2D::new(0.0, 4.0),
+    @core.Point2D::new(2.0, 2.0),
   ]
   let n = pts.length()
   let tris = delaunay_triangulation(pts)
@@ -104,11 +104,11 @@ test "delaunay all triangle indices in range" {
 ///|
 test "delaunay triangle vertices distinct" {
   let pts = [
-    Point2D::new(0.0, 0.0),
-    Point2D::new(4.0, 0.0),
-    Point2D::new(4.0, 4.0),
-    Point2D::new(0.0, 4.0),
-    Point2D::new(2.0, 2.0),
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(4.0, 0.0),
+    @core.Point2D::new(4.0, 4.0),
+    @core.Point2D::new(0.0, 4.0),
+    @core.Point2D::new(2.0, 2.0),
   ]
   let tris = delaunay_triangulation(pts)
   for t in tris {
@@ -121,11 +121,11 @@ test "delaunay triangle vertices distinct" {
 ///|
 test "delaunay covers all points as vertices" {
   let pts = [
-    Point2D::new(0.0, 0.0),
-    Point2D::new(4.0, 0.0),
-    Point2D::new(4.0, 4.0),
-    Point2D::new(0.0, 4.0),
-    Point2D::new(2.0, 2.0),
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(4.0, 0.0),
+    @core.Point2D::new(4.0, 4.0),
+    @core.Point2D::new(0.0, 4.0),
+    @core.Point2D::new(2.0, 2.0),
   ]
   let n = pts.length()
   let tris = delaunay_triangulation(pts)
@@ -143,10 +143,10 @@ test "delaunay covers all points as vertices" {
 ///|
 test "delaunay collinear points - no triangles" {
   let pts = [
-    Point2D::new(0.0, 0.0),
-    Point2D::new(1.0, 1.0),
-    Point2D::new(2.0, 2.0),
-    Point2D::new(3.0, 3.0),
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(1.0, 1.0),
+    @core.Point2D::new(2.0, 2.0),
+    @core.Point2D::new(3.0, 3.0),
   ]
   let tris = delaunay_triangulation(pts)
   assert_eq(tris.length(), 0)
@@ -155,10 +155,10 @@ test "delaunay collinear points - no triangles" {
 ///|
 test "delaunay duplicate points" {
   let pts = [
-    Point2D::new(0.0, 0.0),
-    Point2D::new(0.0, 0.0),
-    Point2D::new(4.0, 0.0),
-    Point2D::new(2.0, 3.0),
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(4.0, 0.0),
+    @core.Point2D::new(2.0, 3.0),
   ]
   let tris = delaunay_triangulation(pts)
   // Should still produce a valid result (at least 1 triangle)
@@ -168,13 +168,13 @@ test "delaunay duplicate points" {
 ///|
 test "delaunay random-ish points" {
   let pts = [
-    Point2D::new(1.0, 1.0),
-    Point2D::new(5.0, 2.0),
-    Point2D::new(3.0, 6.0),
-    Point2D::new(0.0, 4.0),
-    Point2D::new(6.0, 5.0),
-    Point2D::new(2.0, 3.0),
-    Point2D::new(4.0, 0.0),
+    @core.Point2D::new(1.0, 1.0),
+    @core.Point2D::new(5.0, 2.0),
+    @core.Point2D::new(3.0, 6.0),
+    @core.Point2D::new(0.0, 4.0),
+    @core.Point2D::new(6.0, 5.0),
+    @core.Point2D::new(2.0, 3.0),
+    @core.Point2D::new(4.0, 0.0),
   ]
   let tris = delaunay_triangulation(pts)
   // 7 points, expect at least 5 triangles
@@ -186,11 +186,11 @@ test "delaunay edge sharing count" {
   // In a valid triangulation of n points with h hull points:
   // #triangles = 2n - 2 - h
   let pts = [
-    Point2D::new(0.0, 0.0),
-    Point2D::new(4.0, 0.0),
-    Point2D::new(4.0, 4.0),
-    Point2D::new(0.0, 4.0),
-    Point2D::new(2.0, 2.0),
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(4.0, 0.0),
+    @core.Point2D::new(4.0, 4.0),
+    @core.Point2D::new(0.0, 4.0),
+    @core.Point2D::new(2.0, 2.0),
   ]
   // n=5, h=4 (square hull), expected triangles = 2*5 - 2 - 4 = 4
   let tris = delaunay_triangulation(pts)
@@ -200,13 +200,13 @@ test "delaunay edge sharing count" {
 ///|
 test "delaunay no super-triangle vertices in result" {
   let pts = [
-    Point2D::new(0.0, 0.0),
-    Point2D::new(4.0, 0.0),
-    Point2D::new(4.0, 4.0),
-    Point2D::new(0.0, 4.0),
-    Point2D::new(2.0, 2.0),
-    Point2D::new(1.0, 1.0),
-    Point2D::new(3.0, 1.0),
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(4.0, 0.0),
+    @core.Point2D::new(4.0, 4.0),
+    @core.Point2D::new(0.0, 4.0),
+    @core.Point2D::new(2.0, 2.0),
+    @core.Point2D::new(1.0, 1.0),
+    @core.Point2D::new(3.0, 1.0),
   ]
   let n = pts.length()
   let tris = delaunay_triangulation(pts)
@@ -221,13 +221,13 @@ test "delaunay no super-triangle vertices in result" {
 test "delaunay star configuration" {
   // center point surrounded by 6 points in a circle
   let pts = [
-    Point2D::new(0.0, 0.0),
-    Point2D::new(2.0, 0.0),
-    Point2D::new(1.0, 1.732),
-    Point2D::new(-1.0, 1.732),
-    Point2D::new(-2.0, 0.0),
-    Point2D::new(-1.0, -1.732),
-    Point2D::new(1.0, -1.732),
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(2.0, 0.0),
+    @core.Point2D::new(1.0, 1.732),
+    @core.Point2D::new(-1.0, 1.732),
+    @core.Point2D::new(-2.0, 0.0),
+    @core.Point2D::new(-1.0, -1.732),
+    @core.Point2D::new(1.0, -1.732),
   ]
   let tris = delaunay_triangulation(pts)
   // 7 points, 6 hull, expected = 2*7 - 2 - 6 = 6
@@ -237,15 +237,15 @@ test "delaunay star configuration" {
 ///|
 test "delaunay grid 3x3" {
   let pts = [
-    Point2D::new(0.0, 0.0),
-    Point2D::new(2.0, 0.0),
-    Point2D::new(4.0, 0.0),
-    Point2D::new(0.0, 2.0),
-    Point2D::new(2.0, 2.0),
-    Point2D::new(4.0, 2.0),
-    Point2D::new(0.0, 4.0),
-    Point2D::new(2.0, 4.0),
-    Point2D::new(4.0, 4.0),
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(2.0, 0.0),
+    @core.Point2D::new(4.0, 0.0),
+    @core.Point2D::new(0.0, 2.0),
+    @core.Point2D::new(2.0, 2.0),
+    @core.Point2D::new(4.0, 2.0),
+    @core.Point2D::new(0.0, 4.0),
+    @core.Point2D::new(2.0, 4.0),
+    @core.Point2D::new(4.0, 4.0),
   ]
   let tris = delaunay_triangulation(pts)
   // 9 points, 8 hull, expected = 2*9 - 2 - 8 = 8
@@ -255,11 +255,11 @@ test "delaunay grid 3x3" {
 ///|
 test "delaunay negative coordinates" {
   let pts = [
-    Point2D::new(-3.0, -3.0),
-    Point2D::new(3.0, -3.0),
-    Point2D::new(3.0, 3.0),
-    Point2D::new(-3.0, 3.0),
-    Point2D::new(0.0, 0.0),
+    @core.Point2D::new(-3.0, -3.0),
+    @core.Point2D::new(3.0, -3.0),
+    @core.Point2D::new(3.0, 3.0),
+    @core.Point2D::new(-3.0, 3.0),
+    @core.Point2D::new(0.0, 0.0),
   ]
   let tris = delaunay_triangulation(pts)
   assert_eq(tris.length(), 4)
@@ -268,11 +268,11 @@ test "delaunay negative coordinates" {
 ///|
 test "delaunay large coordinates" {
   let pts = [
-    Point2D::new(1000.0, 1000.0),
-    Point2D::new(2000.0, 1000.0),
-    Point2D::new(2000.0, 2000.0),
-    Point2D::new(1000.0, 2000.0),
-    Point2D::new(1500.0, 1500.0),
+    @core.Point2D::new(1000.0, 1000.0),
+    @core.Point2D::new(2000.0, 1000.0),
+    @core.Point2D::new(2000.0, 2000.0),
+    @core.Point2D::new(1000.0, 2000.0),
+    @core.Point2D::new(1500.0, 1500.0),
   ]
   let tris = delaunay_triangulation(pts)
   assert_eq(tris.length(), 4)
@@ -281,11 +281,11 @@ test "delaunay large coordinates" {
 ///|
 test "delaunay small coordinates" {
   let pts = [
-    Point2D::new(0.001, 0.001),
-    Point2D::new(0.004, 0.001),
-    Point2D::new(0.004, 0.004),
-    Point2D::new(0.001, 0.004),
-    Point2D::new(0.0025, 0.0025),
+    @core.Point2D::new(0.001, 0.001),
+    @core.Point2D::new(0.004, 0.001),
+    @core.Point2D::new(0.004, 0.004),
+    @core.Point2D::new(0.001, 0.004),
+    @core.Point2D::new(0.0025, 0.0025),
   ]
   let tris = delaunay_triangulation(pts)
   assert_eq(tris.length(), 4)
@@ -294,11 +294,11 @@ test "delaunay small coordinates" {
 ///|
 test "delaunay narrow strip" {
   let pts = [
-    Point2D::new(0.0, 0.0),
-    Point2D::new(10.0, 0.001),
-    Point2D::new(20.0, 0.0),
-    Point2D::new(5.0, 0.002),
-    Point2D::new(15.0, 0.002),
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(10.0, 0.001),
+    @core.Point2D::new(20.0, 0.0),
+    @core.Point2D::new(5.0, 0.002),
+    @core.Point2D::new(15.0, 0.002),
   ]
   let tris = delaunay_triangulation(pts)
   assert_true(tris.length() >= 0)
@@ -307,11 +307,11 @@ test "delaunay narrow strip" {
 ///|
 test "delaunay triangle area positive (CCW)" {
   let pts = [
-    Point2D::new(0.0, 0.0),
-    Point2D::new(4.0, 0.0),
-    Point2D::new(4.0, 4.0),
-    Point2D::new(0.0, 4.0),
-    Point2D::new(2.0, 2.0),
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(4.0, 0.0),
+    @core.Point2D::new(4.0, 4.0),
+    @core.Point2D::new(0.0, 4.0),
+    @core.Point2D::new(2.0, 2.0),
   ]
   let tris = delaunay_triangulation(pts)
   for t in tris {
@@ -325,7 +325,7 @@ test "delaunay triangle area positive (CCW)" {
 
 ///|
 test "voronoi empty" {
-  let pts : Array[Point2D] = []
+  let pts : Array[@core.Point2D] = []
   let (verts, edges) = voronoi_diagram(pts)
   assert_eq(verts.length(), 0)
   assert_eq(edges.length(), 0)
@@ -333,7 +333,7 @@ test "voronoi empty" {
 
 ///|
 test "voronoi single point" {
-  let pts = [Point2D::new(1.0, 2.0)]
+  let pts = [@core.Point2D::new(1.0, 2.0)]
   let (verts, edges) = voronoi_diagram(pts)
   assert_eq(verts.length(), 0)
   assert_eq(edges.length(), 0)
@@ -341,7 +341,7 @@ test "voronoi single point" {
 
 ///|
 test "voronoi two points" {
-  let pts = [Point2D::new(0.0, 0.0), Point2D::new(4.0, 0.0)]
+  let pts = [@core.Point2D::new(0.0, 0.0), @core.Point2D::new(4.0, 0.0)]
   let (verts, edges) = voronoi_diagram(pts)
   assert_eq(verts.length(), 0)
   assert_eq(edges.length(), 0)
@@ -350,9 +350,9 @@ test "voronoi two points" {
 ///|
 test "voronoi three points" {
   let pts = [
-    Point2D::new(0.0, 0.0),
-    Point2D::new(4.0, 0.0),
-    Point2D::new(2.0, 3.0),
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(4.0, 0.0),
+    @core.Point2D::new(2.0, 3.0),
   ]
   let (verts, edges) = voronoi_diagram(pts)
   // 1 triangle -> 1 vertex, 0 edges
@@ -363,10 +363,10 @@ test "voronoi three points" {
 ///|
 test "voronoi square" {
   let pts = [
-    Point2D::new(0.0, 0.0),
-    Point2D::new(4.0, 0.0),
-    Point2D::new(4.0, 4.0),
-    Point2D::new(0.0, 4.0),
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(4.0, 0.0),
+    @core.Point2D::new(4.0, 4.0),
+    @core.Point2D::new(0.0, 4.0),
   ]
   let (verts, edges) = voronoi_diagram(pts)
   // 2 triangles -> 2 vertices, 1 edge
@@ -377,11 +377,11 @@ test "voronoi square" {
 ///|
 test "voronoi square with center" {
   let pts = [
-    Point2D::new(0.0, 0.0),
-    Point2D::new(4.0, 0.0),
-    Point2D::new(4.0, 4.0),
-    Point2D::new(0.0, 4.0),
-    Point2D::new(2.0, 2.0),
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(4.0, 0.0),
+    @core.Point2D::new(4.0, 4.0),
+    @core.Point2D::new(0.0, 4.0),
+    @core.Point2D::new(2.0, 2.0),
   ]
   let (verts, edges) = voronoi_diagram(pts)
   // 4 triangles -> 4 vertices
@@ -392,11 +392,11 @@ test "voronoi square with center" {
 ///|
 test "voronoi vertices match triangle count" {
   let pts = [
-    Point2D::new(0.0, 0.0),
-    Point2D::new(5.0, 0.0),
-    Point2D::new(6.0, 3.0),
-    Point2D::new(4.0, 5.0),
-    Point2D::new(1.0, 4.0),
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(5.0, 0.0),
+    @core.Point2D::new(6.0, 3.0),
+    @core.Point2D::new(4.0, 5.0),
+    @core.Point2D::new(1.0, 4.0),
   ]
   let tris = delaunay_triangulation(pts)
   let (verts, _) = voronoi_diagram(pts)
@@ -406,11 +406,11 @@ test "voronoi vertices match triangle count" {
 ///|
 test "voronoi edge indices in range" {
   let pts = [
-    Point2D::new(0.0, 0.0),
-    Point2D::new(4.0, 0.0),
-    Point2D::new(4.0, 4.0),
-    Point2D::new(0.0, 4.0),
-    Point2D::new(2.0, 2.0),
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(4.0, 0.0),
+    @core.Point2D::new(4.0, 4.0),
+    @core.Point2D::new(0.0, 4.0),
+    @core.Point2D::new(2.0, 2.0),
   ]
   let (verts, edges) = voronoi_diagram(pts)
   let m = verts.length()
@@ -425,13 +425,13 @@ test "voronoi edge indices in range" {
 ///|
 test "voronoi star configuration" {
   let pts = [
-    Point2D::new(0.0, 0.0),
-    Point2D::new(2.0, 0.0),
-    Point2D::new(1.0, 1.732),
-    Point2D::new(-1.0, 1.732),
-    Point2D::new(-2.0, 0.0),
-    Point2D::new(-1.0, -1.732),
-    Point2D::new(1.0, -1.732),
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(2.0, 0.0),
+    @core.Point2D::new(1.0, 1.732),
+    @core.Point2D::new(-1.0, 1.732),
+    @core.Point2D::new(-2.0, 0.0),
+    @core.Point2D::new(-1.0, -1.732),
+    @core.Point2D::new(1.0, -1.732),
   ]
   let (verts, edges) = voronoi_diagram(pts)
   // 6 triangles -> 6 vertices
@@ -442,15 +442,15 @@ test "voronoi star configuration" {
 ///|
 test "voronoi grid 3x3" {
   let pts = [
-    Point2D::new(0.0, 0.0),
-    Point2D::new(2.0, 0.0),
-    Point2D::new(4.0, 0.0),
-    Point2D::new(0.0, 2.0),
-    Point2D::new(2.0, 2.0),
-    Point2D::new(4.0, 2.0),
-    Point2D::new(0.0, 4.0),
-    Point2D::new(2.0, 4.0),
-    Point2D::new(4.0, 4.0),
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(2.0, 0.0),
+    @core.Point2D::new(4.0, 0.0),
+    @core.Point2D::new(0.0, 2.0),
+    @core.Point2D::new(2.0, 2.0),
+    @core.Point2D::new(4.0, 2.0),
+    @core.Point2D::new(0.0, 4.0),
+    @core.Point2D::new(2.0, 4.0),
+    @core.Point2D::new(4.0, 4.0),
   ]
   let (verts, edges) = voronoi_diagram(pts)
   // 8 triangles -> 8 vertices
@@ -461,11 +461,11 @@ test "voronoi grid 3x3" {
 ///|
 test "voronoi negative coordinates" {
   let pts = [
-    Point2D::new(-3.0, -3.0),
-    Point2D::new(3.0, -3.0),
-    Point2D::new(3.0, 3.0),
-    Point2D::new(-3.0, 3.0),
-    Point2D::new(0.0, 0.0),
+    @core.Point2D::new(-3.0, -3.0),
+    @core.Point2D::new(3.0, -3.0),
+    @core.Point2D::new(3.0, 3.0),
+    @core.Point2D::new(-3.0, 3.0),
+    @core.Point2D::new(0.0, 0.0),
   ]
   let (verts, edges) = voronoi_diagram(pts)
   assert_eq(verts.length(), 4)
@@ -528,29 +528,29 @@ test "edge_eq completely different" {
 
 ///|
 test "in_circumcircle inside" {
-  let a = Point2D::new(0.0, 0.0)
-  let b = Point2D::new(4.0, 0.0)
-  let c = Point2D::new(2.0, 3.0)
-  let d = Point2D::new(2.0, 1.0)
+  let a = @core.Point2D::new(0.0, 0.0)
+  let b = @core.Point2D::new(4.0, 0.0)
+  let c = @core.Point2D::new(2.0, 3.0)
+  let d = @core.Point2D::new(2.0, 1.0)
   assert_true(in_circumcircle(a, b, c, d))
 }
 
 ///|
 test "in_circumcircle outside" {
-  let a = Point2D::new(0.0, 0.0)
-  let b = Point2D::new(4.0, 0.0)
-  let c = Point2D::new(2.0, 3.0)
-  let d = Point2D::new(10.0, 10.0)
+  let a = @core.Point2D::new(0.0, 0.0)
+  let b = @core.Point2D::new(4.0, 0.0)
+  let c = @core.Point2D::new(2.0, 3.0)
+  let d = @core.Point2D::new(10.0, 10.0)
   assert_false(in_circumcircle(a, b, c, d))
 }
 
 ///|
 test "in_circumcircle on circle" {
   // Point on the circle boundary (approximately)
-  let a = Point2D::new(-1.0, 0.0)
-  let b = Point2D::new(1.0, 0.0)
-  let c = Point2D::new(0.0, 1.0)
-  let d = Point2D::new(0.0, -1.0)
+  let a = @core.Point2D::new(-1.0, 0.0)
+  let b = @core.Point2D::new(1.0, 0.0)
+  let c = @core.Point2D::new(0.0, 1.0)
+  let d = @core.Point2D::new(0.0, -1.0)
   // d is on the circumcircle, det should be ~0, so not strictly inside
   assert_false(in_circumcircle(a, b, c, d))
 }
@@ -558,9 +558,9 @@ test "in_circumcircle on circle" {
 ///|
 test "make_tri_ccw preserves CCW" {
   let pts = [
-    Point2D::new(0.0, 0.0),
-    Point2D::new(4.0, 0.0),
-    Point2D::new(2.0, 3.0),
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(4.0, 0.0),
+    @core.Point2D::new(2.0, 3.0),
   ]
   let t = make_tri_ccw(0, 1, 2, pts)
   let a = pts[t.a]
@@ -573,9 +573,9 @@ test "make_tri_ccw preserves CCW" {
 ///|
 test "make_tri_ccw flips CW to CCW" {
   let pts = [
-    Point2D::new(0.0, 0.0),
-    Point2D::new(4.0, 0.0),
-    Point2D::new(2.0, 3.0),
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(4.0, 0.0),
+    @core.Point2D::new(2.0, 3.0),
   ]
   // Pass in CW order
   let t = make_tri_ccw(0, 2, 1, pts)
@@ -589,9 +589,9 @@ test "make_tri_ccw flips CW to CCW" {
 ///|
 test "delaunay degenerate thin triangle" {
   let pts = [
-    Point2D::new(0.0, 0.0),
-    Point2D::new(10.0, 0.0),
-    Point2D::new(5.0, 0.001),
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(10.0, 0.0),
+    @core.Point2D::new(5.0, 0.001),
   ]
   let tris = delaunay_triangulation(pts)
   assert_true(tris.length() <= 1)
@@ -600,11 +600,11 @@ test "delaunay degenerate thin triangle" {
 ///|
 test "delaunay four collinear plus one" {
   let pts = [
-    Point2D::new(0.0, 0.0),
-    Point2D::new(2.0, 0.0),
-    Point2D::new(4.0, 0.0),
-    Point2D::new(6.0, 0.0),
-    Point2D::new(3.0, 3.0),
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(2.0, 0.0),
+    @core.Point2D::new(4.0, 0.0),
+    @core.Point2D::new(6.0, 0.0),
+    @core.Point2D::new(3.0, 3.0),
   ]
   let tris = delaunay_triangulation(pts)
   // 5 points, 3 hull (0,3,4), expected = 2*5 - 2 - 3 = 5
@@ -615,11 +615,11 @@ test "delaunay four collinear plus one" {
 ///|
 test "delaunay pentagon convex" {
   let pts = [
-    Point2D::new(0.0, 0.0),
-    Point2D::new(5.0, 0.0),
-    Point2D::new(6.0, 3.0),
-    Point2D::new(3.0, 5.0),
-    Point2D::new(0.0, 4.0),
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(5.0, 0.0),
+    @core.Point2D::new(6.0, 3.0),
+    @core.Point2D::new(3.0, 5.0),
+    @core.Point2D::new(0.0, 4.0),
   ]
   let tris = delaunay_triangulation(pts)
   // 5 convex points -> 3 triangles
@@ -629,14 +629,14 @@ test "delaunay pentagon convex" {
 ///|
 test "delaunay octagon convex" {
   let pts = [
-    Point2D::new(0.0, 2.0),
-    Point2D::new(1.414, 1.414),
-    Point2D::new(2.0, 0.0),
-    Point2D::new(1.414, -1.414),
-    Point2D::new(0.0, -2.0),
-    Point2D::new(-1.414, -1.414),
-    Point2D::new(-2.0, 0.0),
-    Point2D::new(-1.414, 1.414),
+    @core.Point2D::new(0.0, 2.0),
+    @core.Point2D::new(1.414, 1.414),
+    @core.Point2D::new(2.0, 0.0),
+    @core.Point2D::new(1.414, -1.414),
+    @core.Point2D::new(0.0, -2.0),
+    @core.Point2D::new(-1.414, -1.414),
+    @core.Point2D::new(-2.0, 0.0),
+    @core.Point2D::new(-1.414, 1.414),
   ]
   let tris = delaunay_triangulation(pts)
   // 8 convex points -> 6 triangles
@@ -646,11 +646,11 @@ test "delaunay octagon convex" {
 ///|
 test "voronoi pentagon" {
   let pts = [
-    Point2D::new(0.0, 0.0),
-    Point2D::new(5.0, 0.0),
-    Point2D::new(6.0, 3.0),
-    Point2D::new(3.0, 5.0),
-    Point2D::new(0.0, 4.0),
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(5.0, 0.0),
+    @core.Point2D::new(6.0, 3.0),
+    @core.Point2D::new(3.0, 5.0),
+    @core.Point2D::new(0.0, 4.0),
   ]
   let (verts, edges) = voronoi_diagram(pts)
   assert_eq(verts.length(), 3)
@@ -660,12 +660,12 @@ test "voronoi pentagon" {
 ///|
 test "delaunay two clusters" {
   let pts = [
-    Point2D::new(0.0, 0.0),
-    Point2D::new(1.0, 0.0),
-    Point2D::new(0.5, 1.0),
-    Point2D::new(10.0, 0.0),
-    Point2D::new(11.0, 0.0),
-    Point2D::new(10.5, 1.0),
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(1.0, 0.0),
+    @core.Point2D::new(0.5, 1.0),
+    @core.Point2D::new(10.0, 0.0),
+    @core.Point2D::new(11.0, 0.0),
+    @core.Point2D::new(10.5, 1.0),
   ]
   let tris = delaunay_triangulation(pts)
   // 6 points with 2 collinear on hull edge, produces 4 triangles
@@ -675,12 +675,12 @@ test "delaunay two clusters" {
 ///|
 test "delaunay L-shape" {
   let pts = [
-    Point2D::new(0.0, 0.0),
-    Point2D::new(3.0, 0.0),
-    Point2D::new(3.0, 1.0),
-    Point2D::new(1.0, 1.0),
-    Point2D::new(1.0, 3.0),
-    Point2D::new(0.0, 3.0),
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(3.0, 0.0),
+    @core.Point2D::new(3.0, 1.0),
+    @core.Point2D::new(1.0, 1.0),
+    @core.Point2D::new(1.0, 3.0),
+    @core.Point2D::new(0.0, 3.0),
   ]
   let tris = delaunay_triangulation(pts)
   // 6 points, 5 hull, expected = 2*6 - 2 - 5 = 5
@@ -690,12 +690,12 @@ test "delaunay L-shape" {
 ///|
 test "voronoi L-shape" {
   let pts = [
-    Point2D::new(0.0, 0.0),
-    Point2D::new(3.0, 0.0),
-    Point2D::new(3.0, 1.0),
-    Point2D::new(1.0, 1.0),
-    Point2D::new(1.0, 3.0),
-    Point2D::new(0.0, 3.0),
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(3.0, 0.0),
+    @core.Point2D::new(3.0, 1.0),
+    @core.Point2D::new(1.0, 1.0),
+    @core.Point2D::new(1.0, 3.0),
+    @core.Point2D::new(0.0, 3.0),
   ]
   let (verts, _) = voronoi_diagram(pts)
   assert_eq(verts.length(), 5)
@@ -704,10 +704,10 @@ test "voronoi L-shape" {
 ///|
 test "delaunay point on edge of triangle" {
   let pts = [
-    Point2D::new(0.0, 0.0),
-    Point2D::new(4.0, 0.0),
-    Point2D::new(2.0, 4.0),
-    Point2D::new(2.0, 0.0),
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(4.0, 0.0),
+    @core.Point2D::new(2.0, 4.0),
+    @core.Point2D::new(2.0, 0.0),
   ]
   let tris = delaunay_triangulation(pts)
   // Point on edge - degenerate case, should still produce valid result
@@ -717,11 +717,11 @@ test "delaunay point on edge of triangle" {
 ///|
 test "delaunay symmetric diamond" {
   let pts = [
-    Point2D::new(0.0, -2.0),
-    Point2D::new(2.0, 0.0),
-    Point2D::new(0.0, 2.0),
-    Point2D::new(-2.0, 0.0),
-    Point2D::new(0.0, 0.0),
+    @core.Point2D::new(0.0, -2.0),
+    @core.Point2D::new(2.0, 0.0),
+    @core.Point2D::new(0.0, 2.0),
+    @core.Point2D::new(-2.0, 0.0),
+    @core.Point2D::new(0.0, 0.0),
   ]
   let tris = delaunay_triangulation(pts)
   // 5 points, 4 hull, expected = 2*5 - 2 - 4 = 4
@@ -731,11 +731,11 @@ test "delaunay symmetric diamond" {
 ///|
 test "voronoi symmetric diamond" {
   let pts = [
-    Point2D::new(0.0, -2.0),
-    Point2D::new(2.0, 0.0),
-    Point2D::new(0.0, 2.0),
-    Point2D::new(-2.0, 0.0),
-    Point2D::new(0.0, 0.0),
+    @core.Point2D::new(0.0, -2.0),
+    @core.Point2D::new(2.0, 0.0),
+    @core.Point2D::new(0.0, 2.0),
+    @core.Point2D::new(-2.0, 0.0),
+    @core.Point2D::new(0.0, 0.0),
   ]
   let (verts, edges) = voronoi_diagram(pts)
   assert_eq(verts.length(), 4)
@@ -745,15 +745,15 @@ test "voronoi symmetric diamond" {
 ///|
 test "delaunay many interior points" {
   let pts = [
-    Point2D::new(0.0, 0.0),
-    Point2D::new(10.0, 0.0),
-    Point2D::new(10.0, 10.0),
-    Point2D::new(0.0, 10.0),
-    Point2D::new(5.0, 5.0),
-    Point2D::new(3.0, 3.0),
-    Point2D::new(7.0, 3.0),
-    Point2D::new(3.0, 7.0),
-    Point2D::new(7.0, 7.0),
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(10.0, 0.0),
+    @core.Point2D::new(10.0, 10.0),
+    @core.Point2D::new(0.0, 10.0),
+    @core.Point2D::new(5.0, 5.0),
+    @core.Point2D::new(3.0, 3.0),
+    @core.Point2D::new(7.0, 3.0),
+    @core.Point2D::new(3.0, 7.0),
+    @core.Point2D::new(7.0, 7.0),
   ]
   let tris = delaunay_triangulation(pts)
   // 9 points, 4 hull, expected = 2*9 - 2 - 4 = 12
@@ -763,15 +763,15 @@ test "delaunay many interior points" {
 ///|
 test "voronoi many interior points" {
   let pts = [
-    Point2D::new(0.0, 0.0),
-    Point2D::new(10.0, 0.0),
-    Point2D::new(10.0, 10.0),
-    Point2D::new(0.0, 10.0),
-    Point2D::new(5.0, 5.0),
-    Point2D::new(3.0, 3.0),
-    Point2D::new(7.0, 3.0),
-    Point2D::new(3.0, 7.0),
-    Point2D::new(7.0, 7.0),
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(10.0, 0.0),
+    @core.Point2D::new(10.0, 10.0),
+    @core.Point2D::new(0.0, 10.0),
+    @core.Point2D::new(5.0, 5.0),
+    @core.Point2D::new(3.0, 3.0),
+    @core.Point2D::new(7.0, 3.0),
+    @core.Point2D::new(3.0, 7.0),
+    @core.Point2D::new(7.0, 7.0),
   ]
   let (verts, _) = voronoi_diagram(pts)
   assert_eq(verts.length(), 12)
@@ -780,10 +780,10 @@ test "voronoi many interior points" {
 ///|
 test "delaunay right triangle cluster" {
   let pts = [
-    Point2D::new(0.0, 0.0),
-    Point2D::new(1.0, 0.0),
-    Point2D::new(0.0, 1.0),
-    Point2D::new(1.0, 1.0),
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(1.0, 0.0),
+    @core.Point2D::new(0.0, 1.0),
+    @core.Point2D::new(1.0, 1.0),
   ]
   let tris = delaunay_triangulation(pts)
   assert_eq(tris.length(), 2)
@@ -792,10 +792,10 @@ test "delaunay right triangle cluster" {
 ///|
 test "voronoi right triangle cluster" {
   let pts = [
-    Point2D::new(0.0, 0.0),
-    Point2D::new(1.0, 0.0),
-    Point2D::new(0.0, 1.0),
-    Point2D::new(1.0, 1.0),
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(1.0, 0.0),
+    @core.Point2D::new(0.0, 1.0),
+    @core.Point2D::new(1.0, 1.0),
   ]
   let (verts, edges) = voronoi_diagram(pts)
   assert_eq(verts.length(), 2)
@@ -805,11 +805,11 @@ test "voronoi right triangle cluster" {
 ///|
 test "delaunay scaled points" {
   let pts = [
-    Point2D::new(0.0, 0.0),
-    Point2D::new(40.0, 0.0),
-    Point2D::new(40.0, 40.0),
-    Point2D::new(0.0, 40.0),
-    Point2D::new(20.0, 20.0),
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(40.0, 0.0),
+    @core.Point2D::new(40.0, 40.0),
+    @core.Point2D::new(0.0, 40.0),
+    @core.Point2D::new(20.0, 20.0),
   ]
   let tris = delaunay_triangulation(pts)
   assert_eq(tris.length(), 4)
@@ -818,11 +818,11 @@ test "delaunay scaled points" {
 ///|
 test "delaunay offset points" {
   let pts = [
-    Point2D::new(100.0, 200.0),
-    Point2D::new(104.0, 200.0),
-    Point2D::new(104.0, 204.0),
-    Point2D::new(100.0, 204.0),
-    Point2D::new(102.0, 202.0),
+    @core.Point2D::new(100.0, 200.0),
+    @core.Point2D::new(104.0, 200.0),
+    @core.Point2D::new(104.0, 204.0),
+    @core.Point2D::new(100.0, 204.0),
+    @core.Point2D::new(102.0, 202.0),
   ]
   let tris = delaunay_triangulation(pts)
   assert_eq(tris.length(), 4)
@@ -831,10 +831,10 @@ test "delaunay offset points" {
 ///|
 test "delaunay nearly collinear" {
   let pts = [
-    Point2D::new(0.0, 0.0),
-    Point2D::new(5.0, 0.01),
-    Point2D::new(10.0, 0.0),
-    Point2D::new(5.0, 5.0),
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(5.0, 0.01),
+    @core.Point2D::new(10.0, 0.0),
+    @core.Point2D::new(5.0, 5.0),
   ]
   let tris = delaunay_triangulation(pts)
   // 4 points, 3 hull, expected = 2*4 - 2 - 3 = 3
@@ -844,10 +844,10 @@ test "delaunay nearly collinear" {
 ///|
 test "voronoi nearly collinear" {
   let pts = [
-    Point2D::new(0.0, 0.0),
-    Point2D::new(5.0, 0.01),
-    Point2D::new(10.0, 0.0),
-    Point2D::new(5.0, 5.0),
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(5.0, 0.01),
+    @core.Point2D::new(10.0, 0.0),
+    @core.Point2D::new(5.0, 5.0),
   ]
   let (verts, _) = voronoi_diagram(pts)
   assert_eq(verts.length(), 3)
@@ -856,10 +856,10 @@ test "voronoi nearly collinear" {
 ///|
 test "delaunay triangle with near-center point" {
   let pts = [
-    Point2D::new(0.0, 0.0),
-    Point2D::new(6.0, 0.0),
-    Point2D::new(3.0, 5.0),
-    Point2D::new(3.0, 1.5),
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(6.0, 0.0),
+    @core.Point2D::new(3.0, 5.0),
+    @core.Point2D::new(3.0, 1.5),
   ]
   let tris = delaunay_triangulation(pts)
   assert_eq(tris.length(), 3)
@@ -868,16 +868,16 @@ test "delaunay triangle with near-center point" {
 ///|
 test "delaunay 10 points circle" {
   let pts = [
-    Point2D::new(5.0, 0.0),
-    Point2D::new(4.045, 2.939),
-    Point2D::new(1.545, 4.755),
-    Point2D::new(-1.545, 4.755),
-    Point2D::new(-4.045, 2.939),
-    Point2D::new(-5.0, 0.0),
-    Point2D::new(-4.045, -2.939),
-    Point2D::new(-1.545, -4.755),
-    Point2D::new(1.545, -4.755),
-    Point2D::new(4.045, -2.939),
+    @core.Point2D::new(5.0, 0.0),
+    @core.Point2D::new(4.045, 2.939),
+    @core.Point2D::new(1.545, 4.755),
+    @core.Point2D::new(-1.545, 4.755),
+    @core.Point2D::new(-4.045, 2.939),
+    @core.Point2D::new(-5.0, 0.0),
+    @core.Point2D::new(-4.045, -2.939),
+    @core.Point2D::new(-1.545, -4.755),
+    @core.Point2D::new(1.545, -4.755),
+    @core.Point2D::new(4.045, -2.939),
   ]
   let tris = delaunay_triangulation(pts)
   // 10 convex points -> 8 triangles
@@ -887,16 +887,16 @@ test "delaunay 10 points circle" {
 ///|
 test "voronoi 10 points circle" {
   let pts = [
-    Point2D::new(5.0, 0.0),
-    Point2D::new(4.045, 2.939),
-    Point2D::new(1.545, 4.755),
-    Point2D::new(-1.545, 4.755),
-    Point2D::new(-4.045, 2.939),
-    Point2D::new(-5.0, 0.0),
-    Point2D::new(-4.045, -2.939),
-    Point2D::new(-1.545, -4.755),
-    Point2D::new(1.545, -4.755),
-    Point2D::new(4.045, -2.939),
+    @core.Point2D::new(5.0, 0.0),
+    @core.Point2D::new(4.045, 2.939),
+    @core.Point2D::new(1.545, 4.755),
+    @core.Point2D::new(-1.545, 4.755),
+    @core.Point2D::new(-4.045, 2.939),
+    @core.Point2D::new(-5.0, 0.0),
+    @core.Point2D::new(-4.045, -2.939),
+    @core.Point2D::new(-1.545, -4.755),
+    @core.Point2D::new(1.545, -4.755),
+    @core.Point2D::new(4.045, -2.939),
   ]
   let (verts, edges) = voronoi_diagram(pts)
   assert_eq(verts.length(), 8)
@@ -906,12 +906,12 @@ test "voronoi 10 points circle" {
 ///|
 test "delaunay mixed scale" {
   let pts = [
-    Point2D::new(0.0, 0.0),
-    Point2D::new(100.0, 0.0),
-    Point2D::new(100.0, 100.0),
-    Point2D::new(0.0, 100.0),
-    Point2D::new(50.0, 50.0),
-    Point2D::new(0.001, 0.001),
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(100.0, 0.0),
+    @core.Point2D::new(100.0, 100.0),
+    @core.Point2D::new(0.0, 100.0),
+    @core.Point2D::new(50.0, 50.0),
+    @core.Point2D::new(0.001, 0.001),
   ]
   let tris = delaunay_triangulation(pts)
   assert_true(tris.length() >= 4)
@@ -920,12 +920,12 @@ test "delaunay mixed scale" {
 ///|
 test "delaunay consistent across runs" {
   let pts = [
-    Point2D::new(3.0, 1.0),
-    Point2D::new(7.0, 2.0),
-    Point2D::new(1.0, 5.0),
-    Point2D::new(6.0, 8.0),
-    Point2D::new(9.0, 4.0),
-    Point2D::new(4.0, 6.0),
+    @core.Point2D::new(3.0, 1.0),
+    @core.Point2D::new(7.0, 2.0),
+    @core.Point2D::new(1.0, 5.0),
+    @core.Point2D::new(6.0, 8.0),
+    @core.Point2D::new(9.0, 4.0),
+    @core.Point2D::new(4.0, 6.0),
   ]
   let t1 = delaunay_triangulation(pts)
   let t2 = delaunay_triangulation(pts)
@@ -935,12 +935,12 @@ test "delaunay consistent across runs" {
 ///|
 test "voronoi consistent across runs" {
   let pts = [
-    Point2D::new(3.0, 1.0),
-    Point2D::new(7.0, 2.0),
-    Point2D::new(1.0, 5.0),
-    Point2D::new(6.0, 8.0),
-    Point2D::new(9.0, 4.0),
-    Point2D::new(4.0, 6.0),
+    @core.Point2D::new(3.0, 1.0),
+    @core.Point2D::new(7.0, 2.0),
+    @core.Point2D::new(1.0, 5.0),
+    @core.Point2D::new(6.0, 8.0),
+    @core.Point2D::new(9.0, 4.0),
+    @core.Point2D::new(4.0, 6.0),
   ]
   let (v1, e1) = voronoi_diagram(pts)
   let (v2, e2) = voronoi_diagram(pts)
@@ -952,10 +952,10 @@ test "voronoi consistent across runs" {
 test "delaunay total triangle area matches polygon area" {
   // For points in convex position, sum of triangle areas = polygon area
   let pts = [
-    Point2D::new(0.0, 0.0),
-    Point2D::new(4.0, 0.0),
-    Point2D::new(4.0, 4.0),
-    Point2D::new(0.0, 4.0),
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(4.0, 0.0),
+    @core.Point2D::new(4.0, 4.0),
+    @core.Point2D::new(0.0, 4.0),
   ]
   let tris = delaunay_triangulation(pts)
   let mut total_area = 0.0
@@ -972,11 +972,11 @@ test "delaunay total triangle area matches polygon area" {
 ///|
 test "delaunay total triangle area pentagon" {
   let pts = [
-    Point2D::new(0.0, 0.0),
-    Point2D::new(5.0, 0.0),
-    Point2D::new(6.0, 3.0),
-    Point2D::new(3.0, 5.0),
-    Point2D::new(0.0, 4.0),
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(5.0, 0.0),
+    @core.Point2D::new(6.0, 3.0),
+    @core.Point2D::new(3.0, 5.0),
+    @core.Point2D::new(0.0, 4.0),
   ]
   let tris = delaunay_triangulation(pts)
   let mut total_area = 0.0
@@ -986,7 +986,7 @@ test "delaunay total triangle area pentagon" {
     let c = pts[t.c]
     total_area += ((b.x - a.x) * (c.y - a.y) - (b.y - a.y) * (c.x - a.x)) / 2.0
   }
-  // Polygon area via shoelace
+  // @core.Polygon area via shoelace
   let mut poly_area = 0.0
   let n = pts.length()
   for i in 0..<n {
@@ -1000,12 +1000,12 @@ test "delaunay total triangle area pentagon" {
 ///|
 test "delaunay total triangle area hexagon" {
   let pts = [
-    Point2D::new(0.0, 0.0),
-    Point2D::new(2.0, 0.0),
-    Point2D::new(3.0, 2.0),
-    Point2D::new(2.0, 4.0),
-    Point2D::new(0.0, 4.0),
-    Point2D::new(-1.0, 2.0),
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(2.0, 0.0),
+    @core.Point2D::new(3.0, 2.0),
+    @core.Point2D::new(2.0, 4.0),
+    @core.Point2D::new(0.0, 4.0),
+    @core.Point2D::new(-1.0, 2.0),
   ]
   let tris = delaunay_triangulation(pts)
   let mut total_area = 0.0
@@ -1028,9 +1028,9 @@ test "delaunay total triangle area hexagon" {
 ///|
 test "voronoi vertex is circumcenter" {
   let pts = [
-    Point2D::new(0.0, 0.0),
-    Point2D::new(4.0, 0.0),
-    Point2D::new(2.0, 3.0),
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(4.0, 0.0),
+    @core.Point2D::new(2.0, 3.0),
   ]
   let (verts, _) = voronoi_diagram(pts)
   // Single triangle, circumcenter should be equidistant from all 3 vertices
@@ -1045,10 +1045,10 @@ test "voronoi vertex is circumcenter" {
 ///|
 test "voronoi vertex equidistant square" {
   let pts = [
-    Point2D::new(0.0, 0.0),
-    Point2D::new(4.0, 0.0),
-    Point2D::new(4.0, 4.0),
-    Point2D::new(0.0, 4.0),
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(4.0, 0.0),
+    @core.Point2D::new(4.0, 4.0),
+    @core.Point2D::new(0.0, 4.0),
   ]
   let (verts, _) = voronoi_diagram(pts)
   // Each voronoi vertex is circumcenter of a triangle
@@ -1064,11 +1064,11 @@ test "voronoi vertex equidistant square" {
 test "delaunay no overlapping triangles" {
   // Check that no two triangles share the same 3 vertices
   let pts = [
-    Point2D::new(0.0, 0.0),
-    Point2D::new(4.0, 0.0),
-    Point2D::new(4.0, 4.0),
-    Point2D::new(0.0, 4.0),
-    Point2D::new(2.0, 2.0),
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(4.0, 0.0),
+    @core.Point2D::new(4.0, 4.0),
+    @core.Point2D::new(0.0, 4.0),
+    @core.Point2D::new(2.0, 2.0),
   ]
   let tris = delaunay_triangulation(pts)
   let m = tris.length()
@@ -1092,11 +1092,11 @@ test "delaunay edge count formula" {
   // For triangulation: #edges = 3*#triangles / 2 + hull_edges/2
   // Simpler: #edges = (3*#tri + hull) / 2
   let pts = [
-    Point2D::new(0.0, 0.0),
-    Point2D::new(4.0, 0.0),
-    Point2D::new(4.0, 4.0),
-    Point2D::new(0.0, 4.0),
-    Point2D::new(2.0, 2.0),
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(4.0, 0.0),
+    @core.Point2D::new(4.0, 4.0),
+    @core.Point2D::new(0.0, 4.0),
+    @core.Point2D::new(2.0, 2.0),
   ]
   let tris = delaunay_triangulation(pts)
   // Count unique edges
@@ -1133,10 +1133,10 @@ test "delaunay edge count formula" {
 ///|
 test "delaunay hull edges count" {
   let pts = [
-    Point2D::new(0.0, 0.0),
-    Point2D::new(4.0, 0.0),
-    Point2D::new(4.0, 4.0),
-    Point2D::new(0.0, 4.0),
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(4.0, 0.0),
+    @core.Point2D::new(4.0, 4.0),
+    @core.Point2D::new(0.0, 4.0),
   ]
   let tris = delaunay_triangulation(pts)
   // Count edges that appear only once (hull edges)

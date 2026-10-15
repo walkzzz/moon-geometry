@@ -1,94 +1,118 @@
 # Moon Geometry
 
 > Pure MoonBit computational geometry library | 2026 MoonBit October Hackathon entry
+> 纯 MoonBit 计算几何库 | 2026 MoonBit 十月赛参赛项目
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![MoonBit](https://img.shields.io/badge/MoonBit-0.1.20260920-blue.svg)](https://moonbitlang.com)
-[![Tests](https://img.shields.io/badge/tests-213-brightgreen.svg)]()
+[![Tests](https://img.shields.io/badge/tests-271-brightgreen.svg)]()
 [![Targets](https://img.shields.io/badge/targets-native%20%7C%20wasm--gc%20%7C%20js%20%7C%20wasm-green.svg)]()
 
-Moon Geometry is a **pure MoonBit** computational geometry library with **zero C FFI dependencies**, supporting all four backends (native / wasm-gc / js / wasm) natively. It provides reusable geometric algorithm primitives for CAD, collision detection, GIS, path planning, and image processing.
+Moon Geometry is a **pure MoonBit** computational geometry library with **zero C FFI dependencies**, supporting all four backends (3natively. It provides reusable geometric algorithm primitives for CAD, collision detection, GIS, path planning, and image processing.
 
-## Features
+Moon Geometry 是一个**纯 MoonBit** 实现的计算几何库，**零 C FFI 依赖**，四目标原生支持。
 
-- **Basic geometric types**: `Point2D` / `Point3D` / `Segment` / `Line` / `Polygon` / `Triangle` / `Circle` / `Rectangle`
-- **Convex hull**: Graham scan, Andrew's monotone chain (O(n log n))
-- **Polygon operations**: area (Shoelace), perimeter, centroid, point-in-polygon (ray casting), convexity test, orientation, Douglas-Peucker simplification
-- **Orientation test**: `ccw` three-point orientation
-- **Delaunay triangulation**: Bowyer-Watson incremental insertion (O(n²) expected)
-- **Voronoi diagram**: Delaunay duality, circumcenters as vertices
-- **Pure MoonBit, zero dependencies**: no C FFI, single codebase for all four targets, no conditional compilation
-- **Full degenerate-case coverage**: collinear points, coincident points, empty input, single/two-point degeneracies
+## Features | 特性
 
-## Installation
+- **Basic types | 基础类型**: `Point2D` / `Point3D` / `Segment` / `Line` / `Polygon` / `Triangle` / `Circle` / `Rectangle`
+- **Convex hull | 凸包**: Graham scan, Andrew's monotone chain (O(n log n))
+- **Polygon ops | 多边形操作**: area (Shoelace), perimeter, centroid, point-in-polygon, convexity, Douglas-Peucker
+- **Delaunay triangulation | Delaunay 三角剖分**: Bowyer-Watson incremental insertion (O(n²) expected)
+- **Voronoi diagram | Voronoi 图**: Delaunay duality, circumcenters as vertices
+- **Transforms | 几何变换**: translate, rotate, scale, affine, mirror, shear
+- **Distance | 距离计算**: point-to-segment/polygon, segment-to-segment, polygon-to-polygon
+- **Bounding | 包围体**: AABB, min-area bounding rect (rotating calipers), bounding circle
+- **Unified import | 统一导入**: `import "walkzzz/moon-geometry"` re-exports all APIs
+- **Pure MoonBit, zero deps | 纯 MoonBit 零依赖**: no C FFI, single codebase for all targets
+- **Full degenerate coverage | 退化情况全覆盖**: collinear, coincident, empty, single/two-point
+
+## Installation | 安装
 
 ```bash
 moon add walkzzz/moon-geometry
 ```
 
-## Quick Example
+## Project Structure | 项目结构
 
-```moonbit
-let points = [
-  Point2D::new(0.0, 0.0),
-  Point2D::new(4.0, 0.0),
-  Point2D::new(4.0, 4.0),
-  Point2D::new(0.0, 4.0),
-  Point2D::new(2.0, 2.0),  // interior point
-]
-let hull = convex_hull_andrew(points)  // hull vertices (CCW)
-let poly = Polygon::new(points)
-let area = polygon_area(poly)          // polygon area
+```
+src/
+  core/           # Base types | 基础类型
+  hull/           # Convex hull | 凸包
+  polygon/        # Polygon operations | 多边形操作
+  intersect/      # Intersection |* Intersection | 相交
+  nearest/        # Closest pair | 最近点对
+  boolean/        # Boolean operations | 布尔运算
+  triangulation/  # Delaunay/Voronoi | 三角剖分
+  transform/      # Geometric transforms | 几何变换
+  distance/       # Distance computations | 距离计算
+  bounding/       # Bounding boxes | 包围盒
 ```
 
-## API Overview
+## Quick Example | 快速示例
 
-| Module | Key APIs |
-|--------|----------|
-| Points | `Point2D::new/dist/dot/cross/add/sub/mul`, `Point3D` isomorphic |
-| Segment/Line | `Segment::length/midpoint`, `Line::from_points/point_distance` |
-| Polygon | `polygon_area/perimeter/centroid/orientation`, `is_convex`, `point_in_polygon`, `simplify_polygon` |
-| Convex hull | `convex_hull_andrew`, `convex_hull_graham`, `ccw` |
-| Intersection | `segments_intersect`, `segment_intersection`, `line_segment_intersection` |
-| Closest pair | `closest_pair` (divide & conquer O(n log n)) |
-| Boolean ops | `clip_polygon`, `polygon_intersection`, `polygon_union_area`, `polygon_difference_area` |
-| Triangulation | `delaunay_triangulation` (Bowyer-Watson), `voronoi_diagram` (duality) |
-| Triangle | `Triangle::area/centroid/circumcenter/incenter` |
-| Circle/Rectangle | `Circle::area/perimeter/contains`, `Rectangle::area/union/intersection` |
+```moonbit
+// Import core types and algorithm packages
+// 导入核心类型和算法包
+// import { "walkzzz/moon-geometry/src/core" as geom }
+// import { "walkzzz/moon-geometry/src/hull" }
 
-See the `.mbti` file generated by `moon info` for the full interface.
+let points = [
+  @geom.Point2D::new(0.0, 0.0),
+  @geom.Point2D::new(4.0, 0.0),
+  @geom.Point2D::new(4.0, 4.0),
+  @geom.Point2D::new(0.0, 4.0),
+  @geom.Point2D::new(2.0, 2.0),  // interior point | 内部点
+]
+let hull = @hull.convex_hull_andrew(points)  // hull vertices (CCW) | 凸包顶点（逆时针）
+```
 
-## Tests
+## API Overview | API 概览
+
+| Module | 模块 | Key APIs | 主要 API |
+|--------|------|----------|---------|
+| Points | 点 | `Point2D::new/dist/dot/cross` | `Point3D` isomorphic |
+| Segment/Line | 线段/直线 | `Segment::length/midpoint` | `Line::from_points/point_distance` |
+| Polygon | 多边形 | `polygon_area/perimeter/centroid` | `is_convex`, `point_in_polygon` |
+| Convex hull | 凸包 | `convex_hull_andrew`, `convex_hull_graham` | `ccw` |
+| Intersection | 相交 | `segments_intersect`, `segment_intersection` | `line_segment_intersection` |
+| Closest pair | 最近点对 | `closest_pair` | divide & conquer O(n log n) |
+| Boolean ops | 布尔运算 | `clip_polygon`, `polygon_intersection` | `polygon_union_area` |
+| Triangulation | 三角剖分 | `delaunay_triangulation` | `voronoi_diagram` |
+| Transform | 变换 | `translate`, `rotate`, `scale` | `affine_transform`, `mirror_line` |
+| Distance | 距离 | `point_to_segment_distance`, `polygon_to_polygon_distance` | `segment_to_segment_distance` |
+| Bounding | 包围体 | `aabb`, `aabb_polygon` | `min_area_bounding_rect`, `bounding_circle` |
+
+Full interface in `.mbti` files. 完整接口见 `.mbti` 文件。
+
+## Tests | 测试
 
 ```bash
-moon test                          # all 213 tests
-moon test --target native          # verify each backend
+moon test                          # all 271 tests | 全部 271 测试
+moon test --target native          # verify each backend | 四目标分别验证
 moon test --target wasm-gc
 moon test --target js
 moon test --target wasm
 ```
 
-All four targets pass: 213 × 4 = 852 test runs green.
+All four targets pass: 271 × 4 = 1084. 四目标全绿：271 × 4 = 1084。
 
-## Roadmap
+## Roadmap | 交付路线图
 
 | Phase | Content | Status |
 |-------|---------|--------|
-| Week 1 | Basic types + convex hull + polygon ops | ✅ Done (88 tests) |
-| Week 2 | Segment intersection + closest pair + polygon boolean ops | ✅ Done (133 tests total) |
-| Week 3 | Delaunay triangulation + Voronoi diagram | ✅ Done (213 tests total) |
-| Week 4 | Transforms + distance + bounding box + mooncakes publish | ⏸ Pending |
+| Week 1 | Basic types + hull + polygon ops | ✅ Done |
+| Week 2 | Intersection + closest pair + boolean | ✅ Done |
+| Week 3 | Delaunay + Voronoi | ✅ Done |
+| Week 4 | Transform + distance + bounding + publish | ✅ Done |
 
 See [docs/roadmap.md](docs/roadmap.md) and [docs/changelog.md](docs/changelog.md).
 
-## Design References
+## Design References | 设计参考
 
-- [CGAL](https://github.com/CGAL/cgal) — algorithm reference
-- [Shapely](https://github.com/shapely/shapely) — API design reference
-- [scipy.spatial](https://docs.scipy.org/doc/scipy/reference/spatial.html) — Delaunay/Voronoi validation
+- [CGAL](https://github.com/CGAL/cgal) — algorithm reference | 算法参考
+- [Shapely](https://github.com/shapely/shapely) — API design reference | API 设计参考
+- [scipy.spatial](https://docs.sc3y.org/doc/scipy/reference/spatial.html) — validation | 对照验证
 
-This is an original implementation using Double floating-point arithmetic, organized with MoonBit's native type system.
-
-## License
+## License | 许可证
 
 [MIT](LICENSE)

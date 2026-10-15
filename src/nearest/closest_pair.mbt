@@ -1,10 +1,10 @@
 ///|
 /// Brute-force closest pair O(n^2). Used as fallback and for validation.
 fn closest_pair_brute(
-  pts : Array[Point2D],
+  pts : Array[@core.Point2D],
   lo : Int,
   hi : Int,
-) -> (Point2D, Point2D, Double)? {
+) -> (@core.Point2D, @core.Point2D, Double)? {
   if hi <= lo {
     return None
   }
@@ -27,7 +27,8 @@ fn closest_pair_brute(
 ///|
 /// Closest pair of points via divide and conquer. O(n log n).
 /// Returns the closest pair and their distance, or None if fewer than 2 points.
-pub fn closest_pair(points : Array[Point2D]) -> (Point2D, Point2D, Double)? {
+/// 返回最近点对及其距离，少于 2 点返回 None。
+pub fn closest_pair(points : Array[@core.Point2D]) -> (@core.Point2D, @core.Point2D, Double)? {
   let n = points.length()
   if n < 2 {
     return None
@@ -55,10 +56,10 @@ pub fn closest_pair(points : Array[Point2D]) -> (Point2D, Point2D, Double)? {
 ///|
 /// Recursive core of closest pair divide and conquer.
 fn closest_pair_rec(
-  pts : Array[Point2D],
+  pts : Array[@core.Point2D],
   lo : Int,
   hi : Int,
-) -> (Point2D, Point2D, Double)? {
+) -> (@core.Point2D, @core.Point2D, Double)? {
   if hi - lo < 3 {
     return closest_pair_brute(pts, lo, hi)
   }
@@ -82,7 +83,7 @@ fn closest_pair_rec(
   let mut best_sq = init_sq
   let best_d = best_sq.sqrt()
   // Collect points within strip [midx - d, midx + d]
-  let strip : Array[Point2D] = []
+  let strip : Array[@core.Point2D] = []
   for i in lo..<=hi {
     if (pts[i].x - midx).abs() < best_d {
       strip.push(pts[i])

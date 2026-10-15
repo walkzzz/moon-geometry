@@ -1,6 +1,7 @@
 ///|
 /// Orientation of an ordered point sequence.
-pub enum Orientation {
+/// 有序点序列的方向。
+pub(all) enum Orientation {
   Clockwise
   CounterClockwise
   Collinear
@@ -8,6 +9,7 @@ pub enum Orientation {
 
 ///|
 /// A polygon as an ordered sequence of vertices.
+/// 由有序顶点序列定义的多边形。
 pub struct Polygon {
   vertices : Array[Point2D]
 } derive(Debug)
@@ -20,6 +22,7 @@ pub fn Polygon::new(vertices : Array[Point2D]) -> Polygon {
 
 ///|
 /// Number of vertices.
+/// 顶点数量。
 pub fn Polygon::size(self : Polygon) -> Int {
   self.vertices.length()
 }
@@ -45,6 +48,7 @@ pub struct Triangle {
 
 ///|
 /// Construct a triangle.
+/// 构造三角形。
 pub fn Triangle::new(a : Point2D, b : Point2D, c : Point2D) -> Triangle {
   { a, b, c, }
 }
@@ -76,6 +80,7 @@ pub fn Triangle::centroid(self : Triangle) -> Point2D {
 
 ///|
 /// Circumcenter (center of circumscribed circle).
+/// 外心（外接圆中心）。
 pub fn Triangle::circumcenter(self : Triangle) -> Point2D {
   let ax = self.a.x
   let ay = self.a.y
@@ -104,6 +109,7 @@ pub fn Triangle::circumcenter(self : Triangle) -> Point2D {
 
 ///|
 /// Incenter (center of inscribed circle).
+/// 内心（内切圆中心）。
 pub fn Triangle::incenter(self : Triangle) -> Point2D {
   let a_len = self.b.dist(self.c)
   let b_len = self.a.dist(self.c)
@@ -120,6 +126,7 @@ pub fn Triangle::incenter(self : Triangle) -> Point2D {
 
 ///|
 /// A circle defined by center and radius.
+/// 由圆心和半径定义的圆。
 pub struct Circle {
   center : Point2D
   radius : Double
@@ -127,18 +134,21 @@ pub struct Circle {
 
 ///|
 /// Construct a circle.
+/// 构造圆。
 pub fn Circle::new(center : Point2D, radius : Double) -> Circle {
   { center, radius, }
 }
 
 ///|
 /// Area of the circle.
+/// 圆面积。
 pub fn Circle::area(self : Circle) -> Double {
   @math.PI * self.radius * self.radius
 }
 
 ///|
 /// Perimeter (circumference) of the circle.
+/// 圆周长。
 pub fn Circle::perimeter(self : Circle) -> Double {
   2.0 * @math.PI * self.radius
 }
@@ -198,24 +208,28 @@ pub fn Rectangle::from_corners(p1 : Point2D, p2 : Point2D) -> Rectangle {
 
 ///|
 /// Area of the rectangle.
+/// 矩形面积。
 pub fn Rectangle::area(self : Rectangle) -> Double {
   (self.max_x - self.min_x) * (self.max_y - self.min_y)
 }
 
 ///|
 /// Perimeter of the rectangle.
+/// 矩形周长。
 pub fn Rectangle::perimeter(self : Rectangle) -> Double {
   2.0 * (self.max_x - self.min_x + (self.max_y - self.min_y))
 }
 
 ///|
 /// Width of the rectangle.
+/// 矩形宽度。
 pub fn Rectangle::width(self : Rectangle) -> Double {
   self.max_x - self.min_x
 }
 
 ///|
 /// Height of the rectangle.
+/// 矩形高度。
 pub fn Rectangle::height(self : Rectangle) -> Double {
   self.max_y - self.min_y
 }
@@ -258,6 +272,7 @@ pub fn Rectangle::union(self : Rectangle, other : Rectangle) -> Rectangle {
 
 ///|
 /// Intersection of two rectangles. Returns None if they do not overlap.
+/// 两矩形交集。不重叠时返回 None。
 pub fn Rectangle::intersection(
   self : Rectangle,
   other : Rectangle,

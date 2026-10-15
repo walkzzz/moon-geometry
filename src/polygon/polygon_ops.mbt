@@ -1,7 +1,7 @@
 ///|
 /// Signed area of a polygon using the Shoelace formula.
 /// Positive for counter-clockwise, negative for clockwise.
-pub fn polygon_signed_area(poly : Polygon) -> Double {
+pub fn polygon_signed_area(poly : @core.Polygon) -> Double {
   let verts = poly.vertices
   let n = verts.length()
   if n < 3 {
@@ -17,13 +17,14 @@ pub fn polygon_signed_area(poly : Polygon) -> Double {
 
 ///|
 /// Absolute area of a polygon (Shoelace formula).
-pub fn polygon_area(poly : Polygon) -> Double {
+pub fn polygon_area(poly : @core.Polygon) -> Double {
   polygon_signed_area(poly).abs()
 }
 
 ///|
 /// Perimeter of a polygon.
-pub fn polygon_perimeter(poly : Polygon) -> Double {
+/// 多边形周长。
+pub fn polygon_perimeter(poly : @core.Polygon) -> Double {
   let verts = poly.vertices
   let n = verts.length()
   if n < 2 {
@@ -40,17 +41,18 @@ pub fn polygon_perimeter(poly : Polygon) -> Double {
 ///|
 /// Centroid of a polygon using the weighted-area method.
 /// Returns the origin for degenerate polygons.
-pub fn polygon_centroid(poly : Polygon) -> Point2D {
+/// 退化多边形返回原点。
+pub fn polygon_centroid(poly : @core.Polygon) -> @core.Point2D {
   let verts = poly.vertices
   let n = verts.length()
   if n == 0 {
-    return Point2D::new(0.0, 0.0)
+    return @core.Point2D::new(0.0, 0.0)
   }
   if n == 1 {
     return verts[0]
   }
   if n == 2 {
-    return Point2D::new(
+    return @core.Point2D::new(
       (verts[0].x + verts[1].x) / 2.0,
       (verts[0].y + verts[1].y) / 2.0,
     )
@@ -73,27 +75,28 @@ pub fn polygon_centroid(poly : Polygon) -> Point2D {
       sx += v.x
       sy += v.y
     }
-    return Point2D::new(sx / n.to_double(), sy / n.to_double())
+    return @core.Point2D::new(sx / n.to_double(), sy / n.to_double())
   }
-  Point2D::new(cx / (3.0 * area2), cy / (3.0 * area2))
+  @core.Point2D::new(cx / (3.0 * area2), cy / (3.0 * area2))
 }
 
 ///|
-/// Orientation of a polygon (CW / CCW / Collinear) based on signed area.
-pub fn polygon_orientation(poly : Polygon) -> Orientation {
+/// @core.Orientation of a polygon (CW / CCW / @core.Collinear) based on signed area.
+pub fn polygon_orientation(poly : @core.Polygon) -> @core.Orientation {
   let a = polygon_signed_area(poly)
   if a > 0.0 {
-    CounterClockwise
+    @core.CounterClockwise
   } else if a < 0.0 {
-    Clockwise
+    @core.Clockwise
   } else {
-    Collinear
+    @core.Collinear
   }
 }
 
 ///|
 /// Whether a polygon is convex.
-pub fn is_convex(poly : Polygon) -> Bool {
+/// 多边形是否为凸。
+pub fn is_convex(poly : @core.Polygon) -> Bool {
   let verts = poly.vertices
   let n = verts.length()
   if n < 3 {
@@ -125,7 +128,7 @@ pub fn is_convex(poly : Polygon) -> Bool {
 ///|
 /// Ray-casting point-in-polygon test.
 /// Returns true if the point lies inside or on the boundary.
-pub fn point_in_polygon(p : Point2D, poly : Polygon) -> Bool {
+pub fn point_in_polygon(p : @core.Point2D, poly : @core.Polygon) -> Bool {
   let verts = poly.vertices
   let n = verts.length()
   if n == 0 {
@@ -149,7 +152,7 @@ pub fn point_in_polygon(p : Point2D, poly : Polygon) -> Bool {
 
 ///|
 /// Perpendicular distance from point p to line segment (a, b).
-fn point_segment_dist(p : Point2D, a : Point2D, b : Point2D) -> Double {
+fn point_segment_dist(p : @core.Point2D, a : @core.Point2D, b : @core.Point2D) -> Double {
   let dx = b.x - a.x
   let dy = b.y - a.y
   let len_sq = dx * dx + dy * dy
@@ -158,14 +161,15 @@ fn point_segment_dist(p : Point2D, a : Point2D, b : Point2D) -> Double {
   }
   let t = ((p.x - a.x) * dx + (p.y - a.y) * dy) / len_sq
   let tc = if t < 0.0 { 0.0 } else if t > 1.0 { 1.0 } else { t }
-  let proj = Point2D::new(a.x + tc * dx, a.y + tc * dy)
+  let proj = @core.Point2D::new(a.x + tc * dx, a.y + tc * dy)
   p.dist(proj)
 }
 
 ///|
 /// Douglas-Peucker polygon simplification.
 /// Returns a simplified vertex array preserving shape within `epsilon`.
-pub fn simplify_polygon(poly : Polygon, epsilon : Double) -> Array[Point2D] {
+/// 返回在 `epsilon` 精度内保持形状的简化顶点数组。
+pub fn simplify_polygon(poly : @core.Polygon, epsilon : Double) -> Array[@core.Point2D] {
   let verts = poly.vertices
   let n = verts.length()
   if n <= 2 {
@@ -175,7 +179,7 @@ pub fn simplify_polygon(poly : Polygon, epsilon : Double) -> Array[Point2D] {
   keep[0] = true
   keep[n - 1] = true
   dp_recursive(verts, 0, n - 1, epsilon, keep)
-  let result : Array[Point2D] = []
+  let result : Array[@core.Point2D] = []
   for i in 0..<n {
     if keep[i] {
       result.push(verts[i])
@@ -187,7 +191,7 @@ pub fn simplify_polygon(poly : Polygon, epsilon : Double) -> Array[Point2D] {
 ///|
 /// Recursive core of Douglas-Peucker.
 fn dp_recursive(
-  pts : Array[Point2D],
+  pts : Array[@core.Point2D],
   start : Int,
   end : Int,
   epsilon : Double,
