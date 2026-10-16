@@ -6,6 +6,63 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
 Moon Geometry 的所有重要变更记录于此。
 格式基于 [Keep a Changelog](https://keepachangelog.com/)。
 
+## [0.233.0] - 2026-10-16
+
+### Added — Phase 13-16 Extension Modules | 扩展模块（40 个模块）
+
+#### Phase 13: Computational Algebraic Geometry | 计算代数几何（10 模块）
+- **Gröbner Basis** (`grobner_basis`)：多项式 Gröbner 基计算
+- **Polynomial Ideal** (`polynomial_ideal`)：多项式理想运算
+- **Algebraic Variety** (`algebraic_variety`)：代数簇求解
+- **Rational Map** (`rational_map`)：有理映射
+- **Intersection Theory** (`intersection_theory`)：相交理论
+- **Chow Ring** (`chow_ring`)：Chow 环
+- **Hilbert Function** (`hilbert_function`)：Hilbert 函数
+- **Bézout Theorem** (`bezout_theorem`)：Bézout 定理
+- **Multiplicity** (`multiplicity`)：相交重数
+- **Elimination Ideal** (`elimination_ideal`)：消元理想
+
+#### Phase 14: Differential Geometry & Discrete Surfaces | 微分几何与离散曲面（10 模块）
+- **Discrete Curvature** (`discrete_curvature`)：离散曲率
+- **Gauss-Bonnet** (`gauss_bonnet`)：Gauss-Bonnet 定理
+- **Geodesic Distance** (`geodesic_dist`)：测地距离
+- **Discrete Laplacian** (`discrete_laplacian`)：离散 Laplacian
+- **Harmonic Map** (`harmonic_map`)：调和映射
+- **Conformal Map** (`conformal_map`)：共形映射
+- **Surface Ricci Flow** (`surface_ricci`)：曲面 Ricci 流
+- **Discrete Yamabe** (`discrete_yamabe`)：离散 Yamabe 流
+- **Willmore Energy** (`willmore_energy`)：Willmore 能量
+- **Minimal Surface** (`minimal_surface`)：极小曲面
+
+#### Phase 15: Persistent Topology Applications | 持久拓扑应用（10 模块）
+- **Persistence Diagram** (`persistence_diagram`)：持久图
+- **Bottleneck Distance** (`bottleneck_dist`)：瓶颈距离
+- **Wasserstein Distance** (`wasserstein_dist`)：Wasserstein 距离
+- **Persistence Landscape** (`persistence_landscape`)：持久景观
+- **Persistence Image** (`persistence_image`)：持久图像
+- **Mapper Algorithm** (`mapper_algo`)：Mapper 算法
+- **Zigzag Persistence** (`zigzag_persistence`)：Zigzag 持久同调
+- **Multidimensional Persistence** (`multidim_persistence`)：多维持久同调
+- **Sheaf Theory** (`sheaf_theory`)：层论
+- **TDA Features** (`tda_features`)：TDA 特征提取
+
+#### Phase 16: Advanced Numerical Methods | 高级数值方法（10 模块）
+- **Spectral Method** (`spectral_method`)：谱方法
+- **Finite Element** (`finite_element`)：有限元方法
+- **Boundary Element** (`boundary_element`)：边界元方法
+- **Meshfree Method** (`meshfree_method`)：无网格方法
+- **Level Set** (`level_set`)：水平集方法
+- **Fast Marching** (`fast_marching`)：快速行进法
+- **Fast Sweeping** (`fast_sweeping`)：快速扫描法
+- **Lattice Boltzmann** (`lattice_boltzmann`)：格子 Boltzmann 方法
+- **Discontinuous Galerkin** (`discontinuous_galerkin`)：间断 Galerkin 方法
+- **Radial Basis** (`radial_basis`)：径向基函数
+
+### Changed
+- reexport.mbt 新增 626 行（9122 → 9748）
+- 测试数 2080 → 2196，四目标 8320 → 8784 次全绿
+- 模块数 276 → 316
+
 ## [0.232.0] - 2026-10-16
 
 ### Added — Phase 9-12 Extension Modules | 扩展模块（40 个模块）

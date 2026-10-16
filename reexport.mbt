@@ -9120,3 +9120,629 @@ pub fn soc_dual(y : Array[Double], s : Double) -> Bool {
 pub fn soc_slack(x : Array[Double], t : Double) -> Double {
   @socp.soc_slack(x, t)
 }
+
+// ========== grobner_basis ==========
+pub type Polynomial = @grobner_basis.Polynomial
+pub fn gb_poly_degree(p : Polynomial) -> Int {
+  @grobner_basis.poly_degree(p)
+}
+pub fn poly_lead_coeff(p : Polynomial) -> Double {
+  @grobner_basis.poly_lead_coeff(p)
+}
+pub fn poly_s_divide(a : Polynomial, b : Polynomial) -> Polynomial {
+  @grobner_basis.poly_s_divide(a, b)
+}
+pub fn gb_poly_sub(a : Polynomial, b : Polynomial) -> Polynomial {
+  @grobner_basis.poly_sub(a, b)
+}
+pub fn poly_is_reduced(p : Polynomial) -> Bool {
+  @grobner_basis.poly_is_reduced(p)
+}
+
+// ========== polynomial_ideal ==========
+pub fn ideal_membership(p : @grobner_basis.Polynomial, generators : Array[@grobner_basis.Polynomial]) -> Bool {
+  @polynomial_ideal.ideal_membership(p, generators)
+}
+pub fn ideal_dimension(generators : Array[@grobner_basis.Polynomial]) -> Int {
+  @polynomial_ideal.ideal_dimension(generators)
+}
+pub fn ideal_is_zero(generators : Array[@grobner_basis.Polynomial]) -> Bool {
+  @polynomial_ideal.ideal_is_zero(generators)
+}
+pub fn ideal_generator_count(generators : Array[@grobner_basis.Polynomial]) -> Int {
+  @polynomial_ideal.ideal_generator_count(generators)
+}
+
+// ========== algebraic_variety ==========
+pub fn variety_dimension(n_vars : Int, n_equations : Int) -> Int {
+  @algebraic_variety.variety_dimension(n_vars, n_equations)
+}
+pub fn variety_is_empty(n_solutions : Int) -> Bool {
+  @algebraic_variety.variety_is_empty(n_solutions)
+}
+pub fn variety_is_finite(dimension : Int) -> Bool {
+  @algebraic_variety.variety_is_finite(dimension)
+}
+pub fn variety_degree(n_vars : Int, degrees : Array[Int]) -> Int {
+  @algebraic_variety.variety_degree(n_vars, degrees)
+}
+pub fn variety_count_real_roots(approx_roots : Array[Double], tol : Double) -> Int {
+  @algebraic_variety.variety_count_real_roots(approx_roots, tol)
+}
+
+// ========== rational_map ==========
+pub type RationalMap = @rational_map.RationalMap
+pub fn rational_eval(m : RationalMap, x : Double) -> Double {
+  @rational_map.rational_eval(m, x)
+}
+pub fn rational_degree(m : RationalMap) -> Int {
+  @rational_map.rational_degree(m)
+}
+pub fn rational_is_defined(m : RationalMap, x : Double) -> Bool {
+  @rational_map.rational_is_defined(m, x)
+}
+
+// ========== intersection_theory ==========
+pub fn intersection_number(degrees : Array[Int]) -> Int {
+  @intersection_theory.intersection_number(degrees)
+}
+pub fn self_intersection(degree : Int, n : Int) -> Int {
+  @intersection_theory.self_intersection(degree, n)
+}
+pub fn bezout_bound(d1 : Int, d2 : Int) -> Int {
+  @intersection_theory.bezout_bound(d1, d2)
+}
+pub fn excess_intersection(expected : Int, actual : Int) -> Int {
+  @intersection_theory.excess_intersection(expected, actual)
+}
+pub fn is_transverse(codim_sum : Int, ambient_dim : Int) -> Bool {
+  @intersection_theory.is_transverse(codim_sum, ambient_dim)
+}
+
+// ========== chow_ring ==========
+pub fn chow_ring_dim(n : Int) -> Int {
+  @chow_ring.chow_ring_dim(n)
+}
+pub fn chow_product(a_deg : Int, b_deg : Int, n : Int) -> Int {
+  @chow_ring.chow_product(a_deg, b_deg, n)
+}
+pub fn chow_class_degree(k : Int, n : Int) -> Int {
+  @chow_ring.chow_class_degree(k, n)
+}
+pub fn chow_top_class(n : Int) -> Int {
+  @chow_ring.chow_top_class(n)
+}
+pub fn chow_integral(degree : Int, n : Int) -> Int {
+  @chow_ring.chow_integral(degree, n)
+}
+
+// ========== hilbert_function ==========
+pub fn hilbert_function_pn(degree : Int, n : Int) -> Int {
+  @hilbert_function.hilbert_function_pn(degree, n)
+}
+pub fn hilbert_series_coeff(degree : Int, n : Int) -> Int {
+  @hilbert_function.hilbert_series_coeff(degree, n)
+}
+pub fn hilbert_polynomial_eval(t : Int, degree : Int, n : Int) -> Int {
+  @hilbert_function.hilbert_polynomial_eval(t, degree, n)
+}
+pub fn hilbert_regularity(n : Int) -> Int {
+  @hilbert_function.hilbert_regularity(n)
+}
+pub fn hilbert_multiplicity(degree : Int, n : Int) -> Int {
+  @hilbert_function.hilbert_multiplicity(degree, n)
+}
+
+// ========== bezout_theorem ==========
+pub fn bezout_count(d1 : Int, d2 : Int) -> Int {
+  @bezout_theorem.bezout_count(d1, d2)
+}
+pub fn bezout_with_multiplicities(degrees : Array[Int]) -> Int {
+  @bezout_theorem.bezout_with_multiplicities(degrees)
+}
+pub fn bezout_excess(expected : Int, found : Int) -> Int {
+  @bezout_theorem.bezout_excess(expected, found)
+}
+pub fn bezout_in_pn(degrees : Array[Int], n : Int) -> Int {
+  @bezout_theorem.bezout_in_pn(degrees, n)
+}
+pub fn is_bezout_satisfied(expected : Int, actual : Int) -> Bool {
+  @bezout_theorem.is_bezout_satisfied(expected, actual)
+}
+
+// ========== multiplicity ==========
+pub fn intersection_multiplicity(order_a : Int, order_b : Int) -> Int {
+  @multiplicity.intersection_multiplicity(order_a, order_b)
+}
+pub fn tangency_multiplicity(contact_order : Int) -> Int {
+  @multiplicity.tangency_multiplicity(contact_order)
+}
+pub fn total_multiplicity(local_mults : Array[Int]) -> Int {
+  @multiplicity.total_multiplicity(local_mults)
+}
+pub fn is_simple_intersection(mult : Int) -> Bool {
+  @multiplicity.is_simple_intersection(mult)
+}
+pub fn multiplicity_from_tangent(tangent_dot : Double, tol : Double) -> Int {
+  @multiplicity.multiplicity_from_tangent(tangent_dot, tol)
+}
+
+// ========== elimination_ideal ==========
+pub fn eliminate_variable(n_vars : Int, var_index : Int) -> Int {
+  @elimination_ideal.eliminate_variable(n_vars, var_index)
+}
+pub fn elimination_order(n_vars : Int, eliminate_count : Int) -> Int {
+  @elimination_ideal.elimination_order(n_vars, eliminate_count)
+}
+pub fn projection_dimension(variety_dim : Int, eliminate_count : Int) -> Int {
+  @elimination_ideal.projection_dimension(variety_dim, eliminate_count)
+}
+pub fn closure_is_proper(fiber_dim : Int) -> Bool {
+  @elimination_ideal.closure_is_proper(fiber_dim)
+}
+pub fn extension_exists(generic_fiber_nonempty : Bool) -> Bool {
+  @elimination_ideal.extension_exists(generic_fiber_nonempty)
+}
+
+// ========== discrete_curvature ==========
+pub fn discrete_gaussian_curvature(angle_defect : Double) -> Double {
+  @discrete_curvature.discrete_gaussian_curvature(angle_defect)
+}
+pub fn discrete_mean_curvature(area : Double, edge_lengths : Array[Double], dihedral_angles : Array[Double]) -> Double {
+  @discrete_curvature.discrete_mean_curvature(area, edge_lengths, dihedral_angles)
+}
+pub fn angle_defect(angles : Array[Double]) -> Double {
+  @discrete_curvature.angle_defect(angles)
+}
+pub fn voronoi_area(edge_len : Double) -> Double {
+  @discrete_curvature.voronoi_area(edge_len)
+}
+pub fn mixed_area(a1 : Double, a2 : Double) -> Double {
+  @discrete_curvature.mixed_area(a1, a2)
+}
+
+// ========== gauss_bonnet ==========
+pub fn gauss_bonnet_check(total_curvature : Double, euler_char : Int) -> Bool {
+  @gauss_bonnet.gauss_bonnet_check(total_curvature, euler_char)
+}
+pub fn euler_from_curvature(total_curvature : Double) -> Int {
+  @gauss_bonnet.euler_from_curvature(total_curvature)
+}
+pub fn total_gaussian_curvature(angle_defects : Array[Double]) -> Double {
+  @gauss_bonnet.total_gaussian_curvature(angle_defects)
+}
+pub fn boundary_correction(boundary_angles : Array[Double]) -> Double {
+  @gauss_bonnet.boundary_correction(boundary_angles)
+}
+pub fn gauss_bonnet_with_boundary(interior_curv : Double, boundary_corr : Double, euler_char : Int) -> Bool {
+  @gauss_bonnet.gauss_bonnet_with_boundary(interior_curv, boundary_corr, euler_char)
+}
+
+// ========== geodesic_dist ==========
+pub fn euclidean_fallback(a : @core.Point3D, b : @core.Point3D) -> Double {
+  @geodesic_dist.euclidean_fallback(a, b)
+}
+pub fn dijkstra_geodesic(n : Int, adj : Array[(Int, Int, Double)], source : Int, target : Int) -> Double {
+  @geodesic_dist.dijkstra_geodesic(n, adj, source, target)
+}
+pub fn geodesic_lower_bound(a : @core.Point3D, b : @core.Point3D) -> Double {
+  @geodesic_dist.geodesic_lower_bound(a, b)
+}
+pub fn heat_method_step(dist : Array[Double], t : Double) -> Double {
+  @geodesic_dist.heat_method_step(dist, t)
+}
+
+// ========== discrete_laplacian ==========
+pub fn uniform_laplacian(values : Array[Double], neighbors : Array[Double]) -> Double {
+  @discrete_laplacian.uniform_laplacian(values, neighbors)
+}
+pub fn cotangent_weight(cot_a : Double, cot_b : Double) -> Double {
+  @discrete_laplacian.cotangent_weight(cot_a, cot_b)
+}
+pub fn cotangent_laplacian(center_val : Double, neighbor_vals : Array[Double], weights : Array[Double]) -> Double {
+  @discrete_laplacian.cotangent_laplacian(center_val, neighbor_vals, weights)
+}
+pub fn laplacian_eigenvalue(mode : Int, area : Double) -> Double {
+  @discrete_laplacian.laplacian_eigenvalue(mode, area)
+}
+pub fn is_harmonic(laplacian_val : Double, tol : Double) -> Bool {
+  @discrete_laplacian.is_harmonic(laplacian_val, tol)
+}
+
+// ========== harmonic_map ==========
+pub fn dirichlet_energy(values : Array[Double], neighbors : Array[Array[Double]]) -> Double {
+  @harmonic_map.dirichlet_energy(values, neighbors)
+}
+pub fn harmonic_residual(laplacian_values : Array[Double]) -> Double {
+  @harmonic_map.harmonic_residual(laplacian_values)
+}
+pub fn is_harmonic_map(residual : Double, tol : Double) -> Bool {
+  @harmonic_map.is_harmonic_map(residual, tol)
+}
+pub fn map_energy(dirichlet : Double, area : Double) -> Double {
+  @harmonic_map.map_energy(dirichlet, area)
+}
+pub fn hm_laplacian_smooth(values : Array[Double], laplacian : Array[Double], lambda : Double) -> Array[Double] {
+  @harmonic_map.laplacian_smooth(values, laplacian, lambda)
+}
+
+// ========== conformal_map ==========
+pub fn conformal_factor(scale_x : Double, scale_y : Double) -> Double {
+  @conformal_map.conformal_factor(scale_x, scale_y)
+}
+pub fn is_conformal(j11 : Double, j12 : Double, j21 : Double, j22 : Double, tol : Double) -> Bool {
+  @conformal_map.is_conformal(j11, j12, j21, j22, tol)
+}
+pub fn conformal_energy(stretch_u : Double, stretch_v : Double) -> Double {
+  @conformal_map.conformal_energy(stretch_u, stretch_v)
+}
+pub fn angle_distortion(theta_before : Double, theta_after : Double) -> Double {
+  @conformal_map.angle_distortion(theta_before, theta_after)
+}
+pub fn cm_area_distortion(area_before : Double, area_after : Double) -> Double {
+  @conformal_map.area_distortion(area_before, area_after)
+}
+
+// ========== surface_ricci ==========
+pub fn ricci_flow_step(curvatures : Array[Double], target_curvatures : Array[Double], dt : Double) -> Array[Double] {
+  @surface_ricci.ricci_flow_step(curvatures, target_curvatures, dt)
+}
+pub fn ricci_energy(curvatures : Array[Double], target : Array[Double]) -> Double {
+  @surface_ricci.ricci_energy(curvatures, target)
+}
+pub fn target_curvature_uniform(n : Int, total_curv : Double) -> Array[Double] {
+  @surface_ricci.target_curvature_uniform(n, total_curv)
+}
+pub fn target_curvature_gaussian(n : Int, euler_char : Int) -> Array[Double] {
+  @surface_ricci.target_curvature_gaussian(n, euler_char)
+}
+pub fn ricci_converged(energy : Double, tol : Double) -> Bool {
+  @surface_ricci.ricci_converged(energy, tol)
+}
+
+// ========== discrete_yamabe ==========
+pub fn yamabe_energy(curvatures : Array[Double], target : Double) -> Double {
+  @discrete_yamabe.yamabe_energy(curvatures, target)
+}
+pub fn yamabe_gradient(curvatures : Array[Double], target : Double) -> Array[Double] {
+  @discrete_yamabe.yamabe_gradient(curvatures, target)
+}
+pub fn constant_curvature_target(total_curv : Double, n : Int) -> Double {
+  @discrete_yamabe.constant_curvature_target(total_curv, n)
+}
+pub fn yamabe_flow_step(conformal_factors : Array[Double], gradient : Array[Double], dt : Double) -> Array[Double] {
+  @discrete_yamabe.yamabe_flow_step(conformal_factors, gradient, dt)
+}
+pub fn yamabe_converged(energy : Double, tol : Double) -> Bool {
+  @discrete_yamabe.yamabe_converged(energy, tol)
+}
+
+// ========== willmore_energy ==========
+pub fn willmore_energy(mean_curvatures : Array[Double], areas : Array[Double]) -> Double {
+  @willmore_energy.willmore_energy(mean_curvatures, areas)
+}
+pub fn willmore_gradient(h : Double, area : Double) -> Double {
+  @willmore_energy.willmore_gradient(h, area)
+}
+pub fn willmore_of_sphere(radius : Double) -> Double {
+  @willmore_energy.willmore_of_sphere(radius)
+}
+pub fn willmore_flow_step(curvatures : Array[Double], gradient : Array[Double], dt : Double) -> Array[Double] {
+  @willmore_energy.willmore_flow_step(curvatures, gradient, dt)
+}
+pub fn is_willmore_minimal(gradient_norm : Double, tol : Double) -> Bool {
+  @willmore_energy.is_willmore_minimal(gradient_norm, tol)
+}
+
+// ========== minimal_surface ==========
+pub fn is_minimal(mean_curvature : Double, tol : Double) -> Bool {
+  @minimal_surface.is_minimal(mean_curvature, tol)
+}
+pub fn minimal_surface_energy(area : Double) -> Double {
+  @minimal_surface.minimal_surface_energy(area)
+}
+pub fn area_gradient(mean_curvatures : Array[Double], areas : Array[Double]) -> Array[Double] {
+  @minimal_surface.area_gradient(mean_curvatures, areas)
+}
+pub fn mean_curvature_flow_step(positions : Array[Double], laplacian : Array[Double], dt : Double) -> Array[Double] {
+  @minimal_surface.mean_curvature_flow_step(positions, laplacian, dt)
+}
+pub fn plateau_energy(boundary_length : Double, area : Double) -> Double {
+  @minimal_surface.plateau_energy(boundary_length, area)
+}
+
+// ========== persistence_diagram ==========
+pub type PersistencePoint = @persistence_diagram.PersistencePoint
+pub fn persistence(p : PersistencePoint) -> Double {
+  @persistence_diagram.persistence(p)
+}
+pub fn is_essential(p : PersistencePoint) -> Bool {
+  @persistence_diagram.is_essential(p)
+}
+pub fn diagram_dimension(diagram : Array[PersistencePoint]) -> Int {
+  @persistence_diagram.diagram_dimension(diagram)
+}
+pub fn max_persistence(diagram : Array[PersistencePoint]) -> Double {
+  @persistence_diagram.max_persistence(diagram)
+}
+
+// ========== bottleneck_dist ==========
+pub fn bd_bottleneck_distance(d1 : Array[@persistence_diagram.PersistencePoint], d2 : Array[@persistence_diagram.PersistencePoint]) -> Double {
+  @bottleneck_dist.bottleneck_distance(d1, d2)
+}
+pub fn bottleneck_upper_bound(d1 : Array[@persistence_diagram.PersistencePoint], d2 : Array[@persistence_diagram.PersistencePoint]) -> Double {
+  @bottleneck_dist.bottleneck_upper_bound(d1, d2)
+}
+pub fn bottleneck_lower_bound(d1 : Array[@persistence_diagram.PersistencePoint], d2 : Array[@persistence_diagram.PersistencePoint]) -> Double {
+  @bottleneck_dist.bottleneck_lower_bound(d1, d2)
+}
+
+// ========== wasserstein_dist ==========
+pub fn wasserstein_1_distance(d1 : Array[@persistence_diagram.PersistencePoint], d2 : Array[@persistence_diagram.PersistencePoint]) -> Double {
+  @wasserstein_dist.wasserstein_1_distance(d1, d2)
+}
+pub fn wasserstein_inf_distance(d1 : Array[@persistence_diagram.PersistencePoint], d2 : Array[@persistence_diagram.PersistencePoint]) -> Double {
+  @wasserstein_dist.wasserstein_inf_distance(d1, d2)
+}
+pub fn wasserstein_p_distance(d1 : Array[@persistence_diagram.PersistencePoint], d2 : Array[@persistence_diagram.PersistencePoint], p : Double) -> Double {
+  @wasserstein_dist.wasserstein_p_distance(d1, d2, p)
+}
+
+// ========== persistence_landscape ==========
+pub fn landscape_k(point : @persistence_diagram.PersistencePoint, k : Int, t : Double) -> Double {
+  @persistence_landscape.landscape_k(point, k, t)
+}
+pub fn landscape_sup(point : @persistence_diagram.PersistencePoint) -> Double {
+  @persistence_landscape.landscape_sup(point)
+}
+pub fn landscape_norm_1(diagram : Array[@persistence_diagram.PersistencePoint]) -> Double {
+  @persistence_landscape.landscape_norm_1(diagram)
+}
+pub fn landscape_norm_inf(diagram : Array[@persistence_diagram.PersistencePoint]) -> Double {
+  @persistence_landscape.landscape_norm_inf(diagram)
+}
+
+// ========== persistence_image ==========
+pub fn gaussian_kernel_2d(x : Double, y : Double, mu_x : Double, mu_y : Double, sigma : Double) -> Double {
+  @persistence_image.gaussian_kernel_2d(x, y, mu_x, mu_y, sigma)
+}
+pub fn persistence_image_pixel(point : @persistence_diagram.PersistencePoint, mu_x : Double, mu_y : Double, sigma : Double, weight : Double) -> Double {
+  @persistence_image.persistence_image_pixel(point, mu_x, mu_y, sigma, weight)
+}
+pub fn persistence_image_vector(diagram : Array[@persistence_diagram.PersistencePoint], pixels : Array[(Double, Double)], sigma : Double) -> Array[Double] {
+  @persistence_image.persistence_image_vector(diagram, pixels, sigma)
+}
+pub fn image_norm(image : Array[Double]) -> Double {
+  @persistence_image.image_norm(image)
+}
+
+// ========== mapper_algo ==========
+pub fn mapper_cover(values : Array[Double], n_intervals : Int, overlap : Double) -> Array[(Double, Double)] {
+  @mapper_algo.mapper_cover(values, n_intervals, overlap)
+}
+pub fn mapper_cluster(points : Array[Double], interval : (Double, Double)) -> Array[Int] {
+  @mapper_algo.mapper_cluster(points, interval)
+}
+pub fn mapper_graph_nodes(cover : Array[(Double, Double)], points : Array[Double]) -> Int {
+  @mapper_algo.mapper_graph_nodes(cover, points)
+}
+
+// ========== zigzag_persistence ==========
+pub fn zigzag_intervals(births : Array[Int], deaths : Array[Int]) -> Array[(Int, Int)] {
+  @zigzag_persistence.zigzag_intervals(births, deaths)
+}
+pub fn zigzag_length(interval : (Int, Int)) -> Int {
+  @zigzag_persistence.zigzag_length(interval)
+}
+pub fn zigzag_max_length(intervals : Array[(Int, Int)]) -> Int {
+  @zigzag_persistence.zigzag_max_length(intervals)
+}
+pub fn zigzag_total_betti(intervals : Array[(Int, Int)]) -> Int {
+  @zigzag_persistence.zigzag_total_betti(intervals)
+}
+
+// ========== multidim_persistence ==========
+pub fn multidim_barcode(births : Array[(Double, Double)], deaths : Array[(Double, Double)]) -> Array[((Double, Double), (Double, Double))] {
+  @multidim_persistence.multidim_barcode(births, deaths)
+}
+pub fn multidim_persistence(barcode : Array[((Double, Double), (Double, Double))]) -> Array[Double] {
+  @multidim_persistence.multidim_persistence(barcode)
+}
+pub fn hilbert_function_md(grades : Array[(Int, Int)]) -> Int {
+  @multidim_persistence.hilbert_function_md(grades)
+}
+pub fn rank_invariant(birth : (Int, Int), death : (Int, Int)) -> Int {
+  @multidim_persistence.rank_invariant(birth, death)
+}
+
+// ========== sheaf_theory ==========
+pub fn sheaf_rank(stalk_ranks : Array[Int]) -> Int {
+  @sheaf_theory.sheaf_rank(stalk_ranks)
+}
+pub fn sheaf_cohomology_dim(c0_dim : Int, c1_dim : Int, c2_dim : Int) -> (Int, Int) {
+  @sheaf_theory.sheaf_cohomology_dim(c0_dim, c1_dim, c2_dim)
+}
+pub fn euler_characteristic_sheaf(h0 : Int, h1 : Int, h2 : Int) -> Int {
+  @sheaf_theory.euler_characteristic_sheaf(h0, h1, h2)
+}
+pub fn is_locally_constant(restriction_ranks : Array[Int]) -> Bool {
+  @sheaf_theory.is_locally_constant(restriction_ranks)
+}
+pub fn sheaf_pushforward_rank(original_rank : Int, map_degree : Int) -> Int {
+  @sheaf_theory.sheaf_pushforward_rank(original_rank, map_degree)
+}
+
+// ========== tda_features ==========
+pub fn tda_total_persistence(diagram : Array[@persistence_diagram.PersistencePoint]) -> Double {
+  @tda_features.tda_total_persistence(diagram)
+}
+pub fn tda_max_persistence(diagram : Array[@persistence_diagram.PersistencePoint]) -> Double {
+  @tda_features.tda_max_persistence(diagram)
+}
+pub fn tda_feature_vector(diagram : Array[@persistence_diagram.PersistencePoint]) -> Array[Double] {
+  @tda_features.tda_feature_vector(diagram)
+}
+pub fn tda_amplitude(diagram : Array[@persistence_diagram.PersistencePoint], p : Double) -> Double {
+  @tda_features.tda_amplitude(diagram, p)
+}
+
+// ========== spectral_method ==========
+pub fn chebyshev_node(n : Int, i : Int) -> Double {
+  @spectral_method.chebyshev_node(n, i)
+}
+pub fn chebyshev_weight(n : Int, i : Int) -> Double {
+  @spectral_method.chebyshev_weight(n, i)
+}
+pub fn fourier_coeff(f_values : Array[Double], k : Int) -> Double {
+  @spectral_method.fourier_coeff(f_values, k)
+}
+pub fn spectral_derivative(coeffs : Array[Double], x : Double) -> Double {
+  @spectral_method.spectral_derivative(coeffs, x)
+}
+pub fn spectral_interp(coeffs : Array[Double], x : Double) -> Double {
+  @spectral_method.spectral_interp(coeffs, x)
+}
+
+// ========== finite_element ==========
+pub fn element_stiffness(grad_u : (Double, Double), grad_v : (Double, Double), area : Double) -> Double {
+  @finite_element.element_stiffness(grad_u, grad_v, area)
+}
+pub fn element_mass(u_val : Double, v_val : Double, area : Double) -> Double {
+  @finite_element.element_mass(u_val, v_val, area)
+}
+pub fn assemble_stiffness(n : Int, elements : Array[(Int, Int, Int, Double)]) -> Array[Array[Double]] {
+  @finite_element.assemble_stiffness(n, elements)
+}
+pub fn apply_dirichlet(k : Array[Array[Double]], boundary_nodes : Array[Int]) -> Array[Array[Double]] {
+  @finite_element.apply_dirichlet(k, boundary_nodes)
+}
+pub fn fem_l2_error(exact : Array[Double], approx : Array[Double]) -> Double {
+  @finite_element.fem_l2_error(exact, approx)
+}
+
+// ========== boundary_element ==========
+pub fn fundamental_solution_2d(r : Double) -> Double {
+  @boundary_element.fundamental_solution_2d(r)
+}
+pub fn boundary_integral_kernel(r : Double, normal_dist : Double) -> Double {
+  @boundary_element.boundary_integral_kernel(r, normal_dist)
+}
+pub fn bem_matrix_entry(r : Double, weight : Double) -> Double {
+  @boundary_element.bem_matrix_entry(r, weight)
+}
+pub fn bem_solve(matrix : Array[Array[Double]], rhs : Array[Double]) -> Array[Double] {
+  @boundary_element.bem_solve(matrix, rhs)
+}
+pub fn bem_error(exact : Array[Double], approx : Array[Double]) -> Double {
+  @boundary_element.bem_error(exact, approx)
+}
+
+// ========== meshfree_method ==========
+pub fn sph_kernel(r : Double, h : Double) -> Double {
+  @meshfree_method.sph_kernel(r, h)
+}
+pub fn sph_kernel_gradient(r : Double, h : Double) -> Double {
+  @meshfree_method.sph_kernel_gradient(r, h)
+}
+pub fn rbf_gaussian(r : Double, eps : Double) -> Double {
+  @meshfree_method.rbf_gaussian(r, eps)
+}
+pub fn rbf_multiquadric(r : Double, eps : Double) -> Double {
+  @meshfree_method.rbf_multiquadric(r, eps)
+}
+pub fn rbf_thin_plate_spline(r : Double) -> Double {
+  @meshfree_method.rbf_thin_plate_spline(r)
+}
+
+// ========== level_set ==========
+pub fn level_set_sign(phi : Double) -> Int {
+  @level_set.level_set_sign(phi)
+}
+pub fn level_set_normal(grad_phi : (Double, Double)) -> (Double, Double) {
+  @level_set.level_set_normal(grad_phi)
+}
+pub fn level_set_curvature(grad : (Double, Double), hessian : (Double, Double, Double)) -> Double {
+  @level_set.level_set_curvature(grad, hessian)
+}
+pub fn reinitialize_step(phi : Double, dt : Double, s0 : Int) -> Double {
+  @level_set.reinitialize_step(phi, dt, s0)
+}
+pub fn level_set_area(phi : Array[Double], dx : Double) -> Double {
+  @level_set.level_set_area(phi, dx)
+}
+
+// ========== fast_marching ==========
+pub fn solve_eikonal_2d(u_left : Double, u_down : Double, f : Double, h : Double) -> Double {
+  @fast_marching.solve_eikonal_2d(u_left, u_down, f, h)
+}
+pub fn fast_marching_step(narrow_band : Array[(Int, Double)], f : Double, h : Double) -> Array[(Int, Double)] {
+  @fast_marching.fast_marching_step(narrow_band, f, h)
+}
+pub fn is_far(value : Double) -> Bool {
+  @fast_marching.is_far(value)
+}
+pub fn is_frozen(value : Double) -> Bool {
+  @fast_marching.is_frozen(value)
+}
+
+// ========== fast_sweeping ==========
+pub fn sweep_update(u_center : Double, u_neighbor1 : Double, u_neighbor2 : Double, f : Double, h : Double) -> Double {
+  @fast_sweeping.sweep_update(u_center, u_neighbor1, u_neighbor2, f, h)
+}
+pub fn fast_sweeping_iterate(u : Array[Double], f : Array[Double], h : Double, nx : Int, ny : Int) -> Array[Double] {
+  @fast_sweeping.fast_sweeping_iterate(u, f, h, nx, ny)
+}
+pub fn sweeping_converged(u_old : Array[Double], u_new : Array[Double], tol : Double) -> Bool {
+  @fast_sweeping.sweeping_converged(u_old, u_new, tol)
+}
+
+// ========== lattice_boltzmann ==========
+pub fn equilibrium_dist(rho : Double, u : Double, w : Double, cx : Double) -> Double {
+  @lattice_boltzmann.equilibrium_dist(rho, u, w, cx)
+}
+pub fn collide(f : Double, f_eq : Double, tau : Double) -> Double {
+  @lattice_boltzmann.collide(f, f_eq, tau)
+}
+pub fn compute_density(dists : Array[Double]) -> Double {
+  @lattice_boltzmann.compute_density(dists)
+}
+pub fn compute_velocity(dists : Array[Double], velocities : Array[Double]) -> Double {
+  @lattice_boltzmann.compute_velocity(dists, velocities)
+}
+pub fn relaxation_time(nu : Double, dt : Double, dx : Double) -> Double {
+  @lattice_boltzmann.relaxation_time(nu, dt, dx)
+}
+
+// ========== discontinuous_galerkin ==========
+pub fn dg_mass_matrix(h : Double, p : Int) -> Double {
+  @discontinuous_galerkin.dg_mass_matrix(h, p)
+}
+pub fn dg_stiffness_matrix(h : Double, p : Int) -> Double {
+  @discontinuous_galerkin.dg_stiffness_matrix(h, p)
+}
+pub fn dg_numerical_flux(u_left : Double, u_right : Double, alpha : Double) -> Double {
+  @discontinuous_galerkin.dg_numerical_flux(u_left, u_right, alpha)
+}
+pub fn dg_lax_friedrichs_flux(f_left : Double, f_right : Double, u_left : Double, u_right : Double, alpha : Double) -> Double {
+  @discontinuous_galerkin.dg_lax_friedrichs_flux(f_left, f_right, u_left, u_right, alpha)
+}
+pub fn dg_error_estimate(element_error : Double, h : Double, p : Int) -> Double {
+  @discontinuous_galerkin.dg_error_estimate(element_error, h, p)
+}
+
+// ========== radial_basis ==========
+pub fn rbf_interpolate_gaussian(r : Double, eps : Double) -> Double {
+  @radial_basis.rbf_interpolate_gaussian(r, eps)
+}
+pub fn rbf_interpolate_multiquadric(r : Double, eps : Double) -> Double {
+  @radial_basis.rbf_interpolate_multiquadric(r, eps)
+}
+pub fn rbf_interpolate_inverse_multiquadric(r : Double, eps : Double) -> Double {
+  @radial_basis.rbf_interpolate_inverse_multiquadric(r, eps)
+}
+pub fn rbf_interpolate_polyharmonic(r : Double, k : Int) -> Double {
+  @radial_basis.rbf_interpolate_polyharmonic(r, k)
+}
+pub fn rbf_condition_number_estimate(centers : Array[(Double, Double)], eps : Double) -> Double {
+  @radial_basis.rbf_condition_number_estimate(centers, eps)
+}

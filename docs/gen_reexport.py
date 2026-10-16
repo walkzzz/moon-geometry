@@ -10,7 +10,19 @@ MODULES = [
     "exact_predicates", "interval_arithmetic", "filtered_predicates", "perturbation",
     "robust_construction", "big_rational", "de9im", "lazy_exact", "rounded_geometry", "affine_arithmetic",
     "nsga2", "pareto_front", "bayesian_opt", "cmaes", "trust_region", "sqp", "augmented_lagrangian",
-    "branch_bound", "sdp", "socp"
+    "branch_bound", "sdp", "socp",
+    "grobner_basis", "polynomial_ideal", "algebraic_variety", "rational_map",
+    "intersection_theory", "chow_ring", "hilbert_function", "bezout_theorem",
+    "multiplicity", "elimination_ideal",
+    "discrete_curvature", "gauss_bonnet", "geodesic_dist", "discrete_laplacian",
+    "harmonic_map", "conformal_map", "surface_ricci", "discrete_yamabe",
+    "willmore_energy", "minimal_surface",
+    "persistence_diagram", "bottleneck_dist", "wasserstein_dist", "persistence_landscape",
+    "persistence_image", "mapper_algo", "zigzag_persistence", "multidim_persistence",
+    "sheaf_theory", "tda_features",
+    "spectral_method", "finite_element", "boundary_element", "meshfree_method",
+    "level_set", "fast_marching", "fast_sweeping", "lattice_boltzmann",
+    "discontinuous_galerkin", "radial_basis",
 ]
 
 TYPE_CONFLICTS = {
@@ -27,6 +39,11 @@ CONFLICTS = {
     ("sdp", "matrix_trace"): "sdp_matrix_trace",
     ("curvature_est", "principal_curvatures"): "pc_principal_curvatures",
     ("voxel_grid", "voxel_index"): "vg_voxel_index",
+    ("conformal_map", "area_distortion"): "cm_area_distortion",
+    ("bottleneck_dist", "bottleneck_distance"): "bd_bottleneck_distance",
+    ("harmonic_map", "laplacian_smooth"): "hm_laplacian_smooth",
+    ("grobner_basis", "poly_degree"): "gb_poly_degree",
+    ("grobner_basis", "poly_sub"): "gb_poly_sub",
 }
 
 output = []
