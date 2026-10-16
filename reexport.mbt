@@ -4877,3 +4877,158 @@ pub fn count_line_inliers(
 ) -> Int {
   @ransac.count_line_inliers(pts, a, b, threshold)
 }
+///|
+/// === Phase 1: 3D Geometry & Polyhedra ===
+
+pub type AABB3D = @aabb3d.AABB3D
+pub type BoundingSphere = @bounding_sphere.BoundingSphere
+pub type OBB = @obb.OBB
+pub type MeshQualityMetrics = @mesh_quality.MeshQualityMetrics
+pub type Polyhedron = @polyhedron.Polyhedron
+pub type MeshRepairResult = @mesh_repair.MeshRepairResult
+pub type UV = @mesh_param.UV
+pub type MeshParamResult = @mesh_param.MeshParamResult
+pub type BoolOp = @mesh_boolean.BoolOp
+pub type MeshBoolResult = @mesh_boolean.MeshBoolResult
+pub type PolyBoolResult = @polyhedron_boolean.PolyBoolResult
+pub type DynamicHull3D = @convex_hull_3d_dynamic.DynamicHull3D
+
+pub fn min_bounding_sphere(points : Array[Point3D]) -> BoundingSphere {
+  @bounding_sphere.min_bounding_sphere(points)
+}
+
+pub fn obb_from_points(points : Array[Point3D]) -> OBB {
+  @obb.obb_from_points(points)
+}
+
+pub fn triangle_quality(p0 : Point3D, p1 : Point3D, p2 : Point3D) -> MeshQualityMetrics {
+  @mesh_quality.triangle_quality(p0, p1, p2)
+}
+
+pub fn mesh_average_quality(
+  vertices : Array[Point3D],
+  faces : Array[(Int, Int, Int)],
+) -> MeshQualityMetrics {
+  @mesh_quality.mesh_average_quality(vertices, faces)
+}
+
+pub fn count_degenerate(
+  vertices : Array[Point3D],
+  faces : Array[(Int, Int, Int)],
+  eps : Double,
+) -> Int {
+  @mesh_quality.count_degenerate(vertices, faces, eps)
+}
+
+pub fn remove_degenerate_faces(
+  vertices : Array[Point3D],
+  faces : Array[(Int, Int, Int)],
+  eps : Double,
+) -> (Array[(Int, Int, Int)], Int) {
+  @mesh_repair.remove_degenerate_faces(vertices, faces, eps)
+}
+
+pub fn merge_duplicate_vertices(
+  vertices : Array[Point3D],
+  faces : Array[(Int, Int, Int)],
+  eps : Double,
+) -> (Array[Point3D], Array[(Int, Int, Int)], Int) {
+  @mesh_repair.merge_duplicate_vertices(vertices, faces, eps)
+}
+
+pub fn find_boundary_edges(faces : Array[(Int, Int, Int)]) -> Array[(Int, Int)] {
+  @mesh_repair.find_boundary_edges(faces)
+}
+
+pub fn fill_holes(
+  vertices : Array[Point3D],
+  faces : Array[(Int, Int, Int)],
+) -> (Array[(Int, Int, Int)], Int) {
+  @mesh_repair.fill_holes(vertices, faces)
+}
+
+pub fn repair_mesh(
+  vertices : Array[Point3D],
+  faces : Array[(Int, Int, Int)],
+  eps : Double,
+) -> MeshRepairResult {
+  @mesh_repair.repair_mesh(vertices, faces, eps)
+}
+
+pub fn project_parametrize(vertices : Array[Point3D]) -> Array[UV] {
+  @mesh_param.project_parametrize(vertices)
+}
+
+pub fn harmonic_parametrize(
+  vertices : Array[Point3D],
+  faces : Array[(Int, Int, Int)],
+  boundary : Array[Int],
+) -> MeshParamResult {
+  @mesh_param.harmonic_parametrize(vertices, faces, boundary)
+}
+
+pub fn area_distortion(
+  vertices : Array[Point3D],
+  faces : Array[(Int, Int, Int)],
+  uv : Array[UV],
+) -> Double {
+  @mesh_param.area_distortion(vertices, faces, uv)
+}
+
+pub fn mesh_union(
+  verts_a : Array[Point3D],
+  faces_a : Array[(Int, Int, Int)],
+  verts_b : Array[Point3D],
+  faces_b : Array[(Int, Int, Int)],
+) -> MeshBoolResult {
+  @mesh_boolean.mesh_union(verts_a, faces_a, verts_b, faces_b)
+}
+
+pub fn mesh_intersection(
+  verts_a : Array[Point3D],
+  faces_a : Array[(Int, Int, Int)],
+  verts_b : Array[Point3D],
+  faces_b : Array[(Int, Int, Int)],
+) -> MeshBoolResult {
+  @mesh_boolean.mesh_intersection(verts_a, faces_a, verts_b, faces_b)
+}
+
+pub fn mesh_difference(
+  verts_a : Array[Point3D],
+  faces_a : Array[(Int, Int, Int)],
+  verts_b : Array[Point3D],
+  faces_b : Array[(Int, Int, Int)],
+) -> MeshBoolResult {
+  @mesh_boolean.mesh_difference(verts_a, faces_a, verts_b, faces_b)
+}
+
+pub fn polyhedron_union(
+  verts_a : Array[Point3D],
+  faces_a : Array[Array[Int]],
+  verts_b : Array[Point3D],
+  faces_b : Array[Array[Int]],
+) -> PolyBoolResult {
+  @polyhedron_boolean.polyhedron_union(verts_a, faces_a, verts_b, faces_b)
+}
+
+pub fn polyhedron_intersection(
+  verts_a : Array[Point3D],
+  faces_a : Array[Array[Int]],
+  verts_b : Array[Point3D],
+  faces_b : Array[Array[Int]],
+) -> PolyBoolResult {
+  @polyhedron_boolean.polyhedron_intersection(verts_a, faces_a, verts_b, faces_b)
+}
+
+pub fn polyhedron_difference(
+  verts_a : Array[Point3D],
+  faces_a : Array[Array[Int]],
+  verts_b : Array[Point3D],
+  faces_b : Array[Array[Int]],
+) -> PolyBoolResult {
+  @polyhedron_boolean.polyhedron_difference(verts_a, faces_a, verts_b, faces_b)
+}
+
+pub fn compute_hull_3d(points : Array[Point3D]) -> Array[(Int, Int, Int)] {
+  @convex_hull_3d_dynamic.compute_hull_3d(points)
+}
