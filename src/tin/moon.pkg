@@ -1,0 +1,5 @@
+import {
+  "walkzzz/moon-geometry/src/core",
+  "walkzzz/moon-geometry/src/triangulation",
+  "moonbitlang/core/math",
+}

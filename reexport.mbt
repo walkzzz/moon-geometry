@@ -5032,3 +5032,3544 @@ pub fn polyhedron_difference(
 pub fn compute_hull_3d(points : Array[Point3D]) -> Array[(Int, Int, Int)] {
   @convex_hull_3d_dynamic.compute_hull_3d(points)
 }
+// ---------------------------------------------------------------------------
+// delaunay_3d: 3D Delaunay triangulation / 三维 Delaunay 三角剖分
+// ---------------------------------------------------------------------------
+
+///|
+/// Tetrahedron in 3D Delaunay. / Delaunay 四面体。
+pub type Tetrahedron = @delaunay_3d.Tetrahedron
+
+///|
+/// 3D Delaunay triangulation result. / 三维 Delaunay 三角剖分结果。
+pub type Delaunay3D = @delaunay_3d.Delaunay3D
+
+pub fn delaunay_3d_new() -> Delaunay3D {
+  @delaunay_3d.Delaunay3D::new()
+}
+
+pub fn delaunay_3d_tetrahedron_count(d : Delaunay3D) -> Int {
+  @delaunay_3d.Delaunay3D::tetrahedron_count(d)
+}
+
+pub fn delaunay_3d_vertex_count(d : Delaunay3D) -> Int {
+  @delaunay_3d.Delaunay3D::vertex_count(d)
+}
+
+pub fn tetrahedron_volume(
+  a : Point3D,
+  b : Point3D,
+  c : Point3D,
+  d : Point3D,
+) -> Double {
+  @delaunay_3d.tetrahedron_volume(a, b, c, d)
+}
+
+pub fn circumsphere_center(
+  a : Point3D,
+  b : Point3D,
+  c : Point3D,
+  d : Point3D,
+) -> Point3D {
+  @delaunay_3d.circumsphere_center(a, b, c, d)
+}
+
+pub fn circumsphere_radius_sq(
+  a : Point3D,
+  b : Point3D,
+  c : Point3D,
+  d : Point3D,
+) -> Double {
+  @delaunay_3d.circumsphere_radius_sq(a, b, c, d)
+}
+
+pub fn in_circumsphere(
+  p : Point3D,
+  a : Point3D,
+  b : Point3D,
+  c : Point3D,
+  d : Point3D,
+) -> Bool {
+  @delaunay_3d.in_circumsphere(p, a, b, c, d)
+}
+
+pub fn delaunay_3d(points : Array[Point3D]) -> Delaunay3D {
+  @delaunay_3d.delaunay_3d(points)
+}
+
+pub fn is_delaunay(d : Delaunay3D) -> Bool {
+  @delaunay_3d.is_delaunay(d)
+}
+
+// ---------------------------------------------------------------------------
+// voronoi_3d: 3D Voronoi diagram / 三维 Voronoi 图
+// ---------------------------------------------------------------------------
+
+///|
+/// 3D Voronoi cell. / 三维 Voronoi 单元。
+pub type VoronoiCell3D = @voronoi_3d.VoronoiCell3D
+
+///|
+/// 3D Voronoi diagram. / 三维 Voronoi 图。
+pub type Voronoi3D = @voronoi_3d.Voronoi3D
+
+pub fn voronoi_3d_new() -> Voronoi3D {
+  @voronoi_3d.Voronoi3D::new()
+}
+
+pub fn voronoi_3d_cell_count(v : Voronoi3D) -> Int {
+  @voronoi_3d.Voronoi3D::cell_count(v)
+}
+
+pub fn voronoi_3d_vertex_count(v : Voronoi3D) -> Int {
+  @voronoi_3d.Voronoi3D::vertex_count(v)
+}
+
+pub fn voronoi_3d(sites : Array[Point3D]) -> Voronoi3D {
+  @voronoi_3d.voronoi_3d(sites)
+}
+
+pub fn voronoi_cell_3d(v : Voronoi3D, site_idx : Int) -> VoronoiCell3D {
+  @voronoi_3d.voronoi_cell_3d(v, site_idx)
+}
+
+pub fn voronoi_3d_cell_count_from_sites(sites : Array[Point3D]) -> Int {
+  @voronoi_3d.voronoi_cell_count(sites)
+}
+
+pub fn voronoi_3d_vertex_count_from_sites(sites : Array[Point3D]) -> Int {
+  @voronoi_3d.voronoi_vertex_count(sites)
+}
+
+pub fn dual_delaunay(sites : Array[Point3D]) -> Delaunay3D {
+  @voronoi_3d.dual_delaunay(sites)
+}
+
+// ---------------------------------------------------------------------------
+// constrained_delaunay: Constrained Delaunay triangulation / 约束 Delaunay 三角剖分
+// ---------------------------------------------------------------------------
+
+///|
+/// Constrained Delaunay triangulation. / 约束 Delaunay 三角剖分。
+pub type ConstrainedDelaunay = @constrained_delaunay.ConstrainedDelaunay
+
+pub fn constrained_delaunay_new() -> ConstrainedDelaunay {
+  @constrained_delaunay.ConstrainedDelaunay::new()
+}
+
+pub fn constrained_delaunay_triangle_count(cd : ConstrainedDelaunay) -> Int {
+  @constrained_delaunay.ConstrainedDelaunay::triangle_count(cd)
+}
+
+pub fn constrained_delaunay_constraint_count(cd : ConstrainedDelaunay) -> Int {
+  @constrained_delaunay.ConstrainedDelaunay::constraint_count(cd)
+}
+
+pub fn is_constrained_edge(cd : ConstrainedDelaunay, a : Int, b : Int) -> Bool {
+  @constrained_delaunay.is_constrained_edge(cd, a, b)
+}
+
+pub fn add_constraint(cd : ConstrainedDelaunay, a : Int, b : Int) -> Unit {
+  @constrained_delaunay.add_constraint(cd, a, b)
+}
+
+pub fn constrained_delaunay(
+  points : Array[Point2D],
+  constraints : Array[(Int, Int)],
+) -> ConstrainedDelaunay {
+  @constrained_delaunay.constrained_delaunay(points, constraints)
+}
+
+pub fn constrained_triangle_count(cd : ConstrainedDelaunay) -> Int {
+  @constrained_delaunay.constrained_triangle_count(cd)
+}
+
+// ---------------------------------------------------------------------------
+// power_diagram: Power diagram / 幂图
+// ---------------------------------------------------------------------------
+
+///|
+/// Weighted point for power diagram. / 幂图加权站点。
+pub type WeightedPoint = @power_diagram.WeightedPoint
+
+///|
+/// Power cell. / 幂单元。
+pub type PowerCell = @power_diagram.PowerCell
+
+///|
+/// Power diagram. / 幂图。
+pub type PowerDiagram = @power_diagram.PowerDiagram
+
+pub fn weighted_point_new(point : Point2D, weight : Double) -> WeightedPoint {
+  @power_diagram.WeightedPoint::new(point, weight)
+}
+
+pub fn power_diagram_new() -> PowerDiagram {
+  @power_diagram.PowerDiagram::new()
+}
+
+pub fn power_diagram_cell_count(pd : PowerDiagram) -> Int {
+  @power_diagram.PowerDiagram::cell_count(pd)
+}
+
+pub fn power_distance(x : Point2D, site : WeightedPoint) -> Double {
+  @power_diagram.power_distance(x, site)
+}
+
+pub fn power_diagram(
+  sites : Array[WeightedPoint],
+  bounds : (Point2D, Point2D),
+) -> PowerDiagram {
+  @power_diagram.power_diagram(sites, bounds)
+}
+
+pub fn power_cell(pd : PowerDiagram, site_idx : Int) -> PowerCell {
+  @power_diagram.power_cell(pd, site_idx)
+}
+
+pub fn power_cell_area(pd : PowerDiagram, site_idx : Int) -> Double {
+  @power_diagram.power_cell_area(pd, site_idx)
+}
+
+pub fn regular_triangulation(sites : Array[WeightedPoint]) -> Array[(Int, Int, Int)] {
+  @power_diagram.regular_triangulation(sites)
+}
+
+// ---------------------------------------------------------------------------
+// centroidal_voronoi: Centroidal Voronoi tessellation / 质心 Voronoi 镶嵌
+// ---------------------------------------------------------------------------
+
+///|
+/// CVT result. / CVT 结果。
+pub type CVTResult = @centroidal_voronoi.CVTResult
+
+pub fn cvt_result_new() -> CVTResult {
+  @centroidal_voronoi.CVTResult::new()
+}
+
+pub fn compute_centroid(poly : Array[Point2D]) -> Point2D {
+  @centroidal_voronoi.compute_centroid(poly)
+}
+
+pub fn lloyd_energy(sites : Array[Point2D], bounds : (Point2D, Point2D)) -> Double {
+  @centroidal_voronoi.lloyd_energy(sites, bounds)
+}
+
+pub fn lloyd_iteration(
+  sites : Array[Point2D],
+  bounds : (Point2D, Point2D),
+  max_iter : Int,
+) -> Array[Point2D] {
+  @centroidal_voronoi.lloyd_iteration(sites, bounds, max_iter)
+}
+
+pub fn centroidal_voronoi(
+  sites : Array[Point2D],
+  bounds : (Point2D, Point2D),
+  max_iter : Int,
+) -> CVTResult {
+  @centroidal_voronoi.centroidal_voronoi(sites, bounds, max_iter)
+}
+
+// ---------------------------------------------------------------------------
+// alpha_complex: Alpha complex / Alpha 复形
+// ---------------------------------------------------------------------------
+
+///|
+/// Alpha simplex. / Alpha 单纯形。
+pub type AlphaSimplex = @alpha_complex.AlphaSimplex
+
+///|
+/// Alpha complex. / Alpha 复形。
+pub type AlphaComplex = @alpha_complex.AlphaComplex
+
+pub fn alpha_complex_new() -> AlphaComplex {
+  @alpha_complex.AlphaComplex::new()
+}
+
+pub fn alpha_complex_simplex_count(ac : AlphaComplex) -> Int {
+  @alpha_complex.AlphaComplex::simplex_count(ac)
+}
+
+pub fn is_alpha_exposed(simplex : AlphaSimplex, alpha : Double) -> Bool {
+  @alpha_complex.is_alpha_exposed(simplex, alpha)
+}
+
+pub fn alpha_complex(points : Array[Point2D], alpha : Double) -> AlphaComplex {
+  @alpha_complex.alpha_complex(points, alpha)
+}
+
+pub fn alpha_shape(points : Array[Point2D], alpha : Double) -> Array[(Int, Int)] {
+  @alpha_complex.alpha_shape(points, alpha)
+}
+
+pub fn alpha_complex_count(ac : AlphaComplex) -> Int {
+  @alpha_complex.alpha_complex_count(ac)
+}
+
+// ---------------------------------------------------------------------------
+// persistent_homology: Persistent homology / 持久同调
+// ---------------------------------------------------------------------------
+
+///|
+/// Persistence barcode. / 持久同调条形码。
+pub type Barcode = @persistent_homology.Barcode
+
+///|
+/// Simplex with filtration value. / 带过滤值的单纯形。
+pub type SimplexWithFiltration = @persistent_homology.SimplexWithFiltration
+
+///|
+/// Persistence diagram. / 持久同调图。
+pub type PersistenceDiagram = @persistent_homology.PersistenceDiagram
+
+pub fn barcode_new(birth : Double, death : Double, dimension : Int) -> Barcode {
+  @persistent_homology.Barcode::new(birth, death, dimension)
+}
+
+pub fn barcode_is_infinite(b : Barcode) -> Bool {
+  @persistent_homology.Barcode::is_infinite(b)
+}
+
+pub fn simplex_with_filtration_new(
+  vertices : Array[Int],
+  filtration : Double,
+) -> SimplexWithFiltration {
+  @persistent_homology.SimplexWithFiltration::new(vertices, filtration)
+}
+
+pub fn persistence_diagram_new() -> PersistenceDiagram {
+  @persistent_homology.PersistenceDiagram::new()
+}
+
+pub fn persistence_diagram_barcode_count(pd : PersistenceDiagram) -> Int {
+  @persistent_homology.PersistenceDiagram::barcode_count(pd)
+}
+
+pub fn persistence_pairs(
+  simplices : Array[SimplexWithFiltration],
+) -> Array[(Int, Int)] {
+  @persistent_homology.persistence_pairs(simplices)
+}
+
+pub fn compute_barcode(
+  simplices : Array[SimplexWithFiltration],
+) -> Array[Barcode] {
+  @persistent_homology.compute_barcode(simplices)
+}
+
+pub fn persistent_homology(
+  simplices : Array[SimplexWithFiltration],
+) -> PersistenceDiagram {
+  @persistent_homology.persistent_homology(simplices)
+}
+
+pub fn betti_from_barcode(barcodes : Array[Barcode], threshold : Double) -> Array[Int] {
+  @persistent_homology.betti_from_barcode(barcodes, threshold)
+}
+
+// ---------------------------------------------------------------------------
+// betti_numbers: Betti numbers / Betti 数
+// ---------------------------------------------------------------------------
+
+///|
+/// Betti numbers result. / Betti 数结果。
+pub type BettiResult = @betti_numbers.BettiResult
+
+pub fn betti_result_new(b0 : Int, b1 : Int, b2 : Int) -> BettiResult {
+  @betti_numbers.BettiResult::new(b0, b1, b2)
+}
+
+pub fn betti_numbers_0(simplices : Array[Array[Int]]) -> Int {
+  @betti_numbers.betti_0(simplices)
+}
+
+pub fn betti_1(simplices : Array[Array[Int]]) -> Int {
+  @betti_numbers.betti_1(simplices)
+}
+
+pub fn betti_2(simplices : Array[Array[Int]]) -> Int {
+  @betti_numbers.betti_2(simplices)
+}
+
+pub fn betti_numbers(simplices : Array[Array[Int]]) -> BettiResult {
+  @betti_numbers.betti_numbers(simplices)
+}
+
+pub fn compute_euler(simplices : Array[Array[Int]]) -> Int {
+  @betti_numbers.compute_euler(simplices)
+}
+
+// ---------------------------------------------------------------------------
+// reeb_graph: Reeb graph / Reeb 图
+// ---------------------------------------------------------------------------
+
+///|
+/// Critical point type. / 临界点类型。
+pub type CriticalType = @reeb_graph.CriticalType
+
+///|
+/// Reeb graph node. / Reeb 图节点。
+pub type ReebNode = @reeb_graph.ReebNode
+
+///|
+/// Reeb graph edge. / Reeb 图边。
+pub type ReebEdge = @reeb_graph.ReebEdge
+
+///|
+/// Reeb graph. / Reeb 图。
+pub type ReebGraph = @reeb_graph.ReebGraph
+
+pub fn reeb_node_new(
+  vertex_idx : Int,
+  level : Double,
+  crit_type : CriticalType,
+) -> ReebNode {
+  @reeb_graph.ReebNode::new(vertex_idx, level, crit_type)
+}
+
+pub fn reeb_edge_new(from : Int, to : Int) -> ReebEdge {
+  @reeb_graph.ReebEdge::new(from, to)
+}
+
+pub fn reeb_graph_new() -> ReebGraph {
+  @reeb_graph.ReebGraph::new()
+}
+
+pub fn reeb_graph_node_count(rg : ReebGraph) -> Int {
+  @reeb_graph.ReebGraph::node_count(rg)
+}
+
+pub fn reeb_graph_edge_count(rg : ReebGraph) -> Int {
+  @reeb_graph.ReebGraph::edge_count(rg)
+}
+
+pub fn critical_points(values : Array[Double], edges : Array[(Int, Int)]) -> Array[ReebNode] {
+  @reeb_graph.critical_points(values, edges)
+}
+
+pub fn reeb_graph(values : Array[Double], edges : Array[(Int, Int)]) -> ReebGraph {
+  @reeb_graph.reeb_graph(values, edges)
+}
+
+pub fn reeb_node_count(rg : ReebGraph) -> Int {
+  @reeb_graph.reeb_node_count(rg)
+}
+
+pub fn reeb_edge_count(rg : ReebGraph) -> Int {
+  @reeb_graph.reeb_edge_count(rg)
+}
+
+// ---------------------------------------------------------------------------
+// morse_complex: Morse complex / Morse 复形
+// ---------------------------------------------------------------------------
+
+///|
+/// Morse cell. / Morse 单元。
+pub type MorseCell = @morse_complex.MorseCell
+
+///|
+/// Morse complex. / Morse 复形。
+pub type MorseComplex = @morse_complex.MorseComplex
+
+pub fn morse_cell_new(
+  critical_idx : Int,
+  dimension : Int,
+  simplices : Array[Int],
+) -> MorseCell {
+  @morse_complex.MorseCell::new(critical_idx, dimension, simplices)
+}
+
+pub fn morse_cell_simplex_count(mc : MorseCell) -> Int {
+  @morse_complex.MorseCell::simplex_count(mc)
+}
+
+pub fn morse_complex_new() -> MorseComplex {
+  @morse_complex.MorseComplex::new()
+}
+
+pub fn morse_complex_critical_count(mc : MorseComplex) -> Int {
+  @morse_complex.MorseComplex::critical_count(mc)
+}
+
+pub fn morse_complex(values : Array[Double], edges : Array[(Int, Int)]) -> MorseComplex {
+  @morse_complex.morse_complex(values, edges)
+}
+
+pub fn stable_manifold(mc : MorseComplex, critical_idx : Int) -> MorseCell {
+  @morse_complex.stable_manifold(mc, critical_idx)
+}
+
+pub fn unstable_manifold(mc : MorseComplex, critical_idx : Int) -> MorseCell {
+  @morse_complex.unstable_manifold(mc, critical_idx)
+}
+
+pub fn critical_point_count(mc : MorseComplex) -> Int {
+  @morse_complex.critical_point_count(mc)
+}
+// ---------------------------------------------------------------------------
+// rrt: Rapidly-exploring Random Trees / 快速探索随机树
+// ---------------------------------------------------------------------------
+
+///|
+/// RRT node. / RRT 节点。
+pub type RRTNode = @rrt.RRTNode
+
+///|
+/// RRT configuration. / RRT 配置。
+pub type RRTConfig = @rrt.RRTConfig
+
+///|
+/// RRT result. / RRT 结果。
+pub type RRTResult = @rrt.RRTResult
+
+///|
+/// Construct an RRT node. / 构造 RRT 节点。
+pub fn rrt_node_new(point : Point2D, parent : Int) -> RRTNode {
+  @rrt.RRTNode::new(point, parent)
+}
+
+///|
+/// Construct RRT configuration. / 构造 RRT 配置。
+pub fn rrt_config_new(
+  step_size : Double,
+  max_iterations : Int,
+  goal_bias : Double,
+  goal_radius : Double,
+  seed : UInt,
+  x_min : Double,
+  x_max : Double,
+  y_min : Double,
+  y_max : Double,
+) -> RRTConfig {
+  @rrt.RRTConfig::new(step_size, max_iterations, goal_bias, goal_radius, seed, x_min, x_max, y_min, y_max)
+}
+
+///|
+/// Plan a path using basic RRT. / 使用基本 RRT 规划路径。
+pub fn rrt_plan(
+  config : RRTConfig,
+  start : Point2D,
+  goal : Point2D,
+  obstacles : Array[Array[Point2D]],
+) -> RRTResult {
+  @rrt.rrt_plan(config, start, goal, obstacles)
+}
+
+///|
+/// Plan a path using RRT*. / 使用 RRT* 规划路径。
+pub fn rrt_star_plan(
+  config : RRTConfig,
+  start : Point2D,
+  goal : Point2D,
+  obstacles : Array[Array[Point2D]],
+) -> RRTResult {
+  @rrt.rrt_star_plan(config, start, goal, obstacles)
+}
+
+///|
+/// Plan a path using bidirectional RRT. / 使用双向 RRT 规划路径。
+pub fn rrt_connect_plan(
+  config : RRTConfig,
+  start : Point2D,
+  goal : Point2D,
+  obstacles : Array[Array[Point2D]],
+) -> RRTResult {
+  @rrt.rrt_connect_plan(config, start, goal, obstacles)
+}
+
+///|
+/// Compute the total length of an RRT path. / 计算 RRT 路径总长度。
+pub fn rrt_path_length(path : Array[Point2D]) -> Double {
+  @rrt.rrt_path_length(path)
+}
+
+///|
+/// Count nodes in an RRT tree. / 统计 RRT 树中节点数。
+pub fn rrt_node_count(nodes : Array[RRTNode]) -> Int {
+  @rrt.rrt_node_count(nodes)
+}
+
+// ---------------------------------------------------------------------------
+// prm: Probabilistic Roadmap / 概率路线图
+// ---------------------------------------------------------------------------
+
+///|
+/// PRM configuration. / PRM 配置。
+pub type PRMConfig = @prm.PRMConfig
+
+///|
+/// PRM roadmap. / PRM 路线图。
+pub type PRMRoadmap = @prm.PRMRoadmap
+
+///|
+/// PRM result. / PRM 结果。
+pub type PRMResult = @prm.PRMResult
+
+///|
+/// Construct PRM configuration. / 构造 PRM 配置。
+pub fn prm_config_new(
+  num_samples : Int,
+  connection_radius : Double,
+  seed : UInt,
+  x_min : Double,
+  x_max : Double,
+  y_min : Double,
+  y_max : Double,
+) -> PRMConfig {
+  @prm.PRMConfig::new(num_samples, connection_radius, seed, x_min, x_max, y_min, y_max)
+}
+
+///|
+/// Build a PRM roadmap. / 构建 PRM 路线图。
+pub fn prm_build(
+  config : PRMConfig,
+  obstacles : Array[Array[Point2D]],
+) -> PRMRoadmap {
+  @prm.prm_build(config, obstacles)
+}
+
+///|
+/// Query shortest path on a PRM roadmap. / 在 PRM 路线图上查询最短路径。
+pub fn prm_query(
+  roadmap : PRMRoadmap,
+  start : Point2D,
+  goal : Point2D,
+  obstacles : Array[Array[Point2D]],
+) -> PRMResult {
+  @prm.prm_query(roadmap, start, goal, obstacles)
+}
+
+///|
+/// Count nodes in a PRM roadmap. / 统计 PRM 路线图节点数。
+pub fn prm_node_count(roadmap : PRMRoadmap) -> Int {
+  @prm.prm_node_count(roadmap)
+}
+
+///|
+/// Count edges in a PRM roadmap. / 统计 PRM 路线图边数。
+pub fn prm_edge_count(roadmap : PRMRoadmap) -> Int {
+  @prm.prm_edge_count(roadmap)
+}
+
+// ---------------------------------------------------------------------------
+// a_star: A* path planning / A* 路径规划
+// ---------------------------------------------------------------------------
+
+///|
+/// A* grid. / A* 网格。
+pub type AStarGrid = @a_star.AStarGrid
+
+///|
+/// A* result. / A* 结果。
+pub type AStarResult = @a_star.AStarResult
+
+///|
+/// A* heuristic type. / A* 启发式类型。
+pub type AStarHeuristic = @a_star.AStarHeuristic
+
+///|
+/// A* graph node. / A* 图节点。
+pub type AStarGraphNode = @a_star.AStarGraphNode
+
+///|
+/// Construct an A* grid. / 构造 A* 网格。
+pub fn astar_grid_new(width : Int, height : Int) -> AStarGrid {
+  @a_star.AStarGrid::new(width, height)
+}
+
+///|
+/// Mark a cell as blocked. / 标记格子为障碍。
+pub fn astar_grid_set_blocked(grid : AStarGrid, x : Int, y : Int) -> Unit {
+  @a_star.AStarGrid::set_blocked(grid, x, y)
+}
+
+///|
+/// Check if a cell is blocked. / 检查格子是否为障碍。
+pub fn astar_grid_is_blocked(grid : AStarGrid, x : Int, y : Int) -> Bool {
+  @a_star.AStarGrid::is_blocked(grid, x, y)
+}
+
+///|
+/// Construct an A* graph node. / 构造 A* 图节点。
+pub fn astar_graph_node_new(id : Int, x : Double, y : Double) -> AStarGraphNode {
+  @a_star.AStarGraphNode::new(id, x, y)
+}
+
+///|
+/// Plan path on a grid using A*. / 使用 A* 在网格上规划路径。
+pub fn astar_grid(
+  grid : AStarGrid,
+  start : (Int, Int),
+  goal : (Int, Int),
+  heuristic : AStarHeuristic,
+  allow_diagonal : Bool,
+) -> AStarResult {
+  @a_star.astar_grid(grid, start, goal, heuristic, allow_diagonal)
+}
+
+///|
+/// Plan path on a graph using A*. / 使用 A* 在图上规划路径。
+pub fn astar_graph(
+  nodes : Array[AStarGraphNode],
+  adj : Array[Array[(Int, Double)]],
+  start : Int,
+  goal : Int,
+) -> AStarResult {
+  @a_star.astar_graph(nodes, adj, start, goal)
+}
+
+///|
+/// Compute path cost on a grid. / 计算网格路径代价。
+pub fn astar_path_cost(path : Array[(Int, Int)]) -> Double {
+  @a_star.astar_path_cost(path)
+}
+
+// ---------------------------------------------------------------------------
+// dubins: Dubins curves / Dubins 曲线
+// ---------------------------------------------------------------------------
+
+///|
+/// Dubins path segment type. / Dubins 路径段类型。
+pub type DubinsSegmentType = @dubins.DubinsSegmentType
+
+///|
+/// Dubins path segment. / Dubins 路径段。
+pub type DubinsSegment = @dubins.DubinsSegment
+
+///|
+/// Dubins path. / Dubins 路径。
+pub type DubinsPath = @dubins.DubinsPath
+
+///|
+/// Dubins pose. / Dubins 位姿。
+pub type DubinsPose = @dubins.DubinsPose
+
+///|
+/// Construct a Dubins pose. / 构造 Dubins 位姿。
+pub fn dubins_pose_new(x : Double, y : Double, theta : Double) -> DubinsPose {
+  @dubins.DubinsPose::new(x, y, theta)
+}
+
+///|
+/// Compute the shortest Dubins path. / 计算最短 Dubins 路径。
+pub fn dubins_shortest_path(
+  start : DubinsPose,
+  goal : DubinsPose,
+  radius : Double,
+) -> DubinsPath {
+  @dubins.dubins_shortest_path(start, goal, radius)
+}
+
+///|
+/// Sample points along a Dubins path. / 沿 Dubins 路径采样点。
+pub fn dubins_sample(
+  path : DubinsPath,
+  start : DubinsPose,
+  num_samples : Int,
+) -> Array[Point2D] {
+  @dubins.dubins_sample(path, start, num_samples)
+}
+
+///|
+/// Get the total length of a Dubins path. / 获取 Dubins 路径总长度。
+pub fn dubins_path_length(path : DubinsPath) -> Double {
+  @dubins.dubins_path_length(path)
+}
+
+///|
+/// Count segments in a Dubins path. / 统计 Dubins 路径段数。
+pub fn dubins_segment_count(path : DubinsPath) -> Int {
+  @dubins.dubins_segment_count(path)
+}
+
+// ---------------------------------------------------------------------------
+// reed_shepp: Reeds-Shepp curves / Reeds-Shepp 曲线
+// ---------------------------------------------------------------------------
+
+///|
+/// Reeds-Shepp path segment type. / Reeds-Shepp 路径段类型。
+pub type RSSegmentType = @reed_shepp.RSSegmentType
+
+///|
+/// Reeds-Shepp path segment. / Reeds-Shepp 路径段。
+pub type RSSegment = @reed_shepp.RSSegment
+
+///|
+/// Reeds-Shepp path. / Reeds-Shepp 路径。
+pub type RSPath = @reed_shepp.RSPath
+
+///|
+/// Reeds-Shepp pose. / Reeds-Shepp 位姿。
+pub type RSPose = @reed_shepp.RSPose
+
+///|
+/// Construct a Reeds-Shepp pose. / 构造 Reeds-Shepp 位姿。
+pub fn rs_pose_new(x : Double, y : Double, theta : Double) -> RSPose {
+  @reed_shepp.RSPose::new(x, y, theta)
+}
+
+///|
+/// Compute the shortest Reeds-Shepp path. / 计算最短 Reeds-Shepp 路径。
+pub fn reed_shepp_shortest_path(
+  start : RSPose,
+  goal : RSPose,
+  radius : Double,
+) -> RSPath {
+  @reed_shepp.reed_shepp_shortest_path(start, goal, radius)
+}
+
+///|
+/// Sample points along a Reeds-Shepp path. / 沿 Reeds-Shepp 路径采样点。
+pub fn reed_shepp_sample(
+  path : RSPath,
+  start : RSPose,
+  num_samples : Int,
+) -> Array[Point2D] {
+  @reed_shepp.reed_shepp_sample(path, start, num_samples)
+}
+
+///|
+/// Get the total length of a Reeds-Shepp path. / 获取 Reeds-Shepp 路径总长度。
+pub fn reed_shepp_path_length(path : RSPath) -> Double {
+  @reed_shepp.reed_shepp_path_length(path)
+}
+
+///|
+/// Count segments in a Reeds-Shepp path. / 统计 Reeds-Shepp 路径段数。
+pub fn reed_shepp_segment_count(path : RSPath) -> Int {
+  @reed_shepp.reed_shepp_segment_count(path)
+}
+
+///|
+/// Check if a Reeds-Shepp path contains backward motion. / 检查 Reeds-Shepp 路径是否包含后退运动。
+pub fn reed_shepp_has_backward(path : RSPath) -> Bool {
+  @reed_shepp.reed_shepp_has_backward(path)
+}
+
+// ---------------------------------------------------------------------------
+// collision_detect: Collision detection / 碰撞检测
+// ---------------------------------------------------------------------------
+
+///|
+/// AABB. / 轴对齐包围盒。
+pub type AABB = @collision_detect.AABB
+
+///|
+/// Collision pair. / 碰撞对。
+pub type CollisionPair = @collision_detect.CollisionPair
+
+///|
+/// Construct an AABB. / 构造 AABB。
+pub fn aabb_new(min_x : Double, min_y : Double, max_x : Double, max_y : Double) -> AABB {
+  @collision_detect.AABB::new(min_x, min_y, max_x, max_y)
+}
+
+///|
+/// Construct an AABB from center and half-extents. / 从中心和半边长构造 AABB。
+pub fn aabb_from_center(cx : Double, cy : Double, hx : Double, hy : Double) -> AABB {
+  @collision_detect.AABB::from_center(cx, cy, hx, hy)
+}
+
+///|
+/// Check if two AABBs overlap. / 检查两个 AABB 是否重叠。
+pub fn aabb_overlap(a : AABB, b : AABB) -> Bool {
+  @collision_detect.aabb_overlap(a, b)
+}
+
+///|
+/// Check if a point is inside an AABB. / 检查点是否在 AABB 内。
+pub fn aabb_contains(box : AABB, x : Double, y : Double) -> Bool {
+  @collision_detect.aabb_contains(box, x, y)
+}
+
+///|
+/// Compute the AABB of a polygon. / 计算多边形的 AABB。
+pub fn aabb_from_polygon(poly : Array[Point2D]) -> AABB {
+  @collision_detect.aabb_from_polygon(poly)
+}
+
+///|
+/// Broad phase collision detection. / 宽相碰撞检测。
+pub fn broad_phase_aabb(boxes : Array[AABB]) -> Array[CollisionPair] {
+  @collision_detect.broad_phase_aabb(boxes)
+}
+
+///|
+/// Segment-segment collision. / 线段-线段碰撞。
+pub fn segment_segment_collide(
+  a1 : Point2D,
+  a2 : Point2D,
+  b1 : Point2D,
+  b2 : Point2D,
+) -> Bool {
+  @collision_detect.segment_segment_collide(a1, a2, b1, b2)
+}
+
+///|
+/// Point in polygon test. / 点在多边形内测试。
+pub fn point_in_polygon_arr(p : Point2D, poly : Array[Point2D]) -> Bool {
+  @collision_detect.point_in_polygon(p, poly)
+}
+
+///|
+/// Circle-circle collision. / 圆-圆碰撞。
+pub fn circle_circle_collide(
+  c1 : Point2D,
+  r1 : Double,
+  c2 : Point2D,
+  r2 : Double,
+) -> Bool {
+  @collision_detect.circle_circle_collide(c1, r1, c2, r2)
+}
+
+///|
+/// Segment-polygon collision. / 线段-多边形碰撞。
+pub fn segment_polygon_collide(
+  a : Point2D,
+  b : Point2D,
+  poly : Array[Point2D],
+) -> Bool {
+  @collision_detect.segment_polygon_collide(a, b, poly)
+}
+
+///|
+/// Polygon-polygon collision. / 多边形-多边形碰撞。
+pub fn polygon_polygon_collide(
+  poly1 : Array[Point2D],
+  poly2 : Array[Point2D],
+) -> Bool {
+  @collision_detect.polygon_polygon_collide(poly1, poly2)
+}
+
+///|
+/// Circle-polygon collision. / 圆-多边形碰撞。
+pub fn circle_polygon_collide(
+  center : Point2D,
+  radius : Double,
+  poly : Array[Point2D],
+) -> Bool {
+  @collision_detect.circle_polygon_collide(center, radius, poly)
+}
+
+///|
+/// AABB-polygon collision. / AABB-多边形碰撞。
+pub fn aabb_polygon_collide(box : AABB, poly : Array[Point2D]) -> Bool {
+  @collision_detect.aabb_polygon_collide(box, poly)
+}
+
+///|
+/// Compute AABB intersection. / 计算 AABB 交集。
+pub fn aabb_intersection(a : AABB, b : AABB) -> AABB? {
+  @collision_detect.aabb_intersection(a, b)
+}
+
+///|
+/// Compute AABB union. / 计算 AABB 并集。
+pub fn aabb_union(a : AABB, b : AABB) -> AABB {
+  @collision_detect.aabb_union(a, b)
+}
+
+///|
+/// Compute AABB area. / 计算 AABB 面积。
+pub fn aabb_area(box : AABB) -> Double {
+  @collision_detect.aabb_area(box)
+}
+
+// ---------------------------------------------------------------------------
+// gjk: GJK collision detection / GJK 碰撞检测
+// ---------------------------------------------------------------------------
+
+///|
+/// GJK result. / GJK 结果。
+pub type GJKResult = @gjk.GJKResult
+
+///|
+/// Polygon support function. / 多边形支撑函数。
+pub fn polygon_support(poly : Array[Point2D], dx : Double, dy : Double) -> Point2D {
+  @gjk.polygon_support(poly, dx, dy)
+}
+
+///|
+/// Circle support function. / 圆支撑函数。
+pub fn circle_support(center : Point2D, radius : Double, dx : Double, dy : Double) -> Point2D {
+  @gjk.circle_support(center, radius, dx, dy)
+}
+
+///|
+/// Check collision between two convex polygons using GJK. / 使用 GJK 检测两凸多边形碰撞。
+pub fn gjk_collide_polygons(
+  poly1 : Array[Point2D],
+  poly2 : Array[Point2D],
+) -> GJKResult {
+  @gjk.gjk_collide_polygons(poly1, poly2)
+}
+
+///|
+/// Check collision between two circles using GJK. / 使用 GJK 检测两圆碰撞。
+pub fn gjk_collide_circles(
+  c1 : Point2D,
+  r1 : Double,
+  c2 : Point2D,
+  r2 : Double,
+) -> GJKResult {
+  @gjk.gjk_collide_circles(c1, r1, c2, r2)
+}
+
+///|
+/// Check collision between a polygon and a circle using GJK. / 使用 GJK 检测多边形与圆碰撞。
+pub fn gjk_collide_polygon_circle(
+  poly : Array[Point2D],
+  center : Point2D,
+  radius : Double,
+) -> GJKResult {
+  @gjk.gjk_collide_polygon_circle(poly, center, radius)
+}
+
+///|
+/// Check if a point is inside a convex polygon using GJK. / 使用 GJK 检测点是否在凸多边形内。
+pub fn gjk_point_in_polygon(p : Point2D, poly : Array[Point2D]) -> GJKResult {
+  @gjk.gjk_point_in_polygon(p, poly)
+}
+
+// ---------------------------------------------------------------------------
+// sat: SAT collision detection / SAT 碰撞检测
+// ---------------------------------------------------------------------------
+
+///|
+/// SAT collision result. / SAT 碰撞结果。
+pub type SATResult = @sat.SATResult
+
+///|
+/// Check collision between two convex polygons using SAT. / 使用 SAT 检测两凸多边形碰撞。
+pub fn sat_collide_polygons(
+  poly1 : Array[Point2D],
+  poly2 : Array[Point2D],
+) -> SATResult {
+  @sat.sat_collide_polygons(poly1, poly2)
+}
+
+///|
+/// Check if a convex polygon contains a point using SAT. / 使用 SAT 检测凸多边形是否包含点。
+pub fn sat_contains_point(poly : Array[Point2D], p : Point2D) -> Bool {
+  @sat.sat_contains_point(poly, p)
+}
+
+///|
+/// Check collision between two circles using SAT. / 使用 SAT 检测两圆碰撞。
+pub fn sat_collide_circles(
+  c1 : Point2D,
+  r1 : Double,
+  c2 : Point2D,
+  r2 : Double,
+) -> SATResult {
+  @sat.sat_collide_circles(c1, r1, c2, r2)
+}
+
+///|
+/// Check collision between a polygon and a circle using SAT. / 使用 SAT 检测多边形与圆碰撞。
+pub fn sat_collide_polygon_circle(
+  poly : Array[Point2D],
+  center : Point2D,
+  radius : Double,
+) -> SATResult {
+  @sat.sat_collide_polygon_circle(poly, center, radius)
+}
+
+///|
+/// Get the minimum translation vector. / 获取最小平移向量。
+pub fn sat_mtv(result : SATResult) -> Point2D {
+  @sat.sat_mtv(result)
+}
+
+///|
+/// Get the separating axis direction. / 获取分离轴方向。
+pub fn sat_separating_axis(result : SATResult) -> Point2D {
+  @sat.sat_separating_axis(result)
+}
+
+// ---------------------------------------------------------------------------
+// config_space: Configuration space / 配置空间
+// ---------------------------------------------------------------------------
+
+///|
+/// C-space obstacle. / 配置空间障碍物。
+pub type CSpaceObstacle = @config_space.CSpaceObstacle
+
+///|
+/// Construct a C-space obstacle. / 构造配置空间障碍物。
+pub fn cspace_obstacle_new(vertices : Array[Point2D]) -> CSpaceObstacle {
+  @config_space.CSpaceObstacle::new(vertices)
+}
+
+///|
+/// Expand a polygonal obstacle by a circular robot radius. / 用圆形机器人半径膨胀多边形障碍物。
+pub fn cspace_expand_circle(
+  obstacle : Array[Point2D],
+  radius : Double,
+  num_arc_samples : Int,
+) -> CSpaceObstacle {
+  @config_space.cspace_expand_circle(obstacle, radius, num_arc_samples)
+}
+
+///|
+/// Expand a polygonal obstacle by a polygonal robot. / 用多边形机器人膨胀多边形障碍物。
+pub fn cspace_expand_polygon(
+  obstacle : Array[Point2D],
+  robot : Array[Point2D],
+) -> CSpaceObstacle {
+  @config_space.cspace_expand_polygon(obstacle, robot)
+}
+
+///|
+/// Check if a configuration point is valid. / 检查配置点是否有效。
+pub fn cspace_point_valid(
+  q : Point2D,
+  cspace_obstacles : Array[CSpaceObstacle],
+) -> Bool {
+  @config_space.cspace_point_valid(q, cspace_obstacles)
+}
+
+///|
+/// Check if a configuration space segment is valid. / 检查配置空间线段是否有效。
+pub fn cspace_segment_valid(
+  q1 : Point2D,
+  q2 : Point2D,
+  cspace_obstacles : Array[CSpaceObstacle],
+) -> Bool {
+  @config_space.cspace_segment_valid(q1, q2, cspace_obstacles)
+}
+
+///|
+/// Build C-space obstacles. / 构建配置空间障碍物。
+pub fn cspace_build(
+  obstacles : Array[Array[Point2D]],
+  robot_radius : Double,
+  num_arc_samples : Int,
+) -> Array[CSpaceObstacle] {
+  @config_space.cspace_build(obstacles, robot_radius, num_arc_samples)
+}
+
+// ---------------------------------------------------------------------------
+// path_smooth: Path smoothing / 路径平滑
+// ---------------------------------------------------------------------------
+
+///|
+/// Smoothing configuration. / 平滑配置。
+pub type SmoothConfig = @path_smooth.SmoothConfig
+
+///|
+/// Construct smoothing configuration. / 构造平滑配置。
+pub fn smooth_config_new(
+  num_samples : Int,
+  tension : Double,
+  preserve_endpoints : Bool,
+) -> SmoothConfig {
+  @path_smooth.SmoothConfig::new(num_samples, tension, preserve_endpoints)
+}
+
+///|
+/// Smooth a path using Catmull-Rom spline. / 使用 Catmull-Rom 样条平滑路径。
+pub fn smooth_path(path : Array[Point2D], config : SmoothConfig) -> Array[Point2D] {
+  @path_smooth.smooth_path(path, config)
+}
+
+///|
+/// Smooth a path using uniform cubic B-spline. / 使用均匀三次 B 样条平滑路径。
+pub fn bspline_smooth(path : Array[Point2D], num_samples : Int) -> Array[Point2D] {
+  @path_smooth.bspline_smooth(path, num_samples)
+}
+
+///|
+/// Smooth a path while preserving specified keypoint indices. / 平滑路径同时保留指定关键点索引。
+pub fn smooth_preserve_keypoints(
+  path : Array[Point2D],
+  keypoints : Array[Int],
+  num_samples : Int,
+) -> Array[Point2D] {
+  @path_smooth.smooth_preserve_keypoints(path, keypoints, num_samples)
+}
+
+///|
+/// Compute the total length of a path. / 计算路径总长度。
+pub fn path_smooth_length(path : Array[Point2D]) -> Double {
+  @path_smooth.path_length(path)
+}
+
+///|
+/// Reduce path to key points. / 将路径简化为关键点。
+pub fn simplify_path(path : Array[Point2D], eps : Double) -> Array[Point2D] {
+  @path_smooth.simplify_path(path, eps)
+}
+
+///|
+/// Compute the maximum deviation between original and smoothed path. / 计算原始路径与平滑路径间的最大偏差。
+pub fn path_max_deviation(
+  original : Array[Point2D],
+  smoothed : Array[Point2D],
+) -> Double {
+  @path_smooth.path_max_deviation(original, smoothed)
+}
+// ---------------------------------------------------------------------------
+// conic_section: Conic sections / 圆锥曲线
+// ---------------------------------------------------------------------------
+
+///|
+/// Conic section type. / 圆锥曲线类型。
+pub type ConicType = @conic_section.ConicType
+
+///|
+/// Conic section. / 圆锥曲线。
+pub type Conic = @conic_section.Conic
+
+pub fn conic_new(a : Double, b : Double, c : Double, d : Double, e : Double, f : Double) -> Conic {
+  @conic_section.Conic::new(a, b, c, d, e, f)
+}
+
+pub fn conic_eval(conic : Conic, p : Point2D) -> Double {
+  @conic_section.Conic::eval(conic, p)
+}
+
+pub fn conic_on_curve(conic : Conic, p : Point2D, eps : Double) -> Bool {
+  @conic_section.Conic::on_curve(conic, p, eps)
+}
+
+pub fn conic_discriminant(conic : Conic) -> Double {
+  @conic_section.Conic::discriminant(conic)
+}
+
+pub fn conic_classify(conic : Conic) -> ConicType {
+  @conic_section.Conic::classify(conic)
+}
+
+pub fn conic_center(conic : Conic) -> Point2D? {
+  @conic_section.Conic::center(conic)
+}
+
+pub fn conic_tangent_at(conic : Conic, p : Point2D) -> (Double, Double, Double) {
+  @conic_section.Conic::tangent_at(conic, p)
+}
+
+pub fn conic_asymptotes(conic : Conic) -> ((Double, Double, Double), (Double, Double, Double))? {
+  @conic_section.Conic::asymptotes(conic)
+}
+
+pub fn conic_eccentricity(conic : Conic) -> Double? {
+  @conic_section.Conic::eccentricity(conic)
+}
+
+pub fn conic_axis_aligned(conic : Conic) -> (Conic, Double) {
+  @conic_section.Conic::axis_aligned(conic)
+}
+
+// ---------------------------------------------------------------------------
+// quadric_surface: Quadric surfaces / 二次曲面
+// ---------------------------------------------------------------------------
+
+///|
+/// Quadric surface type. / 二次曲面类型。
+pub type QuadricType = @quadric_surface.QuadricType
+
+///|
+/// Quadric surface. / 二次曲面。
+pub type Quadric = @quadric_surface.Quadric
+
+pub fn quadric_new(
+  a : Double,
+  b : Double,
+  c : Double,
+  d : Double,
+  e : Double,
+  f : Double,
+  g : Double,
+  h : Double,
+  i : Double,
+  j : Double,
+) -> Quadric {
+  @quadric_surface.Quadric::new(a, b, c, d, e, f, g, h, i, j)
+}
+
+pub fn quadric_eval(q : Quadric, p : Point3D) -> Double {
+  @quadric_surface.Quadric::eval(q, p)
+}
+
+pub fn quadric_on_surface(q : Quadric, p : Point3D, eps : Double) -> Bool {
+  @quadric_surface.Quadric::on_surface(q, p, eps)
+}
+
+pub fn quadric_gradient(q : Quadric, p : Point3D) -> Point3D {
+  @quadric_surface.Quadric::gradient(q, p)
+}
+
+pub fn quadric_normal(q : Quadric, p : Point3D) -> Point3D {
+  @quadric_surface.Quadric::normal(q, p)
+}
+
+pub fn quadric_center(q : Quadric) -> Point3D? {
+  @quadric_surface.Quadric::center(q)
+}
+
+pub fn quadric_classify(q : Quadric) -> QuadricType {
+  @quadric_surface.Quadric::classify(q)
+}
+
+// ---------------------------------------------------------------------------
+// resultant: Resultant computation / 结式计算
+// ---------------------------------------------------------------------------
+
+pub fn sylvester_matrix(p : Array[Double], q : Array[Double]) -> Array[Array[Double]] {
+  @resultant.sylvester_matrix(p, q)
+}
+
+pub fn matrix_determinant(mat : Array[Array[Double]]) -> Double {
+  @resultant.matrix_determinant(mat)
+}
+
+pub fn resultant(p : Array[Double], q : Array[Double]) -> Double {
+  @resultant.resultant(p, q)
+}
+
+pub fn discriminant(coeffs : Array[Double]) -> Double {
+  @resultant.discriminant(coeffs)
+}
+
+pub fn poly_degree(coeffs : Array[Double]) -> Int {
+  @resultant.poly_degree(coeffs)
+}
+
+pub fn poly_sub(a : Array[Double], b : Array[Double]) -> Array[Double] {
+  @resultant.poly_sub(a, b)
+}
+
+pub fn poly_gcd(a : Array[Double], b : Array[Double]) -> Array[Double] {
+  @resultant.poly_gcd(a, b)
+}
+
+pub fn have_common_root(p : Array[Double], q : Array[Double], eps : Double) -> Bool {
+  @resultant.have_common_root(p, q, eps)
+}
+
+// ---------------------------------------------------------------------------
+// bezier_clipping: Bezier clipping / 贝塞尔裁剪
+// ---------------------------------------------------------------------------
+
+///|
+/// Cubic Bezier for clipping. / 裁剪用三次贝塞尔曲线。
+pub type BezierClip = @bezier_clipping.BezierClip
+
+pub fn bezier_clip_new(p0 : Point2D, p1 : Point2D, p2 : Point2D, p3 : Point2D) -> BezierClip {
+  @bezier_clipping.BezierClip::new(p0, p1, p2, p3)
+}
+
+pub fn bezier_clip_eval(b : BezierClip, t : Double) -> Point2D {
+  @bezier_clipping.BezierClip::eval(b, t)
+}
+
+pub fn bezier_clip_derivative(b : BezierClip, t : Double) -> Point2D {
+  @bezier_clipping.BezierClip::derivative(b, t)
+}
+
+pub fn bezier_clip_bbox(b : BezierClip) -> (Double, Double, Double, Double) {
+  @bezier_clipping.BezierClip::bbox(b)
+}
+
+pub fn bezier_clip_subdivide(b : BezierClip, t : Double) -> (BezierClip, BezierClip) {
+  @bezier_clipping.BezierClip::subdivide(b, t)
+}
+
+pub fn bezier_clip_intersect(
+  b1 : BezierClip,
+  b2 : BezierClip,
+  eps : Double,
+  max_depth : Int,
+) -> Array[(Double, Double, Point2D)] {
+  @bezier_clipping.bezier_clip_intersect(b1, b2, eps, max_depth)
+}
+
+pub fn bezier_clip_length(b : BezierClip) -> Double {
+  @bezier_clipping.BezierClip::length(b)
+}
+
+// ---------------------------------------------------------------------------
+// implicit_curve: Implicit curve tracing / 隐式曲线追踪
+// ---------------------------------------------------------------------------
+
+pub fn trace_curve(
+  f : (Double, Double) -> Double,
+  fx : (Double, Double) -> Double,
+  fy : (Double, Double) -> Double,
+  seed : Point2D,
+  step : Double,
+  n_steps : Int,
+) -> Array[Point2D] {
+  @implicit_curve.trace_curve(f, fx, fy, seed, step, n_steps)
+}
+
+pub fn newton_correct(
+  f : (Double, Double) -> Double,
+  fx : (Double, Double) -> Double,
+  fy : (Double, Double) -> Double,
+  p : Point2D,
+  max_iter : Int,
+) -> Point2D {
+  @implicit_curve.newton_correct(f, fx, fy, p, max_iter)
+}
+
+pub fn implicit_curve_tangent(
+  fx : (Double, Double) -> Double,
+  fy : (Double, Double) -> Double,
+  p : Point2D,
+) -> Point2D {
+  @implicit_curve.tangent(fx, fy, p)
+}
+
+pub fn implicit_curve_normal(
+  fx : (Double, Double) -> Double,
+  fy : (Double, Double) -> Double,
+  p : Point2D,
+) -> Point2D {
+  @implicit_curve.normal(fx, fy, p)
+}
+
+pub fn implicit_curve_curvature(
+  fx : (Double, Double) -> Double,
+  fy : (Double, Double) -> Double,
+  fxx : (Double, Double) -> Double,
+  fxy : (Double, Double) -> Double,
+  fyy : (Double, Double) -> Double,
+  p : Point2D,
+) -> Double {
+  @implicit_curve.curvature(fx, fy, fxx, fxy, fyy, p)
+}
+
+pub fn find_seed(
+  f : (Double, Double) -> Double,
+  x_lo : Double,
+  x_hi : Double,
+  y_lo : Double,
+  y_hi : Double,
+  n_samples : Int,
+) -> Point2D? {
+  @implicit_curve.find_seed(f, x_lo, x_hi, y_lo, y_hi, n_samples)
+}
+
+// ---------------------------------------------------------------------------
+// implicit_surface: Implicit surface / 隐式曲面
+// ---------------------------------------------------------------------------
+
+pub fn implicit_surface_normal(
+  fx : (Double, Double, Double) -> Double,
+  fy : (Double, Double, Double) -> Double,
+  fz : (Double, Double, Double) -> Double,
+  p : Point3D,
+) -> Point3D {
+  @implicit_surface.surface_normal(fx, fy, fz, p)
+}
+
+pub fn surface_gradient(
+  fx : (Double, Double, Double) -> Double,
+  fy : (Double, Double, Double) -> Double,
+  fz : (Double, Double, Double) -> Double,
+  p : Point3D,
+) -> Point3D {
+  @implicit_surface.surface_gradient(fx, fy, fz, p)
+}
+
+pub fn implicit_gaussian_curvature(
+  fx : (Double, Double, Double) -> Double,
+  fy : (Double, Double, Double) -> Double,
+  fz : (Double, Double, Double) -> Double,
+  fxx : (Double, Double, Double) -> Double,
+  fxy : (Double, Double, Double) -> Double,
+  fxz : (Double, Double, Double) -> Double,
+  fyy : (Double, Double, Double) -> Double,
+  fyz : (Double, Double, Double) -> Double,
+  fzz : (Double, Double, Double) -> Double,
+  p : Point3D,
+) -> Double {
+  @implicit_surface.gaussian_curvature(fx, fy, fz, fxx, fxy, fxz, fyy, fyz, fzz, p)
+}
+
+pub fn implicit_mean_curvature(
+  fx : (Double, Double, Double) -> Double,
+  fy : (Double, Double, Double) -> Double,
+  fz : (Double, Double, Double) -> Double,
+  fxx : (Double, Double, Double) -> Double,
+  fyy : (Double, Double, Double) -> Double,
+  fzz : (Double, Double, Double) -> Double,
+  p : Point3D,
+) -> Double {
+  @implicit_surface.mean_curvature(fx, fy, fz, fxx, fyy, fzz, p)
+}
+
+pub fn principal_curvatures(k_gauss : Double, k_mean : Double) -> (Double, Double) {
+  @implicit_surface.principal_curvatures(k_gauss, k_mean)
+}
+
+pub fn project_to_surface(
+  f : (Double, Double, Double) -> Double,
+  fx : (Double, Double, Double) -> Double,
+  fy : (Double, Double, Double) -> Double,
+  fz : (Double, Double, Double) -> Double,
+  p : Point3D,
+  max_iter : Int,
+) -> Point3D {
+  @implicit_surface.project_to_surface(f, fx, fy, fz, p, max_iter)
+}
+
+pub fn tangent_plane(
+  fx : (Double, Double, Double) -> Double,
+  fy : (Double, Double, Double) -> Double,
+  fz : (Double, Double, Double) -> Double,
+  p : Point3D,
+) -> (Double, Double, Double, Double) {
+  @implicit_surface.tangent_plane(fx, fy, fz, p)
+}
+
+// ---------------------------------------------------------------------------
+// ifs: Iterated Function Systems / 迭代函数系统
+// ---------------------------------------------------------------------------
+
+///|
+/// Affine map. / 仿射映射。
+pub type AffineMap = @ifs.AffineMap
+
+///|
+/// IFS. / 迭代函数系统。
+pub type IFS = @ifs.IFS
+
+pub fn affine_map_new(a : Double, b : Double, e : Double, c : Double, d : Double, f : Double) -> AffineMap {
+  @ifs.AffineMap::new(a, b, e, c, d, f)
+}
+
+pub fn affine_map_apply(m : AffineMap, p : Point2D) -> Point2D {
+  @ifs.AffineMap::apply(m, p)
+}
+
+pub fn affine_map_contraction_factor(m : AffineMap) -> Double {
+  @ifs.AffineMap::contraction_factor(m)
+}
+
+pub fn affine_map_is_contraction(m : AffineMap) -> Bool {
+  @ifs.AffineMap::is_contraction(m)
+}
+
+pub fn affine_map_fixed_point(m : AffineMap) -> Point2D? {
+  @ifs.AffineMap::fixed_point(m)
+}
+
+pub fn ifs_new(maps : Array[AffineMap]) -> IFS {
+  @ifs.IFS::new(maps)
+}
+
+pub fn ifs_size(ifs : IFS) -> Int {
+  @ifs.IFS::size(ifs)
+}
+
+pub fn ifs_max_contraction(ifs : IFS) -> Double {
+  @ifs.IFS::max_contraction(ifs)
+}
+
+pub fn ifs_is_contractive(ifs : IFS) -> Bool {
+  @ifs.IFS::is_contractive(ifs)
+}
+
+pub fn chaos_game(
+  ifs : IFS,
+  seed : Point2D,
+  n_iter : Int,
+  skip : Int,
+  rng : (Int) -> Int,
+) -> Array[Point2D] {
+  @ifs.chaos_game(ifs, seed, n_iter, skip, rng)
+}
+
+pub fn ifs_iterate(ifs : IFS, points : Array[Point2D]) -> Array[Point2D] {
+  @ifs.ifs_iterate(ifs, points)
+}
+
+pub fn ifs_attractor(ifs : IFS, seed : Point2D, n_steps : Int) -> Array[Point2D] {
+  @ifs.ifs_attractor(ifs, seed, n_steps)
+}
+
+// ---------------------------------------------------------------------------
+// l_system: L-systems / L 系统
+// ---------------------------------------------------------------------------
+
+///|
+/// L-system rule. / L 系统规则。
+pub type LRule = @l_system.LRule
+
+///|
+/// L-system. / L 系统。
+pub type LSystem = @l_system.LSystem
+
+pub fn lrule_new(symbol : String, replacement : String) -> LRule {
+  @l_system.LRule::new(symbol, replacement)
+}
+
+pub fn lsystem_new(axiom : String, rules : Array[LRule]) -> LSystem {
+  @l_system.LSystem::new(axiom, rules)
+}
+
+pub fn lsystem_step(system : LSystem, current : String) -> String {
+  @l_system.lsystem_step(system, current)
+}
+
+pub fn lsystem_iterate(system : LSystem, n : Int) -> String {
+  @l_system.lsystem_iterate(system, n)
+}
+
+pub fn turtle_interpret(s : String, angle : Double, step : Double) -> Array[Point2D] {
+  @l_system.turtle_interpret(s, angle, step)
+}
+
+pub fn koch_snowflake(n_iter : Int, side : Double) -> Array[Point2D] {
+  @l_system.koch_snowflake(n_iter, side)
+}
+
+pub fn sierpinski_arrowhead(n_iter : Int, step : Double) -> Array[Point2D] {
+  @l_system.sierpinski_arrowhead(n_iter, step)
+}
+
+pub fn fractal_plant(n_iter : Int, step : Double) -> Array[Point2D] {
+  @l_system.fractal_plant(n_iter, step)
+}
+
+pub fn dragon_curve(n_iter : Int, step : Double) -> Array[Point2D] {
+  @l_system.dragon_curve(n_iter, step)
+}
+
+pub fn count_segments(s : String) -> Int {
+  @l_system.count_segments(s)
+}
+
+// ---------------------------------------------------------------------------
+// fractal_dimension: Fractal dimension / 分形维数
+// ---------------------------------------------------------------------------
+
+pub fn box_counting_dimension(points : Array[Point2D], scales : Array[Double]) -> Double {
+  @fractal_dimension.box_counting_dimension(points, scales)
+}
+
+pub fn correlation_dimension(points : Array[Point2D], radii : Array[Double]) -> Double {
+  @fractal_dimension.correlation_dimension(points, radii)
+}
+
+pub fn linear_fit_slope(xs : Array[Double], ys : Array[Double]) -> Double {
+  @fractal_dimension.linear_fit_slope(xs, ys)
+}
+
+pub fn information_dimension(points : Array[Point2D], scales : Array[Double]) -> Double {
+  @fractal_dimension.information_dimension(points, scales)
+}
+
+pub fn box_count(points : Array[Point2D], eps : Double) -> Int {
+  @fractal_dimension.box_count(points, eps)
+}
+
+pub fn geometric_scales(eps_min : Double, eps_max : Double, n : Int) -> Array[Double] {
+  @fractal_dimension.geometric_scales(eps_min, eps_max, n)
+}
+
+// ---------------------------------------------------------------------------
+// hausdorff_dimension: Hausdorff dimension / Hausdorff 维数
+// ---------------------------------------------------------------------------
+
+pub fn self_similar_dimension(n : Int, r : Double) -> Double {
+  @hausdorff_dimension.self_similar_dimension(n, r)
+}
+
+pub fn moran_dimension(ratios : Array[Double]) -> Double {
+  @hausdorff_dimension.moran_dimension(ratios)
+}
+
+pub fn cantor_set_dimension() -> Double {
+  @hausdorff_dimension.cantor_set_dimension()
+}
+
+pub fn sierpinski_triangle_dimension() -> Double {
+  @hausdorff_dimension.sierpinski_triangle_dimension()
+}
+
+pub fn sierpinski_carpet_dimension() -> Double {
+  @hausdorff_dimension.sierpinski_carpet_dimension()
+}
+
+pub fn koch_curve_dimension() -> Double {
+  @hausdorff_dimension.koch_curve_dimension()
+}
+
+pub fn menger_sponge_dimension() -> Double {
+  @hausdorff_dimension.menger_sponge_dimension()
+}
+
+pub fn verify_moran(ratios : Array[Double], d : Double) -> Double {
+  @hausdorff_dimension.verify_moran(ratios, d)
+}
+
+pub fn self_affine_dimension(n : Int, rx : Double, ry : Double) -> Double {
+  @hausdorff_dimension.self_affine_dimension(n, rx, ry)
+}
+
+pub fn estimate_from_points(
+  points : Array[Point2D],
+  eps_min : Double,
+  eps_max : Double,
+  n_scales : Int,
+) -> Double {
+  @hausdorff_dimension.estimate_from_points(points, eps_min, eps_max, n_scales)
+}
+// ---------------------------------------------------------------------------
+// gis_projection: Map projections / 地图投影
+// ---------------------------------------------------------------------------
+
+///|
+/// Projected coordinate pair. / 投影坐标对。
+pub type ProjXY = @gis_projection.ProjXY
+
+pub fn proj_xy_new(x : Double, y : Double) -> ProjXY {
+  @gis_projection.ProjXY::new(x, y)
+}
+
+pub fn mercator_forward(lat : Double, lon : Double) -> ProjXY {
+  @gis_projection.mercator_forward(lat, lon)
+}
+
+pub fn mercator_inverse(x : Double, y : Double) -> (Double, Double) {
+  @gis_projection.mercator_inverse(x, y)
+}
+
+pub fn web_mercator_forward(lat : Double, lon : Double) -> ProjXY {
+  @gis_projection.web_mercator_forward(lat, lon)
+}
+
+pub fn web_mercator_inverse(x : Double, y : Double) -> (Double, Double) {
+  @gis_projection.web_mercator_inverse(x, y)
+}
+
+pub fn utm_zone_from_lon(lon : Double) -> Int {
+  @gis_projection.utm_zone_from_lon(lon)
+}
+
+pub fn utm_central_meridian(zone : Int) -> Double {
+  @gis_projection.utm_central_meridian(zone)
+}
+
+pub fn utm_forward(lat : Double, lon : Double) -> ProjXY {
+  @gis_projection.utm_forward(lat, lon)
+}
+
+pub fn utm_forward_zone(lat : Double, lon : Double, zone : Int) -> ProjXY {
+  @gis_projection.utm_forward_zone(lat, lon, zone)
+}
+
+pub fn lambert_conformal_forward(
+  lat : Double,
+  lon : Double,
+  lat1 : Double,
+  lat2 : Double,
+  lat0 : Double,
+  lon0 : Double,
+) -> ProjXY {
+  @gis_projection.lambert_conformal_forward(lat, lon, lat1, lat2, lat0, lon0)
+}
+
+pub fn albers_equal_area_forward(
+  lat : Double,
+  lon : Double,
+  lat1 : Double,
+  lat2 : Double,
+  lat0 : Double,
+  lon0 : Double,
+) -> ProjXY {
+  @gis_projection.albers_equal_area_forward(lat, lon, lat1, lat2, lat0, lon0)
+}
+
+pub fn mercator_scale(lat : Double) -> Double {
+  @gis_projection.mercator_scale(lat)
+}
+
+// ---------------------------------------------------------------------------
+// geodesic: Geodesic distance / 测地距离
+// ---------------------------------------------------------------------------
+
+pub fn haversine_distance(
+  lat1 : Double,
+  lon1 : Double,
+  lat2 : Double,
+  lon2 : Double,
+) -> Double {
+  @geodesic.haversine_distance(lat1, lon1, lat2, lon2)
+}
+
+pub fn spherical_distance(
+  lat1 : Double,
+  lon1 : Double,
+  lat2 : Double,
+  lon2 : Double,
+) -> Double {
+  @geodesic.spherical_distance(lat1, lon1, lat2, lon2)
+}
+
+pub fn initial_bearing(
+  lat1 : Double,
+  lon1 : Double,
+  lat2 : Double,
+  lon2 : Double,
+) -> Double {
+  @geodesic.initial_bearing(lat1, lon1, lat2, lon2)
+}
+
+pub fn destination_point(
+  lat1 : Double,
+  lon1 : Double,
+  bearing : Double,
+  distance : Double,
+) -> (Double, Double) {
+  @geodesic.destination_point(lat1, lon1, bearing, distance)
+}
+
+pub fn vincenty_distance(
+  lat1 : Double,
+  lon1 : Double,
+  lat2 : Double,
+  lon2 : Double,
+) -> Double {
+  @geodesic.vincenty_distance(lat1, lon1, lat2, lon2)
+}
+
+pub fn is_antipodal(
+  lat1 : Double,
+  lon1 : Double,
+  lat2 : Double,
+  lon2 : Double,
+) -> Bool {
+  @geodesic.is_antipodal(lat1, lon1, lat2, lon2)
+}
+
+// ---------------------------------------------------------------------------
+// gis_buffer: Buffer operations / 缓冲操作
+// ---------------------------------------------------------------------------
+
+pub fn point_buffer(center : Point2D, radius : Double, n : Int) -> Polygon {
+  @gis_buffer.point_buffer(center, radius, n)
+}
+
+pub fn segment_buffer(
+  a : Point2D,
+  b : Point2D,
+  radius : Double,
+  cap_segments : Int,
+) -> Polygon {
+  @gis_buffer.segment_buffer(a, b, radius, cap_segments)
+}
+
+pub fn polyline_buffer(
+  points : Array[Point2D],
+  radius : Double,
+  cap_segments : Int,
+) -> Polygon {
+  @gis_buffer.polyline_buffer(points, radius, cap_segments)
+}
+
+pub fn gis_minkowski_sum_convex(poly_a : Polygon, poly_b : Polygon) -> Polygon {
+  @gis_buffer.minkowski_sum_convex(poly_a, poly_b)
+}
+
+pub fn convex_polygon_buffer(poly : Polygon, radius : Double, n : Int) -> Polygon {
+  @gis_buffer.convex_polygon_buffer(poly, radius, n)
+}
+
+pub fn polygon_offset_buffer(poly : Polygon, radius : Double) -> Polygon {
+  @gis_buffer.polygon_offset_buffer(poly, radius)
+}
+
+// ---------------------------------------------------------------------------
+// tin: Triangulated Irregular Network / 不规则三角网
+// ---------------------------------------------------------------------------
+
+///|
+/// TIN (Triangulated Irregular Network). / 不规则三角网。
+pub type TIN = @tin.TIN
+
+pub fn build_tin(points : Array[Point3D]) -> TIN {
+  @tin.build_tin(points)
+}
+
+pub fn tin_point_count(t : TIN) -> Int {
+  @tin.TIN::point_count(t)
+}
+
+pub fn tin_triangle_count(t : TIN) -> Int {
+  @tin.TIN::triangle_count(t)
+}
+
+pub fn tin_interpolate(t : TIN, p : Point2D) -> Double? {
+  @tin.TIN::interpolate(t, p)
+}
+
+pub fn tin_volume(t : TIN) -> Double {
+  @tin.TIN::volume(t)
+}
+
+pub fn tin_slope_at(t : TIN, p : Point2D) -> Double? {
+  @tin.TIN::slope_at(t, p)
+}
+
+pub fn tin_aspect_at(t : TIN, p : Point2D) -> Double? {
+  @tin.TIN::aspect_at(t, p)
+}
+
+pub fn tin_elevation_range(t : TIN) -> (Double, Double) {
+  @tin.TIN::elevation_range(t)
+}
+
+// ---------------------------------------------------------------------------
+// coordinate_convert: Coordinate conversion / 坐标转换
+// ---------------------------------------------------------------------------
+
+///|
+/// ECEF coordinate. / 地心地固坐标。
+pub type ECEF = @coordinate_convert.ECEF
+
+///|
+/// Geodetic coordinate. / 大地坐标。
+pub type Geodetic = @coordinate_convert.Geodetic
+
+pub fn ecef_new(x : Double, y : Double, z : Double) -> ECEF {
+  @coordinate_convert.ECEF::new(x, y, z)
+}
+
+pub fn geodetic_new(lat : Double, lon : Double, h : Double) -> Geodetic {
+  @coordinate_convert.Geodetic::new(lat, lon, h)
+}
+
+pub fn wgs84_to_ecef(g : Geodetic) -> ECEF {
+  @coordinate_convert.wgs84_to_ecef(g)
+}
+
+pub fn ecef_to_wgs84(e : ECEF) -> Geodetic {
+  @coordinate_convert.ecef_to_wgs84(e)
+}
+
+pub fn cgcs2000_to_ecef(g : Geodetic) -> ECEF {
+  @coordinate_convert.cgcs2000_to_ecef(g)
+}
+
+pub fn ecef_to_cgcs2000(e : ECEF) -> Geodetic {
+  @coordinate_convert.ecef_to_cgcs2000(e)
+}
+
+pub fn wgs84_to_cgcs2000(g : Geodetic) -> Geodetic {
+  @coordinate_convert.wgs84_to_cgcs2000(g)
+}
+
+pub fn cgcs2000_to_wgs84(g : Geodetic) -> Geodetic {
+  @coordinate_convert.cgcs2000_to_wgs84(g)
+}
+
+pub fn ecef_distance(e1 : ECEF, e2 : ECEF) -> Double {
+  @coordinate_convert.ecef_distance(e1, e2)
+}
+
+// ---------------------------------------------------------------------------
+// datum_transform: Datum transformation / 基准转换
+// ---------------------------------------------------------------------------
+
+///|
+/// 7-parameter Helmert transform. / 七参数 Helmert 变换。
+pub type Helmert7 = @datum_transform.Helmert7
+
+///|
+/// 3-parameter transform. / 三参数变换。
+pub type Helmert3 = @datum_transform.Helmert3
+
+pub fn helmert7_new(
+  tx : Double,
+  ty : Double,
+  tz : Double,
+  rx : Double,
+  ry : Double,
+  rz : Double,
+  scale : Double,
+) -> Helmert7 {
+  @datum_transform.Helmert7::new(tx, ty, tz, rx, ry, rz, scale)
+}
+
+pub fn helmert3_new(tx : Double, ty : Double, tz : Double) -> Helmert3 {
+  @datum_transform.Helmert3::new(tx, ty, tz)
+}
+
+pub fn apply_helmert7(h : Helmert7, x : Double, y : Double, z : Double) -> (Double, Double, Double) {
+  @datum_transform.apply_helmert7(h, x, y, z)
+}
+
+pub fn apply_helmert3(h : Helmert3, x : Double, y : Double, z : Double) -> (Double, Double, Double) {
+  @datum_transform.apply_helmert3(h, x, y, z)
+}
+
+pub fn inverse_helmert7(h : Helmert7) -> Helmert7 {
+  @datum_transform.inverse_helmert7(h)
+}
+
+pub fn inverse_helmert3(h : Helmert3) -> Helmert3 {
+  @datum_transform.inverse_helmert3(h)
+}
+
+pub fn helmert7_identity() -> Helmert7 {
+  @datum_transform.helmert7_identity()
+}
+
+pub fn compose_helmert7(a : Helmert7, b : Helmert7) -> Helmert7 {
+  @datum_transform.compose_helmert7(a, b)
+}
+
+// ---------------------------------------------------------------------------
+// raster_ops: Raster operations / 栅格操作
+// ---------------------------------------------------------------------------
+
+///|
+/// Raster grid. / 栅格网格。
+pub type Raster = @raster_ops.Raster
+
+pub fn raster_new(cols : Int, rows : Int, fill : Double, nodata : Double) -> Raster {
+  @raster_ops.Raster::new(cols, rows, fill, nodata)
+}
+
+pub fn raster_from_data(
+  cols : Int,
+  rows : Int,
+  data : Array[Double],
+  nodata : Double,
+) -> Raster {
+  @raster_ops.Raster::from_data(cols, rows, data, nodata)
+}
+
+pub fn raster_get(r : Raster, col : Int, row : Int) -> Double {
+  @raster_ops.Raster::get(r, col, row)
+}
+
+pub fn raster_set(r : Raster, col : Int, row : Int, val : Double) -> Unit {
+  @raster_ops.Raster::set(r, col, row, val)
+}
+
+pub fn raster_cols(r : Raster) -> Int {
+  @raster_ops.Raster::cols(r)
+}
+
+pub fn raster_rows(r : Raster) -> Int {
+  @raster_ops.Raster::rows(r)
+}
+
+pub fn resample_nearest(r : Raster, new_cols : Int, new_rows : Int) -> Raster {
+  @raster_ops.resample_nearest(r, new_cols, new_rows)
+}
+
+pub fn resample_bilinear(r : Raster, new_cols : Int, new_rows : Int) -> Raster {
+  @raster_ops.resample_bilinear(r, new_cols, new_rows)
+}
+
+pub fn raster_mosaic(r1 : Raster, r2 : Raster) -> Raster {
+  @raster_ops.mosaic(r1, r2)
+}
+
+pub fn raster_add(r1 : Raster, r2 : Raster) -> Raster {
+  @raster_ops.raster_add(r1, r2)
+}
+
+pub fn raster_subtract(r1 : Raster, r2 : Raster) -> Raster {
+  @raster_ops.raster_subtract(r1, r2)
+}
+
+pub fn raster_multiply(r1 : Raster, r2 : Raster) -> Raster {
+  @raster_ops.raster_multiply(r1, r2)
+}
+
+pub fn raster_add_scalar(r : Raster, c : Double) -> Raster {
+  @raster_ops.raster_add_scalar(r, c)
+}
+
+pub fn raster_min(r : Raster) -> Double {
+  @raster_ops.raster_min(r)
+}
+
+pub fn raster_max(r : Raster) -> Double {
+  @raster_ops.raster_max(r)
+}
+
+// ---------------------------------------------------------------------------
+// contour_line: Contour line extraction / 等值线提取
+// ---------------------------------------------------------------------------
+
+///|
+/// Contour line segment. / 等值线段。
+pub type ContourSegment = @contour_line.ContourSegment
+
+///|
+/// Contour grid. / 等值线栅格。
+pub type ContourGrid = @contour_line.ContourGrid
+
+pub fn contour_segment_new(
+  x1 : Double,
+  y1 : Double,
+  x2 : Double,
+  y2 : Double,
+) -> ContourSegment {
+  @contour_line.ContourSegment::new(x1, y1, x2, y2)
+}
+
+pub fn contour_grid_new(
+  cols : Int,
+  rows : Int,
+  data : Array[Double],
+  cell_size : Double,
+  x_origin : Double,
+  y_origin : Double,
+) -> ContourGrid {
+  @contour_line.ContourGrid::new(cols, rows, data, cell_size, x_origin, y_origin)
+}
+
+pub fn marching_squares(g : ContourGrid, level : Double) -> Array[ContourSegment] {
+  @contour_line.marching_squares(g, level)
+}
+
+pub fn extract_contours(
+  g : ContourGrid,
+  levels : Array[Double],
+) -> Array[(Double, Array[ContourSegment])] {
+  @contour_line.extract_contours(g, levels)
+}
+
+pub fn label_cell(g : ContourGrid, col : Int, row : Int, level : Double) -> Int {
+  @contour_line.label_cell(g, col, row, level)
+}
+
+pub fn count_contour_segments(g : ContourGrid, level : Double) -> Int {
+  @contour_line.count_contour_segments(g, level)
+}
+
+// ---------------------------------------------------------------------------
+// watershed: Watershed algorithm / 分水岭算法
+// ---------------------------------------------------------------------------
+
+///|
+/// Watershed result. / 分水岭结果。
+pub type WatershedResult = @watershed.WatershedResult
+
+pub fn marker_watershed(
+  cols : Int,
+  rows : Int,
+  dem : Array[Double],
+  markers : Array[Int],
+) -> WatershedResult {
+  @watershed.marker_watershed(cols, rows, dem, markers)
+}
+
+pub fn d8_flow_directions(
+  cols : Int,
+  rows : Int,
+  dem : Array[Double],
+) -> Array[Int] {
+  @watershed.d8_flow_directions(cols, rows, dem)
+}
+
+pub fn basin_cell_counts(r : WatershedResult) -> Array[(Int, Int)] {
+  @watershed.basin_cell_counts(r)
+}
+
+pub fn fill_depressions(
+  cols : Int,
+  rows : Int,
+  dem : Array[Double],
+) -> Array[Double] {
+  @watershed.fill_depressions(cols, rows, dem)
+}
+
+pub fn watershed_result_cols(r : WatershedResult) -> Int {
+  @watershed.WatershedResult::cols(r)
+}
+
+pub fn watershed_result_rows(r : WatershedResult) -> Int {
+  @watershed.WatershedResult::rows(r)
+}
+
+pub fn watershed_result_get(r : WatershedResult, col : Int, row : Int) -> Int {
+  @watershed.WatershedResult::get(r, col, row)
+}
+
+// ---------------------------------------------------------------------------
+// delaunay_terrain: Terrain Delaunay / 地形 Delaunay
+// ---------------------------------------------------------------------------
+
+///|
+/// Terrain from Delaunay triangulation. / Delaunay 三角剖分地形。
+pub type Terrain = @delaunay_terrain.Terrain
+
+pub fn build_terrain(points : Array[Point3D]) -> Terrain {
+  @delaunay_terrain.build_terrain(points)
+}
+
+pub fn build_constrained_terrain(
+  points : Array[Point3D],
+  constraints : Array[(Int, Int)],
+) -> Terrain {
+  @delaunay_terrain.build_constrained_terrain(points, constraints)
+}
+
+pub fn terrain_point_count(t : Terrain) -> Int {
+  @delaunay_terrain.Terrain::point_count(t)
+}
+
+pub fn terrain_triangle_count(t : Terrain) -> Int {
+  @delaunay_terrain.Terrain::triangle_count(t)
+}
+
+pub fn terrain_average_slope(t : Terrain) -> Double {
+  @delaunay_terrain.Terrain::average_slope(t)
+}
+
+pub fn terrain_aspect_at(t : Terrain, p : Point2D) -> Double? {
+  @delaunay_terrain.Terrain::aspect_at(t, p)
+}
+
+pub fn terrain_slope_at(t : Terrain, p : Point2D) -> Double? {
+  @delaunay_terrain.Terrain::slope_at(t, p)
+}
+
+pub fn terrain_surface_area(t : Terrain) -> Double {
+  @delaunay_terrain.Terrain::surface_area(t)
+}
+
+pub fn terrain_constraint_count(t : Terrain) -> Int {
+  @delaunay_terrain.Terrain::constraint_count(t)
+}
+
+// ---------------------------------------------------------------------------
+// Phase 4: Shape Analysis & Descriptors / 形状分析与描述子
+// ---------------------------------------------------------------------------
+
+///|
+/// === Phase 4: Shape Analysis & Descriptors ===
+
+// --- shape_context ---
+
+pub fn shape_context(
+  points : Array[Point2D],
+  n_r_bins : Int,
+  n_theta_bins : Int,
+) -> Array[Array[Double]] {
+  @shape_context.shape_context(points, n_r_bins, n_theta_bins)
+}
+
+pub fn shape_context_distance(
+  h1 : Array[Double],
+  h2 : Array[Double],
+) -> Double {
+  @shape_context.shape_context_distance(h1, h2)
+}
+
+pub fn shape_context_cost(
+  sc1 : Array[Array[Double]],
+  sc2 : Array[Array[Double]],
+) -> Array[Array[Double]] {
+  @shape_context.shape_context_cost(sc1, sc2)
+}
+
+pub fn shape_context_match(
+  source : Array[Point2D],
+  target : Array[Point2D],
+  n_r_bins : Int,
+  n_theta_bins : Int,
+) -> Array[Int] {
+  @shape_context.shape_context_match(source, target, n_r_bins, n_theta_bins)
+}
+
+// --- fourier_descriptor ---
+
+pub fn fourier_descriptors(points : Array[Point2D]) -> Array[(Double, Double)] {
+  @fourier_descriptor.fourier_descriptors(points)
+}
+
+pub fn fourier_invariant(points : Array[Point2D]) -> Array[Double] {
+  @fourier_descriptor.fourier_invariant(points)
+}
+
+pub fn fourier_reconstruct(
+  coeffs : Array[(Double, Double)],
+  n : Int,
+) -> Array[Point2D] {
+  @fourier_descriptor.fourier_reconstruct(coeffs, n)
+}
+
+pub fn fourier_truncate(
+  coeffs : Array[(Double, Double)],
+  k : Int,
+) -> Array[(Double, Double)] {
+  @fourier_descriptor.fourier_truncate(coeffs, k)
+}
+
+// --- moment_invariants ---
+
+pub fn raw_moment(points : Array[Point2D], p : Int, q : Int) -> Double {
+  @moment_invariants.raw_moment(points, p, q)
+}
+
+pub fn moment_centroid(points : Array[Point2D]) -> (Point2D, Double) {
+  @moment_invariants.centroid(points)
+}
+
+pub fn central_moment(points : Array[Point2D], p : Int, q : Int) -> Double {
+  @moment_invariants.central_moment(points, p, q)
+}
+
+pub fn normalized_moment(points : Array[Point2D], p : Int, q : Int) -> Double {
+  @moment_invariants.normalized_moment(points, p, q)
+}
+
+pub fn hu_moments(points : Array[Point2D]) -> Array[Double] {
+  @moment_invariants.hu_moments(points)
+}
+
+pub fn zernike_moment(
+  points : Array[Point2D],
+  n : Int,
+  m : Int,
+) -> (Double, Double) {
+  @moment_invariants.zernike_moment(points, n, m)
+}
+
+pub fn zernike_magnitude(points : Array[Point2D], n : Int, m : Int) -> Double {
+  @moment_invariants.zernike_magnitude(points, n, m)
+}
+
+// --- skeleton_3d ---
+
+pub fn voxel_index(x : Int, y : Int, z : Int, nx : Int, ny : Int) -> Int {
+  @skeleton_3d.voxel_index(x, y, z, nx, ny)
+}
+
+pub fn count_6_neighbors(
+  voxels : Array[Bool],
+  x : Int,
+  y : Int,
+  z : Int,
+  nx : Int,
+  ny : Int,
+  nz : Int,
+) -> Int {
+  @skeleton_3d.count_6_neighbors(voxels, x, y, z, nx, ny, nz)
+}
+
+pub fn count_26_neighbors(
+  voxels : Array[Bool],
+  x : Int,
+  y : Int,
+  z : Int,
+  nx : Int,
+  ny : Int,
+  nz : Int,
+) -> Int {
+  @skeleton_3d.count_26_neighbors(voxels, x, y, z, nx, ny, nz)
+}
+
+pub fn is_boundary_voxel(
+  voxels : Array[Bool],
+  x : Int,
+  y : Int,
+  z : Int,
+  nx : Int,
+  ny : Int,
+  nz : Int,
+) -> Bool {
+  @skeleton_3d.is_boundary(voxels, x, y, z, nx, ny, nz)
+}
+
+pub fn skeleton_3d(
+  voxels : Array[Bool],
+  nx : Int,
+  ny : Int,
+  nz : Int,
+) -> Array[Bool] {
+  @skeleton_3d.skeleton_3d(voxels, nx, ny, nz)
+}
+
+pub fn skeleton_volume(voxels : Array[Bool]) -> Int {
+  @skeleton_3d.skeleton_volume(voxels)
+}
+
+pub fn skeleton_endpoints(
+  voxels : Array[Bool],
+  nx : Int,
+  ny : Int,
+  nz : Int,
+) -> Int {
+  @skeleton_3d.skeleton_endpoints(voxels, nx, ny, nz)
+}
+
+pub fn skeleton_field(
+  voxels : Array[Bool],
+  nx : Int,
+  ny : Int,
+  nz : Int,
+) -> Array[Bool] {
+  @skeleton_3d.skeleton_field(voxels, nx, ny, nz)
+}
+
+// --- medial_axis_3d ---
+
+///|
+/// Medial ball in 3D. / 三维中轴球。
+pub type MedialBall3D = @medial_axis_3d.MedialBall3D
+
+pub fn medial_ball_3d_new(center : Point3D, radius : Double) -> MedialBall3D {
+  @medial_axis_3d.MedialBall3D::new(center, radius)
+}
+
+pub fn medial_ball_3d_center(ball : MedialBall3D) -> Point3D {
+  @medial_axis_3d.MedialBall3D::center(ball)
+}
+
+pub fn medial_ball_3d_radius(ball : MedialBall3D) -> Double {
+  @medial_axis_3d.MedialBall3D::radius(ball)
+}
+
+pub fn medial_axis_from_pairs(points : Array[Point3D]) -> Array[MedialBall3D] {
+  @medial_axis_3d.medial_axis_from_pairs(points)
+}
+
+pub fn medial_axis_from_triples(points : Array[Point3D]) -> Array[MedialBall3D] {
+  @medial_axis_3d.medial_axis_from_triples(points)
+}
+
+pub fn medial_axis_3d(points : Array[Point3D]) -> Array[MedialBall3D] {
+  @medial_axis_3d.medial_axis_3d(points)
+}
+
+pub fn medial_axis_filter(
+  balls : Array[MedialBall3D],
+  r_min : Double,
+  r_max : Double,
+) -> Array[MedialBall3D] {
+  @medial_axis_3d.medial_axis_filter(balls, r_min, r_max)
+}
+
+pub fn medial_axis_sort(balls : Array[MedialBall3D]) -> Array[MedialBall3D] {
+  @medial_axis_3d.medial_axis_sort(balls)
+}
+
+// --- shape_matching ---
+
+pub fn hungarian(cost : Array[Array[Double]]) -> Array[Int] {
+  @shape_matching.hungarian(cost)
+}
+
+pub fn shape_matching_icp(
+  source : Array[Point2D],
+  target : Array[Point2D],
+  max_iter : Int,
+) -> Array[Int] {
+  @shape_matching.shape_matching_icp(source, target, max_iter)
+}
+
+pub fn shape_matching_hungarian(
+  source : Array[Point2D],
+  target : Array[Point2D],
+) -> Array[Int] {
+  @shape_matching.shape_matching_hungarian(source, target)
+}
+
+pub fn shape_matching_score(
+  source : Array[Point2D],
+  target : Array[Point2D],
+) -> Double {
+  @shape_matching.shape_matching_score(source, target)
+}
+
+// --- curvature_scale ---
+
+pub fn gaussian_smooth(points : Array[Point2D], sigma : Double) -> Array[Point2D] {
+  @curvature_scale.gaussian_smooth(points, sigma)
+}
+
+pub fn css_curvature(points : Array[Point2D], sigma : Double) -> Array[Double] {
+  @curvature_scale.css_curvature(points, sigma)
+}
+
+pub fn css_inflection_points(
+  points : Array[Point2D],
+  sigma : Double,
+) -> Array[Int] {
+  @curvature_scale.css_inflection_points(points, sigma)
+}
+
+pub fn css_image(
+  points : Array[Point2D],
+  n_sigmas : Int,
+) -> Array[(Double, Int)] {
+  @curvature_scale.css_image(points, n_sigmas)
+}
+
+pub fn css_maxima(points : Array[Point2D], n_sigmas : Int) -> Array[Double] {
+  @curvature_scale.css_maxima(points, n_sigmas)
+}
+
+// --- bend_energy ---
+
+pub fn bend_energy(points : Array[Point2D]) -> Double {
+  @bend_energy.bend_energy(points)
+}
+
+pub fn bend_energy_open(points : Array[Point2D]) -> Double {
+  @bend_energy.bend_energy_open(points)
+}
+
+pub fn total_curvature_energy(points : Array[Point2D]) -> Double {
+  @bend_energy.total_curvature_energy(points)
+}
+
+pub fn elastic_energy(points : Array[Point2D], tension : Double) -> Double {
+  @bend_energy.elastic_energy(points, tension)
+}
+
+pub fn curve_length(points : Array[Point2D]) -> Double {
+  @bend_energy.curve_length(points)
+}
+
+// --- procrustes ---
+
+///|
+/// Procrustes alignment result. / Procrustes 对齐结果。
+pub type ProcrustesResult = @procrustes.ProcrustesResult
+
+pub fn procrustes_result_new(
+  rotation : Double,
+  tx : Double,
+  ty : Double,
+  scale : Double,
+  error : Double,
+) -> ProcrustesResult {
+  @procrustes.ProcrustesResult::new(rotation, tx, ty, scale, error)
+}
+
+pub fn procrustes_result_rotation(r : ProcrustesResult) -> Double {
+  @procrustes.ProcrustesResult::rotation(r)
+}
+
+pub fn procrustes_result_tx(r : ProcrustesResult) -> Double {
+  @procrustes.ProcrustesResult::tx(r)
+}
+
+pub fn procrustes_result_ty(r : ProcrustesResult) -> Double {
+  @procrustes.ProcrustesResult::ty(r)
+}
+
+pub fn procrustes_result_scale(r : ProcrustesResult) -> Double {
+  @procrustes.ProcrustesResult::scale(r)
+}
+
+pub fn procrustes_result_error(r : ProcrustesResult) -> Double {
+  @procrustes.ProcrustesResult::error(r)
+}
+
+pub fn procrustes(src : Array[Point2D], tgt : Array[Point2D]) -> ProcrustesResult {
+  @procrustes.procrustes(src, tgt)
+}
+
+pub fn procrustes_apply(
+  src : Array[Point2D],
+  result : ProcrustesResult,
+) -> Array[Point2D] {
+  @procrustes.procrustes_apply(src, result)
+}
+
+pub fn procrustes_error(src : Array[Point2D], tgt : Array[Point2D]) -> Double {
+  @procrustes.procrustes_error(src, tgt)
+}
+
+pub fn procrustes_analyze(
+  shapes : Array[Array[Point2D]],
+  max_iter : Int,
+) -> Array[Array[Point2D]] {
+  @procrustes.procrustes_analyze(shapes, max_iter)
+}
+
+// --- icp ---
+
+///|
+/// ICP registration result. / ICP 配准结果。
+pub type IcpResult = @icp.IcpResult
+
+pub fn icp_result_new(
+  rotation : Array[Double],
+  translation : Point3D,
+  error : Double,
+  iterations : Int,
+) -> IcpResult {
+  @icp.IcpResult::new(rotation, translation, error, iterations)
+}
+
+pub fn icp_result_rotation(r : IcpResult) -> Array[Double] {
+  @icp.IcpResult::rotation(r)
+}
+
+pub fn icp_result_translation(r : IcpResult) -> Point3D {
+  @icp.IcpResult::translation(r)
+}
+
+pub fn icp_result_error(r : IcpResult) -> Double {
+  @icp.IcpResult::error(r)
+}
+
+pub fn icp_result_iterations(r : IcpResult) -> Int {
+  @icp.IcpResult::iterations(r)
+}
+
+pub fn icp_point_to_point(
+  source : Array[Point3D],
+  target : Array[Point3D],
+  max_iter : Int,
+) -> IcpResult {
+  @icp.icp_point_to_point(source, target, max_iter)
+}
+
+pub fn icp_point_to_plane(
+  source : Array[Point3D],
+  target : Array[Point3D],
+  normals : Array[Point3D],
+  max_iter : Int,
+) -> IcpResult {
+  @icp.icp_point_to_plane(source, target, normals, max_iter)
+}
+
+pub fn icp_apply(points : Array[Point3D], result : IcpResult) -> Array[Point3D] {
+  @icp.icp_apply(points, result)
+}
+
+pub fn icp_rms_error(
+  source : Array[Point3D],
+  target : Array[Point3D],
+) -> Double {
+  @icp.icp_rms_error(source, target)
+}
+// ---------------------------------------------------------------------------
+// quadratic_prog: Quadratic programming / 二次规划
+// ---------------------------------------------------------------------------
+///|
+pub type QPResult = @quadratic_prog.QPResult
+///|
+pub fn qp_result_new(x : Array[Double], value : Double, success : Bool) -> QPResult {
+  @quadratic_prog.QPResult::new(x, value, success)
+}
+///|
+pub fn qp_solve_linear(
+  a : Array[Array[Double]],
+  b : Array[Double],
+  n : Int,
+) -> Array[Double]? {
+  @quadratic_prog.solve_linear(a, b, n)
+}
+///|
+pub fn solve_unconstrained_qp(
+  q : Array[Array[Double]],
+  c : Array[Double],
+  n : Int,
+) -> Array[Double]? {
+  @quadratic_prog.solve_unconstrained_qp(q, c, n)
+}
+///|
+pub fn active_set_qp(
+  q : Array[Array[Double]],
+  c : Array[Double],
+  a : Array[Array[Double]],
+  b : Array[Double],
+  n : Int,
+  max_iter : Int,
+) -> QPResult {
+  @quadratic_prog.active_set_qp(q, c, a, b, n, max_iter)
+}
+///|
+pub fn qp_2d_box(
+  q11 : Double,
+  q12 : Double,
+  q22 : Double,
+  c1 : Double,
+  c2 : Double,
+  lo1 : Double,
+  hi1 : Double,
+  lo2 : Double,
+  hi2 : Double,
+) -> Point2D {
+  @quadratic_prog.qp_2d_box(q11, q12, q22, c1, c2, lo1, hi1, lo2, hi2)
+}
+///|
+pub fn qp_objective(
+  q : Array[Array[Double]],
+  c : Array[Double],
+  x : Array[Double],
+  n : Int,
+) -> Double {
+  @quadratic_prog.qp_objective(q, c, x, n)
+}
+
+// ---------------------------------------------------------------------------
+// gradient_descent: Gradient descent / 梯度下降
+// ---------------------------------------------------------------------------
+///|
+pub fn gradient_descent(
+  grad : (Array[Double]) -> Array[Double],
+  x0 : Array[Double],
+  lr : Double,
+  max_iter : Int,
+) -> Array[Double] {
+  @gradient_descent.gradient_descent(grad, x0, lr, max_iter)
+}
+///|
+pub fn momentum_gd(
+  grad : (Array[Double]) -> Array[Double],
+  x0 : Array[Double],
+  lr : Double,
+  momentum : Double,
+  max_iter : Int,
+) -> Array[Double] {
+  @gradient_descent.momentum_gd(grad, x0, lr, momentum, max_iter)
+}
+///|
+pub fn nesterov_gd(
+  grad : (Array[Double]) -> Array[Double],
+  x0 : Array[Double],
+  lr : Double,
+  momentum : Double,
+  max_iter : Int,
+) -> Array[Double] {
+  @gradient_descent.nesterov_gd(grad, x0, lr, momentum, max_iter)
+}
+///|
+pub fn adam(
+  grad : (Array[Double]) -> Array[Double],
+  x0 : Array[Double],
+  lr : Double,
+  beta1 : Double,
+  beta2 : Double,
+  eps : Double,
+  max_iter : Int,
+) -> Array[Double] {
+  @gradient_descent.adam(grad, x0, lr, beta1, beta2, eps, max_iter)
+}
+///|
+pub fn gd_2d(
+  grad : (Double, Double) -> (Double, Double),
+  x0 : Double,
+  y0 : Double,
+  lr : Double,
+  max_iter : Int,
+) -> Point2D {
+  @gradient_descent.gd_2d(grad, x0, y0, lr, max_iter)
+}
+///|
+pub fn rmsprop(
+  grad : (Array[Double]) -> Array[Double],
+  x0 : Array[Double],
+  lr : Double,
+  decay : Double,
+  eps : Double,
+  max_iter : Int,
+) -> Array[Double] {
+  @gradient_descent.rmsprop(grad, x0, lr, decay, eps, max_iter)
+}
+
+// ---------------------------------------------------------------------------
+// newton_method: Newton's method / 牛顿法
+// ---------------------------------------------------------------------------
+///|
+pub fn newton_1d(
+  f : (Double) -> Double,
+  fp : (Double) -> Double,
+  x0 : Double,
+  tol : Double,
+  max_iter : Int,
+) -> Double {
+  @newton_method.newton_1d(f, fp, x0, tol, max_iter)
+}
+///|
+pub fn newton_multi(
+  grad : (Array[Double]) -> Array[Double],
+  hess : (Array[Double]) -> Array[Array[Double]],
+  x0 : Array[Double],
+  tol : Double,
+  max_iter : Int,
+) -> Array[Double] {
+  @newton_method.newton_multi(grad, hess, x0, tol, max_iter)
+}
+///|
+pub fn newton_line_search(
+  f : (Array[Double]) -> Double,
+  grad : (Array[Double]) -> Array[Double],
+  hess : (Array[Double]) -> Array[Array[Double]],
+  x0 : Array[Double],
+  max_iter : Int,
+) -> Array[Double] {
+  @newton_method.newton_line_search(f, grad, hess, x0, max_iter)
+}
+///|
+pub fn newton_trust_region(
+  f : (Array[Double]) -> Double,
+  grad : (Array[Double]) -> Array[Double],
+  hess : (Array[Double]) -> Array[Array[Double]],
+  x0 : Array[Double],
+  max_delta : Double,
+  max_iter : Int,
+) -> Array[Double] {
+  @newton_method.newton_trust_region(f, grad, hess, x0, max_delta, max_iter)
+}
+///|
+pub fn newton_2d(
+  grad : (Double, Double) -> (Double, Double),
+  hess : (Double, Double) -> ((Double, Double), (Double, Double)),
+  x0 : Double,
+  y0 : Double,
+  max_iter : Int,
+) -> Point2D {
+  @newton_method.newton_2d(grad, hess, x0, y0, max_iter)
+}
+
+// ---------------------------------------------------------------------------
+// levenberg_marquardt: Levenberg-Marquardt / 非线性最小二乘
+// ---------------------------------------------------------------------------
+///|
+pub type LMResult = @levenberg_marquardt.LMResult
+///|
+pub fn lm_result_new(
+  x : Array[Double],
+  residual : Double,
+  iterations : Int,
+  success : Bool,
+) -> LMResult {
+  @levenberg_marquardt.LMResult::new(x, residual, iterations, success)
+}
+///|
+pub fn levenberg_marquardt(
+  residual : (Array[Double]) -> Array[Double],
+  x0 : Array[Double],
+  max_iter : Int,
+) -> LMResult {
+  @levenberg_marquardt.levenberg_marquardt(residual, x0, max_iter)
+}
+///|
+pub fn levenberg_marquardt_jac(
+  residual : (Array[Double]) -> Array[Double],
+  jacobian : (Array[Double]) -> Array[Array[Double]],
+  x0 : Array[Double],
+  max_iter : Int,
+) -> LMResult {
+  @levenberg_marquardt.levenberg_marquardt_jac(residual, jacobian, x0, max_iter)
+}
+///|
+pub fn lm_line_fit(xs : Array[Double], ys : Array[Double]) -> (Double, Double) {
+  @levenberg_marquardt.lm_line_fit(xs, ys)
+}
+
+// ---------------------------------------------------------------------------
+// conjugate_gradient: Conjugate gradient / 共轭梯度
+// ---------------------------------------------------------------------------
+///|
+pub fn cg_linear(
+  a : Array[Array[Double]],
+  b : Array[Double],
+  x0 : Array[Double],
+  max_iter : Int,
+) -> Array[Double] {
+  @conjugate_gradient.cg_linear(a, b, x0, max_iter)
+}
+///|
+pub fn pcg_linear(
+  a : Array[Array[Double]],
+  b : Array[Double],
+  m_inv : (Array[Double]) -> Array[Double],
+  x0 : Array[Double],
+  max_iter : Int,
+) -> Array[Double] {
+  @conjugate_gradient.pcg_linear(a, b, m_inv, x0, max_iter)
+}
+///|
+pub fn nonlinear_cg(
+  f : (Array[Double]) -> Double,
+  grad : (Array[Double]) -> Array[Double],
+  x0 : Array[Double],
+  max_iter : Int,
+) -> Array[Double] {
+  @conjugate_gradient.nonlinear_cg(f, grad, x0, max_iter)
+}
+///|
+pub fn nonlinear_cg_2d(
+  f : (Double, Double) -> Double,
+  grad : (Double, Double) -> (Double, Double),
+  x0 : Double,
+  y0 : Double,
+  max_iter : Int,
+) -> Point2D {
+  @conjugate_gradient.nonlinear_cg_2d(f, grad, x0, y0, max_iter)
+}
+///|
+pub fn jacobi_preconditioner(
+  a : Array[Array[Double]],
+  n : Int,
+) -> (Array[Double]) -> Array[Double] {
+  @conjugate_gradient.jacobi_preconditioner(a, n)
+}
+
+// ---------------------------------------------------------------------------
+// simplex_method: Simplex method / 单纯形法
+// ---------------------------------------------------------------------------
+///|
+pub type SimplexResult = @simplex_method.SimplexResult
+///|
+pub fn simplex_result_new(
+  x : Array[Double],
+  value : Double,
+  success : Bool,
+) -> SimplexResult {
+  @simplex_method.SimplexResult::new(x, value, success)
+}
+///|
+pub fn simplex(
+  a : Array[Array[Double]],
+  b : Array[Double],
+  c : Array[Double],
+  max_iter : Int,
+) -> SimplexResult {
+  @simplex_method.simplex(a, b, c, max_iter)
+}
+///|
+pub fn simplex_max(
+  a : Array[Array[Double]],
+  b : Array[Double],
+  c : Array[Double],
+  max_iter : Int,
+) -> SimplexResult {
+  @simplex_method.simplex_max(a, b, c, max_iter)
+}
+
+// ---------------------------------------------------------------------------
+// interior_point: Interior point method / 内点法
+// ---------------------------------------------------------------------------
+///|
+pub type IPResult = @interior_point.IPResult
+///|
+pub fn ip_result_new(x : Array[Double], value : Double, success : Bool) -> IPResult {
+  @interior_point.IPResult::new(x, value, success)
+}
+///|
+pub fn interior_point(
+  a : Array[Array[Double]],
+  b : Array[Double],
+  c : Array[Double],
+  max_iter : Int,
+) -> IPResult {
+  @interior_point.interior_point(a, b, c, max_iter)
+}
+///|
+pub fn interior_point_max(
+  a : Array[Array[Double]],
+  b : Array[Double],
+  c : Array[Double],
+  max_iter : Int,
+) -> IPResult {
+  @interior_point.interior_point_max(a, b, c, max_iter)
+}
+///|
+pub fn duality_gap(x : Array[Double], s : Array[Double], n : Int) -> Double {
+  @interior_point.duality_gap(x, s, n)
+}
+
+// ---------------------------------------------------------------------------
+// simulated_annealing: Simulated annealing / 模拟退火
+// ---------------------------------------------------------------------------
+///|
+pub type CoolingSchedule = @simulated_annealing.CoolingSchedule
+///|
+pub type SAResult = @simulated_annealing.SAResult
+///|
+pub type SA_rng = @simulated_annealing.SA_rng
+///|
+pub fn sa_rng_new(seed : UInt) -> SA_rng {
+  @simulated_annealing.SA_rng::new(seed)
+}
+///|
+pub fn sa_rng_next(r : SA_rng) -> Double {
+  @simulated_annealing.SA_rng::next(r)
+}
+///|
+pub fn simulated_annealing(
+  f : (Array[Double]) -> Double,
+  x0 : Array[Double],
+  neighbor : (Array[Double], SA_rng) -> Array[Double],
+  t0 : Double,
+  schedule : CoolingSchedule,
+  min_temp : Double,
+  max_iter : Int,
+  seed : UInt,
+) -> SAResult {
+  @simulated_annealing.simulated_annealing(f, x0, neighbor, t0, schedule, min_temp, max_iter, seed)
+}
+///|
+pub fn uniform_neighbor(
+  x : Array[Double],
+  step : Double,
+  rng : SA_rng,
+) -> Array[Double] {
+  @simulated_annealing.uniform_neighbor(x, step, rng)
+}
+///|
+pub fn sa_1d(
+  f : (Double) -> Double,
+  x0 : Double,
+  step : Double,
+  t0 : Double,
+  cooling_rate : Double,
+  max_iter : Int,
+  seed : UInt,
+) -> Double {
+  @simulated_annealing.sa_1d(f, x0, step, t0, cooling_rate, max_iter, seed)
+}
+///|
+pub fn sa_reheat(
+  f : (Array[Double]) -> Double,
+  x0 : Array[Double],
+  neighbor : (Array[Double], SA_rng) -> Array[Double],
+  t0 : Double,
+  cooling_rate : Double,
+  max_iter : Int,
+  n_reheats : Int,
+  seed : UInt,
+) -> SAResult {
+  @simulated_annealing.sa_reheat(f, x0, neighbor, t0, cooling_rate, max_iter, n_reheats, seed)
+}
+
+// ---------------------------------------------------------------------------
+// genetic_algorithm: Genetic algorithm / 遗传算法
+// ---------------------------------------------------------------------------
+///|
+pub type GAConfig = @genetic_algorithm.GAConfig
+///|
+pub type GAResult = @genetic_algorithm.GAResult
+///|
+pub fn ga_config_new(
+  pop_size : Int,
+  n_genes : Int,
+  crossover_rate : Double,
+  mutation_rate : Double,
+  elite_count : Int,
+  lo : Array[Double],
+  hi : Array[Double],
+) -> GAConfig {
+  @genetic_algorithm.GAConfig::new(pop_size, n_genes, crossover_rate, mutation_rate, elite_count, lo, hi)
+}
+///|
+pub fn ga_result_new(
+  x : Array[Double],
+  fitness : Double,
+  generations : Int,
+) -> GAResult {
+  @genetic_algorithm.GAResult::new(x, fitness, generations)
+}
+///|
+pub fn genetic_algorithm(
+  fitness : (Array[Double]) -> Double,
+  config : GAConfig,
+  max_generations : Int,
+  seed : UInt,
+) -> GAResult {
+  @genetic_algorithm.genetic_algorithm(fitness, config, max_generations, seed)
+}
+///|
+pub fn ga_minimize(
+  f : (Array[Double]) -> Double,
+  config : GAConfig,
+  max_generations : Int,
+  seed : UInt,
+) -> GAResult {
+  @genetic_algorithm.ga_minimize(f, config, max_generations, seed)
+}
+///|
+pub fn ga_1d(
+  f : (Double) -> Double,
+  lo : Double,
+  hi : Double,
+  pop_size : Int,
+  max_generations : Int,
+  seed : UInt,
+) -> Double {
+  @genetic_algorithm.ga_1d(f, lo, hi, pop_size, max_generations, seed)
+}
+
+// ---------------------------------------------------------------------------
+// pso: Particle swarm optimization / 粒子群优化
+// ---------------------------------------------------------------------------
+///|
+pub type PSOConfig = @pso.PSOConfig
+///|
+pub type PSOResult = @pso.PSOResult
+///|
+pub type PSOTopology = @pso.PSOTopology
+///|
+pub fn pso_config_new(
+  n_particles : Int,
+  n_dims : Int,
+  w : Double,
+  c1 : Double,
+  c2 : Double,
+  lo : Array[Double],
+  hi : Array[Double],
+  v_max : Double,
+) -> PSOConfig {
+  @pso.PSOConfig::new(n_particles, n_dims, w, c1, c2, lo, hi, v_max)
+}
+///|
+pub fn pso_result_new(
+  x : Array[Double],
+  value : Double,
+  iterations : Int,
+) -> PSOResult {
+  @pso.PSOResult::new(x, value, iterations)
+}
+///|
+pub fn pso(
+  f : (Array[Double]) -> Double,
+  config : PSOConfig,
+  topology : PSOTopology,
+  max_iter : Int,
+  seed : UInt,
+) -> PSOResult {
+  @pso.pso(f, config, topology, max_iter, seed)
+}
+///|
+pub fn pso_decreasing_w(
+  f : (Array[Double]) -> Double,
+  config : PSOConfig,
+  w_max : Double,
+  w_min : Double,
+  topology : PSOTopology,
+  max_iter : Int,
+  seed : UInt,
+) -> PSOResult {
+  @pso.pso_decreasing_w(f, config, w_max, w_min, topology, max_iter, seed)
+}
+///|
+pub fn pso_1d(
+  f : (Double) -> Double,
+  lo : Double,
+  hi : Double,
+  n_particles : Int,
+  max_iter : Int,
+  seed : UInt,
+) -> Double {
+  @pso.pso_1d(f, lo, hi, n_particles, max_iter, seed)
+}// ---------------------------------------------------------------------------
+// obj_io: OBJ file I/O / OBJ 文件读写
+// ---------------------------------------------------------------------------
+///|
+pub type ObjFaceVertex = @obj_io.ObjFaceVertex
+///|
+pub type ObjFace = @obj_io.ObjFace
+///|
+pub type ObjMesh = @obj_io.ObjMesh
+
+pub fn obj_face_vertex_new(v : Int, vt : Int, vn : Int) -> ObjFaceVertex {
+  @obj_io.ObjFaceVertex::new(v, vt, vn)
+}
+
+pub fn obj_face_new(verts : Array[ObjFaceVertex]) -> ObjFace {
+  @obj_io.ObjFace::new(verts)
+}
+
+pub fn obj_mesh_new() -> ObjMesh {
+  @obj_io.ObjMesh::new()
+}
+
+pub fn obj_mesh_vertex_count(m : ObjMesh) -> Int {
+  @obj_io.ObjMesh::vertex_count(m)
+}
+
+pub fn obj_mesh_face_count(m : ObjMesh) -> Int {
+  @obj_io.ObjMesh::face_count(m)
+}
+
+pub fn obj_write(mesh : ObjMesh) -> String {
+  @obj_io.obj_write(mesh)
+}
+
+pub fn obj_parse(text : String) -> ObjMesh {
+  @obj_io.obj_parse(text)
+}
+// ---------------------------------------------------------------------------
+// stl_io: STL file I/O / STL 文件读写
+// ---------------------------------------------------------------------------
+///|
+pub type StlTriangle = @stl_io.StlTriangle
+///|
+pub type StlMesh = @stl_io.StlMesh
+
+pub fn stl_triangle_new(
+  normal : Point3D,
+  v0 : Point3D,
+  v1 : Point3D,
+  v2 : Point3D,
+) -> StlTriangle {
+  @stl_io.StlTriangle::new(normal, v0, v1, v2)
+}
+
+pub fn stl_mesh_new(name : String) -> StlMesh {
+  @stl_io.StlMesh::new(name)
+}
+
+pub fn stl_mesh_triangle_count(m : StlMesh) -> Int {
+  @stl_io.StlMesh::triangle_count(m)
+}
+
+pub fn stl_write_ascii(mesh : StlMesh) -> String {
+  @stl_io.stl_write_ascii(mesh)
+}
+
+pub fn stl_parse_ascii(text : String) -> StlMesh {
+  @stl_io.stl_parse_ascii(text)
+}
+
+pub fn stl_write_binary(mesh : StlMesh) -> Bytes {
+  @stl_io.stl_write_binary(mesh)
+}
+
+pub fn stl_parse_binary(data : Bytes) -> StlMesh {
+  @stl_io.stl_parse_binary(data)
+}
+// ---------------------------------------------------------------------------
+// ply_io: PLY file I/O / PLY 文件读写
+// ---------------------------------------------------------------------------
+///|
+pub type PlyMesh = @ply_io.PlyMesh
+
+pub fn ply_mesh_new() -> PlyMesh {
+  @ply_io.PlyMesh::new()
+}
+
+pub fn ply_mesh_vertex_count(m : PlyMesh) -> Int {
+  @ply_io.PlyMesh::vertex_count(m)
+}
+
+pub fn ply_mesh_face_count(m : PlyMesh) -> Int {
+  @ply_io.PlyMesh::face_count(m)
+}
+
+pub fn ply_write_ascii(mesh : PlyMesh) -> String {
+  @ply_io.ply_write_ascii(mesh)
+}
+
+pub fn ply_parse_ascii(text : String) -> PlyMesh {
+  @ply_io.ply_parse_ascii(text)
+}
+
+pub fn ply_write_binary(mesh : PlyMesh) -> Bytes {
+  @ply_io.ply_write_binary(mesh)
+}
+
+pub fn ply_parse_binary(data : Bytes) -> PlyMesh {
+  @ply_io.ply_parse_binary(data)
+}
+// ---------------------------------------------------------------------------
+// gltf_io: glTF file I/O / glTF 文件读写
+// ---------------------------------------------------------------------------
+///|
+pub type GltfMesh = @gltf_io.GltfMesh
+
+pub fn gltf_mesh_new() -> GltfMesh {
+  @gltf_io.GltfMesh::new()
+}
+
+pub fn gltf_mesh_vertex_count(m : GltfMesh) -> Int {
+  @gltf_io.GltfMesh::vertex_count(m)
+}
+
+pub fn gltf_mesh_index_count(m : GltfMesh) -> Int {
+  @gltf_io.GltfMesh::index_count(m)
+}
+
+pub fn gltf_write_json(mesh : GltfMesh) -> String {
+  @gltf_io.gltf_write_json(mesh)
+}
+
+pub fn gltf_parse_json(text : String) -> GltfMesh {
+  @gltf_io.gltf_parse_json(text)
+}
+
+pub fn gltf_write_binary(mesh : GltfMesh) -> Bytes {
+  @gltf_io.gltf_write_binary(mesh)
+}
+
+pub fn gltf_parse_binary(data : Bytes) -> GltfMesh {
+  @gltf_io.gltf_parse_binary(data)
+}
+// ---------------------------------------------------------------------------
+// geojson_io: GeoJSON I/O / GeoJSON 读写
+// ---------------------------------------------------------------------------
+///|
+pub type GeoJsonGeometry = @geojson_io.GeoJsonGeometry
+
+pub fn geojson_point(p : Point2D) -> String {
+  @geojson_io.geojson_point(p)
+}
+
+pub fn geojson_linestring(points : Array[Point2D]) -> String {
+  @geojson_io.geojson_linestring(points)
+}
+
+pub fn geojson_polygon(rings : Array[Array[Point2D]]) -> String {
+  @geojson_io.geojson_polygon(rings)
+}
+
+pub fn geojson_multipoint(points : Array[Point2D]) -> String {
+  @geojson_io.geojson_multipoint(points)
+}
+
+pub fn geojson_multilinestring(lines : Array[Array[Point2D]]) -> String {
+  @geojson_io.geojson_multilinestring(lines)
+}
+
+pub fn geojson_multipolygon(polygons : Array[Array[Array[Point2D]]]) -> String {
+  @geojson_io.geojson_multipolygon(polygons)
+}
+
+pub fn geojson_write(geom : GeoJsonGeometry) -> String {
+  @geojson_io.geojson_write(geom)
+}
+
+pub fn geojson_parse(text : String) -> GeoJsonGeometry? {
+  @geojson_io.geojson_parse(text)
+}
+// ---------------------------------------------------------------------------
+// dxf_io: DXF file I/O / DXF 文件读写
+// ---------------------------------------------------------------------------
+///|
+pub type DxfEntity = @dxf_io.DxfEntity
+///|
+pub type DxfDocument = @dxf_io.DxfDocument
+
+pub fn dxf_document_new() -> DxfDocument {
+  @dxf_io.DxfDocument::new()
+}
+
+pub fn dxf_document_entity_count(d : DxfDocument) -> Int {
+  @dxf_io.DxfDocument::entity_count(d)
+}
+
+pub fn dxf_write(doc : DxfDocument) -> String {
+  @dxf_io.dxf_write(doc)
+}
+
+pub fn dxf_parse(text : String) -> DxfDocument {
+  @dxf_io.dxf_parse(text)
+}
+// ---------------------------------------------------------------------------
+// ray_tracing: Ray tracing / 光线追踪
+// ---------------------------------------------------------------------------
+///|
+pub type Ray3 = @ray_tracing.Ray3
+
+pub fn ray3_new(origin : Point3D, dir : Point3D) -> Ray3 {
+  @ray_tracing.Ray3::new(origin, dir)
+}
+
+pub fn ray3_eval(r : Ray3, t : Double) -> Point3D {
+  @ray_tracing.ray_eval(r, t)
+}
+
+pub fn ray_triangle_intersect(
+  r : Ray3,
+  v0 : Point3D,
+  v1 : Point3D,
+  v2 : Point3D,
+) -> Double? {
+  @ray_tracing.ray_triangle_intersect(r, v0, v1, v2)
+}
+
+pub fn ray_sphere_intersect(
+  r : Ray3,
+  center : Point3D,
+  radius : Double,
+) -> Double? {
+  @ray_tracing.ray_sphere_intersect(r, center, radius)
+}
+
+pub fn ray_plane_intersect(
+  r : Ray3,
+  point : Point3D,
+  normal : Point3D,
+) -> Double? {
+  @ray_tracing.ray_plane_intersect(r, point, normal)
+}
+
+pub fn point_in_shadow(
+  point : Point3D,
+  light : Point3D,
+  triangles : Array[(Point3D, Point3D, Point3D)],
+) -> Bool {
+  @ray_tracing.point_in_shadow(point, light, triangles)
+}
+
+pub fn ray_nearest_triangle(
+  r : Ray3,
+  triangles : Array[(Point3D, Point3D, Point3D)],
+) -> (Double, Int)? {
+  @ray_tracing.ray_nearest_triangle(r, triangles)
+}
+// ---------------------------------------------------------------------------
+// marching_cubes: Marching Cubes / 移动立方体
+// ---------------------------------------------------------------------------
+///|
+pub type McGrid = @marching_cubes.McGrid
+
+pub fn mc_grid_new(
+  values : Array[Double],
+  nx : Int,
+  ny : Int,
+  nz : Int,
+) -> McGrid {
+  @marching_cubes.McGrid::new(values, nx, ny, nz)
+}
+
+pub fn mc_grid_get(g : McGrid, i : Int, j : Int, k : Int) -> Double {
+  @marching_cubes.McGrid::get(g, i, j, k)
+}
+
+pub fn marching_cubes(
+  grid : McGrid,
+  isolevel : Double,
+) -> Array[(Point3D, Point3D, Point3D)] {
+  @marching_cubes.marching_cubes(grid, isolevel)
+}
+
+pub fn marching_cubes_count(grid : McGrid, isolevel : Double) -> Int {
+  @marching_cubes.marching_cubes_count(grid, isolevel)
+}
+
+pub fn cube_config_class(cube_idx : Int) -> Int {
+  @marching_cubes.cube_config_class(cube_idx)
+}
+
+pub fn count_active_configs(grid : McGrid, isolevel : Double) -> Int {
+  @marching_cubes.count_active_configs(grid, isolevel)
+}
+// ---------------------------------------------------------------------------
+// hidden_line: Hidden line removal / 隐藏线消除
+// ---------------------------------------------------------------------------
+///|
+pub type LineSeg3D = @hidden_line.LineSeg3D
+
+pub fn line_seg_3d_new(start : Point3D, end : Point3D) -> LineSeg3D {
+  @hidden_line.LineSeg3D::new(start, end)
+}
+
+pub fn project_to_2d(p : Point3D) -> Point2D {
+  @hidden_line.project_to_2d(p)
+}
+
+pub fn project_segment(s : LineSeg3D) -> (Point2D, Point2D) {
+  @hidden_line.project_segment(s)
+}
+
+pub fn point_in_triangle_2d(
+  p : Point2D,
+  a : Point2D,
+  b : Point2D,
+  c : Point2D,
+) -> Bool {
+  @hidden_line.point_in_triangle_2d(p, a, b, c)
+}
+
+pub fn triangle_z_at(
+  tri : (Point3D, Point3D, Point3D),
+  x : Double,
+  y : Double,
+) -> Double? {
+  @hidden_line.triangle_z_at(tri, x, y)
+}
+
+pub fn hidden_line_remove(
+  segments : Array[LineSeg3D],
+  triangles : Array[(Point3D, Point3D, Point3D)],
+) -> Array[(Point2D, Point2D)] {
+  @hidden_line.hidden_line_remove(segments, triangles)
+}
+
+pub fn count_visible(
+  segments : Array[LineSeg3D],
+  triangles : Array[(Point3D, Point3D, Point3D)],
+) -> Int {
+  @hidden_line.count_visible(segments, triangles)
+}
+
+pub fn back_face_cull(
+  triangles : Array[(Point3D, Point3D, Point3D)],
+  view_dir : Point3D,
+) -> Array[(Point3D, Point3D, Point3D)] {
+  @hidden_line.back_face_cull(triangles, view_dir)
+}
+// ---------------------------------------------------------------------------
+// rasterization: Rasterization / 光栅化
+// ---------------------------------------------------------------------------
+///|
+pub type RasterBuffer = @rasterization.RasterBuffer
+
+pub fn raster_buffer_new(width : Int, height : Int) -> RasterBuffer {
+  @rasterization.RasterBuffer::new(width, height)
+}
+
+pub fn clear_buffer(buf : RasterBuffer, color : Int, depth : Double) -> Unit {
+  @rasterization.clear_buffer(buf, color, depth)
+}
+
+pub fn set_pixel(buf : RasterBuffer, x : Int, y : Int, color : Int) -> Unit {
+  @rasterization.set_pixel(buf, x, y, color)
+}
+
+pub fn set_pixel_depth(
+  buf : RasterBuffer,
+  x : Int,
+  y : Int,
+  color : Int,
+  depth : Double,
+) -> Unit {
+  @rasterization.set_pixel_depth(buf, x, y, color, depth)
+}
+
+pub fn get_pixel(buf : RasterBuffer, x : Int, y : Int) -> Int {
+  @rasterization.get_pixel(buf, x, y)
+}
+
+pub fn get_depth(buf : RasterBuffer, x : Int, y : Int) -> Double {
+  @rasterization.get_depth(buf, x, y)
+}
+
+pub fn raster_line(
+  buf : RasterBuffer,
+  x0 : Int,
+  y0 : Int,
+  x1 : Int,
+  y1 : Int,
+  color : Int,
+) -> Unit {
+  @rasterization.raster_line(buf, x0, y0, x1, y1, color)
+}
+
+pub fn raster_triangle(
+  buf : RasterBuffer,
+  v0 : Point3D,
+  v1 : Point3D,
+  v2 : Point3D,
+  color : Int,
+) -> Unit {
+  @rasterization.raster_triangle(buf, v0, v1, v2, color)
+}
+
+pub fn count_filled(buf : RasterBuffer, bg : Int) -> Int {
+  @rasterization.count_filled(buf, bg)
+}
