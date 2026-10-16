@@ -217,6 +217,64 @@ mooncakes 生态调研确认：截至 2026-10-15，GitHub 与 mooncakes.io 上**
 
 ---
 
+## 与 mooncakes 现有库的对比
+
+### 现有库概况
+
+| 库 | 版本 | 维度 | 模块数 | 来源 | 定位 |
+|----|------|------|--------|------|------|
+| totto2727/geo | 0.1.3 | 仅 2D | ~4 子包 | georust/geo 移植 | 2D 平面地理空间原语 |
+| cn-xjr/moongeokit | 0.3.0 | 仅 2D | 1 包（3 源文件） | 原创 | 2D 几何 + 均匀网格索引 |
+| **moon-geometry** | **0.231.0** | **2D + 3D** | **236 模块** | **原创** | **全栈计算几何** |
+
+### 复用关系
+
+- moon-geometry **未复用**任何竞品代码，所有 236 个模块均为原创实现
+- 与 totto2727/geo 在 2D 基础几何（凸包/相交/距离/三角剖分）上有功能重叠，实现独立
+- 与 cn-xjr/moongeokit 在 2D 基础几何和空间索引上有少量重叠，实现独立
+
+### 独有增量能力（竞品完全不具备，共 200+ 模块）
+
+1. **3D 几何全栈**（10 模块）：3D 凸包、多面体布尔、3D 包围体、3D 网格处理 — 竞品均仅 2D
+2. **3D Voronoi/Delaunay 与拓扑**（10 模块）：3D Voronoi/Delaunay、持久同调、Betti 数、Reeb 图
+3. **机器人路径规划**（10 模块）：RRT/RRT*/PRM/A*/Dubins/Reed-Shepp/GJK/SAT
+4. **形状分析与描述子**（10 模块）：形状上下文/傅里叶描述子/Hu 矩/ICP/Procrustes
+5. **数值优化**（10 模块）：QP/Newton/LM/CG/单纯形/内点/SA/GA/PSO
+6. **GIS 与测地线**（10 模块）：地图投影/测地距离/TIN/基准变换/等高线/分水岭
+7. **文件 I/O**（6 模块）：OBJ/STL/PLY/glTF/GeoJSON/DXF 读写
+8. **渲染**（4 模块）：光线追踪/移动立方体/隐藏线消除/光栅化
+9. **代数几何与分形**（10 模块）：圆锥曲线/二次曲面/结式/IFS/L 系统/分形维数
+10. **高级曲线与曲面**（15+ 模块）：NURBS/B 样条/Catmull-Rom/Hermite/Bezier 曲面
+11. **高级空间结构**（19 模块）：KD 树/四叉树/八叉树/BVH/球树/VP 树/覆盖树等
+12. **距离度量**（8 模块）：Hausdorff/Fréchet/Chamfer/EMD/DTW
+13. **网格处理**（6 模块）：简化/平滑/法向/细分/欧拉示性数
+14. **应用算法**（7 模块）：Hough 变换/RANSAC/聚类/配准/重建/打包/覆盖
+
+### 同一输入下的能力对比示例
+
+| 输入 | moon-geometry | totto2727/geo | cn-xjr/moongeokit |
+|------|:---:|:---:|:---:|
+| 2D 点集 → 凸包 | ✅ | ✅ | ✅ |
+| 2D 点集 → Delaunay | ✅ | ✅ | ❌ |
+| **3D 点集 → 凸包** | ✅ | ❌ 仅 2D | ❌ 仅 2D |
+| **3D 点集 → Voronoi** | ✅ | ❌ | ❌ |
+| **起点+障碍 → RRT 路径** | ✅ | ❌ | ❌ |
+| **控制点 → NURBS 曲线** | ✅ | ❌ | ❌ |
+| **点云 → 持久同调条形码** | ✅ | ❌ | ❌ |
+| **OBJ 文件 → 网格** | ✅ | ❌ | ❌ |
+| **多面体 → 布尔运算** | ✅ | ❌ | ❌ |
+
+### 量化对比
+
+- **重叠模块**：约 15-20 个基础 2D 模块（占 moon-geometry 的 ~8%）
+- **独有模块**：约 216+ 个（占 ~92%）
+- **模块数比**：moon-geometry (236) : totto2727/geo (~4) : moongeokit (1) ≈ **59 : 1 : 0.25**
+- **测试数**：moon-geometry 1952 测试 / 7808 次四目标运行
+
+详细对比报告见 [docs/competitor_comparison.md](docs/competitor_comparison.md)。
+
+---
+
 ## 参考与设计说明
 
 - 参考项目 1：[CGAL](https://github.com/CGAL/cgal)（Computational Geometry Algorithms Library）— 算法参考
