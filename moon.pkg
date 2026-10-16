@@ -147,4 +147,12 @@ import {
   "walkzzz/moon-geometry/src/surface_loft",
   "walkzzz/moon-geometry/src/surface_trim",
   "walkzzz/moon-geometry/src/bezier_surface",
+  "walkzzz/moon-geometry/src/packing",
+  "walkzzz/moon-geometry/src/covering",
+  "walkzzz/moon-geometry/src/clustering",
+  "walkzzz/moon-geometry/src/registration",
+  "walkzzz/moon-geometry/src/matching",
+  "walkzzz/moon-geometry/src/reconstruction",
+  "walkzzz/moon-geometry/src/hough_transform",
+  "walkzzz/moon-geometry/src/ransac",
 }

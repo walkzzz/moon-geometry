@@ -4632,3 +4632,248 @@ pub fn bezier_degree_elevate(
 ) -> Array[(Double, Double, Double)] {
   @bezier_surface.bezier_degree_elevate(control_pts)
 }
+// Batch Q: Application Algorithms / 应用算法
+
+// packing / 装填
+pub fn pack_circles(
+  radii : Array[Double],
+  container_size : Double,
+) -> Array[(Double, Double)] {
+  @packing.pack_circles(radii, container_size)
+}
+
+pub fn pack_rectangles(
+  rects : Array[(Double, Double)],
+  bin_w : Double,
+  bin_h : Double,
+) -> Array[(Double, Double)] {
+  @packing.pack_rectangles(rects, bin_w, bin_h)
+}
+
+pub fn packing_density(
+  radii : Array[Double],
+  container_size : Double,
+) -> Double {
+  @packing.packing_density(radii, container_size)
+}
+
+// covering / 覆盖
+pub fn min_enclosing_circle(
+  pts : Array[(Double, Double)],
+) -> (Double, Double, Double) {
+  @covering.min_enclosing_circle(pts)
+}
+
+pub fn greedy_cover(
+  pts : Array[(Double, Double)],
+  radius : Double,
+) -> Array[(Double, Double)] {
+  @covering.greedy_cover(pts, radius)
+}
+
+pub fn covering_radius(
+  pts : Array[(Double, Double)],
+  k : Int,
+) -> Double {
+  @covering.covering_radius(pts, k)
+}
+
+// clustering / 聚类
+pub fn kmeans(
+  pts : Array[(Double, Double)],
+  k : Int,
+  max_iter : Int,
+) -> Array[Int] {
+  @clustering.kmeans(pts, k, max_iter)
+}
+
+pub fn dbscan(
+  pts : Array[(Double, Double)],
+  eps : Double,
+  min_pts : Int,
+) -> Array[Int] {
+  @clustering.dbscan(pts, eps, min_pts)
+}
+
+pub fn cluster_centroids(
+  pts : Array[(Double, Double)],
+  labels : Array[Int],
+  k : Int,
+) -> Array[(Double, Double)] {
+  @clustering.cluster_centroids(pts, labels, k)
+}
+
+// registration / 配准
+pub fn centroid_3d(
+  pts : Array[(Double, Double, Double)],
+) -> (Double, Double, Double) {
+  @registration.centroid_3d(pts)
+}
+
+pub fn translate_pts(
+  pts : Array[(Double, Double, Double)],
+  tx : Double,
+  ty : Double,
+  tz : Double,
+) -> Array[(Double, Double, Double)] {
+  @registration.translate_pts(pts, tx, ty, tz)
+}
+
+pub fn icp(
+  source : Array[(Double, Double, Double)],
+  target : Array[(Double, Double, Double)],
+  max_iter : Int,
+) -> (Array[(Double, Double, Double)], (Double, Double, Double)) {
+  @registration.icp(source, target, max_iter)
+}
+
+pub fn rms_error(
+  source : Array[(Double, Double, Double)],
+  target : Array[(Double, Double, Double)],
+) -> Double {
+  @registration.rms_error(source, target)
+}
+
+// matching / 匹配
+pub fn nearest_neighbor_match(
+  source : Array[(Double, Double)],
+  target : Array[(Double, Double)],
+) -> Array[Int] {
+  @matching.nearest_neighbor_match(source, target)
+}
+
+pub fn match_hausdorff_distance(
+  a : Array[(Double, Double)],
+  b : Array[(Double, Double)],
+) -> Double {
+  @matching.hausdorff_distance(a, b)
+}
+
+pub fn match_chamfer_distance(
+  a : Array[(Double, Double)],
+  b : Array[(Double, Double)],
+) -> Double {
+  @matching.chamfer_distance(a, b)
+}
+
+pub fn match_points(
+  source : Array[(Double, Double)],
+  target : Array[(Double, Double)],
+  threshold : Double,
+) -> Array[(Int, Int)] {
+  @matching.match_points(source, target, threshold)
+}
+
+// reconstruction / 重建
+pub fn estimate_normal(
+  pts : Array[(Double, Double, Double)],
+  idx : Int,
+  k : Int,
+) -> (Double, Double, Double) {
+  @reconstruction.estimate_normal(pts, idx, k)
+}
+
+pub fn ball_pivot_reconstruct(
+  pts : Array[(Double, Double, Double)],
+  radius : Double,
+) -> (Array[(Double, Double, Double)], Array[(Int, Int, Int)]) {
+  @reconstruction.ball_pivot_reconstruct(pts, radius)
+}
+
+pub fn distance_to_mesh(
+  pt : (Double, Double, Double),
+  vertices : Array[(Double, Double, Double)],
+  faces : Array[(Int, Int, Int)],
+) -> Double {
+  @reconstruction.distance_to_mesh(pt, vertices, faces)
+}
+
+// hough_transform / 霍夫变换
+pub type HoughLine = @hough_transform.HoughLine
+pub type HoughCircle = @hough_transform.HoughCircle
+
+pub fn hough_lines(
+  pts : Array[Point2D],
+  threshold : Int,
+  theta_steps : Int,
+) -> Array[HoughLine] {
+  @hough_transform.hough_lines(pts, threshold, theta_steps)
+}
+
+pub fn hough_circles(
+  pts : Array[Point2D],
+  radius : Double,
+  threshold : Int,
+  resolution : Int,
+) -> Array[HoughCircle] {
+  @hough_transform.hough_circles(pts, radius, threshold, resolution)
+}
+
+pub fn hough_accumulator(
+  pts : Array[Point2D],
+  theta_steps : Int,
+  rho_steps : Int,
+) -> Array[Array[Int]] {
+  @hough_transform.hough_accumulator(pts, theta_steps, rho_steps)
+}
+
+pub fn hough_peaks(
+  accumulator : Array[Array[Int]],
+  threshold : Int,
+  window : Int,
+) -> Array[(Int, Int, Int)] {
+  @hough_transform.hough_peaks(accumulator, threshold, window)
+}
+
+pub fn hough_line_to_points(
+  theta : Double,
+  rho : Double,
+  length : Double,
+) -> (Point2D, Point2D) {
+  @hough_transform.hough_line_to_points(theta, rho, length)
+}
+
+// ransac / RANSAC
+pub type RansacLine = @ransac.RansacLine
+pub type RansacCircle = @ransac.RansacCircle
+pub type RansacPlane = @ransac.RansacPlane
+
+pub fn ransac_line(
+  pts : Array[Point2D],
+  iterations : Int,
+  threshold : Double,
+) -> RansacLine {
+  @ransac.ransac_line(pts, iterations, threshold)
+}
+
+pub fn ransac_circle(
+  pts : Array[Point2D],
+  iterations : Int,
+  threshold : Double,
+) -> RansacCircle {
+  @ransac.ransac_circle(pts, iterations, threshold)
+}
+
+pub fn ransac_plane(
+  pts : Array[Point3D],
+  iterations : Int,
+  threshold : Double,
+) -> RansacPlane {
+  @ransac.ransac_plane(pts, iterations, threshold)
+}
+
+pub fn ransac_refit_line(
+  pts : Array[Point2D],
+  inliers : Array[Int],
+) -> (Double, Double) {
+  @ransac.ransac_refit_line(pts, inliers)
+}
+
+pub fn count_line_inliers(
+  pts : Array[Point2D],
+  a : Double,
+  b : Double,
+  threshold : Double,
+) -> Int {
+  @ransac.count_line_inliers(pts, a, b, threshold)
+}

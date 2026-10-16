@@ -6,6 +6,24 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
 Moon Geometry 的所有重要变更记录于此。
 格式基于 [Keep a Changelog](https://keepachangelog.com/)。
 
+## [0.156.0] - 2026-10-16
+
+### Added — Application Algorithms | 应用算法（8 个模块）
+
+- **Packing** (`packing`)：`pack_circles`, `pack_rectangles`, `packing_density`
+- **Covering** (`covering`)：`min_enclosing_circle`, `greedy_cover`, `covering_radius`
+- **Clustering** (`clustering`)：`kmeans`, `dbscan`, `cluster_centroids`
+- **Registration** (`registration`)：`centroid_3d`, `translate_pts`, `icp`, `rms_error`
+- **Matching** (`matching`)：`nearest_neighbor_match`, `hausdorff_distance`, `chamfer_distance`, `match_points`
+- **Reconstruction** (`reconstruction`)：`estimate_normal`, `ball_pivot_reconstruct`, `distance_to_mesh`
+- **Hough Transform** (`hough_transform`)：`hough_lines`, `hough_circles`, `hough_accumulator`, `hough_peaks`, `hough_line_to_points`
+- **RANSAC** (`ransac`)：`ransac_line`, `ransac_circle`, `ransac_plane`, `ransac_refit_line`, `count_line_inliers`
+
+### Tests | 测试
+
+- Total tests: 1153 (+37 from v0.148.0)
+- All four targets (native, wasm-gc, js, wasm) pass: 1153 × 4 = 4612 test runs green.
+
 ## [0.148.0] - 2026-10-16
 
 ### Added — Surface Modules | 曲面模块（8 个模块）
