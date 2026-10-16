@@ -1,0 +1,703 @@
+
+// ========== geometric_algebra ==========
+pub type Multivector = @geometric_algebra.Multivector
+pub fn multivector_new(scalar : Double, e1 : Double, e2 : Double, e12 : Double) -> Multivector {
+  @geometric_algebra.Multivector::new(scalar, e1, e2, e12)
+}
+pub fn multivector_add(self : Multivector, other : Multivector) -> Multivector {
+  @geometric_algebra.Multivector::add(self, other)
+}
+pub fn multivector_mul(self : Multivector, other : Multivector) -> Multivector {
+  @geometric_algebra.Multivector::mul(self, other)
+}
+pub fn multivector_reverse(self : Multivector) -> Multivector {
+  @geometric_algebra.Multivector::reverse(self)
+}
+pub fn multivector_norm(self : Multivector) -> Double {
+  @geometric_algebra.Multivector::norm(self)
+}
+pub fn ga_rotor(angle : Double) -> Multivector {
+  @geometric_algebra.rotor(angle)
+}
+pub fn ga_rotate_vector(vx : Double, vy : Double, angle : Double) -> (Double, Double) {
+  @geometric_algebra.rotate_vector(vx, vy, angle)
+}
+
+// ========== symplectic_geom ==========
+pub type SymplecticForm = @symplectic_geom.SymplecticForm
+pub fn canonical_form() -> SymplecticForm {
+  @symplectic_geom.canonical_form()
+}
+pub fn symplectic_apply(self : SymplecticForm, v1x : Double, v1y : Double, v2x : Double, v2y : Double) -> Double {
+  @symplectic_geom.SymplecticForm::apply(self, v1x, v1y, v2x, v2y)
+}
+pub fn symplectic_is_nondegenerate(self : SymplecticForm) -> Bool {
+  @symplectic_geom.SymplecticForm::is_nondegenerate(self)
+}
+pub fn hamiltonian_flow(hx : Double, hy : Double, dt : Double) -> (Double, Double) {
+  @symplectic_geom.hamiltonian_flow(hx, hy, dt)
+}
+pub fn poisson_bracket(fx : Double, fy : Double, gx : Double, gy : Double) -> Double {
+  @symplectic_geom.poisson_bracket(fx, fy, gx, gy)
+}
+pub fn liouville_volume(x1 : Double, x2 : Double, y1 : Double, y2 : Double) -> Double {
+  @symplectic_geom.liouville_volume(x1, x2, y1, y2)
+}
+
+// ========== contact_geom ==========
+pub type ContactForm = @contact_geom.ContactForm
+pub fn contact_eval(self : ContactForm, vx : Double, vy : Double, vz : Double) -> Double {
+  @contact_geom.ContactForm::eval(self, vx, vy, vz)
+}
+pub fn contact_is_contact(self : ContactForm) -> Bool {
+  @contact_geom.ContactForm::is_contact(self)
+}
+pub fn legendre_lift(x : Double, y : Double, f : (Double) -> Double) -> (Double, Double, Double) {
+  @contact_geom.legendre_lift(x, y, f)
+}
+pub fn reeb_vector(a_x : Double, a_y : Double, a_z : Double) -> (Double, Double, Double) {
+  @contact_geom.reeb_vector(a_x, a_y, a_z)
+}
+pub fn contact_hamiltonian(h : Double, a_z : Double) -> Double {
+  @contact_geom.contact_hamiltonian(h, a_z)
+}
+
+// ========== info_geom ==========
+pub fn fisher_metric_gaussian(mu : Double, sigma : Double) -> (Double, Double) {
+  @info_geom.fisher_metric_gaussian(mu, sigma)
+}
+pub fn fisher_metric_bernoulli(p : Double) -> Double {
+  @info_geom.fisher_metric_bernoulli(p)
+}
+pub fn fisher_metric_poisson(lambda : Double) -> Double {
+  @info_geom.fisher_metric_poisson(lambda)
+}
+pub fn kl_divergence(p : Double, q : Double) -> Double {
+  @info_geom.kl_divergence(p, q)
+}
+pub fn jeffreys_divergence(p : Double, q : Double) -> Double {
+  @info_geom.jeffreys_divergence(p, q)
+}
+pub fn alpha_connection(g11 : Double, g22 : Double, alpha : Double) -> (Double, Double) {
+  @info_geom.alpha_connection(g11, g22, alpha)
+}
+
+// ========== discrete_diff_geom ==========
+pub fn discrete_connection(edges : Array[Double]) -> Double {
+  @discrete_diff_geom.discrete_connection(edges)
+}
+pub fn ddg_holonomy(angles : Array[Double]) -> Double {
+  @discrete_diff_geom.holonomy(angles)
+}
+pub fn ddg_parallel_transport(vx : Double, vy : Double, angle : Double) -> (Double, Double) {
+  @discrete_diff_geom.parallel_transport(vx, vy, angle)
+}
+pub fn discrete_curvature2d(angles : Array[Double]) -> Double {
+  @discrete_diff_geom.discrete_curvature2d(angles)
+}
+pub fn gauss_map_normals(angles : Array[Double]) -> Array[Double] {
+  @discrete_diff_geom.gauss_map_normals(angles)
+}
+
+// ========== conformal_geom ==========
+pub fn is_conformal(a : Double, b : Double, c : Double, d : Double) -> Bool {
+  @conformal_geom.is_conformal(a, b, c, d)
+}
+pub fn mobius_transform(zx : Double, zy : Double, a : Double, b : Double) -> (Double, Double) {
+  @conformal_geom.mobius_transform(zx, zy, a, b)
+}
+pub fn conformal_factor(r : Double, scale : Double) -> Double {
+  @conformal_geom.conformal_factor(r, scale)
+}
+pub fn angle_preserving(a1x : Double, a1y : Double, a2x : Double, a2y : Double) -> Double {
+  @conformal_geom.angle_preserving(a1x, a1y, a2x, a2y)
+}
+pub fn schwarz_christoffel_alpha(angles : Array[Double]) -> Double {
+  @conformal_geom.schwarz_christoffel_alpha(angles)
+}
+
+// ========== geom_measure ==========
+pub fn hausdorff_dim_0(count : Int) -> Double {
+  @geom_measure.hausdorff_dim_0(count)
+}
+pub fn hausdorff_measure_1d(length : Double) -> Double {
+  @geom_measure.hausdorff_measure_1d(length)
+}
+pub fn hausdorff_measure_2d(area : Double) -> Double {
+  @geom_measure.hausdorff_measure_2d(area)
+}
+pub fn gm_density_2d(measure : Double, radius : Double) -> Double {
+  @geom_measure.density_2d(measure, radius)
+}
+pub fn rectifiable_length(segments : Array[(Double, Double, Double, Double)]) -> Double {
+  @geom_measure.rectifiable_length(segments)
+}
+pub fn coarea_formula(fx : Double, fy : Double, level : Double) -> Double {
+  @geom_measure.coarea_formula(fx, fy, level)
+}
+
+// ========== knot_theory ==========
+pub fn crossing_number(crossings : Array[Int]) -> Int {
+  @knot_theory.crossing_number(crossings)
+}
+pub fn writhe(signs : Array[Int]) -> Int {
+  @knot_theory.writhe(signs)
+}
+pub fn jones_unknot(t : Double) -> Double {
+  @knot_theory.jones_unknot(t)
+}
+pub fn jones_trefoil(t : Double) -> Double {
+  @knot_theory.jones_trefoil(t)
+}
+pub fn jones_figure8(t : Double) -> Double {
+  @knot_theory.jones_figure8(t)
+}
+pub fn linking_number(loop1 : Array[(Double, Double, Double)], loop2 : Array[(Double, Double, Double)]) -> Int {
+  @knot_theory.linking_number(loop1, loop2)
+}
+pub fn unknotting_number(genus : Int) -> Int {
+  @knot_theory.unknotting_number(genus)
+}
+
+// ========== lattice_geom ==========
+pub fn bravais_lattice_volume(a1x : Double, a1y : Double, a2x : Double, a2y : Double) -> Double {
+  @lattice_geom.bravais_lattice_volume(a1x, a1y, a2x, a2y)
+}
+pub fn reciprocal_lattice(a1x : Double, a1y : Double, a2x : Double, a2y : Double) -> (Double, Double, Double, Double) {
+  @lattice_geom.reciprocal_lattice(a1x, a1y, a2x, a2y)
+}
+pub fn nearest_lattice_point(px : Double, py : Double, a1x : Double, a1y : Double, a2x : Double, a2y : Double) -> (Int, Int) {
+  @lattice_geom.nearest_lattice_point(px, py, a1x, a1y, a2x, a2y)
+}
+pub fn brillouin_zone_radius(a : Double) -> Double {
+  @lattice_geom.brillouin_zone_radius(a)
+}
+pub fn packing_fraction_sc(r : Double, a : Double) -> Double {
+  @lattice_geom.packing_fraction_sc(r, a)
+}
+
+// ========== geom_arrangement ==========
+pub fn line_arrangement_count(n : Int) -> Int {
+  @geom_arrangement.line_arrangement_count(n)
+}
+pub fn ga_line_intersection(a1 : Double, b1 : Double, c1 : Double, a2 : Double, b2 : Double, c2 : Double) -> (Double, Double) {
+  @geom_arrangement.line_intersection(a1, b1, c1, a2, b2, c2)
+}
+pub fn zone_complexity(n : Int) -> Int {
+  @geom_arrangement.zone_complexity(n)
+}
+pub fn arrangement_faces(n : Int) -> Int {
+  @geom_arrangement.arrangement_faces(n)
+}
+pub fn hyperplane_arrangement_regions(n : Int, d : Int) -> Int {
+  @geom_arrangement.hyperplane_arrangement_regions(n, d)
+}
+pub fn is_simple_arrangement(slopes : Array[Double]) -> Bool {
+  @geom_arrangement.is_simple_arrangement(slopes)
+}
+
+// ========== exact_pred ==========
+pub fn exact_orientation(x_a : Double, y_a : Double, x_b : Double, y_b : Double, x_c : Double, y_c : Double) -> Int {
+  @exact_pred.exact_orientation(x_a, y_a, x_b, y_b, x_c, y_c)
+}
+pub fn exact_incircle(ax : Double, ay : Double, bx : Double, by : Double, cx : Double, cy : Double, dx : Double, dy : Double) -> Int {
+  @exact_pred.exact_incircle(ax, ay, bx, by, cx, cy, dx, dy)
+}
+pub fn exact_left_of_line(px : Double, py : Double, ax : Double, ay : Double, bx : Double, by : Double) -> Bool {
+  @exact_pred.exact_left_of_line(px, py, ax, ay, bx, by)
+}
+pub fn exact_collinear(ax : Double, ay : Double, bx : Double, by : Double, cx : Double, cy : Double) -> Bool {
+  @exact_pred.exact_collinear(ax, ay, bx, by, cx, cy)
+}
+
+// ========== robust_arith ==========
+pub fn two_sum(a : Double, b : Double) -> (Double, Double) {
+  @robust_arith.two_sum(a, b)
+}
+pub fn two_prod(a : Double, b : Double) -> (Double, Double) {
+  @robust_arith.two_prod(a, b)
+}
+pub fn fast_two_sum(a : Double, b : Double) -> (Double, Double) {
+  @robust_arith.fast_two_sum(a, b)
+}
+pub fn grow_expansion(e : Array[Double], b : Double) -> Array[Double] {
+  @robust_arith.grow_expansion(e, b)
+}
+pub fn expansion_sum(e : Array[Double]) -> Double {
+  @robust_arith.expansion_sum(e)
+}
+
+// ========== filtered_pred ==========
+pub fn static_filter_bound(coords : Array[Double]) -> Double {
+  @filtered_pred.static_filter_bound(coords)
+}
+pub fn filtered_orientation(ax : Double, ay : Double, bx : Double, by : Double, cx : Double, cy : Double) -> Int {
+  @filtered_pred.filtered_orientation(ax, ay, bx, by, cx, cy)
+}
+pub fn dynamic_filter(a : Double, b : Double, eps : Double) -> Bool {
+  @filtered_pred.dynamic_filter(a, b, eps)
+}
+pub fn filter_result(det : Double, bound : Double) -> Int {
+  @filtered_pred.filter_result(det, bound)
+}
+
+// ========== static_filter ==========
+pub fn epsilon_bound(n : Int) -> Double {
+  @static_filter.epsilon_bound(n)
+}
+pub fn coord_max_bound(coords : Array[Double]) -> Double {
+  @static_filter.coord_max_bound(coords)
+}
+pub fn orient2d_bound(max_coord : Double) -> Double {
+  @static_filter.orient2d_bound(max_coord)
+}
+pub fn incircle_bound(max_coord : Double) -> Double {
+  @static_filter.incircle_bound(max_coord)
+}
+pub fn filter_pass(det : Double, bound : Double) -> Bool {
+  @static_filter.filter_pass(det, bound)
+}
+
+// ========== dynamic_filter ==========
+pub type Interval = @dynamic_filter.Interval
+pub fn interval_new(lo : Double, hi : Double) -> Interval {
+  @dynamic_filter.Interval::new(lo, hi)
+}
+pub fn interval_add(self : Interval, other : Interval) -> Interval {
+  @dynamic_filter.Interval::add(self, other)
+}
+pub fn interval_mul(self : Interval, other : Interval) -> Interval {
+  @dynamic_filter.Interval::mul(self, other)
+}
+pub fn interval_width(self : Interval) -> Double {
+  @dynamic_filter.Interval::width(self)
+}
+pub fn interval_contains_zero(self : Interval) -> Bool {
+  @dynamic_filter.Interval::contains_zero(self)
+}
+
+// ========== interval_arith ==========
+pub type GeoInterval = @interval_arith.GeoInterval
+pub fn geo_interval_new(center : Double, radius : Double) -> GeoInterval {
+  @interval_arith.GeoInterval::new(center, radius)
+}
+pub fn geo_interval_add(self : GeoInterval, other : GeoInterval) -> GeoInterval {
+  @interval_arith.GeoInterval::add(self, other)
+}
+pub fn geo_interval_sub(self : GeoInterval, other : GeoInterval) -> GeoInterval {
+  @interval_arith.GeoInterval::sub(self, other)
+}
+pub fn geo_interval_mul(self : GeoInterval, other : GeoInterval) -> GeoInterval {
+  @interval_arith.GeoInterval::mul(self, other)
+}
+pub fn geo_interval_contains(self : GeoInterval, val : Double) -> Bool {
+  @interval_arith.GeoInterval::contains(self, val)
+}
+pub fn geo_interval_overlaps(self : GeoInterval, other : GeoInterval) -> Bool {
+  @interval_arith.GeoInterval::overlaps(self, other)
+}
+
+// ========== adaptive_pred ==========
+pub fn adaptive_orient2d(ax : Double, ay : Double, bx : Double, by : Double, cx : Double, cy : Double) -> Int {
+  @adaptive_pred.adaptive_orient2d(ax, ay, bx, by, cx, cy)
+}
+pub fn adaptive_incircle(ax : Double, ay : Double, bx : Double, by : Double, cx : Double, cy : Double, dx : Double, dy : Double) -> Int {
+  @adaptive_pred.adaptive_incircle(ax, ay, bx, by, cx, cy, dx, dy)
+}
+pub fn precision_level(det : Double, bound : Double) -> Int {
+  @adaptive_pred.precision_level(det, bound)
+}
+
+// ========== expansion_arith ==========
+pub fn scale_expansion(e : Array[Double], b : Double) -> Array[Double] {
+  @expansion_arith.scale_expansion(e, b)
+}
+pub fn compress_expansion(e : Array[Double]) -> Array[Double] {
+  @expansion_arith.compress_expansion(e)
+}
+pub fn expansion_length(e : Array[Double]) -> Int {
+  @expansion_arith.expansion_length(e)
+}
+pub fn expansion_norm(e : Array[Double]) -> Double {
+  @expansion_arith.expansion_norm(e)
+}
+pub fn expansion_negate(e : Array[Double]) -> Array[Double] {
+  @expansion_arith.expansion_negate(e)
+}
+
+// ========== robust_inter ==========
+pub fn robust_segment_intersect(a1x : Double, a1y : Double, a2x : Double, a2y : Double, b1x : Double, b1y : Double, b2x : Double, b2y : Double) -> (Double, Double, Bool) {
+  @robust_inter.robust_segment_intersect(a1x, a1y, a2x, a2y, b1x, b1y, b2x, b2y)
+}
+pub fn robust_line_line(a1 : Double, b1 : Double, c1 : Double, a2 : Double, b2 : Double, c2 : Double) -> (Double, Double, Bool) {
+  @robust_inter.robust_line_line(a1, b1, c1, a2, b2, c2)
+}
+pub fn robust_point_on_segment(px : Double, py : Double, ax : Double, ay : Double, bx : Double, by : Double) -> Bool {
+  @robust_inter.robust_point_on_segment(px, py, ax, ay, bx, by)
+}
+
+// ========== robust_orient ==========
+pub fn robust_orient2d(ax : Double, ay : Double, bx : Double, by : Double, cx : Double, cy : Double) -> Int {
+  @robust_orient.robust_orient2d(ax, ay, bx, by, cx, cy)
+}
+pub fn robust_orient3d(ax : Double, ay : Double, az : Double, bx : Double, by : Double, bz : Double, cx : Double, cy : Double, cz : Double, dx : Double, dy : Double, dz : Double) -> Int {
+  @robust_orient.robust_orient3d(ax, ay, az, bx, by, bz, cx, cy, cz, dx, dy, dz)
+}
+pub fn robust_sign(val : Double, tol : Double) -> Int {
+  @robust_orient.robust_sign(val, tol)
+}
+pub fn robust_compare(a : Double, b : Double, tol : Double) -> Int {
+  @robust_orient.robust_compare(a, b, tol)
+}
+
+// ========== geom_opt ==========
+pub fn smallest_enclosing_circle_radius(points : Array[(Double, Double)]) -> Double {
+  @geom_opt.smallest_enclosing_circle_radius(points)
+}
+pub fn minimum_width_rectangle(points : Array[(Double, Double)]) -> Double {
+  @geom_opt.minimum_width_rectangle(points)
+}
+pub fn geometric_mean(values : Array[Double]) -> Double {
+  @geom_opt.geometric_mean(values)
+}
+pub fn fermat_point_approx(x_a : Double, y_a : Double, x_b : Double, y_b : Double, x_c : Double, y_c : Double) -> (Double, Double) {
+  @geom_opt.fermat_point_approx(x_a, y_a, x_b, y_b, x_c, y_c)
+}
+
+// ========== isoperimetric ==========
+pub fn isoperimetric_ratio(perimeter : Double, area : Double) -> Double {
+  @isoperimetric.isoperimetric_ratio(perimeter, area)
+}
+pub fn isoperimetric_deficit(perimeter : Double, area : Double) -> Double {
+  @isoperimetric.isoperimetric_deficit(perimeter, area)
+}
+pub fn circle_area_from_perimeter(p : Double) -> Double {
+  @isoperimetric.circle_area_from_perimeter(p)
+}
+pub fn circle_perimeter_from_area(a : Double) -> Double {
+  @isoperimetric.circle_perimeter_from_area(a)
+}
+pub fn optimal_shape_area(perimeter : Double) -> Double {
+  @isoperimetric.optimal_shape_area(perimeter)
+}
+pub fn is_isoperimetric_optimal(perimeter : Double, area : Double) -> Bool {
+  @isoperimetric.is_isoperimetric_optimal(perimeter, area)
+}
+
+// ========== geom_inequal ==========
+pub fn brunn_minkowski(vol_a : Double, vol_b : Double) -> Double {
+  @geom_inequal.brunn_minkowski(vol_a, vol_b)
+}
+pub fn cauchy_schwarz(a1 : Double, a2 : Double, b1 : Double, b2 : Double) -> Double {
+  @geom_inequal.cauchy_schwarz(a1, a2, b1, b2)
+}
+pub fn triangle_inequality(a : Double, b : Double, c : Double) -> Bool {
+  @geom_inequal.triangle_inequality(a, b, c)
+}
+pub fn ptolemy_inequality(a : Double, b : Double, c : Double, d : Double, e : Double, f : Double) -> Double {
+  @geom_inequal.ptolemy_inequality(a, b, c, d, e, f)
+}
+pub fn weitzenbock_inequality(a : Double, b : Double, c : Double, area : Double) -> Double {
+  @geom_inequal.weitzenbock_inequality(a, b, c, area)
+}
+
+// ========== geom_prob ==========
+pub fn buffon_needle_probability(needle_length : Double, line_spacing : Double) -> Double {
+  @geom_prob.buffon_needle_probability(needle_length, line_spacing)
+}
+pub fn bertrand_probability(method : Int) -> Double {
+  @geom_prob.bertrand_probability(method)
+}
+pub fn random_chord_length(radius : Double) -> Double {
+  @geom_prob.random_chord_length(radius)
+}
+pub fn geometric_probability_hit(area_target : Double, area_total : Double) -> Double {
+  @geom_prob.geometric_probability_hit(area_target, area_total)
+}
+pub fn expected_distance_unit_square() -> Double {
+  @geom_prob.expected_distance_unit_square()
+}
+pub fn coverage_probability(n : Int, area_ratio : Double) -> Double {
+  @geom_prob.coverage_probability(n, area_ratio)
+}
+
+// ========== stochastic_geom ==========
+pub fn poisson_point_count(intensity : Double, area : Double) -> Double {
+  @stochastic_geom.poisson_point_count(intensity, area)
+}
+pub fn poisson_probability(k : Int, intensity : Double, area : Double) -> Double {
+  @stochastic_geom.poisson_probability(k, intensity, area)
+}
+pub fn boolean_model_coverage(intensity : Double, grain_area : Double) -> Double {
+  @stochastic_geom.boolean_model_coverage(intensity, grain_area)
+}
+pub fn voronoi_cell_expected_area(intensity : Double) -> Double {
+  @stochastic_geom.voronoi_cell_expected_area(intensity)
+}
+pub fn random_tessellation_edge_density(intensity : Double) -> Double {
+  @stochastic_geom.random_tessellation_edge_density(intensity)
+}
+
+// ========== random_geom_graph ==========
+pub fn connectivity_threshold(n : Int, area : Double) -> Double {
+  @random_geom_graph.connectivity_threshold(n, area)
+}
+pub fn percolation_threshold_2d() -> Double {
+  @random_geom_graph.percolation_threshold_2d()
+}
+pub fn coverage_threshold(n : Int, area : Double) -> Double {
+  @random_geom_graph.coverage_threshold(n, area)
+}
+pub fn expected_degree(n : Int, radius : Double, area : Double) -> Double {
+  @random_geom_graph.expected_degree(n, radius, area)
+}
+pub fn isolation_probability(n : Int, radius : Double, area : Double) -> Double {
+  @random_geom_graph.isolation_probability(n, radius, area)
+}
+
+// ========== geom_hash ==========
+pub fn hash_point_2d(x : Double, y : Double, grid_size : Double) -> (Int, Int) {
+  @geom_hash.hash_point_2d(x, y, grid_size)
+}
+pub fn hash_basis_invariant(p1x : Double, p1y : Double, p2x : Double, p2y : Double, p3x : Double, p3y : Double) -> (Double, Double) {
+  @geom_hash.hash_basis_invariant(p1x, p1y, p2x, p2y, p3x, p3y)
+}
+pub fn hash_key(x : Double, y : Double, bins : Int) -> Int {
+  @geom_hash.hash_key(x, y, bins)
+}
+pub fn similarity_score(h1 : Array[Int], h2 : Array[Int]) -> Double {
+  @geom_hash.similarity_score(h1, h2)
+}
+
+// ========== geom_coding ==========
+pub fn sphere_packing_density_sc() -> Double {
+  @geom_coding.sphere_packing_density_sc()
+}
+pub fn sphere_packing_density_fcc() -> Double {
+  @geom_coding.sphere_packing_density_fcc()
+}
+pub fn kissing_number_2d() -> Int {
+  @geom_coding.kissing_number_2d()
+}
+pub fn kissing_number_3d() -> Int {
+  @geom_coding.kissing_number_3d()
+}
+pub fn hamming_bound(n : Int, d : Int, t : Int) -> Double {
+  @geom_coding.hamming_bound(n, d, t)
+}
+pub fn gilbert_varshamov_bound(n : Int, d : Int) -> Double {
+  @geom_coding.gilbert_varshamov_bound(n, d)
+}
+
+// ========== geom_mechanics ==========
+pub fn lagrangian(kinetic : Double, potential : Double) -> Double {
+  @geom_mechanics.lagrangian(kinetic, potential)
+}
+pub fn hamiltonian(kinetic : Double, potential : Double) -> Double {
+  @geom_mechanics.hamiltonian(kinetic, potential)
+}
+pub fn euler_lagrange(dL_dq : Double, dL_dqdot : Double, dt : Double) -> Double {
+  @geom_mechanics.euler_lagrange(dL_dq, dL_dqdot, dt)
+}
+pub fn hamilton_equation_q(dH_dp : Double, dt : Double) -> Double {
+  @geom_mechanics.hamilton_equation_q(dH_dp, dt)
+}
+pub fn hamilton_equation_p(dH_dq : Double, dt : Double) -> Double {
+  @geom_mechanics.hamilton_equation_p(dH_dq, dt)
+}
+pub fn noether_charge(dL_dqdot : Double, xi : Double) -> Double {
+  @geom_mechanics.noether_charge(dL_dqdot, xi)
+}
+pub fn action_integral(lagrangian_vals : Array[Double], dt : Double) -> Double {
+  @geom_mechanics.action_integral(lagrangian_vals, dt)
+}
+
+// ========== symplectic_int ==========
+pub fn stormer_verlet(q : Double, p : Double, force : (Double) -> Double, dt : Double) -> (Double, Double) {
+  @symplectic_int.stormer_verlet(q, p, force, dt)
+}
+pub fn leapfrog(q : Double, p : Double, force : (Double) -> Double, dt : Double) -> (Double, Double) {
+  @symplectic_int.leapfrog(q, p, force, dt)
+}
+pub fn ruth3(q : Double, p : Double, force : (Double) -> Double, dt : Double) -> (Double, Double) {
+  @symplectic_int.ruth3(q, p, force, dt)
+}
+pub fn energy_conservation_error(h0 : Double, h1 : Double) -> Double {
+  @symplectic_int.energy_conservation_error(h0, h1)
+}
+
+// ========== molecular_geom ==========
+pub fn bond_length(a1x : Double, a1y : Double, a1z : Double, a2x : Double, a2y : Double, a2z : Double) -> Double {
+  @molecular_geom.bond_length(a1x, a1y, a1z, a2x, a2y, a2z)
+}
+pub fn bond_angle(a1x : Double, a1y : Double, a1z : Double, cx : Double, cy : Double, cz : Double, a2x : Double, a2y : Double, a2z : Double) -> Double {
+  @molecular_geom.bond_angle(a1x, a1y, a1z, cx, cy, cz, a2x, a2y, a2z)
+}
+pub fn torsion_angle(p1x : Double, p1y : Double, p1z : Double, p2x : Double, p2y : Double, p2z : Double, p3x : Double, p3y : Double, p3z : Double, p4x : Double, p4y : Double, p4z : Double) -> Double {
+  @molecular_geom.torsion_angle(p1x, p1y, p1z, p2x, p2y, p2z, p3x, p3y, p3z, p4x, p4y, p4z)
+}
+pub fn rmsd(coords1 : Array[(Double, Double, Double)], coords2 : Array[(Double, Double, Double)]) -> Double {
+  @molecular_geom.rmsd(coords1, coords2)
+}
+
+// ========== protein_geom ==========
+pub fn ramachandran_allowed(phi : Double, psi : Double) -> Bool {
+  @protein_geom.ramachandran_allowed(phi, psi)
+}
+pub fn helix_pitch(rise_per_residue : Double, turn_per_residue : Double) -> Double {
+  @protein_geom.helix_pitch(rise_per_residue, turn_per_residue)
+}
+pub fn helix_radius(rise_per_residue : Double, turn_per_residue : Double) -> Double {
+  @protein_geom.helix_radius(rise_per_residue, turn_per_residue)
+}
+pub fn secondary_structure_type(phi : Double, psi : Double) -> String {
+  @protein_geom.secondary_structure_type(phi, psi)
+}
+pub fn contact_map_distance(ca1 : Array[(Double, Double, Double)], ca2 : Array[(Double, Double, Double)], threshold : Double) -> Int {
+  @protein_geom.contact_map_distance(ca1, ca2, threshold)
+}
+
+// ========== drug_design ==========
+pub fn pharmacophore_distance(f1 : Array[Double], f2 : Array[Double]) -> Double {
+  @drug_design.pharmacophore_distance(f1, f2)
+}
+pub fn docking_score_compat(distance : Double, ideal : Double, tolerance : Double) -> Double {
+  @drug_design.docking_score_compat(distance, ideal, tolerance)
+}
+pub fn vdw_radius(element : Int) -> Double {
+  @drug_design.vdw_radius(element)
+}
+pub fn clash_detection(d : Double, r1 : Double, r2 : Double) -> Bool {
+  @drug_design.clash_detection(d, r1, r2)
+}
+pub fn binding_pocket_volume(radius : Double) -> Double {
+  @drug_design.binding_pocket_volume(radius)
+}
+
+// ========== crystal_geom ==========
+pub fn point_group_order(group_id : Int) -> Int {
+  @crystal_geom.point_group_order(group_id)
+}
+pub fn space_group_count_2d() -> Int {
+  @crystal_geom.space_group_count_2d()
+}
+pub fn space_group_count_3d() -> Int {
+  @crystal_geom.space_group_count_3d()
+}
+pub fn wyckoff_multiplicity(site : Int) -> Int {
+  @crystal_geom.wyckoff_multiplicity(site)
+}
+pub fn bravais_type(a : Double, b : Double, c : Double, alpha : Double, beta : Double, gamma : Double) -> String {
+  @crystal_geom.bravais_type(a, b, c, alpha, beta, gamma)
+}
+
+// ========== quantum_geom ==========
+pub fn q_deformed_product(a : Double, b : Double, q : Double) -> Double {
+  @quantum_geom.q_deformed_product(a, b, q)
+}
+pub fn q_commutator(a : Double, b : Double, q : Double) -> Double {
+  @quantum_geom.q_commutator(a, b, q)
+}
+pub fn q_number(n : Int, q : Double) -> Double {
+  @quantum_geom.q_number(n, q)
+}
+pub fn q_factorial(n : Int, q : Double) -> Double {
+  @quantum_geom.q_factorial(n, q)
+}
+pub fn q_binomial(n : Int, k : Int, q : Double) -> Double {
+  @quantum_geom.q_binomial(n, k, q)
+}
+pub fn quantum_metric(g11 : Double, g22 : Double, q : Double) -> (Double, Double) {
+  @quantum_geom.quantum_metric(g11, g22, q)
+}
+
+// ========== topological_quantum ==========
+pub fn anyon_braid_phase(theta : Double, n : Int) -> Double {
+  @topological_quantum.anyon_braid_phase(theta, n)
+}
+pub fn fibonacci_anyon_phase(n : Int) -> Double {
+  @topological_quantum.fibonacci_anyon_phase(n)
+}
+pub fn ising_anyon_phase(n : Int) -> Double {
+  @topological_quantum.ising_anyon_phase(n)
+}
+pub fn braid_group_relation(a : Double, b : Double, c : Double) -> Bool {
+  @topological_quantum.braid_group_relation(a, b, c)
+}
+pub fn topological_gate_fidelity(phase1 : Double, phase2 : Double) -> Double {
+  @topological_quantum.topological_gate_fidelity(phase1, phase2)
+}
+pub fn majorana_fusion_rule(n : Int) -> Int {
+  @topological_quantum.majorana_fusion_rule(n)
+}
+
+// ========== fractal_gen ==========
+pub fn mandelbrot_escape(cx : Double, cy : Double, max_iter : Int) -> Int {
+  @fractal_gen.mandelbrot_escape(cx, cy, max_iter)
+}
+pub fn julia_escape(zx : Double, zy : Double, cx : Double, cy : Double, max_iter : Int) -> Int {
+  @fractal_gen.julia_escape(zx, zy, cx, cy, max_iter)
+}
+pub fn ifs_contractive_factor(scales : Array[Double]) -> Double {
+  @fractal_gen.ifs_contractive_factor(scales)
+}
+pub fn fractal_dimension_box(counts : Array[(Double, Int)]) -> Double {
+  @fractal_gen.fractal_dimension_box(counts)
+}
+pub fn koch_curve_length(iteration : Int, base_length : Double) -> Double {
+  @fractal_gen.koch_curve_length(iteration, base_length)
+}
+
+// ========== chaos_geom ==========
+pub fn lorenz_step(x : Double, y : Double, z : Double, sigma : Double, rho : Double, beta : Double, dt : Double) -> (Double, Double, Double) {
+  @chaos_geom.lorenz_step(x, y, z, sigma, rho, beta, dt)
+}
+pub fn lyapunov_exponent_logistic(r : Double, x0 : Double, n : Int) -> Double {
+  @chaos_geom.lyapunov_exponent_logistic(r, x0, n)
+}
+pub fn henon_map(x : Double, y : Double, a : Double, b : Double) -> (Double, Double) {
+  @chaos_geom.henon_map(x, y, a, b)
+}
+pub fn bifurcation_point_logistic() -> Double {
+  @chaos_geom.bifurcation_point_logistic()
+}
+pub fn strange_attractor_dimension(lyapunov : Array[Double]) -> Double {
+  @chaos_geom.strange_attractor_dimension(lyapunov)
+}
+
+// ========== wavelet_geom ==========
+pub fn haar_wavelet(x : Double) -> Double {
+  @wavelet_geom.haar_wavelet(x)
+}
+pub fn haar_scaling(x : Double) -> Double {
+  @wavelet_geom.haar_scaling(x)
+}
+pub fn daubechies4_weight(j : Int) -> Double {
+  @wavelet_geom.daubechies4_weight(j)
+}
+pub fn wavelet_transform_1d(data : Array[Double]) -> Array[Double] {
+  @wavelet_geom.wavelet_transform_1d(data)
+}
+pub fn multi_resolution_level(data : Array[Double], level : Int) -> Array[Double] {
+  @wavelet_geom.multi_resolution_level(data, level)
+}
+
+// ========== spectral_geom ==========
+pub fn laplacian_spectrum_1d(n : Int, length : Double) -> Array[Double] {
+  @spectral_geom.laplacian_spectrum_1d(n, length)
+}
+pub fn heat_kernel_1d(x : Double, t : Double, n_terms : Int) -> Double {
+  @spectral_geom.heat_kernel_1d(x, t, n_terms)
+}
+pub fn weyl_law_2d(lambda : Double, area : Double) -> Double {
+  @spectral_geom.weyl_law_2d(lambda, area)
+}
+pub fn spectral_zeta(eigenvalues : Array[Double], s : Double) -> Double {
+  @spectral_geom.spectral_zeta(eigenvalues, s)
+}
+pub fn heat_trace(eigenvalues : Array[Double], t : Double) -> Double {
+  @spectral_geom.heat_trace(eigenvalues, t)
+}
+pub fn isospectral_check(spec1 : Array[Double], spec2 : Array[Double]) -> Bool {
+  @spectral_geom.isospectral_check(spec1, spec2)
+}

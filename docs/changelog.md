@@ -6,6 +6,63 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
 Moon Geometry 的所有重要变更记录于此。
 格式基于 [Keep a Changelog](https://keepachangelog.com/)。
 
+## [0.235.0] - 2026-10-17
+
+### Added — Phase 21-24 Extension Modules | 扩展模块（40 个模块）
+
+#### Phase 21: Advanced Geometric Algebra & Structures | 高级几何代数与结构（10 模块）
+- **Geometric Algebra** (`geometric_algebra`)：Clifford 代数（多重向量、blade、旋量）
+- **Symplectic Geometry** (`symplectic_geom`)：辛几何（辛形式、哈密顿流）
+- **Contact Geometry** (`contact_geom`)：接触几何（接触形式、Legendre 子流形）
+- **Information Geometry** (`info_geom`)：信息几何（Fisher 度量、统计流形）
+- **Discrete Differential Geometry** (`discrete_diff_geom`)：离散微分几何（离散联络、和乐）
+- **Conformal Geometry** (`conformal_geom`)：共形几何（保角映射、Möbius 变换）
+- **Geometric Measure Theory** (`geom_measure`)：几何测度论（Hausdorff 测度）
+- **Knot Theory** (`knot_theory`)：纽结理论（Jones 多项式、交叉数）
+- **Lattice Geometry** (`lattice_geom`)：格几何（Bravais 格、倒格、Brillouin 区）
+- **Geometric Arrangements** (`geom_arrangement`)：几何安排（直线安排、区域定理）
+
+#### Phase 22: Robust & Exact Geometry | 鲁棒与精确几何（10 模块）
+- **Exact Predicates** (`exact_pred`)：精确谓词（精确定向、精确圆内判定）
+- **Robust Arithmetic** (`robust_arith`)：鲁棒算术（误差自由变换、Shewchuk 扩展）
+- **Filtered Predicates** (`filtered_pred`)：过滤谓词（静态和动态过滤）
+- **Static Filtering** (`static_filter`)：静态过滤（预计算误差界）
+- **Dynamic Filtering** (`dynamic_filter`)：动态过滤（运行时间区间界）
+- **Interval Arithmetic** (`interval_arith`)：区间算术（区间运算）
+- **Adaptive Precision** (`adaptive_pred`)：自适应精度谓词（渐进细化）
+- **Expansion Arithmetic** (`expansion_arith`)：扩展算术（非重叠扩展）
+- **Robust Intersection** (`robust_inter`)：鲁棒相交（精确交点计算）
+- **Robust Orientation** (`robust_orient`)：鲁棒定向（符号判定）
+
+#### Phase 23: Geometric Optimization & Probability | 几何优化与概率（10 模块）
+- **Geometric Optimization** (`geom_opt`)：几何优化（最小包围圆、最小宽度矩形）
+- **Isoperimetric Problems** (`isoperimetric`)：等周问题（最优形状、等周不等式）
+- **Geometric Inequalities** (`geom_inequal`)：几何不等式（Brunn-Minkowski、Cauchy-Schwarz）
+- **Geometric Probability** (`geom_prob`)：几何概率（Buffon 投针、Bertrand 悖论）
+- **Stochastic Geometry** (`stochastic_geom`)：随机几何（Poisson 过程、Boolean 模型）
+- **Random Geometric Graphs** (`random_geom_graph`)：随机几何图（连通性、渗流）
+- **Geometric Hashing** (`geom_hash`)：几何哈希（哈希表、基不变量）
+- **Geometric Coding** (`geom_coding`)：几何编码（球填充、接吻数、Hamming 界）
+- **Geometric Mechanics** (`geom_mechanics`)：几何力学（Lagrangian、Hamiltonian）
+- **Symplectic Integrators** (`symplectic_int`)：辛积分器（Verlet、leapfrog、Ruth3）
+
+#### Phase 24: Specialized Geometry Applications | 专门几何应用（10 模块）
+- **Molecular Geometry** (`molecular_geom`)：分子几何（键角、扭转角、RMSD）
+- **Protein Geometry** (`protein_geom`)：蛋白质几何（Ramachandran、二级结构）
+- **Drug Design** (`drug_design`)：药物设计几何（药效团、对接评分）
+- **Crystal Geometry** (`crystal_geom`)：晶体几何（点群、空间群、Bravais 类型）
+- **Quantum Geometry** (`quantum_geom`)：量子几何（量子群、q-变形）
+- **Topological Quantum** (`topological_quantum`)：拓扑量子计算（任意子、辫子）
+- **Fractal Generation** (`fractal_gen`)：分形生成（Mandelbrot、Julia、Koch 曲线）
+- **Chaos Geometry** (`chaos_geom`)：混沌几何（Lorenz、Lyapunov、Henon 映射）
+- **Wavelet Geometry** (`wavelet_geom`)：小波几何（Haar 小波、Daubechies4）
+- **Spectral Geometry** (`spectral_geom`)：谱几何（Laplacian 谱、热核、Weyl 律）
+
+### Changed
+- reexport.mbt 新增 703 行（10275 → 10978）
+- 测试数 2308 → 2427，四目标 9232 → 9708 次全绿
+- 模块数 356 → 396
+
 ## [0.234.0] - 2026-10-17
 
 ### Added — Phase 17-20 Extension Modules | 扩展模块（40 个模块）
