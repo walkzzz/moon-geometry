@@ -5,7 +5,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![MoonBit](https://img.shields.io/badge/MoonBit-0.1.20260920-blue.svg)](https://moonbitlang.com)
-[![Tests](https://img.shields.io/badge/tests-911-brightgreen.svg)]()
+[![Tests](https://img.shields.io/badge/tests-951-brightgreen.svg)]()
 [![Targets](https://img.shields.io/badge/targets-native%20%7C%20wasm--gc%20%7C%20js%20%7C%20wasm-green.svg)]()
 
 Moon Geometry 是一个**纯 MoonBit** 实现的计算几何库，**零 C FFI 依赖**，四目标（native / wasm-gc / js / wasm）原生支持。为 CAD、碰撞检测、GIS、路径规划、图像处理等场景提供可复用的几何算法基础组件。
@@ -153,6 +153,14 @@ src/
   convex_diameter/     # 凸直径 | Convex diameter
   convex_center/       # 凸中心 | Convex center
   convex_intersection/ # 凸交集 | Convex intersection
+  polygon_skeleton/     # 直骨架 | Straight skeleton
+  polygon_medial/       # 中轴线 | Medial axis
+  polygon_simplify/     # 多边形简化 | Polygon simplification
+  polygon_round/        # 圆角化 | Corner rounding
+  polygon_evolve/       # 曲率流 | Curve shortening flow
+  polygon_morph/        # 多边形变形 | Polygon morphing
+  polygon_decomp_opt/   # 最优凸分解 | Optimal convex decomposition
+  polygon_triangulate_fast/ # 快速三角剖分 | Fast triangulation
 ```
 
 ## 快速示例 | Quick Example
@@ -249,15 +257,15 @@ let hull = @hull.convex_hull_andrew(points)  // 凸包顶点（逆时针）| hul
 ## 测试 | Tests
 
 ```bash
-moon test                          # 全部 911 测试 | all 911 tests
+moon test                          # 全部 951 测试 | all 951 tests
 moon test --target native          # 四目标分别验证 | verify each backend
 moon test --target wasm-gc
 moon test --target js
 moon test --target wasm
 ```
 
-四目标全绿：911 × 4 = 3644 次测试通过。
-All four targets pass: 911 × 4 = 3644 test runs green.
+四目标全绿：951 × 4 = 3804 次测试通过。
+All four targets pass: 951 × 4 = 3804 test runs green.
 
 ## 交付路线图 | Roadmap
 
@@ -282,6 +290,7 @@ All four targets pass: 911 × 4 = 3644 test runs green.
 | v1.7.0 | v1.7.0 | 网格处理（6模块）| Mesh processing (6 modules) | ✅ 完成 | ✅ Done |
 | v2.0.0 | v2.0.0 | 优化与输出（5模块）| Optimization & output (5 modules) | ✅ 完成 | ✅ Done |
 | v0.108.0 | v0.108.0 | 高级凸几何（8模块）| Advanced convex geometry (8 modules) | ✅ 完成 | ✅ Done |
+| v0.116.0 | v0.116.0 | 高级多边形（8模块）| Advanced polygon algorithms (8 modules) | ✅ 完成 | ✅ Done |
 
 详见 [docs/roadmap.md](docs/roadmap.md) 与 [docs/changelog.md](docs/changelog.md)。
 See [docs/roadmap.md](docs/roadmap.md) and [docs/changelog.md](docs/changelog.md).

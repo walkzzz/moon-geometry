@@ -5,7 +5,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![MoonBit](https://img.shields.io/badge/MoonBit-0.1.20260920-blue.svg)](https://moonbitlang.com)
-[![Tests](https://img.shields.io/badge/tests-911-brightgreen.svg)]()
+[![Tests](https://img.shields.io/badge/tests-951-brightgreen.svg)]()
 [![Targets](https://img.shields.io/badge/targets-native%20%7C%20wasm--gc%20%7C%20js%20%7C%20wasm-green.svg)]()
 
 Moon Geometry is a **pure MoonBit** computational geometry library with **zero C FFI dependencies**, supporting all four backends (3natively. It provides reusable geometric algorithm primitives for CAD, collision detection, GIS, path planning, and image processing.
@@ -153,6 +153,14 @@ src/
   convex_diameter/     # Convex diameter | 凸直径
   convex_center/       # Convex center | 凸中心
   convex_intersection/ # Convex intersection | 凸交集
+  polygon_skeleton/     # Straight skeleton | 直骨架
+  polygon_medial/       # Medial axis | 中轴线
+  polygon_simplify/     # Polygon simplification | 多边形简化
+  polygon_round/        # Corner rounding | 圆角化
+  polygon_evolve/       # Curve shortening flow | 曲率流
+  polygon_morph/        # Polygon morphing | 多边形变形
+  polygon_decomp_opt/   # Optimal convex decomposition | 最优凸分解
+  polygon_triangulate_fast/ # Fast triangulation | 快速三角剖分
 ```
 
 ## Quick Example | 快速示例
@@ -249,14 +257,14 @@ Full interface in `.mbti` files. 完整接口见 `.mbti` 文件。
 ## Tests | 测试
 
 ```bash
-moon test                          # all 911 tests | 全部 911 测试
+moon test                          # all 951 tests | 全部 951 测试
 moon test --target native          # verify each backend | 四目标分别验证
 moon test --target wasm-gc
 moon test --target js
 moon test --target wasm
 ```
 
-All four targets pass: 911 × 4 = 3644. 四目标全绿：911 × 4 = 3644。
+All four targets pass: 951 × 4 = 3804. 四目标全绿：951 × 4 = 3804。
 
 ## Roadmap | 交付路线图
 
@@ -281,6 +289,7 @@ All four targets pass: 911 × 4 = 3644. 四目标全绿：911 × 4 = 3644。
 | v1.7.0 | Mesh processing (6 modules) | ✅ Done |
 | v2.0.0 | Optimization & output (5 modules) | ✅ Done |
 | v0.108.0 | Advanced convex geometry (8 modules) | ✅ Done |
+| v0.116.0 | Advanced polygon algorithms (8 modules) | ✅ Done |
 
 See [docs/roadmap.md](docs/roadmap.md) and [docs/changelog.md](docs/changelog.md).
 

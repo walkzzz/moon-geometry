@@ -3494,3 +3494,130 @@ pub fn convex_intersects(poly1 : Polygon, poly2 : Polygon) -> Bool {
 pub fn intersection_area(poly1 : Polygon, poly2 : Polygon) -> Double {
   @convex_intersection.intersection_area(poly1, poly2)
 }
+// ---------------------------------------------------------------------------
+// polygon_skeleton: Straight skeleton / 直骨架
+// ---------------------------------------------------------------------------
+///|
+pub fn straight_skeleton(poly : Polygon) -> Array[Segment] {
+  @polygon_skeleton.straight_skeleton(poly)
+}
+///|
+pub fn skeleton_faces(poly : Polygon) -> Array[Array[Point2D]] {
+  @polygon_skeleton.skeleton_faces(poly)
+}
+
+// ---------------------------------------------------------------------------
+// polygon_medial: Medial axis / 中轴线
+// ---------------------------------------------------------------------------
+///|
+pub fn medial_axis(poly : Polygon, resolution : Int) -> Array[Segment] {
+  @polygon_medial.medial_axis(poly, resolution)
+}
+///|
+pub fn medial_axis_points(poly : Polygon, n_samples : Int) -> Array[Point2D] {
+  @polygon_medial.medial_axis_points(poly, n_samples)
+}
+
+// ---------------------------------------------------------------------------
+// polygon_simplify: Polygon simplification / 多边形简化
+// ---------------------------------------------------------------------------
+///|
+pub fn simplify_topology_preserve(pts : Array[Point2D], eps : Double) -> Array[Point2D] {
+  @polygon_simplify.simplify_topology_preserve(pts, eps)
+}
+///|
+pub fn simplify_visvalingam(pts : Array[Point2D], target_count : Int) -> Array[Point2D] {
+  @polygon_simplify.simplify_visvalingam(pts, target_count)
+}
+///|
+pub fn douglas_peucker(pts : Array[Point2D], eps : Double) -> Array[Point2D] {
+  @polygon_simplify.douglas_peucker(pts, eps)
+}
+
+// ---------------------------------------------------------------------------
+// polygon_round: Polygon corner rounding / 多边形圆角化
+// ---------------------------------------------------------------------------
+///|
+pub fn round_polygon(pts : Array[Point2D], radius : Double, segments : Int) -> Array[Point2D] {
+  @polygon_round.round_polygon(pts, radius, segments)
+}
+///|
+pub fn round_corner(p1 : Point2D, p2 : Point2D, p3 : Point2D, radius : Double, segments : Int) -> Array[Point2D] {
+  @polygon_round.round_corner(p1, p2, p3, radius, segments)
+}
+
+// ---------------------------------------------------------------------------
+// polygon_evolve: Curve shortening flow / 曲率流
+// ---------------------------------------------------------------------------
+///|
+pub fn curve_shortening_flow(pts : Array[Point2D], steps : Int, dt : Double) -> Array[Array[Point2D]] {
+  @polygon_evolve.curve_shortening_flow(pts, steps, dt)
+}
+///|
+pub fn evolve_step(pts : Array[Point2D], dt : Double) -> Array[Point2D] {
+  @polygon_evolve.evolve_step(pts, dt)
+}
+///|
+pub fn flow_perimeters(pts : Array[Point2D], steps : Int, dt : Double) -> Array[Double] {
+  @polygon_evolve.flow_perimeters(pts, steps, dt)
+}
+///|
+pub fn flow_areas(pts : Array[Point2D], steps : Int, dt : Double) -> Array[Double] {
+  @polygon_evolve.flow_areas(pts, steps, dt)
+}
+
+// ---------------------------------------------------------------------------
+// polygon_morph: Polygon morphing / 多边形变形
+// ---------------------------------------------------------------------------
+///|
+pub fn morph(pts1 : Array[Point2D], pts2 : Array[Point2D], t : Double) -> Array[Point2D] {
+  @polygon_morph.morph(pts1, pts2, t)
+}
+///|
+pub fn morph_sequence(pts1 : Array[Point2D], pts2 : Array[Point2D], n_steps : Int) -> Array[Array[Point2D]] {
+  @polygon_morph.morph_sequence(pts1, pts2, n_steps)
+}
+///|
+pub fn best_alignment(pts1 : Array[Point2D], pts2 : Array[Point2D]) -> Int {
+  @polygon_morph.best_alignment(pts1, pts2)
+}
+///|
+pub fn morph_aligned(pts1 : Array[Point2D], pts2 : Array[Point2D], t : Double) -> Array[Point2D] {
+  @polygon_morph.morph_aligned(pts1, pts2, t)
+}
+
+// ---------------------------------------------------------------------------
+// polygon_decomp_opt: Optimal convex decomposition / 最优凸分解
+// ---------------------------------------------------------------------------
+///|
+pub fn optimal_convex_decomp(pts : Array[Point2D]) -> Array[Array[Point2D]] {
+  @polygon_decomp_opt.optimal_convex_decomp(pts)
+}
+///|
+pub fn decomp_count(pts : Array[Point2D]) -> Int {
+  @polygon_decomp_opt.decomp_count(pts)
+}
+///|
+pub fn is_convex_check(pts : Array[Point2D]) -> Bool {
+  @polygon_decomp_opt.is_convex_polygon(pts)
+}
+
+// ---------------------------------------------------------------------------
+// polygon_triangulate_fast: Fast triangulation / 快速三角剖分
+// ---------------------------------------------------------------------------
+///|
+pub fn fast_triangulate(pts : Array[Point2D]) -> Array[(Int, Int, Int)] {
+  @polygon_triangulate_fast.fast_triangulate(pts)
+}
+///|
+pub fn fast_triangulate_points(pts : Array[Point2D]) -> Array[(Point2D, Point2D, Point2D)] {
+  @polygon_triangulate_fast.fast_triangulate_points(pts)
+}
+///|
+pub fn triangle_count(pts : Array[Point2D]) -> Int {
+  @polygon_triangulate_fast.triangle_count(pts)
+}
+///|
+pub fn total_triangle_area(pts : Array[Point2D]) -> Double {
+  @polygon_triangulate_fast.total_triangle_area(pts)
+}

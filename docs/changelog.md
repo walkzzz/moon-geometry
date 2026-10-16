@@ -6,6 +6,21 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
 Moon Geometry 的所有重要变更记录于此。
 格式基于 [Keep a Changelog](https://keepachangelog.com/)。
 
+## [0.116.0] - 2026-10-16
+
+### Added — Advanced Polygon Algorithms | 高级多边形算法（8 个模块）
+
+- **Polygon Skeleton** (`polygon_skeleton`)：`straight_skeleton`, `skeleton_faces`
+- **Polygon Medial** (`polygon_medial`)：`medial_axis`, `medial_axis_points`
+- **Polygon Simplify** (`polygon_simplify`)：`simplify_topology_preserve`, `simplify_visvalingam`, `douglas_peucker`
+- **Polygon Round** (`polygon_round`)：`round_polygon`, `round_corner`
+- **Polygon Evolve** (`polygon_evolve`)：`curve_shortening_flow`, `evolve_step`, `flow_perimeters`, `flow_areas`
+- **Polygon Morph** (`polygon_morph`)：`morph`, `morph_sequence`, `best_alignment`, `morph_aligned`
+- **Polygon Decomp Opt** (`polygon_decomp_opt`)：`optimal_convex_decomp`, `decomp_count`, `is_convex_polygon`
+- **Polygon Triangulate Fast** (`polygon_triangulate_fast`)：`fast_triangulate`, `fast_triangulate_points`, `triangle_count`, `total_triangle_area`
+
+**Total: 116 modules, 951 tests, 4 targets green.**
+
 ## [0.108.0] - 2026-10-16
 
 ### Added — Advanced Convex Geometry | 高级凸几何（8 个模块）

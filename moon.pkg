@@ -107,4 +107,12 @@ import {
   "walkzzz/moon-geometry/src/convex_diameter",
   "walkzzz/moon-geometry/src/convex_center",
   "walkzzz/moon-geometry/src/convex_intersection",
+  "walkzzz/moon-geometry/src/polygon_skeleton",
+  "walkzzz/moon-geometry/src/polygon_medial",
+  "walkzzz/moon-geometry/src/polygon_simplify",
+  "walkzzz/moon-geometry/src/polygon_round",
+  "walkzzz/moon-geometry/src/polygon_evolve",
+  "walkzzz/moon-geometry/src/polygon_morph",
+  "walkzzz/moon-geometry/src/polygon_decomp_opt",
+  "walkzzz/moon-geometry/src/polygon_triangulate_fast",
 }
