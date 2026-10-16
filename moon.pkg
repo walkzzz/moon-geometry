@@ -131,4 +131,12 @@ import {
   "walkzzz/moon-geometry/src/graph_color",
   "walkzzz/moon-geometry/src/graph_cut",
   "walkzzz/moon-geometry/src/spanning_tree",
+  "walkzzz/moon-geometry/src/polynomial",
+  "walkzzz/moon-geometry/src/root_find",
+  "walkzzz/moon-geometry/src/integration",
+  "walkzzz/moon-geometry/src/differentiation",
+  "walkzzz/moon-geometry/src/interpolation",
+  "walkzzz/moon-geometry/src/eigen",
+  "walkzzz/moon-geometry/src/linalg",
+  "walkzzz/moon-geometry/src/matrix3d",
 }

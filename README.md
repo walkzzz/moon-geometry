@@ -5,7 +5,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![MoonBit](https://img.shields.io/badge/MoonBit-0.1.20260920-blue.svg)](https://moonbitlang.com)
-[![Tests](https://img.shields.io/badge/tests-1031-brightgreen.svg)]()
+[![Tests](https://img.shields.io/badge/tests-1075-brightgreen.svg)]()
 [![Targets](https://img.shields.io/badge/targets-native%20%7C%20wasm--gc%20%7C%20js%20%7C%20wasm-green.svg)]()
 
 Moon Geometry 是一个**纯 MoonBit** 实现的计算几何库，**零 C FFI 依赖**，四目标（native / wasm-gc / js / wasm）原生支持。为 CAD、碰撞检测、GIS、路径规划、图像处理等场景提供可复用的几何算法基础组件。
@@ -273,15 +273,15 @@ let hull = @hull.convex_hull_andrew(points)  // 凸包顶点（逆时针）| hul
 ## 测试 | Tests
 
 ```bash
-moon test                          # 全部 1031 测试 | all 1031 tests
+moon test                          # 全部 1075 测试 | all 1075 tests
 moon test --target native          # 四目标分别验证 | verify each backend
 moon test --target wasm-gc
 moon test --target js
 moon test --target wasm
 ```
 
-四目标全绿：1031 × 4 = 4124 次测试通过。
-All four targets pass: 1031 × 4 = 4124 test runs green.
+四目标全绿：1075 × 4 = 4300 次测试通过。
+All four targets pass: 1075 × 4 = 4300 test runs green.
 
 ## 交付路线图 | Roadmap
 
@@ -309,6 +309,7 @@ All four targets pass: 1031 × 4 = 4124 test runs green.
 | v0.116.0 | v0.116.0 | 高级多边形（8模块）| Advanced polygon algorithms (8 modules) | ✅ 完成 | ✅ Done |
 | v0.124.0 | v0.124.0 | 高级空间结构（8模块）| Advanced spatial structures (8 modules) | ✅ 完成 | ✅ Done |
 | v0.132.0 | v0.132.0 | 高级图算法（8模块）| Advanced graph algorithms (8 modules) | ✅ 完成 | ✅ Done |
+| v0.140.0 | v0.140.0 | 数值计算（8模块）| Numerical computation (8 modules) | ✅ 完成 | ✅ Done |
 
 详见 [docs/roadmap.md](docs/roadmap.md) 与 [docs/changelog.md](docs/changelog.md)。
 See [docs/roadmap.md](docs/roadmap.md) and [docs/changelog.md](docs/changelog.md).

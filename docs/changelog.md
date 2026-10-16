@@ -6,6 +6,21 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
 Moon Geometry 的所有重要变更记录于此。
 格式基于 [Keep a Changelog](https://keepachangelog.com/)。
 
+## [0.140.0] - 2026-10-16
+
+### Added — Numerical Computation | 数值计算（8 个模块）
+
+- **Polynomial** (`polynomial`)：`poly_eval`, `poly_derivative`, `poly_add`, `poly_mul`, `poly_roots`
+- **Root Find** (`root_find`)：`bisection`, `newton`, `secant`, `find_all_roots`
+- **Integration** (`integration`)：`trapezoid`, `simpson`, `monte_carlo`, `adaptive_simpson`
+- **Differentiation** (`differentiation`)：`forward_diff`, `central_diff`, `second_diff`, `gradient`, `laplacian`
+- **Interpolation** (`interpolation`)：`lagrange_interp`, `newton_divdiff`, `newton_interp`, `linear_interp`, `bilinear_interp`
+- **Eigen** (`eigen`)：`power_iteration`, `jacobi_eigenvalues`, `matrix_trace`
+- **Linear Algebra** (`linalg`)：`solve_linear`, `determinant`, `matrix_inverse`
+- **3D Matrix** (`matrix3d`)：`identity4`, `translation`, `scaling`, `rotation_x/y/z`, `mat4_mul`, `transform_point`, `transform_direction`, `mat4_transpose`, `mat4_determinant`, `mat4_inverse`, `look_at`, `perspective`, `ortho`
+
+**Total: 140 modules, 1075 tests, 4 targets green.**
+
 ## [0.132.0] - 2026-10-16
 
 ### Added — Advanced Graph Algorithms | 高级图算法（8 个模块）

@@ -3933,3 +3933,334 @@ pub fn mst_edge_count(n : Int, edges : Array[WEdge]) -> Int {
 pub fn is_connected(n : Int, edges : Array[WEdge]) -> Bool {
   @spanning_tree.is_connected(n, edges)
 }
+
+// ---------------------------------------------------------------------------
+// polynomial: Polynomial operations / 多项式运算
+// ---------------------------------------------------------------------------
+///|
+pub fn poly_eval(coeffs : Array[Double], x : Double) -> Double {
+  @polynomial.poly_eval(coeffs, x)
+}
+///|
+pub fn poly_derivative(coeffs : Array[Double]) -> Array[Double] {
+  @polynomial.poly_derivative(coeffs)
+}
+///|
+pub fn poly_add(a : Array[Double], b : Array[Double]) -> Array[Double] {
+  @polynomial.poly_add(a, b)
+}
+///|
+pub fn poly_mul(a : Array[Double], b : Array[Double]) -> Array[Double] {
+  @polynomial.poly_mul(a, b)
+}
+///|
+pub fn poly_roots(coeffs : Array[Double]) -> Array[Double] {
+  @polynomial.poly_roots(coeffs)
+}
+
+// ---------------------------------------------------------------------------
+// root_find: Root finding / 求根
+// ---------------------------------------------------------------------------
+///|
+pub fn bisection(
+  f : (Double) -> Double,
+  lo : Double,
+  hi : Double,
+  max_iter : Int,
+) -> Double {
+  @root_find.bisection(f, lo, hi, max_iter)
+}
+///|
+pub fn newton(
+  f : (Double) -> Double,
+  fp : (Double) -> Double,
+  x0 : Double,
+  max_iter : Int,
+) -> Double {
+  @root_find.newton(f, fp, x0, max_iter)
+}
+///|
+pub fn secant(
+  f : (Double) -> Double,
+  x0 : Double,
+  x1 : Double,
+  max_iter : Int,
+) -> Double {
+  @root_find.secant(f, x0, x1, max_iter)
+}
+///|
+pub fn find_all_roots(
+  f : (Double) -> Double,
+  lo : Double,
+  hi : Double,
+  n_samples : Int,
+) -> Array[Double] {
+  @root_find.find_all_roots(f, lo, hi, n_samples)
+}
+
+// ---------------------------------------------------------------------------
+// integration: Numerical integration / 数值积分
+// ---------------------------------------------------------------------------
+///|
+pub fn trapezoid(
+  f : (Double) -> Double,
+  lo : Double,
+  hi : Double,
+  n : Int,
+) -> Double {
+  @integration.trapezoid(f, lo, hi, n)
+}
+///|
+pub fn simpson(
+  f : (Double) -> Double,
+  lo : Double,
+  hi : Double,
+  n : Int,
+) -> Double {
+  @integration.simpson(f, lo, hi, n)
+}
+///|
+pub fn monte_carlo(
+  f : (Double) -> Double,
+  lo : Double,
+  hi : Double,
+  n_samples : Int,
+  seed : Int,
+) -> Double {
+  @integration.monte_carlo(f, lo, hi, n_samples, seed)
+}
+///|
+pub fn adaptive_simpson(
+  f : (Double) -> Double,
+  lo : Double,
+  hi : Double,
+  eps : Double,
+) -> Double {
+  @integration.adaptive_simpson(f, lo, hi, eps)
+}
+
+// ---------------------------------------------------------------------------
+// differentiation: Numerical differentiation / 数值微分
+// ---------------------------------------------------------------------------
+///|
+pub fn forward_diff(f : (Double) -> Double, x : Double, h : Double) -> Double {
+  @differentiation.forward_diff(f, x, h)
+}
+///|
+pub fn central_diff(f : (Double) -> Double, x : Double, h : Double) -> Double {
+  @differentiation.central_diff(f, x, h)
+}
+///|
+pub fn second_diff(f : (Double) -> Double, x : Double, h : Double) -> Double {
+  @differentiation.second_diff(f, x, h)
+}
+///|
+pub fn gradient(
+  f : (Double, Double) -> Double,
+  x : Double,
+  y : Double,
+  h : Double,
+) -> (Double, Double) {
+  @differentiation.gradient(f, x, y, h)
+}
+///|
+pub fn laplacian(
+  f : (Double, Double) -> Double,
+  x : Double,
+  y : Double,
+  h : Double,
+) -> Double {
+  @differentiation.laplacian(f, x, y, h)
+}
+
+// ---------------------------------------------------------------------------
+// interpolation: Interpolation / 插值
+// ---------------------------------------------------------------------------
+///|
+pub fn lagrange_interp(
+  xs : Array[Double],
+  ys : Array[Double],
+  x : Double,
+) -> Double {
+  @interpolation.lagrange_interp(xs, ys, x)
+}
+///|
+pub fn newton_divdiff(
+  xs : Array[Double],
+  ys : Array[Double],
+) -> Array[Double] {
+  @interpolation.newton_divdiff(xs, ys)
+}
+///|
+pub fn newton_interp(
+  xs : Array[Double],
+  ys : Array[Double],
+  x : Double,
+) -> Double {
+  @interpolation.newton_interp(xs, ys, x)
+}
+///|
+pub fn linear_interp(
+  x0 : Double,
+  y0 : Double,
+  x1 : Double,
+  y1 : Double,
+  x : Double,
+) -> Double {
+  @interpolation.linear_interp(x0, y0, x1, y1, x)
+}
+///|
+pub fn bilinear_interp(
+  x0 : Double,
+  x1 : Double,
+  y0 : Double,
+  y1 : Double,
+  f00 : Double,
+  f10 : Double,
+  f01 : Double,
+  f11 : Double,
+  x : Double,
+  y : Double,
+) -> Double {
+  @interpolation.bilinear_interp(x0, x1, y0, y1, f00, f10, f01, f11, x, y)
+}
+
+// ---------------------------------------------------------------------------
+// eigen: Eigenvalue computation / 特征值计算
+// ---------------------------------------------------------------------------
+///|
+pub fn power_iteration(
+  matrix : Array[Array[Double]],
+  n : Int,
+  max_iter : Int,
+) -> Double {
+  @eigen.power_iteration(matrix, n, max_iter)
+}
+///|
+pub fn jacobi_eigenvalues(
+  matrix : Array[Array[Double]],
+  n : Int,
+  max_iter : Int,
+) -> Array[Double] {
+  @eigen.jacobi_eigenvalues(matrix, n, max_iter)
+}
+///|
+pub fn matrix_trace(matrix : Array[Array[Double]], n : Int) -> Double {
+  @eigen.matrix_trace(matrix, n)
+}
+
+// ---------------------------------------------------------------------------
+// linalg: Linear algebra / 线性代数
+// ---------------------------------------------------------------------------
+///|
+pub fn solve_linear(
+  a : Array[Array[Double]],
+  b : Array[Double],
+  n : Int,
+) -> Array[Double] {
+  @linalg.solve_linear(a, b, n)
+}
+///|
+pub fn determinant(a : Array[Array[Double]], n : Int) -> Double {
+  @linalg.determinant(a, n)
+}
+///|
+pub fn matrix_inverse(
+  a : Array[Array[Double]],
+  n : Int,
+) -> Array[Array[Double]]? {
+  @linalg.matrix_inverse(a, n)
+}
+
+// ---------------------------------------------------------------------------
+// matrix3d: 3D matrix operations / 3D 矩阵运算
+// ---------------------------------------------------------------------------
+///|
+pub fn identity4() -> Array[Array[Double]] {
+  @matrix3d.identity4()
+}
+///|
+pub fn translation(tx : Double, ty : Double, tz : Double) -> Array[Array[Double]] {
+  @matrix3d.translation(tx, ty, tz)
+}
+///|
+pub fn scaling(sx : Double, sy : Double, sz : Double) -> Array[Array[Double]] {
+  @matrix3d.scaling(sx, sy, sz)
+}
+///|
+pub fn rotation_x(angle : Double) -> Array[Array[Double]] {
+  @matrix3d.rotation_x(angle)
+}
+///|
+pub fn rotation_y(angle : Double) -> Array[Array[Double]] {
+  @matrix3d.rotation_y(angle)
+}
+///|
+pub fn rotation_z(angle : Double) -> Array[Array[Double]] {
+  @matrix3d.rotation_z(angle)
+}
+///|
+pub fn mat4_mul(
+  a : Array[Array[Double]],
+  b : Array[Array[Double]],
+) -> Array[Array[Double]] {
+  @matrix3d.mat4_mul(a, b)
+}
+///|
+pub fn transform_point(
+  m : Array[Array[Double]],
+  x : Double,
+  y : Double,
+  z : Double,
+) -> (Double, Double, Double) {
+  @matrix3d.transform_point(m, x, y, z)
+}
+///|
+pub fn transform_direction(
+  m : Array[Array[Double]],
+  x : Double,
+  y : Double,
+  z : Double,
+) -> (Double, Double, Double) {
+  @matrix3d.transform_direction(m, x, y, z)
+}
+///|
+pub fn mat4_transpose(m : Array[Array[Double]]) -> Array[Array[Double]] {
+  @matrix3d.mat4_transpose(m)
+}
+///|
+pub fn mat4_determinant(m : Array[Array[Double]]) -> Double {
+  @matrix3d.mat4_determinant(m)
+}
+///|
+pub fn mat4_inverse(m : Array[Array[Double]]) -> Array[Array[Double]]? {
+  @matrix3d.mat4_inverse(m)
+}
+///|
+pub fn look_at(
+  eye : (Double, Double, Double),
+  target : (Double, Double, Double),
+  up : (Double, Double, Double),
+) -> Array[Array[Double]] {
+  @matrix3d.look_at(eye, target, up)
+}
+///|
+pub fn perspective(
+  fovy : Double,
+  aspect : Double,
+  near : Double,
+  far : Double,
+) -> Array[Array[Double]] {
+  @matrix3d.perspective(fovy, aspect, near, far)
+}
+///|
+pub fn ortho(
+  left : Double,
+  right : Double,
+  bottom : Double,
+  top : Double,
+  near : Double,
+  far : Double,
+) -> Array[Array[Double]] {
+  @matrix3d.ortho(left, right, bottom, top, near, far)
+}
