@@ -6,6 +6,64 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
 Moon Geometry 的所有重要变更记录于此。
 格式基于 [Keep a Changelog](https://keepachangelog.com/)。
 
+## [0.232.0] - 2026-10-16
+
+### Added — Phase 9-12 Extension Modules | 扩展模块（40 个模块）
+
+#### Phase 9: Point Cloud Processing | 点云处理与3D重建（10 模块）
+- **Point Cloud** (`point_cloud`)：点云基础操作（质心、包围盒、降采样）
+- **Surface Reconstruction** (`surface_recon`)：贪心三角化曲面重建
+- **Voxel Grid** (`voxel_grid`)：体素网格哈希
+- **Normal Estimation** (`normal_est`)：PCA 法线估计
+- **Curvature Estimation** (`curvature_est`)：主曲率、高斯曲率、平均曲率估计
+- **Point Cloud Segmentation** (`pc_segment`)：区域生长与平面分割
+- **Point Cloud Features** (`pc_feature`)：点云特征描述子
+- **Ground Detection** (`ground_detect`)：地面点检测
+- **Point Cloud Filter** (`pc_filter`)：点云滤波（统计、半径）
+- **Point Cloud Transform** (`pc_transform`)：刚体变换（平移、旋转、缩放）
+
+#### Phase 10: Computational Topology | 计算拓扑高级（10 模块）
+- **Simplicial Complex** (`simplicial_complex`)：单纯复形数据结构
+- **Chain Complex** (`chain_complex`)：链复形
+- **Boundary Operator** (`boundary_operator`)：边缘算子
+- **Homology Group** (`homology_group`)：同调群
+- **Cohomology** (`cohomology`)：上同调
+- **Discrete Morse** (`discrete_morse`)：离散 Morse 理论
+- **Witness Complex** (`witness_complex`)：见证复形
+- **Čech Complex** (`cech_complex`)：Čech 复形
+- **Nerve Theorem** (`nerve_theorem`)：神经定理
+- **Filtration** (`filtration`)：过滤序列
+
+#### Phase 11: Robust & Exact Geometry | 鲁棒与精确几何（10 模块）
+- **Exact Predicates** (`exact_predicates`)：精确几何谓词（定向、incircle）
+- **Interval Arithmetic** (`interval_arithmetic`)：区间算术
+- **Filtered Predicates** (`filtered_predicates`)：过滤谓词（快速近似 + 精确回退）
+- **Perturbation** (`perturbation`)：符号扰动（SoS）
+- **Robust Construction** (`robust_construction`)：鲁棒几何构造
+- **Big Rational** (`big_rational`)：大有理数算术
+- **DE-9IM** (`de9im`)：维度扩展9交模型
+- **Lazy Exact** (`lazy_exact`)：惰性精确计算
+- **Rounded Geometry** (`rounded_geometry`)：舍入几何
+- **Affine Arithmetic** (`affine_arithmetic`)：仿射算术
+
+#### Phase 12: Advanced Optimization | 高级优化（10 模块）
+- **NSGA-II** (`nsga2`)：多目标进化算法
+- **Pareto Front** (`pareto_front`)：Pareto 前沿与超体积指标
+- **Bayesian Optimization** (`bayesian_opt`)：贝叶斯优化（高斯过程）
+- **CMA-ES** (`cmaes`)：协方差矩阵自适应进化策略
+- **Trust Region** (`trust_region`)：信赖域方法
+- **SQP** (`sqp`)：序列二次规划
+- **Augmented Lagrangian** (`augmented_lagrangian`)：增广拉格朗日法
+- **Branch and Bound** (`branch_bound`)：分支定界
+- **SDP** (`sdp`)：半定规划
+- **SOCP** (`socp`)：二阶锥规划
+
+### Stats | 统计
+- Modules: 236 → 276 (+40)
+- Tests: 1952 → 2080 (+128)
+- Warnings: 0
+- Errors: 0
+
 ## [0.230.0] - 2026-10-16
 
 ### Added — Extension Modules | 扩展模块（70 个模块）

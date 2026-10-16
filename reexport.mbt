@@ -8609,3 +8609,514 @@ pub fn raster_triangle(
 pub fn count_filled(buf : RasterBuffer, bg : Int) -> Int {
   @rasterization.count_filled(buf, bg)
 }
+
+// ========== point_cloud ==========
+pub fn point_cloud_centroid(points : Array[@core.Point3D]) -> @core.Point3D {
+  @point_cloud.point_cloud_centroid(points)
+}
+pub fn point_cloud_aabb(points : Array[@core.Point3D]) -> (@core.Point3D, @core.Point3D) {
+  @point_cloud.point_cloud_aabb(points)
+}
+pub fn voxel_downsample(points : Array[@core.Point3D], voxel_size : Double) -> Array[@core.Point3D] {
+  @point_cloud.voxel_downsample(points, voxel_size)
+}
+pub fn avg_nearest_neighbor_dist(points : Array[@core.Point3D]) -> Double {
+  @point_cloud.avg_nearest_neighbor_dist(points)
+}
+pub fn point_cloud_size(points : Array[@core.Point3D]) -> Int {
+  @point_cloud.point_cloud_size(points)
+}
+
+// ========== surface_recon ==========
+pub fn greedy_triangulation(points : Array[@core.Point3D], max_edge : Double) -> Array[(Int, Int, Int)] {
+  @surface_recon.greedy_triangulation(points, max_edge)
+}
+pub fn estimate_tangent_plane(center : @core.Point3D, neighbors : Array[@core.Point3D]) -> @core.Point3D {
+  @surface_recon.estimate_tangent_plane(center, neighbors)
+}
+pub fn recon_triangle_count(triangles : Array[(Int, Int, Int)]) -> Int {
+  @surface_recon.recon_triangle_count(triangles)
+}
+pub fn recon_completeness(reconstructed : Int, expected : Int) -> Double {
+  @surface_recon.recon_completeness(reconstructed, expected)
+}
+
+// ========== voxel_grid ==========
+pub type VoxelGrid = @voxel_grid.VoxelGrid
+pub fn vg_voxel_index(grid : VoxelGrid, p : @core.Point3D) -> Int {
+  @voxel_grid.voxel_index(grid, p)
+}
+pub fn voxel_set(grid : VoxelGrid, p : @core.Point3D) -> VoxelGrid {
+  @voxel_grid.voxel_set(grid, p)
+}
+pub fn voxel_occupied(grid : VoxelGrid, p : @core.Point3D) -> Bool {
+  @voxel_grid.voxel_occupied(grid, p)
+}
+pub fn voxel_count_occupied(grid : VoxelGrid) -> Int {
+  @voxel_grid.voxel_count_occupied(grid)
+}
+
+// ========== normal_est ==========
+pub fn pc_estimate_normal(center : @core.Point3D, neighbors : Array[@core.Point3D]) -> @core.Point3D {
+  @normal_est.estimate_normal(center, neighbors)
+}
+pub fn normalize_normal(n : @core.Point3D) -> @core.Point3D {
+  @normal_est.normalize_normal(n)
+}
+pub fn orient_normal(normal : @core.Point3D, ref_dir : @core.Point3D) -> @core.Point3D {
+  @normal_est.orient_normal(normal, ref_dir)
+}
+
+// ========== curvature_est ==========
+pub fn estimate_mean_curvature(center : @core.Point3D, neighbors : Array[@core.Point3D], normals : Array[@core.Point3D], center_normal : @core.Point3D) -> Double {
+  @curvature_est.estimate_mean_curvature(center, neighbors, normals, center_normal)
+}
+pub fn estimate_gaussian_curvature(center : @core.Point3D, neighbors : Array[@core.Point3D]) -> Double {
+  @curvature_est.estimate_gaussian_curvature(center, neighbors)
+}
+pub fn pc_principal_curvatures(k_gaussian : Double, k_mean : Double) -> (Double, Double) {
+  @curvature_est.principal_curvatures(k_gaussian, k_mean)
+}
+
+// ========== pc_segment ==========
+pub fn segment_by_height(points : Array[@core.Point3D], threshold : Double) -> (Array[Int], Array[Int]) {
+  @pc_segment.segment_by_height(points, threshold)
+}
+pub fn segment_by_distance(points : Array[@core.Point3D], max_dist : Double) -> Array[Array[Int]] {
+  @pc_segment.segment_by_distance(points, max_dist)
+}
+pub fn segment_count(clusters : Array[Array[Int]]) -> Int {
+  @pc_segment.segment_count(clusters)
+}
+
+// ========== pc_feature ==========
+pub fn local_density(points : Array[@core.Point3D], center : @core.Point3D, radius : Double) -> Int {
+  @pc_feature.local_density(points, center, radius)
+}
+pub fn curvature_feature(eigenvalues : Array[Double]) -> Double {
+  @pc_feature.curvature_feature(eigenvalues)
+}
+pub fn planarity_feature(eigenvalues : Array[Double]) -> Double {
+  @pc_feature.planarity_feature(eigenvalues)
+}
+pub fn scattering_feature(eigenvalues : Array[Double]) -> Double {
+  @pc_feature.scattering_feature(eigenvalues)
+}
+
+// ========== ground_detect ==========
+pub fn detect_ground_height(points : Array[@core.Point3D], threshold : Double) -> Array[Bool] {
+  @ground_detect.detect_ground_height(points, threshold)
+}
+pub fn detect_ground_progressive(points : Array[@core.Point3D], base_height : Double, slope : Double) -> Array[Bool] {
+  @ground_detect.detect_ground_progressive(points, base_height, slope)
+}
+pub fn ground_point_count(labels : Array[Bool]) -> Int {
+  @ground_detect.ground_point_count(labels)
+}
+pub fn ground_ratio(labels : Array[Bool]) -> Double {
+  @ground_detect.ground_ratio(labels)
+}
+
+// ========== pc_filter ==========
+pub fn statistical_filter(points : Array[@core.Point3D], k : Int, threshold : Double) -> Array[Int] {
+  @pc_filter.statistical_filter(points, k, threshold)
+}
+pub fn radius_filter(points : Array[@core.Point3D], radius : Double, min_neighbors : Int) -> Array[Int] {
+  @pc_filter.radius_filter(points, radius, min_neighbors)
+}
+pub fn removed_count(original : Int, kept : Int) -> Int {
+  @pc_filter.removed_count(original, kept)
+}
+
+// ========== pc_transform ==========
+pub fn translate_cloud(points : Array[@core.Point3D], dx : Double, dy : Double, dz : Double) -> Array[@core.Point3D] {
+  @pc_transform.translate_cloud(points, dx, dy, dz)
+}
+pub fn scale_cloud(points : Array[@core.Point3D], factor : Double) -> Array[@core.Point3D] {
+  @pc_transform.scale_cloud(points, factor)
+}
+pub fn rotate_z_cloud(points : Array[@core.Point3D], angle : Double) -> Array[@core.Point3D] {
+  @pc_transform.rotate_z_cloud(points, angle)
+}
+pub fn center_cloud(points : Array[@core.Point3D]) -> Array[@core.Point3D] {
+  @pc_transform.center_cloud(points)
+}
+
+// ========== simplicial_complex ==========
+pub type SimplicialComplex = @simplicial_complex.SimplicialComplex
+pub fn simplex_count(sc : SimplicialComplex) -> Int {
+  @simplicial_complex.simplex_count(sc)
+}
+pub fn complex_dimension(sc : SimplicialComplex) -> Int {
+  @simplicial_complex.complex_dimension(sc)
+}
+pub fn is_valid_complex(sc : SimplicialComplex) -> Bool {
+  @simplicial_complex.is_valid_complex(sc)
+}
+pub fn add_simplex(sc : SimplicialComplex, vertices : Array[Int]) -> SimplicialComplex {
+  @simplicial_complex.add_simplex(sc, vertices)
+}
+
+// ========== chain_complex ==========
+pub type ChainComplex = @chain_complex.ChainComplex
+pub fn chain_rank(cc : ChainComplex, dim : Int) -> Int {
+  @chain_complex.chain_rank(cc, dim)
+}
+pub fn chain_length(cc : ChainComplex) -> Int {
+  @chain_complex.chain_length(cc)
+}
+pub fn chain_total_rank(cc : ChainComplex) -> Int {
+  @chain_complex.chain_total_rank(cc)
+}
+
+// ========== boundary_operator ==========
+pub fn boundary_of_simplex(simplex : Array[Int]) -> Array[(Array[Int], Int)] {
+  @boundary_operator.boundary_of_simplex(simplex)
+}
+pub fn boundary_squared_zero(simplex : Array[Int]) -> Bool {
+  @boundary_operator.boundary_squared_zero(simplex)
+}
+pub fn boundary_count(simplex : Array[Int]) -> Int {
+  @boundary_operator.boundary_count(simplex)
+}
+
+// ========== homology_group ==========
+pub type HomologyGroup = @homology_group.HomologyGroup
+pub fn betti_number(hg : HomologyGroup) -> Int {
+  @homology_group.betti_number(hg)
+}
+pub fn is_trivial(hg : HomologyGroup) -> Bool {
+  @homology_group.is_trivial(hg)
+}
+pub fn homology_euler_characteristic(groups : Array[HomologyGroup]) -> Int {
+  @homology_group.euler_characteristic(groups)
+}
+pub fn has_torsion(hg : HomologyGroup) -> Bool {
+  @homology_group.has_torsion(hg)
+}
+
+// ========== cohomology ==========
+pub type CohomologyClass = @cohomology.CohomologyClass
+pub fn cohomology_rank(dim : Int, betti : Int) -> Int {
+  @cohomology.cohomology_rank(dim, betti)
+}
+pub fn cup_product_degree(a : CohomologyClass, b : CohomologyClass) -> Int {
+  @cohomology.cup_product_degree(a, b)
+}
+pub fn cohomology_dimension(c : CohomologyClass) -> Int {
+  @cohomology.cohomology_dimension(c)
+}
+
+// ========== discrete_morse ==========
+pub type MorseFunction = @discrete_morse.MorseFunction
+pub fn discrete_morse_critical_points(mf : MorseFunction) -> Array[Int] {
+  @discrete_morse.critical_points(mf)
+}
+pub fn morse_inequality_lower(mf : MorseFunction, dim : Int) -> Int {
+  @discrete_morse.morse_inequality_lower(mf, dim)
+}
+pub fn is_morse(mf : MorseFunction) -> Bool {
+  @discrete_morse.is_morse(mf)
+}
+
+// ========== witness_complex ==========
+pub fn witness_complex_landmarks(n_points : Int, n_landmarks : Int) -> Array[Array[Int]] {
+  @witness_complex.witness_complex_landmarks(n_points, n_landmarks)
+}
+pub fn witness_skeleton(max_dim : Int, n_landmarks : Int) -> Int {
+  @witness_complex.witness_skeleton(max_dim, n_landmarks)
+}
+pub fn landmark_count(n_points : Int, ratio : Double) -> Int {
+  @witness_complex.landmark_count(n_points, ratio)
+}
+
+// ========== cech_complex ==========
+pub fn cech_complex_simplices(n_points : Int, max_dim : Int) -> Array[Array[Int]] {
+  @cech_complex.cech_complex_simplices(n_points, max_dim)
+}
+pub fn cech_nerve(balls : Int) -> Array[Array[Int]] {
+  @cech_complex.cech_nerve(balls)
+}
+pub fn cech_dimension(max_dim : Int) -> Int {
+  @cech_complex.cech_dimension(max_dim)
+}
+
+// ========== nerve_theorem ==========
+pub fn nerve_of_cover(n_sets : Int, intersections : Array[(Int, Int)]) -> Array[Array[Int]] {
+  @nerve_theorem.nerve_of_cover(n_sets, intersections)
+}
+pub fn nerve_homology(nerve : Array[Array[Int]]) -> Array[Int] {
+  @nerve_theorem.nerve_homology(nerve)
+}
+pub fn is_good_cover(intersections : Array[(Int, Int)]) -> Bool {
+  @nerve_theorem.is_good_cover(intersections)
+}
+
+// ========== filtration ==========
+pub type Filtration = @filtration.Filtration
+pub fn sublevel_set(f : Filtration, threshold : Double) -> Array[Array[Int]] {
+  @filtration.sublevel_set(f, threshold)
+}
+pub fn filtration_length(f : Filtration) -> Int {
+  @filtration.filtration_length(f)
+}
+pub fn critical_values(f : Filtration) -> Array[Double] {
+  @filtration.critical_values(f)
+}
+
+// ========== exact_predicates ==========
+pub fn exact_orientation(a : @core.Point2D, b : @core.Point2D, c : @core.Point2D) -> Int {
+  @exact_predicates.exact_orientation(a, b, c)
+}
+pub fn exact_incircle(a : @core.Point2D, b : @core.Point2D, c : @core.Point2D, d : @core.Point2D) -> Int {
+  @exact_predicates.exact_incircle(a, b, c, d)
+}
+pub fn exact_left_turn(a : @core.Point2D, b : @core.Point2D, c : @core.Point2D) -> Bool {
+  @exact_predicates.exact_left_turn(a, b, c)
+}
+pub fn exact_collinear(a : @core.Point2D, b : @core.Point2D, c : @core.Point2D) -> Bool {
+  @exact_predicates.exact_collinear(a, b, c)
+}
+
+// ========== interval_arithmetic ==========
+pub type IAInterval = @interval_arithmetic.Interval
+pub fn interval_add(a : IAInterval, b : IAInterval) -> IAInterval {
+  @interval_arithmetic.interval_add(a, b)
+}
+pub fn interval_sub(a : IAInterval, b : IAInterval) -> IAInterval {
+  @interval_arithmetic.interval_sub(a, b)
+}
+pub fn interval_mul(a : IAInterval, b : IAInterval) -> IAInterval {
+  @interval_arithmetic.interval_mul(a, b)
+}
+pub fn ia_interval_contains(i : IAInterval, x : Double) -> Bool {
+  @interval_arithmetic.interval_contains(i, x)
+}
+pub fn interval_width(i : IAInterval) -> Double {
+  @interval_arithmetic.interval_width(i)
+}
+pub fn ia_interval_midpoint(i : IAInterval) -> Double {
+  @interval_arithmetic.interval_midpoint(i)
+}
+
+// ========== filtered_predicates ==========
+pub fn filtered_orientation(a : @core.Point2D, b : @core.Point2D, c : @core.Point2D) -> Int {
+  @filtered_predicates.filtered_orientation(a, b, c)
+}
+pub fn filtered_incircle(a : @core.Point2D, b : @core.Point2D, c : @core.Point2D, d : @core.Point2D) -> Int {
+  @filtered_predicates.filtered_incircle(a, b, c, d)
+}
+pub fn perturbation_orientation(det : Double, eps : Double) -> Int {
+  @filtered_predicates.perturbation_orientation(det, eps)
+}
+
+// ========== perturbation ==========
+pub fn sos_orientation(a : @core.Point2D, b : @core.Point2D, c : @core.Point2D, ia : Int, ib : Int, ic : Int) -> Int {
+  @perturbation.sos_orientation(a, b, c, ia, ib, ic)
+}
+pub fn sos_sign(det : Double, perturbation_order : Int) -> Int {
+  @perturbation.sos_sign(det, perturbation_order)
+}
+pub fn sos_compare(a : Double, b : Double, ia : Int, ib : Int) -> Int {
+  @perturbation.sos_compare(a, b, ia, ib)
+}
+
+// ========== robust_construction ==========
+pub fn robust_circumcenter(a : @core.Point2D, b : @core.Point2D, c : @core.Point2D) -> @core.Point2D {
+  @robust_construction.robust_circumcenter(a, b, c)
+}
+pub fn robust_intersection(a : @core.Point2D, b : @core.Point2D, c : @core.Point2D, d : @core.Point2D) -> @core.Point2D {
+  @robust_construction.robust_intersection(a, b, c, d)
+}
+pub fn robust_midpoint(a : @core.Point2D, b : @core.Point2D) -> @core.Point2D {
+  @robust_construction.robust_midpoint(a, b)
+}
+
+// ========== big_rational ==========
+pub type Rational = @big_rational.Rational
+pub fn rational_add(a : Rational, b : Rational) -> Rational {
+  @big_rational.rational_add(a, b)
+}
+pub fn rational_mul(a : Rational, b : Rational) -> Rational {
+  @big_rational.rational_mul(a, b)
+}
+pub fn rational_to_double(r : Rational) -> Double {
+  @big_rational.rational_to_double(r)
+}
+pub fn rational_equal(a : Rational, b : Rational) -> Bool {
+  @big_rational.rational_equal(a, b)
+}
+pub fn rational_sub(a : Rational, b : Rational) -> Rational {
+  @big_rational.rational_sub(a, b)
+}
+
+// ========== de9im ==========
+pub fn de9im_intersects(a_bounds : (@core.Point2D, @core.Point2D), b_bounds : (@core.Point2D, @core.Point2D)) -> Bool {
+  @de9im.de9im_intersects(a_bounds, b_bounds)
+}
+pub fn de9im_contains(a_bounds : (@core.Point2D, @core.Point2D), b_bounds : (@core.Point2D, @core.Point2D)) -> Bool {
+  @de9im.de9im_contains(a_bounds, b_bounds)
+}
+pub fn de9im_disjoint(a_bounds : (@core.Point2D, @core.Point2D), b_bounds : (@core.Point2D, @core.Point2D)) -> Bool {
+  @de9im.de9im_disjoint(a_bounds, b_bounds)
+}
+pub fn de9im_touches(a_bounds : (@core.Point2D, @core.Point2D), b_bounds : (@core.Point2D, @core.Point2D)) -> Bool {
+  @de9im.de9im_touches(a_bounds, b_bounds)
+}
+pub fn de9im_within(a_bounds : (@core.Point2D, @core.Point2D), b_bounds : (@core.Point2D, @core.Point2D)) -> Bool {
+  @de9im.de9im_within(a_bounds, b_bounds)
+}
+
+// ========== lazy_exact ==========
+pub type LazyExact = @lazy_exact.LazyExact
+pub fn lazy_value(le : LazyExact) -> Double {
+  @lazy_exact.lazy_value(le)
+}
+pub fn lazy_approx(le : LazyExact) -> Double {
+  @lazy_exact.lazy_approx(le)
+}
+pub fn lazy_error(le : LazyExact) -> Double {
+  @lazy_exact.lazy_error(le)
+}
+
+// ========== rounded_geometry ==========
+pub fn round_double(x : Double, precision : Int) -> Double {
+  @rounded_geometry.round_double(x, precision)
+}
+pub fn rounded_area(points : Array[@core.Point2D], precision : Int) -> Double {
+  @rounded_geometry.rounded_area(points, precision)
+}
+pub fn rounded_length(a : @core.Point2D, b : @core.Point2D, precision : Int) -> Double {
+  @rounded_geometry.rounded_length(a, b, precision)
+}
+
+// ========== affine_arithmetic ==========
+pub type AffineForm = @affine_arithmetic.AffineForm
+pub fn affine_add(a : AffineForm, b : AffineForm) -> AffineForm {
+  @affine_arithmetic.affine_add(a, b)
+}
+pub fn affine_to_interval(a : AffineForm) -> (Double, Double) {
+  @affine_arithmetic.affine_to_interval(a)
+}
+pub fn affine_scale(a : AffineForm, s : Double) -> AffineForm {
+  @affine_arithmetic.affine_scale(a, s)
+}
+
+// ========== nsga2 ==========
+pub type Nsga2Config = @nsga2.Nsga2Config
+pub fn non_dominated_sort(objectives : Array[Array[Double]]) -> Array[Array[Int]] {
+  @nsga2.non_dominated_sort(objectives)
+}
+pub fn crowding_distance(objectives : Array[Array[Double]], front : Array[Int]) -> Array[Double] {
+  @nsga2.crowding_distance(objectives, front)
+}
+pub fn pareto_rank(fronts : Array[Array[Int]]) -> Array[Int] {
+  @nsga2.pareto_rank(fronts)
+}
+
+// ========== pareto_front ==========
+pub fn dominates(a : Array[Double], b : Array[Double]) -> Bool {
+  @pareto_front.dominates(a, b)
+}
+pub fn pareto_front_points(objectives : Array[Array[Double]]) -> Array[Int] {
+  @pareto_front.pareto_front_points(objectives)
+}
+pub fn hypervolume_2d(points : Array[(Double, Double)], ref_pt : (Double, Double)) -> Double {
+  @pareto_front.hypervolume_2d(points, ref_pt)
+}
+
+// ========== bayesian_opt ==========
+pub type BOConfig = @bayesian_opt.BOConfig
+pub fn expected_improvement(best : Double, mean : Double, std : Double) -> Double {
+  @bayesian_opt.expected_improvement(best, mean, std)
+}
+pub fn gaussian_kernel(x : Double, y : Double, length_scale : Double) -> Double {
+  @bayesian_opt.gaussian_kernel(x, y, length_scale)
+}
+pub fn bo_suggest_next(observed_x : Array[Double], observed_y : Array[Double], bounds : (Double, Double)) -> Double {
+  @bayesian_opt.bo_suggest_next(observed_x, observed_y, bounds)
+}
+
+// ========== cmaes ==========
+pub type CmaesConfig = @cmaes.CmaesConfig
+pub fn update_sigma(sigma : Double, ps_norm : Double, dim : Int) -> Double {
+  @cmaes.update_sigma(sigma, ps_norm, dim)
+}
+pub fn cmaes_adapt_factor(gen : Int, dim : Int) -> Double {
+  @cmaes.cmaes_adapt_factor(gen, dim)
+}
+pub fn cmaes_convergence_check(sigma : Double, threshold : Double) -> Bool {
+  @cmaes.cmaes_convergence_check(sigma, threshold)
+}
+
+// ========== trust_region ==========
+pub type TrustRegionConfig = @trust_region.TrustRegionConfig
+pub fn trust_region_ratio(actual : Double, predicted : Double) -> Double {
+  @trust_region.trust_region_ratio(actual, predicted)
+}
+pub fn update_radius(radius : Double, ratio : Double, max_radius : Double) -> Double {
+  @trust_region.update_radius(radius, ratio, max_radius)
+}
+pub fn trust_region_converged(gradient_norm : Double, threshold : Double) -> Bool {
+  @trust_region.trust_region_converged(gradient_norm, threshold)
+}
+
+// ========== sqp ==========
+pub type SqpConfig = @sqp.SqpConfig
+pub fn lagrangian(f : Double, lambda : Array[Double], constraints : Array[Double]) -> Double {
+  @sqp.lagrangian(f, lambda, constraints)
+}
+pub fn kkt_residual(grad_f : Array[Double], jacobian : Array[Array[Double]], lambda : Array[Double]) -> Double {
+  @sqp.kkt_residual(grad_f, jacobian, lambda)
+}
+pub fn sqp_converged(residual : Double, tol : Double) -> Bool {
+  @sqp.sqp_converged(residual, tol)
+}
+
+// ========== augmented_lagrangian ==========
+pub type AugLagConfig = @augmented_lagrangian.AugLagConfig
+pub fn aug_lagrangian(f : Double, lambda : Array[Double], constraints : Array[Double], rho : Double) -> Double {
+  @augmented_lagrangian.aug_lagrangian(f, lambda, constraints, rho)
+}
+pub fn update_rho(rho : Double, rho_factor : Double, constraint_violation : Double, prev_violation : Double) -> Double {
+  @augmented_lagrangian.update_rho(rho, rho_factor, constraint_violation, prev_violation)
+}
+pub fn constraint_violation(constraints : Array[Double]) -> Double {
+  @augmented_lagrangian.constraint_violation(constraints)
+}
+
+// ========== branch_bound ==========
+pub type BranchBoundConfig = @branch_bound.BranchBoundConfig
+pub fn bb_lower_bound(f : (Double) -> Double, lo : Double, hi : Double) -> Double {
+  @branch_bound.lower_bound(f, lo, hi)
+}
+pub fn branch_interval(lo : Double, hi : Double) -> ((Double, Double), (Double, Double)) {
+  @branch_bound.branch_interval(lo, hi)
+}
+pub fn bb_converged(lo : Double, hi : Double, tol : Double) -> Bool {
+  @branch_bound.bb_converged(lo, hi, tol)
+}
+
+// ========== sdp ==========
+pub type SdpConfig = @sdp.SdpConfig
+pub fn is_psd(eigenvalues : Array[Double]) -> Bool {
+  @sdp.is_psd(eigenvalues)
+}
+pub fn sdp_matrix_trace(m : Array[Array[Double]]) -> Double {
+  @sdp.matrix_trace(m)
+}
+pub fn frobenius_norm(m : Array[Array[Double]]) -> Double {
+  @sdp.frobenius_norm(m)
+}
+
+// ========== socp ==========
+pub type SocpConfig = @socp.SocpConfig
+pub fn soc_constraint(x : Array[Double], t : Double) -> Bool {
+  @socp.soc_constraint(x, t)
+}
+pub fn soc_dual(y : Array[Double], s : Double) -> Bool {
+  @socp.soc_dual(y, s)
+}
+pub fn soc_slack(x : Array[Double], t : Double) -> Double {
+  @socp.soc_slack(x, t)
+}
