@@ -5,7 +5,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![MoonBit](https://img.shields.io/badge/MoonBit-0.1.20260920-blue.svg)](https://moonbitlang.com)
-[![Tests](https://img.shields.io/badge/tests-871-brightgreen.svg)]()
+[![Tests](https://img.shields.io/badge/tests-911-brightgreen.svg)]()
 [![Targets](https://img.shields.io/badge/targets-native%20%7C%20wasm--gc%20%7C%20js%20%7C%20wasm-green.svg)]()
 
 Moon Geometry is a **pure MoonBit** computational geometry library with **zero C FFI dependencies**, supporting all four backends (3natively. It provides reusable geometric algorithm primitives for CAD, collision detection, GIS, path planning, and image processing.
@@ -118,6 +118,41 @@ src/
   pmatch/         # Point matching | 点匹配
   dtw/            # Dynamic time warping | DTW
   metric_tree/    # Metric tree | 度量树
+  dcel/           # Doubly-connected edge list | 双向边链表
+  arrangement/    # Line arrangement | 直线安排
+  planar_graph/   # Planar graph | 平面图
+  face_extract/   # Face extraction | 面提取
+  overlay/        # Overlay | 叠加
+  euler_tour/     # Euler tour | 欧拉回路
+  trapezoidal/    # Trapezoidal map | 梯形图
+  zone/           # Zone theorem | 区域定理
+  project3d/      # 3D projection | 3D投影
+  homography/     # Homography | 单应变换
+  perspective/    # Perspective transform | 透视变换
+  stereographic/  # Stereographic projection | 立体投影
+  affine2/        # Affine transform | 仿射变换
+  rigid/          # Rigid transform | 刚体变换
+  similarity/     # Similarity transform | 相似变换
+  inversion/      # Inversion | 反演变换
+  mesh_data/      # Mesh data | 网格数据
+  mesh_simplify/  # Mesh simplification | 网格简化
+  mesh_smooth/    # Mesh smoothing | 网格平滑
+  mesh_normal/    # Mesh normals | 网格法线
+  mesh_subdiv/    # Mesh subdivision | 网格细分
+  euler_char/     # Euler characteristic | 欧拉特征
+  optim/          # Optimization | 优化
+  random_gen/     # Random generation | 随机生成
+  sampling/       # Sampling | 采样
+  svg_out/        # SVG output | SVG输出
+  json_out/       # JSON output | JSON输出
+  convex_hull_approx/  # Approximate convex hull | 近似凸包
+  convex_hull_dynamic/ # Dynamic convex hull | 动态凸包
+  convex_layers/       # Convex layers (onion) | 凸包层次
+  concave_hull/        # Concave hull | 凹包
+  convex_width/        # Convex width | 凸宽度
+  convex_diameter/     # Convex diameter | 凸直径
+  convex_center/       # Convex center | 凸中心
+  convex_intersection/ # Convex intersection | 凸交集
 ```
 
 ## Quick Example | 快速示例
@@ -214,14 +249,14 @@ Full interface in `.mbti` files. 完整接口见 `.mbti` 文件。
 ## Tests | 测试
 
 ```bash
-moon test                          # all 871 tests | 全部 871 测试
+moon test                          # all 911 tests | 全部 911 测试
 moon test --target native          # verify each backend | 四目标分别验证
 moon test --target wasm-gc
 moon test --target js
 moon test --target wasm
 ```
 
-All four targets pass: 871 × 4 = 3484. 四目标全绿：871 × 4 = 3484。
+All four targets pass: 911 × 4 = 3644. 四目标全绿：911 × 4 = 3644。
 
 ## Roadmap | 交付路线图
 
@@ -245,6 +280,7 @@ All four targets pass: 871 × 4 = 3484. 四目标全绿：871 × 4 = 3484。
 | v1.6.0 | Geometric transforms (8 modules) | ✅ Done |
 | v1.7.0 | Mesh processing (6 modules) | ✅ Done |
 | v2.0.0 | Optimization & output (5 modules) | ✅ Done |
+| v0.108.0 | Advanced convex geometry (8 modules) | ✅ Done |
 
 See [docs/roadmap.md](docs/roadmap.md) and [docs/changelog.md](docs/changelog.md).
 

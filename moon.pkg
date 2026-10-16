@@ -99,4 +99,12 @@ import {
   "walkzzz/moon-geometry/src/sampling",
   "walkzzz/moon-geometry/src/svg_out",
   "walkzzz/moon-geometry/src/json_out",
+  "walkzzz/moon-geometry/src/convex_hull_approx",
+  "walkzzz/moon-geometry/src/convex_hull_dynamic",
+  "walkzzz/moon-geometry/src/convex_layers",
+  "walkzzz/moon-geometry/src/concave_hull",
+  "walkzzz/moon-geometry/src/convex_width",
+  "walkzzz/moon-geometry/src/convex_diameter",
+  "walkzzz/moon-geometry/src/convex_center",
+  "walkzzz/moon-geometry/src/convex_intersection",
 }

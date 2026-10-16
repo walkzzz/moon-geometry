@@ -3345,3 +3345,152 @@ pub fn triangle_to_json(t : Triangle) -> String {
 pub fn scene_to_json(pts : Array[Point2D], segs : Array[Segment], circs : Array[Circle]) -> String {
   @json_out.scene_to_json(pts, segs, circs)
 }
+// ---------------------------------------------------------------------------
+// convex_hull_approx: Approximate convex hull / 近似凸包
+// ---------------------------------------------------------------------------
+///|
+pub fn approx_convex_hull(points : Array[Point2D], grid_size : Int) -> Array[Point2D] {
+  @convex_hull_approx.approx_convex_hull(points, grid_size)
+}
+///|
+pub fn approx_hull_area(points : Array[Point2D]) -> Double {
+  @convex_hull_approx.approx_hull_area(points)
+}
+///|
+pub fn approx_hull_perimeter(points : Array[Point2D]) -> Double {
+  @convex_hull_approx.approx_hull_perimeter(points)
+}
+///|
+pub fn approx_error_bound(points : Array[Point2D], grid_size : Int) -> Double {
+  @convex_hull_approx.approx_error_bound(points, grid_size)
+}
+
+// ---------------------------------------------------------------------------
+// convex_hull_dynamic: Dynamic convex hull / 动态凸包
+// ---------------------------------------------------------------------------
+///|
+pub type DynamicHull = @convex_hull_dynamic.DynamicHull
+///|
+pub fn dynamic_hull_new() -> DynamicHull {
+  @convex_hull_dynamic.DynamicHull::new()
+}
+///|
+pub fn dynamic_hull_insert(dh : DynamicHull, p : Point2D) -> Unit {
+  @convex_hull_dynamic.DynamicHull::insert(dh, p)
+}
+///|
+pub fn dynamic_hull_get_hull(dh : DynamicHull) -> Array[Point2D] {
+  @convex_hull_dynamic.DynamicHull::get_hull(dh)
+}
+///|
+pub fn dynamic_hull_size(dh : DynamicHull) -> Int {
+  @convex_hull_dynamic.DynamicHull::size(dh)
+}
+///|
+pub fn dynamic_hull_contains(dh : DynamicHull, p : Point2D) -> Bool {
+  @convex_hull_dynamic.DynamicHull::contains(dh, p)
+}
+
+// ---------------------------------------------------------------------------
+// convex_layers: Convex layers (onion decomposition) / 凸包层次（洋葱分解）
+// ---------------------------------------------------------------------------
+///|
+pub fn convex_layers(points : Array[Point2D]) -> Array[Array[Point2D]] {
+  @convex_layers.convex_layers(points)
+}
+///|
+pub fn layer_count(points : Array[Point2D]) -> Int {
+  @convex_layers.layer_count(points)
+}
+///|
+pub fn outermost_layer(points : Array[Point2D]) -> Array[Point2D] {
+  @convex_layers.outermost_layer(points)
+}
+
+// ---------------------------------------------------------------------------
+// concave_hull: Concave hull / 凹包
+// ---------------------------------------------------------------------------
+///|
+pub fn concave_hull(points : Array[Point2D], k : Int) -> Array[Point2D] {
+  @concave_hull.concave_hull(points, k)
+}
+///|
+pub fn concave_hull_default(points : Array[Point2D]) -> Array[Point2D] {
+  @concave_hull.concave_hull_default(points)
+}
+
+// ---------------------------------------------------------------------------
+// convex_width: Convex polygon width / 凸多边形宽度
+// ---------------------------------------------------------------------------
+///|
+pub fn convex_width(poly : Polygon) -> Double {
+  @convex_width.convex_width(poly)
+}
+///|
+pub fn convex_max_width(poly : Polygon) -> Double {
+  @convex_width.convex_max_width(poly)
+}
+///|
+pub fn convex_aspect_ratio(poly : Polygon) -> Double {
+  @convex_width.convex_aspect_ratio(poly)
+}
+
+// ---------------------------------------------------------------------------
+// convex_diameter: Convex polygon diameter / 凸多边形直径
+// ---------------------------------------------------------------------------
+///|
+pub fn convex_diameter(poly : Polygon) -> Double {
+  @convex_diameter.convex_diameter(poly)
+}
+///|
+pub fn convex_diameter_pair(poly : Polygon) -> (Point2D, Point2D) {
+  @convex_diameter.convex_diameter_pair(poly)
+}
+///|
+pub fn convex_radius_lower_bound(poly : Polygon) -> Double {
+  @convex_diameter.convex_radius_lower_bound(poly)
+}
+///|
+pub fn antipodal_pairs(poly : Polygon) -> Array[(Int, Int)] {
+  @convex_diameter.antipodal_pairs(poly)
+}
+
+// ---------------------------------------------------------------------------
+// convex_center: Convex polygon centers / 凸多边形中心
+// ---------------------------------------------------------------------------
+///|
+pub fn convex_centroid(poly : Polygon) -> Point2D {
+  @convex_center.convex_centroid(poly)
+}
+///|
+pub fn chebyshev_center(poly : Polygon) -> Point2D {
+  @convex_center.chebyshev_center(poly)
+}
+///|
+pub fn bbox_center(poly : Polygon) -> Point2D {
+  @convex_center.bbox_center(poly)
+}
+///|
+pub fn vertex_center(poly : Polygon) -> Point2D {
+  @convex_center.vertex_center(poly)
+}
+///|
+pub fn inradius(poly : Polygon) -> Double {
+  @convex_center.inradius(poly)
+}
+
+// ---------------------------------------------------------------------------
+// convex_intersection: Convex polygon intersection / 凸多边形交集
+// ---------------------------------------------------------------------------
+///|
+pub fn convex_polygon_intersection(poly1 : Polygon, poly2 : Polygon) -> Array[Point2D] {
+  @convex_intersection.convex_polygon_intersection(poly1, poly2)
+}
+///|
+pub fn convex_intersects(poly1 : Polygon, poly2 : Polygon) -> Bool {
+  @convex_intersection.convex_polygons_intersect(poly1, poly2)
+}
+///|
+pub fn intersection_area(poly1 : Polygon, poly2 : Polygon) -> Double {
+  @convex_intersection.intersection_area(poly1, poly2)
+}

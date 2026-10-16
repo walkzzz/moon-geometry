@@ -6,6 +6,21 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
 Moon Geometry 的所有重要变更记录于此。
 格式基于 [Keep a Changelog](https://keepachangelog.com/)。
 
+## [0.108.0] - 2026-10-16
+
+### Added — Advanced Convex Geometry | 高级凸几何（8 个模块）
+
+- **Convex Hull Approx** (`convex_hull_approx`)：`approx_convex_hull`, `approx_hull_area`, `approx_hull_perimeter`, `approx_error_bound`
+- **Convex Hull Dynamic** (`convex_hull_dynamic`)：`DynamicHull::new`, `insert`, `get_hull`, `size`, `contains`
+- **Convex Layers** (`convex_layers`)：`convex_layers` (onion decomposition), `layer_count`, `outermost_layer`
+- **Concave Hull** (`concave_hull`)：`concave_hull` (k-nearest neighbor), `concave_hull_default`
+- **Convex Width** (`convex_width`)：`convex_width`, `convex_max_width`, `convex_aspect_ratio`
+- **Convex Diameter** (`convex_diameter`)：`convex_diameter`, `convex_diameter_pair`, `antipodal_pairs`, `convex_radius_lower_bound`
+- **Convex Center** (`convex_center`)：`convex_centroid`, `chebyshev_center`, `bbox_center`, `vertex_center`, `inradius`
+- **Convex Intersection** (`convex_intersection`)：`convex_polygon_intersection` (Sutherland-Hodgman), `convex_polygons_intersect`, `intersection_area`
+
+**Total: 108 modules, 911 tests, 4 targets green.**
+
 ## [2.0.0] - 2026-10-16
 
 ### Added — Optimization & Output | 优化与输出（5 个模块）

@@ -5,7 +5,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![MoonBit](https://img.shields.io/badge/MoonBit-0.1.20260920-blue.svg)](https://moonbitlang.com)
-[![Tests](https://img.shields.io/badge/tests-871-brightgreen.svg)]()
+[![Tests](https://img.shields.io/badge/tests-911-brightgreen.svg)]()
 [![Targets](https://img.shields.io/badge/targets-native%20%7C%20wasm--gc%20%7C%20js%20%7C%20wasm-green.svg)]()
 
 Moon Geometry 是一个**纯 MoonBit** 实现的计算几何库，**零 C FFI 依赖**，四目标（native / wasm-gc / js / wasm）原生支持。为 CAD、碰撞检测、GIS、路径规划、图像处理等场景提供可复用的几何算法基础组件。
@@ -118,6 +118,41 @@ src/
   pmatch/         # 点匹配 | Point matching
   dtw/            # DTW | Dynamic time warping
   metric_tree/    # 度量树 | Metric tree
+  dcel/           # 双向边链表 | Doubly-connected edge list
+  arrangement/    # 直线安排 | Line arrangement
+  planar_graph/   # 平面图 | Planar graph
+  face_extract/   # 面提取 | Face extraction
+  overlay/        # 叠加 | Overlay
+  euler_tour/     # 欧拉回路 | Euler tour
+  trapezoidal/    # 梯形图 | Trapezoidal map
+  zone/           # 区域定理 | Zone theorem
+  project3d/      # 3D投影 | 3D projection
+  homography/     # 单应变换 | Homography
+  perspective/    # 透视变换 | Perspective transform
+  stereographic/  # 立体投影 | Stereographic projection
+  affine2/        # 仿射变换 | Affine transform
+  rigid/          # 刚体变换 | Rigid transform
+  similarity/     # 相似变换 | Similarity transform
+  inversion/      # 反演变换 | Inversion
+  mesh_data/      # 网格数据 | Mesh data
+  mesh_simplify/  # 网格简化 | Mesh simplification
+  mesh_smooth/    # 网格平滑 | Mesh smoothing
+  mesh_normal/    # 网格法线 | Mesh normals
+  mesh_subdiv/    # 网格细分 | Mesh subdivision
+  euler_char/     # 欧拉特征 | Euler characteristic
+  optim/          # 优化 | Optimization
+  random_gen/     # 随机生成 | Random generation
+  sampling/       # 采样 | Sampling
+  svg_out/        # SVG输出 | SVG output
+  json_out/       # JSON输出 | JSON output
+  convex_hull_approx/  # 近似凸包 | Approximate convex hull
+  convex_hull_dynamic/ # 动态凸包 | Dynamic convex hull
+  convex_layers/       # 凸包层次 | Convex layers (onion)
+  concave_hull/        # 凹包 | Concave hull
+  convex_width/        # 凸宽度 | Convex width
+  convex_diameter/     # 凸直径 | Convex diameter
+  convex_center/       # 凸中心 | Convex center
+  convex_intersection/ # 凸交集 | Convex intersection
 ```
 
 ## 快速示例 | Quick Example
@@ -214,15 +249,15 @@ let hull = @hull.convex_hull_andrew(points)  // 凸包顶点（逆时针）| hul
 ## 测试 | Tests
 
 ```bash
-moon test                          # 全部 871 测试 | all 871 tests
+moon test                          # 全部 911 测试 | all 911 tests
 moon test --target native          # 四目标分别验证 | verify each backend
 moon test --target wasm-gc
 moon test --target js
 moon test --target wasm
 ```
 
-四目标全绿：871 × 4 = 3484 次测试通过。
-All four targets pass: 871 × 4 = 3484 test runs green.
+四目标全绿：911 × 4 = 3644 次测试通过。
+All four targets pass: 911 × 4 = 3644 test runs green.
 
 ## 交付路线图 | Roadmap
 
@@ -246,6 +281,7 @@ All four targets pass: 871 × 4 = 3484 test runs green.
 | v1.6.0 | v1.6.0 | 几何变换（8模块）| Geometric transforms (8 modules) | ✅ 完成 | ✅ Done |
 | v1.7.0 | v1.7.0 | 网格处理（6模块）| Mesh processing (6 modules) | ✅ 完成 | ✅ Done |
 | v2.0.0 | v2.0.0 | 优化与输出（5模块）| Optimization & output (5 modules) | ✅ 完成 | ✅ Done |
+| v0.108.0 | v0.108.0 | 高级凸几何（8模块）| Advanced convex geometry (8 modules) | ✅ 完成 | ✅ Done |
 
 详见 [docs/roadmap.md](docs/roadmap.md) 与 [docs/changelog.md](docs/changelog.md)。
 See [docs/roadmap.md](docs/roadmap.md) and [docs/changelog.md](docs/changelog.md).
