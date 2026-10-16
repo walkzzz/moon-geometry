@@ -50,6 +50,7 @@ pub fn Inversion::apply_batch(
 ///|
 /// Inversion preserves the inversion circle. / 反演保持反演圆不变。
 pub fn Inversion::preserves_circle(inv : Inversion) -> Bool {
+  ignore(inv)
   true
 }
 
@@ -81,6 +82,7 @@ pub fn Inversion::invert_line(
   b : Double,
   c : Double,
 ) -> @core.Circle? {
+  ignore(c)
   let denom = a * a + b * b
   if @core.approx_eq(denom, 0.0, 0.000000001) {
     return None

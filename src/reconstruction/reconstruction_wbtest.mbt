@@ -6,7 +6,7 @@ test "estimate_normal basic" {
     (-1.0, 0.0, 0.0),
     (0.0, -1.0, 0.0),
   ]
-  let (nx, ny, nz) = estimate_normal(pts, 0, 4)
+  let (_, _, nz) = estimate_normal(pts, 0, 4)
   assert_true(nz.abs() > 0.5)
 }
 

@@ -14,7 +14,11 @@
 pub struct GraphEdge {
   to : Int
   weight : Double
-} derive(Debug)
+}
+
+pub fn GraphEdge::new(to : Int, weight : Double) -> GraphEdge {
+  { to, weight }
+}
 
 /// |
 /// Find shortest path from source to all vertices.

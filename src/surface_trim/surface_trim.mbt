@@ -29,7 +29,7 @@ pub fn is_inside_trim(
   for i in 0..<n {
     let (ui, vi) = trim_loop[i]
     let (uj, vj) = trim_loop[j]
-    if vi < v && vj >= v || vj < v && vi >= v {
+    if (vi < v && vj >= v) || (vj < v && vi >= v) {
       if ui + (v - vi) / (vj - vi) * (uj - ui) < u {
         inside = !inside
       }

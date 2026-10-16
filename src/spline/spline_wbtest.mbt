@@ -48,5 +48,5 @@ test "spline_max_curvature_point" {
     @core.Point2D::new(0.0, 1.0),
   ]
   let idx = spline_max_curvature_point(pts)
-  assert_true(idx.is_some())
+  assert_true(idx is Some(_))
 }

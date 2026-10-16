@@ -15,7 +15,11 @@ pub struct WEdge {
   u : Int
   v : Int
   w : Double
-} derive(Debug)
+}
+
+pub fn WEdge::new(u : Int, v : Int, w : Double) -> WEdge {
+  { u, v, w }
+}
 
 /// |
 /// Find MST using Kruskal's algorithm.

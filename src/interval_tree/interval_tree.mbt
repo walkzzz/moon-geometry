@@ -15,7 +15,11 @@ pub struct Interval {
   lo : Double
   hi : Double
   id : Int
-} derive(Debug)
+}
+
+pub fn Interval::new(lo : Double, hi : Double, id : Int) -> Interval {
+  { lo, hi, id }
+}
 
 /// |
 /// Interval tree node.

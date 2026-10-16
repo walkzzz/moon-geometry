@@ -92,7 +92,7 @@ fn skip_insert_impl(node : SkipQuadNode, p : @core.Point2D, max_level : Int) -> 
     node.points.push(p)
     return
   }
-  if node.children.is_empty() {
+  if node.children is None {
     skip_subdivide(node)
   }
   match node.children {

@@ -52,5 +52,5 @@ test "kernel_point" {
     @core.Point2D::new(0.0, 4.0),
   ]
   let pt = kernel_point(sq)
-  assert_true(pt.is_some())
+  assert_true(pt is Some(_))
 }

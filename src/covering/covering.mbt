@@ -147,7 +147,7 @@ pub fn covering_radius(
   pts : Array[(Double, Double)],
   k : Int,
 ) -> Double {
-  let (cx, cy, r) = min_enclosing_circle(pts)
+  let (_, _, r) = min_enclosing_circle(pts)
   if k <= 1 {
     return r
   }

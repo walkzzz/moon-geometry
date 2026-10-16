@@ -55,7 +55,7 @@ pub fn octree_insert(node : OctreeNode, p : @core.Point3D) -> Unit {
     node.points.push(p)
     return
   }
-  if node.children.is_empty() {
+  if node.children is None {
     octree_subdivide(node)
   }
   let idx = octree_child_index(node, p)

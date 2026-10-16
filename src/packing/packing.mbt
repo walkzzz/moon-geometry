@@ -90,7 +90,7 @@ pub fn pack_rectangles(
     }
   }
   let positions : Array[(Double, Double)] = []
-  for k in 0..<n {
+  for _ in 0..<n {
     positions.push((0.0, 0.0))
   }
   let mut shelf_y = 0.0

@@ -21,7 +21,7 @@ test "find_ear" {
   ]
   let indices = [0, 1, 2, 3]
   let ear = find_ear(sq, indices)
-  assert_true(ear.is_some())
+  assert_true(ear is Some(_))
 }
 
 test "ear_clip_triangulate_square" {

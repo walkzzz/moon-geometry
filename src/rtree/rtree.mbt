@@ -15,7 +15,7 @@ pub struct RTreeNode {
   entries : Array[RTreeEntry]
   is_leaf : Bool
   height : Int
-} derive(Debug)
+}
 
 /// |
 /// R-tree entry (MBR + child or data).
@@ -27,7 +27,7 @@ pub struct RTreeEntry {
   mbr_max_y : Double
   child : RTreeNode?
   data : @core.Point2D?
-} derive(Debug)
+}
 
 /// |
 /// R-tree structure.
@@ -35,7 +35,7 @@ pub struct RTreeEntry {
 pub struct RTree {
   mut root : RTreeNode?
   max_entries : Int
-} derive(Debug)
+}
 
 /// |
 /// Create a new R-tree.

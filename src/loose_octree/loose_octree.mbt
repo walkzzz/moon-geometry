@@ -56,7 +56,7 @@ pub fn loose_octree_insert(node : LooseOctNode, p : @core.Point3D) -> Unit {
     node.objects.push(p)
     return
   }
-  if node.children.is_empty() {
+  if node.children is None {
     loose_subdivide(node)
   }
   match node.children {

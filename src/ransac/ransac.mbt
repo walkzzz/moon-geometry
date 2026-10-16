@@ -15,7 +15,7 @@ pub struct RansacLine {
   a : Double
   b : Double
   inliers : Array[Int]
-} derive(Debug)
+}
 
 pub fn RansacLine::new(
   a : Double,
@@ -33,7 +33,7 @@ pub struct RansacCircle {
   cy : Double
   radius : Double
   inliers : Array[Int]
-} derive(Debug)
+}
 
 pub fn RansacCircle::new(
   cx : Double,
@@ -53,7 +53,7 @@ pub struct RansacPlane {
   c : Double
   d : Double
   inliers : Array[Int]
-} derive(Debug)
+}
 
 pub fn RansacPlane::new(
   a : Double,

@@ -6,7 +6,7 @@ test "build_metric_tree" {
     @core.Point2D::new(3.0, 0.0),
   ]
   let tree = build_metric_tree(pts)
-  assert_true(tree.is_some())
+  assert_true(tree is Some(_))
   assert_true(metric_tree_count(tree) == 4)
 }
 
@@ -36,7 +36,7 @@ test "metric_tree_nearest" {
   ]
   let tree = build_metric_tree(pts)
   let nn = metric_tree_nearest(tree, @core.Point2D::new(4.0, 0.0))
-  assert_true(nn.is_some())
+  assert_true(nn is Some(_))
 }
 
 test "metric_tree_empty" {

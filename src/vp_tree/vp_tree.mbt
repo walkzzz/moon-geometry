@@ -72,11 +72,11 @@ pub fn vp_tree_knn(
 ) -> Array[@core.Point2D] {
   let result : Array[(@core.Point2D, Double)] = []
   vp_knn_impl(root, query, k, result)
-  let final : Array[@core.Point2D] = []
+  let result_arr : Array[@core.Point2D] = []
   for i in 0..<result.length() {
-    final.push(result[i].0)
+    result_arr.push(result[i].0)
   }
-  final
+  result_arr
 }
 
 /// |

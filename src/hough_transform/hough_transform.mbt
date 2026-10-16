@@ -15,7 +15,7 @@ pub struct HoughLine {
   theta : Double
   rho : Double
   votes : Int
-} derive(Debug)
+}
 
 pub fn HoughLine::new(
   theta : Double,
@@ -33,7 +33,7 @@ pub struct HoughCircle {
   cy : Double
   radius : Double
   votes : Int
-} derive(Debug)
+}
 
 pub fn HoughCircle::new(
   cx : Double,

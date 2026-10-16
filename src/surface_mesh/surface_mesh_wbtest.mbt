@@ -37,7 +37,7 @@ test "validate_mesh basic" {
 
 test "mesh_bounding_box basic" {
   let verts = [(1.0, 2.0, 3.0), (-1.0, -2.0, -3.0), (0.0, 0.0, 0.0)]
-  let (min_x, min_y, min_z, max_x, max_y, max_z) = mesh_bounding_box(verts)
+  let (min_x, _, min_z, max_x, _, _) = mesh_bounding_box(verts)
   assert_true((min_x - (-1.0)).abs() < 0.0001)
   assert_true((max_x - 1.0).abs() < 0.0001)
   assert_true((min_z - (-3.0)).abs() < 0.0001)

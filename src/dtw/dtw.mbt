@@ -10,9 +10,9 @@ pub fn dtw_distance(
     return 0.0
   }
   let dp : Array[Array[Double]] = []
-  for i in 0..<n {
+  for _ in 0..<n {
     let row : Array[Double] = []
-    for j in 0..<m {
+    for _ in 0..<m {
       row.push(0.0)
     }
     dp.push(row)
@@ -51,9 +51,9 @@ pub fn dtw_windowed(
     return 0.0
   }
   let dp : Array[Array[Double]] = []
-  for i in 0..<n {
+  for _ in 0..<n {
     let row : Array[Double] = []
-    for j in 0..<m {
+    for _ in 0..<m {
       row.push(1.0 / 0.000000000001)
     }
     dp.push(row)

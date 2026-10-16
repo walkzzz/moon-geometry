@@ -1,3 +1,7 @@
+fn approx_eq(a : Double, b : Double, eps : Double) -> Bool {
+  (a - b).abs() < eps
+}
+
 test "interval: contains" {
   let i = Interval::new(1.0, 5.0)
   assert_true(Interval::contains(i, 3.0))
@@ -9,8 +13,8 @@ test "interval: intersect" {
   let b = Interval::new(3.0, 7.0)
   match Interval::intersect(a, b) {
     Some(r) => {
-      assert_true(@core.approx_eq(r.lo, 3.0, 0.001))
-      assert_true(@core.approx_eq(r.hi, 5.0, 0.001))
+      assert_true(approx_eq(r.lo, 3.0, 0.001))
+      assert_true(approx_eq(r.hi, 5.0, 0.001))
     }
     None => assert_true(false)
   }
@@ -29,18 +33,18 @@ test "interval: union" {
   let a = Interval::new(1.0, 5.0)
   let b = Interval::new(3.0, 7.0)
   let r = Interval::union(a, b)
-  assert_true(@core.approx_eq(r.lo, 1.0, 0.001))
-  assert_true(@core.approx_eq(r.hi, 7.0, 0.001))
+  assert_true(approx_eq(r.lo, 1.0, 0.001))
+  assert_true(approx_eq(r.hi, 7.0, 0.001))
 }
 
 test "interval: length" {
   let i = Interval::new(2.0, 8.0)
-  assert_true(@core.approx_eq(Interval::length(i), 6.0, 0.001))
+  assert_true(approx_eq(Interval::length(i), 6.0, 0.001))
 }
 
 test "interval: midpoint" {
   let i = Interval::new(2.0, 8.0)
-  assert_true(@core.approx_eq(Interval::midpoint(i), 5.0, 0.001))
+  assert_true(approx_eq(Interval::midpoint(i), 5.0, 0.001))
 }
 
 test "interval: overlaps" {
@@ -60,6 +64,6 @@ test "interval: contains interval" {
 
 test "interval: swapped construction" {
   let i = Interval::new(5.0, 1.0)
-  assert_true(@core.approx_eq(i.lo, 1.0, 0.001))
-  assert_true(@core.approx_eq(i.hi, 5.0, 0.001))
+  assert_true(approx_eq(i.lo, 1.0, 0.001))
+  assert_true(approx_eq(i.hi, 5.0, 0.001))
 }

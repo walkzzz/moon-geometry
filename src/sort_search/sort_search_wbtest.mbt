@@ -1,3 +1,7 @@
+fn approx_eq(a : Double, b : Double, eps : Double) -> Bool {
+  (a - b).abs() < eps
+}
+
 test "sort_search_binary_found" {
   let arr = [1.0, 3.0, 5.0, 7.0, 9.0]
   match binary_search(arr, 5.0) {
@@ -34,8 +38,8 @@ test "sort_search_unique" {
   let arr = [1.0, 1.0, 2.0, 3.0, 3.0, 3.0, 4.0]
   let result = unique_sorted(arr)
   assert_eq(result.length(), 4)
-  assert_true(@core.approx_eq(result[0], 1.0, 0.000000000001))
-  assert_true(@core.approx_eq(result[3], 4.0, 0.000000000001))
+  assert_true(approx_eq(result[0], 1.0, 0.000000000001))
+  assert_true(approx_eq(result[3], 4.0, 0.000000000001))
 }
 
 test "sort_search_is_sorted" {
@@ -48,7 +52,7 @@ test "sort_search_is_sorted" {
 test "sort_search_kth" {
   let arr = [9.0, 3.0, 7.0, 1.0, 5.0]
   match kth_element(arr, 2) {
-    Some(v) => assert_true(@core.approx_eq(v, 5.0, 0.000000000001))
+    Some(v) => assert_true(approx_eq(v, 5.0, 0.000000000001))
     None => assert_true(false)
   }
 }

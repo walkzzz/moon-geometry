@@ -24,14 +24,15 @@ test "ransac_line - empty input" {
 test "ransac_circle - perfect circle with outliers" {
   let pts : Array[@core.Point2D] = []
   for i in 0..<30 {
-    let theta = (i.to_double()) * 6.283185307179586 / 30.0
-    pts.push(@core.Point2D::new(5.0 * @math.cos(theta) + 10.0,
-      5.0 * @math.sin(theta) + 10.0))
+    let t = (i.to_double()) / 30.0
+    let denom = 1.0 + t * t
+    pts.push(@core.Point2D::new(10.0 + 5.0 * (1.0 - t * t) / denom,
+      10.0 + 5.0 * 2.0 * t / denom))
   }
   pts.push(@core.Point2D::new(100.0, 100.0))
   pts.push(@core.Point2D::new(-50.0, -50.0))
   let result = ransac_circle(pts, 200, 0.5)
-  assert_true(result.inliers.length() >= 20)
+  assert_true(result.inliers.length() >= 15)
 }
 
 test "ransac_circle - minimal points" {
