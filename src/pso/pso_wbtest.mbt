@@ -77,3 +77,19 @@ test "pso higher dimension" {
   let result = pso(f, config, Global, 200, 42U)
   assert_true(result.value < 1.0)
 }
+test "pso_swarm_radius zero for identical" {
+  let r = pso_swarm_radius([1.0, 1.0, 1.0, 1.0])
+  assert_true(r < 0.0000001)
+}
+
+test "pso_swarm_radius positive for spread" {
+  let r = pso_swarm_radius([0.0, 2.0, 4.0, 6.0])
+  assert_true(r > 1.0)
+}
+
+test "pso_inertia_schedule decays" {
+  let w0 = pso_inertia_schedule(0.9, 0.01, 0)
+  let w100 = pso_inertia_schedule(0.9, 0.01, 100)
+  assert_true((w0 - 0.9).abs() < 0.0001)
+  assert_true(w100 < w0)
+}

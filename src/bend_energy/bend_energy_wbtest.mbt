@@ -91,3 +91,12 @@ test "bend_energy scale invariance" {
   let e2 = bend_energy(pts2) * curve_length(pts2)
   assert_true((e1 - e2).abs() < 0.5)
 }
+test "normalized_bend_energy positive for circle" {
+  let pts : Array[@core.Point2D] = []
+  for i in 0..<16 {
+    let theta = i.to_double() * 6.283185307179586 / 16.0
+    pts.push(@core.Point2D::new(@math.cos(theta), @math.sin(theta)))
+  }
+  let nbe = normalized_bend_energy(pts)
+  assert_true(nbe > 0.0)
+}

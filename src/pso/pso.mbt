@@ -305,3 +305,39 @@ pub fn pso_1d(
   let result = pso(f_wrap, config, Global, max_iter, seed)
   result.x[0]
 }
+/// |
+/// Swarm radius: standard deviation of particle positions in one dimension.
+/// 粒子群半径：一维粒子位置的标准差。
+///
+/// Measures swarm convergence. / 度量粒子群收敛性。
+pub fn pso_swarm_radius(positions : Array[Double]) -> Double {
+  let n = positions.length()
+  if n < 2 {
+    return 0.0
+  }
+  let mut mean = 0.0
+  for i in 0..<n {
+    mean += positions[i]
+  }
+  mean = mean / n.to_double()
+  let mut variance = 0.0
+  for i in 0..<n {
+    let d = positions[i] - mean
+    variance += d * d
+  }
+  variance = variance / (n - 1).to_double()
+  (variance).sqrt()
+}
+
+/// |
+/// Exponential decay inertia weight schedule. / 指数衰减惯性权重调度。
+///
+/// w = w_max * exp(-decay * iter). Standard PSO technique.
+/// w = w_max * exp(-decay * iter)。标准粒子群技术。
+pub fn pso_inertia_schedule(
+  w_max : Double,
+  decay : Double,
+  iteration : Int,
+) -> Double {
+  w_max * @math.exp(-decay * iteration.to_double())
+}

@@ -89,3 +89,17 @@ test "lm reduces residual" {
   let result = levenberg_marquardt(residual, [0.1], 100)
   assert_true(result.residual < 0.01)
 }
+test "lm_rms_error basic" {
+  let rms = lm_rms_error(12.0, 3)
+  assert_true((rms - 2.0).abs() < 0.0001)
+}
+
+test "lm_rms_error zero for zero residual" {
+  let rms = lm_rms_error(0.0, 5)
+  assert_true(rms < 0.0001)
+}
+
+test "lm_log_residual negative for small" {
+  let lr = lm_log_residual(0.001)
+  assert_true(lr < 0.0)
+}

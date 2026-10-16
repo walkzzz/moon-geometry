@@ -7536,6 +7536,10 @@ pub fn curve_length(points : Array[Point2D]) -> Double {
   @bend_energy.curve_length(points)
 }
 
+pub fn normalized_bend_energy(points : Array[Point2D]) -> Double {
+  @bend_energy.normalized_bend_energy(points)
+}
+
 // --- procrustes ---
 
 ///|
@@ -7868,6 +7872,14 @@ pub fn levenberg_marquardt_jac(
 pub fn lm_line_fit(xs : Array[Double], ys : Array[Double]) -> (Double, Double) {
   @levenberg_marquardt.lm_line_fit(xs, ys)
 }
+///|
+pub fn lm_rms_error(residual_sq : Double, n : Int) -> Double {
+  @levenberg_marquardt.lm_rms_error(residual_sq, n)
+}
+///|
+pub fn lm_log_residual(residual_sq : Double) -> Double {
+  @levenberg_marquardt.lm_log_residual(residual_sq)
+}
 
 // ---------------------------------------------------------------------------
 // conjugate_gradient: Conjugate gradient / 共轭梯度
@@ -8103,6 +8115,18 @@ pub fn ga_1d(
   @genetic_algorithm.ga_1d(f, lo, hi, pop_size, max_generations, seed)
 }
 
+pub fn ga_population_std(fitness : Array[Double]) -> Double {
+  @genetic_algorithm.ga_population_std(fitness)
+}
+
+pub fn ga_mutation_schedule(
+  initial_rate : Double,
+  decay : Double,
+  generation : Int,
+) -> Double {
+  @genetic_algorithm.ga_mutation_schedule(initial_rate, decay, generation)
+}
+
 // ---------------------------------------------------------------------------
 // pso: Particle swarm optimization / 粒子群优化
 // ---------------------------------------------------------------------------
@@ -8165,6 +8189,18 @@ pub fn pso_1d(
   seed : UInt,
 ) -> Double {
   @pso.pso_1d(f, lo, hi, n_particles, max_iter, seed)
+}
+
+pub fn pso_swarm_radius(positions : Array[Double]) -> Double {
+  @pso.pso_swarm_radius(positions)
+}
+
+pub fn pso_inertia_schedule(
+  w_max : Double,
+  decay : Double,
+  iteration : Int,
+) -> Double {
+  @pso.pso_inertia_schedule(w_max, decay, iteration)
 }// ---------------------------------------------------------------------------
 // obj_io: OBJ file I/O / OBJ 文件读写
 // ---------------------------------------------------------------------------

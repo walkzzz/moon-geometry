@@ -9,6 +9,7 @@ bend_energy module. / bend_energy 模块。
 - bend_energy_open
 - curve_length
 - elastic_energy
+- normalized_bend_energy
 - total_curvature_energy
 
 ---

@@ -9,6 +9,8 @@ levenberg_marquardt module. / levenberg_marquardt 模块。
 - levenberg_marquardt
 - levenberg_marquardt_jac
 - lm_line_fit
+- lm_log_residual
+- lm_rms_error
 
 ### Types
 - LMResult

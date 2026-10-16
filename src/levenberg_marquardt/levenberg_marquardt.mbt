@@ -305,3 +305,22 @@ pub fn lm_line_fit(
   let result = levenberg_marquardt(residual, [0.0, 0.0], 100)
   (result.x[0], result.x[1])
 }
+/// |
+/// Root mean square error from residual sum of squares. / 拋差平方和的均方根误差。
+///
+/// RMS = sqrt(rss / n). / RMS = sqrt(rss / n)。
+pub fn lm_rms_error(residual_sq : Double, n : Int) -> Double {
+  if n <= 0 {
+    return 0.0
+  }
+  (residual_sq / n.to_double()).sqrt()
+}
+
+/// |
+/// Log of residual sum of squares for convergence monitoring.
+/// 拋差平方和的自然对数，用于收敛监测。
+///
+/// Returns ln(rss + epsilon) to avoid log(0). / 返回 ln(rss + epsilon) 避免 log(0)。
+pub fn lm_log_residual(residual_sq : Double) -> Double {
+  @math.ln(residual_sq + 0.000000000000000000000000000001)
+}

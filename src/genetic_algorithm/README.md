@@ -9,6 +9,8 @@ genetic_algorithm module. / genetic_algorithm 模块。
 - GAResult::new
 - ga_1d
 - ga_minimize
+- ga_mutation_schedule
+- ga_population_std
 - genetic_algorithm
 
 ### Types

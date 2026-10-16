@@ -298,3 +298,39 @@ pub fn ga_1d(
   let result = ga_minimize(f_wrap, config, max_generations, seed)
   result.x[0]
 }
+/// |
+/// Population standard deviation of fitness values. / 种群适应度的标准差。
+///
+/// Measures population diversity for convergence monitoring.
+/// 度量种群多样性，用于收敛监测。
+pub fn ga_population_std(fitness : Array[Double]) -> Double {
+  let n = fitness.length()
+  if n < 2 {
+    return 0.0
+  }
+  let mut mean = 0.0
+  for i in 0..<n {
+    mean += fitness[i]
+  }
+  mean = mean / n.to_double()
+  let mut variance = 0.0
+  for i in 0..<n {
+    let d = fitness[i] - mean
+    variance += d * d
+  }
+  variance = variance / (n - 1).to_double()
+  (variance).sqrt()
+}
+
+/// |
+/// Exponential decay mutation rate schedule. / 指数衰减变异率调度。
+///
+/// rate = initial * exp(-decay * generation). Standard GA technique.
+/// rate = initial * exp(-decay * generation)。标准遗传算法技术。
+pub fn ga_mutation_schedule(
+  initial_rate : Double,
+  decay : Double,
+  generation : Int,
+) -> Double {
+  initial_rate * @math.exp(-decay * generation.to_double())
+}

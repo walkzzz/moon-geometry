@@ -10,6 +10,8 @@ pso module. / pso 模块。
 - pso
 - pso_1d
 - pso_decreasing_w
+- pso_inertia_schedule
+- pso_swarm_radius
 
 ### Types
 - PSOConfig

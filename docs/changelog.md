@@ -96,8 +96,8 @@ Moon Geometry 的所有重要变更记录于此。
 
 ### Tests | 测试
 
-- Total tests: 1942 (+789 from v0.160.0)
-- All four targets (native, wasm-gc, js, wasm) pass: 1942 × 4 = 7768 test runs green.
+- Total tests: 1952 (+789 from v0.160.0)
+- All four targets (native, wasm-gc, js, wasm) pass: 1952 × 4 = 7808 test runs green.
 
 ## [0.160.0] - 2026-10-16
 

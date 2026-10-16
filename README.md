@@ -5,7 +5,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![MoonBit](https://img.shields.io/badge/MoonBit-0.1.20260920-blue.svg)](https://moonbitlang.com)
-[![Tests](https://img.shields.io/badge/tests-1942-brightgreen.svg)]()
+[![Tests](https://img.shields.io/badge/tests-1952-brightgreen.svg)]()
 [![Targets](https://img.shields.io/badge/targets-native%20%7C%20wasm--gc%20%7C%20js%20%7C%20wasm-green.svg)]()
 
 Moon Geometry 是一个**纯 MoonBit** 实现的计算几何库，**零 C FFI 依赖**，四目标（native / wasm-gc / js / wasm）原生支持。为 CAD、碰撞检测、GIS、路径规划、图像处理等场景提供可复用的几何算法基础组件。
@@ -361,15 +361,15 @@ let hull = @hull.convex_hull_andrew(points)  // 凸包顶点（逆时针）| hul
 ## 测试 | Tests
 
 ```bash
-moon test                          # 全部 1942 测试 | all 1942 tests
+moon test                          # 全部 1952 测试 | all 1952 tests
 moon test --target native          # 四目标分别验证 | verify each backend
 moon test --target wasm-gc
 moon test --target js
 moon test --target wasm
 ```
 
-四目标全绿：1942 × 4 = 7768 次测试通过。
-All four targets pass: 1942 × 4 = 7768 test runs green.
+四目标全绿：1952 × 4 = 7808 次测试通过。
+All four targets pass: 1952 × 4 = 7808 test runs green.
 
 ## 交付路线图 | Roadmap
 
