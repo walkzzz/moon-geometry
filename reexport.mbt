@@ -2487,3 +2487,277 @@ pub fn metric_tree_count(node : MetricNode?) -> Int {
 pub fn metric_tree_nearest(node : MetricNode?, q : Point2D) -> Point2D? {
   @metric_tree.metric_tree_nearest(node, q)
 }
+
+// ---------------------------------------------------------------------------
+// dcel: doubly connected edge list / 双向连接边表
+// ---------------------------------------------------------------------------
+///|
+pub type HalfEdge = @dcel.HalfEdge
+///|
+pub type DcelFace = @dcel.Face
+///|
+pub type DCEL = @dcel.DCEL
+///|
+pub fn dcel_new() -> DCEL {
+  @dcel.DCEL::new()
+}
+///|
+pub fn dcel_add_vertex(d : DCEL, p : Point2D) -> Int {
+  @dcel.DCEL::add_vertex(d, p)
+}
+///|
+pub fn dcel_add_edge(d : DCEL, from : Int, to : Int) -> Int {
+  @dcel.DCEL::add_edge(d, from, to)
+}
+///|
+pub fn dcel_add_face(d : DCEL, outer : Int) -> Int {
+  @dcel.DCEL::add_face(d, outer)
+}
+///|
+pub fn dcel_set_next(d : DCEL, he : Int, next : Int) -> Unit {
+  @dcel.DCEL::set_next(d, he, next)
+}
+///|
+pub fn dcel_set_face(d : DCEL, he : Int, face : Int) -> Unit {
+  @dcel.DCEL::set_face(d, he, face)
+}
+///|
+pub fn dcel_vertex_count(d : DCEL) -> Int {
+  @dcel.DCEL::vertex_count(d)
+}
+///|
+pub fn dcel_edge_count(d : DCEL) -> Int {
+  @dcel.DCEL::edge_count(d)
+}
+///|
+pub fn dcel_face_count(d : DCEL) -> Int {
+  @dcel.DCEL::face_count(d)
+}
+///|
+pub fn dcel_trace_face(d : DCEL, start_he : Int) -> Array[Int] {
+  @dcel.DCEL::trace_face(d, start_he)
+}
+///|
+pub fn dcel_from_polygon(d : DCEL, poly : Polygon) -> DCEL {
+  @dcel.DCEL::from_polygon(d, poly)
+}
+
+// ---------------------------------------------------------------------------
+// arrangement: line segment arrangement / 线段排列
+// ---------------------------------------------------------------------------
+///|
+pub type ArrangementVertex = @arrangement.ArrangementVertex
+///|
+pub type Arrangement = @arrangement.Arrangement
+///|
+pub fn build_arrangement(segs : Array[Segment]) -> Arrangement {
+  @arrangement.build_arrangement(segs)
+}
+///|
+pub fn arrangement_vertices(arr : Arrangement) -> Array[ArrangementVertex] {
+  @arrangement.arrangement_vertices(arr)
+}
+///|
+pub fn arrangement_intersection_count(arr : Arrangement) -> Int {
+  @arrangement.arrangement_intersection_count(arr)
+}
+///|
+pub fn arrangement_edge_count(arr : Arrangement) -> Int {
+  @arrangement.arrangement_edge_count(arr)
+}
+///|
+pub fn arrangement_face_count(arr : Arrangement) -> Int {
+  @arrangement.arrangement_face_count(arr)
+}
+
+// ---------------------------------------------------------------------------
+// planar_graph: planar graph / 平面图
+// ---------------------------------------------------------------------------
+///|
+pub type PlanarEdge = @planar_graph.PlanarEdge
+///|
+pub type PlanarGraph = @planar_graph.PlanarGraph
+///|
+pub fn planar_graph_new() -> PlanarGraph {
+  @planar_graph.PlanarGraph::new()
+}
+///|
+pub fn planar_graph_add_vertex(g : PlanarGraph, p : Point2D) -> Int {
+  @planar_graph.PlanarGraph::add_vertex(g, p)
+}
+///|
+pub fn planar_graph_add_edge(g : PlanarGraph, from : Int, to : Int) -> Unit {
+  @planar_graph.PlanarGraph::add_edge(g, from, to)
+}
+///|
+pub fn planar_graph_vertex_count(g : PlanarGraph) -> Int {
+  @planar_graph.PlanarGraph::vertex_count(g)
+}
+///|
+pub fn planar_graph_edge_count(g : PlanarGraph) -> Int {
+  @planar_graph.PlanarGraph::edge_count(g)
+}
+///|
+pub fn planar_graph_is_planar(g : PlanarGraph) -> Bool {
+  @planar_graph.PlanarGraph::is_planar(g)
+}
+///|
+pub fn planar_graph_degree(g : PlanarGraph, v : Int) -> Int {
+  @planar_graph.PlanarGraph::degree(g, v)
+}
+///|
+pub fn planar_graph_neighbors(g : PlanarGraph, v : Int) -> Array[Int] {
+  @planar_graph.PlanarGraph::neighbors(g, v)
+}
+///|
+pub fn planar_graph_is_connected(g : PlanarGraph) -> Bool {
+  @planar_graph.PlanarGraph::is_connected(g)
+}
+///|
+pub fn planar_graph_face_count(g : PlanarGraph) -> Int {
+  @planar_graph.PlanarGraph::face_count(g)
+}
+///|
+pub fn planar_graph_from_polygon(g : PlanarGraph, poly : Polygon) -> PlanarGraph {
+  @planar_graph.PlanarGraph::from_polygon(g, poly)
+}
+
+// ---------------------------------------------------------------------------
+// face_extract: face extraction / 面提取
+// ---------------------------------------------------------------------------
+///|
+pub type ExtractFace = @face_extract.Face
+///|
+pub fn extract_faces(verts : Array[Point2D], edges : Array[(Int, Int)]) -> Array[ExtractFace] {
+  @face_extract.extract_faces(verts, edges)
+}
+///|
+pub fn face_area(f : ExtractFace) -> Double {
+  @face_extract.face_area(f)
+}
+///|
+pub fn face_count(faces : Array[ExtractFace]) -> Int {
+  @face_extract.face_count(faces)
+}
+
+// ---------------------------------------------------------------------------
+// overlay: planar subdivision overlay / 平面细分叠加
+// ---------------------------------------------------------------------------
+///|
+pub type OverlayResult = @overlay.OverlayResult
+///|
+pub fn overlay(s1 : Array[Segment], s2 : Array[Segment]) -> OverlayResult {
+  @overlay.overlay(s1, s2)
+}
+///|
+pub fn overlay_vertex_count(r : OverlayResult) -> Int {
+  @overlay.overlay_vertex_count(r)
+}
+///|
+pub fn overlay_edge_count(r : OverlayResult) -> Int {
+  @overlay.overlay_edge_count(r)
+}
+///|
+pub fn overlay_vertices(r : OverlayResult) -> Array[Point2D] {
+  @overlay.overlay_vertices(r)
+}
+///|
+pub fn overlay_edges(r : OverlayResult) -> Array[(Int, Int)] {
+  @overlay.overlay_edges(r)
+}
+
+// ---------------------------------------------------------------------------
+// euler_tour: Euler tour / 欧拉回路
+// ---------------------------------------------------------------------------
+///|
+pub type EulerTour = @euler_tour.EulerTour
+///|
+pub fn build_euler_tour(n : Int, adj : Array[Array[Int]], root : Int) -> EulerTour {
+  @euler_tour.build_euler_tour(n, adj, root)
+}
+///|
+pub fn euler_tour_sequence(t : EulerTour) -> Array[Int] {
+  @euler_tour.euler_tour_sequence(t)
+}
+///|
+pub fn euler_tour_depths(t : EulerTour) -> Array[Int] {
+  @euler_tour.euler_tour_depths(t)
+}
+///|
+pub fn euler_tour_length(t : EulerTour) -> Int {
+  @euler_tour.euler_tour_length(t)
+}
+///|
+pub fn euler_tour_first_occurrence(t : EulerTour, v : Int) -> Int {
+  @euler_tour.euler_tour_first_occurrence(t, v)
+}
+///|
+pub fn euler_tour_lca(t : EulerTour, u : Int, v : Int) -> Int {
+  @euler_tour.euler_tour_lca(t, u, v)
+}
+///|
+pub fn euler_tour_is_valid(t : EulerTour) -> Bool {
+  @euler_tour.euler_tour_is_valid(t)
+}
+
+// ---------------------------------------------------------------------------
+// trapezoidal: trapezoidal decomposition / 梯形分解
+// ---------------------------------------------------------------------------
+///|
+pub type Trapezoid = @trapezoidal.Trapezoid
+///|
+pub type TrapezoidalMap = @trapezoidal.TrapezoidalMap
+///|
+pub fn build_trapezoidal_map(segs : Array[Segment]) -> TrapezoidalMap {
+  @trapezoidal.build_trapezoidal_map(segs)
+}
+///|
+pub fn trapezoidal_locate(m : TrapezoidalMap, p : Point2D) -> Int {
+  @trapezoidal.trapezoidal_locate(m, p)
+}
+///|
+pub fn trapezoidal_count(m : TrapezoidalMap) -> Int {
+  @trapezoidal.trapezoidal_count(m)
+}
+///|
+pub fn trapezoidal_all(m : TrapezoidalMap) -> Array[Trapezoid] {
+  @trapezoidal.trapezoidal_all(m)
+}
+///|
+pub fn trapezoidal_above_segment(s : Segment, p : Point2D) -> Bool {
+  @trapezoidal.trapezoidal_above_segment(s, p)
+}
+///|
+pub fn trapezoidal_expected_count(m : TrapezoidalMap) -> Int {
+  @trapezoidal.trapezoidal_expected_count(m)
+}
+
+// ---------------------------------------------------------------------------
+// zone: zone theorem / 区域定理
+// ---------------------------------------------------------------------------
+///|
+pub type Zone = @zone.Zone
+///|
+pub fn compute_zone(line : Line, segs : Array[Segment]) -> Zone {
+  @zone.compute_zone(line, segs)
+}
+///|
+pub fn zone_crossed_count(z : Zone) -> Int {
+  @zone.zone_crossed_count(z)
+}
+///|
+pub fn zone_entry_points(z : Zone) -> Array[Point2D] {
+  @zone.zone_entry_points(z)
+}
+///|
+pub fn zone_crossed_faces(z : Zone) -> Array[Int] {
+  @zone.zone_crossed_faces(z)
+}
+///|
+pub fn zone_complexity(z : Zone) -> Int {
+  @zone.zone_complexity(z)
+}
+///|
+pub fn zone_complexity_bound(n : Int) -> Int {
+  @zone.zone_complexity_bound(n)
+}

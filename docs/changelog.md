@@ -6,6 +6,21 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
 Moon Geometry 的所有重要变更记录于此。
 格式基于 [Keep a Changelog](https://keepachangelog.com/)。
 
+## [1.5.0] - 2026-10-16
+
+### Added — Planar Subdivision | 平面细分（8 个模块）
+
+- **DCEL** (`dcel`)：`DCEL::new`, `add_vertex`, `add_edge`, `add_face`, `set_next`, `set_face`, `trace_face`, `from_polygon`
+- **Arrangement** (`arrangement`)：`build_arrangement`, `arrangement_vertices`, `arrangement_intersection_count`, `arrangement_edge_count`, `arrangement_face_count`
+- **Planar Graph** (`planar_graph`)：`PlanarGraph::new`, `add_vertex`, `add_edge`, `is_planar`, `is_connected`, `face_count`, `from_polygon`
+- **Face Extract** (`face_extract`)：`extract_faces`, `face_area`, `face_count`
+- **Overlay** (`overlay`)：`overlay`, `overlay_vertex_count`, `overlay_edge_count`, `overlay_vertices`, `overlay_edges`
+- **Euler Tour** (`euler_tour`)：`build_euler_tour`, `euler_tour_sequence`, `euler_tour_lca`, `euler_tour_is_valid`
+- **Trapezoidal** (`trapezoidal`)：`build_trapezoidal_map`, `trapezoidal_locate`, `trapezoidal_above_segment`, `trapezoidal_expected_count`
+- **Zone** (`zone`)：`compute_zone`, `zone_crossed_count`, `zone_entry_points`, `zone_complexity`, `zone_complexity_bound`
+
+**Total: 81 modules, 776 tests, 4 targets green.**
+
 ## [1.4.0] - 2026-10-16
 
 ### Added — Distance Metrics | 距离度量（8 个模块）
