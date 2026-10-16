@@ -9746,3 +9746,530 @@ pub fn rbf_interpolate_polyharmonic(r : Double, k : Int) -> Double {
 pub fn rbf_condition_number_estimate(centers : Array[(Double, Double)], eps : Double) -> Double {
   @radial_basis.rbf_condition_number_estimate(centers, eps)
 }
+
+// ========== kernel_density ==========
+pub fn kd_gaussian_kernel(x : Double, h : Double) -> Double {
+  @kernel_density.gaussian_kernel(x, h)
+}
+pub fn kde_estimate(points : Array[Double], x : Double, h : Double) -> Double {
+  @kernel_density.kde_estimate(points, x, h)
+}
+pub fn silverman_bandwidth(n : Int, std_dev : Double) -> Double {
+  @kernel_density.silverman_bandwidth(n, std_dev)
+}
+pub fn epanechnikov_kernel(x : Double, h : Double) -> Double {
+  @kernel_density.epanechnikov_kernel(x, h)
+}
+
+// ========== gaussian_process ==========
+pub fn gp_squared_exp_kernel(x1 : Double, x2 : Double, l : Double, sigma : Double) -> Double {
+  @gaussian_process.squared_exp_kernel(x1, x2, l, sigma)
+}
+pub fn matern_kernel(x1 : Double, x2 : Double, l : Double, nu : Double) -> Double {
+  @gaussian_process.matern_kernel(x1, x2, l, nu)
+}
+pub fn rational_quad_kernel(x1 : Double, x2 : Double, l : Double, alpha : Double) -> Double {
+  @gaussian_process.rational_quad_kernel(x1, x2, l, alpha)
+}
+pub fn gp_predict_mean(k_train : Array[Double], k_test : Array[Double], y : Array[Double], noise : Double) -> Double {
+  @gaussian_process.gp_predict_mean(k_train, k_test, y, noise)
+}
+
+// ========== svm_geometry ==========
+pub fn linear_kernel(x1 : Array[Double], x2 : Array[Double]) -> Double {
+  @svm_geometry.linear_kernel(x1, x2)
+}
+pub fn poly_kernel(x1 : Array[Double], x2 : Array[Double], degree : Int, c : Double) -> Double {
+  @svm_geometry.poly_kernel(x1, x2, degree, c)
+}
+pub fn rbf_kernel(x1 : Array[Double], x2 : Array[Double], gamma : Double) -> Double {
+  @svm_geometry.rbf_kernel(x1, x2, gamma)
+}
+pub fn margin_distance(w : Array[Double], b : Double, x : Array[Double], y : Double) -> Double {
+  @svm_geometry.margin_distance(w, b, x, y)
+}
+
+// ========== decision_boundary ==========
+pub fn linear_boundary(w : Array[Double], b : Double, x : Array[Double]) -> Double {
+  @decision_boundary.linear_boundary(w, b, x)
+}
+pub fn boundary_distance(w : Array[Double], b : Double, x : Array[Double]) -> Double {
+  @decision_boundary.boundary_distance(w, b, x)
+}
+pub fn boundary_classify(w : Array[Double], b : Double, x : Array[Double]) -> Int {
+  @decision_boundary.boundary_classify(w, b, x)
+}
+pub fn quadratic_boundary(a : Double, b : Double, c : Double, x : Double) -> Double {
+  @decision_boundary.quadratic_boundary(a, b, c, x)
+}
+
+// ========== feature_projection ==========
+pub fn project_onto_line(point : (Double, Double), dir : (Double, Double)) -> Double {
+  @feature_projection.project_onto_line(point, dir)
+}
+pub fn pca_1d_variance(projections : Array[Double]) -> Double {
+  @feature_projection.pca_1d_variance(projections)
+}
+pub fn explained_variance_ratio(eigenvalues : Array[Double], k : Int) -> Double {
+  @feature_projection.explained_variance_ratio(eigenvalues, k)
+}
+pub fn projection_residual(point : (Double, Double), proj : (Double, Double)) -> Double {
+  @feature_projection.projection_residual(point, proj)
+}
+
+// ========== manifold_learning ==========
+pub fn isomap_dist(dists : Array[Array[Double]], i : Int, j : Int) -> Double {
+  @manifold_learning.isomap_dist(dists, i, j)
+}
+pub fn lle_weight(neighbors : Array[(Double, Double)], point_ : (Double, Double)) -> Array[Double] {
+  @manifold_learning.lle_weight(neighbors, point_)
+}
+pub fn ml_laplacian_weight(x1 : (Double, Double), x2 : (Double, Double), sigma : Double) -> Double {
+  @manifold_learning.laplacian_weight(x1, x2, sigma)
+}
+
+// ========== dimension_reduction ==========
+pub fn tsne_similarity(d_ij : Double, sigma : Double) -> Double {
+  @dimension_reduction.tsne_similarity(d_ij, sigma)
+}
+pub fn tsne_normalize(sim : Array[Array[Double]]) -> Array[Array[Double]] {
+  @dimension_reduction.tsne_normalize(sim)
+}
+pub fn umap_cross_entropy(p : Double, q : Double) -> Double {
+  @dimension_reduction.umap_cross_entropy(p, q)
+}
+pub fn kl_divergence(p : Array[Double], q : Array[Double]) -> Double {
+  @dimension_reduction.kl_divergence(p, q)
+}
+
+// ========== clustering_geom ==========
+pub fn cg_kmeans_assign(point : (Double, Double), centroids : Array[(Double, Double)]) -> Int {
+  @clustering_geom.kmeans_assign(point, centroids)
+}
+pub fn kmeans_update(points : Array[(Double, Double)], assignments : Array[Int], k : Int) -> Array[(Double, Double)] {
+  @clustering_geom.kmeans_update(points, assignments, k)
+}
+pub fn dbscan_eps_neighbors(points : Array[(Double, Double)], idx : Int, eps : Double) -> Array[Int] {
+  @clustering_geom.dbscan_eps_neighbors(points, idx, eps)
+}
+pub fn silhouette_score(a : Double, b : Double) -> Double {
+  @clustering_geom.silhouette_score(a, b)
+}
+
+// ========== regression_geom ==========
+pub fn linear_regression(xs : Array[Double], ys : Array[Double]) -> (Double, Double) {
+  @regression_geom.linear_regression(xs, ys)
+}
+pub fn polynomial_fit(xs : Array[Double], ys : Array[Double], degree : Int) -> Array[Double] {
+  @regression_geom.polynomial_fit(xs, ys, degree)
+}
+pub fn r_squared(xs : Array[Double], ys : Array[Double], slope : Double, intercept : Double) -> Double {
+  @regression_geom.r_squared(xs, ys, slope, intercept)
+}
+pub fn residual_norm(xs : Array[Double], ys : Array[Double], slope : Double, intercept : Double) -> Double {
+  @regression_geom.residual_norm(xs, ys, slope, intercept)
+}
+
+// ========== bayesian_geom ==========
+pub fn gaussian_log_likelihood(x : Double, mean : Double, std : Double) -> Double {
+  @bayesian_geom.gaussian_log_likelihood(x, mean, std)
+}
+pub fn posterior_mean(prior_mean : Double, prior_var : Double, data_mean : Double, data_var : Double) -> Double {
+  @bayesian_geom.posterior_mean(prior_mean, prior_var, data_mean, data_var)
+}
+pub fn posterior_var(prior_var : Double, data_var : Double) -> Double {
+  @bayesian_geom.posterior_var(prior_var, data_var)
+}
+pub fn bayes_update(prior : Double, likelihood : Double, evidence : Double) -> Double {
+  @bayesian_geom.bayes_update(prior, likelihood, evidence)
+}
+
+// ========== rrt_star ==========
+pub fn rrt_distance(p1 : (Double, Double), p2 : (Double, Double)) -> Double {
+  @rrt_star.rrt_distance(p1, p2)
+}
+pub fn rrt_nearest(tree : Array[(Double, Double)], sample : (Double, Double)) -> Int {
+  @rrt_star.rrt_nearest(tree, sample)
+}
+pub fn rrt_steer(from : (Double, Double), to : (Double, Double), step : Double) -> (Double, Double) {
+  @rrt_star.rrt_steer(from, to, step)
+}
+pub fn rrt_cost(parent_cost : Double, parent : (Double, Double), node : (Double, Double)) -> Double {
+  @rrt_star.rrt_cost(parent_cost, parent, node)
+}
+pub fn rrt_rewire_radius(n : Int, d : Int, area : Double) -> Double {
+  @rrt_star.rrt_rewire_radius(n, d, area)
+}
+
+// ========== prm_planner ==========
+pub fn prm_sample_free(x_min : Double, x_max : Double, y_min : Double, y_max : Double) -> (Double, Double) {
+  @prm_planner.prm_sample_free(x_min, x_max, y_min, y_max)
+}
+pub fn prm_connection_radius(n : Int, d : Int, volume : Double) -> Double {
+  @prm_planner.prm_connection_radius(n, d, volume)
+}
+pub fn prm_edge_valid(p1 : (Double, Double), p2 : (Double, Double), obstacles : Array[(Double, Double, Double)]) -> Bool {
+  @prm_planner.prm_edge_valid(p1, p2, obstacles)
+}
+pub fn prm_shortest_path(adj : Array[Array[Double]], start : Int, goal : Int) -> Double {
+  @prm_planner.prm_shortest_path(adj, start, goal)
+}
+
+// ========== potential_field ==========
+pub fn attractive_force(pos : (Double, Double), goal : (Double, Double), k_att : Double) -> (Double, Double) {
+  @potential_field.attractive_force(pos, goal, k_att)
+}
+pub fn repulsive_force(pos : (Double, Double), obstacle : (Double, Double), k_rep : Double, d0 : Double) -> (Double, Double) {
+  @potential_field.repulsive_force(pos, obstacle, k_rep, d0)
+}
+pub fn total_force(att : (Double, Double), rep : (Double, Double)) -> (Double, Double) {
+  @potential_field.total_force(att, rep)
+}
+pub fn force_magnitude(f : (Double, Double)) -> Double {
+  @potential_field.force_magnitude(f)
+}
+
+// ========== trajectory_opt ==========
+pub fn trajectory_length(waypoints : Array[(Double, Double)]) -> Double {
+  @trajectory_opt.trajectory_length(waypoints)
+}
+pub fn trajectory_smoothness(waypoints : Array[(Double, Double)]) -> Double {
+  @trajectory_opt.trajectory_smoothness(waypoints)
+}
+pub fn trajectory_cost(waypoints : Array[(Double, Double)], w_len : Double, w_smooth : Double) -> Double {
+  @trajectory_opt.trajectory_cost(waypoints, w_len, w_smooth)
+}
+pub fn bezier_point(p0 : (Double, Double), p1 : (Double, Double), p2 : (Double, Double), t : Double) -> (Double, Double) {
+  @trajectory_opt.bezier_point(p0, p1, p2, t)
+}
+
+// ========== motion_planner_3d ==========
+pub fn dist_3d(p1 : (Double, Double, Double), p2 : (Double, Double, Double)) -> Double {
+  @motion_planner_3d.dist_3d(p1, p2)
+}
+pub fn interpolate_3d(p1 : (Double, Double, Double), p2 : (Double, Double, Double), t : Double) -> (Double, Double, Double) {
+  @motion_planner_3d.interpolate_3d(p1, p2, t)
+}
+pub fn sphere_collision(pos : (Double, Double, Double), center : (Double, Double, Double), radius : Double) -> Bool {
+  @motion_planner_3d.sphere_collision(pos, center, radius)
+}
+pub fn aabb_collision(min1 : (Double, Double, Double), max1 : (Double, Double, Double), min2 : (Double, Double, Double), max2 : (Double, Double, Double)) -> Bool {
+  @motion_planner_3d.aabb_collision(min1, max1, min2, max2)
+}
+pub fn path_length_3d(path : Array[(Double, Double, Double)]) -> Double {
+  @motion_planner_3d.path_length_3d(path)
+}
+
+// ========== kinematics ==========
+pub fn forward_kin_2d(theta1 : Double, theta2 : Double, l1 : Double, l2 : Double) -> (Double, Double) {
+  @kinematics.forward_kin_2d(theta1, theta2, l1, l2)
+}
+pub fn jacobian_2d(theta1 : Double, theta2 : Double, l1 : Double, l2 : Double) -> (Double, Double, Double, Double) {
+  @kinematics.jacobian_2d(theta1, theta2, l1, l2)
+}
+pub fn inverse_kin_2d(x : Double, y : Double, l1 : Double, l2 : Double) -> (Double, Double) {
+  @kinematics.inverse_kin_2d(x, y, l1, l2)
+}
+pub fn manipulability(j11 : Double, j12 : Double, j21 : Double, j22 : Double) -> Double {
+  @kinematics.manipulability(j11, j12, j21, j22)
+}
+
+// ========== dynamics_geom ==========
+pub fn inertia_tensor_rect(mass : Double, width : Double, height : Double, depth : Double) -> (Double, Double, Double) {
+  @dynamics_geom.inertia_tensor_rect(mass, width, height, depth)
+}
+pub fn inertia_tensor_sphere(mass : Double, r : Double) -> Double {
+  @dynamics_geom.inertia_tensor_sphere(mass, r)
+}
+pub fn dg_angular_momentum(i_val : Double, omega : Double) -> Double {
+  @dynamics_geom.angular_momentum(i_val, omega)
+}
+pub fn dg_torque(i_val : Double, alpha : Double) -> Double {
+  @dynamics_geom.torque(i_val, alpha)
+}
+pub fn dg_kinetic_energy_rot(i_val : Double, omega : Double) -> Double {
+  @dynamics_geom.kinetic_energy_rot(i_val, omega)
+}
+
+// ========== collision_detect_3d ==========
+pub fn sphere_sphere_dist(c1 : (Double, Double, Double), r1 : Double, c2 : (Double, Double, Double), r2 : Double) -> Double {
+  @collision_detect_3d.sphere_sphere_dist(c1, r1, c2, r2)
+}
+pub fn cd_ray_sphere_intersect(origin : (Double, Double, Double), dir : (Double, Double, Double), center : (Double, Double, Double), radius : Double) -> Double {
+  @collision_detect_3d.ray_sphere_intersect(origin, dir, center, radius)
+}
+pub fn point_in_tetrahedron(p : (Double, Double, Double), v0 : (Double, Double, Double), v1 : (Double, Double, Double), v2 : (Double, Double, Double), v3 : (Double, Double, Double)) -> Bool {
+  @collision_detect_3d.point_in_tetrahedron(p, v0, v1, v2, v3)
+}
+
+// ========== grasp_planning ==========
+pub fn grasp_contact_normal(object_center : (Double, Double, Double), contact_point : (Double, Double, Double)) -> (Double, Double, Double) {
+  @grasp_planning.grasp_contact_normal(object_center, contact_point)
+}
+pub fn grasp_force_closure(forces : Array[(Double, Double, Double)], normals_ : Array[(Double, Double, Double)]) -> Bool {
+  @grasp_planning.grasp_force_closure(forces, normals_)
+}
+pub fn gp_grasp_quality(forces : Array[(Double, Double, Double)], center_ : (Double, Double, Double)) -> Double {
+  @grasp_planning.grasp_quality(forces, center_)
+}
+
+// ========== workspace_analysis ==========
+pub fn reachability_map(joint_limits : Array[(Double, Double)], n_samples : Int) -> Int {
+  @workspace_analysis.reachability_map(joint_limits, n_samples)
+}
+pub fn workspace_volume(bounds : (Double, Double, Double, Double, Double, Double)) -> Double {
+  @workspace_analysis.workspace_volume(bounds)
+}
+pub fn dexterity_index(jacobian_det : Double, max_det : Double) -> Double {
+  @workspace_analysis.dexterity_index(jacobian_det, max_det)
+}
+pub fn wa_condition_number(j11 : Double, j12 : Double, j21 : Double, j22 : Double) -> Double {
+  @workspace_analysis.condition_number(j11, j12, j21, j22)
+}
+
+// ========== ray_trace_ops ==========
+pub fn reflect(incident : (Double, Double, Double), normal : (Double, Double, Double)) -> (Double, Double, Double) {
+  @ray_trace_ops.reflect(incident, normal)
+}
+pub fn refract(incident : (Double, Double, Double), normal : (Double, Double, Double), eta : Double) -> (Double, Double, Double) {
+  @ray_trace_ops.refract(incident, normal, eta)
+}
+pub fn fresnel_schlick(cos_theta : Double, f0 : Double) -> Double {
+  @ray_trace_ops.fresnel_schlick(cos_theta, f0)
+}
+pub fn ray_plane_t(origin : (Double, Double, Double), dir : (Double, Double, Double), point : (Double, Double, Double), normal : (Double, Double, Double)) -> Double {
+  @ray_trace_ops.ray_plane_t(origin, dir, point, normal)
+}
+
+// ========== raster_2d ==========
+pub fn bresenham_line(x0 : Int, y0 : Int, x1 : Int, y1 : Int) -> Array[(Int, Int)] {
+  @raster_2d.bresenham_line(x0, y0, x1, y1)
+}
+pub fn edge_function(a : (Double, Double), b : (Double, Double), c : (Double, Double)) -> Double {
+  @raster_2d.edge_function(a, b, c)
+}
+pub fn barycentric_coord(p : (Double, Double), a : (Double, Double), b : (Double, Double), c : (Double, Double)) -> (Double, Double, Double) {
+  @raster_2d.barycentric_coord(p, a, b, c)
+}
+pub fn point_in_triangle(p : (Double, Double), a : (Double, Double), b : (Double, Double), c : (Double, Double)) -> Bool {
+  @raster_2d.point_in_triangle(p, a, b, c)
+}
+
+// ========== shading_model ==========
+pub fn sm_lambertian(normal : (Double, Double, Double), light_dir : (Double, Double, Double)) -> Double {
+  @shading_model.lambertian(normal, light_dir)
+}
+pub fn phong(normal : (Double, Double, Double), light_dir : (Double, Double, Double), view_dir : (Double, Double, Double), shininess : Double) -> Double {
+  @shading_model.phong(normal, light_dir, view_dir, shininess)
+}
+pub fn blinn_phong(normal : (Double, Double, Double), light_dir : (Double, Double, Double), view_dir : (Double, Double, Double), shininess : Double) -> Double {
+  @shading_model.blinn_phong(normal, light_dir, view_dir, shininess)
+}
+pub fn cook_torrance(ndotl : Double, ndotv : Double, ndoth : Double, vdoth : Double, roughness : Double, f0 : Double) -> Double {
+  @shading_model.cook_torrance(ndotl, ndotv, ndoth, vdoth, roughness, f0)
+}
+
+// ========== texture_mapping ==========
+pub fn spherical_mapping(point : (Double, Double, Double)) -> (Double, Double) {
+  @texture_mapping.spherical_mapping(point)
+}
+pub fn cylindrical_mapping(point : (Double, Double, Double)) -> (Double, Double) {
+  @texture_mapping.cylindrical_mapping(point)
+}
+pub fn planar_mapping(point : (Double, Double, Double), u_axis : (Double, Double), v_axis : (Double, Double)) -> (Double, Double) {
+  @texture_mapping.planar_mapping(point, u_axis, v_axis)
+}
+pub fn tri_planar_mapping(point : (Double, Double, Double), normal : (Double, Double, Double)) -> (Double, Double) {
+  @texture_mapping.tri_planar_mapping(point, normal)
+}
+
+// ========== bump_mapping ==========
+pub fn perturb_normal(normal : (Double, Double, Double), bump : Double) -> (Double, Double, Double) {
+  @bump_mapping.perturb_normal(normal, bump)
+}
+pub fn normal_from_height(h00 : Double, h10 : Double, h01 : Double, scale : Double) -> (Double, Double, Double) {
+  @bump_mapping.normal_from_height(h00, h10, h01, scale)
+}
+pub fn tangent_space_normal(tangent : (Double, Double, Double), bitangent : (Double, Double, Double), normal : (Double, Double, Double), ts_normal : (Double, Double, Double)) -> (Double, Double, Double) {
+  @bump_mapping.tangent_space_normal(tangent, bitangent, normal, ts_normal)
+}
+
+// ========== env_mapping ==========
+pub fn cube_map_face(dir : (Double, Double, Double)) -> Int {
+  @env_mapping.cube_map_face(dir)
+}
+pub fn cube_map_uv(dir : (Double, Double, Double), face : Int) -> (Double, Double) {
+  @env_mapping.cube_map_uv(dir, face)
+}
+pub fn sphere_map_uv(normal : (Double, Double, Double), view : (Double, Double, Double)) -> (Double, Double) {
+  @env_mapping.sphere_map_uv(normal, view)
+}
+
+// ========== shadow_mapping ==========
+pub fn shadow_factor(depth : Double, shadow_map_depth : Double, bias : Double) -> Double {
+  @shadow_mapping.shadow_factor(depth, shadow_map_depth, bias)
+}
+pub fn pcf_3x3(depths : Array[Array[Double]], ref_depth : Double, bias : Double) -> Double {
+  @shadow_mapping.pcf_3x3(depths, ref_depth, bias)
+}
+pub fn vsm_variance(depths : Array[Double]) -> Double {
+  @shadow_mapping.vsm_variance(depths)
+}
+pub fn vsm_chebyshev(t : Double, mean : Double, variance : Double) -> Double {
+  @shadow_mapping.vsm_chebyshev(t, mean, variance)
+}
+
+// ========== anti_aliasing ==========
+pub fn fxaa_luma(rgb : (Double, Double, Double)) -> Double {
+  @anti_aliasing.fxaa_luma(rgb)
+}
+pub fn msaa_average(samples : Array[(Double, Double, Double)]) -> (Double, Double, Double) {
+  @anti_aliasing.msaa_average(samples)
+}
+pub fn ssaa_weight_blend(c1 : (Double, Double, Double), c2 : (Double, Double, Double), w : Double) -> (Double, Double, Double) {
+  @anti_aliasing.ssaa_weight_blend(c1, c2, w)
+}
+pub fn taa_resolve(history : (Double, Double, Double), current : (Double, Double, Double), alpha : Double) -> (Double, Double, Double) {
+  @anti_aliasing.taa_resolve(history, current, alpha)
+}
+
+// ========== splatting ==========
+pub fn gaussian_splat(x : Double, y : Double, sigma : Double) -> Double {
+  @splatting.gaussian_splat(x, y, sigma)
+}
+pub fn splat_radius(screen_space_size : Double, depth : Double) -> Double {
+  @splatting.splat_radius(screen_space_size, depth)
+}
+pub fn splat_coverage(px : Double, py : Double, cx : Double, cy : Double, r : Double) -> Double {
+  @splatting.splat_coverage(px, py, cx, cy, r)
+}
+pub fn splat_alpha_blend(src_alpha : Double, dst_alpha : Double) -> Double {
+  @splatting.splat_alpha_blend(src_alpha, dst_alpha)
+}
+
+// ========== gpu_geometry ==========
+pub fn morton_code_2d(x : Int, y : Int) -> Int {
+  @gpu_geometry.morton_code_2d(x, y)
+}
+pub fn hilbert_d2xy(d : Int, i : Int) -> (Int, Int) {
+  @gpu_geometry.hilbert_d2xy(d, i)
+}
+pub fn vertex_cache_optimize(indices : Array[Int], cache_size_ : Int) -> Array[Int] {
+  @gpu_geometry.vertex_cache_optimize(indices, cache_size_)
+}
+pub fn meshlet_bounds(verts : Array[(Double, Double, Double)]) -> ((Double, Double, Double), Double) {
+  @gpu_geometry.meshlet_bounds(verts)
+}
+
+// ========== heat_equation ==========
+pub fn he_heat_explicit_step(u : Array[Double], alpha : Double, dt : Double, dx : Double) -> Array[Double] {
+  @heat_equation.heat_explicit_step(u, alpha, dt, dx)
+}
+pub fn heat_steady_state_1d(boundary_left : Double, boundary_right : Double, n : Int) -> Array[Double] {
+  @heat_equation.heat_steady_state_1d(boundary_left, boundary_right, n)
+}
+pub fn heat_analytical_1d(x : Double, t : Double, alpha : Double, length : Double) -> Double {
+  @heat_equation.heat_analytical_1d(x, t, alpha, length)
+}
+
+// ========== wave_equation ==========
+pub fn we_wave_explicit_step(u_prev : Array[Double], u_curr : Array[Double], c : Double, dt : Double, dx : Double) -> Array[Double] {
+  @wave_equation.wave_explicit_step(u_prev, u_curr, c, dt, dx)
+}
+pub fn we_wave_damping(u : Double, damping : Double, dt : Double) -> Double {
+  @wave_equation.wave_damping(u, damping, dt)
+}
+pub fn we_wave_energy(u : Array[Double], u_prev : Array[Double], dt : Double) -> Double {
+  @wave_equation.wave_energy(u, u_prev, dt)
+}
+
+// ========== poisson_solver ==========
+pub fn ps_poisson_jacobi(u : Array[Double], f : Array[Double], h : Double) -> Array[Double] {
+  @poisson_solver.poisson_jacobi(u, f, h)
+}
+pub fn poisson_gauss_seidel(u : Array[Double], f : Array[Double], h : Double) -> Array[Double] {
+  @poisson_solver.poisson_gauss_seidel(u, f, h)
+}
+pub fn ps_poisson_residual(u : Array[Double], f : Array[Double], h : Double) -> Double {
+  @poisson_solver.poisson_residual(u, f, h)
+}
+
+// ========== navier_stokes ==========
+pub fn ns_ns_advection(u : Array[Double], v : Array[Double], dx : Double, dy : Double) -> Array[Double] {
+  @navier_stokes.ns_advection(u, v, dx, dy)
+}
+pub fn ns_diffusion(u : Array[Double], nu : Double, dx : Double) -> Array[Double] {
+  @navier_stokes.ns_diffusion(u, nu, dx)
+}
+pub fn ns_pressure_gradient(p : Array[Double], dx : Double) -> Array[Double] {
+  @navier_stokes.ns_pressure_gradient(p, dx)
+}
+pub fn ns_reynolds_number(rho : Double, v : Double, length : Double, mu : Double) -> Double {
+  @navier_stokes.ns_reynolds_number(rho, v, length, mu)
+}
+
+// ========== maxwell_solver ==========
+pub fn ms_fdtd_update_e(e : Array[Double], h : Array[Double], dt : Double, dx : Double, eps : Double) -> Array[Double] {
+  @maxwell_solver.fdtd_update_e(e, h, dt, dx, eps)
+}
+pub fn ms_fdtd_update_h(e : Array[Double], h : Array[Double], dt : Double, dx : Double, mu : Double) -> Array[Double] {
+  @maxwell_solver.fdtd_update_h(e, h, dt, dx, mu)
+}
+pub fn courant_condition(dx : Double, dy : Double, dz : Double, c : Double) -> Double {
+  @maxwell_solver.courant_condition(dx, dy, dz, c)
+}
+
+// ========== schrodinger_solver ==========
+pub fn schrodinger_kinetic(psi_real : Array[Double], psi_imag : Array[Double], hbar : Double, m : Double, dx : Double, dt : Double) -> (Array[Double], Array[Double]) {
+  @schrodinger_solver.schrodinger_kinetic(psi_real, psi_imag, hbar, m, dx, dt)
+}
+pub fn probability_density(psi_real : Double, psi_imag : Double) -> Double {
+  @schrodinger_solver.probability_density(psi_real, psi_imag)
+}
+pub fn normalize_wavefunction(psi_real : Array[Double], psi_imag : Array[Double], dx : Double) -> (Array[Double], Array[Double]) {
+  @schrodinger_solver.normalize_wavefunction(psi_real, psi_imag, dx)
+}
+
+// ========== reaction_diffusion ==========
+pub fn gray_scott(u : Double, v : Double, f : Double, k : Double) -> (Double, Double) {
+  @reaction_diffusion.gray_scott(u, v, f, k)
+}
+pub fn diffusion_step(field : Array[Double], d : Double, dt : Double, dx : Double) -> Array[Double] {
+  @reaction_diffusion.diffusion_step(field, d, dt, dx)
+}
+pub fn turing_pattern_step(u : Array[Double], v : Array[Double], du : Double, dv : Double, f : Double, k : Double, dt : Double, dx : Double) -> (Array[Double], Array[Double]) {
+  @reaction_diffusion.turing_pattern_step(u, v, du, dv, f, k, dt, dx)
+}
+
+// ========== advection_solver ==========
+pub fn as_upwind_advection(u : Array[Double], c : Double, dt : Double, dx : Double) -> Array[Double] {
+  @advection_solver.upwind_advection(u, c, dt, dx)
+}
+pub fn lax_friedrichs(u : Array[Double], c : Double, dt : Double, dx : Double) -> Array[Double] {
+  @advection_solver.lax_friedrichs(u, c, dt, dx)
+}
+pub fn lax_wendroff(u : Array[Double], c : Double, dt : Double, dx : Double) -> Array[Double] {
+  @advection_solver.lax_wendroff(u, c, dt, dx)
+}
+
+// ========== diffusion_solver ==========
+pub fn crank_nicolson_coef(d : Double, dt : Double, dx : Double) -> Double {
+  @diffusion_solver.crank_nicolson_coef(d, dt, dx)
+}
+pub fn ds_diffusion_2d_step(field : Array[Array[Double]], d : Double, dt : Double, dx : Double, dy : Double) -> Array[Array[Double]] {
+  @diffusion_solver.diffusion_2d_step(field, d, dt, dx, dy)
+}
+pub fn ds_diffusion_stability_check(d : Double, dt : Double, dx : Double) -> Bool {
+  @diffusion_solver.diffusion_stability_check(d, dt, dx)
+}
+
+// ========== eigenvalue_solver ==========
+pub fn ev_power_iteration(a : Array[Array[Double]], v : Array[Double], n_iter : Int) -> (Double, Array[Double]) {
+  @eigenvalue_solver.power_iteration(a, v, n_iter)
+}
+pub fn rayleigh_quotient(a : Array[Array[Double]], v : Array[Double]) -> Double {
+  @eigenvalue_solver.rayleigh_quotient(a, v)
+}
+pub fn gershgorin_bounds(a : Array[Array[Double]]) -> (Double, Double) {
+  @eigenvalue_solver.gershgorin_bounds(a)
+}

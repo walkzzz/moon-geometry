@@ -6,6 +6,63 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
 Moon Geometry 的所有重要变更记录于此。
 格式基于 [Keep a Changelog](https://keepachangelog.com/)。
 
+## [0.234.0] - 2026-10-17
+
+### Added — Phase 17-20 Extension Modules | 扩展模块（40 个模块）
+
+#### Phase 17: Computational Statistics & ML Geometry | 计算统计与ML几何（10 模块）
+- **Kernel Density Estimation** (`kernel_density`)：核密度估计
+- **Gaussian Process** (`gaussian_process`)：高斯过程回归
+- **SVM Geometry** (`svm_geometry`)：支持向量机几何
+- **Decision Boundary** (`decision_boundary`)：决策边界几何
+- **Feature Projection** (`feature_projection`)：特征投影
+- **Manifold Learning** (`manifold_learning`)：流形学习（Isomap、LLE）
+- **Dimension Reduction** (`dimension_reduction`)：降维（PCA、t-SNE）
+- **Clustering Geometry** (`clustering_geom`)：聚类几何（K-means、DBSCAN）
+- **Regression Geometry** (`regression_geom`)：回归几何
+- **Bayesian Geometry** (`bayesian_geom`)：贝叶斯几何
+
+#### Phase 18: Robotics & Motion Planning Advanced | 机器人高级运动规划（10 模块）
+- **RRT\*** (`rrt_star`)：最优快速探索随机树
+- **PRM Planner** (`prm_planner`)：概率路线图规划器
+- **Potential Field** (`potential_field`)：人工势场法
+- **Trajectory Optimization** (`trajectory_opt`)：轨迹优化
+- **3D Motion Planner** (`motion_planner_3d`)：三维运动规划
+- **Kinematics** (`kinematics`)：运动学（正/逆运动学）
+- **Dynamics Geometry** (`dynamics_geom`)：动力学几何
+- **3D Collision Detection** (`collision_detect_3d`)：三维碰撞检测
+- **Grasp Planning** (`grasp_planning`)：抓取规划
+- **Workspace Analysis** (`workspace_analysis`)：工作空间分析
+
+#### Phase 19: Computer Graphics & Rendering | 计算机图形渲染（10 模块）
+- **Ray Trace Ops** (`ray_trace_ops`)：光线追踪操作
+- **Raster 2D** (`raster_2d`)：二维光栅化
+- **Shading Model** (`shading_model`)：着色模型（Phong、Blinn-Phong）
+- **Texture Mapping** (`texture_mapping`)：纹理映射
+- **Bump Mapping** (`bump_mapping`)：凹凸映射
+- **Environment Mapping** (`env_mapping`)：环境映射（立方体、球面）
+- **Shadow Mapping** (`shadow_mapping`)：阴影映射
+- **Anti-Aliasing** (`anti_aliasing`)：抗锯齿（MSAA、SSAA）
+- **Splatting** (`splatting`)：点溅射渲染
+- **GPU Geometry** (`gpu_geometry`)：GPU 几何着色器
+
+#### Phase 20: Scientific Computing & PDE Solvers | 科学计算PDE求解器（10 模块）
+- **Heat Equation** (`heat_equation`)：热方程求解器
+- **Wave Equation** (`wave_equation`)：波动方程求解器
+- **Poisson Solver** (`poisson_solver`)：泊松方程求解器
+- **Navier-Stokes** (`navier_stokes`)：Navier-Stokes 方程求解器
+- **Maxwell Solver** (`maxwell_solver`)：Maxwell 方程求解器
+- **Schrödinger Solver** (`schrodinger_solver`)：Schrödinger 方程求解器
+- **Reaction-Diffusion** (`reaction_diffusion`)：反应扩散方程
+- **Advection Solver** (`advection_solver`)：对流方程求解器
+- **Diffusion Solver** (`diffusion_solver`)：扩散方程求解器
+- **Eigenvalue Solver** (`eigenvalue_solver`)：特征值求解器
+
+### Changed
+- reexport.mbt 新增 527 行（9748 → 10275）
+- 测试数 2196 → 2308，四目标 8784 → 9232 次全绿
+- 模块数 316 → 356
+
 ## [0.233.0] - 2026-10-16
 
 ### Added — Phase 13-16 Extension Modules | 扩展模块（40 个模块）
