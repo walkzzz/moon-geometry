@@ -88,4 +88,10 @@ import {
   "walkzzz/moon-geometry/src/rigid",
   "walkzzz/moon-geometry/src/similarity",
   "walkzzz/moon-geometry/src/inversion",
+  "walkzzz/moon-geometry/src/mesh_data",
+  "walkzzz/moon-geometry/src/mesh_simplify",
+  "walkzzz/moon-geometry/src/mesh_smooth",
+  "walkzzz/moon-geometry/src/mesh_normal",
+  "walkzzz/moon-geometry/src/mesh_subdiv",
+  "walkzzz/moon-geometry/src/euler_char",
 }

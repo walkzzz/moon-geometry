@@ -6,6 +6,19 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
 Moon Geometry 的所有重要变更记录于此。
 格式基于 [Keep a Changelog](https://keepachangelog.com/)。
 
+## [1.7.0] - 2026-10-16
+
+### Added — Mesh Processing | 网格处理（6 个模块）
+
+- **Mesh Data** (`mesh_data`)：`Mesh::new`, `add_vertex`, `add_face`, `edge_count`, `bounding_box`, `tetrahedron`
+- **Mesh Simplify** (`mesh_simplify`)：`simplify_by_edge_length`, `edge_collapse_cost`, `collapsible_edges`, `simplification_ratio`
+- **Mesh Smooth** (`mesh_smooth`)：`laplacian_smooth`, `laplacian_smooth_iter`, `taubin_smooth`, `smooth_displacement`
+- **Mesh Normal** (`mesh_normal`)：`face_normal`, `vertex_normal`, `all_face_normals`, `all_vertex_normals`, `face_area`
+- **Mesh Subdiv** (`mesh_subdiv`)：`loop_subdivide`, `edge_bisection`, `catmull_clark_subdivide`, `subdivided_face_count`
+- **Euler Char** (`euler_char`)：`euler_characteristic`, `surface_genus`, `is_sphere`, `is_torus`, `betti_0`, `is_manifold`
+
+**Total: 95 modules, 846 tests, 4 targets green.**
+
 ## [1.6.0] - 2026-10-16
 
 ### Added — Geometric Transforms | 几何变换（8 个模块）

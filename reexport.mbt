@@ -3033,3 +3033,163 @@ pub fn inversion_is_on_circle(inv : Inversion, p : Point2D) -> Bool {
 pub fn inversion_invert_line(inv : Inversion, a : Double, b : Double, c : Double) -> Circle? {
   @inversion.Inversion::invert_line(inv, a, b, c)
 }
+
+// ---------------------------------------------------------------------------
+// mesh_data: 3D triangle mesh / 三维三角网格
+// ---------------------------------------------------------------------------
+///|
+pub type MeshFace = @mesh_data.MeshFace
+///|
+pub type Mesh = @mesh_data.Mesh
+///|
+pub fn mesh_new() -> Mesh {
+  @mesh_data.Mesh::new()
+}
+///|
+pub fn mesh_add_vertex(m : Mesh, p : Point3D) -> Int {
+  @mesh_data.Mesh::add_vertex(m, p)
+}
+///|
+pub fn mesh_add_face(m : Mesh, v0 : Int, v1 : Int, v2 : Int) -> Unit {
+  @mesh_data.Mesh::add_face(m, v0, v1, v2)
+}
+///|
+pub fn mesh_vertex_count(m : Mesh) -> Int {
+  @mesh_data.Mesh::vertex_count(m)
+}
+///|
+pub fn mesh_face_count(m : Mesh) -> Int {
+  @mesh_data.Mesh::face_count(m)
+}
+///|
+pub fn mesh_edge_count(m : Mesh) -> Int {
+  @mesh_data.Mesh::edge_count(m)
+}
+///|
+pub fn mesh_bounding_box(m : Mesh) -> (Point3D, Point3D) {
+  @mesh_data.Mesh::bounding_box(m)
+}
+///|
+pub fn mesh_tetrahedron(a : Point3D, b : Point3D, c : Point3D, d : Point3D) -> Mesh {
+  @mesh_data.Mesh::tetrahedron(a, b, c, d)
+}
+
+// ---------------------------------------------------------------------------
+// mesh_simplify: mesh simplification / 网格简化
+// ---------------------------------------------------------------------------
+///|
+pub fn simplify_by_edge_length(m : Mesh, t : Double) -> Mesh {
+  @mesh_simplify.simplify_by_edge_length(m, t)
+}
+///|
+pub fn edge_collapse_cost(m : Mesh, v0 : Int, v1 : Int) -> Double {
+  @mesh_simplify.edge_collapse_cost(m, v0, v1)
+}
+///|
+pub fn collapsible_edges(m : Mesh, t : Double) -> Int {
+  @mesh_simplify.collapsible_edges(m, t)
+}
+///|
+pub fn simplification_ratio(o : Mesh, s : Mesh) -> Double {
+  @mesh_simplify.simplification_ratio(o, s)
+}
+
+// ---------------------------------------------------------------------------
+// mesh_smooth: mesh smoothing / 网格平滑
+// ---------------------------------------------------------------------------
+///|
+pub fn laplacian_smooth(m : Mesh, l : Double) -> Mesh {
+  @mesh_smooth.laplacian_smooth(m, l)
+}
+///|
+pub fn laplacian_smooth_iter(m : Mesh, l : Double, i : Int) -> Mesh {
+  @mesh_smooth.laplacian_smooth_iter(m, l, i)
+}
+///|
+pub fn taubin_smooth(m : Mesh, l : Double, mu : Double) -> Mesh {
+  @mesh_smooth.taubin_smooth(m, l, mu)
+}
+///|
+pub fn smooth_displacement(o : Mesh, s : Mesh) -> Double {
+  @mesh_smooth.smooth_displacement(o, s)
+}
+
+// ---------------------------------------------------------------------------
+// mesh_normal: mesh normals / 网格法向量
+// ---------------------------------------------------------------------------
+///|
+pub fn face_normal(m : Mesh, fi : Int) -> Point3D {
+  @mesh_normal.face_normal(m, fi)
+}
+///|
+pub fn normalize3d(v : Point3D) -> Point3D {
+  @mesh_normal.normalize(v)
+}
+///|
+pub fn vertex_normal(m : Mesh, vi : Int) -> Point3D {
+  @mesh_normal.vertex_normal(m, vi)
+}
+///|
+pub fn all_face_normals(m : Mesh) -> Array[Point3D] {
+  @mesh_normal.all_face_normals(m)
+}
+///|
+pub fn all_vertex_normals(m : Mesh) -> Array[Point3D] {
+  @mesh_normal.all_vertex_normals(m)
+}
+///|
+pub fn mesh_face_area(m : Mesh, fi : Int) -> Double {
+  @mesh_normal.face_area(m, fi)
+}
+
+// ---------------------------------------------------------------------------
+// mesh_subdiv: mesh subdivision / 网格细分
+// ---------------------------------------------------------------------------
+///|
+pub fn loop_subdivide(m : Mesh) -> Mesh {
+  @mesh_subdiv.loop_subdivide(m)
+}
+///|
+pub fn edge_bisection(m : Mesh) -> Mesh {
+  @mesh_subdiv.edge_bisection(m)
+}
+///|
+pub fn catmull_clark_subdivide(m : Mesh) -> Mesh {
+  @mesh_subdiv.catmull_clark_subdivide(m)
+}
+///|
+pub fn subdivided_face_count(m : Mesh) -> Int {
+  @mesh_subdiv.subdivided_face_count(m)
+}
+
+// ---------------------------------------------------------------------------
+// euler_char: Euler characteristic / 欧拉示性数
+// ---------------------------------------------------------------------------
+///|
+pub fn euler_characteristic(m : Mesh) -> Int {
+  @euler_char.euler_characteristic(m)
+}
+///|
+pub fn surface_genus(m : Mesh) -> Int {
+  @euler_char.surface_genus(m)
+}
+///|
+pub fn is_sphere(m : Mesh) -> Bool {
+  @euler_char.is_sphere(m)
+}
+///|
+pub fn is_torus(m : Mesh) -> Bool {
+  @euler_char.is_torus(m)
+}
+///|
+pub fn euler_from_counts(v : Int, e : Int, f : Int) -> Int {
+  @euler_char.euler_from_counts(v, e, f)
+}
+///|
+pub fn betti_0(m : Mesh) -> Int {
+  @euler_char.betti_0(m)
+}
+///|
+pub fn is_manifold(m : Mesh) -> Bool {
+  @euler_char.is_manifold(m)
+}
