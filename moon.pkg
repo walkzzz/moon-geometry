@@ -115,4 +115,12 @@ import {
   "walkzzz/moon-geometry/src/polygon_morph",
   "walkzzz/moon-geometry/src/polygon_decomp_opt",
   "walkzzz/moon-geometry/src/polygon_triangulate_fast",
+  "walkzzz/moon-geometry/src/rtree",
+  "walkzzz/moon-geometry/src/octree",
+  "walkzzz/moon-geometry/src/ball_tree",
+  "walkzzz/moon-geometry/src/vp_tree",
+  "walkzzz/moon-geometry/src/cover_tree",
+  "walkzzz/moon-geometry/src/interval_tree",
+  "walkzzz/moon-geometry/src/skip_quadtree",
+  "walkzzz/moon-geometry/src/loose_octree",
 }

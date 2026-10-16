@@ -3621,3 +3621,168 @@ pub fn triangle_count(pts : Array[Point2D]) -> Int {
 pub fn total_triangle_area(pts : Array[Point2D]) -> Double {
   @polygon_triangulate_fast.total_triangle_area(pts)
 }
+// ---------------------------------------------------------------------------
+// rtree: R-tree / R树
+// ---------------------------------------------------------------------------
+///|
+pub type RTree = @rtree.RTree
+///|
+pub fn rtree_new(max_entries : Int) -> RTree {
+  @rtree.rtree_new(max_entries)
+}
+///|
+pub fn rtree_insert(tree : RTree, p : Point2D) -> Unit {
+  @rtree.rtree_insert(tree, p)
+}
+///|
+pub fn rtree_range_query(tree : RTree, min_x : Double, min_y : Double, max_x : Double, max_y : Double) -> Array[Point2D] {
+  @rtree.rtree_range_query(tree, min_x, min_y, max_x, max_y)
+}
+///|
+pub fn rtree_size(tree : RTree) -> Int {
+  @rtree.rtree_size(tree)
+}
+///|
+pub fn rtree_get_all(tree : RTree) -> Array[Point2D] {
+  @rtree.rtree_get_all(tree)
+}
+
+// ---------------------------------------------------------------------------
+// octree: Octree / 八叉树
+// ---------------------------------------------------------------------------
+///|
+pub type OctreeNode = @octree.OctreeNode
+///|
+pub fn octree_new(cx : Double, cy : Double, cz : Double, size : Double, capacity : Int, max_depth : Int) -> OctreeNode {
+  @octree.octree_new(cx, cy, cz, size, capacity, max_depth)
+}
+///|
+pub fn octree_insert(node : OctreeNode, p : Point3D) -> Unit {
+  @octree.octree_insert(node, p)
+}
+///|
+pub fn octree_range_query(node : OctreeNode, min_x : Double, min_y : Double, min_z : Double, max_x : Double, max_y : Double, max_z : Double) -> Array[Point3D] {
+  @octree.octree_range_query(node, min_x, min_y, min_z, max_x, max_y, max_z)
+}
+///|
+pub fn octree_size(node : OctreeNode) -> Int {
+  @octree.octree_size(node)
+}
+
+// ---------------------------------------------------------------------------
+// ball_tree: Ball tree / 球树
+// ---------------------------------------------------------------------------
+///|
+pub type BallNode = @ball_tree.BallNode
+///|
+pub fn ball_tree_build(points : Array[Point2D]) -> BallNode? {
+  @ball_tree.ball_tree_build(points)
+}
+///|
+pub fn ball_tree_knn(root : BallNode?, query : Point2D, k : Int) -> Array[Point2D] {
+  @ball_tree.ball_tree_knn(root, query, k)
+}
+///|
+pub fn ball_tree_count(root : BallNode?) -> Int {
+  @ball_tree.ball_tree_count(root)
+}
+
+// ---------------------------------------------------------------------------
+// vp_tree: Vantage point tree / 基点树
+// ---------------------------------------------------------------------------
+///|
+pub type VPNode = @vp_tree.VPNode
+///|
+pub fn vp_tree_build(points : Array[Point2D]) -> VPNode? {
+  @vp_tree.vp_tree_build(points)
+}
+///|
+pub fn vp_tree_knn(root : VPNode?, query : Point2D, k : Int) -> Array[Point2D] {
+  @vp_tree.vp_tree_knn(root, query, k)
+}
+///|
+pub fn vp_tree_count(root : VPNode?) -> Int {
+  @vp_tree.vp_tree_count(root)
+}
+
+// ---------------------------------------------------------------------------
+// cover_tree: Cover tree / 覆盖树
+// ---------------------------------------------------------------------------
+///|
+pub type CoverTree = @cover_tree.CoverTree
+///|
+pub fn cover_tree_build(points : Array[Point2D]) -> CoverTree {
+  @cover_tree.cover_tree_build(points)
+}
+///|
+pub fn cover_tree_radius_search(tree : CoverTree, query : Point2D, radius : Double) -> Array[Point2D] {
+  @cover_tree.cover_tree_radius_search(tree, query, radius)
+}
+///|
+pub fn cover_tree_count(tree : CoverTree) -> Int {
+  @cover_tree.cover_tree_count(tree)
+}
+
+// ---------------------------------------------------------------------------
+// interval_tree: Interval tree / 区间树
+// ---------------------------------------------------------------------------
+///|
+pub type IntervalEntry = @interval_tree.Interval
+///|
+pub type IntervalNode = @interval_tree.IntervalNode
+///|
+pub fn interval_tree_build(intervals : Array[IntervalEntry]) -> IntervalNode? {
+  @interval_tree.interval_tree_build(intervals)
+}
+///|
+pub fn interval_tree_query(node : IntervalNode?, x : Double) -> Array[IntervalEntry] {
+  @interval_tree.interval_tree_query(node, x)
+}
+///|
+pub fn interval_tree_count(node : IntervalNode?) -> Int {
+  @interval_tree.interval_tree_count(node)
+}
+
+// ---------------------------------------------------------------------------
+// skip_quadtree: Skip quadtree / 跳跃四叉树
+// ---------------------------------------------------------------------------
+///|
+pub type SkipQuadtree = @skip_quadtree.SkipQuadtree
+///|
+pub fn skip_quadtree_new(cx : Double, cy : Double, size : Double, max_level : Int) -> SkipQuadtree {
+  @skip_quadtree.skip_quadtree_new(cx, cy, size, max_level)
+}
+///|
+pub fn skip_quadtree_insert(tree : SkipQuadtree, p : Point2D) -> Unit {
+  @skip_quadtree.skip_quadtree_insert(tree, p)
+}
+///|
+pub fn skip_quadtree_query(tree : SkipQuadtree, min_x : Double, min_y : Double, max_x : Double, max_y : Double) -> Array[Point2D] {
+  @skip_quadtree.skip_quadtree_query(tree, min_x, min_y, max_x, max_y)
+}
+///|
+pub fn skip_quadtree_count(tree : SkipQuadtree) -> Int {
+  @skip_quadtree.skip_quadtree_count(tree)
+}
+
+// ---------------------------------------------------------------------------
+// loose_octree: Loose octree / 松散八叉树
+// ---------------------------------------------------------------------------
+///|
+pub type LooseOctNode = @loose_octree.LooseOctNode
+///|
+pub fn loose_octree_new(cx : Double, cy : Double, cz : Double, size : Double, loose_factor : Double, max_depth : Int) -> LooseOctNode {
+  @loose_octree.loose_octree_new(cx, cy, cz, size, loose_factor, max_depth)
+}
+///|
+pub fn loose_octree_insert(node : LooseOctNode, p : Point3D) -> Unit {
+  @loose_octree.loose_octree_insert(node, p)
+}
+///|
+pub fn loose_octree_query(node : LooseOctNode, min_x : Double, min_y : Double, min_z : Double, max_x : Double, max_y : Double, max_z : Double) -> Array[Point3D] {
+  @loose_octree.loose_octree_query(node, min_x, min_y, min_z, max_x, max_y, max_z)
+}
+///|
+pub fn loose_octree_count(node : LooseOctNode) -> Int {
+  @loose_octree.loose_octree_count(node)
+}

@@ -5,7 +5,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![MoonBit](https://img.shields.io/badge/MoonBit-0.1.20260920-blue.svg)](https://moonbitlang.com)
-[![Tests](https://img.shields.io/badge/tests-951-brightgreen.svg)]()
+[![Tests](https://img.shields.io/badge/tests-991-brightgreen.svg)]()
 [![Targets](https://img.shields.io/badge/targets-native%20%7C%20wasm--gc%20%7C%20js%20%7C%20wasm-green.svg)]()
 
 Moon Geometry 是一个**纯 MoonBit** 实现的计算几何库，**零 C FFI 依赖**，四目标（native / wasm-gc / js / wasm）原生支持。为 CAD、碰撞检测、GIS、路径规划、图像处理等场景提供可复用的几何算法基础组件。
@@ -161,6 +161,14 @@ src/
   polygon_morph/        # 多边形变形 | Polygon morphing
   polygon_decomp_opt/   # 最优凸分解 | Optimal convex decomposition
   polygon_triangulate_fast/ # 快速三角剖分 | Fast triangulation
+  rtree/                # R树 | R-tree
+  octree/               # 八叉树 | Octree
+  ball_tree/            # 球树 | Ball tree
+  vp_tree/              # 基点树 | Vantage point tree
+  cover_tree/           # 覆盖树 | Cover tree
+  interval_tree/        # 区间树 | Interval tree
+  skip_quadtree/        # 跳跃四叉树 | Skip quadtree
+  loose_octree/         # 松散八叉树 | Loose octree
 ```
 
 ## 快速示例 | Quick Example
@@ -257,15 +265,15 @@ let hull = @hull.convex_hull_andrew(points)  // 凸包顶点（逆时针）| hul
 ## 测试 | Tests
 
 ```bash
-moon test                          # 全部 951 测试 | all 951 tests
+moon test                          # 全部 991 测试 | all 991 tests
 moon test --target native          # 四目标分别验证 | verify each backend
 moon test --target wasm-gc
 moon test --target js
 moon test --target wasm
 ```
 
-四目标全绿：951 × 4 = 3804 次测试通过。
-All four targets pass: 951 × 4 = 3804 test runs green.
+四目标全绿：991 × 4 = 3964 次测试通过。
+All four targets pass: 991 × 4 = 3964 test runs green.
 
 ## 交付路线图 | Roadmap
 
@@ -291,6 +299,7 @@ All four targets pass: 951 × 4 = 3804 test runs green.
 | v2.0.0 | v2.0.0 | 优化与输出（5模块）| Optimization & output (5 modules) | ✅ 完成 | ✅ Done |
 | v0.108.0 | v0.108.0 | 高级凸几何（8模块）| Advanced convex geometry (8 modules) | ✅ 完成 | ✅ Done |
 | v0.116.0 | v0.116.0 | 高级多边形（8模块）| Advanced polygon algorithms (8 modules) | ✅ 完成 | ✅ Done |
+| v0.124.0 | v0.124.0 | 高级空间结构（8模块）| Advanced spatial structures (8 modules) | ✅ 完成 | ✅ Done |
 
 详见 [docs/roadmap.md](docs/roadmap.md) 与 [docs/changelog.md](docs/changelog.md)。
 See [docs/roadmap.md](docs/roadmap.md) and [docs/changelog.md](docs/changelog.md).

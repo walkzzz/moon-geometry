@@ -6,6 +6,21 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
 Moon Geometry 的所有重要变更记录于此。
 格式基于 [Keep a Changelog](https://keepachangelog.com/)。
 
+## [0.124.0] - 2026-10-16
+
+### Added — Advanced Spatial Structures | 高级空间结构（8 个模块）
+
+- **R-Tree** (`rtree`)：`rtree_new`, `rtree_insert`, `rtree_range_query`, `rtree_size`, `rtree_get_all`
+- **Octree** (`octree`)：`octree_new`, `octree_insert`, `octree_range_query`, `octree_size`
+- **Ball Tree** (`ball_tree`)：`ball_tree_build`, `ball_tree_knn`, `ball_tree_count`
+- **VP-Tree** (`vp_tree`)：`vp_tree_build`, `vp_tree_knn`, `vp_tree_count`
+- **Cover Tree** (`cover_tree`)：`cover_tree_build`, `cover_tree_radius_search`, `cover_tree_count`
+- **Interval Tree** (`interval_tree`)：`interval_tree_build`, `interval_tree_query`, `interval_tree_count`
+- **Skip Quadtree** (`skip_quadtree`)：`skip_quadtree_new`, `skip_quadtree_insert`, `skip_quadtree_query`, `skip_quadtree_count`
+- **Loose Octree** (`loose_octree`)：`loose_octree_new`, `loose_octree_insert`, `loose_octree_query`, `loose_octree_count`
+
+**Total: 124 modules, 991 tests, 4 targets green.**
+
 ## [0.116.0] - 2026-10-16
 
 ### Added — Advanced Polygon Algorithms | 高级多边形算法（8 个模块）
