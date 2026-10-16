@@ -6,6 +6,21 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
 Moon Geometry 的所有重要变更记录于此。
 格式基于 [Keep a Changelog](https://keepachangelog.com/)。
 
+## [0.132.0] - 2026-10-16
+
+### Added — Advanced Graph Algorithms | 高级图算法（8 个模块）
+
+- **Shortest Path** (`shortest_path`)：`dijkstra`, `shortest_path_dist`, `shortest_path_vertices`
+- **Visibility Graph** (`visibility_graph`)：`build_visibility_graph`, `visibility_vertices`, `visibility_edge_count`
+- **Motion Plan** (`motion_plan`)：`plan_path`, `path_length`, `is_path_valid`
+- **Voronoi Adv** (`voronoi_adv`)：`voronoi_cell`, `farthest_voronoi_cell`, `voronoi_cell_area`, `voronoi_cell_count`
+- **Delaunay Refine** (`delaunay_refine`)：`delaunay_refine`, `circumcenter`, `min_triangle_angle`
+- **Graph Color** (`graph_color`)：`greedy_color`, `chromatic_number_upper`, `is_valid_coloring`, `is_bipartite`
+- **Graph Cut** (`graph_cut`)：`max_flow`, `min_cut`, `min_cut_partition`
+- **Spanning Tree** (`spanning_tree`)：`kruskal_mst`, `mst_weight`, `mst_edge_count`, `is_connected`
+
+**Total: 132 modules, 1031 tests, 4 targets green.**
+
 ## [0.124.0] - 2026-10-16
 
 ### Added — Advanced Spatial Structures | 高级空间结构（8 个模块）

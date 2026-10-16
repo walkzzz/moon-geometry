@@ -123,4 +123,12 @@ import {
   "walkzzz/moon-geometry/src/interval_tree",
   "walkzzz/moon-geometry/src/skip_quadtree",
   "walkzzz/moon-geometry/src/loose_octree",
+  "walkzzz/moon-geometry/src/shortest_path",
+  "walkzzz/moon-geometry/src/visibility_graph",
+  "walkzzz/moon-geometry/src/motion_plan",
+  "walkzzz/moon-geometry/src/voronoi_adv",
+  "walkzzz/moon-geometry/src/delaunay_refine",
+  "walkzzz/moon-geometry/src/graph_color",
+  "walkzzz/moon-geometry/src/graph_cut",
+  "walkzzz/moon-geometry/src/spanning_tree",
 }

@@ -3786,3 +3786,150 @@ pub fn loose_octree_query(node : LooseOctNode, min_x : Double, min_y : Double, m
 pub fn loose_octree_count(node : LooseOctNode) -> Int {
   @loose_octree.loose_octree_count(node)
 }
+// ---------------------------------------------------------------------------
+// shortest_path: Dijkstra shortest path / Dijkstra 最短路径
+// ---------------------------------------------------------------------------
+///|
+pub type GraphEdge = @shortest_path.GraphEdge
+///|
+pub fn dijkstra(n : Int, adj : Array[Array[GraphEdge]], src : Int) -> Array[Double] {
+  @shortest_path.dijkstra(n, adj, src)
+}
+///|
+pub fn shortest_path_dist(n : Int, adj : Array[Array[GraphEdge]], src : Int, dst : Int) -> Double {
+  @shortest_path.shortest_path_dist(n, adj, src, dst)
+}
+///|
+pub fn shortest_path_vertices(n : Int, adj : Array[Array[GraphEdge]], src : Int, dst : Int) -> Array[Int] {
+  @shortest_path.shortest_path_vertices(n, adj, src, dst)
+}
+
+// ---------------------------------------------------------------------------
+// visibility_graph: Visibility graph / 可见性图
+// ---------------------------------------------------------------------------
+///|
+pub fn build_visibility_graph(obstacles : Array[Array[Point2D]], start : Point2D, goal : Point2D) -> Array[Array[(Int, Double)]] {
+  @visibility_graph.build_visibility_graph(obstacles, start, goal)
+}
+///|
+pub fn visibility_vertices(obstacles : Array[Array[Point2D]], start : Point2D, goal : Point2D) -> Array[Point2D] {
+  @visibility_graph.visibility_vertices(obstacles, start, goal)
+}
+///|
+pub fn visibility_edge_count(obstacles : Array[Array[Point2D]], start : Point2D, goal : Point2D) -> Int {
+  @visibility_graph.visibility_edge_count(obstacles, start, goal)
+}
+
+// ---------------------------------------------------------------------------
+// motion_plan: Motion planning / 运动规划
+// ---------------------------------------------------------------------------
+///|
+pub fn plan_path(obstacles : Array[Array[Point2D]], start : Point2D, goal : Point2D) -> Array[Point2D] {
+  @motion_plan.plan_path(obstacles, start, goal)
+}
+///|
+pub fn path_length(path : Array[Point2D]) -> Double {
+  @motion_plan.path_length(path)
+}
+///|
+pub fn is_path_valid(path : Array[Point2D], obstacles : Array[Array[Point2D]]) -> Bool {
+  @motion_plan.is_path_valid(path, obstacles)
+}
+
+// ---------------------------------------------------------------------------
+// voronoi_adv: Advanced Voronoi / 高级 Voronoi
+// ---------------------------------------------------------------------------
+///|
+pub fn voronoi_cell(sites : Array[Point2D], site_idx : Int, bounds : (Point2D, Point2D)) -> Array[Point2D] {
+  @voronoi_adv.voronoi_cell(sites, site_idx, bounds)
+}
+///|
+pub fn farthest_voronoi_cell(sites : Array[Point2D], site_idx : Int, bounds : (Point2D, Point2D)) -> Array[Point2D] {
+  @voronoi_adv.farthest_voronoi_cell(sites, site_idx, bounds)
+}
+///|
+pub fn voronoi_cell_area(sites : Array[Point2D], site_idx : Int, bounds : (Point2D, Point2D)) -> Double {
+  @voronoi_adv.voronoi_cell_area(sites, site_idx, bounds)
+}
+///|
+pub fn voronoi_cell_count(sites : Array[Point2D]) -> Int {
+  @voronoi_adv.voronoi_cell_count(sites)
+}
+
+// ---------------------------------------------------------------------------
+// delaunay_refine: Delaunay refinement / Delaunay 细化
+// ---------------------------------------------------------------------------
+///|
+pub fn delaunay_refine(pts : Array[Point2D], min_angle : Double, max_iter : Int) -> Array[Point2D] {
+  @delaunay_refine.delaunay_refine(pts, min_angle, max_iter)
+}
+///|
+pub fn circumcenter(a : Point2D, b : Point2D, c : Point2D) -> Point2D {
+  @delaunay_refine.circumcenter(a, b, c)
+}
+///|
+pub fn min_triangle_angle(a : Point2D, b : Point2D, c : Point2D) -> Double {
+  @delaunay_refine.min_triangle_angle(a, b, c)
+}
+///|
+pub fn delaunay_triangle_count(pts : Array[Point2D]) -> Int {
+  @delaunay_refine.triangle_count(pts)
+}
+
+// ---------------------------------------------------------------------------
+// graph_color: Graph coloring / 图着色
+// ---------------------------------------------------------------------------
+///|
+pub fn greedy_color(n : Int, adj : Array[Array[Int]]) -> Array[Int] {
+  @graph_color.greedy_color(n, adj)
+}
+///|
+pub fn chromatic_number_upper(n : Int, adj : Array[Array[Int]]) -> Int {
+  @graph_color.chromatic_number_upper(n, adj)
+}
+///|
+pub fn is_valid_coloring(n : Int, adj : Array[Array[Int]], colors : Array[Int]) -> Bool {
+  @graph_color.is_valid_coloring(n, adj, colors)
+}
+///|
+pub fn is_bipartite(n : Int, adj : Array[Array[Int]]) -> Bool {
+  @graph_color.is_bipartite(n, adj)
+}
+
+// ---------------------------------------------------------------------------
+// graph_cut: Graph cut / 图割
+// ---------------------------------------------------------------------------
+///|
+pub fn max_flow(n : Int, capacity : Array[Array[Double]], src : Int, sink : Int) -> Double {
+  @graph_cut.max_flow(n, capacity, src, sink)
+}
+///|
+pub fn min_cut(n : Int, capacity : Array[Array[Double]], src : Int, sink : Int) -> Double {
+  @graph_cut.min_cut(n, capacity, src, sink)
+}
+///|
+pub fn min_cut_partition(n : Int, capacity : Array[Array[Double]], src : Int, sink : Int) -> Array[Int] {
+  @graph_cut.min_cut_partition(n, capacity, src, sink)
+}
+
+// ---------------------------------------------------------------------------
+// spanning_tree: Minimum spanning tree / 最小生成树
+// ---------------------------------------------------------------------------
+///|
+pub type WEdge = @spanning_tree.WEdge
+///|
+pub fn kruskal_mst(n : Int, edges : Array[WEdge]) -> Array[WEdge] {
+  @spanning_tree.kruskal_mst(n, edges)
+}
+///|
+pub fn mst_weight(n : Int, edges : Array[WEdge]) -> Double {
+  @spanning_tree.mst_weight(n, edges)
+}
+///|
+pub fn mst_edge_count(n : Int, edges : Array[WEdge]) -> Int {
+  @spanning_tree.mst_edge_count(n, edges)
+}
+///|
+pub fn is_connected(n : Int, edges : Array[WEdge]) -> Bool {
+  @spanning_tree.is_connected(n, edges)
+}

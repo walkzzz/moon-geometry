@@ -5,7 +5,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![MoonBit](https://img.shields.io/badge/MoonBit-0.1.20260920-blue.svg)](https://moonbitlang.com)
-[![Tests](https://img.shields.io/badge/tests-991-brightgreen.svg)]()
+[![Tests](https://img.shields.io/badge/tests-1031-brightgreen.svg)]()
 [![Targets](https://img.shields.io/badge/targets-native%20%7C%20wasm--gc%20%7C%20js%20%7C%20wasm-green.svg)]()
 
 Moon Geometry is a **pure MoonBit** computational geometry library with **zero C FFI dependencies**, supporting all four backends (3natively. It provides reusable geometric algorithm primitives for CAD, collision detection, GIS, path planning, and image processing.
@@ -169,6 +169,14 @@ src/
   interval_tree/        # Interval tree | 区间树
   skip_quadtree/        # Skip quadtree | 跳跃四叉树
   loose_octree/         # Loose octree | 松散八叉树
+  shortest_path/        # Shortest path (Dijkstra) | 最短路径
+  visibility_graph/     # Visibility graph | 可见性图
+  motion_plan/          # Motion planning | 运动规划
+  voronoi_adv/          # Advanced Voronoi | 高级Voronoi
+  delaunay_refine/      # Delaunay refinement | Delaunay细化
+  graph_color/          # Graph coloring | 图着色
+  graph_cut/            # Graph cut | 图割
+  spanning_tree/        # Minimum spanning tree | 最小生成树
 ```
 
 ## Quick Example | 快速示例
@@ -265,14 +273,14 @@ Full interface in `.mbti` files. 完整接口见 `.mbti` 文件。
 ## Tests | 测试
 
 ```bash
-moon test                          # all 991 tests | 全部 991 测试
+moon test                          # all 1031 tests | 全部 1031 测试
 moon test --target native          # verify each backend | 四目标分别验证
 moon test --target wasm-gc
 moon test --target js
 moon test --target wasm
 ```
 
-All four targets pass: 991 × 4 = 3964. 四目标全绿：991 × 4 = 3964。
+All four targets pass: 1031 × 4 = 4124. 四目标全绿：1031 × 4 = 4124。
 
 ## Roadmap | 交付路线图
 
@@ -299,6 +307,7 @@ All four targets pass: 991 × 4 = 3964. 四目标全绿：991 × 4 = 3964。
 | v0.108.0 | Advanced convex geometry (8 modules) | ✅ Done |
 | v0.116.0 | Advanced polygon algorithms (8 modules) | ✅ Done |
 | v0.124.0 | Advanced spatial structures (8 modules) | ✅ Done |
+| v0.132.0 | Advanced graph algorithms (8 modules) | ✅ Done |
 
 See [docs/roadmap.md](docs/roadmap.md) and [docs/changelog.md](docs/changelog.md).
 
