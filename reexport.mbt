@@ -2031,3 +2031,306 @@ pub fn triangulate_monotone(poly : Array[Point2D]) -> Array[(Int, Int, Int)] {
 pub fn monotone_triangulate_count(poly : Array[Point2D]) -> Int {
   @monotone.monotone_triangulate_count(poly)
 }
+// ---------------------------------------------------------------------------
+// catmull_rom: Catmull-Rom spline / Catmull-Rom 样条
+// ---------------------------------------------------------------------------
+
+///|
+/// Evaluate Catmull-Rom spline at t. / 计算 Catmull-Rom 样条在 t 处的值。
+pub fn catmull_rom_eval(
+  p0 : Point2D, p1 : Point2D, p2 : Point2D, p3 : Point2D, t : Double,
+) -> Point2D {
+  @catmull_rom.catmull_rom_eval(p0, p1, p2, p3, t)
+}
+
+///|
+/// Generate Catmull-Rom spline points. / 生成 Catmull-Rom 样条点。
+pub fn catmull_rom_points(cps : Array[Point2D], num_segments : Int) -> Array[Point2D] {
+  @catmull_rom.catmull_rom_points(cps, num_segments)
+}
+
+///|
+/// Catmull-Rom derivative at t. / Catmull-Rom 样条导数。
+pub fn catmull_rom_derivative(
+  p0 : Point2D, p1 : Point2D, p2 : Point2D, p3 : Point2D, t : Double,
+) -> Point2D {
+  @catmull_rom.catmull_rom_derivative(p0, p1, p2, p3, t)
+}
+
+// ---------------------------------------------------------------------------
+// hermite: Hermite spline / Hermite 样条
+// ---------------------------------------------------------------------------
+
+///|
+/// Evaluate Hermite spline at t. / 计算 Hermite 样条在 t 处的值。
+pub fn hermite_eval(
+  p0 : Point2D, p1 : Point2D, m0 : Point2D, m1 : Point2D, t : Double,
+) -> Point2D {
+  @hermite.hermite_eval(p0, p1, m0, m1, t)
+}
+
+///|
+/// Generate Hermite spline points. / 生成 Hermite 样条点。
+pub fn hermite_points(
+  pts : Array[Point2D], tans : Array[Point2D], num_segments : Int,
+) -> Array[Point2D] {
+  @hermite.hermite_points(pts, tans, num_segments)
+}
+
+///|
+/// Hermite spline derivative. / Hermite 样条导数。
+pub fn hermite_derivative(
+  p0 : Point2D, p1 : Point2D, m0 : Point2D, m1 : Point2D, t : Double,
+) -> Point2D {
+  @hermite.hermite_derivative(p0, p1, m0, m1, t)
+}
+
+///|
+/// Cardinal spline tangents. / Cardinal 样条切线。
+pub fn cardinal_tangents(pts : Array[Point2D], tension : Double) -> Array[Point2D] {
+  @hermite.cardinal_tangents(pts, tension)
+}
+
+// ---------------------------------------------------------------------------
+// bspline: B-spline / B样条
+// ---------------------------------------------------------------------------
+
+///|
+/// B-spline basis function. / B样条基函数。
+pub fn bspline_basis(degree : Int, knots : Array[Double], i : Int, t : Double) -> Double {
+  @bspline.bspline_basis(degree, knots, i, t)
+}
+
+///|
+/// Evaluate B-spline at t. / 计算 B样条在 t 处的值。
+pub fn bspline_eval(
+  cps : Array[Point2D], degree : Int, knots : Array[Double], t : Double,
+) -> Point2D {
+  @bspline.bspline_eval(cps, degree, knots, t)
+}
+
+///|
+/// Uniform knot vector. / 均匀节点向量。
+pub fn uniform_knots(n : Int, degree : Int) -> Array[Double] {
+  @bspline.uniform_knots(n, degree)
+}
+
+///|
+/// Generate B-spline points. / 生成 B样条点。
+pub fn bspline_points(cps : Array[Point2D], degree : Int, num_samples : Int) -> Array[Point2D] {
+  @bspline.bspline_points(cps, degree, num_samples)
+}
+
+// ---------------------------------------------------------------------------
+// lagrange: Lagrange interpolation / Lagrange 插值
+// ---------------------------------------------------------------------------
+
+///|
+/// Evaluate Lagrange interpolation at x. / 在 x 处计算 Lagrange 插值。
+pub fn lagrange_eval(xs : Array[Double], ys : Array[Double], x : Double) -> Double {
+  @lagrange.lagrange_eval(xs, ys, x)
+}
+
+///|
+/// Lagrange basis polynomial. / Lagrange 基多项式。
+pub fn lagrange_basis(xs : Array[Double], i : Int, x : Double) -> Double {
+  @lagrange.lagrange_basis(xs, i, x)
+}
+
+///|
+/// Lagrange interpolate 2D points. / Lagrange 插值2D点。
+pub fn lagrange_interpolate(pts : Array[Point2D], x : Double) -> Double {
+  @lagrange.lagrange_interpolate(pts, x)
+}
+
+///|
+/// Check distinct nodes. / 检查节点互异。
+pub fn lagrange_nodes_distinct(xs : Array[Double]) -> Bool {
+  @lagrange.lagrange_nodes_distinct(xs)
+}
+
+// ---------------------------------------------------------------------------
+// spline: spline utilities / 样条工具
+// ---------------------------------------------------------------------------
+
+///|
+/// Spline total length. / 样条总长度。
+pub fn spline_length(pts : Array[Point2D]) -> Double {
+  @spline.spline_length(pts)
+}
+
+///|
+/// Spline curvature at point i. / 样条在点 i 处曲率。
+pub fn spline_curvature(pts : Array[Point2D], i : Int) -> Double {
+  @spline.spline_curvature(pts, i)
+}
+
+///|
+/// Spline curvature profile. / 样条曲率分布。
+pub fn spline_curvature_profile(pts : Array[Point2D]) -> Array[Double] {
+  @spline.spline_curvature_profile(pts)
+}
+
+///|
+/// Spline total curvature. / 样条总曲率。
+pub fn spline_total_curvature(pts : Array[Point2D]) -> Double {
+  @spline.spline_total_curvature(pts)
+}
+
+///|
+/// Max curvature point. / 最大曲率点。
+pub fn spline_max_curvature_point(pts : Array[Point2D]) -> Int? {
+  @spline.spline_max_curvature_point(pts)
+}
+
+// ---------------------------------------------------------------------------
+// curve_arc: arc length / 弧长
+// ---------------------------------------------------------------------------
+
+///|
+/// Total arc length. / 总弧长。
+pub fn arc_length(pts : Array[Point2D]) -> Double {
+  @curve_arc.arc_length(pts)
+}
+
+///|
+/// Arc length at parameter t. / 参数 t 处弧长。
+pub fn arc_length_at(pts : Array[Point2D], t : Double) -> Double {
+  @curve_arc.arc_length_at(pts, t)
+}
+
+///|
+/// Reparameterize by arc length. / 按弧长重参数化。
+pub fn arc_length_parametrize(pts : Array[Point2D], num_samples : Int) -> Array[Point2D] {
+  @curve_arc.arc_length_parametrize(pts, num_samples)
+}
+
+///|
+/// Arc length to parameter. / 弧长转参数。
+pub fn arc_length_to_param(pts : Array[Point2D], s : Double) -> Double {
+  @curve_arc.arc_length_to_param(pts, s)
+}
+
+// ---------------------------------------------------------------------------
+// curve_intersect: curve intersection / 曲线相交
+// ---------------------------------------------------------------------------
+
+///|
+/// Check if two segments cross. / 检查两线段相交。
+pub fn segments_cross(p1 : Point2D, p2 : Point2D, p3 : Point2D, p4 : Point2D) -> Bool {
+  @curve_intersect.segments_cross(p1, p2, p3, p4)
+}
+
+///|
+/// Check polyline self-intersection. / 检查折线自相交。
+pub fn curve_self_intersect(pts : Array[Point2D]) -> Bool {
+  @curve_intersect.curve_self_intersect(pts)
+}
+
+///|
+/// Count self-intersections. / 自相交计数。
+pub fn curve_self_intersect_count(pts : Array[Point2D]) -> Int {
+  @curve_intersect.curve_self_intersect_count(pts)
+}
+
+///|
+/// Check if two curves intersect. / 检查两曲线相交。
+pub fn curves_intersect(c1 : Array[Point2D], c2 : Array[Point2D]) -> Bool {
+  @curve_intersect.curves_intersect(c1, c2)
+}
+
+// ---------------------------------------------------------------------------
+// polyline: polyline operations / 折线操作
+// ---------------------------------------------------------------------------
+
+///|
+/// Polyline length. / 折线长度。
+pub fn polyline_length(pts : Array[Point2D]) -> Double {
+  @polyline.polyline_length(pts)
+}
+
+///|
+/// Simplify polyline (Douglas-Peucker). / 简化折线。
+pub fn polyline_simplify(pts : Array[Point2D], eps : Double) -> Array[Point2D] {
+  @polyline.polyline_simplify(pts, eps)
+}
+
+///|
+/// Subdivide polyline segment. / 细分折线段。
+pub fn polyline_subdivide(pts : Array[Point2D], idx : Int, t : Double) -> Array[Point2D] {
+  @polyline.polyline_subdivide(pts, idx, t)
+}
+
+///|
+/// Polyline segment count. / 折线段数。
+pub fn polyline_segment_count(pts : Array[Point2D]) -> Int {
+  @polyline.polyline_segment_count(pts)
+}
+
+// ---------------------------------------------------------------------------
+// arc_length: arc length utilities / 弧长工具
+// ---------------------------------------------------------------------------
+
+///|
+/// Single segment arc length. / 单线段弧长。
+pub fn arc_length_segment(p1 : Point2D, p2 : Point2D) -> Double {
+  @arc_length.arc_length_segment(p1, p2)
+}
+
+///|
+/// Total arc length. / 总弧长。
+pub fn arc_length_total(pts : Array[Point2D]) -> Double {
+  @arc_length.arc_length_total(pts)
+}
+
+///|
+/// Cumulative arc lengths. / 累积弧长。
+pub fn arc_length_cumulative(pts : Array[Point2D]) -> Array[Double] {
+  @arc_length.arc_length_cumulative(pts)
+}
+
+///|
+/// Average segment length. / 平均线段长度。
+pub fn arc_length_average(pts : Array[Point2D]) -> Double {
+  @arc_length.arc_length_average(pts)
+}
+
+///|
+/// Max segment length. / 最大线段长度。
+pub fn arc_length_max_segment(pts : Array[Point2D]) -> Double {
+  @arc_length.arc_length_max_segment(pts)
+}
+
+// ---------------------------------------------------------------------------
+// curvature: curvature computation / 曲率计算
+// ---------------------------------------------------------------------------
+
+///|
+/// Curvature at middle point. / 中间点曲率。
+pub fn curvature_at(p1 : Point2D, p2 : Point2D, p3 : Point2D) -> Double {
+  @curvature.curvature_at(p1, p2, p3)
+}
+
+///|
+/// Signed curvature. / 有符号曲率。
+pub fn curvature_signed(p1 : Point2D, p2 : Point2D, p3 : Point2D) -> Double {
+  @curvature.curvature_signed(p1, p2, p3)
+}
+
+///|
+/// Curvature profile. / 曲率分布。
+pub fn curvature_profile(pts : Array[Point2D]) -> Array[Double] {
+  @curvature.curvature_profile(pts)
+}
+
+///|
+/// Radius of curvature. / 曲率半径。
+pub fn curvature_radius(p1 : Point2D, p2 : Point2D, p3 : Point2D) -> Double {
+  @curvature.curvature_radius(p1, p2, p3)
+}
+
+///|
+/// Total curvature. / 总曲率。
+pub fn curvature_total(pts : Array[Point2D]) -> Double {
+  @curvature.curvature_total(pts)
+}

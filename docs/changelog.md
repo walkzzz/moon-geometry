@@ -6,6 +6,27 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
 Moon Geometry 的所有重要变更记录于此。
 格式基于 [Keep a Changelog](https://keepachangelog.com/)。
 
+## [1.3.0] - 2026-10-16
+
+### Added — Curve & Spline Algorithms | 曲线与样条算法（10 个模块）
+
+- **Catmull-Rom Spline** (`catmull_rom`)：`catmull_rom_eval`, `catmull_rom_points`, `catmull_rom_derivative`
+- **Hermite Spline** (`hermite`)：`hermite_eval`, `hermite_points`, `hermite_derivative`, `cardinal_tangents`
+- **B-Spline** (`bspline`)：`bspline_basis`, `bspline_eval`, `uniform_knots`, `bspline_points`
+- **Lagrange Interpolation** (`lagrange`)：`lagrange_eval`, `lagrange_basis`, `lagrange_interpolate`
+- **Spline Utilities** (`spline`)：`spline_length`, `spline_curvature`, `spline_curvature_profile`
+- **Arc Length** (`curve_arc`)：`arc_length`, `arc_length_at`, `arc_length_parametrize`
+- **Curve Intersection** (`curve_intersect`)：`segments_cross`, `curve_self_intersect`, `curves_intersect`
+- **Polyline** (`polyline`)：`polyline_length`, `polyline_simplify`, `polyline_subdivide`
+- **Arc Length Utils** (`arc_length`)：`arc_length_segment`, `arc_length_total`, `arc_length_cumulative`
+- **Curvature** (`curvature`)：`curvature_at`, `curvature_signed`, `curvature_profile`, `curvature_radius`
+
+### Tests | 测试
+
+- Added 50 tests, total 696 tests | 新增 50 测试，累计 696 测试
+- All four targets green | 四目标全绿
+- 65 modules total | 共 65 个模块
+
 ## [1.2.0] - 2026-10-16
 
 ### Added — Polygon Algorithms | 多边形算法（10 个模块）

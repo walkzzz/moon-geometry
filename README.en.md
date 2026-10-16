@@ -5,7 +5,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![MoonBit](https://img.shields.io/badge/MoonBit-0.1.20260920-blue.svg)](https://moonbitlang.com)
-[![Tests](https://img.shields.io/badge/tests-646-brightgreen.svg)]()
+[![Tests](https://img.shields.io/badge/tests-696-brightgreen.svg)]()
 [![Targets](https://img.shields.io/badge/targets-native%20%7C%20wasm--gc%20%7C%20js%20%7C%20wasm-green.svg)]()
 
 Moon Geometry is a **pure MoonBit** computational geometry library with **zero C FFI dependencies**, supporting all four backends (3natively. It provides reusable geometric algorithm primitives for CAD, collision detection, GIS, path planning, and image processing.
@@ -100,6 +100,16 @@ src/
   polygon_cover/  # Polygon cover | 多边形覆盖
   ear_clip/       # Ear clipping | 耳裁剪
   monotone/       # Monotone triangulation | 单调三角剖分
+  catmull_rom/    # Catmull-Rom spline | Catmull-Rom样条
+  hermite/        # Hermite spline | Hermite样条
+  bspline/        # B-spline | B样条
+  lagrange/       # Lagrange interpolation | Lagrange插值
+  spline/         # Spline utilities | 样条工具
+  curve_arc/      # Arc length | 弧长
+  curve_intersect/ # Curve intersection | 曲线相交
+  polyline/       # Polyline | 折线
+  arc_length/     # Arc length utils | 弧长工具
+  curvature/      # Curvature | 曲率
 ```
 
 ## Quick Example | 快速示例
@@ -180,20 +190,30 @@ let hull = @hull.convex_hull_andrew(points)  // hull vertices (CCW) | 凸包顶�
 | Polygon cover | 多边形覆盖 | `cover_by_rectangles`, `cover_by_triangles` | `cover_area_rectangles`, `cover_area_triangles` |
 | Ear clip | 耳裁剪 | `is_ear`, `find_ear`, `ear_clip_triangulate` | `ear_clip_count`, `ear_clip_area` |
 | Monotone | 单调剖分 | `is_y_monotone`, `is_x_monotone` | `triangulate_monotone`, `monotone_triangulate_count` |
+| Catmull-Rom | Catmull-Rom | `catmull_rom_eval`, `catmull_rom_points` | `catmull_rom_derivative` |
+| Hermite | Hermite | `hermite_eval`, `hermite_points` | `hermite_derivative`, `cardinal_tangents` |
+| B-spline | B样条 | `bspline_basis`, `bspline_eval`, `bspline_points` | `uniform_knots` |
+| Lagrange | Lagrange | `lagrange_eval`, `lagrange_basis` | `lagrange_interpolate`, `lagrange_nodes_distinct` |
+| Spline | 样条工具 | `spline_length`, `spline_curvature` | `spline_curvature_profile`, `spline_total_curvature` |
+| Curve arc | 弧长 | `arc_length`, `arc_length_at` | `arc_length_parametrize`, `arc_length_to_param` |
+| Curve intersect | 曲线相交 | `segments_cross`, `curve_self_intersect` | `curve_self_intersect_count`, `curves_intersect` |
+| Polyline | 折线 | `polyline_length`, `polyline_simplify` | `polyline_subdivide`, `polyline_segment_count` |
+| Arc length | 弧长工具 | `arc_length_segment`, `arc_length_total` | `arc_length_cumulative`, `arc_length_average` |
+| Curvature | 曲率 | `curvature_at`, `curvature_signed` | `curvature_profile`, `curvature_radius` |
 
 Full interface in `.mbti` files. 完整接口见 `.mbti` 文件。
 
 ## Tests | 测试
 
 ```bash
-moon test                          # all 646 tests | 全部 646 测试
+moon test                          # all 696 tests | 全部 696 测试
 moon test --target native          # verify each backend | 四目标分别验证
 moon test --target wasm-gc
 moon test --target js
 moon test --target wasm
 ```
 
-All four targets pass: 646 × 4 = 2584. 四目标全绿：646 × 4 = 2584。
+All four targets pass: 696 × 4 = 2784. 四目标全绿：696 × 4 = 2784。
 
 ## Roadmap | 交付路线图
 
@@ -211,6 +231,7 @@ All four targets pass: 646 × 4 = 2584. 四目标全绿：646 × 4 = 2584。
 | v1.0.0 | Spatial data structures (8 modules) | ✅ Done |
 | v1.1.0 | Convexity & optimization (8 modules) | ✅ Done |
 | v1.2.0 | Polygon algorithms (10 modules) | ✅ Done |
+| v1.3.0 | Curves & splines (10 modules) | ✅ Done |
 
 See [docs/roadmap.md](docs/roadmap.md) and [docs/changelog.md](docs/changelog.md).
 
