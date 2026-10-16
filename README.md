@@ -5,7 +5,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![MoonBit](https://img.shields.io/badge/MoonBit-0.1.20260920-blue.svg)](https://moonbitlang.com)
-[![Tests](https://img.shields.io/badge/tests-1153-brightgreen.svg)]()
+[![Tests](https://img.shields.io/badge/tests-1942-brightgreen.svg)]()
 [![Targets](https://img.shields.io/badge/targets-native%20%7C%20wasm--gc%20%7C%20js%20%7C%20wasm-green.svg)]()
 
 Moon Geometry 是一个**纯 MoonBit** 实现的计算几何库，**零 C FFI 依赖**，四目标（native / wasm-gc / js / wasm）原生支持。为 CAD、碰撞检测、GIS、路径规划、图像处理等场景提供可复用的几何算法基础组件。
@@ -177,6 +177,94 @@ src/
   graph_color/          # 图着色 | Graph coloring
   graph_cut/            # 图割 | Graph cut
   spanning_tree/        # 最小生成树 | Minimum spanning tree
+  # Phase 1: 3D Geometry & Polyhedra (v0.160.0)
+  aabb3d/               # 3D AABB | 3D axis-aligned bounding box
+  bounding_sphere/      # 包围球 | Bounding sphere
+  obb/                  # 有向包围盒 | Oriented bounding box
+  mesh_quality/         # 网格质量 | Mesh quality
+  polyhedron/           # 多面体 | Polyhedron
+  mesh_repair/          # 网格修复 | Mesh repair
+  mesh_param/           # 网格参数化 | Mesh parameterization
+  mesh_boolean/         # 网格布尔 | Mesh boolean ops
+  polyhedron_boolean/   # 多面体布尔 | Polyhedron boolean ops
+  convex_hull_3d_dynamic/ # 动态3D凸包 | Dynamic 3D convex hull
+  # Phase 2: Voronoi/Delaunay/Topology (v0.230.0)
+  voronoi_3d/           # 3D Voronoi | 3D Voronoi diagram
+  delaunay_3d/          # 3D Delaunay | 3D Delaunay triangulation
+  constrained_delaunay/ # 约束Delaunay | Constrained Delaunay
+  power_diagram/        # 幂图 | Power diagram
+  centroidal_voronoi/   # 质心Voronoi | Centroidal Voronoi
+  alpha_complex/        # Alpha复形 | Alpha complex
+  persistent_homology/  # 持久同调 | Persistent homology
+  betti_numbers/        # Betti数 | Betti numbers
+  reeb_graph/           # Reeb图 | Reeb graph
+  morse_complex/        # Morse复形 | Morse complex
+  # Phase 3: Robotics/Motion Planning (v0.230.0)
+  rrt/                  # RRT | Rapidly-exploring Random Tree
+  prm/                  # PRM | Probabilistic Roadmap
+  a_star/               # A* | A* pathfinding
+  dubins/               # Dubins曲线 | Dubins curve
+  reed_shepp/           # Reed-Shepp | Reed-Shepp curve
+  collision_detect/    # 碰撞检测 | Collision detection
+  gjk/                  # GJK | Gilbert-Johnson-Keerthi
+  sat/                  # SAT | Separating Axis Theorem
+  config_space/        # 构型空间 | Configuration space
+  path_smooth/         # 路径平滑 | Path smoothing
+  # Phase 4: Shape Analysis (v0.230.0)
+  shape_context/       # 形状上下文 | Shape context
+  fourier_descriptor/  # 傅里叶描述子 | Fourier descriptor
+  moment_invariants/   # 矩不变量 | Moment invariants
+  skeleton_3d/         # 3D骨架 | 3D skeleton
+  medial_axis_3d/      # 3D中轴线 | 3D medial axis
+  shape_matching/      # 形状匹配 | Shape matching
+  curvature_scale/     # 曲率尺度空间 | Curvature scale space
+  bend_energy/         # 弯曲能量 | Bend energy
+  procrustes/          # Procrustes | Procrustes analysis
+  icp/                 # ICP | Iterative Closest Point
+  # Phase 5: Numerical Optimization (v0.230.0)
+  quadratic_prog/      # 二次规划 | Quadratic programming
+  gradient_descent/    # 梯度下降 | Gradient descent
+  newton_method/       # 牛顿法 | Newton's method
+  levenberg_marquardt/ # LM法 | Levenberg-Marquardt
+  conjugate_gradient/  # 共轭梯度 | Conjugate gradient
+  simplex_method/      # 单纯形法 | Simplex method
+  interior_point/      # 内点法 | Interior point method
+  simulated_annealing/ # 模拟退火 | Simulated annealing
+  genetic_algorithm/   # 遗传算法 | Genetic algorithm
+  pso/                 # 粒子群 | Particle swarm optimization
+  # Phase 6: GIS/Geodesics (v0.230.0)
+  gis_projection/      # GIS投影 | GIS projection
+  geodesic/            # 测地线 | Geodesic
+  gis_buffer/          # GIS缓冲 | GIS buffer
+  tin/                 # 不规则三角网 | Triangulated Irregular Network
+  coordinate_convert/  # 坐标转换 | Coordinate conversion
+  datum_transform/     # 基准变换 | Datum transformation
+  raster_ops/          # 栅格操作 | Raster operations
+  contour_line/        # 等高线 | Contour line
+  watershed/           # 分水岭 | Watershed
+  delaunay_terrain/    # Delaunay地形 | Delaunay terrain
+  # Phase 7: File I/O/Rendering (v0.230.0)
+  obj_io/              # OBJ格式 | OBJ format I/O
+  stl_io/              # STL格式 | STL format I/O
+  ply_io/              # PLY格式 | PLY format I/O
+  gltf_io/             # glTF格式 | glTF format I/O
+  geojson_io/          # GeoJSON | GeoJSON I/O
+  dxf_io/              # DXF格式 | DXF format I/O
+  ray_tracing/         # 光线追踪 | Ray tracing
+  marching_cubes/      # 移动立方体 | Marching cubes
+  hidden_line/         # 隐藏线消除 | Hidden line removal
+  rasterization/       # 光栅化 | Rasterization
+  # Phase 8: Algebraic Geometry/Fractals (v0.230.0)
+  conic_section/       # 圆锥曲线 | Conic section
+  quadric_surface/     # 二次曲面 | Quadric surface
+  resultant/           # 结式 | Resultant
+  bezier_clipping/     # 贝塞尔裁剪 | Bézier clipping
+  implicit_curve/      # 隐式曲线 | Implicit curve
+  implicit_surface/    # 隐式曲面 | Implicit surface
+  ifs/                 # 迭代函数系统 | Iterated Function System
+  l_system/            # L系统 | L-system
+  fractal_dimension/   # 分形维数 | Fractal dimension
+  hausdorff_dimension/ # Hausdorff维数 | Hausdorff dimension
 ```
 
 ## 快速示例 | Quick Example
@@ -273,15 +361,15 @@ let hull = @hull.convex_hull_andrew(points)  // 凸包顶点（逆时针）| hul
 ## 测试 | Tests
 
 ```bash
-moon test                          # 全部 1153 测试 | all 1153 tests
+moon test                          # 全部 1942 测试 | all 1942 tests
 moon test --target native          # 四目标分别验证 | verify each backend
 moon test --target wasm-gc
 moon test --target js
 moon test --target wasm
 ```
 
-四目标全绿：1153 × 4 = 4464 次测试通过。
-All four targets pass: 1153 × 4 = 4464 test runs green.
+四目标全绿：1942 × 4 = 7768 次测试通过。
+All four targets pass: 1942 × 4 = 7768 test runs green.
 
 ## 交付路线图 | Roadmap
 
@@ -312,6 +400,8 @@ All four targets pass: 1153 × 4 = 4464 test runs green.
 | v0.140.0 | v0.140.0 | 数值计算（8模块）| Numerical computation (8 modules) | ✅ 完成 | ✅ Done |
 | v0.156.0 | v0.156.0 | 曲面（8模块）| Surface modules (8 modules) | ✅ 完成 | ✅ Done |
 | v0.156.0 | v0.156.0 | 应用算法（8模块）| Application algorithms (8 modules) | ✅ 完成 | ✅ Done |
+| v0.160.0 | v0.160.0 | 3D几何与多面体（10模块）| 3D geometry & polyhedra (10 modules) | ✅ 完成 | ✅ Done |
+| v0.230.0 | v0.230.0 | 扩展模块（70模块）| Extension modules (70 modules) | ✅ 完成 | ✅ Done |
 
 详见 [docs/roadmap.md](docs/roadmap.md) 与 [docs/changelog.md](docs/changelog.md)。
 See [docs/roadmap.md](docs/roadmap.md) and [docs/changelog.md](docs/changelog.md).

@@ -6,6 +6,119 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
 Moon Geometry 的所有重要变更记录于此。
 格式基于 [Keep a Changelog](https://keepachangelog.com/)。
 
+## [0.230.0] - 2026-10-16
+
+### Added — Extension Modules | 扩展模块（70 个模块）
+
+#### Phase 2: Voronoi/Delaunay/Topology（10 模块）
+- **Voronoi 3D** (`voronoi_3d`)：3D Voronoi diagram
+- **Delaunay 3D** (`delaunay_3d`)：3D Delaunay triangulation
+- **Constrained Delaunay** (`constrained_delaunay`)：Constrained Delaunay triangulation
+- **Power Diagram** (`power_diagram`)：Power diagram (weighted Voronoi)
+- **Centroidal Voronoi** (`centroidal_voronoi`)：Centroidal Voronoi tessellation (Lloyd's algorithm)
+- **Alpha Complex** (`alpha_complex`)：Alpha complex filtration
+- **Persistent Homology** (`persistent_homology`)：Persistent homology computation
+- **Betti Numbers** (`betti_numbers`)：Betti numbers of simplicial complexes
+- **Reeb Graph** (`reeb_graph`)：Reeb graph of scalar fields
+- **Morse Complex** (`morse_complex`)：Morse-Smale complex
+
+#### Phase 3: Robotics/Motion Planning（10 模块）
+- **RRT** (`rrt`)：Rapidly-exploring Random Tree (RRT/RRT*/Bidirectional)
+- **PRM** (`prm`)：Probabilistic Roadmap
+- **A*** (`a_star`)：A* pathfinding on grids
+- **Dubins** (`dubins`)：Dubins curve (shortest path with curvature constraint)
+- **Reed-Shepp** (`reed_shepp`)：Reed-Shepp curve (with reverse motion)
+- **Collision Detect** (`collision_detect`)：Collision detection
+- **GJK** (`gjk`)：Gilbert-Johnson-Keerthi distance algorithm
+- **SAT** (`sat`)：Separating Axis Theorem for convex shapes
+- **Config Space** (`config_space`)：Configuration space construction
+- **Path Smooth** (`path_smooth`)：Path smoothing (spline-based)
+
+#### Phase 4: Shape Analysis/Descriptors（10 模块）
+- **Shape Context** (`shape_context`)：Shape context descriptor
+- **Fourier Descriptor** (`fourier_descriptor`)：Fourier descriptors for shape
+- **Moment Invariants** (`moment_invariants`)：Hu moment invariants
+- **Skeleton 3D** (`skeleton_3d`)：3D skeleton extraction
+- **Medial Axis 3D** (`medial_axis_3d`)：3D medial axis transform
+- **Shape Matching** (`shape_matching`)：Shape matching and registration
+- **Curvature Scale** (`curvature_scale`)：Curvature scale space
+- **Bend Energy** (`bend_energy`)：Bend energy minimization
+- **Procrustes** (`procrustes`)：Procrustes analysis
+- **ICP** (`icp`)：Iterative Closest Point registration
+
+#### Phase 5: Numerical Optimization（10 模块）
+- **Quadratic Programming** (`quadratic_prog`)：QP solver
+- **Gradient Descent** (`gradient_descent`)：Gradient descent with line search
+- **Newton's Method** (`newton_method`)：Newton and quasi-Newton methods
+- **Levenberg-Marquardt** (`levenberg_marquardt`)：LM nonlinear least squares
+- **Conjugate Gradient** (`conjugate_gradient`)：Nonlinear conjugate gradient
+- **Simplex Method** (`simplex_method`)：Linear programming simplex
+- **Interior Point** (`interior_point`)：Interior point method for LP
+- **Simulated Annealing** (`simulated_annealing`)：SA global optimization
+- **Genetic Algorithm** (`genetic_algorithm`)：GA global optimization
+- **PSO** (`pso`)：Particle Swarm Optimization
+
+#### Phase 6: GIS/Geodesics（10 模块）
+- **GIS Projection** (`gis_projection`)：Map projections (UTM, Mercator, etc.)
+- **Geodesic** (`geodesic`)：Geodesic distance on ellipsoid
+- **GIS Buffer** (`gis_buffer`)：Buffer zone construction
+- **TIN** (`tin`)：Triangulated Irregular Network
+- **Coordinate Convert** (`coordinate_convert`)：Coordinate system conversion
+- **Datum Transform** (`datum_transform`)：Geodetic datum transformation
+- **Raster Ops** (`raster_ops`)：Raster operations
+- **Contour Line** (`contour_line`)：Contour line extraction
+- **Watershed** (`watershed`)：Watershed segmentation
+- **Delaunay Terrain** (`delaunay_terrain`)：Terrain from Delaunay triangulation
+
+#### Phase 7: File I/O/Rendering（10 模块）
+- **OBJ I/O** (`obj_io`)：Wavefront OBJ file parser/writer
+- **STL I/O** (`stl_io`)：STL file parser/writer
+- **PLY I/O** (`ply_io`)：PLY file parser/writer
+- **glTF I/O** (`gltf_io`)：glTF file parser/writer
+- **GeoJSON I/O** (`geojson_io`)：GeoJSON parser/writer
+- **DXF I/O** (`dxf_io`)：DXF file parser/writer
+- **Ray Tracing** (`ray_tracing`)：Ray tracing renderer
+- **Marching Cubes** (`marching_cubes`)：Marching cubes isosurface extraction
+- **Hidden Line** (`hidden_line`)：Hidden line removal
+- **Rasterization** (`rasterization`)：Triangle rasterization
+
+#### Phase 8: Algebraic Geometry/Fractals（10 模块）
+- **Conic Section** (`conic_section`)：Conic section analysis
+- **Quadric Surface** (`quadric_surface`)：Quadric surface analysis
+- **Resultant** (`resultant`)：Polynomial resultant computation
+- **Bézier Clipping** (`bezier_clipping`)：Bézier curve intersection by clipping
+- **Implicit Curve** (`implicit_curve`)：Implicit curve plotting
+- **Implicit Surface** (`implicit_surface`)：Implicit surface plotting
+- **IFS** (`ifs`)：Iterated Function System fractals
+- **L-System** (`l_system`)：Lindenmayer system fractals
+- **Fractal Dimension** (`fractal_dimension`)：Box-counting fractal dimension
+- **Hausdorff Dimension** (`hausdorff_dimension`)：Hausdorff dimension estimation
+
+### Tests | 测试
+
+- Total tests: 1942 (+789 from v0.160.0)
+- All four targets (native, wasm-gc, js, wasm) pass: 1942 × 4 = 7768 test runs green.
+
+## [0.160.0] - 2026-10-16
+
+### Added — 3D Geometry & Polyhedra | 三维几何与多面体（10 个模块）
+
+- **AABB 3D** (`aabb3d`)：3D axis-aligned bounding box operations
+- **Bounding Sphere** (`bounding_sphere`)：Minimum enclosing sphere (Ritter's algorithm)
+- **OBB** (`obb`)：Oriented bounding box via PCA
+- **Mesh Quality** (`mesh_quality`)：Mesh quality metrics (aspect ratio, edge ratio, area)
+- **Polyhedron** (`polyhedron`)：Polyhedron representation and operations
+- **Mesh Repair** (`mesh_repair`)：Mesh repair (hole filling, degenerate removal)
+- **Mesh Param** (`mesh_param`)：Mesh parameterization (Tutte/Harmonic mapping)
+- **Mesh Boolean** (`mesh_boolean`)：Mesh boolean operations (union/intersection/difference)
+- **Polyhedron Boolean** (`polyhedron_boolean`)：Polyhedron boolean operations
+- **Convex Hull 3D Dynamic** (`convex_hull_3d_dynamic`)：Dynamic 3D convex hull (incremental)
+
+### Tests | 测试
+
+- Total tests: 1232 (+79 from v0.156.1)
+- All four targets (native, wasm-gc, js, wasm) pass: 1232 × 4 = 4928 test runs green.
+
 ## [0.156.0] - 2026-10-16
 
 ### Added — Application Algorithms | 应用算法（8 个模块）
