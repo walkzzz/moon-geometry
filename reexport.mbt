@@ -2761,3 +2761,275 @@ pub fn zone_complexity(z : Zone) -> Int {
 pub fn zone_complexity_bound(n : Int) -> Int {
   @zone.zone_complexity_bound(n)
 }
+
+// ---------------------------------------------------------------------------
+// project3d: 3D projection / 三维投影
+// ---------------------------------------------------------------------------
+///|
+pub fn orthographic(p : Point3D) -> Point2D {
+  @project3d.orthographic(p)
+}
+///|
+pub fn perspective_project(p : Point3D, f : Double) -> Point2D? {
+  @project3d.perspective_project(p, f)
+}
+///|
+pub fn orthographic_batch(pts : Array[Point3D]) -> Array[Point2D] {
+  @project3d.orthographic_batch(pts)
+}
+///|
+pub fn perspective_batch(pts : Array[Point3D], f : Double) -> Array[Point2D] {
+  @project3d.perspective_batch(pts, f)
+}
+///|
+pub fn project_to_plane(p : Point3D, normal : Point3D, d : Double) -> Point3D {
+  @project3d.project_to_plane(p, normal, d)
+}
+///|
+pub fn isometric(p : Point3D) -> Point2D {
+  @project3d.isometric(p)
+}
+///|
+pub fn oblique(p : Point3D, alpha : Double, beta : Double) -> Point2D {
+  @project3d.oblique(p, alpha, beta)
+}
+
+// ---------------------------------------------------------------------------
+// homography: 3x3 projective transform / 单应变换
+// ---------------------------------------------------------------------------
+///|
+pub type Homography = @homography.Homography
+///|
+pub fn homography_identity() -> Homography {
+  @homography.Homography::identity()
+}
+///|
+pub fn homography_from_array(h : Array[Double]) -> Homography {
+  @homography.Homography::from_array(h)
+}
+///|
+pub fn homography_apply(m : Homography, p : Point2D) -> Point2D? {
+  @homography.Homography::apply(m, p)
+}
+///|
+pub fn homography_compose(m1 : Homography, m2 : Homography) -> Homography {
+  @homography.Homography::compose(m1, m2)
+}
+///|
+pub fn homography_apply_batch(m : Homography, pts : Array[Point2D]) -> Array[Point2D] {
+  @homography.Homography::apply_batch(m, pts)
+}
+///|
+pub fn homography_determinant(m : Homography) -> Double {
+  @homography.Homography::determinant(m)
+}
+
+// ---------------------------------------------------------------------------
+// perspective: perspective transform / 透视变换
+// ---------------------------------------------------------------------------
+///|
+pub type Perspective = @perspective.Perspective
+///|
+pub fn perspective_new(f : Double, cx : Double, cy : Double, n : Double, fr : Double) -> Perspective {
+  @perspective.Perspective::new(f, cx, cy, n, fr)
+}
+///|
+pub fn perspective_project_3d(p : Perspective, pt : Point3D) -> Point2D? {
+  @perspective.Perspective::project(p, pt)
+}
+///|
+pub fn perspective_unproject(p : Perspective, pt : Point2D) -> Point3D {
+  @perspective.Perspective::unproject(p, pt)
+}
+///|
+pub fn perspective_depth(p : Perspective, pt : Point3D) -> Double {
+  @perspective.Perspective::depth(p, pt)
+}
+///|
+pub fn perspective_fov(p : Perspective, w : Double) -> Double {
+  @perspective.Perspective::fov(p, w)
+}
+///|
+pub fn focal_from_fov(fov : Double, w : Double) -> Double {
+  @perspective.focal_from_fov(fov, w)
+}
+
+// ---------------------------------------------------------------------------
+// stereographic: stereographic projection / 球极投影
+// ---------------------------------------------------------------------------
+///|
+pub fn stereographic_from_sphere(p : Point3D, r : Double) -> Point2D? {
+  @stereographic.stereographic_from_sphere(p, r)
+}
+///|
+pub fn stereographic_to_sphere(p : Point2D, r : Double) -> Point3D {
+  @stereographic.stereographic_to_sphere(p, r)
+}
+///|
+pub fn stereographic_from_south(p : Point3D, r : Double) -> Point2D? {
+  @stereographic.stereographic_from_south(p, r)
+}
+///|
+pub fn on_sphere(p : Point3D, r : Double) -> Bool {
+  @stereographic.on_sphere(p, r)
+}
+///|
+pub fn stereographic_scale(p : Point3D, r : Double) -> Double {
+  @stereographic.stereographic_scale(p, r)
+}
+
+// ---------------------------------------------------------------------------
+// affine2: 2D affine transform / 二维仿射变换
+// ---------------------------------------------------------------------------
+///|
+pub type Affine2 = @affine2.Affine2
+///|
+pub fn affine2_identity() -> Affine2 {
+  @affine2.Affine2::identity()
+}
+///|
+pub fn affine2_translation(tx : Double, ty : Double) -> Affine2 {
+  @affine2.Affine2::translation(tx, ty)
+}
+///|
+pub fn affine2_scale(sx : Double, sy : Double) -> Affine2 {
+  @affine2.Affine2::scale(sx, sy)
+}
+///|
+pub fn affine2_shear(shx : Double, shy : Double) -> Affine2 {
+  @affine2.Affine2::shear(shx, shy)
+}
+///|
+pub fn affine2_apply(m : Affine2, p : Point2D) -> Point2D {
+  @affine2.Affine2::apply(m, p)
+}
+///|
+pub fn affine2_compose(m1 : Affine2, m2 : Affine2) -> Affine2 {
+  @affine2.Affine2::compose(m1, m2)
+}
+///|
+pub fn affine2_determinant(m : Affine2) -> Double {
+  @affine2.Affine2::determinant(m)
+}
+///|
+pub fn affine2_inverse(m : Affine2) -> Affine2? {
+  @affine2.Affine2::inverse(m)
+}
+///|
+pub fn affine2_apply_batch(m : Affine2, pts : Array[Point2D]) -> Array[Point2D] {
+  @affine2.Affine2::apply_batch(m, pts)
+}
+
+// ---------------------------------------------------------------------------
+// rigid: rigid transform / 刚体变换
+// ---------------------------------------------------------------------------
+///|
+pub type Rigid = @rigid.Rigid
+///|
+pub fn rigid_identity() -> Rigid {
+  @rigid.Rigid::identity()
+}
+///|
+pub fn rigid_translation(tx : Double, ty : Double) -> Rigid {
+  @rigid.Rigid::translation(tx, ty)
+}
+///|
+pub fn rigid_rotation(angle : Double) -> Rigid {
+  @rigid.Rigid::rotation(angle)
+}
+///|
+pub fn rigid_apply(r : Rigid, p : Point2D) -> Point2D {
+  @rigid.Rigid::apply(r, p)
+}
+///|
+pub fn rigid_compose(r1 : Rigid, r2 : Rigid) -> Rigid {
+  @rigid.Rigid::compose(r1, r2)
+}
+///|
+pub fn rigid_inverse(r : Rigid) -> Rigid {
+  @rigid.Rigid::inverse(r)
+}
+///|
+pub fn rigid_apply_batch(r : Rigid, pts : Array[Point2D]) -> Array[Point2D] {
+  @rigid.Rigid::apply_batch(r, pts)
+}
+///|
+pub fn rigid_from_correspondence(s1 : Point2D, d1 : Point2D, s2 : Point2D, d2 : Point2D) -> Rigid {
+  @rigid.Rigid::from_correspondence(s1, d1, s2, d2)
+}
+
+// ---------------------------------------------------------------------------
+// similarity: similarity transform / 相似变换
+// ---------------------------------------------------------------------------
+///|
+pub type Similarity = @similarity.Similarity
+///|
+pub fn similarity_identity() -> Similarity {
+  @similarity.Similarity::identity()
+}
+///|
+pub fn similarity_scaling(s : Double) -> Similarity {
+  @similarity.Similarity::scaling(s)
+}
+///|
+pub fn similarity_rotation(angle : Double) -> Similarity {
+  @similarity.Similarity::rotation(angle)
+}
+///|
+pub fn similarity_translation(tx : Double, ty : Double) -> Similarity {
+  @similarity.Similarity::translation(tx, ty)
+}
+///|
+pub fn similarity_apply(s : Similarity, p : Point2D) -> Point2D {
+  @similarity.Similarity::apply(s, p)
+}
+///|
+pub fn similarity_compose(s1 : Similarity, s2 : Similarity) -> Similarity {
+  @similarity.Similarity::compose(s1, s2)
+}
+///|
+pub fn similarity_inverse(s : Similarity) -> Similarity? {
+  @similarity.Similarity::inverse(s)
+}
+///|
+pub fn similarity_apply_batch(s : Similarity, pts : Array[Point2D]) -> Array[Point2D] {
+  @similarity.Similarity::apply_batch(s, pts)
+}
+///|
+pub fn similarity_from_correspondence(s1 : Point2D, d1 : Point2D, s2 : Point2D, d2 : Point2D) -> Similarity {
+  @similarity.Similarity::from_correspondence(s1, d1, s2, d2)
+}
+
+// ---------------------------------------------------------------------------
+// inversion: geometric inversion / 几何反演
+// ---------------------------------------------------------------------------
+///|
+pub type Inversion = @inversion.Inversion
+///|
+pub fn inversion_new(center : Point2D, r : Double) -> Inversion {
+  @inversion.Inversion::new(center, r)
+}
+///|
+pub fn inversion_apply(inv : Inversion, p : Point2D) -> Point2D? {
+  @inversion.Inversion::apply(inv, p)
+}
+///|
+pub fn inversion_apply_batch(inv : Inversion, pts : Array[Point2D]) -> Array[Point2D] {
+  @inversion.Inversion::apply_batch(inv, pts)
+}
+///|
+pub fn inversion_power(inv : Inversion, p : Point2D) -> Double {
+  @inversion.Inversion::power(inv, p)
+}
+///|
+pub fn inversion_is_inside(inv : Inversion, p : Point2D) -> Bool {
+  @inversion.Inversion::is_inside(inv, p)
+}
+///|
+pub fn inversion_is_on_circle(inv : Inversion, p : Point2D) -> Bool {
+  @inversion.Inversion::is_on_circle(inv, p)
+}
+///|
+pub fn inversion_invert_line(inv : Inversion, a : Double, b : Double, c : Double) -> Circle? {
+  @inversion.Inversion::invert_line(inv, a, b, c)
+}

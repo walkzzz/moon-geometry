@@ -80,4 +80,12 @@ import {
   "walkzzz/moon-geometry/src/euler_tour",
   "walkzzz/moon-geometry/src/trapezoidal",
   "walkzzz/moon-geometry/src/zone",
+  "walkzzz/moon-geometry/src/project3d",
+  "walkzzz/moon-geometry/src/homography",
+  "walkzzz/moon-geometry/src/perspective",
+  "walkzzz/moon-geometry/src/stereographic",
+  "walkzzz/moon-geometry/src/affine2",
+  "walkzzz/moon-geometry/src/rigid",
+  "walkzzz/moon-geometry/src/similarity",
+  "walkzzz/moon-geometry/src/inversion",
 }

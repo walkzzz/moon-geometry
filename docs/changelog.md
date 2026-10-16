@@ -6,6 +6,21 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
 Moon Geometry 的所有重要变更记录于此。
 格式基于 [Keep a Changelog](https://keepachangelog.com/)。
 
+## [1.6.0] - 2026-10-16
+
+### Added — Geometric Transforms | 几何变换（8 个模块）
+
+- **Project3D** (`project3d`)：`orthographic`, `perspective_project`, `isometric`, `oblique`, `project_to_plane`
+- **Homography** (`homography`)：`Homography::identity`, `from_array`, `apply`, `compose`, `determinant`
+- **Perspective** (`perspective`)：`Perspective::new`, `project`, `unproject`, `depth`, `fov`, `focal_from_fov`
+- **Stereographic** (`stereographic`)：`stereographic_from_sphere`, `stereographic_to_sphere`, `on_sphere`, `stereographic_scale`
+- **Affine2** (`affine2`)：`Affine2::identity`, `translation`, `scale`, `shear`, `apply`, `compose`, `inverse`, `determinant`
+- **Rigid** (`rigid`)：`Rigid::identity`, `translation`, `rotation`, `apply`, `compose`, `inverse`, `from_correspondence`
+- **Similarity** (`similarity`)：`Similarity::identity`, `scaling`, `rotation`, `apply`, `compose`, `inverse`, `from_correspondence`
+- **Inversion** (`inversion`)：`Inversion::new`, `apply`, `power`, `is_inside`, `is_on_circle`, `invert_line`
+
+**Total: 89 modules, 816 tests, 4 targets green.**
+
 ## [1.5.0] - 2026-10-16
 
 ### Added — Planar Subdivision | 平面细分（8 个模块）
