@@ -94,4 +94,9 @@ import {
   "walkzzz/moon-geometry/src/mesh_normal",
   "walkzzz/moon-geometry/src/mesh_subdiv",
   "walkzzz/moon-geometry/src/euler_char",
+  "walkzzz/moon-geometry/src/optim",
+  "walkzzz/moon-geometry/src/random_gen",
+  "walkzzz/moon-geometry/src/sampling",
+  "walkzzz/moon-geometry/src/svg_out",
+  "walkzzz/moon-geometry/src/json_out",
 }

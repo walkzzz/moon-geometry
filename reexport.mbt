@@ -3193,3 +3193,155 @@ pub fn betti_0(m : Mesh) -> Int {
 pub fn is_manifold(m : Mesh) -> Bool {
   @euler_char.is_manifold(m)
 }
+
+// ---------------------------------------------------------------------------
+// optim: geometric optimization / 几何优化
+// ---------------------------------------------------------------------------
+///|
+pub fn smallest_enclosing_circle(pts : Array[Point2D]) -> Circle {
+  @optim.smallest_enclosing_circle(pts)
+}
+///|
+pub fn min_area_rect(pts : Array[Point2D]) -> Rectangle {
+  @optim.min_area_rect(pts)
+}
+///|
+pub fn optim_centroid(pts : Array[Point2D]) -> Point2D {
+  @optim.centroid(pts)
+}
+///|
+pub fn closest_to_centroid(pts : Array[Point2D]) -> Point2D? {
+  @optim.closest_to_centroid(pts)
+}
+
+// ---------------------------------------------------------------------------
+// random_gen: random generation / 随机生成
+// ---------------------------------------------------------------------------
+///|
+pub type Rng = @random_gen.Rng
+///|
+pub fn rng_new(seed : UInt) -> Rng {
+  @random_gen.Rng::new(seed)
+}
+///|
+pub fn rng_next_uint(r : Rng) -> UInt {
+  @random_gen.Rng::next_uint(r)
+}
+///|
+pub fn rng_next_double(r : Rng) -> Double {
+  @random_gen.Rng::next_double(r)
+}
+///|
+pub fn rng_point2d(r : Rng, xlo : Double, xhi : Double, ylo : Double, yhi : Double) -> Point2D {
+  @random_gen.Rng::point2d(r, xlo, xhi, ylo, yhi)
+}
+///|
+pub fn rng_random_points(r : Rng, n : Int, xlo : Double, xhi : Double, ylo : Double, yhi : Double) -> Array[Point2D] {
+  @random_gen.Rng::random_points(r, n, xlo, xhi, ylo, yhi)
+}
+///|
+pub fn rng_random_convex_polygon(r : Rng, n : Int, radius : Double) -> Array[Point2D] {
+  @random_gen.Rng::random_convex_polygon(r, n, radius)
+}
+
+// ---------------------------------------------------------------------------
+// sampling: geometric sampling / 几何采样
+// ---------------------------------------------------------------------------
+///|
+pub fn grid_sample(xlo : Double, xhi : Double, ylo : Double, yhi : Double, nx : Int, ny : Int) -> Array[Point2D] {
+  @sampling.grid_sample(xlo, xhi, ylo, yhi, nx, ny)
+}
+///|
+pub fn circle_sample(c : Point2D, r : Double, n : Int) -> Array[Point2D] {
+  @sampling.circle_sample(c, r, n)
+}
+///|
+pub fn circle_interior_sample(c : Point2D, r : Double, n : Int) -> Array[Point2D] {
+  @sampling.circle_interior_sample(c, r, n)
+}
+///|
+pub fn poisson_disk_sample(xlo : Double, xhi : Double, ylo : Double, yhi : Double, md : Double) -> Array[Point2D] {
+  @sampling.poisson_disk_sample(xlo, xhi, ylo, yhi, md)
+}
+///|
+pub fn segment_sample(p1 : Point2D, p2 : Point2D, n : Int) -> Array[Point2D] {
+  @sampling.segment_sample(p1, p2, n)
+}
+///|
+pub fn halton_sample(bx : Int, by : Int, n : Int) -> Array[Point2D] {
+  @sampling.halton_sample(bx, by, n)
+}
+
+// ---------------------------------------------------------------------------
+// svg_out: SVG output / SVG 输出
+// ---------------------------------------------------------------------------
+///|
+pub type SvgSettings = @svg_out.SvgSettings
+///|
+pub fn svg_settings_default() -> SvgSettings {
+  @svg_out.SvgSettings::default()
+}
+///|
+pub fn svg_header(s : SvgSettings) -> String {
+  @svg_out.svg_header(s)
+}
+///|
+pub fn svg_footer() -> String {
+  @svg_out.svg_footer()
+}
+///|
+pub fn svg_circle(c : Circle, s : SvgSettings) -> String {
+  @svg_out.svg_circle(c, s)
+}
+///|
+pub fn svg_polygon(pts : Array[Point2D], s : SvgSettings) -> String {
+  @svg_out.svg_polygon(pts, s)
+}
+///|
+pub fn svg_line(p1 : Point2D, p2 : Point2D, s : SvgSettings) -> String {
+  @svg_out.svg_line(p1, p2, s)
+}
+///|
+pub fn svg_document(polys : Array[Array[Point2D]], s : SvgSettings) -> String {
+  @svg_out.svg_document(polys, s)
+}
+
+// ---------------------------------------------------------------------------
+// json_out: JSON output / JSON 输出
+// ---------------------------------------------------------------------------
+///|
+pub fn point2d_to_json(p : Point2D) -> String {
+  @json_out.point2d_to_json(p)
+}
+///|
+pub fn point3d_to_json(p : Point3D) -> String {
+  @json_out.point3d_to_json(p)
+}
+///|
+pub fn segment_to_json(s : Segment) -> String {
+  @json_out.segment_to_json(s)
+}
+///|
+pub fn circle_to_json(c : Circle) -> String {
+  @json_out.circle_to_json(c)
+}
+///|
+pub fn rectangle_to_json(r : Rectangle) -> String {
+  @json_out.rectangle_to_json(r)
+}
+///|
+pub fn polygon_to_json(p : Polygon) -> String {
+  @json_out.polygon_to_json(p)
+}
+///|
+pub fn points_to_json(pts : Array[Point2D]) -> String {
+  @json_out.points_to_json(pts)
+}
+///|
+pub fn triangle_to_json(t : Triangle) -> String {
+  @json_out.triangle_to_json(t)
+}
+///|
+pub fn scene_to_json(pts : Array[Point2D], segs : Array[Segment], circs : Array[Circle]) -> String {
+  @json_out.scene_to_json(pts, segs, circs)
+}

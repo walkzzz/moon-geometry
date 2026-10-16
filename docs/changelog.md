@@ -6,6 +6,33 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
 Moon Geometry 的所有重要变更记录于此。
 格式基于 [Keep a Changelog](https://keepachangelog.com/)。
 
+## [2.0.0] - 2026-10-16
+
+### Added — Optimization & Output | 优化与输出（5 个模块）
+
+- **Optim** (`optim`)：`smallest_enclosing_circle`, `min_area_rect`, `centroid`, `closest_to_centroid`
+- **Random Gen** (`random_gen`)：`Rng::new`, `next_uint`, `next_double`, `point2d`, `random_points`, `random_convex_polygon`
+- **Sampling** (`sampling`)：`grid_sample`, `circle_sample`, `circle_interior_sample`, `poisson_disk_sample`, `segment_sample`, `halton_sample`
+- **SVG Out** (`svg_out`)：`svg_header`, `svg_circle`, `svg_polygon`, `svg_line`, `svg_document`
+- **JSON Out** (`json_out`)：`point2d_to_json`, `point3d_to_json`, `circle_to_json`, `polygon_to_json`, `scene_to_json`
+
+### Milestone — 100 Modules | 100 模块里程碑
+
+**Total: 100 modules, 871 tests, 4 targets green (native, wasm-gc, js, wasm).**
+
+All planned modules are now implemented. The library covers:
+- Core geometry types and operations
+- Convex hull algorithms (2D and 3D)
+- Polygon operations and boolean algebra
+- Triangulation (Delaunay, Voronoi, ear clipping, monotone)
+- Spatial data structures (KD-tree, quadtree, BVH, grid index, etc.)
+- Distance metrics (Hausdorff, Fréchet, Chamfer, EMD, DTW, etc.)
+- Planar subdivisions (DCEL, arrangement, overlay, trapezoidal map)
+- Geometric transforms (homography, affine, rigid, similarity, inversion, stereographic)
+- Mesh processing (simplification, smoothing, normals, subdivision, Euler characteristic)
+- Curves and splines (Bézier, B-spline, Catmull-Rom, Hermite, Lagrange)
+- Optimization, random generation, sampling, and output (SVG, JSON)
+
 ## [1.7.0] - 2026-10-16
 
 ### Added — Mesh Processing | 网格处理（6 个模块）
