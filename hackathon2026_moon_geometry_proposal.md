@@ -10,7 +10,7 @@
 - 参赛者：walkzzz
 - 联系方式：phone: 13689047817, email: 745244185@qq.com
 - GitHub 仓库链接：https://github.com/walkzzz/moon-geometry.git
-- mooncakes 包名：`walkzzz/moon-geometry`
+- mooncakes 包名：walkzzz/moon-geometry
 - 项目方向：MoonBit 计算几何基础库 / 可复用基础组件
 - 是否为移植项目：否（原创，参考 CGAL / Shapely / scipy.spatial 设计）
 

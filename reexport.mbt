@@ -4264,3 +4264,371 @@ pub fn ortho(
 ) -> Array[Array[Double]] {
   @matrix3d.ortho(left, right, bottom, top, near, far)
 }
+
+// ---------------------------------------------------------------------------
+// nurbs: NURBS curves and surfaces / NURBS 曲线与曲面
+// ---------------------------------------------------------------------------
+///|
+pub fn nurbs_basis(
+  i : Int,
+  p : Int,
+  u : Double,
+  knots : Array[Double],
+) -> Double {
+  @nurbs.bspline_basis(i, p, u, knots)
+}
+///|
+pub fn bspline_curve_point(
+  control_pts : Array[(Double, Double, Double)],
+  degree : Int,
+  u : Double,
+  knots : Array[Double],
+) -> (Double, Double, Double) {
+  @nurbs.bspline_curve_point(control_pts, degree, u, knots)
+}
+///|
+pub fn nurbs_curve_point(
+  control_pts : Array[(Double, Double, Double)],
+  weights : Array[Double],
+  degree : Int,
+  u : Double,
+  knots : Array[Double],
+) -> (Double, Double, Double) {
+  @nurbs.nurbs_curve_point(control_pts, weights, degree, u, knots)
+}
+///|
+pub fn nurbs_surface_point(
+  control_net : Array[Array[(Double, Double, Double)]],
+  weights : Array[Array[Double]],
+  degree_u : Int,
+  degree_v : Int,
+  u : Double,
+  v : Double,
+  knots_u : Array[Double],
+  knots_v : Array[Double],
+) -> (Double, Double, Double) {
+  @nurbs.nurbs_surface_point(control_net, weights, degree_u, degree_v, u, v, knots_u, knots_v)
+}
+///|
+pub fn find_span(
+  n : Int,
+  p : Int,
+  u : Double,
+  knots : Array[Double],
+) -> Int {
+  @nurbs.find_span(n, p, u, knots)
+}
+///|
+pub fn nurbs_uniform_knots(num_ctrl : Int, degree : Int) -> Array[Double] {
+  @nurbs.uniform_knots(num_ctrl, degree)
+}
+
+// ---------------------------------------------------------------------------
+// surface_mesh: Surface mesh operations / 曲面网格操作
+// ---------------------------------------------------------------------------
+///|
+pub fn surf_face_normal(
+  vertices : Array[(Double, Double, Double)],
+  face : (Int, Int, Int),
+) -> (Double, Double, Double) {
+  @surface_mesh.face_normal(vertices, face)
+}
+///|
+pub fn surf_vertex_normal(
+  vertices : Array[(Double, Double, Double)],
+  faces : Array[(Int, Int, Int)],
+  vidx : Int,
+) -> (Double, Double, Double) {
+  @surface_mesh.vertex_normal(vertices, faces, vidx)
+}
+///|
+pub fn triangle_area(
+  vertices : Array[(Double, Double, Double)],
+  face : (Int, Int, Int),
+) -> Double {
+  @surface_mesh.triangle_area(vertices, face)
+}
+///|
+pub fn mesh_area(
+  vertices : Array[(Double, Double, Double)],
+  faces : Array[(Int, Int, Int)],
+) -> Double {
+  @surface_mesh.mesh_area(vertices, faces)
+}
+///|
+pub fn midpoint_subdivide(
+  vertices : Array[(Double, Double, Double)],
+  faces : Array[(Int, Int, Int)],
+) -> (Array[(Double, Double, Double)], Array[(Int, Int, Int)]) {
+  @surface_mesh.midpoint_subdivide(vertices, faces)
+}
+///|
+pub fn surf_mesh_bounding_box(
+  vertices : Array[(Double, Double, Double)],
+) -> (Double, Double, Double, Double, Double, Double) {
+  @surface_mesh.mesh_bounding_box(vertices)
+}
+///|
+pub fn validate_mesh(
+  vertices : Array[(Double, Double, Double)],
+  faces : Array[(Int, Int, Int)],
+) -> Bool {
+  @surface_mesh.validate_mesh(vertices, faces)
+}
+
+// ---------------------------------------------------------------------------
+// surface_param: Parametric surfaces / 参数曲面
+// ---------------------------------------------------------------------------
+///|
+pub fn eval_surface(
+  s : (Double, Double) -> (Double, Double, Double),
+  u : Double,
+  v : Double,
+) -> (Double, Double, Double) {
+  @surface_param.eval_surface(s, u, v)
+}
+///|
+pub fn surface_du(
+  s : (Double, Double) -> (Double, Double, Double),
+  u : Double,
+  v : Double,
+  h : Double,
+) -> (Double, Double, Double) {
+  @surface_param.surface_du(s, u, v, h)
+}
+///|
+pub fn surface_dv(
+  s : (Double, Double) -> (Double, Double, Double),
+  u : Double,
+  v : Double,
+  h : Double,
+) -> (Double, Double, Double) {
+  @surface_param.surface_dv(s, u, v, h)
+}
+///|
+pub fn surface_normal(
+  s : (Double, Double) -> (Double, Double, Double),
+  u : Double,
+  v : Double,
+  h : Double,
+) -> (Double, Double, Double) {
+  @surface_param.surface_normal(s, u, v, h)
+}
+///|
+pub fn first_fundamental_form(
+  s : (Double, Double) -> (Double, Double, Double),
+  u : Double,
+  v : Double,
+  h : Double,
+) -> (Double, Double, Double) {
+  @surface_param.first_fundamental_form(s, u, v, h)
+}
+///|
+pub fn second_fundamental_form(
+  s : (Double, Double) -> (Double, Double, Double),
+  u : Double,
+  v : Double,
+  h : Double,
+) -> (Double, Double, Double) {
+  @surface_param.second_fundamental_form(s, u, v, h)
+}
+///|
+pub fn gaussian_curvature(
+  s : (Double, Double) -> (Double, Double, Double),
+  u : Double,
+  v : Double,
+  h : Double,
+) -> Double {
+  @surface_param.gaussian_curvature(s, u, v, h)
+}
+///|
+pub fn mean_curvature(
+  s : (Double, Double) -> (Double, Double, Double),
+  u : Double,
+  v : Double,
+  h : Double,
+) -> Double {
+  @surface_param.mean_curvature(s, u, v, h)
+}
+
+// ---------------------------------------------------------------------------
+// surface_revolve: Surface of revolution / 旋转曲面
+// ---------------------------------------------------------------------------
+///|
+pub fn revolve_z(
+  profile : Array[(Double, Double)],
+  n_segments : Int,
+) -> (Array[(Double, Double, Double)], Array[(Int, Int, Int)]) {
+  @surface_revolve.revolve_z(profile, n_segments)
+}
+///|
+pub fn revolve_x(
+  profile : Array[(Double, Double)],
+  n_segments : Int,
+) -> (Array[(Double, Double, Double)], Array[(Int, Int, Int)]) {
+  @surface_revolve.revolve_x(profile, n_segments)
+}
+///|
+pub fn revolve_y(
+  profile : Array[(Double, Double)],
+  n_segments : Int,
+) -> (Array[(Double, Double, Double)], Array[(Int, Int, Int)]) {
+  @surface_revolve.revolve_y(profile, n_segments)
+}
+///|
+pub fn revolve_point_z(
+  r : Double,
+  z : Double,
+  theta : Double,
+) -> (Double, Double, Double) {
+  @surface_revolve.revolve_point_z(r, z, theta)
+}
+///|
+pub fn revolve_area_z(profile : Array[(Double, Double)]) -> Double {
+  @surface_revolve.revolve_area_z(profile)
+}
+
+// ---------------------------------------------------------------------------
+// surface_sweep: Sweep surfaces / 扫掠曲面
+// ---------------------------------------------------------------------------
+///|
+pub fn sweep_surface(
+  profile : Array[(Double, Double)],
+  path : Array[(Double, Double, Double)],
+) -> (Array[(Double, Double, Double)], Array[(Int, Int, Int)]) {
+  @surface_sweep.sweep_surface(profile, path)
+}
+///|
+pub fn sweep_point(
+  profile_fn : (Double) -> (Double, Double),
+  path_fn : (Double) -> (Double, Double, Double),
+  s : Double,
+  t : Double,
+) -> (Double, Double, Double) {
+  @surface_sweep.sweep_point(profile_fn, path_fn, s, t)
+}
+///|
+pub fn sweep_area(
+  profile : Array[(Double, Double)],
+  path : Array[(Double, Double, Double)],
+) -> Double {
+  @surface_sweep.sweep_area(profile, path)
+}
+
+// ---------------------------------------------------------------------------
+// surface_loft: Lofted surfaces / 放样曲面
+// ---------------------------------------------------------------------------
+///|
+pub fn loft_linear(
+  c1 : Array[(Double, Double, Double)],
+  c2 : Array[(Double, Double, Double)],
+  t : Double,
+) -> Array[(Double, Double, Double)] {
+  @surface_loft.loft_linear(c1, c2, t)
+}
+///|
+pub fn loft_cubic(
+  c0 : Array[(Double, Double, Double)],
+  c1 : Array[(Double, Double, Double)],
+  c2 : Array[(Double, Double, Double)],
+  c3 : Array[(Double, Double, Double)],
+  t : Double,
+) -> Array[(Double, Double, Double)] {
+  @surface_loft.loft_cubic(c0, c1, c2, c3, t)
+}
+///|
+pub fn loft_mesh(
+  sections : Array[Array[(Double, Double, Double)]],
+  n_subdiv : Int,
+) -> (Array[(Double, Double, Double)], Array[(Int, Int, Int)]) {
+  @surface_loft.loft_mesh(sections, n_subdiv)
+}
+///|
+pub fn loft_point(
+  sections : Array[Array[(Double, Double, Double)]],
+  s : Double,
+  t : Double,
+) -> (Double, Double, Double) {
+  @surface_loft.loft_point(sections, s, t)
+}
+
+// ---------------------------------------------------------------------------
+// surface_trim: Trimmed surfaces / 裁剪曲面
+// ---------------------------------------------------------------------------
+///|
+pub fn is_inside_trim(
+  u : Double,
+  v : Double,
+  trim_loop : Array[(Double, Double)],
+) -> Bool {
+  @surface_trim.is_inside_trim(u, v, trim_loop)
+}
+///|
+pub fn is_in_valid_region(
+  u : Double,
+  v : Double,
+  outer : Array[(Double, Double)],
+  inner : Array[Array[(Double, Double)]],
+) -> Bool {
+  @surface_trim.is_in_valid_region(u, v, outer, inner)
+}
+///|
+pub fn trimmed_mesh(
+  surface : (Double, Double) -> (Double, Double, Double),
+  outer : Array[(Double, Double)],
+  inner : Array[Array[(Double, Double)]],
+  n_u : Int,
+  n_v : Int,
+) -> (Array[(Double, Double, Double)], Array[(Int, Int, Int)]) {
+  @surface_trim.trimmed_mesh(surface, outer, inner, n_u, n_v)
+}
+///|
+pub fn trimmed_area(
+  vertices : Array[(Double, Double, Double)],
+  faces : Array[(Int, Int, Int)],
+) -> Double {
+  @surface_trim.trimmed_area(vertices, faces)
+}
+// ---------------------------------------------------------------------------
+// bezier_surface: Bezier surfaces / 贝塞尔曲面
+// ---------------------------------------------------------------------------
+///|
+pub fn bernstein(i : Int, n : Int, t : Double) -> Double {
+  @bezier_surface.bernstein(i, n, t)
+}
+///|
+pub fn bezier_curve(
+  control_pts : Array[(Double, Double, Double)],
+  t : Double,
+) -> (Double, Double, Double) {
+  @bezier_surface.bezier_curve(control_pts, t)
+}
+///|
+pub fn bezier_surface(
+  control_net : Array[Array[(Double, Double, Double)]],
+  u : Double,
+  v : Double,
+) -> (Double, Double, Double) {
+  @bezier_surface.bezier_surface(control_net, u, v)
+}
+///|
+pub fn bezier_surface_decasteljau(
+  control_net : Array[Array[(Double, Double, Double)]],
+  u : Double,
+  v : Double,
+) -> (Double, Double, Double) {
+  @bezier_surface.bezier_surface_decasteljau(control_net, u, v)
+}
+///|
+pub fn bezier_curve_derivative(
+  control_pts : Array[(Double, Double, Double)],
+  t : Double,
+) -> (Double, Double, Double) {
+  @bezier_surface.bezier_curve_derivative(control_pts, t)
+}
+///|
+pub fn bezier_degree_elevate(
+  control_pts : Array[(Double, Double, Double)],
+) -> Array[(Double, Double, Double)] {
+  @bezier_surface.bezier_degree_elevate(control_pts)
+}

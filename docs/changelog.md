@@ -6,6 +6,21 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
 Moon Geometry 的所有重要变更记录于此。
 格式基于 [Keep a Changelog](https://keepachangelog.com/)。
 
+## [0.148.0] - 2026-10-16
+
+### Added — Surface Modules | 曲面模块（8 个模块）
+
+- **NURBS** (`nurbs`)：`bspline_basis`, `bspline_curve_point`, `nurbs_curve_point`, `nurbs_surface_point`, `find_span`, `uniform_knots`
+- **Surface Mesh** (`surface_mesh`)：`face_normal`, `vertex_normal`, `triangle_area`, `mesh_area`, `midpoint_subdivide`, `mesh_bounding_box`, `validate_mesh`
+- **Surface Param** (`surface_param`)：`eval_surface`, `surface_du`, `surface_dv`, `surface_normal`, `first_fundamental_form`, `second_fundamental_form`, `gaussian_curvature`, `mean_curvature`
+- **Surface Revolve** (`surface_revolve`)：`revolve_x/y/z`, `revolve_point_z`, `revolve_area_z`
+- **Surface Sweep** (`surface_sweep`)：`sweep_surface`, `sweep_point`, `sweep_area`
+- **Surface Loft** (`surface_loft`)：`loft_linear`, `loft_cubic`, `loft_mesh`, `loft_point`
+- **Surface Trim** (`surface_trim`)：`is_inside_trim`, `is_in_valid_region`, `trimmed_mesh`, `trimmed_area`
+- **Bézier Surface** (`bezier_surface`)：`bernstein`, `bezier_curve`, `bezier_surface`, `bezier_surface_decasteljau`, `bezier_curve_derivative`, `bezier_degree_elevate`
+
+**Total: 148 modules, 1116 tests, 4 targets green.**
+
 ## [0.140.0] - 2026-10-16
 
 ### Added — Numerical Computation | 数值计算（8 个模块）

@@ -139,4 +139,12 @@ import {
   "walkzzz/moon-geometry/src/eigen",
   "walkzzz/moon-geometry/src/linalg",
   "walkzzz/moon-geometry/src/matrix3d",
+  "walkzzz/moon-geometry/src/nurbs",
+  "walkzzz/moon-geometry/src/surface_mesh",
+  "walkzzz/moon-geometry/src/surface_param",
+  "walkzzz/moon-geometry/src/surface_revolve",
+  "walkzzz/moon-geometry/src/surface_sweep",
+  "walkzzz/moon-geometry/src/surface_loft",
+  "walkzzz/moon-geometry/src/surface_trim",
+  "walkzzz/moon-geometry/src/bezier_surface",
 }
