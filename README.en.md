@@ -5,7 +5,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![MoonBit](https://img.shields.io/badge/MoonBit-0.1.20260920-blue.svg)](https://moonbitlang.com)
-[![Tests](https://img.shields.io/badge/tests-696-brightgreen.svg)]()
+[![Tests](https://img.shields.io/badge/tests-736-brightgreen.svg)]()
 [![Targets](https://img.shields.io/badge/targets-native%20%7C%20wasm--gc%20%7C%20js%20%7C%20wasm-green.svg)]()
 
 Moon Geometry is a **pure MoonBit** computational geometry library with **zero C FFI dependencies**, supporting all four backends (3natively. It provides reusable geometric algorithm primitives for CAD, collision detection, GIS, path planning, and image processing.
@@ -110,6 +110,14 @@ src/
   polyline/       # Polyline | 折线
   arc_length/     # Arc length utils | 弧长工具
   curvature/      # Curvature | 曲率
+  hausdorff/      # Hausdorff distance | Hausdorff距离
+  frechet/        # Fréchet distance | Fréchet距离
+  chamfer/        # Chamfer distance | Chamfer距离
+  emd/            # Earth Mover's distance | EMD距离
+  bottleneck/     # Bottleneck matching | 瓶颈匹配
+  pmatch/         # Point matching | 点匹配
+  dtw/            # Dynamic time warping | DTW
+  metric_tree/    # Metric tree | 度量树
 ```
 
 ## Quick Example | 快速示例
@@ -206,14 +214,14 @@ Full interface in `.mbti` files. 完整接口见 `.mbti` 文件。
 ## Tests | 测试
 
 ```bash
-moon test                          # all 696 tests | 全部 696 测试
+moon test                          # all 736 tests | 全部 736 测试
 moon test --target native          # verify each backend | 四目标分别验证
 moon test --target wasm-gc
 moon test --target js
 moon test --target wasm
 ```
 
-All four targets pass: 696 × 4 = 2784. 四目标全绿：696 × 4 = 2784。
+All four targets pass: 736 × 4 = 2944. 四目标全绿：736 × 4 = 2944。
 
 ## Roadmap | 交付路线图
 
@@ -232,6 +240,7 @@ All four targets pass: 696 × 4 = 2784. 四目标全绿：696 × 4 = 2784。
 | v1.1.0 | Convexity & optimization (8 modules) | ✅ Done |
 | v1.2.0 | Polygon algorithms (10 modules) | ✅ Done |
 | v1.3.0 | Curves & splines (10 modules) | ✅ Done |
+| v1.4.0 | Distance metrics (8 modules) | ✅ Done |
 
 See [docs/roadmap.md](docs/roadmap.md) and [docs/changelog.md](docs/changelog.md).
 

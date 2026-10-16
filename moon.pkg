@@ -64,4 +64,12 @@ import {
   "walkzzz/moon-geometry/src/polyline",
   "walkzzz/moon-geometry/src/arc_length",
   "walkzzz/moon-geometry/src/curvature",
+  "walkzzz/moon-geometry/src/hausdorff",
+  "walkzzz/moon-geometry/src/frechet",
+  "walkzzz/moon-geometry/src/chamfer",
+  "walkzzz/moon-geometry/src/emd",
+  "walkzzz/moon-geometry/src/bottleneck",
+  "walkzzz/moon-geometry/src/pmatch",
+  "walkzzz/moon-geometry/src/dtw",
+  "walkzzz/moon-geometry/src/metric_tree",
 }

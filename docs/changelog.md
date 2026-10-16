@@ -6,6 +6,25 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
 Moon Geometry 的所有重要变更记录于此。
 格式基于 [Keep a Changelog](https://keepachangelog.com/)。
 
+## [1.4.0] - 2026-10-16
+
+### Added — Distance Metrics | 距离度量（8 个模块）
+
+- **Hausdorff** (`hausdorff`)：`hausdorff_distance`, `hausdorff_directed`, `partial_hausdorff`
+- **Fréchet** (`frechet`)：`frechet_distance`, `frechet_within`, `frechet_point_distance`
+- **Chamfer** (`chamfer`)：`chamfer_distance`, `chamfer_directed`, `chamfer_rms`
+- **EMD** (`emd`)：`emd_1d`, `emd_uniform`, `emd_weighted`
+- **Bottleneck** (`bottleneck`)：`bottleneck_distance`, `bottleneck_match`, `bottleneck_max`
+- **Point Match** (`pmatch`)：`point_match`, `match_count`, `match_ratio`
+- **DTW** (`dtw`)：`dtw_distance`, `dtw_windowed`, `dtw_normalized`
+- **Metric Tree** (`metric_tree`)：`build_metric_tree`, `metric_tree_query`, `metric_tree_nearest`
+
+### Tests | 测试
+
+- Added 40 tests, total 736 tests | 新增 40 测试，累计 736 测试
+- All four targets green | 四目标全绿
+- 73 modules total | 共 73 个模块
+
 ## [1.3.0] - 2026-10-16
 
 ### Added — Curve & Spline Algorithms | 曲线与样条算法（10 个模块）

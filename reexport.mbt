@@ -2334,3 +2334,156 @@ pub fn curvature_radius(p1 : Point2D, p2 : Point2D, p3 : Point2D) -> Double {
 pub fn curvature_total(pts : Array[Point2D]) -> Double {
   @curvature.curvature_total(pts)
 }
+// ---------------------------------------------------------------------------
+// hausdorff: Hausdorff distance / Hausdorff 距离
+// ---------------------------------------------------------------------------
+///|
+pub fn hausdorff_directed(a : Array[Point2D], b : Array[Point2D]) -> Double {
+  @hausdorff.hausdorff_directed(a, b)
+}
+///|
+pub fn hausdorff_distance(a : Array[Point2D], b : Array[Point2D]) -> Double {
+  @hausdorff.hausdorff_distance(a, b)
+}
+///|
+pub fn hausdorff_within(a : Array[Point2D], b : Array[Point2D], eps : Double) -> Bool {
+  @hausdorff.hausdorff_within(a, b, eps)
+}
+///|
+pub fn partial_hausdorff(a : Array[Point2D], b : Array[Point2D], k : Int) -> Double {
+  @hausdorff.partial_hausdorff(a, b, k)
+}
+
+// ---------------------------------------------------------------------------
+// frechet: Fréchet distance / Fréchet 距离
+// ---------------------------------------------------------------------------
+///|
+pub fn frechet_distance(c1 : Array[Point2D], c2 : Array[Point2D]) -> Double {
+  @frechet.frechet_distance(c1, c2)
+}
+///|
+pub fn frechet_within(c1 : Array[Point2D], c2 : Array[Point2D], eps : Double) -> Bool {
+  @frechet.frechet_within(c1, c2, eps)
+}
+///|
+pub fn frechet_point_distance(p1 : Point2D, p2 : Point2D) -> Double {
+  @frechet.frechet_point_distance(p1, p2)
+}
+
+// ---------------------------------------------------------------------------
+// chamfer: Chamfer distance / Chamfer 距离
+// ---------------------------------------------------------------------------
+///|
+pub fn chamfer_directed(a : Array[Point2D], b : Array[Point2D]) -> Double {
+  @chamfer.chamfer_directed(a, b)
+}
+///|
+pub fn chamfer_distance(a : Array[Point2D], b : Array[Point2D]) -> Double {
+  @chamfer.chamfer_distance(a, b)
+}
+///|
+pub fn chamfer_squared_directed(a : Array[Point2D], b : Array[Point2D]) -> Double {
+  @chamfer.chamfer_squared_directed(a, b)
+}
+///|
+pub fn chamfer_rms(a : Array[Point2D], b : Array[Point2D]) -> Double {
+  @chamfer.chamfer_rms(a, b)
+}
+
+// ---------------------------------------------------------------------------
+// emd: Earth Mover's Distance / EMD 距离
+// ---------------------------------------------------------------------------
+///|
+pub fn emd_1d(a : Array[Double], b : Array[Double]) -> Double {
+  @emd.emd_1d(a, b)
+}
+///|
+pub fn emd_uniform(a : Array[Point2D], b : Array[Point2D]) -> Double {
+  @emd.emd_uniform(a, b)
+}
+///|
+pub fn emd_weighted(pos : Array[Double], wa : Array[Double], wb : Array[Double]) -> Double {
+  @emd.emd_weighted(pos, wa, wb)
+}
+
+// ---------------------------------------------------------------------------
+// bottleneck: bottleneck matching / 瓶颈匹配
+// ---------------------------------------------------------------------------
+///|
+pub fn bottleneck_distance(a : Array[Point2D], b : Array[Point2D]) -> Double {
+  @bottleneck.bottleneck_distance(a, b)
+}
+///|
+pub fn bottleneck_within(a : Array[Point2D], b : Array[Point2D], t : Double) -> Bool {
+  @bottleneck.bottleneck_within(a, b, t)
+}
+///|
+pub fn bottleneck_match(a : Array[Point2D], b : Array[Point2D]) -> Array[(Int, Int, Double)] {
+  @bottleneck.bottleneck_match(a, b)
+}
+///|
+pub fn bottleneck_max(a : Array[Point2D], b : Array[Point2D]) -> Double {
+  @bottleneck.bottleneck_max(a, b)
+}
+
+// ---------------------------------------------------------------------------
+// pmatch: point matching / 点匹配
+// ---------------------------------------------------------------------------
+///|
+pub fn point_match(a : Array[Point2D], b : Array[Point2D], t : Double) -> Array[(Int, Int)] {
+  @pmatch.point_match(a, b, t)
+}
+///|
+pub fn match_count(a : Array[Point2D], b : Array[Point2D], t : Double) -> Int {
+  @pmatch.match_count(a, b, t)
+}
+///|
+pub fn match_ratio(a : Array[Point2D], b : Array[Point2D], t : Double) -> Double {
+  @pmatch.match_ratio(a, b, t)
+}
+///|
+pub fn unmatched_a(a : Array[Point2D], b : Array[Point2D], t : Double) -> Int {
+  @pmatch.unmatched_a(a, b, t)
+}
+///|
+pub fn unmatched_b(a : Array[Point2D], b : Array[Point2D], t : Double) -> Int {
+  @pmatch.unmatched_b(a, b, t)
+}
+
+// ---------------------------------------------------------------------------
+// dtw: dynamic time warping / DTW
+// ---------------------------------------------------------------------------
+///|
+pub fn dtw_distance(c1 : Array[Point2D], c2 : Array[Point2D]) -> Double {
+  @dtw.dtw_distance(c1, c2)
+}
+///|
+pub fn dtw_windowed(c1 : Array[Point2D], c2 : Array[Point2D], w : Int) -> Double {
+  @dtw.dtw_windowed(c1, c2, w)
+}
+///|
+pub fn dtw_normalized(c1 : Array[Point2D], c2 : Array[Point2D]) -> Double {
+  @dtw.dtw_normalized(c1, c2)
+}
+
+// ---------------------------------------------------------------------------
+// metric_tree: metric tree / 度量树
+// ---------------------------------------------------------------------------
+///|
+pub type MetricNode = @metric_tree.MetricNode
+///|
+pub fn build_metric_tree(pts : Array[Point2D]) -> MetricNode? {
+  @metric_tree.build_metric_tree(pts)
+}
+///|
+pub fn metric_tree_query(node : MetricNode?, q : Point2D, r : Double) -> Array[Point2D] {
+  @metric_tree.metric_tree_query(node, q, r)
+}
+///|
+pub fn metric_tree_count(node : MetricNode?) -> Int {
+  @metric_tree.metric_tree_count(node)
+}
+///|
+pub fn metric_tree_nearest(node : MetricNode?, q : Point2D) -> Point2D? {
+  @metric_tree.metric_tree_nearest(node, q)
+}

@@ -5,7 +5,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![MoonBit](https://img.shields.io/badge/MoonBit-0.1.20260920-blue.svg)](https://moonbitlang.com)
-[![Tests](https://img.shields.io/badge/tests-696-brightgreen.svg)]()
+[![Tests](https://img.shields.io/badge/tests-736-brightgreen.svg)]()
 [![Targets](https://img.shields.io/badge/targets-native%20%7C%20wasm--gc%20%7C%20js%20%7C%20wasm-green.svg)]()
 
 Moon Geometry 是一个**纯 MoonBit** 实现的计算几何库，**零 C FFI 依赖**，四目标（native / wasm-gc / js / wasm）原生支持。为 CAD、碰撞检测、GIS、路径规划、图像处理等场景提供可复用的几何算法基础组件。
@@ -110,6 +110,14 @@ src/
   polyline/       # 折线 | Polyline
   arc_length/     # 弧长工具 | Arc length utils
   curvature/      # 曲率 | Curvature
+  hausdorff/      # Hausdorff距离 | Hausdorff distance
+  frechet/        # Fréchet距离 | Fréchet distance
+  chamfer/        # Chamfer距离 | Chamfer distance
+  emd/            # EMD距离 | Earth Mover's distance
+  bottleneck/     # 瓶颈匹配 | Bottleneck matching
+  pmatch/         # 点匹配 | Point matching
+  dtw/            # DTW | Dynamic time warping
+  metric_tree/    # 度量树 | Metric tree
 ```
 
 ## 快速示例 | Quick Example
@@ -206,15 +214,15 @@ let hull = @hull.convex_hull_andrew(points)  // 凸包顶点（逆时针）| hul
 ## 测试 | Tests
 
 ```bash
-moon test                          # 全部 696 测试 | all 696 tests
+moon test                          # 全部 736 测试 | all 736 tests
 moon test --target native          # 四目标分别验证 | verify each backend
 moon test --target wasm-gc
 moon test --target js
 moon test --target wasm
 ```
 
-四目标全绿：696 × 4 = 2784 次测试通过。
-All four targets pass: 696 × 4 = 2784 test runs green.
+四目标全绿：736 × 4 = 2944 次测试通过。
+All four targets pass: 736 × 4 = 2944 test runs green.
 
 ## 交付路线图 | Roadmap
 
@@ -233,6 +241,7 @@ All four targets pass: 696 × 4 = 2784 test runs green.
 | v1.1.0 | v1.1.0 | 凸性与优化（8模块）| Convexity & optimization (8 modules) | ✅ 完成 | ✅ Done |
 | v1.2.0 | v1.2.0 | 多边形算法（10模块）| Polygon algorithms (10 modules) | ✅ 完成 | ✅ Done |
 | v1.3.0 | v1.3.0 | 曲线与样条（10模块）| Curves & splines (10 modules) | ✅ 完成 | ✅ Done |
+| v1.4.0 | v1.4.0 | 距离度量（8模块）| Distance metrics (8 modules) | ✅ 完成 | ✅ Done |
 
 详见 [docs/roadmap.md](docs/roadmap.md) 与 [docs/changelog.md](docs/changelog.md)。
 See [docs/roadmap.md](docs/roadmap.md) and [docs/changelog.md](docs/changelog.md).
