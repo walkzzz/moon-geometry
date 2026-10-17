@@ -5,7 +5,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![MoonBit](https://img.shields.io/badge/MoonBit-0.1.20260920-blue.svg)](https://moonbitlang.com)
-[![Tests](https://img.shields.io/badge/tests-2427-brightgreen.svg)]()
+[![Tests](https://img.shields.io/badge/tests-2518-brightgreen.svg)]()
 [![Targets](https://img.shields.io/badge/targets-native%20%7C%20wasm--gc%20%7C%20js%20%7C%20wasm-green.svg)]()
 
 Moon Geometry is a **pure MoonBit** computational geometry library with **zero C FFI dependencies**, supporting all four backends (3natively. It provides reusable geometric algorithm primitives for CAD, collision detection, GIS, path planning, and image processing.
@@ -273,14 +273,14 @@ Full interface in `.mbti` files. 完整接口见 `.mbti` 文件。
 ## Tests | 测试
 
 ```bash
-moon test                          # all 2427 tests | 全部 2427 测试
+moon test                          # all 2518 tests | 全部 2518 测试
 moon test --target native          # verify each backend | 四目标分别验证
 moon test --target wasm-gc
 moon test --target js
 moon test --target wasm
 ```
 
-All four targets pass: 2427 × 4 = 9708. 四目标全绿：2427 × 4 = 9708。
+All four targets pass: 2518 × 4 = 10072. 四目标全绿：2518 × 4 = 10072。
 
 ## Roadmap | 交付路线图
 
@@ -318,6 +318,7 @@ All four targets pass: 2427 × 4 = 9708. 四目标全绿：2427 × 4 = 9708。
 | v0.233.0 | Persistent topology & advanced numerics (20 modules) | ✅ Done |
 | v0.234.0 | ML geometry + robotics + graphics + PDE (40 modules) | ✅ Done |
 | v0.235.0 | Algebra structures + robust geometry + optimization + applications (40 modules) | ✅ Done |
+| v0.236.0 | Formal verification + MOCK/FAKE + E2E + AI property tests (5 modules) | ✅ Done |
 
 See [docs/roadmap.md](docs/roadmap.md) and [docs/changelog.md](docs/changelog.md).
 

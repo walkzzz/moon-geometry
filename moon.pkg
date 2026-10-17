@@ -395,4 +395,9 @@ import {
   "walkzzz/moon-geometry/src/chaos_geom",
   "walkzzz/moon-geometry/src/wavelet_geom",
   "walkzzz/moon-geometry/src/spectral_geom",
+  "walkzzz/moon-geometry/src/formal_properties",
+  "walkzzz/moon-geometry/src/formal_invariants",
+  "walkzzz/moon-geometry/src/mock_geometric",
+  "walkzzz/moon-geometry/src/e2e_workflows",
+  "walkzzz/moon-geometry/src/ai_property_tests",
 }
