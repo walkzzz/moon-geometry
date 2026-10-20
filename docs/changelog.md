@@ -6,6 +6,16 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
 Moon Geometry 的所有重要变更记录于此。
 格式基于 [Keep a Changelog](https://keepachangelog.com/)。
 
+## [0.239.0] - 2026-10-20
+
+### Fixed — Warning Governance | 警告治理（204 → 81）
+
+- 5 处 `derive(Show)` → `derive(Debug)`，添加 `pub extend Type with Debug::{to_repr}` 声明
+- 5 处 `reserved_keyword`：`method` → `mode`（`bertrand_probability` 参数重命名）
+- 5 处 `unused_package`：删除根 moon.pkg 中未使用的 testing 模块导入
+- 1 处 `ambiguous_block`：`{ seed }` → `{ seed, }`
+- 剩余 81 个 warning（54 `unused_package` + 26 `unused_value` + 1 `struct_never_constructed`）
+
 ## [0.238.0] - 2026-10-20
 
 ### Changed — Directory Restructuring | 目录分组重构

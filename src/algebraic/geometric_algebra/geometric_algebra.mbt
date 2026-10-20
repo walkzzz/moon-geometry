@@ -7,7 +7,10 @@ pub struct Multivector {
   e1 : Double
   e2 : Double
   e12 : Double
-} derive(Show)
+} derive(Debug)
+
+///|
+pub extend Multivector with @moonbitlang/core/debug.Debug::{to_repr}
 
 pub fn Multivector::new(scalar : Double, e1 : Double, e2 : Double, e12 : Double) -> Multivector {
   { scalar, e1, e2, e12 }

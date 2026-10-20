@@ -74,7 +74,7 @@ pub struct FakeRNG {
 }
 
 pub fn FakeRNG::new(seed : Int) -> FakeRNG {
-  { seed }
+  { seed, }
 }
 
 pub fn FakeRNG::next(self : FakeRNG) -> Int {

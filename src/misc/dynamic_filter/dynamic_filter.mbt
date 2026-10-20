@@ -5,7 +5,10 @@
 pub struct Interval {
   lo : Double
   hi : Double
-} derive(Show)
+} derive(Debug)
+
+///|
+pub extend Interval with @moonbitlang/core/debug.Debug::{to_repr}
 
 pub fn Interval::new(lo : Double, hi : Double) -> Interval {
   { lo, hi }

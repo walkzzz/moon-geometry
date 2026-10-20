@@ -7,7 +7,10 @@ pub struct SymplecticForm {
   omega12 : Double
   omega21 : Double
   omega22 : Double
-} derive(Show)
+} derive(Debug)
+
+///|
+pub extend SymplecticForm with @moonbitlang/core/debug.Debug::{to_repr}
 
 pub fn canonical_form() -> SymplecticForm {
   { omega11: 0.0, omega12: 1.0, omega21: -1.0, omega22: 0.0 }

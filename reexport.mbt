@@ -10680,8 +10680,8 @@ pub fn weitzenbock_inequality(a : Double, b : Double, c : Double, area : Double)
 pub fn buffon_needle_probability(needle_length : Double, line_spacing : Double) -> Double {
   @geom_prob.buffon_needle_probability(needle_length, line_spacing)
 }
-pub fn bertrand_probability(method : Int) -> Double {
-  @geom_prob.bertrand_probability(method)
+pub fn bertrand_probability(mode : Int) -> Double {
+  @geom_prob.bertrand_probability(mode)
 }
 pub fn random_chord_length(radius : Double) -> Double {
   @geom_prob.random_chord_length(radius)

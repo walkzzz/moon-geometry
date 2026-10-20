@@ -5,7 +5,10 @@
 pub struct GeoInterval {
   center : Double
   radius : Double
-} derive(Show)
+} derive(Debug)
+
+///|
+pub extend GeoInterval with @moonbitlang/core/debug.Debug::{to_repr}
 
 pub fn GeoInterval::new(center : Double, radius : Double) -> GeoInterval {
   { center, radius }

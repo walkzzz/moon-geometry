@@ -6,7 +6,10 @@ pub struct ContactForm {
   a_x : Double
   a_y : Double
   a_z : Double
-} derive(Show)
+} derive(Debug)
+
+///|
+pub extend ContactForm with @moonbitlang/core/debug.Debug::{to_repr}
 
 pub fn ContactForm::eval(self : ContactForm, vx : Double, vy : Double, vz : Double) -> Double {
   self.a_x * vx + self.a_y * vy + self.a_z * vz

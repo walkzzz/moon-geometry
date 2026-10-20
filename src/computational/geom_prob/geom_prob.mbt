@@ -6,10 +6,10 @@ pub fn buffon_needle_probability(needle_length : Double, line_spacing : Double) 
   2.0 * needle_length / (@math.PI * line_spacing)
 }
 
-pub fn bertrand_probability(method : Int) -> Double {
-  if method == 1 {
+pub fn bertrand_probability(mode : Int) -> Double {
+  if mode == 1 {
     1.0 / 3.0
-  } else if method == 2 {
+  } else if mode == 2 {
     1.0 / 4.0
   } else {
     1.0 / 2.0
