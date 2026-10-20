@@ -43,228 +43,128 @@ moon add walkzzz/moon-geometry
 
 ## 项目结构 | Project Structure
 
+401 个模块按 24 个领域分类组织 | 401 modules organized into 24 domain categories：
+
 ```
 src/
-  core/           # 基础类型 | Base types (Point2D, Segment, Polygon, ...)
-  hull/           # 凸包 | Convex hull
-  polygon/        # 多边形操作 | Polygon operations
-  intersect/      # 相交 | Intersection
-  nearest/        # 最近点对 | Closest pair
-  boolean/        # 布尔运算 | Boolean operations
-  triangulation/  # 三角剖分 | Delaunay/Voronoi
-  transform/      # 几何变换 | Geometric transforms
-  distance/       # 距离 | Distance computations
-  bounding/       # 包围盒 | Bounding boxes
-  circle_ops/     # 圆相交 | Circle intersection
-  triangulate/    # 多边形三角剖分 | Polygon triangulation (ear clipping)
-  minkowski/      # Minkowski 运算 | Minkowski operations
-  rotating_calipers/ # 旋转卡壳 | Rotating calipers
-  ellipse/        # 椭圆几何 | Ellipse geometry
-  bezier/         # 贝塞尔曲线 | Bezier curves
-  fitting/        # 几何拟合 | Geometric fitting
-  sweep_line/     # 扫描线 | Sweep line
-  convex_polygon/ # 凸多边形操作 | Convex polygon ops
-  vector/         # 向量运算 | Vector operations
-  matrix/         # 矩阵 | 2x2 matrices
-  angle/          # 角度工具 | Angle utilities
-  constants/      # 几何常数 | Geometric constants
-  interval/       # 区间运算 | Interval operations
-  aabb_tree/      # AABB树 | AABB tree
-  hash/           # 几何哈希 | Geometric hashing
-  compare/        # 比较谓词 | Comparison predicates
-  ray/            # 射线运算 | Ray operations
-  plane/          # 三维平面 | 3D plane
-  kdtree/         # K-d树 | K-d tree
-  quadtree/       # 四叉树 | Quadtree
-  grid_index/     # 网格索引 | Grid index
-  range_tree/     # 范围树 | Range tree
-  sort_search/    # 有序搜索 | Sorted search
-  bucket_pr/      # 桶PR树 | Bucket PR k-d tree
-  spatial_hash/   # 空间哈希 | Spatial hash
-  bvh/            # 层次包围体 | BVH
-  half_plane/     # 半平面 | Half-plane intersection
-  convex_clip/    # 凸多边形裁剪 | Convex polygon clipping
-  convex_sum/     # 点集运算 | Point set operations
-  polar_dual/     # 极对偶 | Polar duality
-  linear_prog/    # 二维线性规划 | 2D linear programming
-  convex_hull3d/  # 三维凸包 | 3D convex hull
-  support/        # 支持函数 | Support functions
-  separating/     # 分离轴 | Separating axis
-  polygon_offset/ # 多边形偏移 | Polygon offset
-  polygon_holes/  # 带孔多边形 | Polygon with holes
-  visibility/     # 可见性 | Visibility
-  art_gallery/    # 美术馆问题 | Art gallery
-  polygon_kernel/ # 多边形核 | Polygon kernel
-  convex_decomp/  # 凸分解 | Convex decomposition
-  polygon_symmetry/ # 多边形对称 | Polygon symmetry
-  polygon_cover/  # 多边形覆盖 | Polygon cover
-  ear_clip/       # 耳裁剪 | Ear clipping
-  monotone/       # 单调三角剖分 | Monotone triangulation
-  catmull_rom/    # Catmull-Rom样条 | Catmull-Rom spline
-  hermite/        # Hermite样条 | Hermite spline
-  bspline/        # B样条 | B-spline
-  lagrange/       # Lagrange插值 | Lagrange interpolation
-  spline/         # 样条工具 | Spline utilities
-  curve_arc/      # 弧长 | Arc length
-  curve_intersect/ # 曲线相交 | Curve intersection
-  polyline/       # 折线 | Polyline
-  arc_length/     # 弧长工具 | Arc length utils
-  curvature/      # 曲率 | Curvature
-  hausdorff/      # Hausdorff距离 | Hausdorff distance
-  frechet/        # Fréchet距离 | Fréchet distance
-  chamfer/        # Chamfer距离 | Chamfer distance
-  emd/            # EMD距离 | Earth Mover's distance
-  bottleneck/     # 瓶颈匹配 | Bottleneck matching
-  pmatch/         # 点匹配 | Point matching
-  dtw/            # DTW | Dynamic time warping
-  metric_tree/    # 度量树 | Metric tree
-  dcel/           # 双向边链表 | Doubly-connected edge list
-  arrangement/    # 直线安排 | Line arrangement
-  planar_graph/   # 平面图 | Planar graph
-  face_extract/   # 面提取 | Face extraction
-  overlay/        # 叠加 | Overlay
-  euler_tour/     # 欧拉回路 | Euler tour
-  trapezoidal/    # 梯形图 | Trapezoidal map
-  zone/           # 区域定理 | Zone theorem
-  project3d/      # 3D投影 | 3D projection
-  homography/     # 单应变换 | Homography
-  perspective/    # 透视变换 | Perspective transform
-  stereographic/  # 立体投影 | Stereographic projection
-  affine2/        # 仿射变换 | Affine transform
-  rigid/          # 刚体变换 | Rigid transform
-  similarity/     # 相似变换 | Similarity transform
-  inversion/      # 反演变换 | Inversion
-  mesh_data/      # 网格数据 | Mesh data
-  mesh_simplify/  # 网格简化 | Mesh simplification
-  mesh_smooth/    # 网格平滑 | Mesh smoothing
-  mesh_normal/    # 网格法线 | Mesh normals
-  mesh_subdiv/    # 网格细分 | Mesh subdivision
-  euler_char/     # 欧拉特征 | Euler characteristic
-  optim/          # 优化 | Optimization
-  random_gen/     # 随机生成 | Random generation
-  sampling/       # 采样 | Sampling
-  svg_out/        # SVG输出 | SVG output
-  json_out/       # JSON输出 | JSON output
-  convex_hull_approx/  # 近似凸包 | Approximate convex hull
-  convex_hull_dynamic/ # 动态凸包 | Dynamic convex hull
-  convex_layers/       # 凸包层次 | Convex layers (onion)
-  concave_hull/        # 凹包 | Concave hull
-  convex_width/        # 凸宽度 | Convex width
-  convex_diameter/     # 凸直径 | Convex diameter
-  convex_center/       # 凸中心 | Convex center
-  convex_intersection/ # 凸交集 | Convex intersection
-  polygon_skeleton/     # 直骨架 | Straight skeleton
-  polygon_medial/       # 中轴线 | Medial axis
-  polygon_simplify/     # 多边形简化 | Polygon simplification
-  polygon_round/        # 圆角化 | Corner rounding
-  polygon_evolve/       # 曲率流 | Curve shortening flow
-  polygon_morph/        # 多边形变形 | Polygon morphing
-  polygon_decomp_opt/   # 最优凸分解 | Optimal convex decomposition
-  polygon_triangulate_fast/ # 快速三角剖分 | Fast triangulation
-  rtree/                # R树 | R-tree
-  octree/               # 八叉树 | Octree
-  ball_tree/            # 球树 | Ball tree
-  vp_tree/              # 基点树 | Vantage point tree
-  cover_tree/           # 覆盖树 | Cover tree
-  interval_tree/        # 区间树 | Interval tree
-  skip_quadtree/        # 跳跃四叉树 | Skip quadtree
-  loose_octree/         # 松散八叉树 | Loose octree
-  shortest_path/        # 最短路径 | Shortest path (Dijkstra)
-  visibility_graph/     # 可见性图 | Visibility graph
-  motion_plan/          # 运动规划 | Motion planning
-  voronoi_adv/          # 高级Voronoi | Advanced Voronoi
-  delaunay_refine/      # Delaunay细化 | Delaunay refinement
-  graph_color/          # 图着色 | Graph coloring
-  graph_cut/            # 图割 | Graph cut
-  spanning_tree/        # 最小生成树 | Minimum spanning tree
-  # Phase 1: 3D Geometry & Polyhedra (v0.160.0)
-  aabb3d/               # 3D AABB | 3D axis-aligned bounding box
-  bounding_sphere/      # 包围球 | Bounding sphere
-  obb/                  # 有向包围盒 | Oriented bounding box
-  mesh_quality/         # 网格质量 | Mesh quality
-  polyhedron/           # 多面体 | Polyhedron
-  mesh_repair/          # 网格修复 | Mesh repair
-  mesh_param/           # 网格参数化 | Mesh parameterization
-  mesh_boolean/         # 网格布尔 | Mesh boolean ops
-  polyhedron_boolean/   # 多面体布尔 | Polyhedron boolean ops
-  convex_hull_3d_dynamic/ # 动态3D凸包 | Dynamic 3D convex hull
-  # Phase 2: Voronoi/Delaunay/Topology (v0.230.0)
-  voronoi_3d/           # 3D Voronoi | 3D Voronoi diagram
-  delaunay_3d/          # 3D Delaunay | 3D Delaunay triangulation
-  constrained_delaunay/ # 约束Delaunay | Constrained Delaunay
-  power_diagram/        # 幂图 | Power diagram
-  centroidal_voronoi/   # 质心Voronoi | Centroidal Voronoi
-  alpha_complex/        # Alpha复形 | Alpha complex
-  persistent_homology/  # 持久同调 | Persistent homology
-  betti_numbers/        # Betti数 | Betti numbers
-  reeb_graph/           # Reeb图 | Reeb graph
-  morse_complex/        # Morse复形 | Morse complex
-  # Phase 3: Robotics/Motion Planning (v0.230.0)
-  rrt/                  # RRT | Rapidly-exploring Random Tree
-  prm/                  # PRM | Probabilistic Roadmap
-  a_star/               # A* | A* pathfinding
-  dubins/               # Dubins曲线 | Dubins curve
-  reed_shepp/           # Reed-Shepp | Reed-Shepp curve
-  collision_detect/    # 碰撞检测 | Collision detection
-  gjk/                  # GJK | Gilbert-Johnson-Keerthi
-  sat/                  # SAT | Separating Axis Theorem
-  config_space/        # 构型空间 | Configuration space
-  path_smooth/         # 路径平滑 | Path smoothing
-  # Phase 4: Shape Analysis (v0.230.0)
-  shape_context/       # 形状上下文 | Shape context
-  fourier_descriptor/  # 傅里叶描述子 | Fourier descriptor
-  moment_invariants/   # 矩不变量 | Moment invariants
-  skeleton_3d/         # 3D骨架 | 3D skeleton
-  medial_axis_3d/      # 3D中轴线 | 3D medial axis
-  shape_matching/      # 形状匹配 | Shape matching
-  curvature_scale/     # 曲率尺度空间 | Curvature scale space
-  bend_energy/         # 弯曲能量 | Bend energy
-  procrustes/          # Procrustes | Procrustes analysis
-  icp/                 # ICP | Iterative Closest Point
-  # Phase 5: Numerical Optimization (v0.230.0)
-  quadratic_prog/      # 二次规划 | Quadratic programming
-  gradient_descent/    # 梯度下降 | Gradient descent
-  newton_method/       # 牛顿法 | Newton's method
-  levenberg_marquardt/ # LM法 | Levenberg-Marquardt
-  conjugate_gradient/  # 共轭梯度 | Conjugate gradient
-  simplex_method/      # 单纯形法 | Simplex method
-  interior_point/      # 内点法 | Interior point method
-  simulated_annealing/ # 模拟退火 | Simulated annealing
-  genetic_algorithm/   # 遗传算法 | Genetic algorithm
-  pso/                 # 粒子群 | Particle swarm optimization
-  # Phase 6: GIS/Geodesics (v0.230.0)
-  gis_projection/      # GIS投影 | GIS projection
-  geodesic/            # 测地线 | Geodesic
-  gis_buffer/          # GIS缓冲 | GIS buffer
-  tin/                 # 不规则三角网 | Triangulated Irregular Network
-  coordinate_convert/  # 坐标转换 | Coordinate conversion
-  datum_transform/     # 基准变换 | Datum transformation
-  raster_ops/          # 栅格操作 | Raster operations
-  contour_line/        # 等高线 | Contour line
-  watershed/           # 分水岭 | Watershed
-  delaunay_terrain/    # Delaunay地形 | Delaunay terrain
-  # Phase 7: File I/O/Rendering (v0.230.0)
-  obj_io/              # OBJ格式 | OBJ format I/O
-  stl_io/              # STL格式 | STL format I/O
-  ply_io/              # PLY格式 | PLY format I/O
-  gltf_io/             # glTF格式 | glTF format I/O
-  geojson_io/          # GeoJSON | GeoJSON I/O
-  dxf_io/              # DXF格式 | DXF format I/O
-  ray_tracing/         # 光线追踪 | Ray tracing
-  marching_cubes/      # 移动立方体 | Marching cubes
-  hidden_line/         # 隐藏线消除 | Hidden line removal
-  rasterization/       # 光栅化 | Rasterization
-  # Phase 8: Algebraic Geometry/Fractals (v0.230.0)
-  conic_section/       # 圆锥曲线 | Conic section
-  quadric_surface/     # 二次曲面 | Quadric surface
-  resultant/           # 结式 | Resultant
-  bezier_clipping/     # 贝塞尔裁剪 | Bézier clipping
-  implicit_curve/      # 隐式曲线 | Implicit curve
-  implicit_surface/    # 隐式曲面 | Implicit surface
-  ifs/                 # 迭代函数系统 | Iterated Function System
-  l_system/            # L系统 | L-system
-  fractal_dimension/   # 分形维数 | Fractal dimension
-  hausdorff_dimension/ # Hausdorff维数 | Hausdorff dimension
+  base/          # (30) 基础类型与鲁棒算术 | Core types & robust arithmetic
+                  #   core, vector, matrix, matrix3d, angle, constants, interval,
+                  #   hash, compare, sort_search, random_gen, polynomial, linalg, root_find,
+                  #   robust_arith, robust_orient, robust_inter, robust_construction,
+                  #   exact_pred, exact_predicates, filtered_pred, filtered_predicates,
+                  #   adaptive_pred, expansion_arith, affine_arithmetic, interval_arith,
+                  #   interval_arithmetic, lazy_exact, big_rational, perturbation
+  shapes/        # (2)  基本形状 | Basic shapes: ray, plane
+  hull/          # (18) 凸包 | Convex hull & convex geometry
+                  #   hull, convex_polygon, convex_hull3d, convex_hull_3d_dynamic,
+                  #   convex_hull_approx, convex_hull_dynamic, convex_layers,
+                  #   concave_hull, convex_width, convex_diameter, convex_center,
+                  #   convex_intersection, convex_clip, convex_sum, convex_decomp,
+                  #   polar_dual, support, separating
+  polygon/       # (26) 多边形算法 | Polygon algorithms
+                  #   polygon, boolean, de9im, ear_clip, monotone, half_plane,
+                  #   minkowski, rotating_calipers, sweep_line, triangulate, overlay, zone,
+                  #   polygon_offset, polygon_holes, polygon_kernel, polygon_skeleton,
+                  #   polygon_medial, polygon_simplify, polygon_round, polygon_evolve,
+                  #   polygon_morph, polygon_decomp_opt, polygon_triangulate_fast,
+                  #   polygon_symmetry, polygon_cover, isoperimetric
+  arrangement/   # (12) 平面细分 | Planar subdivision & triangulation
+                  #   arrangement, geom_arrangement, dcel, planar_graph, triangulation,
+                  #   voronoi_adv, voronoi_3d, delaunay_3d, constrained_delaunay,
+                  #   power_diagram, centroidal_voronoi, delaunay_terrain
+  transform/     # (14) 几何变换 | Geometric transforms
+                  #   transform, affine2, rigid, similarity, homography, perspective,
+                  #   stereographic, inversion, conformal_map, rational_map, procrustes,
+                  #   registration, coordinate_convert, datum_transform
+  distance/      # (11) 距离度量 | Distance metrics
+                  #   distance, nearest, hausdorff, frechet, chamfer, emd, bottleneck,
+                  #   bottleneck_dist, dtw, geodesic_dist, wasserstein_dist
+  spatial/       # (22) 空间数据结构 | Spatial data structures
+                  #   bounding, aabb_tree, aabb3d, bounding_sphere, obb, bvh,
+                  #   kdtree, quadtree, octree, rtree, ball_tree, vp_tree, cover_tree,
+                  #   metric_tree, interval_tree, grid_index, range_tree, spatial_hash,
+                  #   bucket_pr, skip_quadtree, loose_octree, voxel_grid
+  curves/        # (24) 曲线与样条 | Curves & splines
+                  #   circle_ops, ellipse, bezier, bezier_clipping, bezier_surface,
+                  #   bspline, nurbs, catmull_rom, hermite, lagrange, spline, polyline,
+                  #   arc_length, curve_arc, curve_intersect, curvature, curvature_est,
+                  #   curvature_scale, implicit_curve, interpolation, dubins, reed_shepp,
+                  #   path_smooth, l_system
+  mesh/          # (25) 网格与曲面 | Mesh & surface processing
+                  #   mesh_data, mesh_simplify, mesh_smooth, mesh_normal, mesh_subdiv,
+                  #   mesh_quality, mesh_repair, mesh_param, mesh_boolean, polyhedron,
+                  #   polyhedron_boolean, face_extract, marching_cubes, skeleton_3d,
+                  #   medial_axis_3d, reconstruction, watershed, surface_mesh, surface_param,
+                  #   surface_recon, surface_loft, surface_revolve, surface_sweep,
+                  #   surface_trim, surface_ricci
+  topology/      # (27) 拓扑数据分析 | Topological data analysis
+                  #   alpha_complex, betti_numbers, persistent_homology, persistence_diagram,
+                  #   persistence_image, persistence_landscape, reeb_graph, morse_complex,
+                  #   discrete_morse, euler_char, simplicial_complex, chain_complex,
+                  #   boundary_operator, cohomology, homology_group, filtration, cech_complex,
+                  #   nerve_theorem, witness_complex, zigzag_persistence, multidim_persistence,
+                  #   tda_features, mapper_algo, knot_theory, sheaf_theory, chow_ring,
+                  #   hilbert_function
+  optim/         # (25) 数值优化 | Numerical optimization
+                  #   optim, linear_prog, quadratic_prog, simplex_method, interior_point,
+                  #   gradient_descent, newton_method, levenberg_marquardt, conjugate_gradient,
+                  #   trust_region, sqp, sdp, socp, eigen, eigenvalue_solver,
+                  #   simulated_annealing, genetic_algorithm, pso, cmaes, bayesian_opt,
+                  #   branch_bound, nsga2, pareto_front, augmented_lagrangian, geom_opt
+  robotics/      # (20) 机器人与运动规划 | Robotics & motion planning
+                  #   rrt, rrt_star, prm, prm_planner, a_star, shortest_path,
+                  #   visibility_graph, motion_plan, motion_planner_3d, collision_detect,
+                  #   collision_detect_3d, gjk, sat, config_space, kinematics,
+                  #   grasp_planning, contact_geom, potential_field, trajectory_opt,
+                  #   workspace_analysis
+  pde/           # (20) 偏微分方程 | Partial differential equations
+                  #   poisson_solver, heat_equation, wave_equation, diffusion_solver,
+                  #   advection_solver, navier_stokes, schrodinger_solver, maxwell_solver,
+                  #   reaction_diffusion, level_set, fast_marching, fast_sweeping,
+                  #   finite_element, boundary_element, spectral_method, meshfree_method,
+                  #   discontinuous_galerkin, lattice_boltzmann, harmonic_map, minimal_surface
+  ml/            # (19) 机器学习几何 | ML geometry
+                  #   clustering, clustering_geom, manifold_learning, dimension_reduction,
+                  #   feature_projection, spectral_geom, kernel_density, gaussian_process,
+                  #   regression_geom, svm_geometry, decision_boundary, ransac, matching,
+                  #   shape_context, shape_matching, icp, graph_color, graph_cut,
+                  #   stochastic_geom
+  graphics/      # (18) 图形与渲染 | Graphics & rendering
+                  #   ray_tracing, ray_trace_ops, rasterization, raster_2d, raster_ops,
+                  #   hidden_line, contour_line, svg_out, hough_transform, fractal_gen,
+                  #   shading_model, shadow_mapping, env_mapping, bump_mapping,
+                  #   texture_mapping, anti_aliasing, splatting, gpu_geometry
+  differential/  # (14) 微分几何 | Differential geometry
+                  #   geodesic, conformal_geom, discrete_curvature, discrete_diff_geom,
+                  #   discrete_laplacian, discrete_yamabe, gauss_bonnet, info_geom,
+                  #   quantum_geom, symplectic_geom, symplectic_int, topological_quantum,
+                  #   bend_energy, willmore_energy
+  algebraic/     # (12) 代数几何 | Algebraic geometry
+                  #   conic_section, quadric_surface, implicit_surface, resultant,
+                  #   geometric_algebra, grobner_basis, polynomial_ideal, elimination_ideal,
+                  #   algebraic_variety, intersection_theory, multiplicity, bezout_theorem
+  computational/ # (18) 计算几何理论 | Computational geometry theory
+                  #   art_gallery, visibility, euler_tour, spanning_tree, covering, packing,
+                  #   geom_prob, geom_measure, geom_inequal, geom_hash, geom_coding,
+                  #   chaos_geom, lattice_geom, crystal_geom, fractal_dimension,
+                  #   hausdorff_dimension, ifs, rounded_geometry
+  stats/         # (11) 统计与分子几何 | Statistical & molecular geometry
+                  #   fourier_descriptor, moment_invariants, pmatch, random_geom_graph,
+                  #   bayesian_geom, dynamics_geom, geom_mechanics, molecular_geom,
+                  #   protein_geom, drug_design, tin
+  pointcloud/    # (7)  点云处理 | Point cloud processing
+                  #   point_cloud, sampling, pc_filter, pc_transform, pc_feature,
+                  #   pc_segment, normal_est
+  io/            # (7)  文件输入输出 | File I/O
+                  #   obj_io, stl_io, ply_io, gltf_io, geojson_io, dxf_io, json_out
+  testing/       # (5)  测试基础设施 | Testing infrastructure
+                  #   formal_properties, formal_invariants, mock_geometric,
+                  #   e2e_workflows, ai_property_tests
+  misc/          # (14) 杂项工具 | Miscellaneous utilities
+                  #   intersect, fitting, project3d, gis_projection, gis_buffer,
+                  #   delaunay_refine, trapezoidal, integration, differentiation,
+                  #   radial_basis, wavelet_geom, dynamic_filter, static_filter,
+                  #   ground_detect
 ```
 
 ## 快速示例 | Quick Example
@@ -408,6 +308,9 @@ All four targets pass: 2518 × 4 = 10072 test runs green.
 | v0.234.0 | v0.234.0 | ML几何+机器人+图形+PDE（40模块）| ML geometry + robotics + graphics + PDE (40 modules) | ✅ 完成 | ✅ Done |
 | v0.235.0 | v0.235.0 | 代数结构+鲁棒几何+优化+应用（40模块）| Algebra structures + robust geometry + optimization + applications (40 modules) | ✅ 完成 | ✅ Done |
 | v0.236.0 | v0.236.0 | 形式化验证+MOCK/FAKE+E2E+AI属性测试（5模块）| Formal verification + MOCK/FAKE + E2E + AI property tests (5 modules) | ✅ 完成 | ✅ Done |
+| v0.237.0 | v0.237.0 | Trait 去重（PointTransform trait, cross/approx_eq/map_points 统一）| Trait-based deduplication | ✅ 完成 | ✅ Done |
+| v0.238.0 | v0.238.0 | 目录重构（401模块→24分类子目录）| Directory restructuring (401 modules → 24 categories) | ✅ 完成 | ✅ Done |
+| v0.239.0 | v0.239.0 | Warning 治理（204→55）| Warning governance (204→55) | ✅ 完成 | ✅ Done |
 
 详见 [docs/roadmap.md](docs/roadmap.md) 与 [docs/changelog.md](docs/changelog.md)。
 See [docs/roadmap.md](docs/roadmap.md) and [docs/changelog.md](docs/changelog.md).
