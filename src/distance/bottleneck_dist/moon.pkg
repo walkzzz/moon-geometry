@@ -1,0 +1,3 @@
+import {
+  "walkzzz/moon-geometry/src/topology/persistence_diagram",
+}

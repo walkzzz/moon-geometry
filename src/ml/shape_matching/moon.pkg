@@ -1,0 +1,5 @@
+import {
+  "walkzzz/moon-geometry/src/base/core",
+  "walkzzz/moon-geometry/src/ml/shape_context",
+  "moonbitlang/core/math",
+}

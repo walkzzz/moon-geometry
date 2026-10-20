@@ -6,6 +6,39 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
 Moon Geometry 的所有重要变更记录于此。
 格式基于 [Keep a Changelog](https://keepachangelog.com/)。
 
+## [0.238.0] - 2026-10-20
+
+### Changed — Directory Restructuring | 目录分组重构
+
+将 `src/` 下 401 个平铺模块重组为 24 个分类子目录：
+
+| 分类 | 模块数 | 说明 |
+|------|--------|------|
+| base | 30 | 核心类型、工具、算术 |
+| topology | 27 | 拓扑数据分析 |
+| polygon | 26 | 多边形算法 |
+| optim | 25 | 优化 |
+| mesh | 25 | 网格算法 |
+| curves | 24 | 曲线算法 |
+| spatial | 22 | 空间索引 |
+| robotics | 20 | 机器人与运动规划 |
+| pde | 20 | PDE 求解器 |
+| ml | 19 | 机器学习 |
+| graphics | 18 | 计算机图形学 |
+| computational | 18 | 计算几何 |
+| hull | 18 | 凸包算法 |
+| transform | 14 | 几何变换 |
+| differential | 14 | 微分几何 |
+| misc | 14 | 其他 |
+| algebraic | 12 | 代数几何 |
+| arrangement | 12 | 排列与细分 |
+| stats | 11 | 几何统计 |
+| distance | 11 | 距离算法 |
+| io | 7 | 输入输出 |
+| pointcloud | 7 | 点云处理 |
+| testing | 5 | 测试模块 |
+| shapes | 2 | 几何形状 |
+
 ## [0.237.0] - 2026-10-20
 
 ### Changed — Trait-based Deduplication | 基于 Trait 的去重重构

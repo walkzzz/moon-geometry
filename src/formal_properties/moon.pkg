@@ -1,8 +1,0 @@
-import {
-  "walkzzz/moon-geometry/src/core",
-  "walkzzz/moon-geometry/src/hull",
-  "walkzzz/moon-geometry/src/polygon",
-  "walkzzz/moon-geometry/src/transform",
-  "walkzzz/moon-geometry/src/distance",
-  "moonbitlang/core/math",
-}
