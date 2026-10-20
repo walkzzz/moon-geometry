@@ -11,6 +11,11 @@ pub struct ContactForm {
 ///|
 pub extend ContactForm with @moonbitlang/core/debug.Debug::{to_repr}
 
+///|
+pub fn ContactForm::new(a_x : Double, a_y : Double, a_z : Double) -> ContactForm {
+  { a_x, a_y, a_z }
+}
+
 pub fn ContactForm::eval(self : ContactForm, vx : Double, vy : Double, vz : Double) -> Double {
   self.a_x * vx + self.a_y * vy + self.a_z * vz
 }

@@ -1,6 +1,7 @@
 test "contact form eval" {
-  let w = { a_x: 1.0, a_y: 0.0, a_z: 1.0 }
+  let w = ContactForm::new(1.0, 0.0, 1.0)
   assert_eq(w.eval(1.0, 2.0, 3.0), 4.0)
+  assert_true(w.is_contact())
 }
 
 test "legendre lift" {

@@ -10321,6 +10321,9 @@ pub fn liouville_volume(x1 : Double, x2 : Double, y1 : Double, y2 : Double) -> D
 
 // ========== contact_geom ==========
 pub type ContactForm = @contact_geom.ContactForm
+pub fn contact_form_new(a_x : Double, a_y : Double, a_z : Double) -> ContactForm {
+  @contact_geom.ContactForm::new(a_x, a_y, a_z)
+}
 pub fn contact_eval(self_val : ContactForm, vx : Double, vy : Double, vz : Double) -> Double {
   @contact_geom.ContactForm::eval(self_val, vx, vy, vz)
 }
