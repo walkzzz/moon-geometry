@@ -10,7 +10,7 @@ pub fn grasp_contact_normal(object_center : (Double, Double, Double), contact_po
   if norm < 0.000000000001 { (0.0, 0.0, 0.0) } else { (dx / norm, dy / norm, dz / norm) }
 }
 ///|
-pub fn grasp_force_closure(forces : Array[(Double, Double, Double)], normals_ : Array[(Double, Double, Double)]) -> Bool {
+pub fn grasp_force_closure(forces : Array[(Double, Double, Double)], _normals_ : Array[(Double, Double, Double)]) -> Bool {
   let mut fx = 0.0; let mut fy = 0.0; let mut fz = 0.0
   for i in 0..<forces.length() {
     fx += forces[i].0; fy += forces[i].1; fz += forces[i].2
@@ -18,7 +18,7 @@ pub fn grasp_force_closure(forces : Array[(Double, Double, Double)], normals_ : 
   fx.abs() < 0.001 && fy.abs() < 0.001 && fz.abs() < 0.001
 }
 ///|
-pub fn grasp_quality(forces : Array[(Double, Double, Double)], center_ : (Double, Double, Double)) -> Double {
+pub fn grasp_quality(forces : Array[(Double, Double, Double)], _ : (Double, Double, Double)) -> Double {
   let mut min_dist = 999999.0
   for i in 0..<forces.length() {
     let d = (forces[i].0 * forces[i].0 + forces[i].1 * forces[i].1 + forces[i].2 * forces[i].2).sqrt()

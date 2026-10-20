@@ -25,7 +25,7 @@ pub fn isomap_dist(dists : Array[Array[Double]], i : Int, j : Int) -> Double {
   d[j]
 }
 ///|
-pub fn lle_weight(neighbors : Array[(Double, Double)], point_ : (Double, Double)) -> Array[Double] {
+pub fn lle_weight(neighbors : Array[(Double, Double)], _point_ : (Double, Double)) -> Array[Double] {
   let k = neighbors.length()
   let weights = Array::make(k, 1.0 / k.to_double())
   weights

@@ -23,7 +23,7 @@ pub fn legendre_lift(x : Double, y : Double, f : (Double) -> Double) -> (Double,
   (x, y, f(x))
 }
 
-pub fn reeb_vector(a_x : Double, a_y : Double, a_z : Double) -> (Double, Double, Double) {
+pub fn reeb_vector(_ : Double, _ : Double, a_z : Double) -> (Double, Double, Double) {
   (0.0, 0.0, 1.0 / a_z)
 }
 

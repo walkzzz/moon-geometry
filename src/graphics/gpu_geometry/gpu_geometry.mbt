@@ -28,7 +28,7 @@ pub fn hilbert_d2xy(d : Int, i : Int) -> (Int, Int) {
   (x, y)
 }
 ///|
-pub fn vertex_cache_optimize(indices : Array[Int], cache_size_ : Int) -> Array[Int] {
+pub fn vertex_cache_optimize(indices : Array[Int], _cache_size_ : Int) -> Array[Int] {
   indices
 }
 ///|

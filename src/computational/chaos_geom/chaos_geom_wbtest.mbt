@@ -1,5 +1,5 @@
 test "lorenz step" {
-  let (x, y, z) = lorenz_step(1.0, 1.0, 1.0, 10.0, 28.0, 8.0 / 3.0, 0.01)
+  let (x, _, _) = lorenz_step(1.0, 1.0, 1.0, 10.0, 28.0, 8.0 / 3.0, 0.01)
   assert_true(x > 0.99 && x < 1.01)
 }
 

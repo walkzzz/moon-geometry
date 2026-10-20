@@ -1,10 +1,10 @@
 test "stormer verlet" {
-  let (q, p) = stormer_verlet(1.0, 0.0, fn(x) { -x }, 0.01)
+  let (q, _) = stormer_verlet(1.0, 0.0, fn(x) { -x }, 0.01)
   assert_true(q > 0.99)
 }
 
 test "leapfrog" {
-  let (q, p) = leapfrog(1.0, 0.0, fn(x) { -x }, 0.01)
+  let (q, _) = leapfrog(1.0, 0.0, fn(x) { -x }, 0.01)
   assert_true(q > 0.99)
 }
 

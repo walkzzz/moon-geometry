@@ -20,7 +20,7 @@ pub fn writhe(signs : Array[Int]) -> Int {
   sum
 }
 
-pub fn jones_unknot(t : Double) -> Double {
+pub fn jones_unknot(_ : Double) -> Double {
   1.0
 }
 
@@ -35,7 +35,7 @@ pub fn jones_figure8(t : Double) -> Double {
   t2 - 1.0 / t + 1.0 / t2 - 1.0 / t4 + t4
 }
 
-pub fn linking_number(loop1 : Array[(Double, Double, Double)], loop2 : Array[(Double, Double, Double)]) -> Int {
+pub fn linking_number(_ : Array[(Double, Double, Double)], _ : Array[(Double, Double, Double)]) -> Int {
   0
 }
 

@@ -1,5 +1,5 @@
 test "spherical_mapping" {
-  let (u, v) = spherical_mapping((0.0, 0.0, 1.0))
+  let (_, v) = spherical_mapping((0.0, 0.0, 1.0))
   assert_true(v.abs() < 0.01)
 }
 test "cylindrical_mapping" {

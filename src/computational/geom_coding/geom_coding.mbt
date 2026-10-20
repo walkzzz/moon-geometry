@@ -18,7 +18,7 @@ pub fn kissing_number_3d() -> Int {
   12
 }
 
-pub fn hamming_bound(n : Int, d : Int, t : Int) -> Double {
+pub fn hamming_bound(n : Int, _d : Int, t : Int) -> Double {
   let mut vol = 0.0
   for i in 0..=t {
     let mut comb = 1.0

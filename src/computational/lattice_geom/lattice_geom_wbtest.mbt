@@ -4,7 +4,7 @@ test "bravais lattice volume" {
 }
 
 test "reciprocal lattice" {
-  let (b1x, b1y, b2x, b2y) = reciprocal_lattice(1.0, 0.0, 0.0, 1.0)
+  let (b1x, _, _, b2y) = reciprocal_lattice(1.0, 0.0, 0.0, 1.0)
   assert_eq(b1x, 1.0)
   assert_eq(b2y, 1.0)
 }

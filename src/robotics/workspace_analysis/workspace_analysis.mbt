@@ -4,7 +4,7 @@
 ///|
 pub fn reachability_map(joint_limits : Array[(Double, Double)], n_samples : Int) -> Int {
   let mut total = 1
-  for i in 0..<joint_limits.length() {
+  for _ in 0..<joint_limits.length() {
     total *= n_samples
   }
   total

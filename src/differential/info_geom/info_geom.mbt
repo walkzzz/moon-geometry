@@ -2,7 +2,7 @@
 ///| Fisher information metric, statistical manifolds, dual connections
 ///| Fisher 信息度量、统计流形、对偶联络
 
-pub fn fisher_metric_gaussian(mu : Double, sigma : Double) -> (Double, Double) {
+pub fn fisher_metric_gaussian(_ : Double, sigma : Double) -> (Double, Double) {
   let g11 = 1.0 / (sigma * sigma)
   let g22 = 2.0 / (sigma * sigma)
   (g11, g22)
