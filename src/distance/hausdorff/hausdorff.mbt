@@ -12,13 +12,7 @@ pub fn hausdorff_directed(
   }
   let mut max_min = 0.0
   for pa in a {
-    let mut min_dist = pa.dist(b[0])
-    for pb in b {
-      let d = pa.dist(pb)
-      if d < min_dist {
-        min_dist = d
-      }
-    }
+    let min_dist = @core.min_dist_to_set(pa, b)
     if min_dist > max_min {
       max_min = min_dist
     }
@@ -63,14 +57,7 @@ pub fn partial_hausdorff(
   }
   let dists : Array[Double] = []
   for pa in a {
-    let mut min_dist = pa.dist(b[0])
-    for pb in b {
-      let d = pa.dist(pb)
-      if d < min_dist {
-        min_dist = d
-      }
-    }
-    dists.push(min_dist)
+    dists.push(@core.min_dist_to_set(pa, b))
   }
   dists.sort()
   let idx = if k < dists.length() { k } else { dists.length() - 1 }

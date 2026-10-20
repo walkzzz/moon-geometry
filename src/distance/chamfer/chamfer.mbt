@@ -9,14 +9,7 @@ pub fn chamfer_directed(
   }
   let mut total = 0.0
   for pa in a {
-    let mut min_dist = pa.dist(b[0])
-    for pb in b {
-      let d = pa.dist(pb)
-      if d < min_dist {
-        min_dist = d
-      }
-    }
-    total += min_dist
+    total += @core.min_dist_to_set(pa, b)
   }
   total / a.length().to_double()
 }

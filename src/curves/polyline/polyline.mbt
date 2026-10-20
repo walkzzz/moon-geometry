@@ -1,15 +1,7 @@
 ///|
 /// Total length of a polyline. / 折线总长度。
 pub fn polyline_length(points : Array[@core.Point2D]) -> Double {
-  let n = points.length()
-  if n < 2 {
-    return 0.0
-  }
-  let mut total = 0.0
-  for i in 0..<(n - 1) {
-    total += points[i].dist(points[i + 1])
-  }
-  total
+  @core.polyline_length(points)
 }
 
 ///|

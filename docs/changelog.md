@@ -6,6 +6,20 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
 Moon Geometry 的所有重要变更记录于此。
 格式基于 [Keep a Changelog](https://keepachangelog.com/)。
 
+## [0.240.0] - 2026-10-20
+
+### Added — Curve2D Trait & Shared Functions | Curve2D Trait 与共享函数
+
+- 新增 `pub(open) trait Curve2D`（`eval`/`derivative`/`length`）在 `@core` 中
+- `Bezier2` 和 `Bezier3` 实现 `Curve2D` trait
+- 新增 `@core.polyline_length`：折线总长度共享函数
+- 新增 `@core.min_dist_to_set`：点到点集最小距离共享函数
+
+### Refactored — Code Deduplication | 代码去重
+
+- `spline_length`、`polyline_length`、`arc_length_total`、`arc_length` 4 处重复实现 → 统一调用 `@core.polyline_length`
+- `hausdorff_directed`、`partial_hausdorff`、`chamfer_directed` 3 处重复内循环 → 统一调用 `@core.min_dist_to_set`
+
 ## [0.239.0] - 2026-10-20
 
 ### Fixed — Warning Governance | 警告治理（204 → 55）

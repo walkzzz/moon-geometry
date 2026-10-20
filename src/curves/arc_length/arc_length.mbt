@@ -10,15 +10,7 @@ pub fn arc_length_segment(
 ///|
 /// Total arc length of a polyline. / 折线总弧长。
 pub fn arc_length_total(points : Array[@core.Point2D]) -> Double {
-  let n = points.length()
-  if n < 2 {
-    return 0.0
-  }
-  let mut total = 0.0
-  for i in 0..<(n - 1) {
-    total += arc_length_segment(points[i], points[i + 1])
-  }
-  total
+  @core.polyline_length(points)
 }
 
 ///|

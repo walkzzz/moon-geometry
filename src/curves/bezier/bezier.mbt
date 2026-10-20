@@ -11,6 +11,9 @@ pub struct Bezier2 {
 pub extend Bezier2 with @moonbitlang/core/debug.Debug::{to_repr}
 
 ///|
+pub extend Bezier2 with @core.Curve2D::{eval, derivative, length}
+
+///|
 /// Cubic Bezier curve with 4 control points.
 /// 三次贝塞尔曲线，4 个控制点。
 pub struct Bezier3 {
@@ -22,6 +25,9 @@ pub struct Bezier3 {
 
 ///|
 pub extend Bezier3 with @moonbitlang/core/debug.Debug::{to_repr}
+
+///|
+pub extend Bezier3 with @core.Curve2D::{eval, derivative, length}
 
 ///|
 /// Construct a quadratic Bezier curve. / 构造二次贝塞尔曲线。
@@ -49,7 +55,7 @@ pub fn Bezier3::new(
 /// B(t) = (1-t)²P0 + 2(1-t)tP1 + t²P2
 ///
 /// 计算二次贝塞尔曲线在参数 t 处的值。
-pub fn Bezier2::eval(self : Bezier2, t : Double) -> @core.Point2D {
+pub impl @core.Curve2D for Bezier2 with eval(self, t) {
   let u = 1.0 - t
   let a = u * u
   let b = 2.0 * u * t
@@ -65,7 +71,7 @@ pub fn Bezier2::eval(self : Bezier2, t : Double) -> @core.Point2D {
 /// B'(t) = 2(1-t)(P1-P0) + 2t(P2-P1)
 ///
 /// 二次贝塞尔曲线在参数 t 处的导数。
-pub fn Bezier2::derivative(self : Bezier2, t : Double) -> @core.Point2D {
+pub impl @core.Curve2D for Bezier2 with derivative(self, t) {
   let u = 1.0 - t
   @core.Point2D::new(
     2.0 * u * (self.p1.x() - self.p0.x()) +
@@ -78,7 +84,7 @@ pub fn Bezier2::derivative(self : Bezier2, t : Double) -> @core.Point2D {
 ///|
 /// Arc length of quadratic Bezier (numerical integration, 100 samples).
 /// 二次贝塞尔曲线弧长（数值积分，100 个采样点）。
-pub fn Bezier2::length(self : Bezier2) -> Double {
+pub impl @core.Curve2D for Bezier2 with length(self) {
   let n = 100
   let dt = 1.0 / n.to_double()
   let mut total = 0.0
@@ -146,7 +152,7 @@ pub fn Bezier2::bbox(self : Bezier2) -> (Double, Double, Double, Double) {
 /// B(t) = (1-t)³P0 + 3(1-t)²tP1 + 3(1-t)t²P2 + t³P3
 ///
 /// 计算三次贝塞尔曲线在参数 t 处的值。
-pub fn Bezier3::eval(self : Bezier3, t : Double) -> @core.Point2D {
+pub impl @core.Curve2D for Bezier3 with eval(self, t) {
   let u = 1.0 - t
   let a = u * u * u
   let b = 3.0 * u * u * t
@@ -163,7 +169,7 @@ pub fn Bezier3::eval(self : Bezier3, t : Double) -> @core.Point2D {
 /// B'(t) = 3(1-t)²(P1-P0) + 6(1-t)t(P2-P1) + 3t²(P3-P2)
 ///
 /// 三次贝塞尔曲线在参数 t 处的导数。
-pub fn Bezier3::derivative(self : Bezier3, t : Double) -> @core.Point2D {
+pub impl @core.Curve2D for Bezier3 with derivative(self, t) {
   let u = 1.0 - t
   let a = 3.0 * u * u
   let b = 6.0 * u * t
@@ -181,7 +187,7 @@ pub fn Bezier3::derivative(self : Bezier3, t : Double) -> @core.Point2D {
 ///|
 /// Arc length of cubic Bezier (numerical integration, 100 samples).
 /// 三次贝塞尔曲线弧长（数值积分，100 个采样点）。
-pub fn Bezier3::length(self : Bezier3) -> Double {
+pub impl @core.Curve2D for Bezier3 with length(self) {
   let n = 100
   let dt = 1.0 / n.to_double()
   let mut total = 0.0

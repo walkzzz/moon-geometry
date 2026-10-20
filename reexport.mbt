@@ -65,6 +65,12 @@ pub fn turn(o : Point2D, a : Point2D, b : Point2D) -> Double {
   @core.turn(o, a, b)
 }
 
+///|
+/// Minimum distance from a point to a set of points. / 点到点集的最小距离。
+pub fn min_dist_to_set(p : Point2D, set : Array[Point2D]) -> Double {
+  @core.min_dist_to_set(p, set)
+}
+
 // ---------------------------------------------------------------------------
 // hull: convex hull / 凸包
 // ---------------------------------------------------------------------------

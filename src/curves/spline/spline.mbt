@@ -1,15 +1,7 @@
 ///|
 /// Total length of a spline (sum of segment lengths). / 样条总长度（线段长度之和）。
 pub fn spline_length(points : Array[@core.Point2D]) -> Double {
-  let n = points.length()
-  if n < 2 {
-    return 0.0
-  }
-  let mut total = 0.0
-  for i in 0..<(n - 1) {
-    total += points[i].dist(points[i + 1])
-  }
-  total
+  @core.polyline_length(points)
 }
 
 ///|
