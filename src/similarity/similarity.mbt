@@ -33,10 +33,7 @@ pub fn Similarity::translation(tx : Double, ty : Double) -> Similarity {
 
 ///|
 /// Apply similarity to a point. / 将相似变换应用于点。
-pub fn Similarity::apply(
-  s : Similarity,
-  p : @core.Point2D,
-) -> @core.Point2D {
+pub impl @core.PointTransform for Similarity with apply(s, p) {
   let c = s.scale * @math.cos(s.angle)
   let sn = s.scale * @math.sin(s.angle)
   @core.Point2D::new(c * p.x() - sn * p.y() + s.tx, sn * p.x() + c * p.y() + s.ty)
@@ -73,20 +70,7 @@ pub fn Similarity::inverse(s : Similarity) -> Similarity? {
 }
 
 ///|
-/// Apply similarity to an array of points. / 将相似变换应用于点数组。
-pub fn Similarity::apply_batch(
-  s : Similarity,
-  points : Array[@core.Point2D],
-) -> Array[@core.Point2D] {
-  let result : Array[@core.Point2D] = []
-  for p in points {
-    result.push(s.apply(p))
-  }
-  result
-}
-
-///|
-/// Estimate similarity from two point correspondences. / 由两对对应点估计相似变换。
+/// Estimate similarity from two point correspondences. / 将相似变换应用于点对。
 pub fn Similarity::from_correspondence(
   src1 : @core.Point2D,
   dst1 : @core.Point2D,

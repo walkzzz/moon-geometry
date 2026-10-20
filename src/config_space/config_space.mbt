@@ -170,7 +170,7 @@ fn convex_hull(points : Array[@core.Point2D]) -> Array[@core.Point2D] {
   let sorted = sort_by_x(points)
   let lower : Array[@core.Point2D] = []
   for i in 0..<sorted.length() {
-    while lower.length() >= 2 && cross3(lower[lower.length() - 2], lower[lower.length() - 1], sorted[i]) <= 0.0 {
+    while lower.length() >= 2 && @core.turn(lower[lower.length() - 2], lower[lower.length() - 1], sorted[i]) <= 0.0 {
       lower.remove(lower.length() - 1) |> ignore
     }
     lower.push(sorted[i])
@@ -178,7 +178,7 @@ fn convex_hull(points : Array[@core.Point2D]) -> Array[@core.Point2D] {
   let upper : Array[@core.Point2D] = []
   let mut i = sorted.length() - 1
   while i >= 0 {
-    while upper.length() >= 2 && cross3(upper[upper.length() - 2], upper[upper.length() - 1], sorted[i]) <= 0.0 {
+    while upper.length() >= 2 && @core.turn(upper[upper.length() - 2], upper[upper.length() - 1], sorted[i]) <= 0.0 {
       upper.remove(upper.length() - 1) |> ignore
     }
     upper.push(sorted[i])
@@ -211,10 +211,6 @@ fn sort_by_x(points : Array[@core.Point2D]) -> Array[@core.Point2D] {
     }
   })
   result
-}
-
-fn cross3(a : @core.Point2D, b : @core.Point2D, c : @core.Point2D) -> Double {
-  (b.x() - a.x()) * (c.y() - a.y()) - (b.y() - a.y()) * (c.x() - a.x())
 }
 
 ///|
@@ -282,10 +278,10 @@ fn seg_cross(
   b1 : @core.Point2D,
   b2 : @core.Point2D,
 ) -> Bool {
-  let d1 = cross3(b1, b2, a1)
-  let d2 = cross3(b1, b2, a2)
-  let d3 = cross3(a1, a2, b1)
-  let d4 = cross3(a1, a2, b2)
+  let d1 = @core.turn(b1, b2, a1)
+  let d2 = @core.turn(b1, b2, a2)
+  let d3 = @core.turn(a1, a2, b1)
+  let d4 = @core.turn(a1, a2, b2)
   ((d1 > 0.0 && d2 < 0.0) || (d1 < 0.0 && d2 > 0.0)) &&
     ((d3 > 0.0 && d4 < 0.0) || (d3 < 0.0 && d4 > 0.0))
 }

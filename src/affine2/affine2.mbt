@@ -35,7 +35,7 @@ pub fn Affine2::shear(shx : Double, shy : Double) -> Affine2 {
 
 ///|
 /// Apply affine to a point. / 将仿射变换应用于点。
-pub fn Affine2::apply(m : Affine2, p : @core.Point2D) -> @core.Point2D {
+pub impl @core.PointTransform for Affine2 with apply(m, p) {
   @core.Point2D::new(m.a * p.x() + m.b * p.y() + m.tx, m.c * p.x() + m.d * p.y() + m.ty)
 }
 
@@ -80,15 +80,3 @@ pub fn Affine2::inverse(m : Affine2) -> Affine2? {
   })
 }
 
-///|
-/// Apply affine to an array of points. / 将仿射变换应用于点数组。
-pub fn Affine2::apply_batch(
-  m : Affine2,
-  points : Array[@core.Point2D],
-) -> Array[@core.Point2D] {
-  let result : Array[@core.Point2D] = []
-  for p in points {
-    result.push(m.apply(p))
-  }
-  result
-}

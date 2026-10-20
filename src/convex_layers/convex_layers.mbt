@@ -46,7 +46,7 @@ fn compute_hull(points : Array[@core.Point2D]) -> Array[@core.Point2D] {
   })
   let lower : Array[@core.Point2D] = []
   for p in pts {
-    while lower.length() >= 2 && cross(lower[lower.length() - 2], lower[lower.length() - 1], p) <= 0.0 {
+    while lower.length() >= 2 && @core.turn(lower[lower.length() - 2], lower[lower.length() - 1], p) <= 0.0 {
       ignore(lower.remove(lower.length() - 1))
     }
     lower.push(p)
@@ -55,7 +55,7 @@ fn compute_hull(points : Array[@core.Point2D]) -> Array[@core.Point2D] {
   let mut idx = pts.length() - 1
   while idx >= 0 {
     let p = pts[idx]
-    while upper.length() >= 2 && cross(upper[upper.length() - 2], upper[upper.length() - 1], p) <= 0.0 {
+    while upper.length() >= 2 && @core.turn(upper[upper.length() - 2], upper[upper.length() - 1], p) <= 0.0 {
       ignore(upper.remove(upper.length() - 1))
     }
     upper.push(p)
@@ -65,10 +65,6 @@ fn compute_hull(points : Array[@core.Point2D]) -> Array[@core.Point2D] {
   for p in lower { result.push(p) }
   for i in 1..<(upper.length() - 1) { result.push(upper[i]) }
   result
-}
-
-fn cross(o : @core.Point2D, a : @core.Point2D, b : @core.Point2D) -> Double {
-  (a.x() - o.x()) * (b.y() - o.y()) - (a.y() - o.y()) * (b.x() - o.x())
 }
 
 ///|

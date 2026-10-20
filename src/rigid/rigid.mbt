@@ -26,7 +26,7 @@ pub fn Rigid::rotation(angle : Double) -> Rigid {
 
 ///|
 /// Apply rigid transformation to a point. / 将刚体变换应用于点。
-pub fn Rigid::apply(r : Rigid, p : @core.Point2D) -> @core.Point2D {
+pub impl @core.PointTransform for Rigid with apply(r, p) {
   let c = @math.cos(r.angle)
   let s = @math.sin(r.angle)
   @core.Point2D::new(c * p.x() - s * p.y() + r.tx, s * p.x() + c * p.y() + r.ty)
@@ -57,19 +57,7 @@ pub fn Rigid::inverse(r : Rigid) -> Rigid {
 }
 
 ///|
-/// Apply rigid to an array of points. / 将刚体变换应用于点数组。
-pub fn Rigid::apply_batch(
-  r : Rigid,
-  points : Array[@core.Point2D],
-) -> Array[@core.Point2D] {
-  let result : Array[@core.Point2D] = []
-  for p in points {
-    result.push(r.apply(p))
-  }
-  result
-}
 
-///|
 /// Estimate rigid transform from two point correspondences. / 由两对对应点估计刚体变换。
 pub fn Rigid::from_correspondence(
   src1 : @core.Point2D,

@@ -2,13 +2,8 @@
 ///| Property-based tests verifying mathematical axioms and invariants
 ///| 基于属性的测试，验证数学公理和不变量
 
-fn approx_eq(a : Double, b : Double) -> Bool {
-  (a - b).abs() < 1.0e-10
-}
+fn approx_eq(a : Double, b : Double) -> Bool { @core.approx_eq(a, b, 1.0e-10) }
 
-fn approx_eq_tol(a : Double, b : Double, tol : Double) -> Bool {
-  (a - b).abs() < tol
-}
 
 // ============================================================
 // 1. Distance Axioms | 距离公理
@@ -96,8 +91,8 @@ test "property: rotation composition" {
   let p_ra = @transform.rotate(p, alpha)
   let p_rab = @transform.rotate(p_ra, beta)
   let p_rab2 = @transform.rotate(p, alpha + beta)
-  assert_true(approx_eq_tol(p_rab.x(), p_rab2.x(), 1.0e-9))
-  assert_true(approx_eq_tol(p_rab.y(), p_rab2.y(), 1.0e-9))
+  assert_true(@core.approx_eq(p_rab.x(), p_rab2.x(), 1.0e-9))
+  assert_true(@core.approx_eq(p_rab.y(), p_rab2.y(), 1.0e-9))
 }
 
 ///| Inverse translation restores original | 逆平移恢复原状
@@ -117,8 +112,8 @@ test "property: inverse rotation" {
   let angle = 1.2566370614359172
   let p_r = @transform.rotate(p, angle)
   let p_restored = @transform.rotate(p_r, -angle)
-  assert_true(approx_eq_tol(p.x(), p_restored.x(), 1.0e-9))
-  assert_true(approx_eq_tol(p.y(), p_restored.y(), 1.0e-9))
+  assert_true(@core.approx_eq(p.x(), p_restored.x(), 1.0e-9))
+  assert_true(@core.approx_eq(p.y(), p_restored.y(), 1.0e-9))
 }
 
 ///| Mirror is involution: M(M(p)) = p | 镜像对合性

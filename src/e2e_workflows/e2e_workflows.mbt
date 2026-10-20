@@ -2,24 +2,9 @@
 ///| Complete geometric processing pipeline tests
 ///| 完整几何处理管线测试
 
-fn approx_eq(a : Double, b : Double) -> Bool {
-  (a - b).abs() < 1.0e-9
-}
+fn approx_eq(a : Double, b : Double) -> Bool { @core.approx_eq(a, b, 1.0e-9) }
 
-fn approx_eq_tol(a : Double, b : Double, tol : Double) -> Bool {
-  (a - b).abs() < tol
-}
 
-fn map_points(
-  pts : Array[@core.Point2D],
-  f : (@core.Point2D) -> @core.Point2D,
-) -> Array[@core.Point2D] {
-  let result : Array[@core.Point2D] = []
-  for p in pts {
-    result.push(f(p))
-  }
-  result
-}
 
 ///| E2E: Point set → Convex hull → Area → Containment check
 ///| 端到端：点集 → 凸包 → 面积 → 包含检查
@@ -60,17 +45,17 @@ test "e2e: transform inverse pipeline" {
   let dx = 10.0
   let dy = 20.0
   let angle = 0.7853981633974483
-  let transformed_verts = map_points(original.vertices, fn(v) {
+  let transformed_verts = @core.map_points(original.vertices, fn(v) {
     @transform.rotate(@transform.translate(v, dx, dy), angle)
   })
   let transformed = @core.Polygon::new(transformed_verts)
-  let restored_verts = map_points(transformed.vertices, fn(v) {
+  let restored_verts = @core.map_points(transformed.vertices, fn(v) {
     @transform.translate(@transform.rotate(v, -angle), -dx, -dy)
   })
   let restored = @core.Polygon::new(restored_verts)
   for i in 0..<original.size() {
-    assert_true(approx_eq_tol(original.vertices[i].x(), restored.vertices[i].x(), 1.0e-8))
-    assert_true(approx_eq_tol(original.vertices[i].y(), restored.vertices[i].y(), 1.0e-8))
+    assert_true(@core.approx_eq(original.vertices[i].x(), restored.vertices[i].x(), 1.0e-8))
+    assert_true(@core.approx_eq(original.vertices[i].y(), restored.vertices[i].y(), 1.0e-8))
   }
 }
 
@@ -93,7 +78,7 @@ test "e2e: hull algorithm comparison" {
   let area_a = @polygon.polygon_area(poly_a)
   let area_g = @polygon.polygon_area(poly_g)
   assert_eq(hull_a.length(), hull_g.length())
-  assert_true(approx_eq_tol(area_a, area_g, 1.0e-8))
+  assert_true(@core.approx_eq(area_a, area_g, 1.0e-8))
 }
 
 ///| E2E: Square → Scale → Area check
@@ -108,7 +93,7 @@ test "e2e: scale area pipeline" {
   ])
   let original_area = @polygon.polygon_area(poly)
   let scale_factor = 2.5
-  let scaled_verts = map_points(poly.vertices, fn(v) { @transform.scale(v, scale_factor, scale_factor) })
+  let scaled_verts = @core.map_points(poly.vertices, fn(v) { @transform.scale(v, scale_factor, scale_factor) })
   let scaled_poly = @core.Polygon::new(scaled_verts)
   let scaled_area = @polygon.polygon_area(scaled_poly)
   assert_true(approx_eq(scaled_area, original_area * scale_factor * scale_factor))
@@ -191,6 +176,6 @@ test "e2e: transform chain identity" {
   let p4 = @transform.scale(p3, 0.5, 0.5)
   let p5 = @transform.rotate(p4, -1.5707963267948966)
   let p6 = @transform.translate(p5, -10.0, -20.0)
-  assert_true(approx_eq_tol(p.x(), p6.x(), 1.0e-8))
-  assert_true(approx_eq_tol(p.y(), p6.y(), 1.0e-8))
+  assert_true(@core.approx_eq(p.x(), p6.x(), 1.0e-8))
+  assert_true(@core.approx_eq(p.y(), p6.y(), 1.0e-8))
 }

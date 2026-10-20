@@ -1,10 +1,6 @@
 ///|
 /// Cross product of vectors (b-a) and (c-a).
 /// 向量 (b-a) 和 (c-a) 的叉积。
-fn cross(a : @core.Point2D, b : @core.Point2D, c : @core.Point2D) -> Double {
-  (b.x() - a.x()) * (c.y() - a.y()) - (b.y() - a.y()) * (c.x() - a.x())
-}
-
 ///|
 /// Distance from point p to line through a and b.
 /// 点 p 到直线 ab 的距离。
@@ -60,7 +56,7 @@ pub fn convex_polygon_diameter(
     while true {
       let nj = (j + 1) % n
       let d2 = pts[i].dist_sq(pts[nj])
-      let cross_val = cross(pts[i], pts[ni], pts[nj])
+      let cross_val = @core.turn(pts[i], pts[ni], pts[nj])
       if d2 >= d && cross_val > 0.0 {
         j = nj
         d = d2
@@ -97,7 +93,7 @@ pub fn convex_polygon_width(poly : @core.Polygon) -> Double {
     let ni = (i + 1) % n
     while true {
       let nj = (j + 1) % n
-      let cross_val = cross(pts[i], pts[ni], pts[nj])
+      let cross_val = @core.turn(pts[i], pts[ni], pts[nj])
       if cross_val > 0.0 {
         j = nj
       } else {
@@ -165,7 +161,7 @@ pub fn min_perimeter_bounding_rect(
     }
     while true {
       let nj = (j + 1) % n
-      let cross_val = cross(pts[i], pts[ni], pts[nj])
+      let cross_val = @core.turn(pts[i], pts[ni], pts[nj])
       if cross_val > 0.0 {
         j = nj
       } else {

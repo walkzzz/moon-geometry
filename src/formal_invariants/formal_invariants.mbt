@@ -2,24 +2,9 @@
 ///| Verify invariants are preserved across geometric operations
 ///| 验证几何操作中不变量保持
 
-fn approx_eq(a : Double, b : Double) -> Bool {
-  (a - b).abs() < 1.0e-9
-}
+fn approx_eq(a : Double, b : Double) -> Bool { @core.approx_eq(a, b, 1.0e-9) }
 
-fn approx_eq_tol(a : Double, b : Double, tol : Double) -> Bool {
-  (a - b).abs() < tol
-}
 
-fn map_points(
-  pts : Array[@core.Point2D],
-  f : (@core.Point2D) -> @core.Point2D,
-) -> Array[@core.Point2D] {
-  let result : Array[@core.Point2D] = []
-  for p in pts {
-    result.push(f(p))
-  }
-  result
-}
 
 ///| Rotation preserves polygon area | 旋转保持多边形面积
 test "invariant: rotation preserves area" {
@@ -30,10 +15,10 @@ test "invariant: rotation preserves area" {
     @core.Point2D::new(0.0, 3.0),
   ])
   let area_before = @polygon.polygon_area(poly)
-  let rotated_verts = map_points(poly.vertices, fn(v) { @transform.rotate(v, 0.7853981633974483) })
+  let rotated_verts = @core.map_points(poly.vertices, fn(v) { @transform.rotate(v, 0.7853981633974483) })
   let rotated_poly = @core.Polygon::new(rotated_verts)
   let area_after = @polygon.polygon_area(rotated_poly)
-  assert_true(approx_eq_tol(area_before, area_after, 1.0e-8))
+  assert_true(@core.approx_eq(area_before, area_after, 1.0e-8))
 }
 
 ///| Translation preserves polygon area | 平移保持多边形面积
@@ -45,7 +30,7 @@ test "invariant: translation preserves area" {
     @core.Point2D::new(0.0, 3.0),
   ])
   let area_before = @polygon.polygon_area(poly)
-  let translated_verts = map_points(poly.vertices, fn(v) { @transform.translate(v, 100.0, -50.0) })
+  let translated_verts = @core.map_points(poly.vertices, fn(v) { @transform.translate(v, 100.0, -50.0) })
   let translated_poly = @core.Polygon::new(translated_verts)
   let area_after = @polygon.polygon_area(translated_poly)
   assert_true(approx_eq(area_before, area_after))
@@ -61,7 +46,7 @@ test "invariant: scaling changes area by s^2" {
   ])
   let area_before = @polygon.polygon_area(poly)
   let s = 3.0
-  let scaled_verts = map_points(poly.vertices, fn(v) { @transform.scale(v, s, s) })
+  let scaled_verts = @core.map_points(poly.vertices, fn(v) { @transform.scale(v, s, s) })
   let scaled_poly = @core.Polygon::new(scaled_verts)
   let area_after = @polygon.polygon_area(scaled_poly)
   assert_true(approx_eq(area_after, area_before * s * s))
@@ -76,10 +61,10 @@ test "invariant: rotation preserves perimeter" {
     @core.Point2D::new(0.0, 3.0),
   ])
   let perim_before = @polygon.polygon_perimeter(poly)
-  let rotated_verts = map_points(poly.vertices, fn(v) { @transform.rotate(v, 1.2566370614359172) })
+  let rotated_verts = @core.map_points(poly.vertices, fn(v) { @transform.rotate(v, 1.2566370614359172) })
   let rotated_poly = @core.Polygon::new(rotated_verts)
   let perim_after = @polygon.polygon_perimeter(rotated_poly)
-  assert_true(approx_eq_tol(perim_before, perim_after, 1.0e-8))
+  assert_true(@core.approx_eq(perim_before, perim_after, 1.0e-8))
 }
 
 ///| Convexity preserved under affine transform | 仿射变换保持凸性
@@ -91,7 +76,7 @@ test "invariant: convexity preserved under rotation" {
     @core.Point2D::new(0.0, 4.0),
   ])
   assert_true(@polygon.is_convex(poly))
-  let rotated_verts = map_points(poly.vertices, fn(v) { @transform.rotate(v, 0.5235987755982989) })
+  let rotated_verts = @core.map_points(poly.vertices, fn(v) { @transform.rotate(v, 0.5235987755982989) })
   let rotated_poly = @core.Polygon::new(rotated_verts)
   assert_true(@polygon.is_convex(rotated_poly))
 }
@@ -104,7 +89,7 @@ test "invariant: convexity preserved under translation" {
     @core.Point2D::new(4.0, 4.0),
     @core.Point2D::new(0.0, 4.0),
   ])
-  let translated_verts = map_points(poly.vertices, fn(v) { @transform.translate(v, 50.0, -30.0) })
+  let translated_verts = @core.map_points(poly.vertices, fn(v) { @transform.translate(v, 50.0, -30.0) })
   let translated_poly = @core.Polygon::new(translated_verts)
   assert_true(@polygon.is_convex(translated_poly))
 }
@@ -133,8 +118,8 @@ test "invariant: centroid of symmetric shape" {
     @core.Point2D::new(-2.0, 2.0),
   ])
   let c = @polygon.polygon_centroid(poly)
-  assert_true(approx_eq_tol(c.x(), 0.0, 1.0e-9))
-  assert_true(approx_eq_tol(c.y(), 0.0, 1.0e-9))
+  assert_true(@core.approx_eq(c.x(), 0.0, 1.0e-9))
+  assert_true(@core.approx_eq(c.y(), 0.0, 1.0e-9))
 }
 
 ///| DistSq is always non-negative | 距离平方非负
@@ -160,7 +145,7 @@ test "invariant: mirror preserves area" {
     @core.Point2D::new(1.0, 3.0),
   ])
   let area_before = @polygon.polygon_area(poly)
-  let mirrored_verts = map_points(poly.vertices, fn(v) { @transform.mirror_x(v) })
+  let mirrored_verts = @core.map_points(poly.vertices, fn(v) { @transform.mirror_x(v) })
   let mirrored_poly = @core.Polygon::new(mirrored_verts)
   let area_after = @polygon.polygon_area(mirrored_poly)
   assert_true(approx_eq(area_before, area_after))

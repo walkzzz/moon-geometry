@@ -6,6 +6,25 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
 Moon Geometry 的所有重要变更记录于此。
 格式基于 [Keep a Changelog](https://keepachangelog.com/)。
 
+## [0.237.0] - 2026-10-20
+
+### Changed — Trait-based Deduplication | 基于 Trait 的去重重构
+
+#### `PointTransform` Trait | 点变换 Trait
+- 在 `@core` 中定义 `pub(open) trait PointTransform`，包含 `apply` 和 `apply_batch`（默认实现）
+- `Affine2`、`Rigid`、`Similarity` 均实现 `PointTransform`，消除 `apply` 和 `apply_batch` 重复定义
+- `apply_batch` 使用 trait 默认实现，自动通过 `@core.map_points` + `self.apply` 完成
+
+#### `cross`/`cross3` 去重 | 叉积去重（11 处）
+- 删除 12 个文件中的 `cross`/`cross3` 重复定义，统一使用 `@core.turn`
+
+#### `approx_eq` 去重 | 近似比较去重（8 处）
+- 删除 4 个 wbtest 文件中的 `approx_eq(a,b,eps)` 定义，统一使用 `@core.approx_eq`
+- 4 个测试模块中的 `approx_eq(a,b)` 改为一行包装，`approx_eq_tol` 调用改为 `@core.approx_eq`
+
+#### `map_points` 去重 | 点映射去重（3 处）
+- 在 `@core` 中添加 `pub fn map_points`，删除 3 个测试模块中的重复定义
+
 ## [0.236.0] - 2026-10-17
 
 ### Added — Formal Verification & Testing Modules | 形式化验证与测试模块（5 个模块，91 个测试）

@@ -2,24 +2,9 @@
 ///| AI-driven property and boundary tests for robust verification
 ///| AI 驱动的属性和边界测试，用于鲁棒性验证
 
-fn approx_eq(a : Double, b : Double) -> Bool {
-  (a - b).abs() < 1.0e-9
-}
+fn approx_eq(a : Double, b : Double) -> Bool { @core.approx_eq(a, b, 1.0e-9) }
 
-fn approx_eq_tol(a : Double, b : Double, tol : Double) -> Bool {
-  (a - b).abs() < tol
-}
 
-fn map_points(
-  pts : Array[@core.Point2D],
-  f : (@core.Point2D) -> @core.Point2D,
-) -> Array[@core.Point2D] {
-  let result : Array[@core.Point2D] = []
-  for p in pts {
-    result.push(f(p))
-  }
-  result
-}
 
 ///| Simple LCG for AI-driven random testing | 简单 LCG 用于 AI 驱动随机测试
 fn lcg_next(seed : Int) -> Int {
@@ -151,8 +136,8 @@ test "stability: rotation by zero" {
 test "stability: rotation by 2pi" {
   let p = @core.Point2D::new(3.0, 4.0)
   let p_r = @transform.rotate(p, 2.0 * @math.PI)
-  assert_true(approx_eq_tol(p.x(), p_r.x(), 1.0e-8))
-  assert_true(approx_eq_tol(p.y(), p_r.y(), 1.0e-8))
+  assert_true(@core.approx_eq(p.x(), p_r.x(), 1.0e-8))
+  assert_true(@core.approx_eq(p.y(), p_r.y(), 1.0e-8))
 }
 
 ///| Scale by 0 collapses to origin | 零缩放坍缩到原点
@@ -215,7 +200,7 @@ test "ai: random distance symmetry" {
     seed = s4
     let a = @core.Point2D::new(x1, y1)
     let b = @core.Point2D::new(x2, y2)
-    assert_true(approx_eq_tol(a.dist(b), b.dist(a), 1.0e-9))
+    assert_true(@core.approx_eq(a.dist(b), b.dist(a), 1.0e-9))
   }
 }
 
@@ -237,7 +222,7 @@ test "ai: random rotation preserves distance" {
     let b = @core.Point2D::new(x2, y2)
     let a_r = @transform.rotate(a, angle)
     let b_r = @transform.rotate(b, angle)
-    assert_true(approx_eq_tol(a.dist(b), a_r.dist(b_r), 1.0e-6))
+    assert_true(@core.approx_eq(a.dist(b), a_r.dist(b_r), 1.0e-6))
   }
 }
 
@@ -274,7 +259,7 @@ test "ai: random dot product symmetry" {
     seed = s4
     let a = @core.Point2D::new(x1, y1)
     let b = @core.Point2D::new(x2, y2)
-    assert_true(approx_eq_tol(a.dot(b), b.dot(a), 1.0e-9))
+    assert_true(@core.approx_eq(a.dot(b), b.dot(a), 1.0e-9))
   }
 }
 
@@ -292,7 +277,7 @@ test "ai: random cross product anti-symmetry" {
     seed = s4
     let a = @core.Point2D::new(x1, y1)
     let b = @core.Point2D::new(x2, y2)
-    assert_true(approx_eq_tol(a.cross(b), -b.cross(a), 1.0e-9))
+    assert_true(@core.approx_eq(a.cross(b), -b.cross(a), 1.0e-9))
   }
 }
 
@@ -347,7 +332,7 @@ test "extreme: many vertex polygon" {
   let poly = @core.Polygon::new(pts)
   let area = @polygon.polygon_area(poly)
   let expected = 0.5 * n.to_double() * 100.0 * @math.sin(2.0 * @math.PI / n.to_double())
-  assert_true(approx_eq_tol(area, expected, 1.0e-3))
+  assert_true(@core.approx_eq(area, expected, 1.0e-3))
 }
 
 ///| Double reflection is identity | 双重镜像为恒等
@@ -369,8 +354,8 @@ test "extreme: scale inverse" {
   let s = 5.0
   let p_s = @transform.scale(p, s, s)
   let p_restored = @transform.scale(p_s, 1.0 / s, 1.0 / s)
-  assert_true(approx_eq_tol(p.x(), p_restored.x(), 1.0e-9))
-  assert_true(approx_eq_tol(p.y(), p_restored.y(), 1.0e-9))
+  assert_true(@core.approx_eq(p.x(), p_restored.x(), 1.0e-9))
+  assert_true(@core.approx_eq(p.y(), p_restored.y(), 1.0e-9))
 }
 
 ///| Hull of convex polygon is itself | 凸多边形的凸包为自身

@@ -172,21 +172,17 @@ fn is_interior(p : @core.Point2D, pts : Array[@core.Point2D]) -> Bool {
     let b = pts[(i + 1) % n]
     if a.y() <= p.y() {
       if b.y() > p.y() {
-        if cross(a, b, p) > 0.0 {
+        if @core.turn(a, b, p) > 0.0 {
           count += 1
         }
       }
     } else if b.y() <= p.y() {
-      if cross(a, b, p) < 0.0 {
+      if @core.turn(a, b, p) < 0.0 {
         count -= 1
       }
     }
   }
   count != 0
-}
-
-fn cross(a : @core.Point2D, b : @core.Point2D, p : @core.Point2D) -> Double {
-  (b.x() - a.x()) * (p.y() - a.y()) - (b.y() - a.y()) * (p.x() - a.x())
 }
 
 fn point_seg_dist(p : @core.Point2D, a : @core.Point2D, b : @core.Point2D) -> Double {

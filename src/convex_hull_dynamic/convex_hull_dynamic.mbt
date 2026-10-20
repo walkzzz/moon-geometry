@@ -45,7 +45,7 @@ fn half_hull(dh : DynamicHull) -> Unit {
   })
   let lower : Array[@core.Point2D] = []
   for p in pts {
-    while lower.length() >= 2 && cross(lower[lower.length() - 2], lower[lower.length() - 1], p) <= 0.0 {
+    while lower.length() >= 2 && @core.turn(lower[lower.length() - 2], lower[lower.length() - 1], p) <= 0.0 {
       ignore(lower.remove(lower.length() - 1))
     }
     lower.push(p)
@@ -54,7 +54,7 @@ fn half_hull(dh : DynamicHull) -> Unit {
   let mut idx = pts.length() - 1
   while idx >= 0 {
     let p = pts[idx]
-    while upper.length() >= 2 && cross(upper[upper.length() - 2], upper[upper.length() - 1], p) <= 0.0 {
+    while upper.length() >= 2 && @core.turn(upper[upper.length() - 2], upper[upper.length() - 1], p) <= 0.0 {
       ignore(upper.remove(upper.length() - 1))
     }
     upper.push(p)
@@ -67,10 +67,6 @@ fn half_hull(dh : DynamicHull) -> Unit {
   for i in 1..<(upper.length() - 1) {
     dh.hull.push(upper[i])
   }
-}
-
-fn cross(o : @core.Point2D, a : @core.Point2D, b : @core.Point2D) -> Double {
-  (a.x() - o.x()) * (b.y() - o.y()) - (a.y() - o.y()) * (b.x() - o.x())
 }
 
 ///|
@@ -98,7 +94,7 @@ pub fn DynamicHull::contains(
   }
   for i in 0..<n {
     let j = (i + 1) % n
-    if cross(h[i], h[j], p) < 0.0 {
+    if @core.turn(h[i], h[j], p) < 0.0 {
       return false
     }
   }
