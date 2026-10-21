@@ -39,7 +39,9 @@ pub fn Point2D::dist_sq(self : Point2D, other : Point2D) -> Double {
 ///|
 /// Euclidean distance to another point.
 /// 到另一点的欧几里得距离。
-pub fn Point2D::dist(self : Point2D, other : Point2D) -> Double {
+pub fn Point2D::dist(self : Point2D, other : Point2D) -> Double where {
+  proof_ensure: result => result >= 0.0,
+} {
   self.dist_sq(other).sqrt()
 }
 
@@ -184,7 +186,9 @@ pub fn Point3D::approx_eq(
 ///|
 /// Compare two doubles with absolute tolerance.
 /// 比较两个 Double 值的绝对容差。
-pub fn approx_eq(a : Double, b : Double, eps : Double) -> Bool {
+pub fn approx_eq(a : Double, b : Double, eps : Double) -> Bool where {
+  proof_ensure: result => result == ((b - a).abs() <= eps),
+} {
   (a - b).abs() <= eps
 }
 

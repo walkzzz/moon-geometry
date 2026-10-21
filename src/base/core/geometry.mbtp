@@ -1,0 +1,51 @@
+///|
+/// Semantic model and proof predicates for @core geometry.
+/// @core 几何的语义模型和证明谓词。
+///
+/// This file defines proof-side predicates and lemmas.
+/// 本文件定义证明侧谓词和引理。
+
+///|
+/// Predicate: distance is non-negative.
+/// 谓词：距离非负。
+predicate dist_nonneg(a : Point2D, b : Point2D) {
+  a.dist(b) >= 0.0
+}
+
+///|
+/// Predicate: distance is symmetric.
+/// 谓词：距离对称。
+predicate dist_symmetric(a : Point2D, b : Point2D) {
+  a.dist(b) == b.dist(a)
+}
+
+///|
+/// Predicate: approx_eq is symmetric.
+/// 谓词：approx_eq 对称。
+predicate approx_eq_symmetric(a : Double, b : Double, eps : Double) {
+  approx_eq(a, b, eps) == approx_eq(b, a, eps)
+}
+
+///|
+/// Lemma: distance non-negativity follows from sqrt.
+/// 引理：距离非负性由 sqrt 推出。
+lemma dist_nonneg_lemma(a : Point2D, b : Point2D) where {
+  proof_ensure: dist_nonneg(a, b),
+} {
+}
+
+///|
+/// Lemma: distance symmetry follows from squaring.
+/// 引理：距离对称性由平方推出。
+lemma dist_symmetric_lemma(a : Point2D, b : Point2D) where {
+  proof_ensure: dist_symmetric(a, b),
+} {
+}
+
+///|
+/// Lemma: approx_eq symmetry follows from abs.
+/// 引理：approx_eq 对称性由 abs 推出。
+lemma approx_eq_symmetric_lemma(a : Double, b : Double, eps : Double) where {
+  proof_ensure: approx_eq_symmetric(a, b, eps),
+} {
+}
