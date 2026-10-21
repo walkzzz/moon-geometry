@@ -6,6 +6,14 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
 Moon Geometry 的所有重要变更记录于此。
 格式基于 [Keep a Changelog](https://keepachangelog.com/)。
 
+## [0.242.0] - 2026-10-21
+
+### Added — API 文档注释 | API Doc Comments（R3 合规）
+
+- 为 218 个未文档化 `pub fn` 添加 `///|` 中英双文注释
+- 覆盖 46 个源文件，16 个分类
+- **R3 验收通过**：所有 `pub fn` 均有 `///` 注释
+
 ## [0.241.0] - 2026-10-21
 
 ### Fixed — Warning 治理达标 0 | Warning Governance to Zero（54 → 0）

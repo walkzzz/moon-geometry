@@ -1,6 +1,6 @@
 name = "walkzzz/moon-geometry"
 
-version = "0.241.0"
+version = "0.242.0"
 
 readme = "README.md"
 
