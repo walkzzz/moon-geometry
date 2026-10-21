@@ -52,6 +52,9 @@ pub struct ReebGraph {
 }
 
 ///|
+pub extend ReebGraph with @core.EdgeCountable::{edge_count}
+
+///|
 /// Construct an empty Reeb graph. / 构造空的 Reeb 图。
 pub fn ReebGraph::new() -> ReebGraph {
   { nodes: [], edges: [] }
@@ -65,8 +68,8 @@ pub fn ReebGraph::node_count(rg : ReebGraph) -> Int {
 
 ///|
 /// Get the number of edges. / 获取边数。
-pub fn ReebGraph::edge_count(rg : ReebGraph) -> Int {
-  rg.edges.length()
+pub impl @core.EdgeCountable for ReebGraph with edge_count(self) {
+  self.edges.length()
 }
 
 ///|

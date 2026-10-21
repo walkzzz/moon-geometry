@@ -20,6 +20,9 @@ pub extend Mesh with @core.VertexCountable::{vertex_count}
 pub extend Mesh with @core.FaceCountable::{face_count}
 
 ///|
+pub extend Mesh with @core.EdgeCountable::{edge_count}
+
+///|
 /// Create an empty mesh. / 创建空网格。
 pub fn Mesh::new() -> Mesh {
   { vertices: [], faces: [] }
@@ -53,9 +56,9 @@ pub impl @core.FaceCountable for Mesh with face_count(self) {
 
 ///|
 /// Get the number of edges (each face has 3 edges, shared edges counted once). / 获取边数（每个面 3 条边，共享边只计一次）。
-pub fn Mesh::edge_count(m : Mesh) -> Int {
+pub impl @core.EdgeCountable for Mesh with edge_count(self) {
   let edge_set : Array[(Int, Int)] = []
-  for f in m.faces {
+  for f in self.faces {
     add_edge_unique(edge_set, f.v0, f.v1)
     add_edge_unique(edge_set, f.v1, f.v2)
     add_edge_unique(edge_set, f.v2, f.v0)

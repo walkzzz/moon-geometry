@@ -31,6 +31,7 @@ pub fn PlanarGraph::is_planar(Self) -> Bool
 pub fn PlanarGraph::neighbors(Self, Int32) -> Array[Int32]
 pub fn PlanarGraph::new() -> Self
 pub fn PlanarGraph::vertex_count(Self) -> Int32
+pub impl @core.EdgeCountable for PlanarGraph
 pub impl @core.FaceCountable for PlanarGraph
 pub impl @core.VertexCountable for PlanarGraph
 

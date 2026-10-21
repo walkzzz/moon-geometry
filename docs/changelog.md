@@ -6,6 +6,13 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
 Moon Geometry 的所有重要变更记录于此。
 格式基于 [Keep a Changelog](https://keepachangelog.com/)。
 
+## [0.248.0] - 2026-10-21
+
+### Added — R19 Trait 化续 | R19 Trait-ification Continued
+
+- 新增 `pub(open) trait EdgeCountable`（`edge_count`）：5 类型实现（DCEL, PlanarGraph, Mesh, Polyhedron, ReebGraph）
+- **Trait 总数**：10
+
 ## [0.247.0] - 2026-10-21
 
 ### Added — R19 Trait 化续 | R19 Trait-ification Continued

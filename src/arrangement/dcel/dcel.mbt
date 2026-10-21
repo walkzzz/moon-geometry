@@ -30,6 +30,9 @@ pub extend DCEL with @core.VertexCountable::{vertex_count}
 pub extend DCEL with @core.FaceCountable::{face_count}
 
 ///|
+pub extend DCEL with @core.EdgeCountable::{edge_count}
+
+///|
 /// Create an empty DCEL. / 创建空的 DCEL。
 pub fn DCEL::new() -> DCEL {
   { vertices: [], half_edges: [], faces: [] }
@@ -95,8 +98,8 @@ pub impl @core.VertexCountable for DCEL with vertex_count(self) {
 
 ///|
 /// Get the number of half-edges. / 获取半边数量。
-pub fn DCEL::edge_count(dcel : DCEL) -> Int {
-  dcel.half_edges.length()
+pub impl @core.EdgeCountable for DCEL with edge_count(self) {
+  self.half_edges.length()
 }
 
 ///|

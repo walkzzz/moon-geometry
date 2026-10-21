@@ -15,6 +15,9 @@ pub extend Polyhedron with @core.VertexCountable::{vertex_count}
 pub extend Polyhedron with @core.FaceCountable::{face_count}
 
 ///|
+pub extend Polyhedron with @core.EdgeCountable::{edge_count}
+
+///|
 /// Construct an empty polyhedron. / 构造空多面体。
 pub fn Polyhedron::new() -> Polyhedron {
   { vertices: [], faces: [] }
@@ -48,9 +51,9 @@ pub impl @core.FaceCountable for Polyhedron with face_count(self) {
 
 ///|
 /// Number of edges (unique). / 边数（去重）。
-pub fn Polyhedron::edge_count(p : Polyhedron) -> Int {
+pub impl @core.EdgeCountable for Polyhedron with edge_count(self) {
   let edges : Array[(Int, Int)] = []
-  for face in p.faces {
+  for face in self.faces {
     let n = face.length()
     for i in 0..<n {
       let a = face[i]

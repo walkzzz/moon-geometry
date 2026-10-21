@@ -26,6 +26,7 @@ pub fn DCEL::set_face(Self, Int32, Int32) -> Unit
 pub fn DCEL::set_next(Self, Int32, Int32) -> Unit
 pub fn DCEL::trace_face(Self, Int32) -> Array[Int32]
 pub fn DCEL::vertex_count(Self) -> Int32
+pub impl @core.EdgeCountable for DCEL
 pub impl @core.FaceCountable for DCEL
 pub impl @core.VertexCountable for DCEL
 

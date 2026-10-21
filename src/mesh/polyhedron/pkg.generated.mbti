@@ -25,6 +25,7 @@ pub fn Polyhedron::surface_area(Self) -> Double
 pub fn Polyhedron::tetrahedron(@core.Point3D, @core.Point3D, @core.Point3D, @core.Point3D) -> Self
 pub fn Polyhedron::vertex_count(Self) -> Int32
 pub fn Polyhedron::volume(Self) -> Double
+pub impl @core.EdgeCountable for Polyhedron
 pub impl @core.FaceCountable for Polyhedron
 pub impl @core.Measurable3D for Polyhedron
 pub impl @core.VertexCountable for Polyhedron

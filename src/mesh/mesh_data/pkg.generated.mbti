@@ -24,6 +24,7 @@ pub fn Mesh::get_vertex(Self, Int32) -> @core.Point3D
 pub fn Mesh::new() -> Self
 pub fn Mesh::tetrahedron(@core.Point3D, @core.Point3D, @core.Point3D, @core.Point3D) -> Self
 pub fn Mesh::vertex_count(Self) -> Int32
+pub impl @core.EdgeCountable for Mesh
 pub impl @core.FaceCountable for Mesh
 pub impl @core.VertexCountable for Mesh
 

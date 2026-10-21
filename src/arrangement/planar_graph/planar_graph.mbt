@@ -20,6 +20,9 @@ pub extend PlanarGraph with @core.VertexCountable::{vertex_count}
 pub extend PlanarGraph with @core.FaceCountable::{face_count}
 
 ///|
+pub extend PlanarGraph with @core.EdgeCountable::{edge_count}
+
+///|
 /// Create an empty planar graph. / 创建空平面图。
 pub fn PlanarGraph::new() -> PlanarGraph {
   { vertices: [], edges: [], adj: [] }
@@ -57,8 +60,8 @@ pub impl @core.VertexCountable for PlanarGraph with vertex_count(self) {
 
 ///|
 /// Get the number of edges. / 获取边数。
-pub fn PlanarGraph::edge_count(graph : PlanarGraph) -> Int {
-  graph.edges.length()
+pub impl @core.EdgeCountable for PlanarGraph with edge_count(self) {
+  self.edges.length()
 }
 
 ///|

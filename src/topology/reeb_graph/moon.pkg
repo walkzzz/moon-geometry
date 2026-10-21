@@ -1,3 +1,4 @@
 import {
   "moonbitlang/core/debug",
+  "walkzzz/moon-geometry/src/base/core",
 }

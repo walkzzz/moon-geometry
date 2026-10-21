@@ -3,6 +3,7 @@ package "walkzzz/moon-geometry/src/topology/reeb_graph"
 
 import {
   "moonbitlang/core/debug",
+  "walkzzz/moon-geometry/src/base/core",
 }
 
 // Values
@@ -40,6 +41,7 @@ pub struct ReebGraph {
 pub fn ReebGraph::edge_count(Self) -> Int32
 pub fn ReebGraph::new() -> Self
 pub fn ReebGraph::node_count(Self) -> Int32
+pub impl @core.EdgeCountable for ReebGraph
 
 pub struct ReebNode {
   vertex_idx : Int32

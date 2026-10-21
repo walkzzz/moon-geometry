@@ -157,6 +157,10 @@ pub(open) trait Curve2D {
   fn length(Self) -> Double
 }
 
+pub(open) trait EdgeCountable {
+  fn edge_count(Self) -> Int32
+}
+
 pub(open) trait FaceCountable {
   fn face_count(Self) -> Int32
 }
