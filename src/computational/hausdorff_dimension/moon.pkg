@@ -1,5 +1,0 @@
-import {
-  "walkzzz/moon-geometry/src/base/core",
-  "walkzzz/moon-geometry/src/computational/fractal_dimension",
-  "moonbitlang/core/math",
-}

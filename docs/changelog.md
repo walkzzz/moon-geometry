@@ -6,6 +6,18 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
 Moon Geometry 的所有重要变更记录于此。
 格式基于 [Keep a Changelog](https://keepachangelog.com/)。
 
+## [0.245.0] - 2026-10-21
+
+### Changed — 项目瘦身（马斯克五步法 Step 2）| Project Slimming
+
+- 删除 118 个过度理论化/专业化模块（57 理论化 + 61 专业化）
+- 从 reexport.mbt 删除 104 个重导出段 + 91 个引用已删除模块的函数
+- **模块数**：401 → 283（-29%）
+- **测试数**：2518 → 2111（-16%）
+- **编译任务**：1200 → 846（-29%）
+- **reexport.mbt**：10987 → 8935 行（-19%）
+- 保留核心计算几何功能：基础类型、凸包、多边形、三角剖分、变换、距离、空间结构、曲线、网格、优化、机器人、I/O 等
+
 ## [0.244.0] - 2026-10-21
 
 ### Added — R19 Trait 化 | R19 Trait-ification
