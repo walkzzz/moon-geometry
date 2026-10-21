@@ -47,124 +47,65 @@ moon add walkzzz/moon-geometry
 
 ```
 src/
+  algebraic/          # (5) Algebraic geometry | 代数几何
+                  #   conic_section, geometric_algebra, implicit_surface, quadric_surface, resultant
+  arrangement/          # (12) Planar subdivision & triangulation | 平面细分与三角剖分
+                  #   arrangement, centroidal_voronoi, constrained_delaunay, dcel, delaunay_3d, delaunay_terrain,
+                  #   geom_arrangement, planar_graph, power_diagram, triangulation, voronoi_3d, voronoi_adv
   base/          # (30) Core types & robust arithmetic | 基础类型与鲁棒算术
-                  #   core, vector, matrix, matrix3d, angle, constants, interval,
-                  #   hash, compare, sort_search, random_gen, polynomial, linalg, root_find,
-                  #   robust_arith, robust_orient, robust_inter, robust_construction,
-                  #   exact_pred, exact_predicates, filtered_pred, filtered_predicates,
-                  #   adaptive_pred, expansion_arith, affine_arithmetic, interval_arith,
-                  #   interval_arithmetic, lazy_exact, big_rational, perturbation
-  shapes/        # (2)  Basic shapes | 基本形状: ray, plane
+                  #   adaptive_pred, affine_arithmetic, angle, big_rational, compare, constants, core, exact_pred, exact_predicates, expansion_arith, filtered_pred, filtered_predicates, hash, interval, interval_arith,
+                  #   interval_arithmetic, lazy_exact, linalg, matrix, matrix3d, perturbation, polynomial, random_gen, robust_arith, robust_construction, robust_inter, robust_orient, root_find, sort_search, vector
+  computational/          # (9) Computational geometry theory | 计算几何理论
+                  #   art_gallery, covering, euler_tour, geom_hash, geom_prob, packing, rounded_geometry, spanning_tree, visibility
+  curves/          # (22) Curves & splines | 曲线与样条
+                  #   arc_length, bezier, bezier_surface, bspline, catmull_rom, circle_ops, curvature, curvature_est, curvature_scale, curve_arc, curve_intersect,
+                  #   dubins, ellipse, hermite, implicit_curve, interpolation, lagrange, nurbs, path_smooth, polyline, reed_shepp, spline
+  differential/          # (5) Differential geometry | 微分几何
+                  #   bend_energy, discrete_curvature, discrete_diff_geom, discrete_laplacian, geodesic
+  distance/          # (8) Distance metrics | 距离度量
+                  #   bottleneck, chamfer, distance, dtw, emd, frechet, hausdorff, nearest
+  graphics/          # (11) Graphics & rendering | 图形与渲染
+                  #   contour_line, fractal_gen, gpu_geometry, hidden_line, hough_transform,
+                  #   raster_2d, raster_ops, rasterization, ray_trace_ops, ray_tracing, svg_out
   hull/          # (18) Convex hull & convex geometry | 凸包与凸几何
-                  #   hull, convex_polygon, convex_hull3d, convex_hull_3d_dynamic,
-                  #   convex_hull_approx, convex_hull_dynamic, convex_layers,
-                  #   concave_hull, convex_width, convex_diameter, convex_center,
-                  #   convex_intersection, convex_clip, convex_sum, convex_decomp,
-                  #   polar_dual, support, separating
-  polygon/       # (26) Polygon algorithms | 多边形算法
-                  #   polygon, boolean, de9im, ear_clip, monotone, half_plane,
-                  #   minkowski, rotating_calipers, sweep_line, triangulate, overlay, zone,
-                  #   polygon_offset, polygon_holes, polygon_kernel, polygon_skeleton,
-                  #   polygon_medial, polygon_simplify, polygon_round, polygon_evolve,
-                  #   polygon_morph, polygon_decomp_opt, polygon_triangulate_fast,
-                  #   polygon_symmetry, polygon_cover, isoperimetric
-  arrangement/   # (12) Planar subdivision & triangulation | 平面细分与三角剖分
-                  #   arrangement, geom_arrangement, dcel, planar_graph, triangulation,
-                  #   voronoi_adv, voronoi_3d, delaunay_3d, constrained_delaunay,
-                  #   power_diagram, centroidal_voronoi, delaunay_terrain
-  transform/     # (14) Geometric transforms | 几何变换
-                  #   transform, affine2, rigid, similarity, homography, perspective,
-                  #   stereographic, inversion, conformal_map, rational_map, procrustes,
-                  #   registration, coordinate_convert, datum_transform
-  distance/      # (11) Distance metrics | 距离度量
-                  #   distance, nearest, hausdorff, frechet, chamfer, emd, bottleneck,
-                  #   bottleneck_dist, dtw, geodesic_dist, wasserstein_dist
-  spatial/       # (22) Spatial data structures | 空间数据结构
-                  #   bounding, aabb_tree, aabb3d, bounding_sphere, obb, bvh,
-                  #   kdtree, quadtree, octree, rtree, ball_tree, vp_tree, cover_tree,
-                  #   metric_tree, interval_tree, grid_index, range_tree, spatial_hash,
-                  #   bucket_pr, skip_quadtree, loose_octree, voxel_grid
-  curves/        # (24) Curves & splines | 曲线与样条
-                  #   circle_ops, ellipse, bezier, bezier_clipping, bezier_surface,
-                  #   bspline, nurbs, catmull_rom, hermite, lagrange, spline, polyline,
-                  #   arc_length, curve_arc, curve_intersect, curvature, curvature_est,
-                  #   curvature_scale, implicit_curve, interpolation, dubins, reed_shepp,
-                  #   path_smooth, l_system
-  mesh/          # (25) Mesh & surface processing | 网格与曲面处理
-                  #   mesh_data, mesh_simplify, mesh_smooth, mesh_normal, mesh_subdiv,
-                  #   mesh_quality, mesh_repair, mesh_param, mesh_boolean, polyhedron,
-                  #   polyhedron_boolean, face_extract, marching_cubes, skeleton_3d,
-                  #   medial_axis_3d, reconstruction, watershed, surface_mesh, surface_param,
-                  #   surface_recon, surface_loft, surface_revolve, surface_sweep,
-                  #   surface_trim, surface_ricci
-  topology/      # (27) Topological data analysis | 拓扑数据分析
-                  #   alpha_complex, betti_numbers, persistent_homology, persistence_diagram,
-                  #   persistence_image, persistence_landscape, reeb_graph, morse_complex,
-                  #   discrete_morse, euler_char, simplicial_complex, chain_complex,
-                  #   boundary_operator, cohomology, homology_group, filtration, cech_complex,
-                  #   nerve_theorem, witness_complex, zigzag_persistence, multidim_persistence,
-                  #   tda_features, mapper_algo, knot_theory, sheaf_theory, chow_ring,
-                  #   hilbert_function
-  optim/         # (25) Numerical optimization | 数值优化
-                  #   optim, linear_prog, quadratic_prog, simplex_method, interior_point,
-                  #   gradient_descent, newton_method, levenberg_marquardt, conjugate_gradient,
-                  #   trust_region, sqp, sdp, socp, eigen, eigenvalue_solver,
-                  #   simulated_annealing, genetic_algorithm, pso, cmaes, bayesian_opt,
-                  #   branch_bound, nsga2, pareto_front, augmented_lagrangian, geom_opt
-  robotics/      # (20) Robotics & motion planning | 机器人与运动规划
-                  #   rrt, rrt_star, prm, prm_planner, a_star, shortest_path,
-                  #   visibility_graph, motion_plan, motion_planner_3d, collision_detect,
-                  #   collision_detect_3d, gjk, sat, config_space, kinematics,
-                  #   grasp_planning, contact_geom, potential_field, trajectory_opt,
-                  #   workspace_analysis
-  pde/           # (20) Partial differential equations | 偏微分方程
-                  #   poisson_solver, heat_equation, wave_equation, diffusion_solver,
-                  #   advection_solver, navier_stokes, schrodinger_solver, maxwell_solver,
-                  #   reaction_diffusion, level_set, fast_marching, fast_sweeping,
-                  #   finite_element, boundary_element, spectral_method, meshfree_method,
-                  #   discontinuous_galerkin, lattice_boltzmann, harmonic_map, minimal_surface
-  ml/            # (19) ML geometry | 机器学习几何
-                  #   clustering, clustering_geom, manifold_learning, dimension_reduction,
-                  #   feature_projection, spectral_geom, kernel_density, gaussian_process,
-                  #   regression_geom, svm_geometry, decision_boundary, ransac, matching,
-                  #   shape_context, shape_matching, icp, graph_color, graph_cut,
-                  #   stochastic_geom
-  graphics/      # (18) Graphics & rendering | 图形与渲染
-                  #   ray_tracing, ray_trace_ops, rasterization, raster_2d, raster_ops,
-                  #   hidden_line, contour_line, svg_out, hough_transform, fractal_gen,
-                  #   shading_model, shadow_mapping, env_mapping, bump_mapping,
-                  #   texture_mapping, anti_aliasing, splatting, gpu_geometry
-  differential/  # (14) Differential geometry | 微分几何
-                  #   geodesic, conformal_geom, discrete_curvature, discrete_diff_geom,
-                  #   discrete_laplacian, discrete_yamabe, gauss_bonnet, info_geom,
-                  #   quantum_geom, symplectic_geom, symplectic_int, topological_quantum,
-                  #   bend_energy, willmore_energy
-  algebraic/     # (12) Algebraic geometry | 代数几何
-                  #   conic_section, quadric_surface, implicit_surface, resultant,
-                  #   geometric_algebra, grobner_basis, polynomial_ideal, elimination_ideal,
-                  #   algebraic_variety, intersection_theory, multiplicity, bezout_theorem
-  computational/ # (18) Computational geometry theory | 计算几何理论
-                  #   art_gallery, visibility, euler_tour, spanning_tree, covering, packing,
-                  #   geom_prob, geom_measure, geom_inequal, geom_hash, geom_coding,
-                  #   chaos_geom, lattice_geom, crystal_geom, fractal_dimension,
-                  #   hausdorff_dimension, ifs, rounded_geometry
-  stats/         # (11) Statistical & molecular geometry | 统计与分子几何
-                  #   fourier_descriptor, moment_invariants, pmatch, random_geom_graph,
-                  #   bayesian_geom, dynamics_geom, geom_mechanics, molecular_geom,
-                  #   protein_geom, drug_design, tin
-  pointcloud/    # (7)  Point cloud processing | 点云处理
-                  #   point_cloud, sampling, pc_filter, pc_transform, pc_feature,
-                  #   pc_segment, normal_est
-  io/            # (7)  File I/O | 文件输入输出
-                  #   obj_io, stl_io, ply_io, gltf_io, geojson_io, dxf_io, json_out
-  testing/       # (5)  Testing infrastructure | 测试基础设施
-                  #   formal_properties, formal_invariants, mock_geometric,
-                  #   e2e_workflows, ai_property_tests
-  misc/          # (14) Miscellaneous utilities | 杂项工具
-                  #   intersect, fitting, project3d, gis_projection, gis_buffer,
-                  #   delaunay_refine, trapezoidal, integration, differentiation,
-                  #   radial_basis, wavelet_geom, dynamic_filter, static_filter,
-                  #   ground_detect
+                  #   concave_hull, convex_center, convex_clip, convex_decomp, convex_diameter, convex_hull3d, convex_hull_3d_dynamic, convex_hull_approx, convex_hull_dynamic,
+                  #   convex_intersection, convex_layers, convex_polygon, convex_sum, convex_width, hull, polar_dual, separating, support
+  io/          # (7) File I/O | 文件输入输出
+                  #   dxf_io, geojson_io, gltf_io, json_out, obj_io, ply_io, stl_io
+  mesh/          # (18) Mesh & surface processing | 网格与曲面处理
+                  #   face_extract, marching_cubes, medial_axis_3d, mesh_boolean, mesh_data, mesh_normal, mesh_param, mesh_quality, mesh_repair,
+                  #   mesh_simplify, mesh_smooth, mesh_subdiv, polyhedron, polyhedron_boolean, reconstruction, skeleton_3d, surface_mesh, watershed
+  misc/          # (7) Miscellaneous utilities | 杂项工具
+                  #   delaunay_refine, fitting, gis_buffer, gis_projection, intersect, project3d, trapezoidal
+  ml/          # (7) ML geometry | 机器学习几何
+                  #   clustering, graph_color, graph_cut, icp, matching, shape_context, shape_matching
+  optim/          # (13) Numerical optimization | 数值优化
+                  #   conjugate_gradient, eigen, genetic_algorithm, gradient_descent, interior_point, levenberg_marquardt,
+                  #   linear_prog, newton_method, optim, pso, quadratic_prog, simplex_method, simulated_annealing
+  pde/          # (11) Partial differential equations | 偏微分方程
+                  #   advection_solver, boundary_element, diffusion_solver, fast_marching, fast_sweeping,
+                  #   finite_element, heat_equation, level_set, navier_stokes, poisson_solver, wave_equation
+  pointcloud/          # (7) Point cloud processing | 点云处理
+                  #   normal_est, pc_feature, pc_filter, pc_segment, pc_transform, point_cloud, sampling
+  polygon/          # (26) Polygon algorithms | 多边形算法
+                  #   boolean, de9im, ear_clip, half_plane, isoperimetric, minkowski, monotone, overlay, polygon, polygon_cover, polygon_decomp_opt, polygon_evolve, polygon_holes,
+                  #   polygon_kernel, polygon_medial, polygon_morph, polygon_offset, polygon_round, polygon_simplify, polygon_skeleton, polygon_symmetry, polygon_triangulate_fast, rotating_calipers, sweep_line, triangulate, zone
+  robotics/          # (10) Robotics & motion planning | 机器人与运动规划
+                  #   a_star, collision_detect, config_space, gjk, motion_plan, prm, rrt, sat, shortest_path, visibility_graph
+  shapes/          # (2) Basic shapes | 基本形状
+                  #   plane, ray
+  spatial/          # (22) Spatial data structures | 空间数据结构
+                  #   aabb3d, aabb_tree, ball_tree, bounding, bounding_sphere, bucket_pr, bvh, cover_tree, grid_index, interval_tree, kdtree,
+                  #   loose_octree, metric_tree, obb, octree, quadtree, range_tree, rtree, skip_quadtree, spatial_hash, voxel_grid, vp_tree
+  stats/          # (5) Statistical & molecular geometry | 统计与分子几何
+                  #   fourier_descriptor, moment_invariants, pmatch, random_geom_graph, tin
+  testing/          # (5) Testing infrastructure | 测试基础设施
+                  #   ai_property_tests, e2e_workflows, formal_invariants, formal_properties, mock_geometric
+  topology/          # (9) Topological data analysis | 拓扑数据分析
+                  #   alpha_complex, betti_numbers, cech_complex, euler_char, knot_theory, persistence_diagram, persistent_homology, reeb_graph, simplicial_complex
+  transform/          # (14) Geometric transforms | 几何变换
+                  #   affine2, conformal_map, coordinate_convert, datum_transform, homography, inversion, perspective,
+                  #   procrustes, rational_map, registration, rigid, similarity, stereographic, transform
 ```
 
 ## Quick Example | 快速示例
