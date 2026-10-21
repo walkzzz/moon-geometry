@@ -181,8 +181,9 @@ pub using @pkg { type T, name1, trait Trait1 }
 | v0.241.0 | Warning 治理达标 0（54→0）+ 规则适配 | ✅ | 87fef56 |
 | v0.242.0 | API 文档注释 218 个 pub fn（R3 合规） | ✅ | 68e6dc6 |
 | v0.243.0 | 24 分类 README.md（R4/R10 合规） | ✅ | e7b95bd |
+| v0.244.0 | R19 Trait 化：Measurable/PerimeterMeasurable/Containable/Measurable3D | ✅ | 45a74c9 |
 
-**当前测试**：2518 passed · **当前模块**：401（24 分类） · **当前 warning**：0 · **当前 error**：0 · **未文档化 pub fn**：0
+**当前测试**：2518 passed · **当前模块**：401（24 分类） · **当前 warning**：0 · **当前 error**：0 · **未文档化 pub fn**：0 · **Trait 数**：6
 
 ---
 
