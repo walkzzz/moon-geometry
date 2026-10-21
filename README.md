@@ -43,7 +43,7 @@ moon add walkzzz/moon-geometry
 
 ## 项目结构 | Project Structure
 
-401 个模块按 24 个领域分类组织 | 401 modules organized into 24 domain categories：
+283 个模块按 24 个领域分类组织 | 283 modules organized into 24 domain categories：
 
 ```
 src/
