@@ -139,11 +139,7 @@ pub fn curve_length(points : Array[@core.Point2D]) -> Double {
   if n < 2 {
     return 0.0
   }
-  let mut len = 0.0
-  for i in 0..<n {
-    len += points[i].dist(points[(i + 1) % n])
-  }
-  len
+  @core.polyline_length(points) + points[n - 1].dist(points[0])
 }
 ///|
 /// Normalized bend energy: E / (2π). / 归一化弯曲能量：E / (2π)。
