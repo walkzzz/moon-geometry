@@ -1,31 +1,29 @@
 # spatial — Spatial data structures | 空间数据结构
 
-> Moon Geometry `spatial` category: spatial data structures | 空间数据结构
-
 ## Modules | 模块 (22)
 
-- [`aabb3d`](./aabb3d/) — 3D Axis-Aligned Bounding Box operations. / 三维轴对齐包围盒操作。
-- [`aabb_tree`](./aabb_tree/) — aabb_tree module
-- [`ball_tree`](./ball_tree/) — ball_tree module
-- [`bounding`](./bounding/) — bounding module
-- [`bounding_sphere`](./bounding_sphere/) — Minimum bounding sphere using Welzl's algorithm. / 使用 Welzl 算法的最小包围球。
-- [`bucket_pr`](./bucket_pr/) — bucket_pr module
-- [`bvh`](./bvh/) — bvh module
-- [`cover_tree`](./cover_tree/) — cover_tree module
-- [`grid_index`](./grid_index/) — grid_index module
-- [`interval_tree`](./interval_tree/) — interval_tree module
-- [`kdtree`](./kdtree/) — kdtree module
-- [`loose_octree`](./loose_octree/) — loose_octree module
-- [`metric_tree`](./metric_tree/) — metric_tree module
-- [`obb`](./obb/) — Oriented Bounding Box in 3D using PCA. / 使用 PCA 的三维定向包围盒。
-- [`octree`](./octree/) — octree module
-- [`quadtree`](./quadtree/) — quadtree module
-- [`range_tree`](./range_tree/) — range_tree module
-- [`rtree`](./rtree/) — rtree module
-- [`skip_quadtree`](./skip_quadtree/) — skip_quadtree module
-- [`spatial_hash`](./spatial_hash/) — spatial_hash module
-- [`voxel_grid`](./voxel_grid/) — voxel_grid module. / voxel_grid 模块。
-- [`vp_tree`](./vp_tree/) — vp_tree module
+- [`aabb3d`](./aabb3d/)
+- [`aabb_tree`](./aabb_tree/)
+- [`ball_tree`](./ball_tree/)
+- [`bounding`](./bounding/)
+- [`bounding_sphere`](./bounding_sphere/)
+- [`bucket_pr`](./bucket_pr/)
+- [`bvh`](./bvh/)
+- [`cover_tree`](./cover_tree/)
+- [`grid_index`](./grid_index/)
+- [`interval_tree`](./interval_tree/)
+- [`kdtree`](./kdtree/)
+- [`loose_octree`](./loose_octree/)
+- [`metric_tree`](./metric_tree/)
+- [`obb`](./obb/)
+- [`octree`](./octree/)
+- [`quadtree`](./quadtree/)
+- [`range_tree`](./range_tree/)
+- [`rtree`](./rtree/)
+- [`skip_quadtree`](./skip_quadtree/)
+- [`spatial_hash`](./spatial_hash/)
+- [`voxel_grid`](./voxel_grid/)
+- [`vp_tree`](./vp_tree/)
 
 ---
 > Part of [Moon Geometry](../../README.md) | Moon Geometry `spatial` category
