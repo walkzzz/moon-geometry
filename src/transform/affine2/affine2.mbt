@@ -43,17 +43,20 @@ pub impl @core.PointTransform for Affine2 with apply(m, p) {
 pub extend Affine2 with @core.PointTransform::{apply, apply_batch}
 
 ///|
-/// Compose two affine transformations (m1 then m2). / 组合两个仿射变换（先 m1 后 m2）。
-pub fn Affine2::compose(m1 : Affine2, m2 : Affine2) -> Affine2 {
+/// Compose two affine transformations (self after other). / 组合两个仿射变换（先 other 后 self）。
+pub impl @core.Composable for Affine2 with compose(self, other) {
   {
-    a: m1.a * m2.a + m1.b * m2.c,
-    b: m1.a * m2.b + m1.b * m2.d,
-    tx: m1.a * m2.tx + m1.b * m2.ty + m1.tx,
-    c: m1.c * m2.a + m1.d * m2.c,
-    d: m1.c * m2.b + m1.d * m2.d,
-    ty: m1.c * m2.tx + m1.d * m2.ty + m1.ty,
+    a: self.a * other.a + self.b * other.c,
+    b: self.a * other.b + self.b * other.d,
+    tx: self.a * other.tx + self.b * other.ty + self.tx,
+    c: self.c * other.a + self.d * other.c,
+    d: self.c * other.b + self.d * other.d,
+    ty: self.c * other.tx + self.d * other.ty + self.ty,
   }
 }
+
+///|
+pub extend Affine2 with @core.Composable::{compose}
 
 ///|
 /// Compute determinant of affine. / 计算仿射变换行列式。

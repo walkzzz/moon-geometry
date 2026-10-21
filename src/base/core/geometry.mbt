@@ -301,3 +301,9 @@ pub(open) trait Measurable3D {
   volume(self : Self) -> Double
   surface_area(self : Self) -> Double
 }
+///|
+/// Trait for composable transforms: compose(self, other) applies self after other.
+/// 可组合变换 trait：compose(self, other) 先应用 other 再应用 self。
+pub(open) trait Composable {
+  compose(self : Self, other : Self) -> Self
+}

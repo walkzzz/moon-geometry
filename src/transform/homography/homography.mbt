@@ -60,23 +60,23 @@ pub fn Homography::apply(
 }
 
 ///|
-/// Compose two homographies (m1 then m2). / 组合两个单应矩阵（先 m1 后 m2）。
-pub fn Homography::compose(
-  m1 : Homography,
-  m2 : Homography,
-) -> Homography {
+/// Compose two homographies (self after other). / 组合两个单应矩阵（先 other 后 self）。
+pub impl @core.Composable for Homography with compose(self, other) {
   {
-    h00: m1.h00 * m2.h00 + m1.h01 * m2.h10 + m1.h02 * m2.h20,
-    h01: m1.h00 * m2.h01 + m1.h01 * m2.h11 + m1.h02 * m2.h21,
-    h02: m1.h00 * m2.h02 + m1.h01 * m2.h12 + m1.h02 * m2.h22,
-    h10: m1.h10 * m2.h00 + m1.h11 * m2.h10 + m1.h12 * m2.h20,
-    h11: m1.h10 * m2.h01 + m1.h11 * m2.h11 + m1.h12 * m2.h21,
-    h12: m1.h10 * m2.h02 + m1.h11 * m2.h12 + m1.h12 * m2.h22,
-    h20: m1.h20 * m2.h00 + m1.h21 * m2.h10 + m1.h22 * m2.h20,
-    h21: m1.h20 * m2.h01 + m1.h21 * m2.h11 + m1.h22 * m2.h21,
-    h22: m1.h20 * m2.h02 + m1.h21 * m2.h12 + m1.h22 * m2.h22,
+    h00: self.h00 * other.h00 + self.h01 * other.h10 + self.h02 * other.h20,
+    h01: self.h00 * other.h01 + self.h01 * other.h11 + self.h02 * other.h21,
+    h02: self.h00 * other.h02 + self.h01 * other.h12 + self.h02 * other.h22,
+    h10: self.h10 * other.h00 + self.h11 * other.h10 + self.h12 * other.h20,
+    h11: self.h10 * other.h01 + self.h11 * other.h11 + self.h12 * other.h21,
+    h12: self.h10 * other.h02 + self.h11 * other.h12 + self.h12 * other.h22,
+    h20: self.h20 * other.h00 + self.h21 * other.h10 + self.h22 * other.h20,
+    h21: self.h20 * other.h01 + self.h21 * other.h11 + self.h22 * other.h21,
+    h22: self.h20 * other.h02 + self.h21 * other.h12 + self.h22 * other.h22,
   }
 }
+
+///|
+pub extend Homography with @core.Composable::{compose}
 
 ///|
 /// Apply homography to an array of points. / 将单应矩阵应用于点数组。

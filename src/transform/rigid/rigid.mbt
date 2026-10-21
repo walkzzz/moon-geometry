@@ -36,14 +36,17 @@ pub impl @core.PointTransform for Rigid with apply(r, p) {
 pub extend Rigid with @core.PointTransform::{apply, apply_batch}
 
 ///|
-/// Compose two rigid transformations (r1 then r2). / 组合两个刚体变换（先 r1 后 r2）。
-pub fn Rigid::compose(r1 : Rigid, r2 : Rigid) -> Rigid {
-  let c = @math.cos(r1.angle)
-  let s = @math.sin(r1.angle)
+pub extend Rigid with @core.Composable::{compose}
+
+///|
+/// Compose two rigid transformations (self then other). / 组合两个刚体变换（先 self 后 other）。
+pub impl @core.Composable for Rigid with compose(self, other) {
+  let c = @math.cos(self.angle)
+  let s = @math.sin(self.angle)
   {
-    angle: r1.angle + r2.angle,
-    tx: c * r2.tx - s * r2.ty + r1.tx,
-    ty: s * r2.tx + c * r2.ty + r1.ty,
+    angle: self.angle + other.angle,
+    tx: c * other.tx - s * other.ty + self.tx,
+    ty: s * other.tx + c * other.ty + self.ty,
   }
 }
 

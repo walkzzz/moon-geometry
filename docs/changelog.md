@@ -6,6 +6,14 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
 Moon Geometry 的所有重要变更记录于此。
 格式基于 [Keep a Changelog](https://keepachangelog.com/)。
 
+## [0.246.0] - 2026-10-21
+
+### Added — R19 Trait 化续 | R19 Trait-ification Continued
+
+- 新增 `pub(open) trait Composable`（`compose`）：Affine2, Rigid, Similarity, Homography 实现
+- 添加 MoonBit 语言关键知识点到 memory（trait/proof/可见性/错误处理/模式匹配）
+- **Trait 总数**：7（PointTransform, Curve2D, Measurable, PerimeterMeasurable, Containable, Measurable3D, Composable）
+
 ## [0.245.0] - 2026-10-21
 
 ### Changed — 项目瘦身（马斯克五步法 Step 2）| Project Slimming
