@@ -6,6 +6,9 @@ pub struct BoundingSphere {
 }
 
 ///|
+pub extend BoundingSphere with @core.Measurable3D::{volume, surface_area}
+
+///|
 /// Construct a bounding sphere. / 构造包围球。
 pub fn BoundingSphere::new(center : @core.Point3D, radius : Double) -> BoundingSphere {
   { center, radius }
@@ -156,12 +159,12 @@ fn welzl(
 
 ///|
 /// Volume of the sphere. / 球体积。
-pub fn BoundingSphere::volume(s : BoundingSphere) -> Double {
-  4.0 / 3.0 * 3.14159265358979323846 * s.radius * s.radius * s.radius
+pub impl @core.Measurable3D for BoundingSphere with volume(self) {
+  4.0 / 3.0 * 3.14159265358979323846 * self.radius * self.radius * self.radius
 }
 
 ///|
 /// Surface area of the sphere. / 球表面积。
-pub fn BoundingSphere::surface_area(s : BoundingSphere) -> Double {
-  4.0 * 3.14159265358979323846 * s.radius * s.radius
+pub impl @core.Measurable3D for BoundingSphere with surface_area(self) {
+  4.0 * 3.14159265358979323846 * self.radius * self.radius
 }

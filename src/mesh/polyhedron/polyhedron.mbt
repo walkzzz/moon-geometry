@@ -6,6 +6,9 @@ pub struct Polyhedron {
 }
 
 ///|
+pub extend Polyhedron with @core.Measurable3D::{volume, surface_area}
+
+///|
 /// Construct an empty polyhedron. / 构造空多面体。
 pub fn Polyhedron::new() -> Polyhedron {
   { vertices: [], faces: [] }
@@ -64,18 +67,18 @@ fn add_edge(edges : Array[(Int, Int)], a : Int, b : Int) -> Unit {
 
 ///|
 /// Compute volume using divergence theorem. / 使用散度定理计算体积。
-pub fn Polyhedron::volume(p : Polyhedron) -> Double {
+pub impl @core.Measurable3D for Polyhedron with volume(self) {
   let mut vol = 0.0
-  for face in p.faces {
+  for face in self.faces {
     let n = face.length()
     if n < 3 {
       continue
     }
-    let v0 = p.vertices[face[0]]
+    let v0 = self.vertices[face[0]]
     let mut face_vol = 0.0
     for i in 1..<(n - 1) {
-      let v1 = p.vertices[face[i]]
-      let v2 = p.vertices[face[i + 1]]
+      let v1 = self.vertices[face[i]]
+      let v2 = self.vertices[face[i + 1]]
       face_vol += v0.dot(v1.cross(v2))
     }
     vol += face_vol
@@ -85,17 +88,17 @@ pub fn Polyhedron::volume(p : Polyhedron) -> Double {
 
 ///|
 /// Compute surface area. / 计算表面积。
-pub fn Polyhedron::surface_area(p : Polyhedron) -> Double {
+pub impl @core.Measurable3D for Polyhedron with surface_area(self) {
   let mut area = 0.0
-  for face in p.faces {
+  for face in self.faces {
     let n = face.length()
     if n < 3 {
       continue
     }
-    let v0 = p.vertices[face[0]]
+    let v0 = self.vertices[face[0]]
     for i in 1..<(n - 1) {
-      let v1 = p.vertices[face[i]]
-      let v2 = p.vertices[face[i + 1]]
+      let v1 = self.vertices[face[i]]
+      let v2 = self.vertices[face[i + 1]]
       let cross = v1.sub(v0).cross(v2.sub(v0))
       area += 0.5 * (cross.x * cross.x + cross.y * cross.y + cross.z * cross.z).sqrt()
     }

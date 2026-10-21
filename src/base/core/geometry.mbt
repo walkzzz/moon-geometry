@@ -294,3 +294,10 @@ pub(open) trait PerimeterMeasurable {
 pub(open) trait Containable {
   contains(self : Self, p : Point2D) -> Bool
 }
+///|
+/// Trait for measurable 3D shapes with volume and surface area.
+/// 可度量 3D 形状 trait，提供体积和表面积计算。
+pub(open) trait Measurable3D {
+  volume(self : Self) -> Double
+  surface_area(self : Self) -> Double
+}

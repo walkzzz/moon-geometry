@@ -10,6 +10,9 @@ pub struct AABB3D {
 }
 
 ///|
+pub extend AABB3D with @core.Measurable3D::{volume, surface_area}
+
+///|
 /// Construct an AABB3D from min and max corners. / 从最小和最大角点构造 AABB3D。
 pub fn AABB3D::new(
   min_x : Double,
@@ -59,16 +62,16 @@ pub fn AABB3D::from_points(points : Array[@core.Point3D]) -> AABB3D {
 
 ///|
 /// Volume of the AABB. / AABB 体积。
-pub fn AABB3D::volume(b : AABB3D) -> Double {
-  (b.max_x - b.min_x) * (b.max_y - b.min_y) * (b.max_z - b.min_z)
+pub impl @core.Measurable3D for AABB3D with volume(self) {
+  (self.max_x - self.min_x) * (self.max_y - self.min_y) * (self.max_z - self.min_z)
 }
 
 ///|
 /// Surface area of the AABB. / AABB 表面积。
-pub fn AABB3D::surface_area(b : AABB3D) -> Double {
-  let dx = b.max_x - b.min_x
-  let dy = b.max_y - b.min_y
-  let dz = b.max_z - b.min_z
+pub impl @core.Measurable3D for AABB3D with surface_area(self) {
+  let dx = self.max_x - self.min_x
+  let dy = self.max_y - self.min_y
+  let dz = self.max_z - self.min_z
   2.0 * (dx * dy + dy * dz + dx * dz)
 }
 

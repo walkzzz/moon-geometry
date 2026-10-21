@@ -7,6 +7,9 @@ pub struct OBB {
 }
 
 ///|
+pub extend OBB with @core.Measurable3D::{volume, surface_area}
+
+///|
 /// Construct an OBB. / 构造 OBB。
 pub fn OBB::new(
   center : @core.Point3D,
@@ -139,16 +142,16 @@ pub fn obb_from_points(points : Array[@core.Point3D]) -> OBB {
 
 ///|
 /// Volume of the OBB. / OBB 体积。
-pub fn OBB::volume(b : OBB) -> Double {
-  8.0 * b.half_extents[0] * b.half_extents[1] * b.half_extents[2]
+pub impl @core.Measurable3D for OBB with volume(self) {
+  8.0 * self.half_extents[0] * self.half_extents[1] * self.half_extents[2]
 }
 
 ///|
 /// Surface area of the OBB. / OBB 表面积。
-pub fn OBB::surface_area(b : OBB) -> Double {
-  let a = b.half_extents[0]
-  let bb = b.half_extents[1]
-  let c = b.half_extents[2]
+pub impl @core.Measurable3D for OBB with surface_area(self) {
+  let a = self.half_extents[0]
+  let bb = self.half_extents[1]
+  let c = self.half_extents[2]
   8.0 * (a * bb + bb * c + a * c)
 }
 
