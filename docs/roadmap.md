@@ -11,6 +11,8 @@ Moon Geometry 一个月交付计划（2026-10-15 ~ 2026-10-31）。
 | Week 2 | Segment intersection + closest pair + boolean ops | +70 | ✅ Done | 2026-10-15 |
 | Week 3 | Delaunay triangulation + Voronoi diagram | +80 | ✅ Done | 2026-10-15 |
 | Week 4 | Transforms + distance + bounding box + publish | 320+ | ✅ Done | 2026-10-15 |
+| v0.237-v0.240 | Trait 去重 + 目录重构 + Warning 治理 + Curve2D trait | 2518 | ✅ Done | 2026-10-20 |
+| v0.241-v0.243 | Warning 达标 0 + API 文档 + 分类 README + R17 测试 | 2518 | ✅ Done | 2026-10-21 |
 
 | 阶段 | 内容 | 测试目标 | 状态 | 完成日期 |
 |------|------|---------|------|---------|
