@@ -183,8 +183,12 @@ pub using @pkg { type T, name1, trait Trait1 }
 | v0.243.0 | 24 分类 README.md（R4/R10 合规） | ✅ | e7b95bd |
 | v0.244.0 | R19 Trait 化：Measurable/PerimeterMeasurable/Containable/Measurable3D | ✅ | 45a74c9 |
 | v0.245.0 | 项目瘦身：删除 118 过度理论化/专业化模块（401→283） | ✅ | f810ad1 |
+| v0.246.0 | Composable trait + proof-carrying code | ✅ | ad1c6a4 |
+| v0.247.0 | VertexCountable(9) + FaceCountable(7) traits | ✅ | f6058c4 |
+| v0.248.0 | EdgeCountable(5) trait | ✅ | 3e57287 |
+| v0.249.0 | Bounded2D + Subdivisible traits | ✅ | 0299d62 |
 
-**当前测试**：2111 passed · **当前模块**：283（24 分类） · **当前 warning**：0 · **当前 error**：0 · **未文档化 pub fn**：0 · **Trait 数**：6
+**当前测试**：2111 passed · **当前模块**：283（24 分类） · **当前 warning**：0 · **当前 error**：0 · **未文档化 pub fn**：0 · **Trait 数**：12
 
 ---
 
