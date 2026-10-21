@@ -6,6 +6,14 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
 Moon Geometry 的所有重要变更记录于此。
 格式基于 [Keep a Changelog](https://keepachangelog.com/)。
 
+## [0.249.0] - 2026-10-21
+
+### Added — R19 Trait 化续 | R19 Trait-ification Continued
+
+- 新增 `pub(open) trait Bounded2D`（`bbox`）：Bezier2, Bezier3 实现
+- 新增 `pub(open) trait Subdivisible`（`subdivide`）：Bezier2, Bezier3 实现
+- **Trait 总数**：12
+
 ## [0.248.0] - 2026-10-21
 
 ### Added — R19 Trait 化续 | R19 Trait-ification Continued

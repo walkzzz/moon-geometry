@@ -143,6 +143,10 @@ pub impl Measurable for Triangle
 // Type aliases
 
 // Traits
+pub(open) trait Bounded2D {
+  fn bbox(Self) -> (Double, Double, Double, Double)
+}
+
 pub(open) trait Composable {
   fn compose(Self, Self) -> Self
 }
@@ -181,6 +185,10 @@ pub(open) trait PerimeterMeasurable {
 pub(open) trait PointTransform {
   fn apply(Self, Point2D) -> Point2D
   fn apply_batch(Self, Array[Point2D]) -> Array[Point2D] = _
+}
+
+pub(open) trait Subdivisible {
+  fn subdivide(Self, Double) -> (Self, Self)
 }
 
 pub(open) trait VertexCountable {

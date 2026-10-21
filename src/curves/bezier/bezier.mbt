@@ -14,6 +14,12 @@ pub extend Bezier2 with @moonbitlang/core/debug.Debug::{to_repr}
 pub extend Bezier2 with @core.Curve2D::{eval, derivative, length}
 
 ///|
+pub extend Bezier2 with @core.Bounded2D::{bbox}
+
+///|
+pub extend Bezier2 with @core.Subdivisible::{subdivide}
+
+///|
 /// Cubic Bezier curve with 4 control points.
 /// 三次贝塞尔曲线，4 个控制点。
 pub struct Bezier3 {
@@ -28,6 +34,12 @@ pub extend Bezier3 with @moonbitlang/core/debug.Debug::{to_repr}
 
 ///|
 pub extend Bezier3 with @core.Curve2D::{eval, derivative, length}
+
+///|
+pub extend Bezier3 with @core.Bounded2D::{bbox}
+
+///|
+pub extend Bezier3 with @core.Subdivisible::{subdivide}
 
 ///|
 /// Construct a quadratic Bezier curve. / 构造二次贝塞尔曲线。
@@ -99,7 +111,7 @@ pub impl @core.Curve2D for Bezier2 with length(self) {
 ///|
 /// Bounding box of quadratic Bezier. Returns (min_x, min_y, max_x, max_y).
 /// 二次贝塞尔曲线包围盒，返回 (min_x, min_y, max_x, max_y)。
-pub fn Bezier2::bbox(self : Bezier2) -> (Double, Double, Double, Double) {
+pub impl @core.Bounded2D for Bezier2 with bbox(self) {
   let mut min_x = self.p0.x()
   let mut max_x = min_x
   let mut min_y = self.p0.y()
@@ -202,7 +214,7 @@ pub impl @core.Curve2D for Bezier3 with length(self) {
 ///|
 /// Bounding box of cubic Bezier. Returns (min_x, min_y, max_x, max_y).
 /// 三次贝塞尔曲线包围盒，返回 (min_x, min_y, max_x, max_y)。
-pub fn Bezier3::bbox(self : Bezier3) -> (Double, Double, Double, Double) {
+pub impl @core.Bounded2D for Bezier3 with bbox(self) {
   let samples = 200
   let mut min_x = self.p0.x()
   let mut max_x = min_x
@@ -230,7 +242,7 @@ pub fn Bezier3::bbox(self : Bezier3) -> (Double, Double, Double, Double) {
 ///|
 /// Subdivide a quadratic Bezier at parameter t into two curves.
 /// Returns (left, right). / 在参数 t 处将二次贝塞尔曲线细分为两条。
-pub fn Bezier2::subdivide(self : Bezier2, t : Double) -> (Bezier2, Bezier2) {
+pub impl @core.Subdivisible for Bezier2 with subdivide(self, t) {
   let u = 1.0 - t
   let q0 = @core.Point2D::new(
     u * self.p0.x() + t * self.p1.x(),
@@ -247,7 +259,7 @@ pub fn Bezier2::subdivide(self : Bezier2, t : Double) -> (Bezier2, Bezier2) {
 ///|
 /// Subdivide a cubic Bezier at parameter t into two curves.
 /// Returns (left, right). / 在参数 t 处将三次贝塞尔曲线细分为两条。
-pub fn Bezier3::subdivide(self : Bezier3, t : Double) -> (Bezier3, Bezier3) {
+pub impl @core.Subdivisible for Bezier3 with subdivide(self, t) {
   let u = 1.0 - t
   let q0 = @core.Point2D::new(
     u * self.p0.x() + t * self.p1.x(),
