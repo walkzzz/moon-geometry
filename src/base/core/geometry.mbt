@@ -210,7 +210,9 @@ pub extend Point3D with @moonbitlang/core/debug.Debug::{to_repr}
 /// 向量 OA 和 OB 的叉积：(a-o) × (b-o)。
 /// Positive => O->A->B is a counter-clockwise turn.
 /// 正值 => O->A->B 为逆时针方向。
-pub fn turn(o : Point2D, a : Point2D, b : Point2D) -> Double {
+pub fn turn(o : Point2D, a : Point2D, b : Point2D) -> Double where {
+  proof_ensure: result => result == -((b.x - o.x) * (a.y - o.y) - (b.y - o.y) * (a.x - o.x)),
+} {
   (a.x - o.x) * (b.y - o.y) - (a.y - o.y) * (b.x - o.x)
 }
 ///|
@@ -260,7 +262,9 @@ pub fn polyline_length(points : Array[Point2D]) -> Double where {
 ///|
 /// Minimum distance from a point to a set of points.
 /// 点到点集的最小距离。
-pub fn min_dist_to_set(p : Point2D, set : Array[Point2D]) -> Double {
+pub fn min_dist_to_set(p : Point2D, set : Array[Point2D]) -> Double where {
+  proof_ensure: result => result >= 0.0,
+} {
   if set.length() == 0 {
     return 1.0 / 0.000000000001
   }
