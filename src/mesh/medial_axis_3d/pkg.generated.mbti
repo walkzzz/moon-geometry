@@ -1,0 +1,32 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/src/mesh/medial_axis_3d"
+
+import {
+  "walkzzz/moon-geometry/src/base/core",
+}
+
+// Values
+pub fn medial_axis_3d(Array[@core.Point3D]) -> Array[MedialBall3D]
+
+pub fn medial_axis_filter(Array[MedialBall3D], Double, Double) -> Array[MedialBall3D]
+
+pub fn medial_axis_from_pairs(Array[@core.Point3D]) -> Array[MedialBall3D]
+
+pub fn medial_axis_from_triples(Array[@core.Point3D]) -> Array[MedialBall3D]
+
+pub fn medial_axis_sort(Array[MedialBall3D]) -> Array[MedialBall3D]
+
+// Errors
+
+// Types and methods
+pub struct MedialBall3D {
+  center : @core.Point3D
+  radius : Double
+}
+pub fn MedialBall3D::center(Self) -> @core.Point3D
+pub fn MedialBall3D::new(@core.Point3D, Double) -> Self
+pub fn MedialBall3D::radius(Self) -> Double
+
+// Type aliases
+
+// Traits

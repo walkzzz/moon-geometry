@@ -1,0 +1,17 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/src/base/robust_inter"
+
+// Values
+pub fn robust_line_line(Double, Double, Double, Double, Double, Double) -> (Double, Double, Bool)
+
+pub fn robust_point_on_segment(Double, Double, Double, Double, Double, Double) -> Bool
+
+pub fn robust_segment_intersect(Double, Double, Double, Double, Double, Double, Double, Double) -> (Double, Double, Bool)
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

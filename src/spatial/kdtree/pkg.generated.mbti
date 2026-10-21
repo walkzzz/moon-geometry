@@ -1,27 +1,27 @@
 // Generated using `moon info`, DON'T EDIT IT
-package "walkzzz/moon-geometry/src/kdtree"
+package "walkzzz/moon-geometry/src/spatial/kdtree"
 
 import {
   "moonbitlang/core/debug",
-  "walkzzz/moon-geometry/src/core",
+  "walkzzz/moon-geometry/src/base/core",
 }
 
 // Values
 pub fn build_kdtree(Array[@core.Point2D]) -> Array[KDNode]
 
-pub fn kdtree_nearest(Array[KDNode], @core.Point2D) -> (Int, Double)?
+pub fn kdtree_nearest(Array[KDNode], @core.Point2D) -> (Int32, Double)?
 
-pub fn kdtree_range_query(Array[KDNode], @core.Rectangle) -> Array[Int]
+pub fn kdtree_range_query(Array[KDNode], @core.Rectangle) -> Array[Int32]
 
 // Errors
 
 // Types and methods
 pub struct KDNode {
   point : @core.Point2D
-  left : Int
-  right : Int
-  axis : Int
-  index : Int
+  left : Int32
+  right : Int32
+  axis : Int32
+  index : Int32
 } derive(@debug.Debug)
 pub fn KDNode::to_repr(Self) -> @debug.Repr
 

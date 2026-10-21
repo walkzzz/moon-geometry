@@ -1,0 +1,25 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/src/mesh/face_extract"
+
+import {
+  "walkzzz/moon-geometry/src/base/core",
+}
+
+// Values
+pub fn extract_faces(Array[@core.Point2D], Array[(Int32, Int32)]) -> Array[Face]
+
+pub fn face_area(Face) -> Double
+
+pub fn face_count(Array[Face]) -> Int32
+
+// Errors
+
+// Types and methods
+pub struct Face {
+  boundary : Array[@core.Point2D]
+  holes : Array[Array[@core.Point2D]]
+}
+
+// Type aliases
+
+// Traits

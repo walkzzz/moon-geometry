@@ -36,6 +36,12 @@ pub struct ObjMesh {
 }
 
 ///|
+pub extend ObjMesh with @core.VertexCountable::{vertex_count}
+
+///|
+pub extend ObjMesh with @core.FaceCountable::{face_count}
+
+///|
 /// Create an empty OBJ mesh. / 创建空 OBJ 网格。
 pub fn ObjMesh::new() -> ObjMesh {
   { vertices: [], texcoords: [], normals: [], faces: [] }
@@ -43,14 +49,14 @@ pub fn ObjMesh::new() -> ObjMesh {
 
 ///|
 /// Number of vertices. / 顶点数。
-pub fn ObjMesh::vertex_count(m : ObjMesh) -> Int {
-  m.vertices.length()
+pub impl @core.VertexCountable for ObjMesh with vertex_count(self) {
+  self.vertices.length()
 }
 
 ///|
 /// Number of faces. / 面数。
-pub fn ObjMesh::face_count(m : ObjMesh) -> Int {
-  m.faces.length()
+pub impl @core.FaceCountable for ObjMesh with face_count(self) {
+  self.faces.length()
 }
 
 ///|

@@ -1,0 +1,28 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/src/base/interval_arithmetic"
+
+// Values
+pub fn interval_add(Interval, Interval) -> Interval
+
+pub fn interval_contains(Interval, Double) -> Bool
+
+pub fn interval_midpoint(Interval) -> Double
+
+pub fn interval_mul(Interval, Interval) -> Interval
+
+pub fn interval_sub(Interval, Interval) -> Interval
+
+pub fn interval_width(Interval) -> Double
+
+// Errors
+
+// Types and methods
+pub struct Interval {
+  lo : Double
+  hi : Double
+}
+pub fn Interval::new(Double, Double) -> Self
+
+// Type aliases
+
+// Traits

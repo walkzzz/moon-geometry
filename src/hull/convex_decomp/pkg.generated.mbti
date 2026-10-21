@@ -1,0 +1,25 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/src/hull/convex_decomp"
+
+import {
+  "walkzzz/moon-geometry/src/base/core",
+}
+
+// Values
+pub fn convex_decomp_area(Array[@core.Point2D]) -> Double
+
+pub fn convex_decomp_count(Array[@core.Point2D]) -> Int32
+
+pub fn convex_decomp_lower_bound(Array[@core.Point2D]) -> Int32
+
+pub fn convex_decomposition(Array[@core.Point2D]) -> Array[Array[@core.Point2D]]
+
+pub fn is_convex_polygon(Array[@core.Point2D]) -> Bool
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

@@ -1,0 +1,29 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/src/spatial/metric_tree"
+
+import {
+  "walkzzz/moon-geometry/src/base/core",
+}
+
+// Values
+pub fn build_metric_tree(Array[@core.Point2D]) -> MetricNode?
+
+pub fn metric_tree_count(MetricNode?) -> Int32
+
+pub fn metric_tree_nearest(MetricNode?, @core.Point2D) -> @core.Point2D?
+
+pub fn metric_tree_query(MetricNode?, @core.Point2D, Double) -> Array[@core.Point2D]
+
+// Errors
+
+// Types and methods
+pub struct MetricNode {
+  point : @core.Point2D
+  radius : Double
+  left : MetricNode?
+  right : MetricNode?
+}
+
+// Type aliases
+
+// Traits

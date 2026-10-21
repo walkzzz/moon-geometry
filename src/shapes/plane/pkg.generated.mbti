@@ -1,9 +1,9 @@
 // Generated using `moon info`, DON'T EDIT IT
-package "walkzzz/moon-geometry/src/plane"
+package "walkzzz/moon-geometry/src/shapes/plane"
 
 import {
   "moonbitlang/core/debug",
-  "walkzzz/moon-geometry/src/core",
+  "walkzzz/moon-geometry/src/base/core",
 }
 
 // Values

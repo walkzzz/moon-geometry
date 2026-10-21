@@ -1,9 +1,9 @@
 // Generated using `moon info`, DON'T EDIT IT
-package "walkzzz/moon-geometry/src/ellipse"
+package "walkzzz/moon-geometry/src/curves/ellipse"
 
 import {
   "moonbitlang/core/debug",
-  "walkzzz/moon-geometry/src/core",
+  "walkzzz/moon-geometry/src/base/core",
 }
 
 // Values
@@ -26,6 +26,9 @@ pub fn Ellipse::new(@core.Point2D, Double, Double, Double) -> Self
 pub fn Ellipse::on_boundary(Self, @core.Point2D, Double) -> Bool
 pub fn Ellipse::perimeter(Self) -> Double
 pub fn Ellipse::to_repr(Self) -> @debug.Repr
+pub impl @core.Containable for Ellipse
+pub impl @core.Measurable for Ellipse
+pub impl @core.PerimeterMeasurable for Ellipse
 
 // Type aliases
 

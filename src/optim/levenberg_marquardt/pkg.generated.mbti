@@ -1,0 +1,28 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/src/optim/levenberg_marquardt"
+
+// Values
+pub fn levenberg_marquardt((Array[Double]) -> Array[Double], Array[Double], Int32) -> LMResult
+
+pub fn levenberg_marquardt_jac((Array[Double]) -> Array[Double], (Array[Double]) -> Array[Array[Double]], Array[Double], Int32) -> LMResult
+
+pub fn lm_line_fit(Array[Double], Array[Double]) -> (Double, Double)
+
+pub fn lm_log_residual(Double) -> Double
+
+pub fn lm_rms_error(Double, Int32) -> Double
+
+// Errors
+
+// Types and methods
+pub struct LMResult {
+  x : Array[Double]
+  residual : Double
+  iterations : Int32
+  success : Bool
+}
+pub fn LMResult::new(Array[Double], Double, Int32, Bool) -> Self
+
+// Type aliases
+
+// Traits

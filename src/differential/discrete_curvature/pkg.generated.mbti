@@ -1,0 +1,21 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/src/differential/discrete_curvature"
+
+// Values
+pub fn angle_defect(Array[Double]) -> Double
+
+pub fn discrete_gaussian_curvature(Double) -> Double
+
+pub fn discrete_mean_curvature(Double, Array[Double], Array[Double]) -> Double
+
+pub fn mixed_area(Double, Double) -> Double
+
+pub fn voronoi_area(Double) -> Double
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

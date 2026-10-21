@@ -14,6 +14,12 @@ pub struct Mesh {
 }
 
 ///|
+pub extend Mesh with @core.VertexCountable::{vertex_count}
+
+///|
+pub extend Mesh with @core.FaceCountable::{face_count}
+
+///|
 /// Create an empty mesh. / 创建空网格。
 pub fn Mesh::new() -> Mesh {
   { vertices: [], faces: [] }
@@ -35,14 +41,14 @@ pub fn Mesh::add_face(m : Mesh, v0 : Int, v1 : Int, v2 : Int) -> Unit {
 
 ///|
 /// Get the number of vertices. / 获取顶点数。
-pub fn Mesh::vertex_count(m : Mesh) -> Int {
-  m.vertices.length()
+pub impl @core.VertexCountable for Mesh with vertex_count(self) {
+  self.vertices.length()
 }
 
 ///|
 /// Get the number of faces. / 获取面数。
-pub fn Mesh::face_count(m : Mesh) -> Int {
-  m.faces.length()
+pub impl @core.FaceCountable for Mesh with face_count(self) {
+  self.faces.length()
 }
 
 ///|

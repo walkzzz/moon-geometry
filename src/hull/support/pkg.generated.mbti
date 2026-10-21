@@ -1,14 +1,14 @@
 // Generated using `moon info`, DON'T EDIT IT
-package "walkzzz/moon-geometry/src/support"
+package "walkzzz/moon-geometry/src/hull/support"
 
 import {
-  "walkzzz/moon-geometry/src/core",
+  "walkzzz/moon-geometry/src/base/core",
 }
 
 // Values
 pub fn support_circle(@core.Point2D, Double, @core.Point2D) -> @core.Point2D
 
-pub fn support_point_set(Array[@core.Point2D], @core.Point2D) -> Int?
+pub fn support_point_set(Array[@core.Point2D], @core.Point2D) -> Int32?
 
 pub fn support_segment(@core.Segment, @core.Point2D) -> @core.Point2D
 

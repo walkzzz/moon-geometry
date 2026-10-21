@@ -1,0 +1,17 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/src/pde/diffusion_solver"
+
+// Values
+pub fn crank_nicolson_coef(Double, Double, Double) -> Double
+
+pub fn diffusion_2d_step(Array[Array[Double]], Double, Double, Double, Double) -> Array[Array[Double]]
+
+pub fn diffusion_stability_check(Double, Double, Double) -> Bool
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

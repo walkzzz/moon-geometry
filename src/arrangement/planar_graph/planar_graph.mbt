@@ -14,6 +14,12 @@ pub struct PlanarGraph {
 }
 
 ///|
+pub extend PlanarGraph with @core.VertexCountable::{vertex_count}
+
+///|
+pub extend PlanarGraph with @core.FaceCountable::{face_count}
+
+///|
 /// Create an empty planar graph. / 创建空平面图。
 pub fn PlanarGraph::new() -> PlanarGraph {
   { vertices: [], edges: [], adj: [] }
@@ -45,8 +51,8 @@ pub fn PlanarGraph::add_edge(
 
 ///|
 /// Get the number of vertices. / 获取顶点数。
-pub fn PlanarGraph::vertex_count(graph : PlanarGraph) -> Int {
-  graph.vertices.length()
+pub impl @core.VertexCountable for PlanarGraph with vertex_count(self) {
+  self.vertices.length()
 }
 
 ///|
@@ -110,9 +116,9 @@ pub fn PlanarGraph::is_connected(graph : PlanarGraph) -> Bool {
 
 ///|
 /// Compute the number of faces using Euler's formula (F = E - V + 2 for connected planar graphs). / 用欧拉公式计算面数（连通平面图 F = E - V + 2）。
-pub fn PlanarGraph::face_count(graph : PlanarGraph) -> Int {
-  if graph.is_connected() {
-    graph.edges.length() - graph.vertices.length() + 2
+pub impl @core.FaceCountable for PlanarGraph with face_count(self) {
+  if self.is_connected() {
+    self.edges.length() - self.vertices.length() + 2
   } else {
     0
   }

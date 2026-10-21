@@ -1,0 +1,21 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/src/base/robust_arith"
+
+// Values
+pub fn expansion_sum(Array[Double]) -> Double
+
+pub fn fast_two_sum(Double, Double) -> (Double, Double)
+
+pub fn grow_expansion(Array[Double], Double) -> Array[Double]
+
+pub fn two_prod(Double, Double) -> (Double, Double)
+
+pub fn two_sum(Double, Double) -> (Double, Double)
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

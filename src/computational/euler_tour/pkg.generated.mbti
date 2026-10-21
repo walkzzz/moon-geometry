@@ -1,0 +1,29 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/src/computational/euler_tour"
+
+// Values
+pub fn build_euler_tour(Int32, Array[Array[Int32]], Int32) -> EulerTour
+
+pub fn euler_tour_depths(EulerTour) -> Array[Int32]
+
+pub fn euler_tour_first_occurrence(EulerTour, Int32) -> Int32
+
+pub fn euler_tour_is_valid(EulerTour) -> Bool
+
+pub fn euler_tour_lca(EulerTour, Int32, Int32) -> Int32
+
+pub fn euler_tour_length(EulerTour) -> Int32
+
+pub fn euler_tour_sequence(EulerTour) -> Array[Int32]
+
+// Errors
+
+// Types and methods
+pub struct EulerTour {
+  tour : Array[Int32]
+  depth : Array[Int32]
+}
+
+// Type aliases
+
+// Traits

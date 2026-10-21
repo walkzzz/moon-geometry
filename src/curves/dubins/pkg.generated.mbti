@@ -1,0 +1,48 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/src/curves/dubins"
+
+import {
+  "walkzzz/moon-geometry/src/base/core",
+}
+
+// Values
+pub fn dubins_path_length(DubinsPath) -> Double
+
+pub fn dubins_sample(DubinsPath, DubinsPose, Int32) -> Array[@core.Point2D]
+
+pub fn dubins_segment_count(DubinsPath) -> Int32
+
+pub fn dubins_shortest_path(DubinsPose, DubinsPose, Double) -> DubinsPath
+
+// Errors
+
+// Types and methods
+pub struct DubinsPath {
+  segments : Array[DubinsSegment]
+  total_length : Double
+  radius : Double
+}
+pub fn DubinsPath::new(Array[DubinsSegment], Double, Double) -> Self
+
+pub struct DubinsPose {
+  x : Double
+  y : Double
+  theta : Double
+}
+pub fn DubinsPose::new(Double, Double, Double) -> Self
+
+pub struct DubinsSegment {
+  seg_type : DubinsSegmentType
+  length : Double
+}
+pub fn DubinsSegment::new(DubinsSegmentType, Double) -> Self
+
+pub(all) enum DubinsSegmentType {
+  Left
+  Straight
+  Right
+}
+
+// Type aliases
+
+// Traits

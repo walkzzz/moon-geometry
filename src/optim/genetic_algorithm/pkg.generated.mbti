@@ -1,0 +1,38 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/src/optim/genetic_algorithm"
+
+// Values
+pub fn ga_1d((Double) -> Double, Double, Double, Int32, Int32, UInt32) -> Double
+
+pub fn ga_minimize((Array[Double]) -> Double, GAConfig, Int32, UInt32) -> GAResult
+
+pub fn ga_mutation_schedule(Double, Double, Int32) -> Double
+
+pub fn ga_population_std(Array[Double]) -> Double
+
+pub fn genetic_algorithm((Array[Double]) -> Double, GAConfig, Int32, UInt32) -> GAResult
+
+// Errors
+
+// Types and methods
+pub struct GAConfig {
+  pop_size : Int32
+  n_genes : Int32
+  crossover_rate : Double
+  mutation_rate : Double
+  elite_count : Int32
+  lo : Array[Double]
+  hi : Array[Double]
+}
+pub fn GAConfig::new(Int32, Int32, Double, Double, Int32, Array[Double], Array[Double]) -> Self
+
+pub struct GAResult {
+  x : Array[Double]
+  fitness : Double
+  generations : Int32
+}
+pub fn GAResult::new(Array[Double], Double, Int32) -> Self
+
+// Type aliases
+
+// Traits

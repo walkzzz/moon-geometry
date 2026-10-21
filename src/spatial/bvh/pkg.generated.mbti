@@ -1,28 +1,28 @@
 // Generated using `moon info`, DON'T EDIT IT
-package "walkzzz/moon-geometry/src/bvh"
+package "walkzzz/moon-geometry/src/spatial/bvh"
 
 import {
   "moonbitlang/core/debug",
-  "walkzzz/moon-geometry/src/core",
+  "walkzzz/moon-geometry/src/base/core",
 }
 
 // Values
 pub fn build_bvh(Array[@core.Rectangle]) -> Array[BVHNode]
 
-pub fn bvh_count_leaves(Array[BVHNode]) -> Int
+pub fn bvh_count_leaves(Array[BVHNode]) -> Int32
 
-pub fn bvh_query(Array[BVHNode], @core.Rectangle) -> Array[Int]
+pub fn bvh_query(Array[BVHNode], @core.Rectangle) -> Array[Int32]
 
-pub fn bvh_query_point(Array[BVHNode], @core.Point2D) -> Array[Int]
+pub fn bvh_query_point(Array[BVHNode], @core.Point2D) -> Array[Int32]
 
 // Errors
 
 // Types and methods
 pub struct BVHNode {
   bounds : @core.Rectangle
-  left : Int
-  right : Int
-  index : Int
+  left : Int32
+  right : Int32
+  index : Int32
 } derive(@debug.Debug)
 pub fn BVHNode::to_repr(Self) -> @debug.Repr
 

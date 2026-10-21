@@ -1,0 +1,23 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/src/distance/hausdorff"
+
+import {
+  "walkzzz/moon-geometry/src/base/core",
+}
+
+// Values
+pub fn hausdorff_directed(Array[@core.Point2D], Array[@core.Point2D]) -> Double
+
+pub fn hausdorff_distance(Array[@core.Point2D], Array[@core.Point2D]) -> Double
+
+pub fn hausdorff_within(Array[@core.Point2D], Array[@core.Point2D], Double) -> Bool
+
+pub fn partial_hausdorff(Array[@core.Point2D], Array[@core.Point2D], Int32) -> Double
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

@@ -1,0 +1,25 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/src/curves/curvature_scale"
+
+import {
+  "walkzzz/moon-geometry/src/base/core",
+}
+
+// Values
+pub fn css_curvature(Array[@core.Point2D], Double) -> Array[Double]
+
+pub fn css_image(Array[@core.Point2D], Int32) -> Array[(Double, Int32)]
+
+pub fn css_inflection_points(Array[@core.Point2D], Double) -> Array[Int32]
+
+pub fn css_maxima(Array[@core.Point2D], Int32) -> Array[Double]
+
+pub fn gaussian_smooth(Array[@core.Point2D], Double) -> Array[@core.Point2D]
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

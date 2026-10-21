@@ -1,0 +1,27 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/src/mesh/polyhedron_boolean"
+
+import {
+  "walkzzz/moon-geometry/src/base/core",
+}
+
+// Values
+pub fn polyhedron_difference(Array[@core.Point3D], Array[Array[Int32]], Array[@core.Point3D], Array[Array[Int32]]) -> PolyBoolResult
+
+pub fn polyhedron_intersection(Array[@core.Point3D], Array[Array[Int32]], Array[@core.Point3D], Array[Array[Int32]]) -> PolyBoolResult
+
+pub fn polyhedron_union(Array[@core.Point3D], Array[Array[Int32]], Array[@core.Point3D], Array[Array[Int32]]) -> PolyBoolResult
+
+// Errors
+
+// Types and methods
+pub struct PolyBoolResult {
+  vertices : Array[@core.Point3D]
+  faces : Array[Array[Int32]]
+  success : Bool
+}
+pub fn PolyBoolResult::new(Array[@core.Point3D], Array[Array[Int32]], Bool) -> Self
+
+// Type aliases
+
+// Traits

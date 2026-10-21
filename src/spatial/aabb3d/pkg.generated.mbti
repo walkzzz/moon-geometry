@@ -1,0 +1,34 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/src/spatial/aabb3d"
+
+import {
+  "walkzzz/moon-geometry/src/base/core",
+}
+
+// Values
+
+// Errors
+
+// Types and methods
+pub struct AABB3D {
+  min_x : Double
+  min_y : Double
+  min_z : Double
+  max_x : Double
+  max_y : Double
+  max_z : Double
+}
+pub fn AABB3D::center(Self) -> @core.Point3D
+pub fn AABB3D::contains_point(Self, @core.Point3D) -> Bool
+pub fn AABB3D::from_points(Array[@core.Point3D]) -> Self
+pub fn AABB3D::intersects(Self, Self) -> Bool
+pub fn AABB3D::merge(Self, Self) -> Self
+pub fn AABB3D::new(Double, Double, Double, Double, Double, Double) -> Self
+pub fn AABB3D::ray_intersect(Self, @core.Point3D, @core.Point3D) -> (Double, Double)?
+pub fn AABB3D::surface_area(Self) -> Double
+pub fn AABB3D::volume(Self) -> Double
+pub impl @core.Measurable3D for AABB3D
+
+// Type aliases
+
+// Traits

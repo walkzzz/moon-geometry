@@ -1,0 +1,21 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/src/curves/curvature_est"
+
+import {
+  "walkzzz/moon-geometry/src/base/core",
+}
+
+// Values
+pub fn estimate_gaussian_curvature(@core.Point3D, Array[@core.Point3D]) -> Double
+
+pub fn estimate_mean_curvature(@core.Point3D, Array[@core.Point3D], Array[@core.Point3D], @core.Point3D) -> Double
+
+pub fn principal_curvatures(Double, Double) -> (Double, Double)
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

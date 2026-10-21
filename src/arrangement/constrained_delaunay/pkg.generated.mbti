@@ -1,0 +1,31 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/src/arrangement/constrained_delaunay"
+
+import {
+  "walkzzz/moon-geometry/src/base/core",
+}
+
+// Values
+pub fn add_constraint(ConstrainedDelaunay, Int32, Int32) -> Unit
+
+pub fn constrained_delaunay(Array[@core.Point2D], Array[(Int32, Int32)]) -> ConstrainedDelaunay
+
+pub fn constrained_triangle_count(ConstrainedDelaunay) -> Int32
+
+pub fn is_constrained_edge(ConstrainedDelaunay, Int32, Int32) -> Bool
+
+// Errors
+
+// Types and methods
+pub struct ConstrainedDelaunay {
+  points : Array[@core.Point2D]
+  triangles : Array[(Int32, Int32, Int32)]
+  constraints : Array[(Int32, Int32)]
+}
+pub fn ConstrainedDelaunay::constraint_count(Self) -> Int32
+pub fn ConstrainedDelaunay::new() -> Self
+pub fn ConstrainedDelaunay::triangle_count(Self) -> Int32
+
+// Type aliases
+
+// Traits

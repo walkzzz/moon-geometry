@@ -1,0 +1,30 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/src/arrangement/centroidal_voronoi"
+
+import {
+  "walkzzz/moon-geometry/src/base/core",
+}
+
+// Values
+pub fn centroidal_voronoi(Array[@core.Point2D], (@core.Point2D, @core.Point2D), Int32) -> CVTResult
+
+pub fn compute_centroid(Array[@core.Point2D]) -> @core.Point2D
+
+pub fn lloyd_energy(Array[@core.Point2D], (@core.Point2D, @core.Point2D)) -> Double
+
+pub fn lloyd_iteration(Array[@core.Point2D], (@core.Point2D, @core.Point2D), Int32) -> Array[@core.Point2D]
+
+// Errors
+
+// Types and methods
+pub struct CVTResult {
+  sites : Array[@core.Point2D]
+  cells : Array[Array[@core.Point2D]]
+  iterations : Int32
+  energy : Double
+}
+pub fn CVTResult::new() -> Self
+
+// Type aliases
+
+// Traits

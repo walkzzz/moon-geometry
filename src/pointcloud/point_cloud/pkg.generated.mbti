@@ -1,0 +1,25 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/src/pointcloud/point_cloud"
+
+import {
+  "walkzzz/moon-geometry/src/base/core",
+}
+
+// Values
+pub fn avg_nearest_neighbor_dist(Array[@core.Point3D]) -> Double
+
+pub fn point_cloud_aabb(Array[@core.Point3D]) -> (@core.Point3D, @core.Point3D)
+
+pub fn point_cloud_centroid(Array[@core.Point3D]) -> @core.Point3D
+
+pub fn point_cloud_size(Array[@core.Point3D]) -> Int32
+
+pub fn voxel_downsample(Array[@core.Point3D], Double) -> Array[@core.Point3D]
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

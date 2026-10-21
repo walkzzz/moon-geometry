@@ -1,0 +1,23 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/src/optim/optim"
+
+import {
+  "walkzzz/moon-geometry/src/base/core",
+}
+
+// Values
+pub fn centroid(Array[@core.Point2D]) -> @core.Point2D
+
+pub fn closest_to_centroid(Array[@core.Point2D]) -> @core.Point2D?
+
+pub fn min_area_rect(Array[@core.Point2D]) -> @core.Rectangle
+
+pub fn smallest_enclosing_circle(Array[@core.Point2D]) -> @core.Circle
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

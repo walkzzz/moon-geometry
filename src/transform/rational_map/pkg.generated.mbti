@@ -1,0 +1,22 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/src/transform/rational_map"
+
+// Values
+pub fn rational_degree(RationalMap) -> Int32
+
+pub fn rational_eval(RationalMap, Double) -> Double
+
+pub fn rational_is_defined(RationalMap, Double) -> Bool
+
+// Errors
+
+// Types and methods
+pub struct RationalMap {
+  num_coeffs : Array[Double]
+  den_coeffs : Array[Double]
+}
+pub fn RationalMap::new(Array[Double], Array[Double]) -> Self
+
+// Type aliases
+
+// Traits

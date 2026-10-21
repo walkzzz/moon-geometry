@@ -1,5 +1,5 @@
 // Generated using `moon info`, DON'T EDIT IT
-package "walkzzz/moon-geometry/src/interval"
+package "walkzzz/moon-geometry/src/base/interval"
 
 import {
   "moonbitlang/core/debug",

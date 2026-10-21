@@ -1,17 +1,17 @@
 // Generated using `moon info`, DON'T EDIT IT
-package "walkzzz/moon-geometry/src/quadtree"
+package "walkzzz/moon-geometry/src/spatial/quadtree"
 
 import {
   "moonbitlang/core/debug",
-  "walkzzz/moon-geometry/src/core",
+  "walkzzz/moon-geometry/src/base/core",
 }
 
 // Values
 pub fn build_quadtree(Array[@core.Point2D], @core.Rectangle) -> Array[QuadNode]
 
-pub fn quadtree_count(Array[QuadNode]) -> Int
+pub fn quadtree_count(Array[QuadNode]) -> Int32
 
-pub fn quadtree_range_query(Array[QuadNode], @core.Rectangle) -> Array[Int]
+pub fn quadtree_range_query(Array[QuadNode], @core.Rectangle) -> Array[Int32]
 
 // Errors
 
@@ -22,11 +22,11 @@ pub struct QuadNode {
   half : Double
   point : @core.Point2D
   has_point : Bool
-  index : Int
-  mut nw : Int
-  mut ne : Int
-  mut sw : Int
-  mut se : Int
+  index : Int32
+  mut nw : Int32
+  mut ne : Int32
+  mut sw : Int32
+  mut se : Int32
 } derive(@debug.Debug)
 pub fn QuadNode::to_repr(Self) -> @debug.Repr
 

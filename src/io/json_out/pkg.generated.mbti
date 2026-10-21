@@ -1,0 +1,33 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/src/io/json_out"
+
+import {
+  "walkzzz/moon-geometry/src/base/core",
+}
+
+// Values
+pub fn circle_to_json(@core.Circle) -> String
+
+pub fn point2d_to_json(@core.Point2D) -> String
+
+pub fn point3d_to_json(@core.Point3D) -> String
+
+pub fn points_to_json(Array[@core.Point2D]) -> String
+
+pub fn polygon_to_json(@core.Polygon) -> String
+
+pub fn rectangle_to_json(@core.Rectangle) -> String
+
+pub fn scene_to_json(Array[@core.Point2D], Array[@core.Segment], Array[@core.Circle]) -> String
+
+pub fn segment_to_json(@core.Segment) -> String
+
+pub fn triangle_to_json(@core.Triangle) -> String
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

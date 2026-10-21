@@ -1,0 +1,44 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/src/spatial/rtree"
+
+import {
+  "walkzzz/moon-geometry/src/base/core",
+}
+
+// Values
+pub fn rtree_get_all(RTree) -> Array[@core.Point2D]
+
+pub fn rtree_insert(RTree, @core.Point2D) -> Unit
+
+pub fn rtree_new(Int32) -> RTree
+
+pub fn rtree_range_query(RTree, Double, Double, Double, Double) -> Array[@core.Point2D]
+
+pub fn rtree_size(RTree) -> Int32
+
+// Errors
+
+// Types and methods
+pub struct RTree {
+  mut root : RTreeNode?
+  max_entries : Int32
+}
+
+pub struct RTreeEntry {
+  mbr_min_x : Double
+  mbr_min_y : Double
+  mbr_max_x : Double
+  mbr_max_y : Double
+  child : RTreeNode?
+  data : @core.Point2D?
+}
+
+pub struct RTreeNode {
+  entries : Array[RTreeEntry]
+  is_leaf : Bool
+  height : Int32
+}
+
+// Type aliases
+
+// Traits

@@ -1,0 +1,19 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/src/base/exact_pred"
+
+// Values
+pub fn exact_collinear(Double, Double, Double, Double, Double, Double) -> Bool
+
+pub fn exact_incircle(Double, Double, Double, Double, Double, Double, Double, Double) -> Int32
+
+pub fn exact_left_of_line(Double, Double, Double, Double, Double, Double) -> Bool
+
+pub fn exact_orientation(Double, Double, Double, Double, Double, Double) -> Int32
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

@@ -1,0 +1,26 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/src/spatial/obb"
+
+import {
+  "walkzzz/moon-geometry/src/base/core",
+}
+
+// Values
+pub fn obb_from_points(Array[@core.Point3D]) -> OBB
+
+// Errors
+
+// Types and methods
+pub struct OBB {
+  center : @core.Point3D
+  axes : Array[@core.Point3D]
+  half_extents : Array[Double]
+}
+pub fn OBB::new(@core.Point3D, Array[@core.Point3D], Array[Double]) -> Self
+pub fn OBB::surface_area(Self) -> Double
+pub fn OBB::volume(Self) -> Double
+pub impl @core.Measurable3D for OBB
+
+// Type aliases
+
+// Traits

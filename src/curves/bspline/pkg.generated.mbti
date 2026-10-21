@@ -1,0 +1,23 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/src/curves/bspline"
+
+import {
+  "walkzzz/moon-geometry/src/base/core",
+}
+
+// Values
+pub fn bspline_basis(Int32, Array[Double], Int32, Double) -> Double
+
+pub fn bspline_eval(Array[@core.Point2D], Int32, Array[Double], Double) -> @core.Point2D
+
+pub fn bspline_points(Array[@core.Point2D], Int32, Int32) -> Array[@core.Point2D]
+
+pub fn uniform_knots(Int32, Int32) -> Array[Double]
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

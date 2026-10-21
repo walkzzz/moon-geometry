@@ -1,0 +1,23 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/src/curves/hermite"
+
+import {
+  "walkzzz/moon-geometry/src/base/core",
+}
+
+// Values
+pub fn cardinal_tangents(Array[@core.Point2D], Double) -> Array[@core.Point2D]
+
+pub fn hermite_derivative(@core.Point2D, @core.Point2D, @core.Point2D, @core.Point2D, Double) -> @core.Point2D
+
+pub fn hermite_eval(@core.Point2D, @core.Point2D, @core.Point2D, @core.Point2D, Double) -> @core.Point2D
+
+pub fn hermite_points(Array[@core.Point2D], Array[@core.Point2D], Int32) -> Array[@core.Point2D]
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

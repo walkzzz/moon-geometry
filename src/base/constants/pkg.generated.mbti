@@ -1,5 +1,5 @@
 // Generated using `moon info`, DON'T EDIT IT
-package "walkzzz/moon-geometry/src/constants"
+package "walkzzz/moon-geometry/src/base/constants"
 
 // Values
 pub let deg2rad : Double

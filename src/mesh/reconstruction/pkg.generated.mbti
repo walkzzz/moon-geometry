@@ -1,0 +1,17 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/src/mesh/reconstruction"
+
+// Values
+pub fn ball_pivot_reconstruct(Array[(Double, Double, Double)], Double) -> (Array[(Double, Double, Double)], Array[(Int32, Int32, Int32)])
+
+pub fn distance_to_mesh((Double, Double, Double), Array[(Double, Double, Double)], Array[(Int32, Int32, Int32)]) -> Double
+
+pub fn estimate_normal(Array[(Double, Double, Double)], Int32, Int32) -> (Double, Double, Double)
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

@@ -14,6 +14,9 @@ pub struct Voronoi3D {
 }
 
 ///|
+pub extend Voronoi3D with @core.VertexCountable::{vertex_count}
+
+///|
 /// Construct an empty 3D Voronoi diagram. / 构造空的三维 Voronoi 图。
 pub fn Voronoi3D::new() -> Voronoi3D {
   { sites: [], cells: [], vertices: [] }
@@ -27,8 +30,8 @@ pub fn Voronoi3D::cell_count(v : Voronoi3D) -> Int {
 
 ///|
 /// Get the number of Voronoi vertices. / 获取 Voronoi 顶点数量。
-pub fn Voronoi3D::vertex_count(v : Voronoi3D) -> Int {
-  v.vertices.length()
+pub impl @core.VertexCountable for Voronoi3D with vertex_count(self) {
+  self.vertices.length()
 }
 
 ///|

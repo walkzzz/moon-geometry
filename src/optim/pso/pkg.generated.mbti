@@ -1,0 +1,44 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/src/optim/pso"
+
+// Values
+pub fn pso((Array[Double]) -> Double, PSOConfig, PSOTopology, Int32, UInt32) -> PSOResult
+
+pub fn pso_1d((Double) -> Double, Double, Double, Int32, Int32, UInt32) -> Double
+
+pub fn pso_decreasing_w((Array[Double]) -> Double, PSOConfig, Double, Double, PSOTopology, Int32, UInt32) -> PSOResult
+
+pub fn pso_inertia_schedule(Double, Double, Int32) -> Double
+
+pub fn pso_swarm_radius(Array[Double]) -> Double
+
+// Errors
+
+// Types and methods
+pub struct PSOConfig {
+  n_particles : Int32
+  n_dims : Int32
+  w : Double
+  c1 : Double
+  c2 : Double
+  lo : Array[Double]
+  hi : Array[Double]
+  v_max : Double
+}
+pub fn PSOConfig::new(Int32, Int32, Double, Double, Double, Array[Double], Array[Double], Double) -> Self
+
+pub struct PSOResult {
+  x : Array[Double]
+  value : Double
+  iterations : Int32
+}
+pub fn PSOResult::new(Array[Double], Double, Int32) -> Self
+
+pub(all) enum PSOTopology {
+  Global
+  Local(Int32)
+}
+
+// Type aliases
+
+// Traits

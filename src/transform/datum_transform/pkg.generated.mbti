@@ -1,0 +1,42 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/src/transform/datum_transform"
+
+// Values
+pub fn apply_helmert3(Helmert3, Double, Double, Double) -> (Double, Double, Double)
+
+pub fn apply_helmert7(Helmert7, Double, Double, Double) -> (Double, Double, Double)
+
+pub fn compose_helmert7(Helmert7, Helmert7) -> Helmert7
+
+pub fn helmert7_identity() -> Helmert7
+
+pub fn inverse_helmert3(Helmert3) -> Helmert3
+
+pub fn inverse_helmert7(Helmert7) -> Helmert7
+
+pub fn wgs84_to_cgcs2000_params() -> Helmert7
+
+// Errors
+
+// Types and methods
+pub struct Helmert3 {
+  tx : Double
+  ty : Double
+  tz : Double
+}
+pub fn Helmert3::new(Double, Double, Double) -> Self
+
+pub struct Helmert7 {
+  tx : Double
+  ty : Double
+  tz : Double
+  rx : Double
+  ry : Double
+  rz : Double
+  scale : Double
+}
+pub fn Helmert7::new(Double, Double, Double, Double, Double, Double, Double) -> Self
+
+// Type aliases
+
+// Traits

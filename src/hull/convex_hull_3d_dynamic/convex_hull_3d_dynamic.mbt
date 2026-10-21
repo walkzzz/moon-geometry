@@ -6,6 +6,9 @@ pub struct DynamicHull3D {
 }
 
 ///|
+pub extend DynamicHull3D with @core.FaceCountable::{face_count}
+
+///|
 /// Construct empty dynamic hull. / 构造空动态凸包。
 pub fn DynamicHull3D::new() -> DynamicHull3D {
   { points: [], hull_faces: [] }
@@ -19,8 +22,8 @@ pub fn DynamicHull3D::size(h : DynamicHull3D) -> Int {
 
 ///|
 /// Number of hull faces. / 凸包面数。
-pub fn DynamicHull3D::face_count(h : DynamicHull3D) -> Int {
-  h.hull_faces.length()
+pub impl @core.FaceCountable for DynamicHull3D with face_count(self) {
+  self.hull_faces.length()
 }
 
 ///|

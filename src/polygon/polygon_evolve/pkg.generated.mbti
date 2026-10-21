@@ -1,0 +1,23 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/src/polygon/polygon_evolve"
+
+import {
+  "walkzzz/moon-geometry/src/base/core",
+}
+
+// Values
+pub fn curve_shortening_flow(Array[@core.Point2D], Int32, Double) -> Array[Array[@core.Point2D]]
+
+pub fn evolve_step(Array[@core.Point2D], Double) -> Array[@core.Point2D]
+
+pub fn flow_areas(Array[@core.Point2D], Int32, Double) -> Array[Double]
+
+pub fn flow_perimeters(Array[@core.Point2D], Int32, Double) -> Array[Double]
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

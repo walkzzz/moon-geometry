@@ -9,6 +9,12 @@ pub struct Polyhedron {
 pub extend Polyhedron with @core.Measurable3D::{volume, surface_area}
 
 ///|
+pub extend Polyhedron with @core.VertexCountable::{vertex_count}
+
+///|
+pub extend Polyhedron with @core.FaceCountable::{face_count}
+
+///|
 /// Construct an empty polyhedron. / 构造空多面体。
 pub fn Polyhedron::new() -> Polyhedron {
   { vertices: [], faces: [] }
@@ -30,14 +36,14 @@ pub fn Polyhedron::add_face(p : Polyhedron, indices : Array[Int]) -> Unit {
 
 ///|
 /// Number of vertices. / 顶点数。
-pub fn Polyhedron::vertex_count(p : Polyhedron) -> Int {
-  p.vertices.length()
+pub impl @core.VertexCountable for Polyhedron with vertex_count(self) {
+  self.vertices.length()
 }
 
 ///|
 /// Number of faces. / 面数。
-pub fn Polyhedron::face_count(p : Polyhedron) -> Int {
-  p.faces.length()
+pub impl @core.FaceCountable for Polyhedron with face_count(self) {
+  self.faces.length()
 }
 
 ///|

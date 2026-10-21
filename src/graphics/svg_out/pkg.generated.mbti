@@ -1,0 +1,39 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/src/graphics/svg_out"
+
+import {
+  "walkzzz/moon-geometry/src/base/core",
+}
+
+// Values
+pub fn svg_circle(@core.Circle, SvgSettings) -> String
+
+pub fn svg_document(Array[Array[@core.Point2D]], SvgSettings) -> String
+
+pub fn svg_footer() -> String
+
+pub fn svg_header(SvgSettings) -> String
+
+pub fn svg_line(@core.Point2D, @core.Point2D, SvgSettings) -> String
+
+pub fn svg_point(@core.Point2D) -> String
+
+pub fn svg_polygon(Array[@core.Point2D], SvgSettings) -> String
+
+pub fn svg_polyline(Array[@core.Point2D], SvgSettings) -> String
+
+// Errors
+
+// Types and methods
+pub struct SvgSettings {
+  width : Int32
+  height : Int32
+  stroke : String
+  fill : String
+  stroke_width : Double
+}
+pub fn SvgSettings::default() -> Self
+
+// Type aliases
+
+// Traits

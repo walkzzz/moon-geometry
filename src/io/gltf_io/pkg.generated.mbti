@@ -1,0 +1,31 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/src/io/gltf_io"
+
+import {
+  "walkzzz/moon-geometry/src/base/core",
+}
+
+// Values
+pub fn gltf_parse_binary(Bytes) -> GltfMesh
+
+pub fn gltf_parse_json(String) -> GltfMesh
+
+pub fn gltf_write_binary(GltfMesh) -> Bytes
+
+pub fn gltf_write_json(GltfMesh) -> String
+
+// Errors
+
+// Types and methods
+pub struct GltfMesh {
+  vertices : Array[@core.Point3D]
+  indices : Array[Int32]
+}
+pub fn GltfMesh::index_count(Self) -> Int32
+pub fn GltfMesh::new() -> Self
+pub fn GltfMesh::vertex_count(Self) -> Int32
+pub impl @core.VertexCountable for GltfMesh
+
+// Type aliases
+
+// Traits

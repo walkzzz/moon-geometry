@@ -1,28 +1,28 @@
 // Generated using `moon info`, DON'T EDIT IT
-package "walkzzz/moon-geometry/src/aabb_tree"
+package "walkzzz/moon-geometry/src/spatial/aabb_tree"
 
 import {
   "moonbitlang/core/debug",
-  "walkzzz/moon-geometry/src/core",
+  "walkzzz/moon-geometry/src/base/core",
 }
 
 // Values
 pub fn build_aabb_tree(Array[@core.Rectangle]) -> Array[AABBNode]
 
-pub fn count_leaves(Array[AABBNode]) -> Int
+pub fn count_leaves(Array[AABBNode]) -> Int32
 
-pub fn query_aabb(Array[AABBNode], @core.Rectangle) -> Array[Int]
+pub fn query_aabb(Array[AABBNode], @core.Rectangle) -> Array[Int32]
 
-pub fn query_point_aabb(Array[AABBNode], @core.Point2D) -> Array[Int]
+pub fn query_point_aabb(Array[AABBNode], @core.Point2D) -> Array[Int32]
 
 // Errors
 
 // Types and methods
 pub struct AABBNode {
   bounds : @core.Rectangle
-  left : Int
-  right : Int
-  index : Int
+  left : Int32
+  right : Int32
+  index : Int32
 } derive(@debug.Debug)
 pub fn AABBNode::to_repr(Self) -> @debug.Repr
 

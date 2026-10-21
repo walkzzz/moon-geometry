@@ -1,0 +1,33 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/src/arrangement/delaunay_terrain"
+
+import {
+  "walkzzz/moon-geometry/src/arrangement/triangulation",
+  "walkzzz/moon-geometry/src/base/core",
+}
+
+// Values
+pub fn build_constrained_terrain(Array[@core.Point3D], Array[(Int32, Int32)]) -> Terrain
+
+pub fn build_terrain(Array[@core.Point3D]) -> Terrain
+
+// Errors
+
+// Types and methods
+pub struct Terrain {
+  points : Array[@core.Point3D]
+  triangles : Array[@triangulation.TriangleIdx]
+  constraints : Array[(Int32, Int32)]
+}
+pub fn Terrain::aspect_at(Self, @core.Point2D) -> Double?
+pub fn Terrain::average_slope(Self) -> Double
+pub fn Terrain::constraint_count(Self) -> Int32
+pub fn Terrain::new(Array[@core.Point3D], Array[@triangulation.TriangleIdx], Array[(Int32, Int32)]) -> Self
+pub fn Terrain::point_count(Self) -> Int32
+pub fn Terrain::slope_at(Self, @core.Point2D) -> Double?
+pub fn Terrain::surface_area(Self) -> Double
+pub fn Terrain::triangle_count(Self) -> Int32
+
+// Type aliases
+
+// Traits

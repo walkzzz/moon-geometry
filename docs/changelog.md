@@ -6,6 +6,14 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
 Moon Geometry 的所有重要变更记录于此。
 格式基于 [Keep a Changelog](https://keepachangelog.com/)。
 
+## [0.247.0] - 2026-10-21
+
+### Added — R19 Trait 化续 | R19 Trait-ification Continued
+
+- 新增 `pub(open) trait VertexCountable`（`vertex_count`）：9 类型实现（DCEL, Delaunay3D, PlanarGraph, Voronoi3D, GltfMesh, ObjMesh, PlyMesh, Mesh, Polyhedron）
+- 新增 `pub(open) trait FaceCountable`（`face_count`）：7 类型实现（DCEL, PlanarGraph, DynamicHull3D, ObjMesh, PlyMesh, Mesh, Polyhedron）
+- **Trait 总数**：9
+
 ## [0.246.0] - 2026-10-21
 
 ### Added — R19 Trait 化续 | R19 Trait-ification Continued

@@ -1,8 +1,8 @@
 // Generated using `moon info`, DON'T EDIT IT
-package "walkzzz/moon-geometry/src/polar_dual"
+package "walkzzz/moon-geometry/src/hull/polar_dual"
 
 import {
-  "walkzzz/moon-geometry/src/core",
+  "walkzzz/moon-geometry/src/base/core",
 }
 
 // Values

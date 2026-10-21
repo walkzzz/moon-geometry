@@ -24,6 +24,12 @@ pub struct DCEL {
 }
 
 ///|
+pub extend DCEL with @core.VertexCountable::{vertex_count}
+
+///|
+pub extend DCEL with @core.FaceCountable::{face_count}
+
+///|
 /// Create an empty DCEL. / 创建空的 DCEL。
 pub fn DCEL::new() -> DCEL {
   { vertices: [], half_edges: [], faces: [] }
@@ -83,8 +89,8 @@ pub fn DCEL::set_face(dcel : DCEL, he : Int, face : Int) -> Unit {
 
 ///|
 /// Get the number of vertices. / 获取顶点数量。
-pub fn DCEL::vertex_count(dcel : DCEL) -> Int {
-  dcel.vertices.length()
+pub impl @core.VertexCountable for DCEL with vertex_count(self) {
+  self.vertices.length()
 }
 
 ///|
@@ -95,8 +101,8 @@ pub fn DCEL::edge_count(dcel : DCEL) -> Int {
 
 ///|
 /// Get the number of faces. / 获取面数量。
-pub fn DCEL::face_count(dcel : DCEL) -> Int {
-  dcel.faces.length()
+pub impl @core.FaceCountable for DCEL with face_count(self) {
+  self.faces.length()
 }
 
 ///|

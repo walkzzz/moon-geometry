@@ -15,6 +15,9 @@ pub struct Delaunay3D {
 }
 
 ///|
+pub extend Delaunay3D with @core.VertexCountable::{vertex_count}
+
+///|
 /// Construct an empty 3D Delaunay triangulation. / 构造空的三维 Delaunay 三角剖分。
 pub fn Delaunay3D::new() -> Delaunay3D {
   { vertices: [], tetrahedra: [] }
@@ -28,8 +31,8 @@ pub fn Delaunay3D::tetrahedron_count(d : Delaunay3D) -> Int {
 
 ///|
 /// Get the number of vertices. / 获取顶点数量。
-pub fn Delaunay3D::vertex_count(d : Delaunay3D) -> Int {
-  d.vertices.length()
+pub impl @core.VertexCountable for Delaunay3D with vertex_count(self) {
+  self.vertices.length()
 }
 
 ///|

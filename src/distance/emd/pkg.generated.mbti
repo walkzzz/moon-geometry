@@ -1,0 +1,21 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/src/distance/emd"
+
+import {
+  "walkzzz/moon-geometry/src/base/core",
+}
+
+// Values
+pub fn emd_1d(Array[Double], Array[Double]) -> Double
+
+pub fn emd_uniform(Array[@core.Point2D], Array[@core.Point2D]) -> Double
+
+pub fn emd_weighted(Array[Double], Array[Double], Array[Double]) -> Double
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

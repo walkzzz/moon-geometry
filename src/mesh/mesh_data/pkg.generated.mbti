@@ -1,0 +1,38 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/src/mesh/mesh_data"
+
+import {
+  "walkzzz/moon-geometry/src/base/core",
+}
+
+// Values
+
+// Errors
+
+// Types and methods
+pub struct Mesh {
+  vertices : Array[@core.Point3D]
+  faces : Array[MeshFace]
+}
+pub fn Mesh::add_face(Self, Int32, Int32, Int32) -> Unit
+pub fn Mesh::add_vertex(Self, @core.Point3D) -> Int32
+pub fn Mesh::bounding_box(Self) -> (@core.Point3D, @core.Point3D)
+pub fn Mesh::edge_count(Self) -> Int32
+pub fn Mesh::face_count(Self) -> Int32
+pub fn Mesh::get_face(Self, Int32) -> MeshFace
+pub fn Mesh::get_vertex(Self, Int32) -> @core.Point3D
+pub fn Mesh::new() -> Self
+pub fn Mesh::tetrahedron(@core.Point3D, @core.Point3D, @core.Point3D, @core.Point3D) -> Self
+pub fn Mesh::vertex_count(Self) -> Int32
+pub impl @core.FaceCountable for Mesh
+pub impl @core.VertexCountable for Mesh
+
+pub struct MeshFace {
+  v0 : Int32
+  v1 : Int32
+  v2 : Int32
+}
+
+// Type aliases
+
+// Traits

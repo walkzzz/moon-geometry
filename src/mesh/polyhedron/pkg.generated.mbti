@@ -1,0 +1,34 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/src/mesh/polyhedron"
+
+import {
+  "walkzzz/moon-geometry/src/base/core",
+}
+
+// Values
+
+// Errors
+
+// Types and methods
+pub struct Polyhedron {
+  vertices : Array[@core.Point3D]
+  faces : Array[Array[Int32]]
+}
+pub fn Polyhedron::add_face(Self, Array[Int32]) -> Unit
+pub fn Polyhedron::add_vertex(Self, @core.Point3D) -> Int32
+pub fn Polyhedron::centroid(Self) -> @core.Point3D
+pub fn Polyhedron::cube(Double, Double, Double, Double, Double, Double) -> Self
+pub fn Polyhedron::edge_count(Self) -> Int32
+pub fn Polyhedron::face_count(Self) -> Int32
+pub fn Polyhedron::new() -> Self
+pub fn Polyhedron::surface_area(Self) -> Double
+pub fn Polyhedron::tetrahedron(@core.Point3D, @core.Point3D, @core.Point3D, @core.Point3D) -> Self
+pub fn Polyhedron::vertex_count(Self) -> Int32
+pub fn Polyhedron::volume(Self) -> Double
+pub impl @core.FaceCountable for Polyhedron
+pub impl @core.Measurable3D for Polyhedron
+pub impl @core.VertexCountable for Polyhedron
+
+// Type aliases
+
+// Traits

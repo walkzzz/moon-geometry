@@ -1,0 +1,21 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/src/base/polynomial"
+
+// Values
+pub fn poly_add(Array[Double], Array[Double]) -> Array[Double]
+
+pub fn poly_derivative(Array[Double]) -> Array[Double]
+
+pub fn poly_eval(Array[Double], Double) -> Double
+
+pub fn poly_mul(Array[Double], Array[Double]) -> Array[Double]
+
+pub fn poly_roots(Array[Double]) -> Array[Double]
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

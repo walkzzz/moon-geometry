@@ -1,0 +1,37 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/src/optim/simulated_annealing"
+
+// Values
+pub fn sa_1d((Double) -> Double, Double, Double, Double, Double, Int32, UInt32) -> Double
+
+pub fn sa_reheat((Array[Double]) -> Double, Array[Double], (Array[Double], SA_rng) -> Array[Double], Double, Double, Int32, Int32, UInt32) -> SAResult
+
+pub fn simulated_annealing((Array[Double]) -> Double, Array[Double], (Array[Double], SA_rng) -> Array[Double], Double, CoolingSchedule, Double, Int32, UInt32) -> SAResult
+
+pub fn uniform_neighbor(Array[Double], Double, SA_rng) -> Array[Double]
+
+// Errors
+
+// Types and methods
+pub(all) enum CoolingSchedule {
+  Geometric(Double)
+  Linear(Double)
+  Logarithmic(Double)
+}
+
+pub struct SAResult {
+  x : Array[Double]
+  value : Double
+  iterations : Int32
+}
+pub fn SAResult::new(Array[Double], Double, Int32) -> Self
+
+pub struct SA_rng {
+  mut state : UInt32
+}
+pub fn SA_rng::new(UInt32) -> Self
+pub fn SA_rng::next(Self) -> Double
+
+// Type aliases
+
+// Traits

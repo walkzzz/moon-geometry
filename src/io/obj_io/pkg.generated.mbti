@@ -1,0 +1,44 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/src/io/obj_io"
+
+import {
+  "walkzzz/moon-geometry/src/base/core",
+}
+
+// Values
+pub fn obj_parse(String) -> ObjMesh
+
+pub fn obj_write(ObjMesh) -> String
+
+pub fn parse_double_sv(StringView) -> Double
+
+// Errors
+
+// Types and methods
+pub struct ObjFace {
+  verts : Array[ObjFaceVertex]
+}
+pub fn ObjFace::new(Array[ObjFaceVertex]) -> Self
+
+pub struct ObjFaceVertex {
+  v : Int32
+  vt : Int32
+  vn : Int32
+}
+pub fn ObjFaceVertex::new(Int32, Int32, Int32) -> Self
+
+pub struct ObjMesh {
+  vertices : Array[@core.Point3D]
+  texcoords : Array[(Double, Double)]
+  normals : Array[@core.Point3D]
+  faces : Array[ObjFace]
+}
+pub fn ObjMesh::face_count(Self) -> Int32
+pub fn ObjMesh::new() -> Self
+pub fn ObjMesh::vertex_count(Self) -> Int32
+pub impl @core.FaceCountable for ObjMesh
+pub impl @core.VertexCountable for ObjMesh
+
+// Type aliases
+
+// Traits

@@ -1,0 +1,17 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/src/pde/advection_solver"
+
+// Values
+pub fn lax_friedrichs(Array[Double], Double, Double, Double) -> Array[Double]
+
+pub fn lax_wendroff(Array[Double], Double, Double, Double) -> Array[Double]
+
+pub fn upwind_advection(Array[Double], Double, Double, Double) -> Array[Double]
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

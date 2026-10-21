@@ -1,0 +1,29 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/src/curves/implicit_curve"
+
+import {
+  "walkzzz/moon-geometry/src/base/core",
+}
+
+// Values
+pub fn curvature((Double, Double) -> Double, (Double, Double) -> Double, (Double, Double) -> Double, (Double, Double) -> Double, (Double, Double) -> Double, @core.Point2D) -> Double
+
+pub fn find_seed((Double, Double) -> Double, Double, Double, Double, Double, Int32) -> @core.Point2D?
+
+pub fn newton_correct((Double, Double) -> Double, (Double, Double) -> Double, (Double, Double) -> Double, @core.Point2D, Int32) -> @core.Point2D
+
+pub fn normal((Double, Double) -> Double, (Double, Double) -> Double, @core.Point2D) -> @core.Point2D
+
+pub fn tangent((Double, Double) -> Double, (Double, Double) -> Double, @core.Point2D) -> @core.Point2D
+
+pub fn trace_both_directions((Double, Double) -> Double, (Double, Double) -> Double, (Double, Double) -> Double, @core.Point2D, Double, Int32) -> Array[@core.Point2D]
+
+pub fn trace_curve((Double, Double) -> Double, (Double, Double) -> Double, (Double, Double) -> Double, @core.Point2D, Double, Int32) -> Array[@core.Point2D]
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

@@ -1,5 +1,5 @@
 // Generated using `moon info`, DON'T EDIT IT
-package "walkzzz/moon-geometry/src/angle"
+package "walkzzz/moon-geometry/src/base/angle"
 
 // Values
 pub fn angle_diff(Double, Double) -> Double

@@ -1,9 +1,9 @@
 // Generated using `moon info`, DON'T EDIT IT
-package "walkzzz/moon-geometry/src/bezier"
+package "walkzzz/moon-geometry/src/curves/bezier"
 
 import {
   "moonbitlang/core/debug",
-  "walkzzz/moon-geometry/src/core",
+  "walkzzz/moon-geometry/src/base/core",
 }
 
 // Values
@@ -23,6 +23,7 @@ pub fn Bezier2::length(Self) -> Double
 pub fn Bezier2::new(@core.Point2D, @core.Point2D, @core.Point2D) -> Self
 pub fn Bezier2::subdivide(Self, Double) -> (Self, Self)
 pub fn Bezier2::to_repr(Self) -> @debug.Repr
+pub impl @core.Curve2D for Bezier2
 
 pub struct Bezier3 {
   p0 : @core.Point2D
@@ -37,6 +38,7 @@ pub fn Bezier3::length(Self) -> Double
 pub fn Bezier3::new(@core.Point2D, @core.Point2D, @core.Point2D, @core.Point2D) -> Self
 pub fn Bezier3::subdivide(Self, Double) -> (Self, Self)
 pub fn Bezier3::to_repr(Self) -> @debug.Repr
+pub impl @core.Curve2D for Bezier3
 
 // Type aliases
 

@@ -1,0 +1,27 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/src/topology/betti_numbers"
+
+// Values
+pub fn betti_0(Array[Array[Int32]]) -> Int32
+
+pub fn betti_1(Array[Array[Int32]]) -> Int32
+
+pub fn betti_2(Array[Array[Int32]]) -> Int32
+
+pub fn betti_numbers(Array[Array[Int32]]) -> BettiResult
+
+pub fn compute_euler(Array[Array[Int32]]) -> Int32
+
+// Errors
+
+// Types and methods
+pub struct BettiResult {
+  b0 : Int32
+  b1 : Int32
+  b2 : Int32
+}
+pub fn BettiResult::new(Int32, Int32, Int32) -> Self
+
+// Type aliases
+
+// Traits

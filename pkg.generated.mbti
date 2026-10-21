@@ -2,46 +2,344 @@
 package "walkzzz/moon-geometry"
 
 import {
-  "walkzzz/moon-geometry/src/aabb_tree",
-  "walkzzz/moon-geometry/src/bezier",
-  "walkzzz/moon-geometry/src/bucket_pr",
-  "walkzzz/moon-geometry/src/bvh",
-  "walkzzz/moon-geometry/src/convex_hull3d",
-  "walkzzz/moon-geometry/src/core",
-  "walkzzz/moon-geometry/src/ellipse",
-  "walkzzz/moon-geometry/src/fitting",
-  "walkzzz/moon-geometry/src/grid_index",
-  "walkzzz/moon-geometry/src/half_plane",
-  "walkzzz/moon-geometry/src/interval",
-  "walkzzz/moon-geometry/src/kdtree",
-  "walkzzz/moon-geometry/src/linear_prog",
-  "walkzzz/moon-geometry/src/matrix",
-  "walkzzz/moon-geometry/src/plane",
-  "walkzzz/moon-geometry/src/quadtree",
-  "walkzzz/moon-geometry/src/range_tree",
-  "walkzzz/moon-geometry/src/ray",
-  "walkzzz/moon-geometry/src/spatial_hash",
-  "walkzzz/moon-geometry/src/triangulation",
+  "walkzzz/moon-geometry/src/algebraic/conic_section",
+  "walkzzz/moon-geometry/src/algebraic/geometric_algebra",
+  "walkzzz/moon-geometry/src/algebraic/quadric_surface",
+  "walkzzz/moon-geometry/src/arrangement/arrangement",
+  "walkzzz/moon-geometry/src/arrangement/centroidal_voronoi",
+  "walkzzz/moon-geometry/src/arrangement/constrained_delaunay",
+  "walkzzz/moon-geometry/src/arrangement/dcel",
+  "walkzzz/moon-geometry/src/arrangement/delaunay_3d",
+  "walkzzz/moon-geometry/src/arrangement/delaunay_terrain",
+  "walkzzz/moon-geometry/src/arrangement/planar_graph",
+  "walkzzz/moon-geometry/src/arrangement/power_diagram",
+  "walkzzz/moon-geometry/src/arrangement/triangulation",
+  "walkzzz/moon-geometry/src/arrangement/voronoi_3d",
+  "walkzzz/moon-geometry/src/base/affine_arithmetic",
+  "walkzzz/moon-geometry/src/base/big_rational",
+  "walkzzz/moon-geometry/src/base/core",
+  "walkzzz/moon-geometry/src/base/interval",
+  "walkzzz/moon-geometry/src/base/interval_arith",
+  "walkzzz/moon-geometry/src/base/interval_arithmetic",
+  "walkzzz/moon-geometry/src/base/lazy_exact",
+  "walkzzz/moon-geometry/src/base/matrix",
+  "walkzzz/moon-geometry/src/base/random_gen",
+  "walkzzz/moon-geometry/src/computational/euler_tour",
+  "walkzzz/moon-geometry/src/computational/spanning_tree",
+  "walkzzz/moon-geometry/src/curves/bezier",
+  "walkzzz/moon-geometry/src/curves/dubins",
+  "walkzzz/moon-geometry/src/curves/ellipse",
+  "walkzzz/moon-geometry/src/curves/path_smooth",
+  "walkzzz/moon-geometry/src/curves/reed_shepp",
+  "walkzzz/moon-geometry/src/graphics/contour_line",
+  "walkzzz/moon-geometry/src/graphics/hidden_line",
+  "walkzzz/moon-geometry/src/graphics/hough_transform",
+  "walkzzz/moon-geometry/src/graphics/raster_ops",
+  "walkzzz/moon-geometry/src/graphics/rasterization",
+  "walkzzz/moon-geometry/src/graphics/ray_tracing",
+  "walkzzz/moon-geometry/src/graphics/svg_out",
+  "walkzzz/moon-geometry/src/hull/convex_hull3d",
+  "walkzzz/moon-geometry/src/hull/convex_hull_3d_dynamic",
+  "walkzzz/moon-geometry/src/hull/convex_hull_dynamic",
+  "walkzzz/moon-geometry/src/io/dxf_io",
+  "walkzzz/moon-geometry/src/io/geojson_io",
+  "walkzzz/moon-geometry/src/io/gltf_io",
+  "walkzzz/moon-geometry/src/io/obj_io",
+  "walkzzz/moon-geometry/src/io/ply_io",
+  "walkzzz/moon-geometry/src/io/stl_io",
+  "walkzzz/moon-geometry/src/mesh/face_extract",
+  "walkzzz/moon-geometry/src/mesh/marching_cubes",
+  "walkzzz/moon-geometry/src/mesh/medial_axis_3d",
+  "walkzzz/moon-geometry/src/mesh/mesh_boolean",
+  "walkzzz/moon-geometry/src/mesh/mesh_data",
+  "walkzzz/moon-geometry/src/mesh/mesh_param",
+  "walkzzz/moon-geometry/src/mesh/mesh_quality",
+  "walkzzz/moon-geometry/src/mesh/mesh_repair",
+  "walkzzz/moon-geometry/src/mesh/polyhedron",
+  "walkzzz/moon-geometry/src/mesh/polyhedron_boolean",
+  "walkzzz/moon-geometry/src/mesh/watershed",
+  "walkzzz/moon-geometry/src/misc/fitting",
+  "walkzzz/moon-geometry/src/misc/gis_projection",
+  "walkzzz/moon-geometry/src/misc/trapezoidal",
+  "walkzzz/moon-geometry/src/ml/icp",
+  "walkzzz/moon-geometry/src/optim/genetic_algorithm",
+  "walkzzz/moon-geometry/src/optim/interior_point",
+  "walkzzz/moon-geometry/src/optim/levenberg_marquardt",
+  "walkzzz/moon-geometry/src/optim/linear_prog",
+  "walkzzz/moon-geometry/src/optim/pso",
+  "walkzzz/moon-geometry/src/optim/quadratic_prog",
+  "walkzzz/moon-geometry/src/optim/simplex_method",
+  "walkzzz/moon-geometry/src/optim/simulated_annealing",
+  "walkzzz/moon-geometry/src/polygon/half_plane",
+  "walkzzz/moon-geometry/src/polygon/overlay",
+  "walkzzz/moon-geometry/src/polygon/polygon_holes",
+  "walkzzz/moon-geometry/src/polygon/zone",
+  "walkzzz/moon-geometry/src/robotics/a_star",
+  "walkzzz/moon-geometry/src/robotics/collision_detect",
+  "walkzzz/moon-geometry/src/robotics/config_space",
+  "walkzzz/moon-geometry/src/robotics/gjk",
+  "walkzzz/moon-geometry/src/robotics/prm",
+  "walkzzz/moon-geometry/src/robotics/rrt",
+  "walkzzz/moon-geometry/src/robotics/sat",
+  "walkzzz/moon-geometry/src/robotics/shortest_path",
+  "walkzzz/moon-geometry/src/shapes/plane",
+  "walkzzz/moon-geometry/src/shapes/ray",
+  "walkzzz/moon-geometry/src/spatial/aabb3d",
+  "walkzzz/moon-geometry/src/spatial/aabb_tree",
+  "walkzzz/moon-geometry/src/spatial/ball_tree",
+  "walkzzz/moon-geometry/src/spatial/bounding_sphere",
+  "walkzzz/moon-geometry/src/spatial/bucket_pr",
+  "walkzzz/moon-geometry/src/spatial/bvh",
+  "walkzzz/moon-geometry/src/spatial/cover_tree",
+  "walkzzz/moon-geometry/src/spatial/grid_index",
+  "walkzzz/moon-geometry/src/spatial/interval_tree",
+  "walkzzz/moon-geometry/src/spatial/kdtree",
+  "walkzzz/moon-geometry/src/spatial/loose_octree",
+  "walkzzz/moon-geometry/src/spatial/metric_tree",
+  "walkzzz/moon-geometry/src/spatial/obb",
+  "walkzzz/moon-geometry/src/spatial/octree",
+  "walkzzz/moon-geometry/src/spatial/quadtree",
+  "walkzzz/moon-geometry/src/spatial/range_tree",
+  "walkzzz/moon-geometry/src/spatial/rtree",
+  "walkzzz/moon-geometry/src/spatial/skip_quadtree",
+  "walkzzz/moon-geometry/src/spatial/spatial_hash",
+  "walkzzz/moon-geometry/src/spatial/voxel_grid",
+  "walkzzz/moon-geometry/src/spatial/vp_tree",
+  "walkzzz/moon-geometry/src/stats/tin",
+  "walkzzz/moon-geometry/src/topology/alpha_complex",
+  "walkzzz/moon-geometry/src/topology/betti_numbers",
+  "walkzzz/moon-geometry/src/topology/persistence_diagram",
+  "walkzzz/moon-geometry/src/topology/persistent_homology",
+  "walkzzz/moon-geometry/src/topology/reeb_graph",
+  "walkzzz/moon-geometry/src/topology/simplicial_complex",
+  "walkzzz/moon-geometry/src/transform/affine2",
+  "walkzzz/moon-geometry/src/transform/coordinate_convert",
+  "walkzzz/moon-geometry/src/transform/datum_transform",
+  "walkzzz/moon-geometry/src/transform/homography",
+  "walkzzz/moon-geometry/src/transform/inversion",
+  "walkzzz/moon-geometry/src/transform/perspective",
+  "walkzzz/moon-geometry/src/transform/procrustes",
+  "walkzzz/moon-geometry/src/transform/rational_map",
+  "walkzzz/moon-geometry/src/transform/rigid",
+  "walkzzz/moon-geometry/src/transform/similarity",
 }
 
 // Values
 pub fn aabb(Array[@core.Point2D]) -> @core.Rectangle
 
+pub fn aabb_area(@collision_detect.AABB) -> Double
+
+pub fn aabb_contains(@collision_detect.AABB, Double, Double) -> Bool
+
+pub fn aabb_from_center(Double, Double, Double, Double) -> @collision_detect.AABB
+
+pub fn aabb_from_polygon(Array[@core.Point2D]) -> @collision_detect.AABB
+
+pub fn aabb_intersection(@collision_detect.AABB, @collision_detect.AABB) -> @collision_detect.AABB?
+
+pub fn aabb_new(Double, Double, Double, Double) -> @collision_detect.AABB
+
+pub fn aabb_overlap(@collision_detect.AABB, @collision_detect.AABB) -> Bool
+
 pub fn aabb_polygon(@core.Polygon) -> @core.Rectangle
+
+pub fn aabb_polygon_collide(@collision_detect.AABB, Array[@core.Point2D]) -> Bool
+
+pub fn aabb_union(@collision_detect.AABB, @collision_detect.AABB) -> @collision_detect.AABB
+
+pub fn active_set_qp(Array[Array[Double]], Array[Double], Array[Array[Double]], Array[Double], Int32, Int32) -> @quadratic_prog.QPResult
+
+pub fn adam((Array[Double]) -> Array[Double], Array[Double], Double, Double, Double, Double, Int32) -> Array[Double]
+
+pub fn adaptive_incircle(Double, Double, Double, Double, Double, Double, Double, Double) -> Int32
+
+pub fn adaptive_orient2d(Double, Double, Double, Double, Double, Double) -> Int32
+
+pub fn add_constraint(@constrained_delaunay.ConstrainedDelaunay, Int32, Int32) -> Unit
+
+pub fn add_simplex(@simplicial_complex.SimplicialComplex, Array[Int32]) -> @simplicial_complex.SimplicialComplex
+
+pub fn affine2_apply(@affine2.Affine2, @core.Point2D) -> @core.Point2D
+
+pub fn affine2_apply_batch(@affine2.Affine2, Array[@core.Point2D]) -> Array[@core.Point2D]
+
+pub fn affine2_compose(@affine2.Affine2, @affine2.Affine2) -> @affine2.Affine2
+
+pub fn affine2_determinant(@affine2.Affine2) -> Double
+
+pub fn affine2_identity() -> @affine2.Affine2
+
+pub fn affine2_inverse(@affine2.Affine2) -> @affine2.Affine2?
+
+pub fn affine2_scale(Double, Double) -> @affine2.Affine2
+
+pub fn affine2_shear(Double, Double) -> @affine2.Affine2
+
+pub fn affine2_translation(Double, Double) -> @affine2.Affine2
+
+pub fn affine_add(@affine_arithmetic.AffineForm, @affine_arithmetic.AffineForm) -> @affine_arithmetic.AffineForm
+
+pub fn affine_scale(@affine_arithmetic.AffineForm, Double) -> @affine_arithmetic.AffineForm
+
+pub fn affine_to_interval(@affine_arithmetic.AffineForm) -> (Double, Double)
 
 pub fn affine_transform(@core.Point2D, Double, Double, Double, Double, Double, Double) -> @core.Point2D
 
 pub fn affine_transform_points(Array[@core.Point2D], Double, Double, Double, Double, Double, Double) -> Array[@core.Point2D]
 
+pub fn albers_equal_area_forward(Double, Double, Double, Double, Double, Double) -> @gis_projection.ProjXY
+
+pub fn all_face_normals(@mesh_data.Mesh) -> Array[@core.Point3D]
+
+pub fn all_vertex_normals(@mesh_data.Mesh) -> Array[@core.Point3D]
+
+pub fn alpha_complex(Array[@core.Point2D], Double) -> @alpha_complex.AlphaComplex
+
+pub fn alpha_complex_count(@alpha_complex.AlphaComplex) -> Int32
+
+pub fn alpha_complex_new() -> @alpha_complex.AlphaComplex
+
+pub fn alpha_complex_simplex_count(@alpha_complex.AlphaComplex) -> Int32
+
+pub fn alpha_shape(Array[@core.Point2D], Double) -> Array[(Int32, Int32)]
+
 pub fn angle_bisector(Double, Double) -> Double
+
+pub fn angle_defect(Array[Double]) -> Double
 
 pub fn angle_diff(Double, Double) -> Double
 
+pub fn angle_distortion(Double, Double) -> Double
+
 pub fn angle_is_between(Double, Double, Double) -> Bool
+
+pub fn antipodal_pairs(@core.Polygon) -> Array[(Int32, Int32)]
+
+pub fn apply_dirichlet(Array[Array[Double]], Array[Int32]) -> Array[Array[Double]]
+
+pub fn apply_helmert3(@datum_transform.Helmert3, Double, Double, Double) -> (Double, Double, Double)
+
+pub fn apply_helmert7(@datum_transform.Helmert7, Double, Double, Double) -> (Double, Double, Double)
+
+pub fn approx_convex_hull(Array[@core.Point2D], Int32) -> Array[@core.Point2D]
 
 pub fn approx_eq(Double, Double, Double) -> Bool
 
+pub fn approx_error_bound(Array[@core.Point2D], Int32) -> Double
+
+pub fn approx_hull_area(Array[@core.Point2D]) -> Double
+
+pub fn approx_hull_perimeter(Array[@core.Point2D]) -> Double
+
+pub fn arc_length(Array[@core.Point2D]) -> Double
+
+pub fn arc_length_at(Array[@core.Point2D], Double) -> Double
+
+pub fn arc_length_average(Array[@core.Point2D]) -> Double
+
+pub fn arc_length_cumulative(Array[@core.Point2D]) -> Array[Double]
+
+pub fn arc_length_max_segment(Array[@core.Point2D]) -> Double
+
+pub fn arc_length_parametrize(Array[@core.Point2D], Int32) -> Array[@core.Point2D]
+
+pub fn arc_length_segment(@core.Point2D, @core.Point2D) -> Double
+
+pub fn arc_length_to_param(Array[@core.Point2D], Double) -> Double
+
+pub fn arc_length_total(Array[@core.Point2D]) -> Double
+
 pub fn are_separated(@core.Polygon, @core.Polygon) -> Bool
+
+pub fn area_distortion(Array[@core.Point3D], Array[(Int32, Int32, Int32)], Array[@mesh_param.UV]) -> Double
+
+pub fn arrangement_edge_count(@arrangement.Arrangement) -> Int32
+
+pub fn arrangement_face_count(@arrangement.Arrangement) -> Int32
+
+pub fn arrangement_faces(Int32) -> Int32
+
+pub fn arrangement_intersection_count(@arrangement.Arrangement) -> Int32
+
+pub fn arrangement_vertices(@arrangement.Arrangement) -> Array[@arrangement.ArrangementVertex]
+
+pub fn art_gallery_covers_vertices(Array[@core.Point2D], Array[@core.Point2D]) -> Bool
+
+pub fn art_gallery_estimate(Array[@core.Point2D]) -> Int32
+
+pub fn art_gallery_guard_count(Int32) -> Int32
+
+pub fn art_gallery_place_guards(Array[@core.Point2D]) -> Array[@core.Point2D]
+
+pub fn as_upwind_advection(Array[Double], Double, Double, Double) -> Array[Double]
+
+pub fn assemble_stiffness(Int32, Array[(Int32, Int32, Int32, Double)]) -> Array[Array[Double]]
+
+pub fn astar_graph(Array[@a_star.AStarGraphNode], Array[Array[(Int32, Double)]], Int32, Int32) -> @a_star.AStarResult
+
+pub fn astar_graph_node_new(Int32, Double, Double) -> @a_star.AStarGraphNode
+
+pub fn astar_grid(@a_star.AStarGrid, (Int32, Int32), (Int32, Int32), @a_star.AStarHeuristic, Bool) -> @a_star.AStarResult
+
+pub fn astar_grid_is_blocked(@a_star.AStarGrid, Int32, Int32) -> Bool
+
+pub fn astar_grid_new(Int32, Int32) -> @a_star.AStarGrid
+
+pub fn astar_grid_set_blocked(@a_star.AStarGrid, Int32, Int32) -> Unit
+
+pub fn astar_path_cost(Array[(Int32, Int32)]) -> Double
+
+pub fn avg_nearest_neighbor_dist(Array[@core.Point3D]) -> Double
+
+pub fn back_face_cull(Array[(@core.Point3D, @core.Point3D, @core.Point3D)], @core.Point3D) -> Array[(@core.Point3D, @core.Point3D, @core.Point3D)]
+
+pub fn ball_pivot_reconstruct(Array[(Double, Double, Double)], Double) -> (Array[(Double, Double, Double)], Array[(Int32, Int32, Int32)])
+
+pub fn ball_tree_build(Array[@core.Point2D]) -> @ball_tree.BallNode?
+
+pub fn ball_tree_count(@ball_tree.BallNode?) -> Int32
+
+pub fn ball_tree_knn(@ball_tree.BallNode?, @core.Point2D, Int32) -> Array[@core.Point2D]
+
+pub fn barcode_is_infinite(@persistent_homology.Barcode) -> Bool
+
+pub fn barcode_new(Double, Double, Int32) -> @persistent_homology.Barcode
+
+pub fn barycentric_coord((Double, Double), (Double, Double), (Double, Double), (Double, Double)) -> (Double, Double, Double)
+
+pub fn basin_cell_counts(@watershed.WatershedResult) -> Array[(Int32, Int32)]
+
+pub fn bbox_center(@core.Polygon) -> @core.Point2D
+
+pub fn bem_error(Array[Double], Array[Double]) -> Double
+
+pub fn bem_matrix_entry(Double, Double) -> Double
+
+pub fn bem_solve(Array[Array[Double]], Array[Double]) -> Array[Double]
+
+pub fn bend_energy(Array[@core.Point2D]) -> Double
+
+pub fn bend_energy_open(Array[@core.Point2D]) -> Double
+
+pub fn bernstein(Int32, Int32, Double) -> Double
+
+pub fn bertrand_probability(Int32) -> Double
+
+pub fn best_alignment(Array[@core.Point2D], Array[@core.Point2D]) -> Int32
+
+pub fn betti_0(@mesh_data.Mesh) -> Int32
+
+pub fn betti_1(Array[Array[Int32]]) -> Int32
+
+pub fn betti_2(Array[Array[Int32]]) -> Int32
+
+pub fn betti_from_barcode(Array[@persistent_homology.Barcode], Double) -> Array[Int32]
+
+pub fn betti_numbers(Array[Array[Int32]]) -> @betti_numbers.BettiResult
+
+pub fn betti_numbers_0(Array[Array[Int32]]) -> Int32
+
+pub fn betti_result_new(Int32, Int32, Int32) -> @betti_numbers.BettiResult
 
 pub fn bezier2_bbox(@bezier.Bezier2) -> (Double, Double, Double, Double)
 
@@ -67,23 +365,71 @@ pub fn bezier3_new(@core.Point2D, @core.Point2D, @core.Point2D, @core.Point2D) -
 
 pub fn bezier3_subdivide(@bezier.Bezier3, Double) -> (@bezier.Bezier3, @bezier.Bezier3)
 
-pub fn binary_search(Array[Double], Double) -> Int?
+pub fn bezier_curve(Array[(Double, Double, Double)], Double) -> (Double, Double, Double)
+
+pub fn bezier_curve_derivative(Array[(Double, Double, Double)], Double) -> (Double, Double, Double)
+
+pub fn bezier_degree_elevate(Array[(Double, Double, Double)]) -> Array[(Double, Double, Double)]
+
+pub fn bezier_surface(Array[Array[(Double, Double, Double)]], Double, Double) -> (Double, Double, Double)
+
+pub fn bezier_surface_decasteljau(Array[Array[(Double, Double, Double)]], Double, Double) -> (Double, Double, Double)
+
+pub fn bilinear_interp(Double, Double, Double, Double, Double, Double, Double, Double, Double, Double) -> Double
+
+pub fn binary_search(Array[Double], Double) -> Int32?
+
+pub fn bisection((Double) -> Double, Double, Double, Int32) -> Double
+
+pub fn bottleneck_distance(Array[@core.Point2D], Array[@core.Point2D]) -> Double
+
+pub fn bottleneck_match(Array[@core.Point2D], Array[@core.Point2D]) -> Array[(Int32, Int32, Double)]
+
+pub fn bottleneck_max(Array[@core.Point2D], Array[@core.Point2D]) -> Double
+
+pub fn bottleneck_within(Array[@core.Point2D], Array[@core.Point2D], Double) -> Bool
+
+pub fn boundary_integral_kernel(Double, Double) -> Double
 
 pub fn bounding_circle(Array[@core.Point2D]) -> (@core.Point2D, Double)
 
-pub fn bucket_pr_count(Array[@bucket_pr.BucketPRNode]) -> Int
+pub fn bresenham_line(Int32, Int32, Int32, Int32) -> Array[(Int32, Int32)]
 
-pub fn bucket_pr_nearest(Array[@bucket_pr.BucketPRNode], Array[@core.Point2D], @core.Point2D) -> (Int, Double)?
+pub fn broad_phase_aabb(Array[@collision_detect.AABB]) -> Array[@collision_detect.CollisionPair]
+
+pub fn bspline_basis(Int32, Array[Double], Int32, Double) -> Double
+
+pub fn bspline_curve_point(Array[(Double, Double, Double)], Int32, Double, Array[Double]) -> (Double, Double, Double)
+
+pub fn bspline_eval(Array[@core.Point2D], Int32, Array[Double], Double) -> @core.Point2D
+
+pub fn bspline_points(Array[@core.Point2D], Int32, Int32) -> Array[@core.Point2D]
+
+pub fn bspline_smooth(Array[@core.Point2D], Int32) -> Array[@core.Point2D]
+
+pub fn bucket_pr_count(Array[@bucket_pr.BucketPRNode]) -> Int32
+
+pub fn bucket_pr_nearest(Array[@bucket_pr.BucketPRNode], Array[@core.Point2D], @core.Point2D) -> (Int32, Double)?
+
+pub fn buffon_needle_probability(Double, Double) -> Double
 
 pub fn build_aabb_tree(Array[@core.Rectangle]) -> Array[@aabb_tree.AABBNode]
 
-pub fn build_bucket_pr(Array[@core.Point2D], Int) -> Array[@bucket_pr.BucketPRNode]
+pub fn build_arrangement(Array[@core.Segment]) -> @arrangement.Arrangement
+
+pub fn build_bucket_pr(Array[@core.Point2D], Int32) -> Array[@bucket_pr.BucketPRNode]
 
 pub fn build_bvh(Array[@core.Rectangle]) -> Array[@bvh.BVHNode]
+
+pub fn build_constrained_terrain(Array[@core.Point3D], Array[(Int32, Int32)]) -> @delaunay_terrain.Terrain
+
+pub fn build_euler_tour(Int32, Array[Array[Int32]], Int32) -> @euler_tour.EulerTour
 
 pub fn build_grid_index(Array[@core.Point2D], Double) -> @grid_index.GridIndex
 
 pub fn build_kdtree(Array[@core.Point2D]) -> Array[@kdtree.KDNode]
+
+pub fn build_metric_tree(Array[@core.Point2D]) -> @metric_tree.MetricNode?
 
 pub fn build_quadtree(Array[@core.Point2D], @core.Rectangle) -> Array[@quadtree.QuadNode]
 
@@ -91,31 +437,105 @@ pub fn build_range_tree(Array[@core.Point2D]) -> @range_tree.RangeTree
 
 pub fn build_spatial_hash(Array[@core.Point2D], Double) -> @spatial_hash.SpatialHash
 
-pub fn bvh_count_leaves(Array[@bvh.BVHNode]) -> Int
+pub fn build_terrain(Array[@core.Point3D]) -> @delaunay_terrain.Terrain
 
-pub fn bvh_query(Array[@bvh.BVHNode], @core.Rectangle) -> Array[Int]
+pub fn build_tin(Array[@core.Point3D]) -> @tin.TIN
 
-pub fn bvh_query_point(Array[@bvh.BVHNode], @core.Point2D) -> Array[Int]
+pub fn build_trapezoidal_map(Array[@core.Segment]) -> @trapezoidal.TrapezoidalMap
+
+pub fn build_visibility_graph(Array[Array[@core.Point2D]], @core.Point2D, @core.Point2D) -> Array[Array[(Int32, Double)]]
+
+pub fn bvh_count_leaves(Array[@bvh.BVHNode]) -> Int32
+
+pub fn bvh_query(Array[@bvh.BVHNode], @core.Rectangle) -> Array[Int32]
+
+pub fn bvh_query_point(Array[@bvh.BVHNode], @core.Point2D) -> Array[Int32]
+
+pub fn cardinal_tangents(Array[@core.Point2D], Double) -> Array[@core.Point2D]
+
+pub fn catmull_clark_subdivide(@mesh_data.Mesh) -> @mesh_data.Mesh
+
+pub fn catmull_rom_derivative(@core.Point2D, @core.Point2D, @core.Point2D, @core.Point2D, Double) -> @core.Point2D
+
+pub fn catmull_rom_eval(@core.Point2D, @core.Point2D, @core.Point2D, @core.Point2D, Double) -> @core.Point2D
+
+pub fn catmull_rom_points(Array[@core.Point2D], Int32) -> Array[@core.Point2D]
 
 pub fn ccw(@core.Point2D, @core.Point2D, @core.Point2D) -> @core.Orientation
 
-pub fn cell_hash(@core.Point2D, Double, Int) -> Int
+pub fn cech_complex_simplices(Int32, Int32) -> Array[Array[Int32]]
 
-pub fn cell_hash_3d(@core.Point3D, Double, Int) -> Int
+pub fn cech_dimension(Int32) -> Int32
 
-pub fn cell_index(@core.Point2D, Double) -> (Int, Int)
+pub fn cech_nerve(Int32) -> Array[Array[Int32]]
 
-pub fn cell_index_3d(@core.Point3D, Double) -> (Int, Int, Int)
+pub fn cell_hash(@core.Point2D, Double, Int32) -> Int32
+
+pub fn cell_hash_3d(@core.Point3D, Double, Int32) -> Int32
+
+pub fn cell_index(@core.Point2D, Double) -> (Int32, Int32)
+
+pub fn cell_index_3d(@core.Point3D, Double) -> (Int32, Int32, Int32)
+
+pub fn center_cloud(Array[@core.Point3D]) -> Array[@core.Point3D]
+
+pub fn central_moment(Array[@core.Point2D], Int32, Int32) -> Double
 
 pub fn centroid(Array[@core.Point2D]) -> @core.Point2D?
 
+pub fn centroid_3d(Array[(Double, Double, Double)]) -> (Double, Double, Double)
+
+pub fn centroidal_voronoi(Array[@core.Point2D], (@core.Point2D, @core.Point2D), Int32) -> @centroidal_voronoi.CVTResult
+
+pub fn cg_linear(Array[Array[Double]], Array[Double], Array[Double], Int32) -> Array[Double]
+
+pub fn cgcs2000_to_ecef(@coordinate_convert.Geodetic) -> @coordinate_convert.ECEF
+
+pub fn cgcs2000_to_wgs84(@coordinate_convert.Geodetic) -> @coordinate_convert.Geodetic
+
+pub fn chamfer_directed(Array[@core.Point2D], Array[@core.Point2D]) -> Double
+
+pub fn chamfer_distance(Array[@core.Point2D], Array[@core.Point2D]) -> Double
+
+pub fn chamfer_rms(Array[@core.Point2D], Array[@core.Point2D]) -> Double
+
+pub fn chamfer_squared_directed(Array[@core.Point2D], Array[@core.Point2D]) -> Double
+
+pub fn chebyshev_center(@core.Polygon) -> @core.Point2D
+
+pub fn chromatic_number_upper(Int32, Array[Array[Int32]]) -> Int32
+
+pub fn circle_area_from_perimeter(Double) -> Double
+
+pub fn circle_circle_collide(@core.Point2D, Double, @core.Point2D, Double) -> Bool
+
 pub fn circle_circle_intersect(@core.Circle, @core.Circle) -> Array[@core.Point2D]
+
+pub fn circle_interior_sample(@core.Point2D, Double, Int32) -> Array[@core.Point2D]
 
 pub fn circle_line_intersect(@core.Circle, @core.Line) -> Array[@core.Point2D]
 
+pub fn circle_perimeter_from_area(Double) -> Double
+
+pub fn circle_polygon_collide(@core.Point2D, Double, Array[@core.Point2D]) -> Bool
+
 pub fn circle_polygon_intersect(@core.Circle, @core.Polygon) -> Array[@core.Point2D]
 
+pub fn circle_sample(@core.Point2D, Double, Int32) -> Array[@core.Point2D]
+
 pub fn circle_segment_intersect(@core.Circle, @core.Segment) -> Array[@core.Point2D]
+
+pub fn circle_support(@core.Point2D, Double, Double, Double) -> @core.Point2D
+
+pub fn circle_to_json(@core.Circle) -> String
+
+pub fn circumcenter(@core.Point2D, @core.Point2D, @core.Point2D) -> @core.Point2D
+
+pub fn circumsphere_center(@core.Point3D, @core.Point3D, @core.Point3D, @core.Point3D) -> @core.Point3D
+
+pub fn circumsphere_radius_sq(@core.Point3D, @core.Point3D, @core.Point3D, @core.Point3D) -> Double
+
+pub fn clear_buffer(@rasterization.RasterBuffer, Int32, Double) -> Unit
 
 pub fn clip_convex_by_half_plane(@core.Polygon, Double, Double, Double) -> Array[@core.Point2D]
 
@@ -125,11 +545,95 @@ pub fn clip_polygon(@core.Polygon, @core.Rectangle) -> Array[@core.Point2D]
 
 pub fn closest_pair(Array[@core.Point2D]) -> (@core.Point2D, @core.Point2D, Double)?
 
-pub fn compare_points(@core.Point2D, @core.Point2D) -> Int
+pub fn closest_to_centroid(Array[@core.Point2D]) -> @core.Point2D?
 
-pub fn compare_segments(@core.Segment, @core.Segment) -> Int
+pub fn cluster_centroids(Array[(Double, Double)], Array[Int32], Int32) -> Array[(Double, Double)]
+
+pub fn cm_area_distortion(Double, Double) -> Double
+
+pub fn collapsible_edges(@mesh_data.Mesh, Double) -> Int32
+
+pub fn compare_points(@core.Point2D, @core.Point2D) -> Int32
+
+pub fn compare_segments(@core.Segment, @core.Segment) -> Int32
+
+pub fn complex_dimension(@simplicial_complex.SimplicialComplex) -> Int32
+
+pub fn compose_helmert7(@datum_transform.Helmert7, @datum_transform.Helmert7) -> @datum_transform.Helmert7
+
+pub fn compress_expansion(Array[Double]) -> Array[Double]
+
+pub fn compute_barcode(Array[@persistent_homology.SimplexWithFiltration]) -> Array[@persistent_homology.Barcode]
+
+pub fn compute_centroid(Array[@core.Point2D]) -> @core.Point2D
+
+pub fn compute_euler(Array[Array[Int32]]) -> Int32
+
+pub fn compute_hull_3d(Array[@core.Point3D]) -> Array[(Int32, Int32, Int32)]
+
+pub fn compute_zone(@core.Line, Array[@core.Segment]) -> @zone.Zone
+
+pub fn concave_hull(Array[@core.Point2D], Int32) -> Array[@core.Point2D]
+
+pub fn concave_hull_default(Array[@core.Point2D]) -> Array[@core.Point2D]
+
+pub fn conformal_energy(Double, Double) -> Double
+
+pub fn conformal_factor(Double, Double) -> Double
+
+pub fn conic_asymptotes(@conic_section.Conic) -> ((Double, Double, Double), (Double, Double, Double))?
+
+pub fn conic_axis_aligned(@conic_section.Conic) -> (@conic_section.Conic, Double)
+
+pub fn conic_center(@conic_section.Conic) -> @core.Point2D?
+
+pub fn conic_classify(@conic_section.Conic) -> @conic_section.ConicType
+
+pub fn conic_discriminant(@conic_section.Conic) -> Double
+
+pub fn conic_eccentricity(@conic_section.Conic) -> Double?
+
+pub fn conic_eval(@conic_section.Conic, @core.Point2D) -> Double
+
+pub fn conic_new(Double, Double, Double, Double, Double, Double) -> @conic_section.Conic
+
+pub fn conic_on_curve(@conic_section.Conic, @core.Point2D, Double) -> Bool
+
+pub fn conic_tangent_at(@conic_section.Conic, @core.Point2D) -> (Double, Double, Double)
+
+pub fn connectivity_threshold(Int32, Double) -> Double
+
+pub fn constrained_delaunay(Array[@core.Point2D], Array[(Int32, Int32)]) -> @constrained_delaunay.ConstrainedDelaunay
+
+pub fn constrained_delaunay_constraint_count(@constrained_delaunay.ConstrainedDelaunay) -> Int32
+
+pub fn constrained_delaunay_new() -> @constrained_delaunay.ConstrainedDelaunay
+
+pub fn constrained_delaunay_triangle_count(@constrained_delaunay.ConstrainedDelaunay) -> Int32
+
+pub fn constrained_triangle_count(@constrained_delaunay.ConstrainedDelaunay) -> Int32
+
+pub fn contour_grid_new(Int32, Int32, Array[Double], Double, Double, Double) -> @contour_line.ContourGrid
+
+pub fn contour_segment_new(Double, Double, Double, Double) -> @contour_line.ContourSegment
 
 pub fn convex_area(Array[@core.Point2D]) -> Double
+
+pub fn convex_aspect_ratio(@core.Polygon) -> Double
+
+pub fn convex_centroid(@core.Polygon) -> @core.Point2D
+
+pub fn convex_decomp_area(Array[@core.Point2D]) -> Double
+
+pub fn convex_decomp_count(Array[@core.Point2D]) -> Int32
+
+pub fn convex_decomp_lower_bound(Array[@core.Point2D]) -> Int32
+
+pub fn convex_decomposition(Array[@core.Point2D]) -> Array[Array[@core.Point2D]]
+
+pub fn convex_diameter(@core.Polygon) -> Double
+
+pub fn convex_diameter_pair(@core.Polygon) -> (@core.Point2D, @core.Point2D)
 
 pub fn convex_hull_3d(Array[@core.Point3D]) -> Array[@convex_hull3d.HullFace]
 
@@ -137,7 +641,17 @@ pub fn convex_hull_andrew(Array[@core.Point2D]) -> Array[@core.Point2D]
 
 pub fn convex_hull_graham(Array[@core.Point2D]) -> Array[@core.Point2D]
 
+pub fn convex_intersects(@core.Polygon, @core.Polygon) -> Bool
+
+pub fn convex_layers(Array[@core.Point2D]) -> Array[Array[@core.Point2D]]
+
+pub fn convex_max_width(@core.Polygon) -> Double
+
+pub fn convex_polygon_buffer(@core.Polygon, Double, Int32) -> @core.Polygon
+
 pub fn convex_polygon_diameter(@core.Polygon) -> (@core.Point2D, @core.Point2D, Double)
+
+pub fn convex_polygon_intersection(@core.Polygon, @core.Polygon) -> Array[@core.Point2D]
 
 pub fn convex_polygon_width(@core.Polygon) -> Double
 
@@ -145,9 +659,145 @@ pub fn convex_polygons_collide(@core.Polygon, @core.Polygon) -> Bool
 
 pub fn convex_polygons_intersect(@core.Polygon, @core.Polygon) -> Bool
 
-pub fn count_intersections(Array[@core.Segment]) -> Int
+pub fn convex_radius_lower_bound(@core.Polygon) -> Double
 
-pub fn count_leaves(Array[@aabb_tree.AABBNode]) -> Int
+pub fn convex_width(@core.Polygon) -> Double
+
+pub fn cotangent_laplacian(Double, Array[Double], Array[Double]) -> Double
+
+pub fn cotangent_weight(Double, Double) -> Double
+
+pub fn count_26_neighbors(Array[Bool], Int32, Int32, Int32, Int32, Int32, Int32) -> Int32
+
+pub fn count_6_neighbors(Array[Bool], Int32, Int32, Int32, Int32, Int32, Int32) -> Int32
+
+pub fn count_active_configs(@marching_cubes.McGrid, Double) -> Int32
+
+pub fn count_contour_segments(@contour_line.ContourGrid, Double) -> Int32
+
+pub fn count_degenerate(Array[@core.Point3D], Array[(Int32, Int32, Int32)], Double) -> Int32
+
+pub fn count_filled(@rasterization.RasterBuffer, Int32) -> Int32
+
+pub fn count_intersections(Array[@core.Segment]) -> Int32
+
+pub fn count_leaves(Array[@aabb_tree.AABBNode]) -> Int32
+
+pub fn count_visible(Array[@hidden_line.LineSeg3D], Array[(@core.Point3D, @core.Point3D, @core.Point3D)]) -> Int32
+
+pub fn cover_area_rectangles(Array[@core.Point2D]) -> Double
+
+pub fn cover_area_triangles(Array[@core.Point2D]) -> Double
+
+pub fn cover_by_rectangles(Array[@core.Point2D]) -> Array[@core.Rectangle]
+
+pub fn cover_by_triangles(Array[@core.Point2D]) -> Array[@core.Triangle]
+
+pub fn cover_tree_build(Array[@core.Point2D]) -> @cover_tree.CoverTree
+
+pub fn cover_tree_count(@cover_tree.CoverTree) -> Int32
+
+pub fn cover_tree_radius_search(@cover_tree.CoverTree, @core.Point2D, Double) -> Array[@core.Point2D]
+
+pub fn coverage_probability(Int32, Double) -> Double
+
+pub fn coverage_threshold(Int32, Double) -> Double
+
+pub fn covering_radius(Array[(Double, Double)], Int32) -> Double
+
+pub fn crank_nicolson_coef(Double, Double, Double) -> Double
+
+pub fn critical_points(Array[Double], Array[(Int32, Int32)]) -> Array[@reeb_graph.ReebNode]
+
+pub fn crossing_number(Array[Int32]) -> Int32
+
+pub fn cspace_build(Array[Array[@core.Point2D]], Double, Int32) -> Array[@config_space.CSpaceObstacle]
+
+pub fn cspace_expand_circle(Array[@core.Point2D], Double, Int32) -> @config_space.CSpaceObstacle
+
+pub fn cspace_expand_polygon(Array[@core.Point2D], Array[@core.Point2D]) -> @config_space.CSpaceObstacle
+
+pub fn cspace_obstacle_new(Array[@core.Point2D]) -> @config_space.CSpaceObstacle
+
+pub fn cspace_point_valid(@core.Point2D, Array[@config_space.CSpaceObstacle]) -> Bool
+
+pub fn cspace_segment_valid(@core.Point2D, @core.Point2D, Array[@config_space.CSpaceObstacle]) -> Bool
+
+pub fn css_curvature(Array[@core.Point2D], Double) -> Array[Double]
+
+pub fn css_image(Array[@core.Point2D], Int32) -> Array[(Double, Int32)]
+
+pub fn css_inflection_points(Array[@core.Point2D], Double) -> Array[Int32]
+
+pub fn css_maxima(Array[@core.Point2D], Int32) -> Array[Double]
+
+pub fn cube_config_class(Int32) -> Int32
+
+pub fn curvature_at(@core.Point2D, @core.Point2D, @core.Point2D) -> Double
+
+pub fn curvature_feature(Array[Double]) -> Double
+
+pub fn curvature_profile(Array[@core.Point2D]) -> Array[Double]
+
+pub fn curvature_radius(@core.Point2D, @core.Point2D, @core.Point2D) -> Double
+
+pub fn curvature_signed(@core.Point2D, @core.Point2D, @core.Point2D) -> Double
+
+pub fn curvature_total(Array[@core.Point2D]) -> Double
+
+pub fn curve_length(Array[@core.Point2D]) -> Double
+
+pub fn curve_self_intersect(Array[@core.Point2D]) -> Bool
+
+pub fn curve_self_intersect_count(Array[@core.Point2D]) -> Int32
+
+pub fn curve_shortening_flow(Array[@core.Point2D], Int32, Double) -> Array[Array[@core.Point2D]]
+
+pub fn curves_intersect(Array[@core.Point2D], Array[@core.Point2D]) -> Bool
+
+pub fn cvt_result_new() -> @centroidal_voronoi.CVTResult
+
+pub fn d8_flow_directions(Int32, Int32, Array[Double]) -> Array[Int32]
+
+pub fn dbscan(Array[(Double, Double)], Double, Int32) -> Array[Int32]
+
+pub fn dcel_add_edge(@dcel.DCEL, Int32, Int32) -> Int32
+
+pub fn dcel_add_face(@dcel.DCEL, Int32) -> Int32
+
+pub fn dcel_add_vertex(@dcel.DCEL, @core.Point2D) -> Int32
+
+pub fn dcel_edge_count(@dcel.DCEL) -> Int32
+
+pub fn dcel_face_count(@dcel.DCEL) -> Int32
+
+pub fn dcel_from_polygon(@dcel.DCEL, @core.Polygon) -> @dcel.DCEL
+
+pub fn dcel_new() -> @dcel.DCEL
+
+pub fn dcel_set_face(@dcel.DCEL, Int32, Int32) -> Unit
+
+pub fn dcel_set_next(@dcel.DCEL, Int32, Int32) -> Unit
+
+pub fn dcel_trace_face(@dcel.DCEL, Int32) -> Array[Int32]
+
+pub fn dcel_vertex_count(@dcel.DCEL) -> Int32
+
+pub fn ddg_holonomy(Array[Double]) -> Double
+
+pub fn ddg_parallel_transport(Double, Double, Double) -> (Double, Double)
+
+pub fn de9im_contains((@core.Point2D, @core.Point2D), (@core.Point2D, @core.Point2D)) -> Bool
+
+pub fn de9im_disjoint((@core.Point2D, @core.Point2D), (@core.Point2D, @core.Point2D)) -> Bool
+
+pub fn de9im_intersects((@core.Point2D, @core.Point2D), (@core.Point2D, @core.Point2D)) -> Bool
+
+pub fn de9im_touches((@core.Point2D, @core.Point2D), (@core.Point2D, @core.Point2D)) -> Bool
+
+pub fn de9im_within((@core.Point2D, @core.Point2D), (@core.Point2D, @core.Point2D)) -> Bool
+
+pub fn decomp_count(Array[@core.Point2D]) -> Int32
 
 pub let default_eps : Double
 
@@ -155,7 +805,111 @@ pub let deg2rad : Double
 
 pub fn deg_to_rad(Double) -> Double
 
+pub fn delaunay_3d(Array[@core.Point3D]) -> @delaunay_3d.Delaunay3D
+
+pub fn delaunay_3d_new() -> @delaunay_3d.Delaunay3D
+
+pub fn delaunay_3d_tetrahedron_count(@delaunay_3d.Delaunay3D) -> Int32
+
+pub fn delaunay_3d_vertex_count(@delaunay_3d.Delaunay3D) -> Int32
+
+pub fn delaunay_refine(Array[@core.Point2D], Double, Int32) -> Array[@core.Point2D]
+
+pub fn delaunay_triangle_count(Array[@core.Point2D]) -> Int32
+
 pub fn delaunay_triangulation(Array[@core.Point2D]) -> Array[@triangulation.TriangleIdx]
+
+pub fn destination_point(Double, Double, Double, Double) -> (Double, Double)
+
+pub fn determinant(Array[Array[Double]], Int32) -> Double
+
+pub fn diagram_dimension(Array[@persistence_diagram.PersistencePoint]) -> Int32
+
+pub fn dijkstra(Int32, Array[Array[@shortest_path.GraphEdge]], Int32) -> Array[Double]
+
+pub fn discrete_connection(Array[Double]) -> Double
+
+pub fn discrete_curvature2d(Array[Double]) -> Double
+
+pub fn discrete_gaussian_curvature(Double) -> Double
+
+pub fn discrete_mean_curvature(Double, Array[Double], Array[Double]) -> Double
+
+pub fn discriminant(Array[Double]) -> Double
+
+pub fn distance_to_mesh((Double, Double, Double), Array[(Double, Double, Double)], Array[(Int32, Int32, Int32)]) -> Double
+
+pub fn douglas_peucker(Array[@core.Point2D], Double) -> Array[@core.Point2D]
+
+pub fn ds_diffusion_2d_step(Array[Array[Double]], Double, Double, Double, Double) -> Array[Array[Double]]
+
+pub fn ds_diffusion_stability_check(Double, Double, Double) -> Bool
+
+pub fn dtw_distance(Array[@core.Point2D], Array[@core.Point2D]) -> Double
+
+pub fn dtw_normalized(Array[@core.Point2D], Array[@core.Point2D]) -> Double
+
+pub fn dtw_windowed(Array[@core.Point2D], Array[@core.Point2D], Int32) -> Double
+
+pub fn dual_delaunay(Array[@core.Point3D]) -> @delaunay_3d.Delaunay3D
+
+pub fn duality_gap(Array[Double], Array[Double], Int32) -> Double
+
+pub fn dubins_path_length(@dubins.DubinsPath) -> Double
+
+pub fn dubins_pose_new(Double, Double, Double) -> @dubins.DubinsPose
+
+pub fn dubins_sample(@dubins.DubinsPath, @dubins.DubinsPose, Int32) -> Array[@core.Point2D]
+
+pub fn dubins_segment_count(@dubins.DubinsPath) -> Int32
+
+pub fn dubins_shortest_path(@dubins.DubinsPose, @dubins.DubinsPose, Double) -> @dubins.DubinsPath
+
+pub fn dxf_document_entity_count(@dxf_io.DxfDocument) -> Int32
+
+pub fn dxf_document_new() -> @dxf_io.DxfDocument
+
+pub fn dxf_parse(String) -> @dxf_io.DxfDocument
+
+pub fn dxf_write(@dxf_io.DxfDocument) -> String
+
+pub fn dynamic_filter(Double, Double, Double) -> Bool
+
+pub fn dynamic_hull_contains(@convex_hull_dynamic.DynamicHull, @core.Point2D) -> Bool
+
+pub fn dynamic_hull_get_hull(@convex_hull_dynamic.DynamicHull) -> Array[@core.Point2D]
+
+pub fn dynamic_hull_insert(@convex_hull_dynamic.DynamicHull, @core.Point2D) -> Unit
+
+pub fn dynamic_hull_new() -> @convex_hull_dynamic.DynamicHull
+
+pub fn dynamic_hull_size(@convex_hull_dynamic.DynamicHull) -> Int32
+
+pub fn ear_clip_area(Array[@core.Point2D]) -> Double
+
+pub fn ear_clip_count(Array[@core.Point2D]) -> Int32
+
+pub fn ear_clip_triangulate(Array[@core.Point2D]) -> Array[(Int32, Int32, Int32)]
+
+pub fn ecef_distance(@coordinate_convert.ECEF, @coordinate_convert.ECEF) -> Double
+
+pub fn ecef_new(Double, Double, Double) -> @coordinate_convert.ECEF
+
+pub fn ecef_to_cgcs2000(@coordinate_convert.ECEF) -> @coordinate_convert.Geodetic
+
+pub fn ecef_to_wgs84(@coordinate_convert.ECEF) -> @coordinate_convert.Geodetic
+
+pub fn edge_bisection(@mesh_data.Mesh) -> @mesh_data.Mesh
+
+pub fn edge_collapse_cost(@mesh_data.Mesh, Int32, Int32) -> Double
+
+pub fn edge_function((Double, Double), (Double, Double), (Double, Double)) -> Double
+
+pub fn elastic_energy(Array[@core.Point2D], Double) -> Double
+
+pub fn element_mass(Double, Double, Double) -> Double
+
+pub fn element_stiffness((Double, Double), (Double, Double), Double) -> Double
 
 pub fn ellipse_area(@ellipse.Ellipse) -> Double
 
@@ -171,17 +925,119 @@ pub fn ellipse_on_boundary(@ellipse.Ellipse, @core.Point2D, Double) -> Bool
 
 pub fn ellipse_perimeter(@ellipse.Ellipse) -> Double
 
+pub fn emd_1d(Array[Double], Array[Double]) -> Double
+
+pub fn emd_uniform(Array[@core.Point2D], Array[@core.Point2D]) -> Double
+
+pub fn emd_weighted(Array[Double], Array[Double], Array[Double]) -> Double
+
+pub fn ep_exact_collinear(Double, Double, Double, Double, Double, Double) -> Bool
+
+pub fn ep_exact_incircle(Double, Double, Double, Double, Double, Double, Double, Double) -> Int32
+
+pub fn ep_exact_orientation(Double, Double, Double, Double, Double, Double) -> Int32
+
+pub fn estimate_gaussian_curvature(@core.Point3D, Array[@core.Point3D]) -> Double
+
+pub fn estimate_mean_curvature(@core.Point3D, Array[@core.Point3D], Array[@core.Point3D], @core.Point3D) -> Double
+
+pub fn estimate_normal(Array[(Double, Double, Double)], Int32, Int32) -> (Double, Double, Double)
+
+pub fn euler_characteristic(@mesh_data.Mesh) -> Int32
+
 pub let euler_e : Double
 
-pub fn extreme_point(@core.Polygon, @core.Point2D) -> Int
+pub fn euler_from_counts(Int32, Int32, Int32) -> Int32
+
+pub fn euler_tour_depths(@euler_tour.EulerTour) -> Array[Int32]
+
+pub fn euler_tour_first_occurrence(@euler_tour.EulerTour, Int32) -> Int32
+
+pub fn euler_tour_is_valid(@euler_tour.EulerTour) -> Bool
+
+pub fn euler_tour_lca(@euler_tour.EulerTour, Int32, Int32) -> Int32
+
+pub fn euler_tour_length(@euler_tour.EulerTour) -> Int32
+
+pub fn euler_tour_sequence(@euler_tour.EulerTour) -> Array[Int32]
+
+pub fn evolve_step(Array[@core.Point2D], Double) -> Array[@core.Point2D]
+
+pub fn exact_collinear(@core.Point2D, @core.Point2D, @core.Point2D) -> Bool
+
+pub fn exact_incircle(@core.Point2D, @core.Point2D, @core.Point2D, @core.Point2D) -> Int32
+
+pub fn exact_left_of_line(Double, Double, Double, Double, Double, Double) -> Bool
+
+pub fn exact_left_turn(@core.Point2D, @core.Point2D, @core.Point2D) -> Bool
+
+pub fn exact_orientation(@core.Point2D, @core.Point2D, @core.Point2D) -> Int32
+
+pub fn expansion_length(Array[Double]) -> Int32
+
+pub fn expansion_negate(Array[Double]) -> Array[Double]
+
+pub fn expansion_norm(Array[Double]) -> Double
+
+pub fn expansion_sum(Array[Double]) -> Double
+
+pub fn expected_degree(Int32, Double, Double) -> Double
+
+pub fn expected_distance_unit_square() -> Double
+
+pub fn extract_contours(@contour_line.ContourGrid, Array[Double]) -> Array[(Double, Array[@contour_line.ContourSegment])]
+
+pub fn extract_faces(Array[@core.Point2D], Array[(Int32, Int32)]) -> Array[@face_extract.Face]
+
+pub fn extreme_point(@core.Polygon, @core.Point2D) -> Int32
+
+pub fn face_area(@face_extract.Face) -> Double
+
+pub fn face_count(Array[@face_extract.Face]) -> Int32
+
+pub fn face_normal(@mesh_data.Mesh, Int32) -> @core.Point3D
 
 pub fn farthest_point_pair(Array[@core.Point2D]) -> (@core.Point2D, @core.Point2D, Double)?
 
-pub fn find_all_intersections(Array[@core.Segment]) -> Array[(Int, Int)]
+pub fn farthest_voronoi_cell(Array[@core.Point2D], Int32, (@core.Point2D, @core.Point2D)) -> Array[@core.Point2D]
 
-pub fn find_intersection_points(Array[@core.Segment]) -> Array[(Int, Int, @core.Point2D)]
+pub fn fast_marching_step(Array[(Int32, Double)], Double, Double) -> Array[(Int32, Double)]
+
+pub fn fast_sweeping_iterate(Array[Double], Array[Double], Double, Int32, Int32) -> Array[Double]
+
+pub fn fast_triangulate(Array[@core.Point2D]) -> Array[(Int32, Int32, Int32)]
+
+pub fn fast_triangulate_points(Array[@core.Point2D]) -> Array[(@core.Point2D, @core.Point2D, @core.Point2D)]
+
+pub fn fast_two_sum(Double, Double) -> (Double, Double)
+
+pub fn fem_l2_error(Array[Double], Array[Double]) -> Double
+
+pub fn fill_depressions(Int32, Int32, Array[Double]) -> Array[Double]
+
+pub fn fill_holes(Array[@core.Point3D], Array[(Int32, Int32, Int32)]) -> (Array[(Int32, Int32, Int32)], Int32)
+
+pub fn filter_result(Double, Double) -> Int32
+
+pub fn filtered_incircle(@core.Point2D, @core.Point2D, @core.Point2D, @core.Point2D) -> Int32
+
+pub fn filtered_orientation(@core.Point2D, @core.Point2D, @core.Point2D) -> Int32
+
+pub fn find_all_intersections(Array[@core.Segment]) -> Array[(Int32, Int32)]
+
+pub fn find_all_roots((Double) -> Double, Double, Double, Int32) -> Array[Double]
+
+pub fn find_boundary_edges(Array[(Int32, Int32, Int32)]) -> Array[(Int32, Int32)]
+
+pub fn find_ear(Array[@core.Point2D], Array[Int32]) -> Int32?
+
+pub fn find_intersection_points(Array[@core.Segment]) -> Array[(Int32, Int32, @core.Point2D)]
+
+pub fn find_seed((Double, Double) -> Double, Double, Double, Double, Double, Int32) -> @core.Point2D?
 
 pub fn find_separating_axis(@core.Polygon, @core.Polygon) -> @core.Line?
+
+pub fn find_span(Int32, Int32, Double, Array[Double]) -> Int32
 
 pub fn fit_circle(Array[@core.Point2D]) -> @fitting.CircleFit?
 
@@ -189,17 +1045,143 @@ pub fn fit_line(Array[@core.Point2D]) -> @fitting.LineFit?
 
 pub fn fit_line_orthogonal(Array[@core.Point2D]) -> (Double, Double, Double)?
 
+pub fn flow_areas(Array[@core.Point2D], Int32, Double) -> Array[Double]
+
+pub fn flow_perimeters(Array[@core.Point2D], Int32, Double) -> Array[Double]
+
+pub fn focal_from_fov(Double, Double) -> Double
+
+pub fn fourier_descriptors(Array[@core.Point2D]) -> Array[(Double, Double)]
+
+pub fn fourier_invariant(Array[@core.Point2D]) -> Array[Double]
+
+pub fn fourier_reconstruct(Array[(Double, Double)], Int32) -> Array[@core.Point2D]
+
+pub fn fourier_truncate(Array[(Double, Double)], Int32) -> Array[(Double, Double)]
+
+pub fn fp_filtered_orientation(Double, Double, Double, Double, Double, Double) -> Int32
+
+pub fn fractal_dimension_box(Array[(Double, Int32)]) -> Double
+
+pub fn frechet_distance(Array[@core.Point2D], Array[@core.Point2D]) -> Double
+
+pub fn frechet_point_distance(@core.Point2D, @core.Point2D) -> Double
+
+pub fn frechet_within(Array[@core.Point2D], Array[@core.Point2D], Double) -> Bool
+
+pub fn fresnel_schlick(Double, Double) -> Double
+
+pub fn fundamental_solution_2d(Double) -> Double
+
+pub fn ga_1d((Double) -> Double, Double, Double, Int32, Int32, UInt32) -> Double
+
+pub fn ga_config_new(Int32, Int32, Double, Double, Int32, Array[Double], Array[Double]) -> @genetic_algorithm.GAConfig
+
+pub fn ga_line_intersection(Double, Double, Double, Double, Double, Double) -> (Double, Double)
+
+pub fn ga_minimize((Array[Double]) -> Double, @genetic_algorithm.GAConfig, Int32, UInt32) -> @genetic_algorithm.GAResult
+
+pub fn ga_mutation_schedule(Double, Double, Int32) -> Double
+
+pub fn ga_population_std(Array[Double]) -> Double
+
+pub fn ga_result_new(Array[Double], Double, Int32) -> @genetic_algorithm.GAResult
+
+pub fn ga_rotate_vector(Double, Double, Double) -> (Double, Double)
+
+pub fn ga_rotor(Double) -> @geometric_algebra.Multivector
+
+pub fn ga_zone_complexity(Int32) -> Int32
+
+pub fn gauss_map_normals(Array[Double]) -> Array[Double]
+
+pub fn gaussian_smooth(Array[@core.Point2D], Double) -> Array[@core.Point2D]
+
+pub fn gd_2d((Double, Double) -> (Double, Double), Double, Double, Double, Int32) -> @core.Point2D
+
+pub fn genetic_algorithm((Array[Double]) -> Double, @genetic_algorithm.GAConfig, Int32, UInt32) -> @genetic_algorithm.GAResult
+
+pub fn geo_interval_add(@interval_arith.GeoInterval, @interval_arith.GeoInterval) -> @interval_arith.GeoInterval
+
+pub fn geo_interval_contains(@interval_arith.GeoInterval, Double) -> Bool
+
+pub fn geo_interval_mul(@interval_arith.GeoInterval, @interval_arith.GeoInterval) -> @interval_arith.GeoInterval
+
+pub fn geo_interval_new(Double, Double) -> @interval_arith.GeoInterval
+
+pub fn geo_interval_overlaps(@interval_arith.GeoInterval, @interval_arith.GeoInterval) -> Bool
+
+pub fn geo_interval_sub(@interval_arith.GeoInterval, @interval_arith.GeoInterval) -> @interval_arith.GeoInterval
+
+pub fn geodetic_new(Double, Double, Double) -> @coordinate_convert.Geodetic
+
+pub fn geojson_linestring(Array[@core.Point2D]) -> String
+
+pub fn geojson_multilinestring(Array[Array[@core.Point2D]]) -> String
+
+pub fn geojson_multipoint(Array[@core.Point2D]) -> String
+
+pub fn geojson_multipolygon(Array[Array[Array[@core.Point2D]]]) -> String
+
+pub fn geojson_parse(String) -> @geojson_io.GeoJsonGeometry?
+
+pub fn geojson_point(@core.Point2D) -> String
+
+pub fn geojson_polygon(Array[Array[@core.Point2D]]) -> String
+
+pub fn geojson_write(@geojson_io.GeoJsonGeometry) -> String
+
 pub let geom_eps : Double
+
+pub fn geometric_probability_hit(Double, Double) -> Double
+
+pub fn get_depth(@rasterization.RasterBuffer, Int32, Int32) -> Double
+
+pub fn get_pixel(@rasterization.RasterBuffer, Int32, Int32) -> Int32
+
+pub fn gis_minkowski_sum_convex(@core.Polygon, @core.Polygon) -> @core.Polygon
+
+pub fn gjk_collide_circles(@core.Point2D, Double, @core.Point2D, Double) -> @gjk.GJKResult
+
+pub fn gjk_collide_polygon_circle(Array[@core.Point2D], @core.Point2D, Double) -> @gjk.GJKResult
+
+pub fn gjk_collide_polygons(Array[@core.Point2D], Array[@core.Point2D]) -> @gjk.GJKResult
+
+pub fn gjk_point_in_polygon(@core.Point2D, Array[@core.Point2D]) -> @gjk.GJKResult
+
+pub fn gltf_mesh_index_count(@gltf_io.GltfMesh) -> Int32
+
+pub fn gltf_mesh_new() -> @gltf_io.GltfMesh
+
+pub fn gltf_mesh_vertex_count(@gltf_io.GltfMesh) -> Int32
+
+pub fn gltf_parse_binary(Bytes) -> @gltf_io.GltfMesh
+
+pub fn gltf_parse_json(String) -> @gltf_io.GltfMesh
+
+pub fn gltf_write_binary(@gltf_io.GltfMesh) -> Bytes
+
+pub fn gltf_write_json(@gltf_io.GltfMesh) -> String
 
 pub let golden_ratio : Double
 
-pub fn grid_query_cell(@grid_index.GridIndex, @core.Point2D) -> Array[Int]
+pub fn gradient_descent((Array[Double]) -> Array[Double], Array[Double], Double, Int32) -> Array[Double]
 
-pub fn grid_query_radius(@grid_index.GridIndex, @core.Point2D, Double) -> Array[Int]
+pub fn greedy_color(Int32, Array[Array[Int32]]) -> Array[Int32]
 
-pub fn grid_query_rect(@grid_index.GridIndex, @core.Rectangle) -> Array[Int]
+pub fn greedy_cover(Array[(Double, Double)], Double) -> Array[(Double, Double)]
 
-pub fn grid_size(@grid_index.GridIndex) -> Int
+pub fn grid_query_cell(@grid_index.GridIndex, @core.Point2D) -> Array[Int32]
+
+pub fn grid_query_radius(@grid_index.GridIndex, @core.Point2D, Double) -> Array[Int32]
+
+pub fn grid_query_rect(@grid_index.GridIndex, @core.Rectangle) -> Array[Int32]
+
+pub fn grid_sample(Double, Double, Double, Double, Int32, Int32) -> Array[@core.Point2D]
+
+pub fn grid_size(@grid_index.GridIndex) -> Int32
+
+pub fn grow_expansion(Array[Double], Double) -> Array[Double]
 
 pub let half_pi : Double
 
@@ -209,11 +1191,141 @@ pub fn half_plane_intersect(Array[@half_plane.HalfPlane]) -> Array[@core.Point2D
 
 pub fn half_plane_new(Double, Double, Double) -> @half_plane.HalfPlane
 
+pub fn halton_sample(Int32, Int32, Int32) -> Array[@core.Point2D]
+
+pub fn harmonic_parametrize(Array[@core.Point3D], Array[(Int32, Int32, Int32)], Array[Int32]) -> @mesh_param.MeshParamResult
+
 pub fn has_any_intersection(Array[@core.Segment]) -> Bool
 
-pub fn hash_combine(Int, Int) -> Int
+pub fn has_any_symmetry(Array[@core.Point2D]) -> Bool
+
+pub fn has_reflection_symmetry(Array[@core.Point2D], Double) -> Bool
+
+pub fn has_rotation_symmetry(Array[@core.Point2D], Int32) -> Bool
+
+pub fn hash_basis_invariant(Double, Double, Double, Double, Double, Double) -> (Double, Double)
+
+pub fn hash_combine(Int32, Int32) -> Int32
+
+pub fn hash_key(Double, Double, Int32) -> Int32
+
+pub fn hash_point_2d(Double, Double, Double) -> (Int32, Int32)
+
+pub fn hausdorff_directed(Array[@core.Point2D], Array[@core.Point2D]) -> Double
+
+pub fn hausdorff_distance(Array[@core.Point2D], Array[@core.Point2D]) -> Double
+
+pub fn hausdorff_within(Array[@core.Point2D], Array[@core.Point2D], Double) -> Bool
+
+pub fn have_common_root(Array[Double], Array[Double], Double) -> Bool
+
+pub fn haversine_distance(Double, Double, Double, Double) -> Double
+
+pub fn he_heat_explicit_step(Array[Double], Double, Double, Double) -> Array[Double]
+
+pub fn heat_analytical_1d(Double, Double, Double, Double) -> Double
+
+pub fn heat_steady_state_1d(Double, Double, Int32) -> Array[Double]
+
+pub fn helmert3_new(Double, Double, Double) -> @datum_transform.Helmert3
+
+pub fn helmert7_identity() -> @datum_transform.Helmert7
+
+pub fn helmert7_new(Double, Double, Double, Double, Double, Double, Double) -> @datum_transform.Helmert7
+
+pub fn hermite_derivative(@core.Point2D, @core.Point2D, @core.Point2D, @core.Point2D, Double) -> @core.Point2D
+
+pub fn hermite_eval(@core.Point2D, @core.Point2D, @core.Point2D, @core.Point2D, Double) -> @core.Point2D
+
+pub fn hermite_points(Array[@core.Point2D], Array[@core.Point2D], Int32) -> Array[@core.Point2D]
+
+pub fn hidden_line_remove(Array[@hidden_line.LineSeg3D], Array[(@core.Point3D, @core.Point3D, @core.Point3D)]) -> Array[(@core.Point2D, @core.Point2D)]
+
+pub fn hilbert_d2xy(Int32, Int32) -> (Int32, Int32)
+
+pub fn homography_apply(@homography.Homography, @core.Point2D) -> @core.Point2D?
+
+pub fn homography_apply_batch(@homography.Homography, Array[@core.Point2D]) -> Array[@core.Point2D]
+
+pub fn homography_compose(@homography.Homography, @homography.Homography) -> @homography.Homography
+
+pub fn homography_determinant(@homography.Homography) -> Double
+
+pub fn homography_from_array(Array[Double]) -> @homography.Homography
+
+pub fn homography_identity() -> @homography.Homography
+
+pub fn hough_accumulator(Array[@core.Point2D], Int32, Int32) -> Array[Array[Int32]]
+
+pub fn hough_circles(Array[@core.Point2D], Double, Int32, Int32) -> Array[@hough_transform.HoughCircle]
+
+pub fn hough_line_to_points(Double, Double, Double) -> (@core.Point2D, @core.Point2D)
+
+pub fn hough_lines(Array[@core.Point2D], Int32, Int32) -> Array[@hough_transform.HoughLine]
+
+pub fn hough_peaks(Array[Array[Int32]], Int32, Int32) -> Array[(Int32, Int32, Int32)]
+
+pub fn hu_moments(Array[@core.Point2D]) -> Array[Double]
 
 pub fn hull_volume(Array[@core.Point3D], Array[@convex_hull3d.HullFace]) -> Double
+
+pub fn hungarian(Array[Array[Double]]) -> Array[Int32]
+
+pub fn hyperplane_arrangement_regions(Int32, Int32) -> Int32
+
+pub fn ia_interval_contains(@interval_arithmetic.Interval, Double) -> Bool
+
+pub fn ia_interval_midpoint(@interval_arithmetic.Interval) -> Double
+
+pub fn icp(Array[(Double, Double, Double)], Array[(Double, Double, Double)], Int32) -> (Array[(Double, Double, Double)], (Double, Double, Double))
+
+pub fn icp_apply(Array[@core.Point3D], @icp.IcpResult) -> Array[@core.Point3D]
+
+pub fn icp_point_to_plane(Array[@core.Point3D], Array[@core.Point3D], Array[@core.Point3D], Int32) -> @icp.IcpResult
+
+pub fn icp_point_to_point(Array[@core.Point3D], Array[@core.Point3D], Int32) -> @icp.IcpResult
+
+pub fn icp_result_error(@icp.IcpResult) -> Double
+
+pub fn icp_result_iterations(@icp.IcpResult) -> Int32
+
+pub fn icp_result_new(Array[Double], @core.Point3D, Double, Int32) -> @icp.IcpResult
+
+pub fn icp_result_rotation(@icp.IcpResult) -> Array[Double]
+
+pub fn icp_result_translation(@icp.IcpResult) -> @core.Point3D
+
+pub fn icp_rms_error(Array[@core.Point3D], Array[@core.Point3D]) -> Double
+
+pub fn identity4() -> Array[Array[Double]]
+
+pub fn ifs_contractive_factor(Array[Double]) -> Double
+
+pub fn implicit_curve_curvature((Double, Double) -> Double, (Double, Double) -> Double, (Double, Double) -> Double, (Double, Double) -> Double, (Double, Double) -> Double, @core.Point2D) -> Double
+
+pub fn implicit_curve_normal((Double, Double) -> Double, (Double, Double) -> Double, @core.Point2D) -> @core.Point2D
+
+pub fn implicit_curve_tangent((Double, Double) -> Double, (Double, Double) -> Double, @core.Point2D) -> @core.Point2D
+
+pub fn implicit_gaussian_curvature((Double, Double, Double) -> Double, (Double, Double, Double) -> Double, (Double, Double, Double) -> Double, (Double, Double, Double) -> Double, (Double, Double, Double) -> Double, (Double, Double, Double) -> Double, (Double, Double, Double) -> Double, (Double, Double, Double) -> Double, (Double, Double, Double) -> Double, @core.Point3D) -> Double
+
+pub fn implicit_mean_curvature((Double, Double, Double) -> Double, (Double, Double, Double) -> Double, (Double, Double, Double) -> Double, (Double, Double, Double) -> Double, (Double, Double, Double) -> Double, (Double, Double, Double) -> Double, @core.Point3D) -> Double
+
+pub fn implicit_surface_normal((Double, Double, Double) -> Double, (Double, Double, Double) -> Double, (Double, Double, Double) -> Double, @core.Point3D) -> @core.Point3D
+
+pub fn in_circumsphere(@core.Point3D, @core.Point3D, @core.Point3D, @core.Point3D, @core.Point3D) -> Bool
+
+pub fn initial_bearing(Double, Double, Double, Double) -> Double
+
+pub fn inradius(@core.Polygon) -> Double
+
+pub fn interior_point(Array[Array[Double]], Array[Double], Array[Double], Int32) -> @interior_point.IPResult
+
+pub fn interior_point_max(Array[Array[Double]], Array[Double], Array[Double], Int32) -> @interior_point.IPResult
+
+pub fn intersection_area(@core.Polygon, @core.Polygon) -> Double
+
+pub fn interval_add(@interval_arithmetic.Interval, @interval_arithmetic.Interval) -> @interval_arithmetic.Interval
 
 pub fn interval_contains(@interval.Interval, Double) -> Bool
 
@@ -225,33 +1337,235 @@ pub fn interval_length(@interval.Interval) -> Double
 
 pub fn interval_midpoint(@interval.Interval) -> Double
 
+pub fn interval_mul(@interval_arithmetic.Interval, @interval_arithmetic.Interval) -> @interval_arithmetic.Interval
+
 pub fn interval_new(Double, Double) -> @interval.Interval
 
 pub fn interval_overlaps(@interval.Interval, @interval.Interval) -> Bool
 
+pub fn interval_sub(@interval_arithmetic.Interval, @interval_arithmetic.Interval) -> @interval_arithmetic.Interval
+
+pub fn interval_tree_build(Array[@interval_tree.Interval]) -> @interval_tree.IntervalNode?
+
+pub fn interval_tree_count(@interval_tree.IntervalNode?) -> Int32
+
+pub fn interval_tree_query(@interval_tree.IntervalNode?, Double) -> Array[@interval_tree.Interval]
+
 pub fn interval_union(@interval.Interval, @interval.Interval) -> @interval.Interval
+
+pub fn interval_width(@interval_arithmetic.Interval) -> Double
+
+pub fn inverse_helmert3(@datum_transform.Helmert3) -> @datum_transform.Helmert3
+
+pub fn inverse_helmert7(@datum_transform.Helmert7) -> @datum_transform.Helmert7
+
+pub fn inversion_apply(@inversion.Inversion, @core.Point2D) -> @core.Point2D?
+
+pub fn inversion_apply_batch(@inversion.Inversion, Array[@core.Point2D]) -> Array[@core.Point2D]
+
+pub fn inversion_invert_line(@inversion.Inversion, Double, Double, Double) -> @core.Circle?
+
+pub fn inversion_is_inside(@inversion.Inversion, @core.Point2D) -> Bool
+
+pub fn inversion_is_on_circle(@inversion.Inversion, @core.Point2D) -> Bool
+
+pub fn inversion_new(@core.Point2D, Double) -> @inversion.Inversion
+
+pub fn inversion_power(@inversion.Inversion, @core.Point2D) -> Double
+
+pub fn ip_result_new(Array[Double], Double, Bool) -> @interior_point.IPResult
+
+pub fn is_alpha_exposed(@alpha_complex.AlphaSimplex, Double) -> Bool
+
+pub fn is_antipodal(Double, Double, Double, Double) -> Bool
+
+pub fn is_bipartite(Int32, Array[Array[Int32]]) -> Bool
+
+pub fn is_boundary_voxel(Array[Bool], Int32, Int32, Int32, Int32, Int32, Int32) -> Bool
+
+pub fn is_conformal(Double, Double, Double, Double, Double) -> Bool
+
+pub fn is_connected(Int32, Array[@spanning_tree.WEdge]) -> Bool
+
+pub fn is_constrained_edge(@constrained_delaunay.ConstrainedDelaunay, Int32, Int32) -> Bool
 
 pub fn is_convex(@core.Polygon) -> Bool
 
+pub fn is_convex_check(Array[@core.Point2D]) -> Bool
+
+pub fn is_convex_polygon(Array[@core.Point2D]) -> Bool
+
+pub fn is_delaunay(@delaunay_3d.Delaunay3D) -> Bool
+
+pub fn is_ear(Array[@core.Point2D], Array[Int32], Int32) -> Bool
+
+pub fn is_essential(@persistence_diagram.PersistencePoint) -> Bool
+
+pub fn is_far(Double) -> Bool
+
 pub fn is_feasible(Array[(Double, Double, Double)]) -> Bool
+
+pub fn is_frozen(Double) -> Bool
+
+pub fn is_harmonic(Double, Double) -> Bool
+
+pub fn is_isoperimetric_optimal(Double, Double) -> Bool
+
+pub fn is_manifold(@mesh_data.Mesh) -> Bool
+
+pub fn is_path_valid(Array[@core.Point2D], Array[Array[@core.Point2D]]) -> Bool
+
+pub fn is_simple_arrangement(Array[Double]) -> Bool
 
 pub fn is_simple_polygon_chain(Array[@core.Segment]) -> Bool
 
 pub fn is_sorted(Array[Double]) -> Bool
 
-pub fn kdtree_nearest(Array[@kdtree.KDNode], @core.Point2D) -> (Int, Double)?
+pub fn is_sphere(@mesh_data.Mesh) -> Bool
 
-pub fn kdtree_range_query(Array[@kdtree.KDNode], @core.Rectangle) -> Array[Int]
+pub fn is_star_shaped(Array[@core.Point2D]) -> Bool
 
-pub fn kth_element(Array[Double], Int) -> Double?
+pub fn is_torus(@mesh_data.Mesh) -> Bool
+
+pub fn is_valid_coloring(Int32, Array[Array[Int32]], Array[Int32]) -> Bool
+
+pub fn is_valid_complex(@simplicial_complex.SimplicialComplex) -> Bool
+
+pub fn is_visible(Array[@core.Point2D], @core.Point2D, @core.Point2D) -> Bool
+
+pub fn is_x_monotone(Array[@core.Point2D]) -> Bool
+
+pub fn is_y_monotone(Array[@core.Point2D]) -> Bool
+
+pub fn isolation_probability(Int32, Double, Double) -> Double
+
+pub fn isometric(@core.Point3D) -> @core.Point2D
+
+pub fn isoperimetric_deficit(Double, Double) -> Double
+
+pub fn isoperimetric_ratio(Double, Double) -> Double
+
+pub fn jacobi_eigenvalues(Array[Array[Double]], Int32, Int32) -> Array[Double]
+
+pub fn jacobi_preconditioner(Array[Array[Double]], Int32) -> (Array[Double]) -> Array[Double]
+
+pub fn jones_figure8(Double) -> Double
+
+pub fn jones_trefoil(Double) -> Double
+
+pub fn jones_unknot(Double) -> Double
+
+pub fn julia_escape(Double, Double, Double, Double, Int32) -> Int32
+
+pub fn kdtree_nearest(Array[@kdtree.KDNode], @core.Point2D) -> (Int32, Double)?
+
+pub fn kdtree_range_query(Array[@kdtree.KDNode], @core.Rectangle) -> Array[Int32]
+
+pub fn kernel_point(Array[@core.Point2D]) -> @core.Point2D?
+
+pub fn kmeans(Array[(Double, Double)], Int32, Int32) -> Array[Int32]
+
+pub fn koch_curve_length(Int32, Double) -> Double
+
+pub fn kruskal_mst(Int32, Array[@spanning_tree.WEdge]) -> Array[@spanning_tree.WEdge]
+
+pub fn kth_element(Array[Double], Int32) -> Double?
+
+pub fn label_cell(@contour_line.ContourGrid, Int32, Int32, Double) -> Int32
+
+pub fn lagrange_basis(Array[Double], Int32, Double) -> Double
+
+pub fn lagrange_eval(Array[Double], Array[Double], Double) -> Double
+
+pub fn lagrange_interp(Array[Double], Array[Double], Double) -> Double
+
+pub fn lagrange_interpolate(Array[@core.Point2D], Double) -> Double
+
+pub fn lagrange_nodes_distinct(Array[Double]) -> Bool
+
+pub fn lambert_conformal_forward(Double, Double, Double, Double, Double, Double) -> @gis_projection.ProjXY
+
+pub fn laplacian_eigenvalue(Int32, Double) -> Double
+
+pub fn laplacian_smooth(@mesh_data.Mesh, Double) -> @mesh_data.Mesh
+
+pub fn laplacian_smooth_iter(@mesh_data.Mesh, Double, Int32) -> @mesh_data.Mesh
+
+pub fn lax_friedrichs(Array[Double], Double, Double, Double) -> Array[Double]
+
+pub fn lax_wendroff(Array[Double], Double, Double, Double) -> Array[Double]
+
+pub fn layer_count(Array[@core.Point2D]) -> Int32
+
+pub fn lazy_approx(@lazy_exact.LazyExact) -> Double
+
+pub fn lazy_error(@lazy_exact.LazyExact) -> Double
+
+pub fn lazy_value(@lazy_exact.LazyExact) -> Double
 
 pub fn less_than(@core.Point2D, @core.Point2D) -> Bool
 
+pub fn level_set_area(Array[Double], Double) -> Double
+
+pub fn level_set_curvature((Double, Double), (Double, Double, Double)) -> Double
+
+pub fn level_set_normal((Double, Double)) -> (Double, Double)
+
+pub fn level_set_sign(Double) -> Int32
+
+pub fn levenberg_marquardt((Array[Double]) -> Array[Double], Array[Double], Int32) -> @levenberg_marquardt.LMResult
+
+pub fn levenberg_marquardt_jac((Array[Double]) -> Array[Double], (Array[Double]) -> Array[Array[Double]], Array[Double], Int32) -> @levenberg_marquardt.LMResult
+
+pub fn line_arrangement_count(Int32) -> Int32
+
+pub fn line_seg_3d_new(@core.Point3D, @core.Point3D) -> @hidden_line.LineSeg3D
+
 pub fn line_segment_intersection(@core.Line, @core.Segment) -> @core.Point2D?
+
+pub fn linear_interp(Double, Double, Double, Double, Double) -> Double
 
 pub fn linear_program_2d(Array[(Double, Double, Double)], Double, Double) -> @linear_prog.LPResult?
 
-pub fn lower_bound(Array[Double], Double) -> Int
+pub fn linking_number(Array[(Double, Double, Double)], Array[(Double, Double, Double)]) -> Int32
+
+pub fn lloyd_energy(Array[@core.Point2D], (@core.Point2D, @core.Point2D)) -> Double
+
+pub fn lloyd_iteration(Array[@core.Point2D], (@core.Point2D, @core.Point2D), Int32) -> Array[@core.Point2D]
+
+pub fn lm_line_fit(Array[Double], Array[Double]) -> (Double, Double)
+
+pub fn lm_log_residual(Double) -> Double
+
+pub fn lm_result_new(Array[Double], Double, Int32, Bool) -> @levenberg_marquardt.LMResult
+
+pub fn lm_rms_error(Double, Int32) -> Double
+
+pub fn local_density(Array[@core.Point3D], @core.Point3D, Double) -> Int32
+
+pub fn look_at((Double, Double, Double), (Double, Double, Double), (Double, Double, Double)) -> Array[Array[Double]]
+
+pub fn loop_subdivide(@mesh_data.Mesh) -> @mesh_data.Mesh
+
+pub fn loose_octree_count(@loose_octree.LooseOctNode) -> Int32
+
+pub fn loose_octree_insert(@loose_octree.LooseOctNode, @core.Point3D) -> Unit
+
+pub fn loose_octree_new(Double, Double, Double, Double, Double, Int32) -> @loose_octree.LooseOctNode
+
+pub fn loose_octree_query(@loose_octree.LooseOctNode, Double, Double, Double, Double, Double, Double) -> Array[@core.Point3D]
+
+pub fn lower_bound(Array[Double], Double) -> Int32
+
+pub fn mandelbrot_escape(Double, Double, Int32) -> Int32
+
+pub fn marching_cubes(@marching_cubes.McGrid, Double) -> Array[(@core.Point3D, @core.Point3D, @core.Point3D)]
+
+pub fn marching_cubes_count(@marching_cubes.McGrid, Double) -> Int32
+
+pub fn marching_squares(@contour_line.ContourGrid, Double) -> Array[@contour_line.ContourSegment]
+
+pub fn marker_watershed(Int32, Int32, Array[Double], Array[Int32]) -> @watershed.WatershedResult
 
 pub fn mat2_det(@matrix.Mat2) -> Double
 
@@ -271,11 +1585,123 @@ pub fn mat2_trace(@matrix.Mat2) -> Double
 
 pub fn mat2_transform(@matrix.Mat2, @core.Point2D) -> @core.Point2D
 
+pub fn mat4_determinant(Array[Array[Double]]) -> Double
+
+pub fn mat4_inverse(Array[Array[Double]]) -> Array[Array[Double]]?
+
+pub fn mat4_mul(Array[Array[Double]], Array[Array[Double]]) -> Array[Array[Double]]
+
+pub fn mat4_transpose(Array[Array[Double]]) -> Array[Array[Double]]
+
+pub fn match_chamfer_distance(Array[(Double, Double)], Array[(Double, Double)]) -> Double
+
+pub fn match_count(Array[@core.Point2D], Array[@core.Point2D], Double) -> Int32
+
+pub fn match_hausdorff_distance(Array[(Double, Double)], Array[(Double, Double)]) -> Double
+
+pub fn match_points(Array[(Double, Double)], Array[(Double, Double)], Double) -> Array[(Int32, Int32)]
+
+pub fn match_ratio(Array[@core.Point2D], Array[@core.Point2D], Double) -> Double
+
+pub fn matrix_determinant(Array[Array[Double]]) -> Double
+
+pub fn matrix_inverse(Array[Array[Double]], Int32) -> Array[Array[Double]]?
+
+pub fn matrix_trace(Array[Array[Double]], Int32) -> Double
+
+pub fn max_flow(Int32, Array[Array[Double]], Int32, Int32) -> Double
+
+pub fn max_persistence(Array[@persistence_diagram.PersistencePoint]) -> Double
+
+pub fn mc_grid_get(@marching_cubes.McGrid, Int32, Int32, Int32) -> Double
+
+pub fn mc_grid_new(Array[Double], Int32, Int32, Int32) -> @marching_cubes.McGrid
+
+pub fn medial_axis(@core.Polygon, Int32) -> Array[@core.Segment]
+
+pub fn medial_axis_3d(Array[@core.Point3D]) -> Array[@medial_axis_3d.MedialBall3D]
+
+pub fn medial_axis_filter(Array[@medial_axis_3d.MedialBall3D], Double, Double) -> Array[@medial_axis_3d.MedialBall3D]
+
+pub fn medial_axis_from_pairs(Array[@core.Point3D]) -> Array[@medial_axis_3d.MedialBall3D]
+
+pub fn medial_axis_from_triples(Array[@core.Point3D]) -> Array[@medial_axis_3d.MedialBall3D]
+
+pub fn medial_axis_points(@core.Polygon, Int32) -> Array[@core.Point2D]
+
+pub fn medial_axis_sort(Array[@medial_axis_3d.MedialBall3D]) -> Array[@medial_axis_3d.MedialBall3D]
+
+pub fn medial_ball_3d_center(@medial_axis_3d.MedialBall3D) -> @core.Point3D
+
+pub fn medial_ball_3d_new(@core.Point3D, Double) -> @medial_axis_3d.MedialBall3D
+
+pub fn medial_ball_3d_radius(@medial_axis_3d.MedialBall3D) -> Double
+
+pub fn mercator_forward(Double, Double) -> @gis_projection.ProjXY
+
+pub fn mercator_inverse(Double, Double) -> (Double, Double)
+
+pub fn mercator_scale(Double) -> Double
+
+pub fn merge_duplicate_vertices(Array[@core.Point3D], Array[(Int32, Int32, Int32)], Double) -> (Array[@core.Point3D], Array[(Int32, Int32, Int32)], Int32)
+
 pub fn merge_sorted(Array[Double], Array[Double]) -> Array[Double]
+
+pub fn mesh_add_face(@mesh_data.Mesh, Int32, Int32, Int32) -> Unit
+
+pub fn mesh_add_vertex(@mesh_data.Mesh, @core.Point3D) -> Int32
+
+pub fn mesh_area(Array[(Double, Double, Double)], Array[(Int32, Int32, Int32)]) -> Double
+
+pub fn mesh_average_quality(Array[@core.Point3D], Array[(Int32, Int32, Int32)]) -> @mesh_quality.MeshQualityMetrics
+
+pub fn mesh_bounding_box(@mesh_data.Mesh) -> (@core.Point3D, @core.Point3D)
+
+pub fn mesh_difference(Array[@core.Point3D], Array[(Int32, Int32, Int32)], Array[@core.Point3D], Array[(Int32, Int32, Int32)]) -> @mesh_boolean.MeshBoolResult
+
+pub fn mesh_edge_count(@mesh_data.Mesh) -> Int32
+
+pub fn mesh_face_area(@mesh_data.Mesh, Int32) -> Double
+
+pub fn mesh_face_count(@mesh_data.Mesh) -> Int32
+
+pub fn mesh_intersection(Array[@core.Point3D], Array[(Int32, Int32, Int32)], Array[@core.Point3D], Array[(Int32, Int32, Int32)]) -> @mesh_boolean.MeshBoolResult
+
+pub fn mesh_new() -> @mesh_data.Mesh
+
+pub fn mesh_tetrahedron(@core.Point3D, @core.Point3D, @core.Point3D, @core.Point3D) -> @mesh_data.Mesh
+
+pub fn mesh_union(Array[@core.Point3D], Array[(Int32, Int32, Int32)], Array[@core.Point3D], Array[(Int32, Int32, Int32)]) -> @mesh_boolean.MeshBoolResult
+
+pub fn mesh_vertex_count(@mesh_data.Mesh) -> Int32
+
+pub fn meshlet_bounds(Array[(Double, Double, Double)]) -> ((Double, Double, Double), Double)
+
+pub fn metric_tree_count(@metric_tree.MetricNode?) -> Int32
+
+pub fn metric_tree_nearest(@metric_tree.MetricNode?, @core.Point2D) -> @core.Point2D?
+
+pub fn metric_tree_query(@metric_tree.MetricNode?, @core.Point2D, Double) -> Array[@core.Point2D]
+
+pub fn midpoint_subdivide(Array[(Double, Double, Double)], Array[(Int32, Int32, Int32)]) -> (Array[(Double, Double, Double)], Array[(Int32, Int32, Int32)])
 
 pub fn min_area_bounding_rect(Array[@core.Point2D]) -> (Double, Double, Double, Double, Double)
 
+pub fn min_area_rect(Array[@core.Point2D]) -> @core.Rectangle
+
+pub fn min_bounding_sphere(Array[@core.Point3D]) -> @bounding_sphere.BoundingSphere
+
+pub fn min_cut(Int32, Array[Array[Double]], Int32, Int32) -> Double
+
+pub fn min_cut_partition(Int32, Array[Array[Double]], Int32, Int32) -> Array[Int32]
+
+pub fn min_dist_to_set(@core.Point2D, Array[@core.Point2D]) -> Double
+
+pub fn min_enclosing_circle(Array[(Double, Double)]) -> (Double, Double, Double)
+
 pub fn min_perimeter_bounding_rect(@core.Polygon) -> (Double, Double, Double, Double, Double)
+
+pub fn min_triangle_angle(@core.Point2D, @core.Point2D, @core.Point2D) -> Double
 
 pub fn minkowski_difference_convex(@core.Polygon, @core.Polygon) -> Array[@core.Point2D]
 
@@ -291,13 +1717,223 @@ pub fn mirror_x(@core.Point2D) -> @core.Point2D
 
 pub fn mirror_y(@core.Point2D) -> @core.Point2D
 
+pub fn mixed_area(Double, Double) -> Double
+
+pub fn moment_centroid(Array[@core.Point2D]) -> (@core.Point2D, Double)
+
+pub fn momentum_gd((Array[Double]) -> Array[Double], Array[Double], Double, Double, Int32) -> Array[Double]
+
+pub fn monotone_triangulate_count(Array[@core.Point2D]) -> Int32
+
+pub fn morph(Array[@core.Point2D], Array[@core.Point2D], Double) -> Array[@core.Point2D]
+
+pub fn morph_aligned(Array[@core.Point2D], Array[@core.Point2D], Double) -> Array[@core.Point2D]
+
+pub fn morph_sequence(Array[@core.Point2D], Array[@core.Point2D], Int32) -> Array[Array[@core.Point2D]]
+
+pub fn morton_code_2d(Int32, Int32) -> Int32
+
+pub fn mst_edge_count(Int32, Array[@spanning_tree.WEdge]) -> Int32
+
+pub fn mst_weight(Int32, Array[@spanning_tree.WEdge]) -> Double
+
+pub fn multivector_add(@geometric_algebra.Multivector, @geometric_algebra.Multivector) -> @geometric_algebra.Multivector
+
+pub fn multivector_mul(@geometric_algebra.Multivector, @geometric_algebra.Multivector) -> @geometric_algebra.Multivector
+
+pub fn multivector_new(Double, Double, Double, Double) -> @geometric_algebra.Multivector
+
+pub fn multivector_norm(@geometric_algebra.Multivector) -> Double
+
+pub fn multivector_reverse(@geometric_algebra.Multivector) -> @geometric_algebra.Multivector
+
+pub fn nearest_neighbor_match(Array[(Double, Double)], Array[(Double, Double)]) -> Array[Int32]
+
+pub fn nesterov_gd((Array[Double]) -> Array[Double], Array[Double], Double, Double, Int32) -> Array[Double]
+
+pub fn newton((Double) -> Double, (Double) -> Double, Double, Int32) -> Double
+
+pub fn newton_1d((Double) -> Double, (Double) -> Double, Double, Double, Int32) -> Double
+
+pub fn newton_2d((Double, Double) -> (Double, Double), (Double, Double) -> ((Double, Double), (Double, Double)), Double, Double, Int32) -> @core.Point2D
+
+pub fn newton_correct((Double, Double) -> Double, (Double, Double) -> Double, (Double, Double) -> Double, @core.Point2D, Int32) -> @core.Point2D
+
+pub fn newton_divdiff(Array[Double], Array[Double]) -> Array[Double]
+
+pub fn newton_interp(Array[Double], Array[Double], Double) -> Double
+
+pub fn newton_line_search((Array[Double]) -> Double, (Array[Double]) -> Array[Double], (Array[Double]) -> Array[Array[Double]], Array[Double], Int32) -> Array[Double]
+
+pub fn newton_multi((Array[Double]) -> Array[Double], (Array[Double]) -> Array[Array[Double]], Array[Double], Double, Int32) -> Array[Double]
+
+pub fn newton_trust_region((Array[Double]) -> Double, (Array[Double]) -> Array[Double], (Array[Double]) -> Array[Array[Double]], Array[Double], Double, Int32) -> Array[Double]
+
+pub fn nonlinear_cg((Array[Double]) -> Double, (Array[Double]) -> Array[Double], Array[Double], Int32) -> Array[Double]
+
+pub fn nonlinear_cg_2d((Double, Double) -> Double, (Double, Double) -> (Double, Double), Double, Double, Int32) -> @core.Point2D
+
+pub fn normalize3d(@core.Point3D) -> @core.Point3D
+
 pub fn normalize_angle(Double) -> Double
 
 pub fn normalize_angle_signed(Double) -> Double
 
+pub fn normalize_normal(@core.Point3D) -> @core.Point3D
+
+pub fn normalized_bend_energy(Array[@core.Point2D]) -> Double
+
+pub fn normalized_moment(Array[@core.Point2D], Int32, Int32) -> Double
+
+pub fn ns_diffusion(Array[Double], Double, Double) -> Array[Double]
+
+pub fn ns_ns_advection(Array[Double], Array[Double], Double, Double) -> Array[Double]
+
+pub fn ns_pressure_gradient(Array[Double], Double) -> Array[Double]
+
+pub fn ns_reynolds_number(Double, Double, Double, Double) -> Double
+
+pub fn nurbs_basis(Int32, Int32, Double, Array[Double]) -> Double
+
+pub fn nurbs_curve_point(Array[(Double, Double, Double)], Array[Double], Int32, Double, Array[Double]) -> (Double, Double, Double)
+
+pub fn nurbs_surface_point(Array[Array[(Double, Double, Double)]], Array[Array[Double]], Int32, Int32, Double, Double, Array[Double], Array[Double]) -> (Double, Double, Double)
+
+pub fn nurbs_uniform_knots(Int32, Int32) -> Array[Double]
+
+pub fn obb_from_points(Array[@core.Point3D]) -> @obb.OBB
+
+pub fn obj_face_new(Array[@obj_io.ObjFaceVertex]) -> @obj_io.ObjFace
+
+pub fn obj_face_vertex_new(Int32, Int32, Int32) -> @obj_io.ObjFaceVertex
+
+pub fn obj_mesh_face_count(@obj_io.ObjMesh) -> Int32
+
+pub fn obj_mesh_new() -> @obj_io.ObjMesh
+
+pub fn obj_mesh_vertex_count(@obj_io.ObjMesh) -> Int32
+
+pub fn obj_parse(String) -> @obj_io.ObjMesh
+
+pub fn obj_write(@obj_io.ObjMesh) -> String
+
+pub fn oblique(@core.Point3D, Double, Double) -> @core.Point2D
+
+pub fn octree_insert(@octree.OctreeNode, @core.Point3D) -> Unit
+
+pub fn octree_new(Double, Double, Double, Double, Int32, Int32) -> @octree.OctreeNode
+
+pub fn octree_range_query(@octree.OctreeNode, Double, Double, Double, Double, Double, Double) -> Array[@core.Point3D]
+
+pub fn octree_size(@octree.OctreeNode) -> Int32
+
+pub fn on_sphere(@core.Point3D, Double) -> Bool
+
+pub fn optim_centroid(Array[@core.Point2D]) -> @core.Point2D
+
+pub fn optimal_convex_decomp(Array[@core.Point2D]) -> Array[Array[@core.Point2D]]
+
+pub fn optimal_shape_area(Double) -> Double
+
+pub fn orient_normal(@core.Point3D, @core.Point3D) -> @core.Point3D
+
 pub fn origin_inside(@core.Polygon) -> Bool
 
+pub fn ortho(Double, Double, Double, Double, Double, Double) -> Array[Array[Double]]
+
+pub fn orthographic(@core.Point3D) -> @core.Point2D
+
+pub fn orthographic_batch(Array[@core.Point3D]) -> Array[@core.Point2D]
+
+pub fn outermost_layer(Array[@core.Point2D]) -> Array[@core.Point2D]
+
+pub fn overlay(Array[@core.Segment], Array[@core.Segment]) -> @overlay.OverlayResult
+
+pub fn overlay_edge_count(@overlay.OverlayResult) -> Int32
+
+pub fn overlay_edges(@overlay.OverlayResult) -> Array[(Int32, Int32)]
+
+pub fn overlay_vertex_count(@overlay.OverlayResult) -> Int32
+
+pub fn overlay_vertices(@overlay.OverlayResult) -> Array[@core.Point2D]
+
+pub fn pack_circles(Array[Double], Double) -> Array[(Double, Double)]
+
+pub fn pack_rectangles(Array[(Double, Double)], Double, Double) -> Array[(Double, Double)]
+
+pub fn packing_density(Array[Double], Double) -> Double
+
+pub fn partial_hausdorff(Array[@core.Point2D], Array[@core.Point2D], Int32) -> Double
+
+pub fn path_length(Array[@core.Point2D]) -> Double
+
+pub fn path_max_deviation(Array[@core.Point2D], Array[@core.Point2D]) -> Double
+
+pub fn path_smooth_length(Array[@core.Point2D]) -> Double
+
+pub fn pc_estimate_normal(@core.Point3D, Array[@core.Point3D]) -> @core.Point3D
+
+pub fn pc_principal_curvatures(Double, Double) -> (Double, Double)
+
+pub fn pcg_linear(Array[Array[Double]], Array[Double], (Array[Double]) -> Array[Double], Array[Double], Int32) -> Array[Double]
+
+pub fn percolation_threshold_2d() -> Double
+
+pub fn persistence(@persistence_diagram.PersistencePoint) -> Double
+
+pub fn persistence_diagram_barcode_count(@persistent_homology.PersistenceDiagram) -> Int32
+
+pub fn persistence_diagram_new() -> @persistent_homology.PersistenceDiagram
+
+pub fn persistence_pairs(Array[@persistent_homology.SimplexWithFiltration]) -> Array[(Int32, Int32)]
+
+pub fn persistent_homology(Array[@persistent_homology.SimplexWithFiltration]) -> @persistent_homology.PersistenceDiagram
+
+pub fn perspective(Double, Double, Double, Double) -> Array[Array[Double]]
+
+pub fn perspective_batch(Array[@core.Point3D], Double) -> Array[@core.Point2D]
+
+pub fn perspective_depth(@perspective.Perspective, @core.Point3D) -> Double
+
+pub fn perspective_fov(@perspective.Perspective, Double) -> Double
+
+pub fn perspective_new(Double, Double, Double, Double, Double) -> @perspective.Perspective
+
+pub fn perspective_project(@core.Point3D, Double) -> @core.Point2D?
+
+pub fn perspective_project_3d(@perspective.Perspective, @core.Point3D) -> @core.Point2D?
+
+pub fn perspective_unproject(@perspective.Perspective, @core.Point2D) -> @core.Point3D
+
+pub fn perturbation_orientation(Double, Double) -> Int32
+
 pub let pi : Double
+
+pub fn plan_path(Array[Array[@core.Point2D]], @core.Point2D, @core.Point2D) -> Array[@core.Point2D]
+
+pub fn planar_graph_add_edge(@planar_graph.PlanarGraph, Int32, Int32) -> Unit
+
+pub fn planar_graph_add_vertex(@planar_graph.PlanarGraph, @core.Point2D) -> Int32
+
+pub fn planar_graph_degree(@planar_graph.PlanarGraph, Int32) -> Int32
+
+pub fn planar_graph_edge_count(@planar_graph.PlanarGraph) -> Int32
+
+pub fn planar_graph_face_count(@planar_graph.PlanarGraph) -> Int32
+
+pub fn planar_graph_from_polygon(@planar_graph.PlanarGraph, @core.Polygon) -> @planar_graph.PlanarGraph
+
+pub fn planar_graph_is_connected(@planar_graph.PlanarGraph) -> Bool
+
+pub fn planar_graph_is_planar(@planar_graph.PlanarGraph) -> Bool
+
+pub fn planar_graph_neighbors(@planar_graph.PlanarGraph, Int32) -> Array[Int32]
+
+pub fn planar_graph_new() -> @planar_graph.PlanarGraph
+
+pub fn planar_graph_vertex_count(@planar_graph.PlanarGraph) -> Int32
+
+pub fn planarity_feature(Array[Double]) -> Double
 
 pub fn plane_contains(@plane.Plane, @core.Point3D, Double) -> Bool
 
@@ -313,9 +1949,45 @@ pub fn plane_normalize(@plane.Plane) -> @plane.Plane
 
 pub fn plane_project(@plane.Plane, @core.Point3D) -> @core.Point3D
 
+pub fn ply_mesh_face_count(@ply_io.PlyMesh) -> Int32
+
+pub fn ply_mesh_new() -> @ply_io.PlyMesh
+
+pub fn ply_mesh_vertex_count(@ply_io.PlyMesh) -> Int32
+
+pub fn ply_parse_ascii(String) -> @ply_io.PlyMesh
+
+pub fn ply_parse_binary(Bytes) -> @ply_io.PlyMesh
+
+pub fn ply_write_ascii(@ply_io.PlyMesh) -> String
+
+pub fn ply_write_binary(@ply_io.PlyMesh) -> Bytes
+
+pub fn point2d_to_json(@core.Point2D) -> String
+
+pub fn point3d_to_json(@core.Point3D) -> String
+
+pub fn point_buffer(@core.Point2D, Double, Int32) -> @core.Polygon
+
+pub fn point_cloud_aabb(Array[@core.Point3D]) -> (@core.Point3D, @core.Point3D)
+
+pub fn point_cloud_centroid(Array[@core.Point3D]) -> @core.Point3D
+
+pub fn point_cloud_size(Array[@core.Point3D]) -> Int32
+
 pub fn point_in_convex_polygon(@core.Polygon, @core.Point2D) -> Bool
 
 pub fn point_in_polygon(@core.Point2D, @core.Polygon) -> Bool
+
+pub fn point_in_polygon_arr(@core.Point2D, Array[@core.Point2D]) -> Bool
+
+pub fn point_in_shadow(@core.Point3D, @core.Point3D, Array[(@core.Point3D, @core.Point3D, @core.Point3D)]) -> Bool
+
+pub fn point_in_triangle((Double, Double), (Double, Double), (Double, Double), (Double, Double)) -> Bool
+
+pub fn point_in_triangle_2d(@core.Point2D, @core.Point2D, @core.Point2D, @core.Point2D) -> Bool
+
+pub fn point_match(Array[@core.Point2D], Array[@core.Point2D], Double) -> Array[(Int32, Int32)]
 
 pub fn point_set_centroid(Array[@core.Point2D]) -> @core.Point2D?
 
@@ -333,9 +2005,31 @@ pub fn point_to_segment_distance(@core.Point2D, @core.Segment) -> Double
 
 pub fn points_equal(@core.Point2D, @core.Point2D, Double) -> Bool
 
+pub fn points_to_json(Array[@core.Point2D]) -> String
+
+pub fn poisson_disk_sample(Double, Double, Double, Double, Double) -> Array[@core.Point2D]
+
+pub fn poisson_gauss_seidel(Array[Double], Array[Double], Double) -> Array[Double]
+
 pub fn polar_dual(@core.Polygon) -> Array[@core.Point2D]
 
 pub fn polar_dual_point(@core.Point2D) -> @core.Point2D
+
+pub fn poly_add(Array[Double], Array[Double]) -> Array[Double]
+
+pub fn poly_degree(Array[Double]) -> Int32
+
+pub fn poly_derivative(Array[Double]) -> Array[Double]
+
+pub fn poly_eval(Array[Double], Double) -> Double
+
+pub fn poly_gcd(Array[Double], Array[Double]) -> Array[Double]
+
+pub fn poly_mul(Array[Double], Array[Double]) -> Array[Double]
+
+pub fn poly_roots(Array[Double]) -> Array[Double]
+
+pub fn poly_sub(Array[Double], Array[Double]) -> Array[Double]
 
 pub fn polygon_area(@core.Polygon) -> Double
 
@@ -345,37 +2039,243 @@ pub fn polygon_difference_area(@core.Polygon, @core.Polygon) -> Double
 
 pub fn polygon_intersection(@core.Polygon, @core.Polygon) -> @core.Polygon?
 
+pub fn polygon_kernel(Array[@core.Point2D]) -> Array[@core.Point2D]
+
+pub fn polygon_kernel_area(Array[@core.Point2D]) -> Double
+
+pub fn polygon_offset_area(Array[@core.Point2D], Double) -> Double
+
+pub fn polygon_offset_buffer(@core.Polygon, Double) -> @core.Polygon
+
+pub fn polygon_offset_inward(Array[@core.Point2D], Double) -> Array[@core.Point2D]
+
+pub fn polygon_offset_outward(Array[@core.Point2D], Double) -> Array[@core.Point2D]
+
+pub fn polygon_offset_valid(Array[@core.Point2D], Double) -> Bool
+
 pub fn polygon_orientation(@core.Polygon) -> @core.Orientation
 
 pub fn polygon_perimeter(@core.Polygon) -> Double
 
+pub fn polygon_polygon_collide(Array[@core.Point2D], Array[@core.Point2D]) -> Bool
+
 pub fn polygon_signed_area(@core.Polygon) -> Double
+
+pub fn polygon_support(Array[@core.Point2D], Double, Double) -> @core.Point2D
+
+pub fn polygon_symmetry_order(Array[@core.Point2D]) -> Int32
+
+pub fn polygon_to_json(@core.Polygon) -> String
 
 pub fn polygon_to_polygon_distance(@core.Polygon, @core.Polygon) -> Double
 
 pub fn polygon_union_area(@core.Polygon, @core.Polygon) -> Double
 
-pub fn quadtree_count(Array[@quadtree.QuadNode]) -> Int
+pub fn polygon_with_holes_area(@polygon_holes.PolygonWithHoles) -> Double
 
-pub fn quadtree_range_query(Array[@quadtree.QuadNode], @core.Rectangle) -> Array[Int]
+pub fn polygon_with_holes_contains(@polygon_holes.PolygonWithHoles, @core.Point2D) -> Bool
+
+pub fn polygon_with_holes_count(@polygon_holes.PolygonWithHoles) -> Int32
+
+pub fn polygon_with_holes_new(Array[@core.Point2D], Array[Array[@core.Point2D]]) -> @polygon_holes.PolygonWithHoles
+
+pub fn polygon_with_holes_perimeter(@polygon_holes.PolygonWithHoles) -> Double
+
+pub fn polyhedron_difference(Array[@core.Point3D], Array[Array[Int32]], Array[@core.Point3D], Array[Array[Int32]]) -> @polyhedron_boolean.PolyBoolResult
+
+pub fn polyhedron_intersection(Array[@core.Point3D], Array[Array[Int32]], Array[@core.Point3D], Array[Array[Int32]]) -> @polyhedron_boolean.PolyBoolResult
+
+pub fn polyhedron_union(Array[@core.Point3D], Array[Array[Int32]], Array[@core.Point3D], Array[Array[Int32]]) -> @polyhedron_boolean.PolyBoolResult
+
+pub fn polyline_buffer(Array[@core.Point2D], Double, Int32) -> @core.Polygon
+
+pub fn polyline_length(Array[@core.Point2D]) -> Double
+
+pub fn polyline_segment_count(Array[@core.Point2D]) -> Int32
+
+pub fn polyline_simplify(Array[@core.Point2D], Double) -> Array[@core.Point2D]
+
+pub fn polyline_subdivide(Array[@core.Point2D], Int32, Double) -> Array[@core.Point2D]
+
+pub fn power_cell(@power_diagram.PowerDiagram, Int32) -> @power_diagram.PowerCell
+
+pub fn power_cell_area(@power_diagram.PowerDiagram, Int32) -> Double
+
+pub fn power_diagram(Array[@power_diagram.WeightedPoint], (@core.Point2D, @core.Point2D)) -> @power_diagram.PowerDiagram
+
+pub fn power_diagram_cell_count(@power_diagram.PowerDiagram) -> Int32
+
+pub fn power_diagram_new() -> @power_diagram.PowerDiagram
+
+pub fn power_distance(@core.Point2D, @power_diagram.WeightedPoint) -> Double
+
+pub fn power_iteration(Array[Array[Double]], Int32, Int32) -> Double
+
+pub fn precision_level(Double, Double) -> Int32
+
+pub fn principal_curvatures(Double, Double) -> (Double, Double)
+
+pub fn prm_build(@prm.PRMConfig, Array[Array[@core.Point2D]]) -> @prm.PRMRoadmap
+
+pub fn prm_config_new(Int32, Double, UInt32, Double, Double, Double, Double) -> @prm.PRMConfig
+
+pub fn prm_edge_count(@prm.PRMRoadmap) -> Int32
+
+pub fn prm_node_count(@prm.PRMRoadmap) -> Int32
+
+pub fn prm_query(@prm.PRMRoadmap, @core.Point2D, @core.Point2D, Array[Array[@core.Point2D]]) -> @prm.PRMResult
+
+pub fn procrustes(Array[@core.Point2D], Array[@core.Point2D]) -> @procrustes.ProcrustesResult
+
+pub fn procrustes_analyze(Array[Array[@core.Point2D]], Int32) -> Array[Array[@core.Point2D]]
+
+pub fn procrustes_apply(Array[@core.Point2D], @procrustes.ProcrustesResult) -> Array[@core.Point2D]
+
+pub fn procrustes_error(Array[@core.Point2D], Array[@core.Point2D]) -> Double
+
+pub fn procrustes_result_error(@procrustes.ProcrustesResult) -> Double
+
+pub fn procrustes_result_new(Double, Double, Double, Double, Double) -> @procrustes.ProcrustesResult
+
+pub fn procrustes_result_rotation(@procrustes.ProcrustesResult) -> Double
+
+pub fn procrustes_result_scale(@procrustes.ProcrustesResult) -> Double
+
+pub fn procrustes_result_tx(@procrustes.ProcrustesResult) -> Double
+
+pub fn procrustes_result_ty(@procrustes.ProcrustesResult) -> Double
+
+pub fn proj_xy_new(Double, Double) -> @gis_projection.ProjXY
+
+pub fn project_parametrize(Array[@core.Point3D]) -> Array[@mesh_param.UV]
+
+pub fn project_segment(@hidden_line.LineSeg3D) -> (@core.Point2D, @core.Point2D)
+
+pub fn project_to_2d(@core.Point3D) -> @core.Point2D
+
+pub fn project_to_plane(@core.Point3D, @core.Point3D, Double) -> @core.Point3D
+
+pub fn project_to_surface((Double, Double, Double) -> Double, (Double, Double, Double) -> Double, (Double, Double, Double) -> Double, (Double, Double, Double) -> Double, @core.Point3D, Int32) -> @core.Point3D
+
+pub fn ps_poisson_jacobi(Array[Double], Array[Double], Double) -> Array[Double]
+
+pub fn ps_poisson_residual(Array[Double], Array[Double], Double) -> Double
+
+pub fn pso((Array[Double]) -> Double, @pso.PSOConfig, @pso.PSOTopology, Int32, UInt32) -> @pso.PSOResult
+
+pub fn pso_1d((Double) -> Double, Double, Double, Int32, Int32, UInt32) -> Double
+
+pub fn pso_config_new(Int32, Int32, Double, Double, Double, Array[Double], Array[Double], Double) -> @pso.PSOConfig
+
+pub fn pso_decreasing_w((Array[Double]) -> Double, @pso.PSOConfig, Double, Double, @pso.PSOTopology, Int32, UInt32) -> @pso.PSOResult
+
+pub fn pso_inertia_schedule(Double, Double, Int32) -> Double
+
+pub fn pso_result_new(Array[Double], Double, Int32) -> @pso.PSOResult
+
+pub fn pso_swarm_radius(Array[Double]) -> Double
+
+pub fn qp_2d_box(Double, Double, Double, Double, Double, Double, Double, Double, Double) -> @core.Point2D
+
+pub fn qp_objective(Array[Array[Double]], Array[Double], Array[Double], Int32) -> Double
+
+pub fn qp_result_new(Array[Double], Double, Bool) -> @quadratic_prog.QPResult
+
+pub fn qp_solve_linear(Array[Array[Double]], Array[Double], Int32) -> Array[Double]?
+
+pub fn quadric_center(@quadric_surface.Quadric) -> @core.Point3D?
+
+pub fn quadric_classify(@quadric_surface.Quadric) -> @quadric_surface.QuadricType
+
+pub fn quadric_eval(@quadric_surface.Quadric, @core.Point3D) -> Double
+
+pub fn quadric_gradient(@quadric_surface.Quadric, @core.Point3D) -> @core.Point3D
+
+pub fn quadric_new(Double, Double, Double, Double, Double, Double, Double, Double, Double, Double) -> @quadric_surface.Quadric
+
+pub fn quadric_normal(@quadric_surface.Quadric, @core.Point3D) -> @core.Point3D
+
+pub fn quadric_on_surface(@quadric_surface.Quadric, @core.Point3D, Double) -> Bool
+
+pub fn quadtree_count(Array[@quadtree.QuadNode]) -> Int32
+
+pub fn quadtree_range_query(Array[@quadtree.QuadNode], @core.Rectangle) -> Array[Int32]
 
 pub let quarter_pi : Double
 
-pub fn query_aabb(Array[@aabb_tree.AABBNode], @core.Rectangle) -> Array[Int]
+pub fn query_aabb(Array[@aabb_tree.AABBNode], @core.Rectangle) -> Array[Int32]
 
-pub fn query_point_aabb(Array[@aabb_tree.AABBNode], @core.Point2D) -> Array[Int]
+pub fn query_point_aabb(Array[@aabb_tree.AABBNode], @core.Point2D) -> Array[Int32]
 
 pub let rad2deg : Double
 
 pub fn rad_to_deg(Double) -> Double
 
-pub fn range_query(@range_tree.RangeTree, Double, Double, Double, Double) -> Array[Int]
+pub fn radius_filter(Array[@core.Point3D], Double, Int32) -> Array[Int32]
 
-pub fn range_query_x(@range_tree.RangeTree, Double, Double) -> Array[Int]
+pub fn random_chord_length(Double) -> Double
 
-pub fn range_query_y(@range_tree.RangeTree, Double, Double) -> Array[Int]
+pub fn range_query(@range_tree.RangeTree, Double, Double, Double, Double) -> Array[Int32]
 
-pub fn range_tree_size(@range_tree.RangeTree) -> Int
+pub fn range_query_x(@range_tree.RangeTree, Double, Double) -> Array[Int32]
+
+pub fn range_query_y(@range_tree.RangeTree, Double, Double) -> Array[Int32]
+
+pub fn range_tree_size(@range_tree.RangeTree) -> Int32
+
+pub fn raster_add(@raster_ops.Raster, @raster_ops.Raster) -> @raster_ops.Raster
+
+pub fn raster_add_scalar(@raster_ops.Raster, Double) -> @raster_ops.Raster
+
+pub fn raster_buffer_new(Int32, Int32) -> @rasterization.RasterBuffer
+
+pub fn raster_cols(@raster_ops.Raster) -> Int32
+
+pub fn raster_from_data(Int32, Int32, Array[Double], Double) -> @raster_ops.Raster
+
+pub fn raster_get(@raster_ops.Raster, Int32, Int32) -> Double
+
+pub fn raster_line(@rasterization.RasterBuffer, Int32, Int32, Int32, Int32, Int32) -> Unit
+
+pub fn raster_max(@raster_ops.Raster) -> Double
+
+pub fn raster_min(@raster_ops.Raster) -> Double
+
+pub fn raster_mosaic(@raster_ops.Raster, @raster_ops.Raster) -> @raster_ops.Raster
+
+pub fn raster_multiply(@raster_ops.Raster, @raster_ops.Raster) -> @raster_ops.Raster
+
+pub fn raster_new(Int32, Int32, Double, Double) -> @raster_ops.Raster
+
+pub fn raster_rows(@raster_ops.Raster) -> Int32
+
+pub fn raster_set(@raster_ops.Raster, Int32, Int32, Double) -> Unit
+
+pub fn raster_subtract(@raster_ops.Raster, @raster_ops.Raster) -> @raster_ops.Raster
+
+pub fn raster_triangle(@rasterization.RasterBuffer, @core.Point3D, @core.Point3D, @core.Point3D, Int32) -> Unit
+
+pub fn rational_add(@big_rational.Rational, @big_rational.Rational) -> @big_rational.Rational
+
+pub fn rational_degree(@rational_map.RationalMap) -> Int32
+
+pub fn rational_equal(@big_rational.Rational, @big_rational.Rational) -> Bool
+
+pub fn rational_eval(@rational_map.RationalMap, Double) -> Double
+
+pub fn rational_is_defined(@rational_map.RationalMap, Double) -> Bool
+
+pub fn rational_mul(@big_rational.Rational, @big_rational.Rational) -> @big_rational.Rational
+
+pub fn rational_sub(@big_rational.Rational, @big_rational.Rational) -> @big_rational.Rational
+
+pub fn rational_to_double(@big_rational.Rational) -> Double
+
+pub fn raw_moment(Array[@core.Point2D], Int32, Int32) -> Double
+
+pub fn ray3_eval(@ray_tracing.Ray3, Double) -> @core.Point3D
+
+pub fn ray3_new(@core.Point3D, @core.Point3D) -> @ray_tracing.Ray3
 
 pub fn ray_eval(@ray.Ray, Double) -> @core.Point2D
 
@@ -383,7 +2283,13 @@ pub fn ray_from_points(@core.Point2D, @core.Point2D) -> @ray.Ray
 
 pub fn ray_line_intersect(@ray.Ray, @core.Line) -> @core.Point2D?
 
+pub fn ray_nearest_triangle(@ray_tracing.Ray3, Array[(@core.Point3D, @core.Point3D, @core.Point3D)]) -> (Double, Int32)?
+
 pub fn ray_new(@core.Point2D, @core.Point2D) -> @ray.Ray
+
+pub fn ray_plane_intersect(@ray_tracing.Ray3, @core.Point3D, @core.Point3D) -> Double?
+
+pub fn ray_plane_t((Double, Double, Double), (Double, Double, Double), (Double, Double, Double), (Double, Double, Double)) -> Double
 
 pub fn ray_polygon_contains(@ray.Ray, @core.Polygon) -> Bool
 
@@ -391,13 +2297,117 @@ pub fn ray_polygon_intersect(@ray.Ray, @core.Polygon) -> Array[@core.Point2D]
 
 pub fn ray_segment_intersect(@ray.Ray, @core.Segment) -> @core.Point2D?
 
+pub fn ray_sphere_intersect(@ray_tracing.Ray3, @core.Point3D, Double) -> Double?
+
+pub fn ray_triangle_intersect(@ray_tracing.Ray3, @core.Point3D, @core.Point3D, @core.Point3D) -> Double?
+
+pub fn rectangle_to_json(@core.Rectangle) -> String
+
+pub fn reeb_edge_count(@reeb_graph.ReebGraph) -> Int32
+
+pub fn reeb_edge_new(Int32, Int32) -> @reeb_graph.ReebEdge
+
+pub fn reeb_graph(Array[Double], Array[(Int32, Int32)]) -> @reeb_graph.ReebGraph
+
+pub fn reeb_graph_edge_count(@reeb_graph.ReebGraph) -> Int32
+
+pub fn reeb_graph_new() -> @reeb_graph.ReebGraph
+
+pub fn reeb_graph_node_count(@reeb_graph.ReebGraph) -> Int32
+
+pub fn reeb_node_count(@reeb_graph.ReebGraph) -> Int32
+
+pub fn reeb_node_new(Int32, Double, @reeb_graph.CriticalType) -> @reeb_graph.ReebNode
+
+pub fn reed_shepp_has_backward(@reed_shepp.RSPath) -> Bool
+
+pub fn reed_shepp_path_length(@reed_shepp.RSPath) -> Double
+
+pub fn reed_shepp_sample(@reed_shepp.RSPath, @reed_shepp.RSPose, Int32) -> Array[@core.Point2D]
+
+pub fn reed_shepp_segment_count(@reed_shepp.RSPath) -> Int32
+
+pub fn reed_shepp_shortest_path(@reed_shepp.RSPose, @reed_shepp.RSPose, Double) -> @reed_shepp.RSPath
+
+pub fn reflect((Double, Double, Double), (Double, Double, Double)) -> (Double, Double, Double)
+
+pub fn refract((Double, Double, Double), (Double, Double, Double), Double) -> (Double, Double, Double)
+
+pub fn regular_triangulation(Array[@power_diagram.WeightedPoint]) -> Array[(Int32, Int32, Int32)]
+
+pub fn reinitialize_step(Double, Double, Int32) -> Double
+
+pub fn remove_degenerate_faces(Array[@core.Point3D], Array[(Int32, Int32, Int32)], Double) -> (Array[(Int32, Int32, Int32)], Int32)
+
+pub fn removed_count(Int32, Int32) -> Int32
+
+pub fn repair_mesh(Array[@core.Point3D], Array[(Int32, Int32, Int32)], Double) -> @mesh_repair.MeshRepairResult
+
+pub fn resample_bilinear(@raster_ops.Raster, Int32, Int32) -> @raster_ops.Raster
+
+pub fn resample_nearest(@raster_ops.Raster, Int32, Int32) -> @raster_ops.Raster
+
+pub fn resultant(Array[Double], Array[Double]) -> Double
+
+pub fn rigid_apply(@rigid.Rigid, @core.Point2D) -> @core.Point2D
+
+pub fn rigid_apply_batch(@rigid.Rigid, Array[@core.Point2D]) -> Array[@core.Point2D]
+
+pub fn rigid_compose(@rigid.Rigid, @rigid.Rigid) -> @rigid.Rigid
+
+pub fn rigid_from_correspondence(@core.Point2D, @core.Point2D, @core.Point2D, @core.Point2D) -> @rigid.Rigid
+
+pub fn rigid_identity() -> @rigid.Rigid
+
+pub fn rigid_inverse(@rigid.Rigid) -> @rigid.Rigid
+
+pub fn rigid_rotation(Double) -> @rigid.Rigid
+
+pub fn rigid_translation(Double, Double) -> @rigid.Rigid
+
+pub fn rms_error(Array[(Double, Double, Double)], Array[(Double, Double, Double)]) -> Double
+
+pub fn rmsprop((Array[Double]) -> Array[Double], Array[Double], Double, Double, Double, Int32) -> Array[Double]
+
+pub fn rng_new(UInt32) -> @random_gen.Rng
+
+pub fn rng_next_double(@random_gen.Rng) -> Double
+
+pub fn rng_next_uint(@random_gen.Rng) -> UInt32
+
+pub fn rng_point2d(@random_gen.Rng, Double, Double, Double, Double) -> @core.Point2D
+
+pub fn rng_random_convex_polygon(@random_gen.Rng, Int32, Double) -> Array[@core.Point2D]
+
+pub fn rng_random_points(@random_gen.Rng, Int32, Double, Double, Double, Double) -> Array[@core.Point2D]
+
+pub fn robust_circumcenter(@core.Point2D, @core.Point2D, @core.Point2D) -> @core.Point2D
+
 pub fn robust_collinear(@core.Point2D, @core.Point2D, @core.Point2D, Double) -> Bool
+
+pub fn robust_compare(Double, Double, Double) -> Int32
+
+pub fn robust_intersection(@core.Point2D, @core.Point2D, @core.Point2D, @core.Point2D) -> @core.Point2D
 
 pub fn robust_left_turn(@core.Point2D, @core.Point2D, @core.Point2D) -> Bool
 
-pub fn robust_orientation(@core.Point2D, @core.Point2D, @core.Point2D) -> Int
+pub fn robust_line_line(Double, Double, Double, Double, Double, Double) -> (Double, Double, Bool)
+
+pub fn robust_midpoint(@core.Point2D, @core.Point2D) -> @core.Point2D
+
+pub fn robust_orient2d(Double, Double, Double, Double, Double, Double) -> Int32
+
+pub fn robust_orient3d(Double, Double, Double, Double, Double, Double, Double, Double, Double, Double, Double, Double) -> Int32
+
+pub fn robust_orientation(@core.Point2D, @core.Point2D, @core.Point2D) -> Int32
+
+pub fn robust_point_on_segment(Double, Double, Double, Double, Double, Double) -> Bool
 
 pub fn robust_right_turn(@core.Point2D, @core.Point2D, @core.Point2D) -> Bool
+
+pub fn robust_segment_intersect(Double, Double, Double, Double, Double, Double, Double, Double) -> (Double, Double, Bool)
+
+pub fn robust_sign(Double, Double) -> Int32
 
 pub fn rotate(@core.Point2D, Double) -> @core.Point2D
 
@@ -405,59 +2415,427 @@ pub fn rotate_around(@core.Point2D, @core.Point2D, Double) -> @core.Point2D
 
 pub fn rotate_points(Array[@core.Point2D], @core.Point2D, Double) -> Array[@core.Point2D]
 
+pub fn rotate_z_cloud(Array[@core.Point3D], Double) -> Array[@core.Point3D]
+
+pub fn rotation_x(Double) -> Array[Array[Double]]
+
+pub fn rotation_y(Double) -> Array[Array[Double]]
+
+pub fn rotation_z(Double) -> Array[Array[Double]]
+
+pub fn round_corner(@core.Point2D, @core.Point2D, @core.Point2D, Double, Int32) -> Array[@core.Point2D]
+
+pub fn round_double(Double, Int32) -> Double
+
+pub fn round_polygon(Array[@core.Point2D], Double, Int32) -> Array[@core.Point2D]
+
+pub fn rounded_area(Array[@core.Point2D], Int32) -> Double
+
+pub fn rounded_length(@core.Point2D, @core.Point2D, Int32) -> Double
+
+pub fn rrt_config_new(Double, Int32, Double, Double, UInt32, Double, Double, Double, Double) -> @rrt.RRTConfig
+
+pub fn rrt_connect_plan(@rrt.RRTConfig, @core.Point2D, @core.Point2D, Array[Array[@core.Point2D]]) -> @rrt.RRTResult
+
+pub fn rrt_node_count(Array[@rrt.RRTNode]) -> Int32
+
+pub fn rrt_node_new(@core.Point2D, Int32) -> @rrt.RRTNode
+
+pub fn rrt_path_length(Array[@core.Point2D]) -> Double
+
+pub fn rrt_plan(@rrt.RRTConfig, @core.Point2D, @core.Point2D, Array[Array[@core.Point2D]]) -> @rrt.RRTResult
+
+pub fn rrt_star_plan(@rrt.RRTConfig, @core.Point2D, @core.Point2D, Array[Array[@core.Point2D]]) -> @rrt.RRTResult
+
+pub fn rs_pose_new(Double, Double, Double) -> @reed_shepp.RSPose
+
+pub fn rtree_get_all(@rtree.RTree) -> Array[@core.Point2D]
+
+pub fn rtree_insert(@rtree.RTree, @core.Point2D) -> Unit
+
+pub fn rtree_new(Int32) -> @rtree.RTree
+
+pub fn rtree_range_query(@rtree.RTree, Double, Double, Double, Double) -> Array[@core.Point2D]
+
+pub fn rtree_size(@rtree.RTree) -> Int32
+
+pub fn sa_1d((Double) -> Double, Double, Double, Double, Double, Int32, UInt32) -> Double
+
+pub fn sa_reheat((Array[Double]) -> Double, Array[Double], (Array[Double], @simulated_annealing.SA_rng) -> Array[Double], Double, Double, Int32, Int32, UInt32) -> @simulated_annealing.SAResult
+
+pub fn sa_rng_new(UInt32) -> @simulated_annealing.SA_rng
+
+pub fn sa_rng_next(@simulated_annealing.SA_rng) -> Double
+
+pub fn sat_collide_circles(@core.Point2D, Double, @core.Point2D, Double) -> @sat.SATResult
+
+pub fn sat_collide_polygon_circle(Array[@core.Point2D], @core.Point2D, Double) -> @sat.SATResult
+
+pub fn sat_collide_polygons(Array[@core.Point2D], Array[@core.Point2D]) -> @sat.SATResult
+
+pub fn sat_contains_point(Array[@core.Point2D], @core.Point2D) -> Bool
+
+pub fn sat_mtv(@sat.SATResult) -> @core.Point2D
+
+pub fn sat_separating_axis(@sat.SATResult) -> @core.Point2D
+
 pub fn scale(@core.Point2D, Double, Double) -> @core.Point2D
 
 pub fn scale_around(@core.Point2D, @core.Point2D, Double, Double) -> @core.Point2D
 
-pub fn segment_cells(@core.Segment, Double) -> ((Int, Int), (Int, Int))
+pub fn scale_cloud(Array[@core.Point3D], Double) -> Array[@core.Point3D]
 
-pub fn segment_hash(@core.Segment, Double, Int) -> Int
+pub fn scale_expansion(Array[Double], Double) -> Array[Double]
+
+pub fn scaling(Double, Double, Double) -> Array[Array[Double]]
+
+pub fn scattering_feature(Array[Double]) -> Double
+
+pub fn scene_to_json(Array[@core.Point2D], Array[@core.Segment], Array[@core.Circle]) -> String
+
+pub fn secant((Double) -> Double, Double, Double, Int32) -> Double
+
+pub fn segment_buffer(@core.Point2D, @core.Point2D, Double, Int32) -> @core.Polygon
+
+pub fn segment_by_distance(Array[@core.Point3D], Double) -> Array[Array[Int32]]
+
+pub fn segment_by_height(Array[@core.Point3D], Double) -> (Array[Int32], Array[Int32])
+
+pub fn segment_cells(@core.Segment, Double) -> ((Int32, Int32), (Int32, Int32))
+
+pub fn segment_count(Array[Array[Int32]]) -> Int32
+
+pub fn segment_hash(@core.Segment, Double, Int32) -> Int32
 
 pub fn segment_intersection(@core.Segment, @core.Segment) -> @core.Point2D?
 
+pub fn segment_polygon_collide(@core.Point2D, @core.Point2D, Array[@core.Point2D]) -> Bool
+
+pub fn segment_sample(@core.Point2D, @core.Point2D, Int32) -> Array[@core.Point2D]
+
+pub fn segment_segment_collide(@core.Point2D, @core.Point2D, @core.Point2D, @core.Point2D) -> Bool
+
+pub fn segment_to_json(@core.Segment) -> String
+
 pub fn segment_to_segment_distance(@core.Segment, @core.Segment) -> Double
+
+pub fn segments_cross(@core.Point2D, @core.Point2D, @core.Point2D, @core.Point2D) -> Bool
 
 pub fn segments_intersect(@core.Segment, @core.Segment) -> Bool
 
 pub fn separating_distance(@core.Polygon, @core.Polygon) -> Double
 
+pub fn set_pixel(@rasterization.RasterBuffer, Int32, Int32, Int32) -> Unit
+
+pub fn set_pixel_depth(@rasterization.RasterBuffer, Int32, Int32, Int32, Double) -> Unit
+
+pub fn shape_context(Array[@core.Point2D], Int32, Int32) -> Array[Array[Double]]
+
+pub fn shape_context_cost(Array[Array[Double]], Array[Array[Double]]) -> Array[Array[Double]]
+
+pub fn shape_context_distance(Array[Double], Array[Double]) -> Double
+
+pub fn shape_context_match(Array[@core.Point2D], Array[@core.Point2D], Int32, Int32) -> Array[Int32]
+
+pub fn shape_matching_hungarian(Array[@core.Point2D], Array[@core.Point2D]) -> Array[Int32]
+
+pub fn shape_matching_icp(Array[@core.Point2D], Array[@core.Point2D], Int32) -> Array[Int32]
+
+pub fn shape_matching_score(Array[@core.Point2D], Array[@core.Point2D]) -> Double
+
 pub fn shear(@core.Point2D, Double, Double) -> @core.Point2D
+
+pub fn shortest_path_dist(Int32, Array[Array[@shortest_path.GraphEdge]], Int32, Int32) -> Double
+
+pub fn shortest_path_vertices(Int32, Array[Array[@shortest_path.GraphEdge]], Int32, Int32) -> Array[Int32]
+
+pub fn similarity_apply(@similarity.Similarity, @core.Point2D) -> @core.Point2D
+
+pub fn similarity_apply_batch(@similarity.Similarity, Array[@core.Point2D]) -> Array[@core.Point2D]
+
+pub fn similarity_compose(@similarity.Similarity, @similarity.Similarity) -> @similarity.Similarity
+
+pub fn similarity_from_correspondence(@core.Point2D, @core.Point2D, @core.Point2D, @core.Point2D) -> @similarity.Similarity
+
+pub fn similarity_identity() -> @similarity.Similarity
+
+pub fn similarity_inverse(@similarity.Similarity) -> @similarity.Similarity?
+
+pub fn similarity_rotation(Double) -> @similarity.Similarity
+
+pub fn similarity_scaling(Double) -> @similarity.Similarity
+
+pub fn similarity_score(Array[Int32], Array[Int32]) -> Double
+
+pub fn similarity_translation(Double, Double) -> @similarity.Similarity
+
+pub fn simplex(Array[Array[Double]], Array[Double], Array[Double], Int32) -> @simplex_method.SimplexResult
+
+pub fn simplex_count(@simplicial_complex.SimplicialComplex) -> Int32
+
+pub fn simplex_max(Array[Array[Double]], Array[Double], Array[Double], Int32) -> @simplex_method.SimplexResult
+
+pub fn simplex_result_new(Array[Double], Double, Bool) -> @simplex_method.SimplexResult
+
+pub fn simplex_with_filtration_new(Array[Int32], Double) -> @persistent_homology.SimplexWithFiltration
+
+pub fn simplification_ratio(@mesh_data.Mesh, @mesh_data.Mesh) -> Double
+
+pub fn simplify_by_edge_length(@mesh_data.Mesh, Double) -> @mesh_data.Mesh
+
+pub fn simplify_path(Array[@core.Point2D], Double) -> Array[@core.Point2D]
 
 pub fn simplify_polygon(@core.Polygon, Double) -> Array[@core.Point2D]
 
-pub fn spatial_hash_nearby(@spatial_hash.SpatialHash, @core.Point2D) -> Array[Int]
+pub fn simplify_topology_preserve(Array[@core.Point2D], Double) -> Array[@core.Point2D]
 
-pub fn spatial_hash_query_radius(@spatial_hash.SpatialHash, @core.Point2D, Double) -> Array[Int]
+pub fn simplify_visvalingam(Array[@core.Point2D], Int32) -> Array[@core.Point2D]
 
-pub fn spatial_hash_query_rect(@spatial_hash.SpatialHash, @core.Rectangle) -> Array[Int]
+pub fn simulated_annealing((Array[Double]) -> Double, Array[Double], (Array[Double], @simulated_annealing.SA_rng) -> Array[Double], Double, @simulated_annealing.CoolingSchedule, Double, Int32, UInt32) -> @simulated_annealing.SAResult
 
-pub fn spatial_hash_size(@spatial_hash.SpatialHash) -> Int
+pub fn skeleton_3d(Array[Bool], Int32, Int32, Int32) -> Array[Bool]
+
+pub fn skeleton_endpoints(Array[Bool], Int32, Int32, Int32) -> Int32
+
+pub fn skeleton_faces(@core.Polygon) -> Array[Array[@core.Point2D]]
+
+pub fn skeleton_field(Array[Bool], Int32, Int32, Int32) -> Array[Bool]
+
+pub fn skeleton_volume(Array[Bool]) -> Int32
+
+pub fn skip_quadtree_count(@skip_quadtree.SkipQuadtree) -> Int32
+
+pub fn skip_quadtree_insert(@skip_quadtree.SkipQuadtree, @core.Point2D) -> Unit
+
+pub fn skip_quadtree_new(Double, Double, Double, Int32) -> @skip_quadtree.SkipQuadtree
+
+pub fn skip_quadtree_query(@skip_quadtree.SkipQuadtree, Double, Double, Double, Double) -> Array[@core.Point2D]
+
+pub fn smallest_enclosing_circle(Array[@core.Point2D]) -> @core.Circle
+
+pub fn smooth_config_new(Int32, Double, Bool) -> @path_smooth.SmoothConfig
+
+pub fn smooth_displacement(@mesh_data.Mesh, @mesh_data.Mesh) -> Double
+
+pub fn smooth_path(Array[@core.Point2D], @path_smooth.SmoothConfig) -> Array[@core.Point2D]
+
+pub fn smooth_preserve_keypoints(Array[@core.Point2D], Array[Int32], Int32) -> Array[@core.Point2D]
+
+pub fn solve_eikonal_2d(Double, Double, Double, Double) -> Double
+
+pub fn solve_linear(Array[Array[Double]], Array[Double], Int32) -> Array[Double]
+
+pub fn solve_unconstrained_qp(Array[Array[Double]], Array[Double], Int32) -> Array[Double]?
+
+pub fn sos_compare(Double, Double, Int32, Int32) -> Int32
+
+pub fn sos_orientation(@core.Point2D, @core.Point2D, @core.Point2D, Int32, Int32, Int32) -> Int32
+
+pub fn sos_sign(Double, Int32) -> Int32
+
+pub fn spatial_hash_nearby(@spatial_hash.SpatialHash, @core.Point2D) -> Array[Int32]
+
+pub fn spatial_hash_query_radius(@spatial_hash.SpatialHash, @core.Point2D, Double) -> Array[Int32]
+
+pub fn spatial_hash_query_rect(@spatial_hash.SpatialHash, @core.Rectangle) -> Array[Int32]
+
+pub fn spatial_hash_size(@spatial_hash.SpatialHash) -> Int32
+
+pub fn spherical_distance(Double, Double, Double, Double) -> Double
+
+pub fn spline_curvature(Array[@core.Point2D], Int32) -> Double
+
+pub fn spline_curvature_profile(Array[@core.Point2D]) -> Array[Double]
+
+pub fn spline_length(Array[@core.Point2D]) -> Double
+
+pub fn spline_max_curvature_point(Array[@core.Point2D]) -> Int32?
+
+pub fn spline_total_curvature(Array[@core.Point2D]) -> Double
 
 pub let sqrt2 : Double
 
 pub let sqrt3 : Double
 
+pub fn static_filter_bound(Array[Double]) -> Double
+
+pub fn statistical_filter(Array[@core.Point3D], Int32, Double) -> Array[Int32]
+
+pub fn stereographic_from_south(@core.Point3D, Double) -> @core.Point2D?
+
+pub fn stereographic_from_sphere(@core.Point3D, Double) -> @core.Point2D?
+
+pub fn stereographic_scale(@core.Point3D, Double) -> Double
+
+pub fn stereographic_to_sphere(@core.Point2D, Double) -> @core.Point3D
+
+pub fn stl_mesh_new(String) -> @stl_io.StlMesh
+
+pub fn stl_mesh_triangle_count(@stl_io.StlMesh) -> Int32
+
+pub fn stl_parse_ascii(String) -> @stl_io.StlMesh
+
+pub fn stl_parse_binary(Bytes) -> @stl_io.StlMesh
+
+pub fn stl_triangle_new(@core.Point3D, @core.Point3D, @core.Point3D, @core.Point3D) -> @stl_io.StlTriangle
+
+pub fn stl_write_ascii(@stl_io.StlMesh) -> String
+
+pub fn stl_write_binary(@stl_io.StlMesh) -> Bytes
+
+pub fn straight_skeleton(@core.Polygon) -> Array[@core.Segment]
+
+pub fn subdivided_face_count(@mesh_data.Mesh) -> Int32
+
 pub fn support_circle(@core.Point2D, Double, @core.Point2D) -> @core.Point2D
 
 pub fn support_function(@core.Polygon, @core.Point2D) -> Double
 
-pub fn support_point_set(Array[@core.Point2D], @core.Point2D) -> Int?
+pub fn support_point_set(Array[@core.Point2D], @core.Point2D) -> Int32?
 
-pub fn tangent_from_point(@core.Polygon, @core.Point2D) -> (Int, Int)
+pub fn surf_face_normal(Array[(Double, Double, Double)], (Int32, Int32, Int32)) -> (Double, Double, Double)
+
+pub fn surf_mesh_bounding_box(Array[(Double, Double, Double)]) -> (Double, Double, Double, Double, Double, Double)
+
+pub fn surf_vertex_normal(Array[(Double, Double, Double)], Array[(Int32, Int32, Int32)], Int32) -> (Double, Double, Double)
+
+pub fn surface_genus(@mesh_data.Mesh) -> Int32
+
+pub fn surface_gradient((Double, Double, Double) -> Double, (Double, Double, Double) -> Double, (Double, Double, Double) -> Double, @core.Point3D) -> @core.Point3D
+
+pub fn svg_circle(@core.Circle, @svg_out.SvgSettings) -> String
+
+pub fn svg_document(Array[Array[@core.Point2D]], @svg_out.SvgSettings) -> String
+
+pub fn svg_footer() -> String
+
+pub fn svg_header(@svg_out.SvgSettings) -> String
+
+pub fn svg_line(@core.Point2D, @core.Point2D, @svg_out.SvgSettings) -> String
+
+pub fn svg_polygon(Array[@core.Point2D], @svg_out.SvgSettings) -> String
+
+pub fn svg_settings_default() -> @svg_out.SvgSettings
+
+pub fn sweep_update(Double, Double, Double, Double, Double) -> Double
+
+pub fn sweeping_converged(Array[Double], Array[Double], Double) -> Bool
+
+pub fn sylvester_matrix(Array[Double], Array[Double]) -> Array[Array[Double]]
+
+pub fn tangent_from_point(@core.Polygon, @core.Point2D) -> (Int32, Int32)
+
+pub fn tangent_plane((Double, Double, Double) -> Double, (Double, Double, Double) -> Double, (Double, Double, Double) -> Double, @core.Point3D) -> (Double, Double, Double, Double)
+
+pub fn taubin_smooth(@mesh_data.Mesh, Double, Double) -> @mesh_data.Mesh
+
+pub fn terrain_aspect_at(@delaunay_terrain.Terrain, @core.Point2D) -> Double?
+
+pub fn terrain_average_slope(@delaunay_terrain.Terrain) -> Double
+
+pub fn terrain_constraint_count(@delaunay_terrain.Terrain) -> Int32
+
+pub fn terrain_point_count(@delaunay_terrain.Terrain) -> Int32
+
+pub fn terrain_slope_at(@delaunay_terrain.Terrain, @core.Point2D) -> Double?
+
+pub fn terrain_surface_area(@delaunay_terrain.Terrain) -> Double
+
+pub fn terrain_triangle_count(@delaunay_terrain.Terrain) -> Int32
+
+pub fn tetrahedron_volume(@core.Point3D, @core.Point3D, @core.Point3D, @core.Point3D) -> Double
+
+pub fn tin_aspect_at(@tin.TIN, @core.Point2D) -> Double?
+
+pub fn tin_elevation_range(@tin.TIN) -> (Double, Double)
+
+pub fn tin_interpolate(@tin.TIN, @core.Point2D) -> Double?
+
+pub fn tin_point_count(@tin.TIN) -> Int32
+
+pub fn tin_slope_at(@tin.TIN, @core.Point2D) -> Double?
+
+pub fn tin_triangle_count(@tin.TIN) -> Int32
+
+pub fn tin_volume(@tin.TIN) -> Double
+
+pub fn total_curvature_energy(Array[@core.Point2D]) -> Double
+
+pub fn total_triangle_area(Array[@core.Point2D]) -> Double
+
+pub fn trace_curve((Double, Double) -> Double, (Double, Double) -> Double, (Double, Double) -> Double, @core.Point2D, Double, Int32) -> Array[@core.Point2D]
+
+pub fn transform_direction(Array[Array[Double]], Double, Double, Double) -> (Double, Double, Double)
+
+pub fn transform_point(Array[Array[Double]], Double, Double, Double) -> (Double, Double, Double)
 
 pub fn translate(@core.Point2D, Double, Double) -> @core.Point2D
 
+pub fn translate_cloud(Array[@core.Point3D], Double, Double, Double) -> Array[@core.Point3D]
+
 pub fn translate_points(Array[@core.Point2D], Double, Double) -> Array[@core.Point2D]
 
-pub fn triangulate_polygon(@core.Polygon) -> Array[(Int, Int, Int)]
+pub fn translate_pts(Array[(Double, Double, Double)], Double, Double, Double) -> Array[(Double, Double, Double)]
+
+pub fn translation(Double, Double, Double) -> Array[Array[Double]]
+
+pub fn trapezoidal_above_segment(@core.Segment, @core.Point2D) -> Bool
+
+pub fn trapezoidal_all(@trapezoidal.TrapezoidalMap) -> Array[@trapezoidal.Trapezoid]
+
+pub fn trapezoidal_count(@trapezoidal.TrapezoidalMap) -> Int32
+
+pub fn trapezoidal_expected_count(@trapezoidal.TrapezoidalMap) -> Int32
+
+pub fn trapezoidal_locate(@trapezoidal.TrapezoidalMap, @core.Point2D) -> Int32
+
+pub fn triangle_area(Array[(Double, Double, Double)], (Int32, Int32, Int32)) -> Double
+
+pub fn triangle_count(Array[@core.Point2D]) -> Int32
+
+pub fn triangle_quality(@core.Point3D, @core.Point3D, @core.Point3D) -> @mesh_quality.MeshQualityMetrics
+
+pub fn triangle_to_json(@core.Triangle) -> String
+
+pub fn triangle_z_at((@core.Point3D, @core.Point3D, @core.Point3D), Double, Double) -> Double?
+
+pub fn triangulate_monotone(Array[@core.Point2D]) -> Array[(Int32, Int32, Int32)]
+
+pub fn triangulate_polygon(@core.Polygon) -> Array[(Int32, Int32, Int32)]
 
 pub fn turn(@core.Point2D, @core.Point2D, @core.Point2D) -> Double
 
 pub let two_pi : Double
 
+pub fn two_prod(Double, Double) -> (Double, Double)
+
+pub fn two_sum(Double, Double) -> (Double, Double)
+
+pub fn uniform_knots(Int32, Int32) -> Array[Double]
+
+pub fn uniform_laplacian(Array[Double], Array[Double]) -> Double
+
+pub fn uniform_neighbor(Array[Double], Double, @simulated_annealing.SA_rng) -> Array[Double]
+
 pub fn unique_sorted(Array[Double]) -> Array[Double]
 
-pub fn upper_bound(Array[Double], Double) -> Int
+pub fn unknotting_number(Int32) -> Int32
+
+pub fn unmatched_a(Array[@core.Point2D], Array[@core.Point2D], Double) -> Int32
+
+pub fn unmatched_b(Array[@core.Point2D], Array[@core.Point2D], Double) -> Int32
+
+pub fn upper_bound(Array[Double], Double) -> Int32
+
+pub fn utm_central_meridian(Int32) -> Double
+
+pub fn utm_forward(Double, Double) -> @gis_projection.ProjXY
+
+pub fn utm_forward_zone(Double, Double, Int32) -> @gis_projection.ProjXY
+
+pub fn utm_zone_from_lon(Double) -> Int32
+
+pub fn validate_mesh(Array[(Double, Double, Double)], Array[(Int32, Int32, Int32)]) -> Bool
 
 pub fn vec_angle_between(@core.Point2D, @core.Point2D) -> Double
 
@@ -475,73 +2853,465 @@ pub fn vec_reflect(@core.Point2D, @core.Point2D) -> @core.Point2D
 
 pub fn vec_reject(@core.Point2D, @core.Point2D) -> @core.Point2D
 
-pub fn voronoi_diagram(Array[@core.Point2D]) -> (Array[@core.Point2D], Array[(Int, Int)])
+pub fn vertex_cache_optimize(Array[Int32], Int32) -> Array[Int32]
+
+pub fn vertex_center(@core.Polygon) -> @core.Point2D
+
+pub fn vertex_normal(@mesh_data.Mesh, Int32) -> @core.Point3D
+
+pub fn vg_voxel_index(@voxel_grid.VoxelGrid, @core.Point3D) -> Int32
+
+pub fn vincenty_distance(Double, Double, Double, Double) -> Double
+
+pub fn visibility_edge_count(Array[Array[@core.Point2D]], @core.Point2D, @core.Point2D) -> Int32
+
+pub fn visibility_polygon(Array[@core.Point2D], @core.Point2D) -> Array[@core.Point2D]
+
+pub fn visibility_polygon_convex(Array[@core.Point2D], @core.Point2D) -> Array[@core.Point2D]
+
+pub fn visibility_vertices(Array[Array[@core.Point2D]], @core.Point2D, @core.Point2D) -> Array[@core.Point2D]
+
+pub fn visible_vertex_count(Array[@core.Point2D], @core.Point2D) -> Int32
+
+pub fn voronoi_3d(Array[@core.Point3D]) -> @voronoi_3d.Voronoi3D
+
+pub fn voronoi_3d_cell_count(@voronoi_3d.Voronoi3D) -> Int32
+
+pub fn voronoi_3d_cell_count_from_sites(Array[@core.Point3D]) -> Int32
+
+pub fn voronoi_3d_new() -> @voronoi_3d.Voronoi3D
+
+pub fn voronoi_3d_vertex_count(@voronoi_3d.Voronoi3D) -> Int32
+
+pub fn voronoi_3d_vertex_count_from_sites(Array[@core.Point3D]) -> Int32
+
+pub fn voronoi_area(Double) -> Double
+
+pub fn voronoi_cell(Array[@core.Point2D], Int32, (@core.Point2D, @core.Point2D)) -> Array[@core.Point2D]
+
+pub fn voronoi_cell_3d(@voronoi_3d.Voronoi3D, Int32) -> @voronoi_3d.VoronoiCell3D
+
+pub fn voronoi_cell_area(Array[@core.Point2D], Int32, (@core.Point2D, @core.Point2D)) -> Double
+
+pub fn voronoi_cell_count(Array[@core.Point2D]) -> Int32
+
+pub fn voronoi_diagram(Array[@core.Point2D]) -> (Array[@core.Point2D], Array[(Int32, Int32)])
+
+pub fn voxel_count_occupied(@voxel_grid.VoxelGrid) -> Int32
+
+pub fn voxel_downsample(Array[@core.Point3D], Double) -> Array[@core.Point3D]
+
+pub fn voxel_index(Int32, Int32, Int32, Int32, Int32) -> Int32
+
+pub fn voxel_occupied(@voxel_grid.VoxelGrid, @core.Point3D) -> Bool
+
+pub fn voxel_set(@voxel_grid.VoxelGrid, @core.Point3D) -> @voxel_grid.VoxelGrid
+
+pub fn vp_tree_build(Array[@core.Point2D]) -> @vp_tree.VPNode?
+
+pub fn vp_tree_count(@vp_tree.VPNode?) -> Int32
+
+pub fn vp_tree_knn(@vp_tree.VPNode?, @core.Point2D, Int32) -> Array[@core.Point2D]
+
+pub fn watershed_result_cols(@watershed.WatershedResult) -> Int32
+
+pub fn watershed_result_get(@watershed.WatershedResult, Int32, Int32) -> Int32
+
+pub fn watershed_result_rows(@watershed.WatershedResult) -> Int32
+
+pub fn we_wave_damping(Double, Double, Double) -> Double
+
+pub fn we_wave_energy(Array[Double], Array[Double], Double) -> Double
+
+pub fn we_wave_explicit_step(Array[Double], Array[Double], Double, Double, Double) -> Array[Double]
+
+pub fn web_mercator_forward(Double, Double) -> @gis_projection.ProjXY
+
+pub fn web_mercator_inverse(Double, Double) -> (Double, Double)
+
+pub fn weighted_point_new(@core.Point2D, Double) -> @power_diagram.WeightedPoint
+
+pub fn wgs84_to_cgcs2000(@coordinate_convert.Geodetic) -> @coordinate_convert.Geodetic
+
+pub fn wgs84_to_ecef(@coordinate_convert.Geodetic) -> @coordinate_convert.ECEF
 
 pub fn width_in_direction(Array[@core.Point2D], @core.Point2D) -> Double
+
+pub fn writhe(Array[Int32]) -> Int32
+
+pub fn zernike_magnitude(Array[@core.Point2D], Int32, Int32) -> Double
+
+pub fn zernike_moment(Array[@core.Point2D], Int32, Int32) -> (Double, Double)
+
+pub fn zone_complexity(@zone.Zone) -> Int32
+
+pub fn zone_complexity_bound(Int32) -> Int32
+
+pub fn zone_crossed_count(@zone.Zone) -> Int32
+
+pub fn zone_crossed_faces(@zone.Zone) -> Array[Int32]
+
+pub fn zone_entry_points(@zone.Zone) -> Array[@core.Point2D]
 
 // Errors
 
 // Types and methods
 
 // Type aliases
+pub using @collision_detect {type AABB}
+
+pub using @aabb3d {type AABB3D}
+
 pub using @aabb_tree {type AABBNode}
 
+pub using @a_star {type AStarGraphNode}
+
+pub using @a_star {type AStarGrid}
+
+pub using @a_star {type AStarHeuristic}
+
+pub using @a_star {type AStarResult}
+
+pub using @affine2 {type Affine2}
+
+pub using @affine_arithmetic {type AffineForm}
+
+pub using @alpha_complex {type AlphaComplex}
+
+pub using @alpha_complex {type AlphaSimplex}
+
+pub using @arrangement {type Arrangement}
+
+pub using @arrangement {type ArrangementVertex}
+
 pub using @bvh {type BVHNode}
+
+pub using @ball_tree {type BallNode}
+
+pub using @persistent_homology {type Barcode}
+
+pub using @betti_numbers {type BettiResult}
 
 pub using @bezier {type Bezier2}
 
 pub using @bezier {type Bezier3}
 
+pub using @mesh_boolean {type BoolOp}
+
+pub using @bounding_sphere {type BoundingSphere}
+
 pub using @bucket_pr {type BucketPRNode}
+
+pub using @config_space {type CSpaceObstacle}
+
+pub using @centroidal_voronoi {type CVTResult}
 
 pub using @core {type Circle}
 
 pub using @fitting {type CircleFit}
 
+pub using @collision_detect {type CollisionPair}
+
+pub using @conic_section {type Conic}
+
+pub using @conic_section {type ConicType}
+
+pub using @constrained_delaunay {type ConstrainedDelaunay}
+
+pub using @contour_line {type ContourGrid}
+
+pub using @contour_line {type ContourSegment}
+
+pub using @simulated_annealing {type CoolingSchedule}
+
+pub using @cover_tree {type CoverTree}
+
+pub using @reeb_graph {type CriticalType}
+
+pub using @dcel {type DCEL}
+
+pub using @dcel {type Face as DcelFace}
+
+pub using @delaunay_3d {type Delaunay3D}
+
+pub using @dubins {type DubinsPath}
+
+pub using @dubins {type DubinsPose}
+
+pub using @dubins {type DubinsSegment}
+
+pub using @dubins {type DubinsSegmentType}
+
+pub using @dxf_io {type DxfDocument}
+
+pub using @dxf_io {type DxfEntity}
+
+pub using @convex_hull_dynamic {type DynamicHull}
+
+pub using @convex_hull_3d_dynamic {type DynamicHull3D}
+
+pub using @coordinate_convert {type ECEF}
+
 pub using @ellipse {type Ellipse}
+
+pub using @euler_tour {type EulerTour}
+
+pub using @face_extract {type Face as ExtractFace}
+
+pub using @genetic_algorithm {type GAConfig}
+
+pub using @genetic_algorithm {type GAResult}
+
+pub using @gjk {type GJKResult}
+
+pub using @interval_arith {type GeoInterval}
+
+pub using @geojson_io {type GeoJsonGeometry}
+
+pub using @coordinate_convert {type Geodetic}
+
+pub using @gltf_io {type GltfMesh}
+
+pub using @shortest_path {type GraphEdge}
 
 pub using @grid_index {type GridIndex}
 
+pub using @dcel {type HalfEdge}
+
 pub using @half_plane {type HalfPlane}
+
+pub using @datum_transform {type Helmert3}
+
+pub using @datum_transform {type Helmert7}
+
+pub using @homography {type Homography}
+
+pub using @hough_transform {type HoughCircle}
+
+pub using @hough_transform {type HoughLine}
 
 pub using @convex_hull3d {type HullFace}
 
+pub using @interval_arithmetic {type Interval as IAInterval}
+
+pub using @interior_point {type IPResult}
+
+pub using @icp {type IcpResult}
+
 pub using @interval {type Interval}
+
+pub using @interval_tree {type Interval as IntervalEntry}
+
+pub using @interval_tree {type IntervalNode}
+
+pub using @inversion {type Inversion}
 
 pub using @kdtree {type KDNode}
 
+pub using @levenberg_marquardt {type LMResult}
+
 pub using @linear_prog {type LPResult}
+
+pub using @lazy_exact {type LazyExact}
 
 pub using @core {type Line}
 
 pub using @fitting {type LineFit}
 
+pub using @hidden_line {type LineSeg3D}
+
+pub using @loose_octree {type LooseOctNode}
+
 pub using @matrix {type Mat2}
+
+pub using @marching_cubes {type McGrid}
+
+pub using @medial_axis_3d {type MedialBall3D}
+
+pub using @mesh_data {type Mesh}
+
+pub using @mesh_boolean {type MeshBoolResult}
+
+pub using @mesh_data {type MeshFace}
+
+pub using @mesh_param {type MeshParamResult}
+
+pub using @mesh_quality {type MeshQualityMetrics}
+
+pub using @mesh_repair {type MeshRepairResult}
+
+pub using @metric_tree {type MetricNode}
+
+pub using @geometric_algebra {type Multivector}
+
+pub using @obb {type OBB}
+
+pub using @obj_io {type ObjFace}
+
+pub using @obj_io {type ObjFaceVertex}
+
+pub using @obj_io {type ObjMesh}
+
+pub using @octree {type OctreeNode}
 
 pub using @core {type Orientation}
 
+pub using @overlay {type OverlayResult}
+
+pub using @prm {type PRMConfig}
+
+pub using @prm {type PRMResult}
+
+pub using @prm {type PRMRoadmap}
+
+pub using @pso {type PSOConfig}
+
+pub using @pso {type PSOResult}
+
+pub using @pso {type PSOTopology}
+
+pub using @persistent_homology {type PersistenceDiagram}
+
+pub using @persistence_diagram {type PersistencePoint}
+
+pub using @perspective {type Perspective}
+
+pub using @planar_graph {type PlanarEdge}
+
+pub using @planar_graph {type PlanarGraph}
+
 pub using @plane {type Plane}
+
+pub using @ply_io {type PlyMesh}
 
 pub using @core {type Point2D}
 
 pub using @core {type Point3D}
 
+pub using @polyhedron_boolean {type PolyBoolResult}
+
 pub using @core {type Polygon}
+
+pub using @polygon_holes {type PolygonWithHoles}
+
+pub using @polyhedron {type Polyhedron}
+
+pub using @power_diagram {type PowerCell}
+
+pub using @power_diagram {type PowerDiagram}
+
+pub using @procrustes {type ProcrustesResult}
+
+pub using @gis_projection {type ProjXY}
+
+pub using @quadratic_prog {type QPResult}
 
 pub using @quadtree {type QuadNode}
 
+pub using @quadric_surface {type Quadric}
+
+pub using @quadric_surface {type QuadricType}
+
+pub using @rrt {type RRTConfig}
+
+pub using @rrt {type RRTNode}
+
+pub using @rrt {type RRTResult}
+
+pub using @reed_shepp {type RSPath}
+
+pub using @reed_shepp {type RSPose}
+
+pub using @reed_shepp {type RSSegment}
+
+pub using @reed_shepp {type RSSegmentType}
+
+pub using @rtree {type RTree}
+
 pub using @range_tree {type RangeTree}
+
+pub using @raster_ops {type Raster}
+
+pub using @rasterization {type RasterBuffer}
+
+pub using @big_rational {type Rational}
+
+pub using @rational_map {type RationalMap}
 
 pub using @ray {type Ray}
 
+pub using @ray_tracing {type Ray3}
+
 pub using @core {type Rectangle}
+
+pub using @reeb_graph {type ReebEdge}
+
+pub using @reeb_graph {type ReebGraph}
+
+pub using @reeb_graph {type ReebNode}
+
+pub using @rigid {type Rigid}
+
+pub using @random_gen {type Rng}
+
+pub using @simulated_annealing {type SAResult}
+
+pub using @sat {type SATResult}
+
+pub using @simulated_annealing {type SA_rng}
 
 pub using @core {type Segment}
 
+pub using @similarity {type Similarity}
+
+pub using @simplex_method {type SimplexResult}
+
+pub using @persistent_homology {type SimplexWithFiltration}
+
+pub using @simplicial_complex {type SimplicialComplex}
+
+pub using @skip_quadtree {type SkipQuadtree}
+
+pub using @path_smooth {type SmoothConfig}
+
 pub using @spatial_hash {type SpatialHash}
+
+pub using @stl_io {type StlMesh}
+
+pub using @stl_io {type StlTriangle}
+
+pub using @svg_out {type SvgSettings}
+
+pub using @tin {type TIN}
+
+pub using @delaunay_terrain {type Terrain}
+
+pub using @delaunay_3d {type Tetrahedron}
+
+pub using @trapezoidal {type Trapezoid}
+
+pub using @trapezoidal {type TrapezoidalMap}
 
 pub using @core {type Triangle}
 
 pub using @triangulation {type TriangleIdx}
+
+pub using @mesh_param {type UV}
+
+pub using @vp_tree {type VPNode}
+
+pub using @voronoi_3d {type Voronoi3D}
+
+pub using @voronoi_3d {type VoronoiCell3D}
+
+pub using @voxel_grid {type VoxelGrid}
+
+pub using @spanning_tree {type WEdge}
+
+pub using @watershed {type WatershedResult}
+
+pub using @power_diagram {type WeightedPoint}
+
+pub using @zone {type Zone}
 
 // Traits

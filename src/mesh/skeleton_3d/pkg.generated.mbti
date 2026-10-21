@@ -1,0 +1,27 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/src/mesh/skeleton_3d"
+
+// Values
+pub fn count_26_neighbors(Array[Bool], Int32, Int32, Int32, Int32, Int32, Int32) -> Int32
+
+pub fn count_6_neighbors(Array[Bool], Int32, Int32, Int32, Int32, Int32, Int32) -> Int32
+
+pub fn is_boundary(Array[Bool], Int32, Int32, Int32, Int32, Int32, Int32) -> Bool
+
+pub fn skeleton_3d(Array[Bool], Int32, Int32, Int32) -> Array[Bool]
+
+pub fn skeleton_endpoints(Array[Bool], Int32, Int32, Int32) -> Int32
+
+pub fn skeleton_field(Array[Bool], Int32, Int32, Int32) -> Array[Bool]
+
+pub fn skeleton_volume(Array[Bool]) -> Int32
+
+pub fn voxel_index(Int32, Int32, Int32, Int32, Int32) -> Int32
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

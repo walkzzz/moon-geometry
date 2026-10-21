@@ -1,0 +1,23 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/src/pointcloud/pc_feature"
+
+import {
+  "walkzzz/moon-geometry/src/base/core",
+}
+
+// Values
+pub fn curvature_feature(Array[Double]) -> Double
+
+pub fn local_density(Array[@core.Point3D], @core.Point3D, Double) -> Int32
+
+pub fn planarity_feature(Array[Double]) -> Double
+
+pub fn scattering_feature(Array[Double]) -> Double
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

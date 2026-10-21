@@ -7,6 +7,9 @@ pub struct GltfMesh {
 }
 
 ///|
+pub extend GltfMesh with @core.VertexCountable::{vertex_count}
+
+///|
 /// Create an empty glTF mesh. / 创建空 glTF 网格。
 pub fn GltfMesh::new() -> GltfMesh {
   { vertices: [], indices: [] }
@@ -14,8 +17,8 @@ pub fn GltfMesh::new() -> GltfMesh {
 
 ///|
 /// Number of vertices. / 顶点数。
-pub fn GltfMesh::vertex_count(m : GltfMesh) -> Int {
-  m.vertices.length()
+pub impl @core.VertexCountable for GltfMesh with vertex_count(self) {
+  self.vertices.length()
 }
 
 ///|

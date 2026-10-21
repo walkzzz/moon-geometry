@@ -1,0 +1,32 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/src/mesh/mesh_boolean"
+
+import {
+  "walkzzz/moon-geometry/src/base/core",
+}
+
+// Values
+pub fn mesh_difference(Array[@core.Point3D], Array[(Int32, Int32, Int32)], Array[@core.Point3D], Array[(Int32, Int32, Int32)]) -> MeshBoolResult
+
+pub fn mesh_intersection(Array[@core.Point3D], Array[(Int32, Int32, Int32)], Array[@core.Point3D], Array[(Int32, Int32, Int32)]) -> MeshBoolResult
+
+pub fn mesh_union(Array[@core.Point3D], Array[(Int32, Int32, Int32)], Array[@core.Point3D], Array[(Int32, Int32, Int32)]) -> MeshBoolResult
+
+// Errors
+
+// Types and methods
+pub(all) enum BoolOp {
+  Union
+  Intersection
+  Difference
+}
+
+pub struct MeshBoolResult {
+  vertices : Array[@core.Point3D]
+  faces : Array[(Int32, Int32, Int32)]
+}
+pub fn MeshBoolResult::new(Array[@core.Point3D], Array[(Int32, Int32, Int32)]) -> Self
+
+// Type aliases
+
+// Traits
