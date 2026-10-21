@@ -6,6 +6,13 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
 Moon Geometry 的所有重要变更记录于此。
 格式基于 [Keep a Changelog](https://keepachangelog.com/)。
 
+## [0.243.0] - 2026-10-21
+
+### Added — 分类 README | Category README（R4/R10 合规）
+
+- 为 24 个分类目录创建 README.md，列出各分类下的模块及链接
+- **R4/R10 验收通过**：所有一级子包均有 README.md
+
 ## [0.242.0] - 2026-10-21
 
 ### Added — API 文档注释 | API Doc Comments（R3 合规）

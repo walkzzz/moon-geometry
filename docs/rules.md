@@ -166,9 +166,11 @@ pub using @pkg { type T, name1, trait Trait1 }
 | v0.238.0 | 目录重构（401模块→24分类） | ✅ | 842c0e4 |
 | v0.239.0 | Warning 治理（204→54） | ✅ | 9dabf20 |
 | v0.240.0 | Curve2D trait + 代码去重 | ✅ | c80f6de |
-| v0.241.0 | Warning 治理达标 0（54→0）+ 规则适配 | ✅ | pending |
+| v0.241.0 | Warning 治理达标 0（54→0）+ 规则适配 | ✅ | 87fef56 |
+| v0.242.0 | API 文档注释 218 个 pub fn（R3 合规） | ✅ | 68e6dc6 |
+| v0.243.0 | 24 分类 README.md（R4/R10 合规） | ✅ | e7b95bd |
 
-**当前测试**：2518 passed · **当前模块**：401（24 分类） · **当前 warning**：0 · **当前 error**：0
+**当前测试**：2518 passed · **当前模块**：401（24 分类） · **当前 warning**：0 · **当前 error**：0 · **未文档化 pub fn**：0
 
 ---
 
