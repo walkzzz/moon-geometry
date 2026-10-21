@@ -102,6 +102,18 @@ README 中英文，美化，默认中文；每个子包也要 README.md。
 ### R18 — Trait 抽象与去重 ⭐ 新增
 优先用 `pub(open) trait` 抽象公共行为模式，消除跨模块代码重复。实现 trait 时用 `pub impl Trait for Type with method` + `pub extend Type with Trait::{method}` 模式确保跨包可用且消除 deprecation warning。
 
+### R19 — 尽可能使用 Trait ⭐ 新增
+**强制要求**：所有新代码必须优先使用 trait 抽象行为模式，而非裸函数。
+
+1. **公共行为 trait 化**：任何被 2+ 个包/类型共享的行为模式（如 `version()`、`create()`、`check()`、`validate()`、`run()`、`reset()`），必须抽象为 `pub(open) trait`。
+2. **trait 优先于函数**：新增公共 API 时，优先设计 trait 方法而非独立函数。独立函数仅在行为不可复用时才允许。
+3. **现有代码 trait 化**：迭代时逐步将现有裸函数重构为 trait 实现，每次 Sprint 至少 trait 化一个公共模式。
+4. **trait 命名规范**：行为 trait 用形容词/动词命名（`Versioned`、`Checkable`、`Runnable`、`Resettable`、`Validatable`），而非名词。
+5. **默认实现**：trait 中提供默认实现 `method(Self) -> T = _`，减少实现样板代码。
+
+**Why**: trait 抽象是 MoonBit 的核心能力，能消除跨模块重复、提高类型安全性、增强可测试性。裸函数无法被多态调度，导致代码重复和扩展困难。
+**How to apply**: 每次新增函数前，先检查是否已有 trait 可复用；每次迭代时，识别 2+ 包共享的行为模式并 trait 化。
+
 ---
 
 ## 二、MoonBit 技术要点 / Technical Notes

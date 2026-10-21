@@ -50,6 +50,12 @@ pub struct Triangle {
 } derive(Debug)
 
 ///|
+pub extend Triangle with @moonbitlang/core/debug.Debug::{to_repr}
+
+///|
+pub extend Triangle with Measurable::{area}
+
+///|
 /// Construct a triangle.
 /// 构造三角形。
 pub fn Triangle::new(a : Point2D, b : Point2D, c : Point2D) -> Triangle {
@@ -70,7 +76,7 @@ pub fn Triangle::signed_area(self : Triangle) -> Double {
 ///|
 /// Absolute area of the triangle.
 /// 三角形绝对面积。
-pub fn Triangle::area(self : Triangle) -> Double {
+pub impl Measurable for Triangle with area(self) {
   self.signed_area().abs()
 }
 
@@ -139,6 +145,18 @@ pub struct Circle {
 } derive(Debug)
 
 ///|
+pub extend Circle with @moonbitlang/core/debug.Debug::{to_repr}
+
+///|
+pub extend Circle with Measurable::{area}
+
+///|
+pub extend Circle with PerimeterMeasurable::{perimeter}
+
+///|
+pub extend Circle with Containable::{contains}
+
+///|
 /// Construct a circle.
 /// 构造圆。
 pub fn Circle::new(center : Point2D, radius : Double) -> Circle {
@@ -148,21 +166,21 @@ pub fn Circle::new(center : Point2D, radius : Double) -> Circle {
 ///|
 /// Area of the circle.
 /// 圆面积。
-pub fn Circle::area(self : Circle) -> Double {
+pub impl Measurable for Circle with area(self) {
   @math.PI * self.radius * self.radius
 }
 
 ///|
 /// Perimeter (circumference) of the circle.
 /// 圆周长。
-pub fn Circle::perimeter(self : Circle) -> Double {
+pub impl PerimeterMeasurable for Circle with perimeter(self) {
   2.0 * @math.PI * self.radius
 }
 
 ///|
 /// Whether a point lies inside or on the circle.
 /// 点是否在圆内或圆上。
-pub fn Circle::contains(self : Circle, p : Point2D) -> Bool {
+pub impl Containable for Circle with contains(self, p) {
   self.center.dist_sq(p) <= self.radius * self.radius
 }
 
@@ -175,6 +193,18 @@ pub struct Rectangle {
   max_x : Double
   max_y : Double
 } derive(Debug)
+
+///|
+pub extend Rectangle with @moonbitlang/core/debug.Debug::{to_repr}
+
+///|
+pub extend Rectangle with Measurable::{area}
+
+///|
+pub extend Rectangle with PerimeterMeasurable::{perimeter}
+
+///|
+pub extend Rectangle with Containable::{contains}
 
 ///|
 /// Construct a rectangle from corner coordinates.
@@ -219,14 +249,14 @@ pub fn Rectangle::from_corners(p1 : Point2D, p2 : Point2D) -> Rectangle {
 ///|
 /// Area of the rectangle.
 /// 矩形面积。
-pub fn Rectangle::area(self : Rectangle) -> Double {
+pub impl Measurable for Rectangle with area(self) {
   (self.max_x - self.min_x) * (self.max_y - self.min_y)
 }
 
 ///|
 /// Perimeter of the rectangle.
 /// 矩形周长。
-pub fn Rectangle::perimeter(self : Rectangle) -> Double {
+pub impl PerimeterMeasurable for Rectangle with perimeter(self) {
   2.0 * (self.max_x - self.min_x + (self.max_y - self.min_y))
 }
 
@@ -247,7 +277,7 @@ pub fn Rectangle::height(self : Rectangle) -> Double {
 ///|
 /// Whether a point lies inside or on the rectangle.
 /// 点是否在矩形内或矩形上。
-pub fn Rectangle::contains(self : Rectangle, p : Point2D) -> Bool {
+pub impl Containable for Rectangle with contains(self, p) {
   p.x >= self.min_x &&
   p.x <= self.max_x &&
   p.y >= self.min_y &&
@@ -309,11 +339,3 @@ pub extend Orientation with Eq::{not_equal, equal}
 ///|
 pub extend Polygon with @moonbitlang/core/debug.Debug::{to_repr}
 
-///|
-pub extend Triangle with @moonbitlang/core/debug.Debug::{to_repr}
-
-///|
-pub extend Circle with @moonbitlang/core/debug.Debug::{to_repr}
-
-///|
-pub extend Rectangle with @moonbitlang/core/debug.Debug::{to_repr}

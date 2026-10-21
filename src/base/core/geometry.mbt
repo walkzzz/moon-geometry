@@ -274,3 +274,23 @@ pub(open) trait Curve2D {
   derivative(self : Self, t : Double) -> Point2D
   length(self : Self) -> Double
 }
+///|
+/// Trait for measurable 2D shapes with area.
+/// 可度量 2D 形状 trait，提供面积计算。
+pub(open) trait Measurable {
+  area(self : Self) -> Double
+}
+
+///|
+/// Trait for shapes with a perimeter (boundary length).
+/// 有周长（边界长度）的形状 trait。
+pub(open) trait PerimeterMeasurable {
+  perimeter(self : Self) -> Double
+}
+
+///|
+/// Trait for shapes that can test point containment.
+/// 可测试点包含的形状 trait。
+pub(open) trait Containable {
+  contains(self : Self, p : Point2D) -> Bool
+}

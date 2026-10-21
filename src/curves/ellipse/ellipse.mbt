@@ -14,6 +14,15 @@ pub struct Ellipse {
 pub extend Ellipse with @moonbitlang/core/debug.Debug::{to_repr}
 
 ///|
+pub extend Ellipse with @core.Measurable::{area}
+
+///|
+pub extend Ellipse with @core.PerimeterMeasurable::{perimeter}
+
+///|
+pub extend Ellipse with @core.Containable::{contains}
+
+///|
 /// Construct an ellipse. / 构造椭圆。
 pub fn Ellipse::new(
   center : @core.Point2D,
@@ -26,14 +35,14 @@ pub fn Ellipse::new(
 
 ///|
 /// Area of the ellipse: π * a * b. / 椭圆面积：π * a * b。
-pub fn Ellipse::area(self : Ellipse) -> Double {
+pub impl @core.Measurable for Ellipse with area(self) {
   3.141592653589793 * self.a * self.b
 }
 
 ///|
 /// Perimeter of the ellipse (Ramanujan's second approximation).
 /// 椭圆周长（Ramanujan 第二近似公式）。
-pub fn Ellipse::perimeter(self : Ellipse) -> Double {
+pub impl @core.PerimeterMeasurable for Ellipse with perimeter(self) {
   let a = self.a
   let b = self.b
   let h = (a - b) * (a - b) / ((a + b) * (a + b))
@@ -65,7 +74,7 @@ fn Ellipse::to_local(self : Ellipse, p : @core.Point2D) -> @core.Point2D {
 
 ///|
 /// Check if a point is inside the ellipse. / 检查点是否在椭圆内。
-pub fn Ellipse::contains(self : Ellipse, p : @core.Point2D) -> Bool {
+pub impl @core.Containable for Ellipse with contains(self, p) {
   let lp = self.to_local(p)
   let val = lp.x() * lp.x() / (self.a * self.a) +
     lp.y() * lp.y() / (self.b * self.b)

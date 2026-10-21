@@ -6,6 +6,16 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
 Moon Geometry 的所有重要变更记录于此。
 格式基于 [Keep a Changelog](https://keepachangelog.com/)。
 
+## [0.244.0] - 2026-10-21
+
+### Added — R19 Trait 化 | R19 Trait-ification
+
+- 新增 `pub(open) trait Measurable`（`area`）：Circle, Rectangle, Triangle, Ellipse 实现
+- 新增 `pub(open) trait PerimeterMeasurable`（`perimeter`）：Circle, Rectangle, Ellipse 实现
+- 新增 `pub(open) trait Containable`（`contains`）：Circle, Rectangle, Ellipse 实现
+- 新增 R19 规则到 `docs/rules.md`（尽可能使用 Trait）
+- `curve_length` 重用 `@core.polyline_length`（闭合曲线 = 开放折线 + 闭合边）
+
 ## [0.243.0] - 2026-10-21
 
 ### Added — 分类 README | Category README（R4/R10 合规）
