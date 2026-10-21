@@ -58,8 +58,9 @@ pub fn svg_circle(
 }
 
 ///|
-/// Generate SVG polygon element from points. / 由点生成 SVG 多边形元素。
-pub fn svg_polygon(
+/// Generate SVG polygon or polyline element. / 生成 SVG 多边形或折线元素。
+fn svg_shape(
+  tag : String,
   points : Array[@core.Point2D],
   settings : SvgSettings,
 ) -> String {
@@ -70,7 +71,9 @@ pub fn svg_polygon(
       pts += " "
     }
   }
-  "<polygon points=\"" +
+  "<" +
+  tag +
+  " points=\"" +
   pts +
   "\" stroke=\"" +
   settings.stroke +
@@ -79,6 +82,15 @@ pub fn svg_polygon(
   "\" stroke-width=\"" +
   settings.stroke_width.to_string() +
   "\"/>\n"
+}
+
+///|
+/// Generate SVG polygon element from points. / 由点生成 SVG 多边形元素。
+pub fn svg_polygon(
+  points : Array[@core.Point2D],
+  settings : SvgSettings,
+) -> String {
+  svg_shape("polygon", points, settings)
 }
 
 ///|
@@ -109,23 +121,9 @@ pub fn svg_polyline(
   points : Array[@core.Point2D],
   settings : SvgSettings,
 ) -> String {
-  let mut pts = ""
-  for i in 0..<points.length() {
-    pts += svg_point(points[i])
-    if i < points.length() - 1 {
-      pts += " "
-    }
-  }
-  "<polyline points=\"" +
-  pts +
-  "\" stroke=\"" +
-  settings.stroke +
-  "\" fill=\"" +
-  settings.fill +
-  "\" stroke-width=\"" +
-  settings.stroke_width.to_string() +
-  "\"/>\n"
+  svg_shape("polyline", points, settings)
 }
+
 
 ///|
 /// Generate complete SVG document for a set of polygons. / 为多边形集生成完整 SVG 文档。
