@@ -1,12 +1,12 @@
 
 test "angle: deg to rad" {
-  assert_true(@core.approx_eq(deg_to_rad(180.0), 3.141592653589793, 0.001))
-  assert_true(@core.approx_eq(deg_to_rad(90.0), 1.5707963, 0.001))
+  assert_true((deg_to_rad(180.0) - 3.141592653589793).abs() < 0.001)
+  assert_true((deg_to_rad(90.0) - 1.5707963).abs() < 0.001)
 }
 
 test "angle: rad to deg" {
-  assert_true(@core.approx_eq(rad_to_deg(3.141592653589793), 180.0, 0.001))
-  assert_true(@core.approx_eq(rad_to_deg(1.5707963), 90.0, 0.001))
+  assert_true((rad_to_deg(3.141592653589793) - 180.0).abs() < 0.001)
+  assert_true((rad_to_deg(1.5707963) - 90.0).abs() < 0.001)
 }
 
 test "angle: normalize" {
@@ -26,12 +26,12 @@ test "angle: normalize signed" {
 
 test "angle: angle diff" {
   let d = angle_diff(0.0, 3.141592653589793)
-  assert_true(@core.approx_eq(d, 3.141592653589793, 0.001))
+  assert_true((d - 3.141592653589793).abs() < 0.001)
 }
 
 test "angle: bisector" {
   let b = bisector(0.0, 1.5707963)
-  assert_true(@core.approx_eq(b, 0.7853981, 0.001))
+  assert_true((b - 0.7853981).abs() < 0.001)
 }
 
 test "angle: is between" {

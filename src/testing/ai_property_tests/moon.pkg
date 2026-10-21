@@ -3,6 +3,5 @@ import {
   "walkzzz/moon-geometry/src/hull/hull",
   "walkzzz/moon-geometry/src/polygon/polygon",
   "walkzzz/moon-geometry/src/transform/transform",
-  "walkzzz/moon-geometry/src/distance/distance",
   "moonbitlang/core/math",
 }

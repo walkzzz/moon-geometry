@@ -6,6 +6,18 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
 Moon Geometry 的所有重要变更记录于此。
 格式基于 [Keep a Changelog](https://keepachangelog.com/)。
 
+## [0.241.0] - 2026-10-21
+
+### Fixed — Warning 治理达标 0 | Warning Governance to Zero（54 → 0）
+
+- 删除 50 个真正无用的 `moonbitlang/core/math` 和子包导入（主源文件和 wbtest 均未使用）
+- 4 个 `@core` 导入仅在 wbtest 中使用 `@core.approx_eq`：内联替换为 `(a - (b)).abs() < eps`，删除导入
+- **验收门禁通过**：`moon check` 0 warning 0 error，`moon test` 2518 全通过
+
+### Changed — 规则适配
+
+- `docs/rules.md` 从 GeoVerse 模板适配为 Moon Geometry 项目规则（R1-R18）
+
 ## [0.240.0] - 2026-10-20
 
 ### Added — Curve2D Trait & Shared Functions | Curve2D Trait 与共享函数
