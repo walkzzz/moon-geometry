@@ -17,6 +17,7 @@ pub struct WEdge {
   w : Double
 }
 
+///| Construct a weighted edge. / 构造一条加权边。
 pub fn WEdge::new(u : Int, v : Int, w : Double) -> WEdge {
   { u, v, w }
 }

@@ -16,6 +16,7 @@ pub struct GraphEdge {
   weight : Double
 }
 
+///| Create a new graph edge with target and weight. / 用目标和权重创建新图边。
 pub fn GraphEdge::new(to : Int, weight : Double) -> GraphEdge {
   { to, weight }
 }

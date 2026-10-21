@@ -2,6 +2,7 @@
 ///| Secondary structure, Ramachandran plot, backbone geometry
 ///| 二级结构、Ramachandran 图、骨架几何
 
+///| Check if (phi, psi) angles fall in allowed Ramachandran regions. / 检查 (phi, psi) 角是否落在允许的 Ramachandran 区域。
 pub fn ramachandran_allowed(phi : Double, psi : Double) -> Bool {
   let phi_deg = phi * 180.0 / @math.PI
   let psi_deg = psi * 180.0 / @math.PI
@@ -9,14 +10,17 @@ pub fn ramachandran_allowed(phi : Double, psi : Double) -> Bool {
   (phi_deg > -130.0 && phi_deg < 50.0 && psi_deg > 100.0 && psi_deg < 180.0)
 }
 
+///| Compute helix pitch from rise and turn per residue. / 由每残基升高与转角计算螺旋螺距。
 pub fn helix_pitch(rise_per_residue : Double, turn_per_residue : Double) -> Double {
   rise_per_residue * 2.0 * @math.PI / turn_per_residue
 }
 
+///| Compute helix radius from rise and turn per residue. / 由每残基升高与转角计算螺旋半径。
 pub fn helix_radius(rise_per_residue : Double, turn_per_residue : Double) -> Double {
   rise_per_residue / (2.0 * @math.sin(turn_per_residue / 2.0))
 }
 
+///| Classify secondary structure as helix, sheet, or coil from (phi, psi). / 由 (phi, psi) 分类二级结构为螺旋、片层或卷曲。
 pub fn secondary_structure_type(phi : Double, psi : Double) -> String {
   let phi_deg = phi * 180.0 / @math.PI
   let psi_deg = psi * 180.0 / @math.PI
@@ -29,6 +33,7 @@ pub fn secondary_structure_type(phi : Double, psi : Double) -> String {
   }
 }
 
+///| Count contact map differences between two CA coordinate sets under threshold. / 统计两组 CA 坐标在阈值下接触图的差异数。
 pub fn contact_map_distance(ca1 : Array[(Double, Double, Double)], ca2 : Array[(Double, Double, Double)], threshold : Double) -> Int {
   let n = if ca1.length() < ca2.length() { ca1.length() } else { ca2.length() }
   let mut count = 0

@@ -2,6 +2,7 @@
 ///| Verlet, Stormer-Verlet, variational integrators
 ///| Verlet、Stormer-Verlet、变分积分器
 
+///| One Stormer-Verlet symplectic step. / 一步 Stormer-Verlet 辛积分。
 pub fn stormer_verlet(q : Double, p : Double, force : (Double) -> Double, dt : Double) -> (Double, Double) {
   let p_half = p + force(q) * dt / 2.0
   let q_new = q + p_half * dt
@@ -9,6 +10,7 @@ pub fn stormer_verlet(q : Double, p : Double, force : (Double) -> Double, dt : D
   (q_new, p_new)
 }
 
+///| One leapfrog symplectic step. / 一步 leapfrog 辛积分。
 pub fn leapfrog(q : Double, p : Double, force : (Double) -> Double, dt : Double) -> (Double, Double) {
   let p_half = p + force(q) * dt / 2.0
   let q_new = q + p_half * dt
@@ -16,6 +18,7 @@ pub fn leapfrog(q : Double, p : Double, force : (Double) -> Double, dt : Double)
   (q_new, p_new)
 }
 
+///| One 3rd-order Ruth symplectic step. / 一步三阶 Ruth 辛积分。
 pub fn ruth3(q : Double, p : Double, force : (Double) -> Double, dt : Double) -> (Double, Double) {
   let c1 = 1.0
   let c2 = -2.0 / 3.0
@@ -32,6 +35,7 @@ pub fn ruth3(q : Double, p : Double, force : (Double) -> Double, dt : Double) ->
   (q3, p3)
 }
 
+///| Relative energy conservation error. / 相对能量守恒误差。
 pub fn energy_conservation_error(h0 : Double, h1 : Double) -> Double {
   (h1 - h0).abs() / h0.abs()
 }

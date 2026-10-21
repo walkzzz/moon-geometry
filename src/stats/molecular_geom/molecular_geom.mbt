@@ -2,6 +2,7 @@
 ///| Bond angles, torsion angles, RMSD alignment
 ///| 键角、扭转角、RMSD 对齐
 
+///| Compute Euclidean bond length between two 3D atoms. / 计算两个三维原子间的欧氏键长。
 pub fn bond_length(a1x : Double, a1y : Double, a1z : Double, a2x : Double, a2y : Double, a2z : Double) -> Double {
   let dx = a2x - a1x
   let dy = a2y - a1y
@@ -9,6 +10,7 @@ pub fn bond_length(a1x : Double, a1y : Double, a1z : Double, a2x : Double, a2y :
   (dx * dx + dy * dy + dz * dz).sqrt()
 }
 
+///| Compute bond angle at center atom formed by two atoms. / 计算中心原子两侧两个原子形成的键角。
 pub fn bond_angle(a1x : Double, a1y : Double, a1z : Double, cx : Double, cy : Double, cz : Double, a2x : Double, a2y : Double, a2z : Double) -> Double {
   let v1x = a1x - cx
   let v1y = a1y - cy
@@ -26,6 +28,7 @@ pub fn bond_angle(a1x : Double, a1y : Double, a1z : Double, cx : Double, cy : Do
   }
 }
 
+///| Compute torsion (dihedral) angle defined by four points. / 计算四点定义的扭转（二面）角。
 pub fn torsion_angle(p1x : Double, p1y : Double, p1z : Double, p2x : Double, p2y : Double, p2z : Double, p3x : Double, p3y : Double, p3z : Double, p4x : Double, p4y : Double, p4z : Double) -> Double {
   let b1x = p2x - p1x
   let b1y = p2y - p1y
@@ -47,6 +50,7 @@ pub fn torsion_angle(p1x : Double, p1y : Double, p1z : Double, p2x : Double, p2y
   @math.atan2(cross, dot)
 }
 
+///| Compute root-mean-square deviation between two coordinate sets. / 计算两组坐标间的均方根偏差。
 pub fn rmsd(coords1 : Array[(Double, Double, Double)], coords2 : Array[(Double, Double, Double)]) -> Double {
   let n = if coords1.length() < coords2.length() { coords1.length() } else { coords2.length() }
   let mut sum_sq = 0.0

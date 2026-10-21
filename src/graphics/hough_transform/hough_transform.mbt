@@ -17,6 +17,7 @@ pub struct HoughLine {
   votes : Int
 }
 
+///| Construct a HoughLine from theta, rho, and votes. / 由 theta、rho 与投票数构造 HoughLine。
 pub fn HoughLine::new(
   theta : Double,
   rho : Double,
@@ -35,6 +36,7 @@ pub struct HoughCircle {
   votes : Int
 }
 
+///| Construct a HoughCircle from center, radius, and votes. / 由圆心、半径与投票数构造 HoughCircle。
 pub fn HoughCircle::new(
   cx : Double,
   cy : Double,

@@ -10,14 +10,17 @@ pub struct Interval {
 ///|
 pub extend Interval with @moonbitlang/core/debug.Debug::{to_repr}
 
+///| Create a new interval with given bounds. / 用给定上下界创建新区间。
 pub fn Interval::new(lo : Double, hi : Double) -> Interval {
   { lo, hi }
 }
 
+///| Add two intervals element-wise. / 逐元素相加两个区间。
 pub fn Interval::add(self : Interval, other : Interval) -> Interval {
   { lo: self.lo + other.lo, hi: self.hi + other.hi }
 }
 
+///| Multiply two intervals. / 两个区间相乘。
 pub fn Interval::mul(self : Interval, other : Interval) -> Interval {
   let p1 = self.lo * other.lo
   let p2 = self.lo * other.hi
@@ -34,10 +37,12 @@ pub fn Interval::mul(self : Interval, other : Interval) -> Interval {
   { lo: lo4, hi: hi4 }
 }
 
+///| Return the width of the interval. / 返回区间宽度。
 pub fn Interval::width(self : Interval) -> Double {
   self.hi - self.lo
 }
 
+///| Check whether the interval contains zero. / 判断区间是否包含零。
 pub fn Interval::contains_zero(self : Interval) -> Bool {
   self.lo <= 0.0 && self.hi >= 0.0
 }

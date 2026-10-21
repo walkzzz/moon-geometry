@@ -2,6 +2,7 @@
 ///| Point groups, space groups, Wyckoff positions
 ///| 点群、空间群、Wyckoff 位置
 
+///| Return the order of a crystallographic point group. / 返回晶体学点群的阶。
 pub fn point_group_order(group_id : Int) -> Int {
   if group_id == 1 { 1 }
   else if group_id == 2 { 2 }
@@ -15,14 +16,17 @@ pub fn point_group_order(group_id : Int) -> Int {
   else { 1 }
 }
 
+///| Return the number of 2D wallpaper groups (17). / 返回二维壁纸群数量（17）。
 pub fn space_group_count_2d() -> Int {
   17
 }
 
+///| Return the number of 3D space groups (230). / 返回三维空间群数量（230）。
 pub fn space_group_count_3d() -> Int {
   230
 }
 
+///| Return the Wyckoff multiplicity for a given site. / 返回给定位置的 Wyckoff 重数。
 pub fn wyckoff_multiplicity(site : Int) -> Int {
   if site == 1 { 1 }
   else if site == 2 { 2 }
@@ -33,6 +37,7 @@ pub fn wyckoff_multiplicity(site : Int) -> Int {
   else { 1 }
 }
 
+///| Classify the Bravais lattice type from cell parameters. / 由晶胞参数判定 Bravais 格类型。
 pub fn bravais_type(a : Double, b : Double, c : Double, alpha : Double, beta : Double, gamma : Double) -> String {
   let tol = 0.01
   let a_eq_b = (a - b).abs() < tol

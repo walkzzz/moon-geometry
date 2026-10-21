@@ -2,6 +2,7 @@
 ///| Geometric programming, convex optimization on geometric domains
 ///| 几何规划、几何域上的凸优化
 
+///| Approximate the radius of the smallest enclosing circle. / 近似计算最小包围圆半径。
 pub fn smallest_enclosing_circle_radius(points : Array[(Double, Double)]) -> Double {
   let mut max_r = 0.0
   for i in 0..<points.length() {
@@ -17,6 +18,7 @@ pub fn smallest_enclosing_circle_radius(points : Array[(Double, Double)]) -> Dou
   max_r
 }
 
+///| Compute the minimum width of an enclosing rectangle. / 计算包围矩形的最小宽度。
 pub fn minimum_width_rectangle(points : Array[(Double, Double)]) -> Double {
   let mut min_w = 1.0e18
   for i in 0..<points.length() {
@@ -41,6 +43,7 @@ pub fn minimum_width_rectangle(points : Array[(Double, Double)]) -> Double {
   min_w
 }
 
+///| Compute the geometric mean of the values. / 计算数值的几何平均。
 pub fn geometric_mean(values : Array[Double]) -> Double {
   let mut log_sum = 0.0
   for v in values {
@@ -49,6 +52,7 @@ pub fn geometric_mean(values : Array[Double]) -> Double {
   @math.exp(log_sum / values.length().to_double())
 }
 
+///| Approximate the Fermat point of a triangle as its centroid. / 将三角形费马点近似为其重心。
 pub fn fermat_point_approx(x_a : Double, y_a : Double, x_b : Double, y_b : Double, x_c : Double, y_c : Double) -> (Double, Double) {
   ((x_a + x_b + x_c) / 3.0, (y_a + y_b + y_c) / 3.0)
 }

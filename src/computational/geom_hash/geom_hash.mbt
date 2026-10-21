@@ -2,10 +2,12 @@
 ///| Geometric hash tables for model-based recognition
 ///| 基于模型的识别用几何哈希表
 
+///| Hash a 2D point to a grid cell index. / 将二维点哈希到网格单元索引。
 pub fn hash_point_2d(x : Double, y : Double, grid_size : Double) -> (Int, Int) {
   ((x / grid_size).floor().to_int(), (y / grid_size).floor().to_int())
 }
 
+///| Compute basis-invariant coordinates of a point relative to a basis. / 计算点相对于基底的不变坐标。
 pub fn hash_basis_invariant(p1x : Double, p1y : Double, p2x : Double, p2y : Double, p3x : Double, p3y : Double) -> (Double, Double) {
   let dx = p2x - p1x
   let dy = p2y - p1y
@@ -21,11 +23,13 @@ pub fn hash_basis_invariant(p1x : Double, p1y : Double, p2x : Double, p2y : Doub
   }
 }
 
+///| Compute a quantized hash key from 2D coordinates. / 由二维坐标计算量化哈希键。
 pub fn hash_key(x : Double, y : Double, bins : Int) -> Int {
   let v = ((x + y) * bins.to_double()).floor().to_int()
   if v < 0 { 0 } else if v >= bins { bins - 1 } else { v }
 }
 
+///| Compute the match ratio between two hash arrays. / 计算两个哈希数组的匹配率。
 pub fn similarity_score(h1 : Array[Int], h2 : Array[Int]) -> Double {
   let mut match_count = 0
   let n = if h1.length() < h2.length() { h1.length() } else { h2.length() }

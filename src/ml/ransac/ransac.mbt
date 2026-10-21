@@ -17,6 +17,7 @@ pub struct RansacLine {
   inliers : Array[Int]
 }
 
+///| Construct a RansacLine from slope, intercept, and inlier indices. / 由斜率、截距与内点索引构造 RansacLine。
 pub fn RansacLine::new(
   a : Double,
   b : Double,
@@ -35,6 +36,7 @@ pub struct RansacCircle {
   inliers : Array[Int]
 }
 
+///| Construct a RansacCircle from center, radius, and inlier indices. / 由圆心、半径与内点索引构造 RansacCircle。
 pub fn RansacCircle::new(
   cx : Double,
   cy : Double,
@@ -55,6 +57,7 @@ pub struct RansacPlane {
   inliers : Array[Int]
 }
 
+///| Construct a RansacPlane from coefficients and inlier indices. / 由系数与内点索引构造 RansacPlane。
 pub fn RansacPlane::new(
   a : Double,
   b : Double,

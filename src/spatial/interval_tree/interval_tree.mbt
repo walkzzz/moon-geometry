@@ -17,6 +17,7 @@ pub struct Interval {
   id : Int
 }
 
+///| Create a new interval with bounds and id. / 用上下界和 id 创建新区间。
 pub fn Interval::new(lo : Double, hi : Double, id : Int) -> Interval {
   { lo, hi, id }
 }
