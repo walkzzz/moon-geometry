@@ -114,7 +114,7 @@ pub fn helmert7_identity() -> Helmert7 {
 ///|
 /// WGS84 to CGCS2000 7-parameter (approximate, very small). / WGS84 转 CGCS2000 七参数（近似，极小）。
 pub fn wgs84_to_cgcs2000_params() -> Helmert7 {
-  { tx: 0.0, ty: 0.0, tz: 0.0, rx: 0.0, ry: 0.0, rz: 0.0, scale: 0.0 }
+  helmert7_identity()
 }
 
 ///|

@@ -52,12 +52,7 @@ pub fn mercator_inverse(x : Double, y : Double) -> (Double, Double) {
 ///|
 /// Web Mercator (EPSG:3857) forward. / Web Mercator 正向投影。
 pub fn web_mercator_forward(lat : Double, lon : Double) -> ProjXY {
-  let r = wgs84_radius
-  let lat_r = lat * deg2rad
-  let lon_r = lon * deg2rad
-  let x = r * lon_r
-  let y = r * @math.ln(@math.tan(0.7853981633974483 + lat_r / 2.0))
-  { x, y }
+  mercator_forward(lat, lon)
 }
 
 ///|
