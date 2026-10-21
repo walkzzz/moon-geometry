@@ -30,7 +30,9 @@ pub fn Point2D::y(self : Point2D) -> Double {
 ///|
 /// Squared distance to another point.
 /// 到另一点的距离平方。
-pub fn Point2D::dist_sq(self : Point2D, other : Point2D) -> Double {
+pub fn Point2D::dist_sq(self : Point2D, other : Point2D) -> Double where {
+  proof_ensure: result => result >= 0.0,
+} {
   let dx = self.x - other.x
   let dy = self.y - other.y
   dx * dx + dy * dy
@@ -241,7 +243,9 @@ impl PointTransform with apply_batch(self, points) {
 ///|
 /// Total length of a polyline (sum of consecutive point distances).
 /// 折线总长度（相邻点距离之和）。
-pub fn polyline_length(points : Array[Point2D]) -> Double {
+pub fn polyline_length(points : Array[Point2D]) -> Double where {
+  proof_ensure: result => result >= 0.0,
+} {
   let n = points.length()
   if n < 2 {
     return 0.0
