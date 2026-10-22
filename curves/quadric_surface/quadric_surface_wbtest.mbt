@@ -78,3 +78,116 @@ test "quadric centered" {
   assert_true(cq.h.abs() < 0.000000001)
   assert_true(cq.i.abs() < 0.000000001)
 }
+test "quadric eval direct" {
+  let q = Quadric::new(1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0)
+  let p = @core.Point3D::new(1.0, 0.0, 0.0)
+  let v = Quadric::eval(q, p)
+  assert_true(v.abs() < 0.000000001)
+}
+
+test "quadric eval nonzero" {
+  let q = Quadric::new(1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0)
+  let p = @core.Point3D::new(2.0, 0.0, 0.0)
+  let v = Quadric::eval(q, p)
+  assert_true((v - 3.0).abs() < 0.000000001)
+}
+
+test "quadric quadratic det" {
+  let q = Quadric::new(1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0)
+  let d = Quadric::quadratic_det(q)
+  assert_true((d - 8.0).abs() < 0.000000001)
+}
+
+test "quadric hyperboloid two sheets" {
+  let q = Quadric::new(1.0, 1.0, -1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0)
+  let qt = Quadric::classify(q)
+  assert_true(match qt {
+    HyperboloidTwoSheets => true
+    _ => false
+  })
+}
+
+test "quadric hyperbolic paraboloid" {
+  let q = Quadric::new(2.0, -1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0, 0.0)
+  let qt = Quadric::classify(q)
+  assert_true(match qt {
+    HyperbolicParaboloid => true
+    _ => false
+  })
+}
+
+test "quadric elliptic cone" {
+  let q = Quadric::new(1.0, 1.0, -1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+  let qt = Quadric::classify(q)
+  assert_true(match qt {
+    EllipticCone => true
+    _ => false
+  })
+}
+
+test "quadric elliptic cylinder" {
+  let q = Quadric::new(1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0)
+  let qt = Quadric::classify(q)
+  assert_true(match qt {
+    EllipticCylinder => true
+    _ => false
+  })
+}
+
+test "quadric normal zero gradient" {
+  let q = Quadric::new(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+  let p = @core.Point3D::new(1.0, 1.0, 1.0)
+  let n = Quadric::normal(q, p)
+  assert_true(n.x.abs() < 0.000000001)
+  assert_true(n.y.abs() < 0.000000001)
+  assert_true(n.z.abs() < 0.000000001)
+}
+
+test "quadric center no center" {
+  let q = Quadric::new(1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0, 0.0)
+  match Quadric::center(q) {
+    None => assert_true(true)
+    Some(_) => assert_true(false)
+  }
+}
+
+test "quadric centered no center" {
+  let q = Quadric::new(1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0, 0.0)
+  let cq = Quadric::centered(q)
+  assert_true((cq.a - 1.0).abs() < 0.000000001)
+}
+
+test "quadric gradient cross terms" {
+  let q = Quadric::new(0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0)
+  let p = @core.Point3D::new(1.0, 1.0, 1.0)
+  let g = Quadric::gradient(q, p)
+  assert_true((g.x - 2.0).abs() < 0.000000001)
+  assert_true((g.y - 2.0).abs() < 0.000000001)
+  assert_true((g.z - 2.0).abs() < 0.000000001)
+}
+
+test "quadric trace with cross" {
+  let q = Quadric::new(2.0, 3.0, 4.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0)
+  assert_true((Quadric::trace(q) - 9.0).abs() < 0.000000001)
+}
+
+test "quadric eval with linear terms" {
+  let q = Quadric::new(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2.0, 3.0, 4.0, 5.0)
+  let p = @core.Point3D::new(1.0, 1.0, 1.0)
+  let v = Quadric::eval(q, p)
+  assert_true((v - 14.0).abs() < 0.000000001)
+}
+
+test "quadric on surface boundary" {
+  let q = Quadric::new(1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0)
+  let p = @core.Point3D::new(1.0, 5.0, 5.0)
+  assert_true(Quadric::on_surface(q, p, 0.001))
+}
+
+test "quadric normal general point" {
+  let q = Quadric::new(1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0)
+  let p = @core.Point3D::new(0.0, 1.0, 0.0)
+  let n = Quadric::normal(q, p)
+  let mag = (n.x * n.x + n.y * n.y + n.z * n.z).sqrt()
+  assert_true((mag - 1.0).abs() < 0.000000001)
+}

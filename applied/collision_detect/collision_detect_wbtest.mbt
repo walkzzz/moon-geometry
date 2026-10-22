@@ -104,3 +104,83 @@ test "aabb_from_center basic" {
   assert_true((box.min_x - 3.0).abs() < 0.001)
   assert_true((box.max_x - 7.0).abs() < 0.001)
 }
+test "aabb_from_polygon basic" {
+  let poly = [
+    @core.Point2D::new(1.0, 2.0),
+    @core.Point2D::new(5.0, 3.0),
+    @core.Point2D::new(3.0, 7.0),
+  ]
+  let box = aabb_from_polygon(poly)
+  assert_true((box.min_x - 1.0).abs() < 0.001)
+  assert_true((box.max_x - 5.0).abs() < 0.001)
+  assert_true((box.min_y - 2.0).abs() < 0.001)
+  assert_true((box.max_y - 7.0).abs() < 0.001)
+}
+
+test "segment_polygon_collide crossing" {
+  let poly = [
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(4.0, 0.0),
+    @core.Point2D::new(4.0, 4.0),
+    @core.Point2D::new(0.0, 4.0),
+  ]
+  let a = @core.Point2D::new(-1.0, 2.0)
+  let b = @core.Point2D::new(5.0, 2.0)
+  assert_true(segment_polygon_collide(a, b, poly))
+}
+
+test "segment_polygon_collide disjoint" {
+  let poly = [
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(4.0, 0.0),
+    @core.Point2D::new(4.0, 4.0),
+    @core.Point2D::new(0.0, 4.0),
+  ]
+  let a = @core.Point2D::new(10.0, 10.0)
+  let b = @core.Point2D::new(12.0, 12.0)
+  assert_false(segment_polygon_collide(a, b, poly))
+}
+
+test "circle_polygon_collide inside" {
+  let poly = [
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(4.0, 0.0),
+    @core.Point2D::new(4.0, 4.0),
+    @core.Point2D::new(0.0, 4.0),
+  ]
+  let center = @core.Point2D::new(2.0, 2.0)
+  assert_true(circle_polygon_collide(center, 0.5, poly))
+}
+
+test "circle_polygon_collide disjoint" {
+  let poly = [
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(4.0, 0.0),
+    @core.Point2D::new(4.0, 4.0),
+    @core.Point2D::new(0.0, 4.0),
+  ]
+  let center = @core.Point2D::new(10.0, 10.0)
+  assert_false(circle_polygon_collide(center, 0.5, poly))
+}
+
+test "aabb_polygon_collide overlapping" {
+  let box = AABB::new(1.0, 1.0, 3.0, 3.0)
+  let poly = [
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(4.0, 0.0),
+    @core.Point2D::new(4.0, 4.0),
+    @core.Point2D::new(0.0, 4.0),
+  ]
+  assert_true(aabb_polygon_collide(box, poly))
+}
+
+test "aabb_polygon_collide disjoint" {
+  let box = AABB::new(10.0, 10.0, 12.0, 12.0)
+  let poly = [
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(4.0, 0.0),
+    @core.Point2D::new(4.0, 4.0),
+    @core.Point2D::new(0.0, 4.0),
+  ]
+  assert_false(aabb_polygon_collide(box, poly))
+}
