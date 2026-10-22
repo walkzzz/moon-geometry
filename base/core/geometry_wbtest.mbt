@@ -224,3 +224,20 @@ test "Point2D mul by one identity" {
   assert_true(approx_eq(m.x, p.x, 0.000000001))
   assert_true(approx_eq(m.y, p.y, 0.000000001))
 }
+///|
+test "approx_eq boundary: diff exactly equals eps" {
+  assert_true(approx_eq(1.0, 1.5, 0.5))
+  assert_true(approx_eq(1.5, 1.0, 0.5))
+  assert_true(approx_eq(0.0, 0.001, 0.001))
+}
+
+///|
+test "Point2D::cross correctness" {
+  let a = Point2D::new(1.0, 0.0)
+  let b = Point2D::new(0.0, 1.0)
+  assert_true(approx_eq(a.cross(b), 1.0, 0.000000001))
+  assert_true(approx_eq(b.cross(a), -1.0, 0.000000001))
+  let c = Point2D::new(2.0, 3.0)
+  let d = Point2D::new(4.0, 5.0)
+  assert_true(approx_eq(c.cross(d), -2.0, 0.000000001))
+}
