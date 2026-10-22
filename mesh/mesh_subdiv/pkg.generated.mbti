@@ -1,0 +1,25 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/mesh/mesh_subdiv"
+
+import {
+  "walkzzz/moon-geometry/mesh/mesh_data",
+}
+
+// Values
+pub fn catmull_clark_subdivide(@mesh_data.Mesh) -> @mesh_data.Mesh
+
+pub fn edge_bisection(@mesh_data.Mesh) -> @mesh_data.Mesh
+
+pub fn loop_subdivide(@mesh_data.Mesh) -> @mesh_data.Mesh
+
+pub fn subdivided_face_count(@mesh_data.Mesh) -> Int32
+
+pub fn subdivided_vertex_count(@mesh_data.Mesh) -> Int32
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

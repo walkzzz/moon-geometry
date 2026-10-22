@@ -1,0 +1,31 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/spatial/cover_tree"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+pub fn cover_tree_build(Array[@core.Point2D]) -> CoverTree
+
+pub fn cover_tree_count(CoverTree) -> Int32
+
+pub fn cover_tree_radius_search(CoverTree, @core.Point2D, Double) -> Array[@core.Point2D]
+
+// Errors
+
+// Types and methods
+pub struct CoverNode {
+  point : @core.Point2D
+  children : Array[CoverNode]
+  level : Int32
+}
+
+pub struct CoverTree {
+  root : CoverNode?
+  base : Double
+}
+
+// Type aliases
+
+// Traits

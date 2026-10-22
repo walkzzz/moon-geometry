@@ -1,0 +1,29 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/mesh/mesh_quality"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+pub fn count_degenerate(Array[@core.Point3D], Array[(Int32, Int32, Int32)], Double) -> Int32
+
+pub fn mesh_average_quality(Array[@core.Point3D], Array[(Int32, Int32, Int32)]) -> MeshQualityMetrics
+
+pub fn triangle_quality(@core.Point3D, @core.Point3D, @core.Point3D) -> MeshQualityMetrics
+
+// Errors
+
+// Types and methods
+pub struct MeshQualityMetrics {
+  aspect_ratio : Double
+  area_ratio : Double
+  min_angle : Double
+  max_angle : Double
+  edge_ratio : Double
+}
+pub fn MeshQualityMetrics::new(Double, Double, Double, Double, Double) -> Self
+
+// Type aliases
+
+// Traits

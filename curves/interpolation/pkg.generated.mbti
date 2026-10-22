@@ -1,0 +1,21 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/curves/interpolation"
+
+// Values
+pub fn bilinear_interp(Double, Double, Double, Double, Double, Double, Double, Double, Double, Double) -> Double
+
+pub fn lagrange_interp(Array[Double], Array[Double], Double) -> Double
+
+pub fn linear_interp(Double, Double, Double, Double, Double) -> Double
+
+pub fn newton_divdiff(Array[Double], Array[Double]) -> Array[Double]
+
+pub fn newton_interp(Array[Double], Array[Double], Double) -> Double
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

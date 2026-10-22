@@ -1,0 +1,27 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/spatial/vp_tree"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+pub fn vp_tree_build(Array[@core.Point2D]) -> VPNode?
+
+pub fn vp_tree_count(VPNode?) -> Int32
+
+pub fn vp_tree_knn(VPNode?, @core.Point2D, Int32) -> Array[@core.Point2D]
+
+// Errors
+
+// Types and methods
+pub struct VPNode {
+  vp : @core.Point2D
+  threshold : Double
+  left : VPNode?
+  right : VPNode?
+}
+
+// Type aliases
+
+// Traits

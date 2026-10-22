@@ -1,0 +1,51 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/curves/reed_shepp"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+pub fn reed_shepp_has_backward(RSPath) -> Bool
+
+pub fn reed_shepp_path_length(RSPath) -> Double
+
+pub fn reed_shepp_sample(RSPath, RSPose, Int32) -> Array[@core.Point2D]
+
+pub fn reed_shepp_segment_count(RSPath) -> Int32
+
+pub fn reed_shepp_shortest_path(RSPose, RSPose, Double) -> RSPath
+
+// Errors
+
+// Types and methods
+pub struct RSPath {
+  segments : Array[RSSegment]
+  total_length : Double
+  radius : Double
+}
+pub fn RSPath::new(Array[RSSegment], Double, Double) -> Self
+
+pub struct RSPose {
+  x : Double
+  y : Double
+  theta : Double
+}
+pub fn RSPose::new(Double, Double, Double) -> Self
+
+pub struct RSSegment {
+  seg_type : RSSegmentType
+  length : Double
+  forward : Bool
+}
+pub fn RSSegment::new(RSSegmentType, Double, Bool) -> Self
+
+pub(all) enum RSSegmentType {
+  Left
+  Straight
+  Right
+}
+
+// Type aliases
+
+// Traits

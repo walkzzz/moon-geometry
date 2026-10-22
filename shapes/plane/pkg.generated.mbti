@@ -1,0 +1,29 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/shapes/plane"
+
+import {
+  "moonbitlang/core/debug",
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+
+// Errors
+
+// Types and methods
+pub struct Plane {
+  normal : @core.Point3D
+  d : Double
+} derive(@debug.Debug)
+pub fn Plane::contains(Self, @core.Point3D, Double) -> Bool
+pub fn Plane::distance(Self, @core.Point3D) -> Double
+pub fn Plane::from_normal_point(@core.Point3D, @core.Point3D) -> Self
+pub fn Plane::from_three_points(@core.Point3D, @core.Point3D, @core.Point3D) -> Self
+pub fn Plane::line_intersect(Self, @core.Point3D, @core.Point3D) -> @core.Point3D?
+pub fn Plane::normalize(Self) -> Self
+pub fn Plane::project(Self, @core.Point3D) -> @core.Point3D
+pub fn Plane::to_repr(Self) -> @debug.Repr
+
+// Type aliases
+
+// Traits

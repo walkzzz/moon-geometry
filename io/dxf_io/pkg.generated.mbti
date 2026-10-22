@@ -1,0 +1,30 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/io/dxf_io"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+pub fn dxf_parse(String) -> DxfDocument
+
+pub fn dxf_write(DxfDocument) -> String
+
+// Errors
+
+// Types and methods
+pub struct DxfDocument {
+  entities : Array[DxfEntity]
+}
+pub fn DxfDocument::entity_count(Self) -> Int32
+pub fn DxfDocument::new() -> Self
+
+pub(all) enum DxfEntity {
+  DxfLine(@core.Point3D, @core.Point3D)
+  DxfCircle(@core.Point2D, Double)
+  DxfPolyline(Array[@core.Point2D])
+}
+
+// Type aliases
+
+// Traits

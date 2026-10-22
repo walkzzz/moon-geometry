@@ -1,0 +1,31 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/optim/quadratic_prog"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+pub fn active_set_qp(Array[Array[Double]], Array[Double], Array[Array[Double]], Array[Double], Int32, Int32) -> QPResult
+
+pub fn qp_2d_box(Double, Double, Double, Double, Double, Double, Double, Double, Double) -> @core.Point2D
+
+pub fn qp_objective(Array[Array[Double]], Array[Double], Array[Double], Int32) -> Double
+
+pub fn solve_linear(Array[Array[Double]], Array[Double], Int32) -> Array[Double]?
+
+pub fn solve_unconstrained_qp(Array[Array[Double]], Array[Double], Int32) -> Array[Double]?
+
+// Errors
+
+// Types and methods
+pub struct QPResult {
+  x : Array[Double]
+  value : Double
+  success : Bool
+}
+pub fn QPResult::new(Array[Double], Double, Bool) -> Self
+
+// Type aliases
+
+// Traits

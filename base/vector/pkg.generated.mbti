@@ -1,0 +1,31 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/base/vector"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+pub fn angle_between(@core.Point2D, @core.Point2D) -> Double
+
+pub fn length(@core.Point2D) -> Double
+
+pub fn lerp(@core.Point2D, @core.Point2D, Double) -> @core.Point2D
+
+pub fn normalize(@core.Point2D) -> @core.Point2D
+
+pub fn perp(@core.Point2D) -> @core.Point2D
+
+pub fn project(@core.Point2D, @core.Point2D) -> @core.Point2D
+
+pub fn reflect(@core.Point2D, @core.Point2D) -> @core.Point2D
+
+pub fn reject(@core.Point2D, @core.Point2D) -> @core.Point2D
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

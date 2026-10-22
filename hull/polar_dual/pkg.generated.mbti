@@ -1,0 +1,27 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/hull/polar_dual"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+pub fn dual_area(@core.Polygon) -> Double
+
+pub fn inverse_polar_dual(@core.Polygon) -> Array[@core.Point2D]
+
+pub fn inverse_polar_dual_point(@core.Point2D) -> @core.Point2D
+
+pub fn origin_inside(@core.Polygon) -> Bool
+
+pub fn polar_dual(@core.Polygon) -> Array[@core.Point2D]
+
+pub fn polar_dual_point(@core.Point2D) -> @core.Point2D
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

@@ -1,0 +1,49 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/curves/bezier"
+
+import {
+  "moonbitlang/core/debug",
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+
+// Errors
+
+// Types and methods
+pub struct Bezier2 {
+  p0 : @core.Point2D
+  p1 : @core.Point2D
+  p2 : @core.Point2D
+} derive(@debug.Debug)
+pub fn Bezier2::bbox(Self) -> (Double, Double, Double, Double)
+pub fn Bezier2::derivative(Self, Double) -> @core.Point2D
+pub fn Bezier2::eval(Self, Double) -> @core.Point2D
+pub fn Bezier2::length(Self) -> Double
+pub fn Bezier2::new(@core.Point2D, @core.Point2D, @core.Point2D) -> Self
+pub fn Bezier2::subdivide(Self, Double) -> (Self, Self)
+pub fn Bezier2::to_repr(Self) -> @debug.Repr
+pub impl @core.Bounded2D for Bezier2
+pub impl @core.Curve2D for Bezier2
+pub impl @core.Subdivisible for Bezier2
+
+pub struct Bezier3 {
+  p0 : @core.Point2D
+  p1 : @core.Point2D
+  p2 : @core.Point2D
+  p3 : @core.Point2D
+} derive(@debug.Debug)
+pub fn Bezier3::bbox(Self) -> (Double, Double, Double, Double)
+pub fn Bezier3::derivative(Self, Double) -> @core.Point2D
+pub fn Bezier3::eval(Self, Double) -> @core.Point2D
+pub fn Bezier3::length(Self) -> Double
+pub fn Bezier3::new(@core.Point2D, @core.Point2D, @core.Point2D, @core.Point2D) -> Self
+pub fn Bezier3::subdivide(Self, Double) -> (Self, Self)
+pub fn Bezier3::to_repr(Self) -> @debug.Repr
+pub impl @core.Bounded2D for Bezier3
+pub impl @core.Curve2D for Bezier3
+pub impl @core.Subdivisible for Bezier3
+
+// Type aliases
+
+// Traits

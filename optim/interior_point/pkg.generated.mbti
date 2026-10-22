@@ -1,0 +1,23 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/optim/interior_point"
+
+// Values
+pub fn duality_gap(Array[Double], Array[Double], Int32) -> Double
+
+pub fn interior_point(Array[Array[Double]], Array[Double], Array[Double], Int32) -> IPResult
+
+pub fn interior_point_max(Array[Array[Double]], Array[Double], Array[Double], Int32) -> IPResult
+
+// Errors
+
+// Types and methods
+pub struct IPResult {
+  x : Array[Double]
+  value : Double
+  success : Bool
+}
+pub fn IPResult::new(Array[Double], Double, Bool) -> Self
+
+// Type aliases
+
+// Traits

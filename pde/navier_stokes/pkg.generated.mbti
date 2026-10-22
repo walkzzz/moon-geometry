@@ -1,0 +1,19 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/pde/navier_stokes"
+
+// Values
+pub fn ns_advection(Array[Double], Array[Double], Double, Double) -> Array[Double]
+
+pub fn ns_diffusion(Array[Double], Double, Double) -> Array[Double]
+
+pub fn ns_pressure_gradient(Array[Double], Double) -> Array[Double]
+
+pub fn ns_reynolds_number(Double, Double, Double, Double) -> Double
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

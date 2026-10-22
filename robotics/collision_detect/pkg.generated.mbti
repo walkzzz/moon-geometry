@@ -1,0 +1,57 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/robotics/collision_detect"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+pub fn aabb_area(AABB) -> Double
+
+pub fn aabb_contains(AABB, Double, Double) -> Bool
+
+pub fn aabb_from_polygon(Array[@core.Point2D]) -> AABB
+
+pub fn aabb_intersection(AABB, AABB) -> AABB?
+
+pub fn aabb_overlap(AABB, AABB) -> Bool
+
+pub fn aabb_polygon_collide(AABB, Array[@core.Point2D]) -> Bool
+
+pub fn aabb_union(AABB, AABB) -> AABB
+
+pub fn broad_phase_aabb(Array[AABB]) -> Array[CollisionPair]
+
+pub fn circle_circle_collide(@core.Point2D, Double, @core.Point2D, Double) -> Bool
+
+pub fn circle_polygon_collide(@core.Point2D, Double, Array[@core.Point2D]) -> Bool
+
+pub fn point_in_polygon(@core.Point2D, Array[@core.Point2D]) -> Bool
+
+pub fn polygon_polygon_collide(Array[@core.Point2D], Array[@core.Point2D]) -> Bool
+
+pub fn segment_polygon_collide(@core.Point2D, @core.Point2D, Array[@core.Point2D]) -> Bool
+
+pub fn segment_segment_collide(@core.Point2D, @core.Point2D, @core.Point2D, @core.Point2D) -> Bool
+
+// Errors
+
+// Types and methods
+pub struct AABB {
+  min_x : Double
+  min_y : Double
+  max_x : Double
+  max_y : Double
+}
+pub fn AABB::from_center(Double, Double, Double, Double) -> Self
+pub fn AABB::new(Double, Double, Double, Double) -> Self
+
+pub struct CollisionPair {
+  id_a : Int32
+  id_b : Int32
+}
+pub fn CollisionPair::new(Int32, Int32) -> Self
+
+// Type aliases
+
+// Traits

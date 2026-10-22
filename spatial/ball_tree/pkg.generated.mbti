@@ -1,0 +1,28 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/spatial/ball_tree"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+pub fn ball_tree_build(Array[@core.Point2D]) -> BallNode?
+
+pub fn ball_tree_count(BallNode?) -> Int32
+
+pub fn ball_tree_knn(BallNode?, @core.Point2D, Int32) -> Array[@core.Point2D]
+
+// Errors
+
+// Types and methods
+pub struct BallNode {
+  center : @core.Point2D
+  radius : Double
+  points : Array[@core.Point2D]
+  left : BallNode?
+  right : BallNode?
+}
+
+// Type aliases
+
+// Traits

@@ -1,0 +1,25 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/curves/spline"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+pub fn spline_curvature(Array[@core.Point2D], Int32) -> Double
+
+pub fn spline_curvature_profile(Array[@core.Point2D]) -> Array[Double]
+
+pub fn spline_length(Array[@core.Point2D]) -> Double
+
+pub fn spline_max_curvature_point(Array[@core.Point2D]) -> Int32?
+
+pub fn spline_total_curvature(Array[@core.Point2D]) -> Double
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

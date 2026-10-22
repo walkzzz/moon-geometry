@@ -1,0 +1,27 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/hull/convex_polygon"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+pub fn convex_polygons_intersect(@core.Polygon, @core.Polygon) -> Bool
+
+pub fn extreme_point(@core.Polygon, @core.Point2D) -> Int32
+
+pub fn point_in_convex_polygon(@core.Polygon, @core.Point2D) -> Bool
+
+pub fn point_to_convex_polygon_distance(@core.Polygon, @core.Point2D) -> Double
+
+pub fn support_function(@core.Polygon, @core.Point2D) -> Double
+
+pub fn tangent_from_point(@core.Polygon, @core.Point2D) -> (Int32, Int32)
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

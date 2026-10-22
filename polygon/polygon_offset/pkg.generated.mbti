@@ -1,0 +1,23 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/polygon/polygon_offset"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+pub fn polygon_offset_area(Array[@core.Point2D], Double) -> Double
+
+pub fn polygon_offset_inward(Array[@core.Point2D], Double) -> Array[@core.Point2D]
+
+pub fn polygon_offset_outward(Array[@core.Point2D], Double) -> Array[@core.Point2D]
+
+pub fn polygon_offset_valid(Array[@core.Point2D], Double) -> Bool
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

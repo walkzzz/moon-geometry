@@ -1,0 +1,44 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/io/geojson_io"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+pub fn geojson_linestring(Array[@core.Point2D]) -> String
+
+pub fn geojson_multilinestring(Array[Array[@core.Point2D]]) -> String
+
+pub fn geojson_multipoint(Array[@core.Point2D]) -> String
+
+pub fn geojson_multipolygon(Array[Array[Array[@core.Point2D]]]) -> String
+
+pub fn geojson_parse(String) -> GeoJsonGeometry?
+
+pub fn geojson_point(@core.Point2D) -> String
+
+pub fn geojson_polygon(Array[Array[@core.Point2D]]) -> String
+
+pub fn geojson_write(GeoJsonGeometry) -> String
+
+// Errors
+
+// Types and methods
+pub(all) enum GeoJsonGeometry {
+  GeoPoint(@core.Point2D)
+  GeoLineString(Array[@core.Point2D])
+  GeoPolygon(Array[Array[@core.Point2D]])
+  GeoMultiPoint(Array[@core.Point2D])
+  GeoMultiLineString(Array[Array[@core.Point2D]])
+  GeoMultiPolygon(Array[Array[Array[@core.Point2D]]])
+}
+
+pub(all) enum JsonValue {
+  JNumber(Double)
+  JArray(Array[JsonValue])
+}
+
+// Type aliases
+
+// Traits

@@ -1,0 +1,37 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/io/stl_io"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+pub fn stl_parse_ascii(String) -> StlMesh
+
+pub fn stl_parse_binary(Bytes) -> StlMesh
+
+pub fn stl_write_ascii(StlMesh) -> String
+
+pub fn stl_write_binary(StlMesh) -> Bytes
+
+// Errors
+
+// Types and methods
+pub struct StlMesh {
+  name : String
+  triangles : Array[StlTriangle]
+}
+pub fn StlMesh::new(String) -> Self
+pub fn StlMesh::triangle_count(Self) -> Int32
+
+pub struct StlTriangle {
+  normal : @core.Point3D
+  v0 : @core.Point3D
+  v1 : @core.Point3D
+  v2 : @core.Point3D
+}
+pub fn StlTriangle::new(@core.Point3D, @core.Point3D, @core.Point3D, @core.Point3D) -> Self
+
+// Type aliases
+
+// Traits

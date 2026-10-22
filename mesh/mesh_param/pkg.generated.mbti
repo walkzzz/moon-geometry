@@ -1,0 +1,32 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/mesh/mesh_param"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+pub fn area_distortion(Array[@core.Point3D], Array[(Int32, Int32, Int32)], Array[UV]) -> Double
+
+pub fn harmonic_parametrize(Array[@core.Point3D], Array[(Int32, Int32, Int32)], Array[Int32]) -> MeshParamResult
+
+pub fn project_parametrize(Array[@core.Point3D]) -> Array[UV]
+
+// Errors
+
+// Types and methods
+pub struct MeshParamResult {
+  uv : Array[UV]
+  success : Bool
+}
+pub fn MeshParamResult::new(Array[UV], Bool) -> Self
+
+pub struct UV {
+  u : Double
+  v : Double
+}
+pub fn UV::new(Double, Double) -> Self
+
+// Type aliases
+
+// Traits

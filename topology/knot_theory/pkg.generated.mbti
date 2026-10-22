@@ -1,0 +1,25 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/topology/knot_theory"
+
+// Values
+pub fn crossing_number(Array[Int32]) -> Int32
+
+pub fn jones_figure8(Double) -> Double
+
+pub fn jones_trefoil(Double) -> Double
+
+pub fn jones_unknot(Double) -> Double
+
+pub fn linking_number(Array[(Double, Double, Double)], Array[(Double, Double, Double)]) -> Int32
+
+pub fn unknotting_number(Int32) -> Int32
+
+pub fn writhe(Array[Int32]) -> Int32
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

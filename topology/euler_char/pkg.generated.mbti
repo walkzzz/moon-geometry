@@ -1,0 +1,31 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/topology/euler_char"
+
+import {
+  "walkzzz/moon-geometry/mesh/mesh_data",
+}
+
+// Values
+pub fn betti_0(@mesh_data.Mesh) -> Int32
+
+pub fn euler_characteristic(@mesh_data.Mesh) -> Int32
+
+pub fn euler_from_counts(Int32, Int32, Int32) -> Int32
+
+pub fn is_manifold(@mesh_data.Mesh) -> Bool
+
+pub fn is_sphere(@mesh_data.Mesh) -> Bool
+
+pub fn is_torus(@mesh_data.Mesh) -> Bool
+
+pub fn surface_genus(@mesh_data.Mesh) -> Int32
+
+pub fn unit_tetrahedron() -> @mesh_data.Mesh
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

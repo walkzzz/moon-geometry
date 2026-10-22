@@ -1,0 +1,27 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/hull/convex_sum"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+pub fn point_set_centroid(Array[@core.Point2D]) -> @core.Point2D?
+
+pub fn point_set_difference(Array[@core.Point2D], Array[@core.Point2D]) -> Array[@core.Point2D]
+
+pub fn point_set_equal(Array[@core.Point2D], Array[@core.Point2D], Double) -> Bool
+
+pub fn point_set_scale(Array[@core.Point2D], Double) -> Array[@core.Point2D]
+
+pub fn point_set_sum(Array[@core.Point2D], Array[@core.Point2D]) -> Array[@core.Point2D]
+
+pub fn point_set_translate(Array[@core.Point2D], Double, Double) -> Array[@core.Point2D]
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

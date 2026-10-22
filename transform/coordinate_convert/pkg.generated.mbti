@@ -1,0 +1,50 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/transform/coordinate_convert"
+
+// Values
+pub let cgcs2000_a : Double
+
+pub let cgcs2000_inv_f : Double
+
+pub fn cgcs2000_to_ecef(Geodetic) -> ECEF
+
+pub fn cgcs2000_to_wgs84(Geodetic) -> Geodetic
+
+pub let deg2rad : Double
+
+pub fn ecef_distance(ECEF, ECEF) -> Double
+
+pub fn ecef_to_cgcs2000(ECEF) -> Geodetic
+
+pub fn ecef_to_wgs84(ECEF) -> Geodetic
+
+pub let rad2deg : Double
+
+pub let wgs84_a : Double
+
+pub let wgs84_inv_f : Double
+
+pub fn wgs84_to_cgcs2000(Geodetic) -> Geodetic
+
+pub fn wgs84_to_ecef(Geodetic) -> ECEF
+
+// Errors
+
+// Types and methods
+pub struct ECEF {
+  x : Double
+  y : Double
+  z : Double
+}
+pub fn ECEF::new(Double, Double, Double) -> Self
+
+pub struct Geodetic {
+  lat : Double
+  lon : Double
+  h : Double
+}
+pub fn Geodetic::new(Double, Double, Double) -> Self
+
+// Type aliases
+
+// Traits

@@ -1,0 +1,21 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/transform/conformal_map"
+
+// Values
+pub fn angle_distortion(Double, Double) -> Double
+
+pub fn area_distortion(Double, Double) -> Double
+
+pub fn conformal_energy(Double, Double) -> Double
+
+pub fn conformal_factor(Double, Double) -> Double
+
+pub fn is_conformal(Double, Double, Double, Double, Double) -> Bool
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

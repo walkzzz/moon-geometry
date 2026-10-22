@@ -1,0 +1,23 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/polygon/isoperimetric"
+
+// Values
+pub fn circle_area_from_perimeter(Double) -> Double
+
+pub fn circle_perimeter_from_area(Double) -> Double
+
+pub fn is_isoperimetric_optimal(Double, Double) -> Bool
+
+pub fn isoperimetric_deficit(Double, Double) -> Double
+
+pub fn isoperimetric_ratio(Double, Double) -> Double
+
+pub fn optimal_shape_area(Double) -> Double
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

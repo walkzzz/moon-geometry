@@ -1,0 +1,30 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/spatial/interval_tree"
+
+// Values
+pub fn interval_tree_build(Array[Interval]) -> IntervalNode?
+
+pub fn interval_tree_count(IntervalNode?) -> Int32
+
+pub fn interval_tree_query(IntervalNode?, Double) -> Array[Interval]
+
+// Errors
+
+// Types and methods
+pub struct Interval {
+  lo : Double
+  hi : Double
+  id : Int32
+}
+pub fn Interval::new(Double, Double, Int32) -> Self
+
+pub struct IntervalNode {
+  center : Double
+  intervals : Array[Interval]
+  left : IntervalNode?
+  right : IntervalNode?
+}
+
+// Type aliases
+
+// Traits

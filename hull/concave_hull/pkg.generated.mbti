@@ -1,0 +1,19 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/hull/concave_hull"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+pub fn concave_hull(Array[@core.Point2D], Int32) -> Array[@core.Point2D]
+
+pub fn concave_hull_default(Array[@core.Point2D]) -> Array[@core.Point2D]
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

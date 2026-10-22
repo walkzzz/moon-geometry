@@ -1,0 +1,25 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/curves/curvature"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+pub fn curvature_at(@core.Point2D, @core.Point2D, @core.Point2D) -> Double
+
+pub fn curvature_profile(Array[@core.Point2D]) -> Array[Double]
+
+pub fn curvature_radius(@core.Point2D, @core.Point2D, @core.Point2D) -> Double
+
+pub fn curvature_signed(@core.Point2D, @core.Point2D, @core.Point2D) -> Double
+
+pub fn curvature_total(Array[@core.Point2D]) -> Double
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

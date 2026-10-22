@@ -1,4 +1,0 @@
-import {
-  "walkzzz/moon-geometry/src/base/core",
-  "walkzzz/moon-geometry/src/mesh/mesh_data",
-}

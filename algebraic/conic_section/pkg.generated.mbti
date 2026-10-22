@@ -1,0 +1,43 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/algebraic/conic_section"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+
+// Errors
+
+// Types and methods
+pub struct Conic {
+  a : Double
+  b : Double
+  c : Double
+  d : Double
+  e : Double
+  f : Double
+}
+pub fn Conic::asymptotes(Self) -> ((Double, Double, Double), (Double, Double, Double))?
+pub fn Conic::axis_aligned(Self) -> (Self, Double)
+pub fn Conic::center(Self) -> @core.Point2D?
+pub fn Conic::centered(Self) -> Self
+pub fn Conic::classify(Self) -> ConicType
+pub fn Conic::det3(Self) -> Double
+pub fn Conic::discriminant(Self) -> Double
+pub fn Conic::eccentricity(Self) -> Double?
+pub fn Conic::eval(Self, @core.Point2D) -> Double
+pub fn Conic::new(Double, Double, Double, Double, Double, Double) -> Self
+pub fn Conic::on_curve(Self, @core.Point2D, Double) -> Bool
+pub fn Conic::tangent_at(Self, @core.Point2D) -> (Double, Double, Double)
+
+pub(all) enum ConicType {
+  Ellipse
+  Hyperbola
+  Parabola
+  Degenerate
+}
+
+// Type aliases
+
+// Traits

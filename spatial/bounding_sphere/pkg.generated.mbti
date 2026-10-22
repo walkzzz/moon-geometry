@@ -1,0 +1,25 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/spatial/bounding_sphere"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+pub fn min_bounding_sphere(Array[@core.Point3D]) -> BoundingSphere
+
+// Errors
+
+// Types and methods
+pub struct BoundingSphere {
+  center : @core.Point3D
+  radius : Double
+}
+pub fn BoundingSphere::new(@core.Point3D, Double) -> Self
+pub fn BoundingSphere::surface_area(Self) -> Double
+pub fn BoundingSphere::volume(Self) -> Double
+pub impl @core.Measurable3D for BoundingSphere
+
+// Type aliases
+
+// Traits

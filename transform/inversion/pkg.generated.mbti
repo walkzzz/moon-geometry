@@ -1,0 +1,28 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/transform/inversion"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+
+// Errors
+
+// Types and methods
+pub struct Inversion {
+  center : @core.Point2D
+  radius : Double
+}
+pub fn Inversion::apply(Self, @core.Point2D) -> @core.Point2D?
+pub fn Inversion::apply_batch(Self, Array[@core.Point2D]) -> Array[@core.Point2D]
+pub fn Inversion::invert_line(Self, Double, Double, Double) -> @core.Circle?
+pub fn Inversion::is_inside(Self, @core.Point2D) -> Bool
+pub fn Inversion::is_on_circle(Self, @core.Point2D) -> Bool
+pub fn Inversion::new(@core.Point2D, Double) -> Self
+pub fn Inversion::power(Self, @core.Point2D) -> Double
+pub fn Inversion::preserves_circle(Self) -> Bool
+
+// Type aliases
+
+// Traits

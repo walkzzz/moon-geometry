@@ -1,0 +1,34 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/transform/homography"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+
+// Errors
+
+// Types and methods
+pub struct Homography {
+  h00 : Double
+  h01 : Double
+  h02 : Double
+  h10 : Double
+  h11 : Double
+  h12 : Double
+  h20 : Double
+  h21 : Double
+  h22 : Double
+}
+pub fn Homography::apply(Self, @core.Point2D) -> @core.Point2D?
+pub fn Homography::apply_batch(Self, Array[@core.Point2D]) -> Array[@core.Point2D]
+pub fn Homography::compose(Self, Self) -> Self
+pub fn Homography::determinant(Self) -> Double
+pub fn Homography::from_array(Array[Double]) -> Self
+pub fn Homography::identity() -> Self
+pub impl @core.Composable for Homography
+
+// Type aliases
+
+// Traits

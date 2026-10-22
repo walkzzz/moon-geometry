@@ -1,0 +1,35 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/curves/ellipse"
+
+import {
+  "moonbitlang/core/debug",
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+
+// Errors
+
+// Types and methods
+pub struct Ellipse {
+  center : @core.Point2D
+  a : Double
+  b : Double
+  angle : Double
+} derive(@debug.Debug)
+pub fn Ellipse::area(Self) -> Double
+pub fn Ellipse::contains(Self, @core.Point2D) -> Bool
+pub fn Ellipse::eccentricity(Self) -> Double
+pub fn Ellipse::foci(Self) -> (@core.Point2D, @core.Point2D)
+pub fn Ellipse::line_intersect(Self, @core.Line) -> Array[@core.Point2D]
+pub fn Ellipse::new(@core.Point2D, Double, Double, Double) -> Self
+pub fn Ellipse::on_boundary(Self, @core.Point2D, Double) -> Bool
+pub fn Ellipse::perimeter(Self) -> Double
+pub fn Ellipse::to_repr(Self) -> @debug.Repr
+pub impl @core.Containable for Ellipse
+pub impl @core.Measurable for Ellipse
+pub impl @core.PerimeterMeasurable for Ellipse
+
+// Type aliases
+
+// Traits

@@ -1,0 +1,25 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/transform/stereographic"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+pub fn on_sphere(@core.Point3D, Double) -> Bool
+
+pub fn stereographic_from_south(@core.Point3D, Double) -> @core.Point2D?
+
+pub fn stereographic_from_sphere(@core.Point3D, Double) -> @core.Point2D?
+
+pub fn stereographic_scale(@core.Point3D, Double) -> Double
+
+pub fn stereographic_to_sphere(@core.Point2D, Double) -> @core.Point3D
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

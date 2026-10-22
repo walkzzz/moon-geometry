@@ -1,0 +1,21 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/base/robust_construction"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+pub fn robust_circumcenter(@core.Point2D, @core.Point2D, @core.Point2D) -> @core.Point2D
+
+pub fn robust_intersection(@core.Point2D, @core.Point2D, @core.Point2D, @core.Point2D) -> @core.Point2D
+
+pub fn robust_midpoint(@core.Point2D, @core.Point2D) -> @core.Point2D
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

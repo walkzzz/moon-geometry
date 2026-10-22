@@ -1,0 +1,33 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/curves/path_smooth"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+pub fn bspline_smooth(Array[@core.Point2D], Int32) -> Array[@core.Point2D]
+
+pub fn path_length(Array[@core.Point2D]) -> Double
+
+pub fn path_max_deviation(Array[@core.Point2D], Array[@core.Point2D]) -> Double
+
+pub fn simplify_path(Array[@core.Point2D], Double) -> Array[@core.Point2D]
+
+pub fn smooth_path(Array[@core.Point2D], SmoothConfig) -> Array[@core.Point2D]
+
+pub fn smooth_preserve_keypoints(Array[@core.Point2D], Array[Int32], Int32) -> Array[@core.Point2D]
+
+// Errors
+
+// Types and methods
+pub struct SmoothConfig {
+  num_samples : Int32
+  tension : Double
+  preserve_endpoints : Bool
+}
+pub fn SmoothConfig::new(Int32, Double, Bool) -> Self
+
+// Type aliases
+
+// Traits

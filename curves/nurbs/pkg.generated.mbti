@@ -1,0 +1,23 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/curves/nurbs"
+
+// Values
+pub fn bspline_basis(Int32, Int32, Double, Array[Double]) -> Double
+
+pub fn bspline_curve_point(Array[(Double, Double, Double)], Int32, Double, Array[Double]) -> (Double, Double, Double)
+
+pub fn find_span(Int32, Int32, Double, Array[Double]) -> Int32
+
+pub fn nurbs_curve_point(Array[(Double, Double, Double)], Array[Double], Int32, Double, Array[Double]) -> (Double, Double, Double)
+
+pub fn nurbs_surface_point(Array[Array[(Double, Double, Double)]], Array[Array[Double]], Int32, Int32, Double, Double, Array[Double], Array[Double]) -> (Double, Double, Double)
+
+pub fn uniform_knots(Int32, Int32) -> Array[Double]
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

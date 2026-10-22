@@ -1,0 +1,23 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/curves/curve_intersect"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+pub fn curve_self_intersect(Array[@core.Point2D]) -> Bool
+
+pub fn curve_self_intersect_count(Array[@core.Point2D]) -> Int32
+
+pub fn curves_intersect(Array[@core.Point2D], Array[@core.Point2D]) -> Bool
+
+pub fn segments_cross(@core.Point2D, @core.Point2D, @core.Point2D, @core.Point2D) -> Bool
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

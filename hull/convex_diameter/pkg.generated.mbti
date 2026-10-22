@@ -1,0 +1,23 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/hull/convex_diameter"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+pub fn antipodal_pairs(@core.Polygon) -> Array[(Int32, Int32)]
+
+pub fn convex_diameter(@core.Polygon) -> Double
+
+pub fn convex_diameter_pair(@core.Polygon) -> (@core.Point2D, @core.Point2D)
+
+pub fn convex_radius_lower_bound(@core.Polygon) -> Double
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

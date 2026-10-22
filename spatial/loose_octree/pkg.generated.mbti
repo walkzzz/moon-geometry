@@ -1,0 +1,34 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/spatial/loose_octree"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+pub fn loose_octree_count(LooseOctNode) -> Int32
+
+pub fn loose_octree_insert(LooseOctNode, @core.Point3D) -> Unit
+
+pub fn loose_octree_new(Double, Double, Double, Double, Double, Int32) -> LooseOctNode
+
+pub fn loose_octree_query(LooseOctNode, Double, Double, Double, Double, Double, Double) -> Array[@core.Point3D]
+
+// Errors
+
+// Types and methods
+pub struct LooseOctNode {
+  cx : Double
+  cy : Double
+  cz : Double
+  size : Double
+  loose_factor : Double
+  objects : Array[@core.Point3D]
+  mut children : Array[LooseOctNode]?
+  max_depth : Int32
+  depth : Int32
+}
+
+// Type aliases
+
+// Traits

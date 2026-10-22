@@ -1,0 +1,19 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/graphics/raster_2d"
+
+// Values
+pub fn barycentric_coord((Double, Double), (Double, Double), (Double, Double), (Double, Double)) -> (Double, Double, Double)
+
+pub fn bresenham_line(Int32, Int32, Int32, Int32) -> Array[(Int32, Int32)]
+
+pub fn edge_function((Double, Double), (Double, Double), (Double, Double)) -> Double
+
+pub fn point_in_triangle((Double, Double), (Double, Double), (Double, Double), (Double, Double)) -> Bool
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

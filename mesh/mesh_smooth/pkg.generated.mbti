@@ -1,0 +1,23 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/mesh/mesh_smooth"
+
+import {
+  "walkzzz/moon-geometry/mesh/mesh_data",
+}
+
+// Values
+pub fn laplacian_smooth(@mesh_data.Mesh, Double) -> @mesh_data.Mesh
+
+pub fn laplacian_smooth_iter(@mesh_data.Mesh, Double, Int32) -> @mesh_data.Mesh
+
+pub fn smooth_displacement(@mesh_data.Mesh, @mesh_data.Mesh) -> Double
+
+pub fn taubin_smooth(@mesh_data.Mesh, Double, Double) -> @mesh_data.Mesh
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

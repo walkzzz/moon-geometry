@@ -1,0 +1,31 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/base/compare"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+pub fn compare_points(@core.Point2D, @core.Point2D) -> Int32
+
+pub fn compare_segments(@core.Segment, @core.Segment) -> Int32
+
+pub fn less_than(@core.Point2D, @core.Point2D) -> Bool
+
+pub fn points_equal(@core.Point2D, @core.Point2D, Double) -> Bool
+
+pub fn robust_collinear(@core.Point2D, @core.Point2D, @core.Point2D, Double) -> Bool
+
+pub fn robust_left_turn(@core.Point2D, @core.Point2D, @core.Point2D) -> Bool
+
+pub fn robust_orientation(@core.Point2D, @core.Point2D, @core.Point2D) -> Int32
+
+pub fn robust_right_turn(@core.Point2D, @core.Point2D, @core.Point2D) -> Bool
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

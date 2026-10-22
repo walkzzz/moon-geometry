@@ -1,0 +1,34 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/arrangement/arrangement"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+pub fn arrangement_edge_count(Arrangement) -> Int32
+
+pub fn arrangement_face_count(Arrangement) -> Int32
+
+pub fn arrangement_intersection_count(Arrangement) -> Int32
+
+pub fn arrangement_vertices(Arrangement) -> Array[ArrangementVertex]
+
+pub fn build_arrangement(Array[@core.Segment]) -> Arrangement
+
+// Errors
+
+// Types and methods
+pub struct Arrangement {
+  segments : Array[@core.Segment]
+  vertices : Array[ArrangementVertex]
+}
+
+pub struct ArrangementVertex {
+  point : @core.Point2D
+  seg_ids : Array[Int32]
+}
+
+// Type aliases
+
+// Traits

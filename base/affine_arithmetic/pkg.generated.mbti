@@ -1,0 +1,22 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/base/affine_arithmetic"
+
+// Values
+pub fn affine_add(AffineForm, AffineForm) -> AffineForm
+
+pub fn affine_scale(AffineForm, Double) -> AffineForm
+
+pub fn affine_to_interval(AffineForm) -> (Double, Double)
+
+// Errors
+
+// Types and methods
+pub struct AffineForm {
+  center : Double
+  errors : Array[Double]
+}
+pub fn AffineForm::new(Double, Array[Double]) -> Self
+
+// Type aliases
+
+// Traits

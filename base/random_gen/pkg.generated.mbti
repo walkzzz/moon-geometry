@@ -1,0 +1,27 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/base/random_gen"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+
+// Errors
+
+// Types and methods
+pub struct Rng {
+  mut state : UInt32
+}
+pub fn Rng::new(UInt32) -> Self
+pub fn Rng::next_double(Self) -> Double
+pub fn Rng::next_uint(Self) -> UInt32
+pub fn Rng::point2d(Self, Double, Double, Double, Double) -> @core.Point2D
+pub fn Rng::random_convex_polygon(Self, Int32, Double) -> Array[@core.Point2D]
+pub fn Rng::random_points(Self, Int32, Double, Double, Double, Double) -> Array[@core.Point2D]
+pub fn Rng::random_points_on_circle(Self, Int32, @core.Point2D, Double) -> Array[@core.Point2D]
+pub fn Rng::range_double(Self, Double, Double) -> Double
+
+// Type aliases
+
+// Traits

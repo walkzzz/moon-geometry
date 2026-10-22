@@ -1,0 +1,32 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/graphics/ray_tracing"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+pub fn point_in_shadow(@core.Point3D, @core.Point3D, Array[(@core.Point3D, @core.Point3D, @core.Point3D)]) -> Bool
+
+pub fn ray_eval(Ray3, Double) -> @core.Point3D
+
+pub fn ray_nearest_triangle(Ray3, Array[(@core.Point3D, @core.Point3D, @core.Point3D)]) -> (Double, Int32)?
+
+pub fn ray_plane_intersect(Ray3, @core.Point3D, @core.Point3D) -> Double?
+
+pub fn ray_sphere_intersect(Ray3, @core.Point3D, Double) -> Double?
+
+pub fn ray_triangle_intersect(Ray3, @core.Point3D, @core.Point3D, @core.Point3D) -> Double?
+
+// Errors
+
+// Types and methods
+pub struct Ray3 {
+  origin : @core.Point3D
+  dir : @core.Point3D
+}
+pub fn Ray3::new(@core.Point3D, @core.Point3D) -> Self
+
+// Type aliases
+
+// Traits

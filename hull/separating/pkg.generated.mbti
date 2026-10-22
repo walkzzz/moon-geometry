@@ -1,0 +1,21 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/hull/separating"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+pub fn are_separated(@core.Polygon, @core.Polygon) -> Bool
+
+pub fn find_separating_axis(@core.Polygon, @core.Polygon) -> @core.Line?
+
+pub fn separating_distance(@core.Polygon, @core.Polygon) -> Double
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

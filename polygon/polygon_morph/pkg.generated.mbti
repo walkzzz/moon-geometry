@@ -1,0 +1,23 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/polygon/polygon_morph"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+pub fn best_alignment(Array[@core.Point2D], Array[@core.Point2D]) -> Int32
+
+pub fn morph(Array[@core.Point2D], Array[@core.Point2D], Double) -> Array[@core.Point2D]
+
+pub fn morph_aligned(Array[@core.Point2D], Array[@core.Point2D], Double) -> Array[@core.Point2D]
+
+pub fn morph_sequence(Array[@core.Point2D], Array[@core.Point2D], Int32) -> Array[Array[@core.Point2D]]
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

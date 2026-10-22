@@ -1,0 +1,25 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/distance/distance"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+pub fn point_to_line_distance(@core.Point2D, @core.Line) -> Double
+
+pub fn point_to_polygon_distance(@core.Point2D, @core.Polygon) -> Double
+
+pub fn point_to_segment_distance(@core.Point2D, @core.Segment) -> Double
+
+pub fn polygon_to_polygon_distance(@core.Polygon, @core.Polygon) -> Double
+
+pub fn segment_to_segment_distance(@core.Segment, @core.Segment) -> Double
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

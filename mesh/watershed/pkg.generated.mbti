@@ -1,0 +1,27 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/mesh/watershed"
+
+// Values
+pub fn basin_cell_counts(WatershedResult) -> Array[(Int32, Int32)]
+
+pub fn d8_flow_directions(Int32, Int32, Array[Double]) -> Array[Int32]
+
+pub fn fill_depressions(Int32, Int32, Array[Double]) -> Array[Double]
+
+pub fn marker_watershed(Int32, Int32, Array[Double], Array[Int32]) -> WatershedResult
+
+// Errors
+
+// Types and methods
+pub struct WatershedResult {
+  cols : Int32
+  rows : Int32
+  labels : Array[Int32]
+}
+pub fn WatershedResult::cols(Self) -> Int32
+pub fn WatershedResult::get(Self, Int32, Int32) -> Int32
+pub fn WatershedResult::rows(Self) -> Int32
+
+// Type aliases
+
+// Traits

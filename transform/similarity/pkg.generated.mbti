@@ -1,0 +1,33 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/transform/similarity"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+
+// Errors
+
+// Types and methods
+pub struct Similarity {
+  scale : Double
+  angle : Double
+  tx : Double
+  ty : Double
+}
+pub fn Similarity::apply(Self, @core.Point2D) -> @core.Point2D
+pub fn Similarity::apply_batch(Self, Array[@core.Point2D]) -> Array[@core.Point2D]
+pub fn Similarity::compose(Self, Self) -> Self
+pub fn Similarity::from_correspondence(@core.Point2D, @core.Point2D, @core.Point2D, @core.Point2D) -> Self
+pub fn Similarity::identity() -> Self
+pub fn Similarity::inverse(Self) -> Self?
+pub fn Similarity::rotation(Double) -> Self
+pub fn Similarity::scaling(Double) -> Self
+pub fn Similarity::translation(Double, Double) -> Self
+pub impl @core.Composable for Similarity
+pub impl @core.PointTransform for Similarity
+
+// Type aliases
+
+// Traits
