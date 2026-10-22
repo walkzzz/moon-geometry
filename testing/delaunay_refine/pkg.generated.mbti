@@ -1,0 +1,23 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/testing/delaunay_refine"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+pub fn circumcenter(@core.Point2D, @core.Point2D, @core.Point2D) -> @core.Point2D
+
+pub fn delaunay_refine(Array[@core.Point2D], Double, Int32) -> Array[@core.Point2D]
+
+pub fn min_triangle_angle(@core.Point2D, @core.Point2D, @core.Point2D) -> Double
+
+pub fn triangle_count(Array[@core.Point2D]) -> Int32
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

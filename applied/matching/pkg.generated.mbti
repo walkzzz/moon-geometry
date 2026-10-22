@@ -1,0 +1,19 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/applied/matching"
+
+// Values
+pub fn chamfer_distance(Array[(Double, Double)], Array[(Double, Double)]) -> Double
+
+pub fn hausdorff_distance(Array[(Double, Double)], Array[(Double, Double)]) -> Double
+
+pub fn match_points(Array[(Double, Double)], Array[(Double, Double)], Double) -> Array[(Int32, Int32)]
+
+pub fn nearest_neighbor_match(Array[(Double, Double)], Array[(Double, Double)]) -> Array[Int32]
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

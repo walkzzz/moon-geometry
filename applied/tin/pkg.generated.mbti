@@ -1,0 +1,30 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/applied/tin"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+  "walkzzz/moon-geometry/geometry/triangulation",
+}
+
+// Values
+pub fn build_tin(Array[@core.Point3D]) -> TIN
+
+// Errors
+
+// Types and methods
+pub struct TIN {
+  points : Array[@core.Point3D]
+  triangles : Array[@triangulation.TriangleIdx]
+}
+pub fn TIN::aspect_at(Self, @core.Point2D) -> Double?
+pub fn TIN::elevation_range(Self) -> (Double, Double)
+pub fn TIN::interpolate(Self, @core.Point2D) -> Double?
+pub fn TIN::new(Array[@core.Point3D], Array[@triangulation.TriangleIdx]) -> Self
+pub fn TIN::point_count(Self) -> Int32
+pub fn TIN::slope_at(Self, @core.Point2D) -> Double?
+pub fn TIN::triangle_count(Self) -> Int32
+pub fn TIN::volume(Self) -> Double
+
+// Type aliases
+
+// Traits

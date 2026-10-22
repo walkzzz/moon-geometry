@@ -1,0 +1,24 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/mesh/persistence_diagram"
+
+// Values
+pub fn diagram_dimension(Array[PersistencePoint]) -> Int32
+
+pub fn is_essential(PersistencePoint) -> Bool
+
+pub fn max_persistence(Array[PersistencePoint]) -> Double
+
+pub fn persistence(PersistencePoint) -> Double
+
+// Errors
+
+// Types and methods
+pub struct PersistencePoint {
+  birth : Double
+  death : Double
+}
+pub fn PersistencePoint::new(Double, Double) -> Self
+
+// Type aliases
+
+// Traits

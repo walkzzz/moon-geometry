@@ -1,0 +1,27 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/applied/sampling"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+pub fn circle_interior_sample(@core.Point2D, Double, Int32) -> Array[@core.Point2D]
+
+pub fn circle_sample(@core.Point2D, Double, Int32) -> Array[@core.Point2D]
+
+pub fn grid_sample(Double, Double, Double, Double, Int32, Int32) -> Array[@core.Point2D]
+
+pub fn halton_sample(Int32, Int32, Int32) -> Array[@core.Point2D]
+
+pub fn poisson_disk_sample(Double, Double, Double, Double, Double) -> Array[@core.Point2D]
+
+pub fn segment_sample(@core.Point2D, @core.Point2D, Int32) -> Array[@core.Point2D]
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

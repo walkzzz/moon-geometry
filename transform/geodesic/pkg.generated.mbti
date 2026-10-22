@@ -1,0 +1,33 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/transform/geodesic"
+
+// Values
+pub let deg2rad : Double
+
+pub fn destination_point(Double, Double, Double, Double) -> (Double, Double)
+
+pub fn haversine_distance(Double, Double, Double, Double) -> Double
+
+pub fn initial_bearing(Double, Double, Double, Double) -> Double
+
+pub fn is_antipodal(Double, Double, Double, Double) -> Bool
+
+pub let rad2deg : Double
+
+pub fn spherical_distance(Double, Double, Double, Double) -> Double
+
+pub fn vincenty_distance(Double, Double, Double, Double) -> Double
+
+pub let wgs84_a : Double
+
+pub let wgs84_b : Double
+
+pub let wgs84_f : Double
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

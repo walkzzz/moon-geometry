@@ -1,0 +1,30 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/geometry/convex_hull_3d_dynamic"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+pub fn compute_hull_3d(Array[@core.Point3D]) -> Array[(Int32, Int32, Int32)]
+
+// Errors
+
+// Types and methods
+pub struct DynamicHull3D {
+  points : Array[@core.Point3D]
+  mut hull_faces : Array[(Int32, Int32, Int32)]
+}
+pub fn DynamicHull3D::face_count(Self) -> Int32
+pub fn DynamicHull3D::faces(Self) -> Array[(Int32, Int32, Int32)]
+pub fn DynamicHull3D::insert(Self, @core.Point3D) -> Unit
+pub fn DynamicHull3D::new() -> Self
+pub fn DynamicHull3D::size(Self) -> Int32
+pub fn DynamicHull3D::surface_area(Self) -> Double
+pub fn DynamicHull3D::vertices(Self) -> Array[@core.Point3D]
+pub fn DynamicHull3D::volume(Self) -> Double
+pub impl @core.FaceCountable for DynamicHull3D
+
+// Type aliases
+
+// Traits

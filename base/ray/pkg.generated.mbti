@@ -1,0 +1,32 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/base/ray"
+
+import {
+  "moonbitlang/core/debug",
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+pub fn ray_line_intersect(Ray, @core.Line) -> @core.Point2D?
+
+pub fn ray_polygon_contains(Ray, @core.Polygon) -> Bool
+
+pub fn ray_polygon_intersect(Ray, @core.Polygon) -> Array[@core.Point2D]
+
+pub fn ray_segment_intersect(Ray, @core.Segment) -> @core.Point2D?
+
+// Errors
+
+// Types and methods
+pub struct Ray {
+  origin : @core.Point2D
+  dir : @core.Point2D
+} derive(@debug.Debug)
+pub fn Ray::eval(Self, Double) -> @core.Point2D
+pub fn Ray::from_points(@core.Point2D, @core.Point2D) -> Self
+pub fn Ray::new(@core.Point2D, @core.Point2D) -> Self
+pub fn Ray::to_repr(Self) -> @debug.Repr
+
+// Type aliases
+
+// Traits

@@ -1,0 +1,25 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/geometry/de9im"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+pub fn de9im_contains((@core.Point2D, @core.Point2D), (@core.Point2D, @core.Point2D)) -> Bool
+
+pub fn de9im_disjoint((@core.Point2D, @core.Point2D), (@core.Point2D, @core.Point2D)) -> Bool
+
+pub fn de9im_intersects((@core.Point2D, @core.Point2D), (@core.Point2D, @core.Point2D)) -> Bool
+
+pub fn de9im_touches((@core.Point2D, @core.Point2D), (@core.Point2D, @core.Point2D)) -> Bool
+
+pub fn de9im_within((@core.Point2D, @core.Point2D), (@core.Point2D, @core.Point2D)) -> Bool
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

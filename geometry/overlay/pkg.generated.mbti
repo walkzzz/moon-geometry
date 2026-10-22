@@ -1,0 +1,29 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/geometry/overlay"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+pub fn overlay(Array[@core.Segment], Array[@core.Segment]) -> OverlayResult
+
+pub fn overlay_edge_count(OverlayResult) -> Int32
+
+pub fn overlay_edges(OverlayResult) -> Array[(Int32, Int32)]
+
+pub fn overlay_vertex_count(OverlayResult) -> Int32
+
+pub fn overlay_vertices(OverlayResult) -> Array[@core.Point2D]
+
+// Errors
+
+// Types and methods
+pub struct OverlayResult {
+  vertices : Array[@core.Point2D]
+  edges : Array[(Int32, Int32)]
+}
+
+// Type aliases
+
+// Traits

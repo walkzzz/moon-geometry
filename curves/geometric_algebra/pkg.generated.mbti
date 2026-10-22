@@ -1,0 +1,31 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/curves/geometric_algebra"
+
+import {
+  "moonbitlang/core/debug",
+}
+
+// Values
+pub fn rotate_vector(Double, Double, Double) -> (Double, Double)
+
+pub fn rotor(Double) -> Multivector
+
+// Errors
+
+// Types and methods
+pub struct Multivector {
+  scalar : Double
+  e1 : Double
+  e2 : Double
+  e12 : Double
+} derive(@debug.Debug)
+pub fn Multivector::add(Self, Self) -> Self
+pub fn Multivector::mul(Self, Self) -> Self
+pub fn Multivector::new(Double, Double, Double, Double) -> Self
+pub fn Multivector::norm(Self) -> Double
+pub fn Multivector::reverse(Self) -> Self
+pub fn Multivector::to_repr(Self) -> @debug.Repr
+
+// Type aliases
+
+// Traits

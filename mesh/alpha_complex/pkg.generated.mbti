@@ -1,0 +1,35 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/mesh/alpha_complex"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+pub fn alpha_complex(Array[@core.Point2D], Double) -> AlphaComplex
+
+pub fn alpha_complex_count(AlphaComplex) -> Int32
+
+pub fn alpha_shape(Array[@core.Point2D], Double) -> Array[(Int32, Int32)]
+
+pub fn is_alpha_exposed(AlphaSimplex, Double) -> Bool
+
+// Errors
+
+// Types and methods
+pub struct AlphaComplex {
+  simplices : Array[AlphaSimplex]
+  alpha : Double
+}
+pub fn AlphaComplex::new() -> Self
+pub fn AlphaComplex::simplex_count(Self) -> Int32
+
+pub struct AlphaSimplex {
+  vertices : Array[Int32]
+  dimension : Int32
+  circumradius : Double
+}
+
+// Type aliases
+
+// Traits

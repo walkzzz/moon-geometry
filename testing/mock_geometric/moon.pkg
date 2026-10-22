@@ -1,6 +1,6 @@
 import {
   "walkzzz/moon-geometry/base/core",
-  "walkzzz/moon-geometry/hull/hull",
-  "walkzzz/moon-geometry/polygon/polygon",
+  "walkzzz/moon-geometry/geometry/hull",
+  "walkzzz/moon-geometry/geometry/polygon",
   "moonbitlang/core/math",
 }

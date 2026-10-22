@@ -1,0 +1,38 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/testing/fitting"
+
+import {
+  "moonbitlang/core/debug",
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+pub fn centroid(Array[@core.Point2D]) -> @core.Point2D?
+
+pub fn fit_circle(Array[@core.Point2D]) -> CircleFit?
+
+pub fn fit_line(Array[@core.Point2D]) -> LineFit?
+
+pub fn fit_line_orthogonal(Array[@core.Point2D]) -> (Double, Double, Double)?
+
+// Errors
+
+// Types and methods
+pub struct CircleFit {
+  cx : Double
+  cy : Double
+  radius : Double
+  r_squared : Double
+} derive(@debug.Debug)
+pub fn CircleFit::to_repr(Self) -> @debug.Repr
+
+pub struct LineFit {
+  slope : Double
+  intercept : Double
+  r_squared : Double
+} derive(@debug.Debug)
+pub fn LineFit::to_repr(Self) -> @debug.Repr
+
+// Type aliases
+
+// Traits

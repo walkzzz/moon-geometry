@@ -9,7 +9,19 @@
 ## 一、项目规则 / Project Rules
 
 ### R1 — 源码目录
-全部源代码放在 `src/` 目录下，按 24 个领域分类子目录组织。
+全部源代码放在项目根目录下，按领域分类子目录组织。**根包分类数原则不超过 10 个**。
+
+### R20 — 根包分类数原则不超过 10 个 ⭐ 新增
+项目根目录下的一级分类子目录数**原则上不超过 10 个**。超出时应合并相近领域。
+
+**合并原则**：
+1. 同一抽象层的领域合并（如 hull + polygon + arrangement → geometry）
+2. 共享数学基础的领域合并（如 optim + pde → numerics）
+3. 应用领域合并（如 robotics + ml + stats + pointcloud → applied）
+4. I/O 相关合并（如 io + graphics → io）
+
+**Why**: 过多的一级分类增加认知负担和导入路径复杂度，10 个以内便于浏览和维护。
+**How to apply**: 新增领域时先检查能否归入现有分类；超过 10 个时启动合并重构。
 
 ### R2 — 多手段测试
 MoonBit 形式化证明 + AI/FAKE/MOCK/E2E 多手段测试，确保无 bug。每个 Sprint 交付前 `moon check` 0 error、`moon test` 全通过。

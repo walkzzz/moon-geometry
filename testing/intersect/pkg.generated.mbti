@@ -1,0 +1,21 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/testing/intersect"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+pub fn line_segment_intersection(@core.Line, @core.Segment) -> @core.Point2D?
+
+pub fn segment_intersection(@core.Segment, @core.Segment) -> @core.Point2D?
+
+pub fn segments_intersect(@core.Segment, @core.Segment) -> Bool
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

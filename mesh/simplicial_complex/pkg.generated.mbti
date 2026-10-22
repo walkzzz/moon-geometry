@@ -1,0 +1,23 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/mesh/simplicial_complex"
+
+// Values
+pub fn add_simplex(SimplicialComplex, Array[Int32]) -> SimplicialComplex
+
+pub fn complex_dimension(SimplicialComplex) -> Int32
+
+pub fn is_valid_complex(SimplicialComplex) -> Bool
+
+pub fn simplex_count(SimplicialComplex) -> Int32
+
+// Errors
+
+// Types and methods
+pub struct SimplicialComplex {
+  simplices : Array[Array[Int32]]
+}
+pub fn SimplicialComplex::new(Array[Array[Int32]]) -> Self
+
+// Type aliases
+
+// Traits

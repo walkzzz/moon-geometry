@@ -1,0 +1,21 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/geometry/rounded_geometry"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+pub fn round_double(Double, Int32) -> Double
+
+pub fn rounded_area(Array[@core.Point2D], Int32) -> Double
+
+pub fn rounded_length(@core.Point2D, @core.Point2D, Int32) -> Double
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

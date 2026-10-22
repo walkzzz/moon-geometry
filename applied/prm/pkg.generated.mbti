@@ -1,0 +1,46 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/applied/prm"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+pub fn prm_build(PRMConfig, Array[Array[@core.Point2D]]) -> PRMRoadmap
+
+pub fn prm_edge_count(PRMRoadmap) -> Int32
+
+pub fn prm_node_count(PRMRoadmap) -> Int32
+
+pub fn prm_query(PRMRoadmap, @core.Point2D, @core.Point2D, Array[Array[@core.Point2D]]) -> PRMResult
+
+// Errors
+
+// Types and methods
+pub struct PRMConfig {
+  num_samples : Int32
+  connection_radius : Double
+  seed : UInt32
+  x_min : Double
+  x_max : Double
+  y_min : Double
+  y_max : Double
+}
+pub fn PRMConfig::new(Int32, Double, UInt32, Double, Double, Double, Double) -> Self
+
+pub struct PRMResult {
+  path : Array[@core.Point2D]
+  success : Bool
+  distance : Double
+}
+pub fn PRMResult::new(Array[@core.Point2D], Bool, Double) -> Self
+
+pub struct PRMRoadmap {
+  nodes : Array[@core.Point2D]
+  edges : Array[Array[(Int32, Double)]]
+}
+pub fn PRMRoadmap::new(Array[@core.Point2D], Array[Array[(Int32, Double)]]) -> Self
+
+// Type aliases
+
+// Traits

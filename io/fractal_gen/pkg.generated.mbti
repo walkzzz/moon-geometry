@@ -1,0 +1,21 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/io/fractal_gen"
+
+// Values
+pub fn fractal_dimension_box(Array[(Double, Int32)]) -> Double
+
+pub fn ifs_contractive_factor(Array[Double]) -> Double
+
+pub fn julia_escape(Double, Double, Double, Double, Int32) -> Int32
+
+pub fn koch_curve_length(Int32, Double) -> Double
+
+pub fn mandelbrot_escape(Double, Double, Int32) -> Int32
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

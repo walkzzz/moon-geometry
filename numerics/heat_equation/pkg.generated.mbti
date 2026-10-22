@@ -1,0 +1,17 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/numerics/heat_equation"
+
+// Values
+pub fn heat_analytical_1d(Double, Double, Double, Double) -> Double
+
+pub fn heat_explicit_step(Array[Double], Double, Double, Double) -> Array[Double]
+
+pub fn heat_steady_state_1d(Double, Double, Int32) -> Array[Double]
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

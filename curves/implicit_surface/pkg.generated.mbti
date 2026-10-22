@@ -1,0 +1,31 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/curves/implicit_surface"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+pub fn gaussian_curvature((Double, Double, Double) -> Double, (Double, Double, Double) -> Double, (Double, Double, Double) -> Double, (Double, Double, Double) -> Double, (Double, Double, Double) -> Double, (Double, Double, Double) -> Double, (Double, Double, Double) -> Double, (Double, Double, Double) -> Double, (Double, Double, Double) -> Double, @core.Point3D) -> Double
+
+pub fn mean_curvature((Double, Double, Double) -> Double, (Double, Double, Double) -> Double, (Double, Double, Double) -> Double, (Double, Double, Double) -> Double, (Double, Double, Double) -> Double, (Double, Double, Double) -> Double, @core.Point3D) -> Double
+
+pub fn principal_curvatures(Double, Double) -> (Double, Double)
+
+pub fn project_to_surface((Double, Double, Double) -> Double, (Double, Double, Double) -> Double, (Double, Double, Double) -> Double, (Double, Double, Double) -> Double, @core.Point3D, Int32) -> @core.Point3D
+
+pub fn sample_surface((Double, Double, Double) -> Double, (Double, Double, Double) -> Double, (Double, Double, Double) -> Double, (Double, Double, Double) -> Double, Double, Double, Double, Double, Double, Double, Int32) -> Array[@core.Point3D]
+
+pub fn surface_gradient((Double, Double, Double) -> Double, (Double, Double, Double) -> Double, (Double, Double, Double) -> Double, @core.Point3D) -> @core.Point3D
+
+pub fn surface_normal((Double, Double, Double) -> Double, (Double, Double, Double) -> Double, (Double, Double, Double) -> Double, @core.Point3D) -> @core.Point3D
+
+pub fn tangent_plane((Double, Double, Double) -> Double, (Double, Double, Double) -> Double, (Double, Double, Double) -> Double, @core.Point3D) -> (Double, Double, Double, Double)
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

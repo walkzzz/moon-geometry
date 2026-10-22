@@ -1,0 +1,29 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/geometry/polygon_holes"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+pub fn polygon_with_holes_area(PolygonWithHoles) -> Double
+
+pub fn polygon_with_holes_contains(PolygonWithHoles, @core.Point2D) -> Bool
+
+pub fn polygon_with_holes_count(PolygonWithHoles) -> Int32
+
+pub fn polygon_with_holes_new(Array[@core.Point2D], Array[Array[@core.Point2D]]) -> PolygonWithHoles
+
+pub fn polygon_with_holes_perimeter(PolygonWithHoles) -> Double
+
+// Errors
+
+// Types and methods
+pub struct PolygonWithHoles {
+  outer : Array[@core.Point2D]
+  holes : Array[Array[@core.Point2D]]
+}
+
+// Type aliases
+
+// Traits

@@ -1,0 +1,50 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/applied/rrt"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+pub fn rrt_connect_plan(RRTConfig, @core.Point2D, @core.Point2D, Array[Array[@core.Point2D]]) -> RRTResult
+
+pub fn rrt_node_count(Array[RRTNode]) -> Int32
+
+pub fn rrt_path_length(Array[@core.Point2D]) -> Double
+
+pub fn rrt_plan(RRTConfig, @core.Point2D, @core.Point2D, Array[Array[@core.Point2D]]) -> RRTResult
+
+pub fn rrt_star_plan(RRTConfig, @core.Point2D, @core.Point2D, Array[Array[@core.Point2D]]) -> RRTResult
+
+// Errors
+
+// Types and methods
+pub struct RRTConfig {
+  step_size : Double
+  max_iterations : Int32
+  goal_bias : Double
+  goal_radius : Double
+  seed : UInt32
+  x_min : Double
+  x_max : Double
+  y_min : Double
+  y_max : Double
+}
+pub fn RRTConfig::new(Double, Int32, Double, Double, UInt32, Double, Double, Double, Double) -> Self
+
+pub struct RRTNode {
+  point : @core.Point2D
+  parent : Int32
+}
+pub fn RRTNode::new(@core.Point2D, Int32) -> Self
+
+pub struct RRTResult {
+  path : Array[@core.Point2D]
+  success : Bool
+  iterations : Int32
+}
+pub fn RRTResult::new(Array[@core.Point2D], Bool, Int32) -> Self
+
+// Type aliases
+
+// Traits

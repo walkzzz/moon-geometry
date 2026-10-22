@@ -1,0 +1,21 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/applied/normal_est"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+pub fn estimate_normal(@core.Point3D, Array[@core.Point3D]) -> @core.Point3D
+
+pub fn normalize_normal(@core.Point3D) -> @core.Point3D
+
+pub fn orient_normal(@core.Point3D, @core.Point3D) -> @core.Point3D
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

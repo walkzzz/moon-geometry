@@ -1,0 +1,19 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/geometry/polygon_round"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+pub fn round_corner(@core.Point2D, @core.Point2D, @core.Point2D, Double, Int32) -> Array[@core.Point2D]
+
+pub fn round_polygon(Array[@core.Point2D], Double, Int32) -> Array[@core.Point2D]
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

@@ -1,0 +1,23 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/applied/shape_context"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+pub fn shape_context(Array[@core.Point2D], Int32, Int32) -> Array[Array[Double]]
+
+pub fn shape_context_cost(Array[Array[Double]], Array[Array[Double]]) -> Array[Array[Double]]
+
+pub fn shape_context_distance(Array[Double], Array[Double]) -> Double
+
+pub fn shape_context_match(Array[@core.Point2D], Array[@core.Point2D], Int32, Int32) -> Array[Int32]
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

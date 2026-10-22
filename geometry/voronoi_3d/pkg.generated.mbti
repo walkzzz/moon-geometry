@@ -1,0 +1,40 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/geometry/voronoi_3d"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+  "walkzzz/moon-geometry/geometry/delaunay_3d",
+}
+
+// Values
+pub fn dual_delaunay(Array[@core.Point3D]) -> @delaunay_3d.Delaunay3D
+
+pub fn voronoi_3d(Array[@core.Point3D]) -> Voronoi3D
+
+pub fn voronoi_cell_3d(Voronoi3D, Int32) -> VoronoiCell3D
+
+pub fn voronoi_cell_count(Array[@core.Point3D]) -> Int32
+
+pub fn voronoi_vertex_count(Array[@core.Point3D]) -> Int32
+
+// Errors
+
+// Types and methods
+pub struct Voronoi3D {
+  sites : Array[@core.Point3D]
+  cells : Array[VoronoiCell3D]
+  vertices : Array[@core.Point3D]
+}
+pub fn Voronoi3D::cell_count(Self) -> Int32
+pub fn Voronoi3D::new() -> Self
+pub fn Voronoi3D::vertex_count(Self) -> Int32
+pub impl @core.VertexCountable for Voronoi3D
+
+pub struct VoronoiCell3D {
+  site_idx : Int32
+  vertices : Array[@core.Point3D]
+}
+
+// Type aliases
+
+// Traits

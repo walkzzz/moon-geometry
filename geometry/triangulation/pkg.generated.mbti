@@ -1,0 +1,26 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/geometry/triangulation"
+
+import {
+  "moonbitlang/core/debug",
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+pub fn delaunay_triangulation(Array[@core.Point2D]) -> Array[TriangleIdx]
+
+pub fn voronoi_diagram(Array[@core.Point2D]) -> (Array[@core.Point2D], Array[(Int32, Int32)])
+
+// Errors
+
+// Types and methods
+pub struct TriangleIdx {
+  a : Int32
+  b : Int32
+  c : Int32
+} derive(@debug.Debug)
+pub fn TriangleIdx::to_repr(Self) -> @debug.Repr
+
+// Type aliases
+
+// Traits

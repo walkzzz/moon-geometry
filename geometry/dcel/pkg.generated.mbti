@@ -1,0 +1,48 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/geometry/dcel"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+
+// Errors
+
+// Types and methods
+pub struct DCEL {
+  vertices : Array[@core.Point2D]
+  half_edges : Array[HalfEdge]
+  faces : Array[Face]
+}
+pub fn DCEL::add_edge(Self, Int32, Int32) -> Int32
+pub fn DCEL::add_face(Self, Int32) -> Int32
+pub fn DCEL::add_vertex(Self, @core.Point2D) -> Int32
+pub fn DCEL::edge_count(Self) -> Int32
+pub fn DCEL::face_count(Self) -> Int32
+pub fn DCEL::from_polygon(Self, @core.Polygon) -> Self
+pub fn DCEL::new() -> Self
+pub fn DCEL::set_face(Self, Int32, Int32) -> Unit
+pub fn DCEL::set_next(Self, Int32, Int32) -> Unit
+pub fn DCEL::trace_face(Self, Int32) -> Array[Int32]
+pub fn DCEL::vertex_count(Self) -> Int32
+pub impl @core.EdgeCountable for DCEL
+pub impl @core.FaceCountable for DCEL
+pub impl @core.VertexCountable for DCEL
+
+pub struct Face {
+  outer_component : Int32
+  inner_components : Array[Int32]
+}
+
+pub struct HalfEdge {
+  origin : Int32
+  twin : Int32
+  mut next : Int32
+  mut prev : Int32
+  mut face : Int32
+}
+
+// Type aliases
+
+// Traits

@@ -1,0 +1,23 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/geometry/polygon_kernel"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+pub fn is_star_shaped(Array[@core.Point2D]) -> Bool
+
+pub fn kernel_point(Array[@core.Point2D]) -> @core.Point2D?
+
+pub fn polygon_kernel(Array[@core.Point2D]) -> Array[@core.Point2D]
+
+pub fn polygon_kernel_area(Array[@core.Point2D]) -> Double
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

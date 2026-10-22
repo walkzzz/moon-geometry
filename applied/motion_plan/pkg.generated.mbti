@@ -1,0 +1,21 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/applied/motion_plan"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+pub fn is_path_valid(Array[@core.Point2D], Array[Array[@core.Point2D]]) -> Bool
+
+pub fn path_length(Array[@core.Point2D]) -> Double
+
+pub fn plan_path(Array[Array[@core.Point2D]], @core.Point2D, @core.Point2D) -> Array[@core.Point2D]
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

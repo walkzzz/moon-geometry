@@ -1,0 +1,42 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/geometry/power_diagram"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+pub fn power_cell(PowerDiagram, Int32) -> PowerCell
+
+pub fn power_cell_area(PowerDiagram, Int32) -> Double
+
+pub fn power_diagram(Array[WeightedPoint], (@core.Point2D, @core.Point2D)) -> PowerDiagram
+
+pub fn power_distance(@core.Point2D, WeightedPoint) -> Double
+
+pub fn regular_triangulation(Array[WeightedPoint]) -> Array[(Int32, Int32, Int32)]
+
+// Errors
+
+// Types and methods
+pub struct PowerCell {
+  site_idx : Int32
+  vertices : Array[@core.Point2D]
+}
+
+pub struct PowerDiagram {
+  sites : Array[WeightedPoint]
+  cells : Array[PowerCell]
+}
+pub fn PowerDiagram::cell_count(Self) -> Int32
+pub fn PowerDiagram::new() -> Self
+
+pub struct WeightedPoint {
+  point : @core.Point2D
+  weight : Double
+}
+pub fn WeightedPoint::new(@core.Point2D, Double) -> Self
+
+// Type aliases
+
+// Traits

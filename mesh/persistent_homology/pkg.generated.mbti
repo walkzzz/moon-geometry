@@ -1,0 +1,38 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/mesh/persistent_homology"
+
+// Values
+pub fn betti_from_barcode(Array[Barcode], Double) -> Array[Int32]
+
+pub fn compute_barcode(Array[SimplexWithFiltration]) -> Array[Barcode]
+
+pub fn persistence_pairs(Array[SimplexWithFiltration]) -> Array[(Int32, Int32)]
+
+pub fn persistent_homology(Array[SimplexWithFiltration]) -> PersistenceDiagram
+
+// Errors
+
+// Types and methods
+pub struct Barcode {
+  birth : Double
+  death : Double
+  dimension : Int32
+}
+pub fn Barcode::is_infinite(Self) -> Bool
+pub fn Barcode::new(Double, Double, Int32) -> Self
+
+pub struct PersistenceDiagram {
+  barcodes : Array[Barcode]
+}
+pub fn PersistenceDiagram::barcode_count(Self) -> Int32
+pub fn PersistenceDiagram::new() -> Self
+
+pub struct SimplexWithFiltration {
+  vertices : Array[Int32]
+  filtration : Double
+}
+pub fn SimplexWithFiltration::new(Array[Int32], Double) -> Self
+
+// Type aliases
+
+// Traits

@@ -1,0 +1,39 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/io/hough_transform"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+pub fn hough_accumulator(Array[@core.Point2D], Int32, Int32) -> Array[Array[Int32]]
+
+pub fn hough_circles(Array[@core.Point2D], Double, Int32, Int32) -> Array[HoughCircle]
+
+pub fn hough_line_to_points(Double, Double, Double) -> (@core.Point2D, @core.Point2D)
+
+pub fn hough_lines(Array[@core.Point2D], Int32, Int32) -> Array[HoughLine]
+
+pub fn hough_peaks(Array[Array[Int32]], Int32, Int32) -> Array[(Int32, Int32, Int32)]
+
+// Errors
+
+// Types and methods
+pub struct HoughCircle {
+  cx : Double
+  cy : Double
+  radius : Double
+  votes : Int32
+}
+pub fn HoughCircle::new(Double, Double, Double, Int32) -> Self
+
+pub struct HoughLine {
+  theta : Double
+  rho : Double
+  votes : Int32
+}
+pub fn HoughLine::new(Double, Double, Int32) -> Self
+
+// Type aliases
+
+// Traits

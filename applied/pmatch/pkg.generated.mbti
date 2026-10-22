@@ -1,0 +1,25 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/applied/pmatch"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+pub fn match_count(Array[@core.Point2D], Array[@core.Point2D], Double) -> Int32
+
+pub fn match_ratio(Array[@core.Point2D], Array[@core.Point2D], Double) -> Double
+
+pub fn point_match(Array[@core.Point2D], Array[@core.Point2D], Double) -> Array[(Int32, Int32)]
+
+pub fn unmatched_a(Array[@core.Point2D], Array[@core.Point2D], Double) -> Int32
+
+pub fn unmatched_b(Array[@core.Point2D], Array[@core.Point2D], Double) -> Int32
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

@@ -1,5 +1,0 @@
-import {
-  "walkzzz/moon-geometry/base/core",
-  "walkzzz/moon-geometry/hull/hull",
-  "moonbitlang/core/math",
-}

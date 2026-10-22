@@ -1,0 +1,17 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/applied/clustering"
+
+// Values
+pub fn cluster_centroids(Array[(Double, Double)], Array[Int32], Int32) -> Array[(Double, Double)]
+
+pub fn dbscan(Array[(Double, Double)], Double, Int32) -> Array[Int32]
+
+pub fn kmeans(Array[(Double, Double)], Int32, Int32) -> Array[Int32]
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

@@ -1,0 +1,34 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/io/hidden_line"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+pub fn back_face_cull(Array[(@core.Point3D, @core.Point3D, @core.Point3D)], @core.Point3D) -> Array[(@core.Point3D, @core.Point3D, @core.Point3D)]
+
+pub fn count_visible(Array[LineSeg3D], Array[(@core.Point3D, @core.Point3D, @core.Point3D)]) -> Int32
+
+pub fn hidden_line_remove(Array[LineSeg3D], Array[(@core.Point3D, @core.Point3D, @core.Point3D)]) -> Array[(@core.Point2D, @core.Point2D)]
+
+pub fn point_in_triangle_2d(@core.Point2D, @core.Point2D, @core.Point2D, @core.Point2D) -> Bool
+
+pub fn project_segment(LineSeg3D) -> (@core.Point2D, @core.Point2D)
+
+pub fn project_to_2d(@core.Point3D) -> @core.Point2D
+
+pub fn triangle_z_at((@core.Point3D, @core.Point3D, @core.Point3D), Double, Double) -> Double?
+
+// Errors
+
+// Types and methods
+pub struct LineSeg3D {
+  start : @core.Point3D
+  end : @core.Point3D
+}
+pub fn LineSeg3D::new(@core.Point3D, @core.Point3D) -> Self
+
+// Type aliases
+
+// Traits
