@@ -80,11 +80,3 @@ fn angle_to(
   let angle = @math.atan2(dy, dx) - ref_angle
   if angle < 0.0 { angle + 6.283185307179586 } else { angle }
 }
-
-///|
-/// Compute concave hull with default k value. / 使用默认 k 值计算凹包。
-pub fn concave_hull_default(
-  points : Array[@core.Point2D],
-) -> Array[@core.Point2D] {
-  concave_hull(points, 3)
-}

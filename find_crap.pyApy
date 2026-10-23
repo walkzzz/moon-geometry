@@ -1,0 +1,49 @@
+import os, re, subprocess
+
+result = subprocess.run(['moon', 'coverage', 'analyze', '--', '-f', 'summary'],
+    capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=300)
+coverage_data = {}
+for line in (result.stdout + result.stderr).split('\n'):
+    m = re.match(r'^(.+\.mbt):\s+(\d+)/(\d+)', line.strip())
+    if m:
+        filepath = m.group(1).replace('\\', '/')
+        covered = int(m.group(2))
+        total = int(m.group(3))
+        coverage_data[filepath] = (covered, total)
+
+def calc_complexity(filepath):
+    complexity = 1
+    try:
+        with open(filepath, 'r', encoding='utf-8', errors='replace') as f:
+            content = f.read()
+        complexity += len(re.findall(r'\bif\b', content))
+        complexity += len(re.findall(r'\bfor\b', content))
+        complexity += len(re.findall(r'\bwhile\b', content))
+        complexity += len(re.findall(r'\bmatch\b', content))
+        complexity += len(re.findall(r'\bguard\b', content))
+        complexity += content.count('&&')
+        complexity += content.count('||')
+        complexity += len(re.findall(r'\b=>\b', content))
+    except:
+        pass
+    return complexity
+
+crap_results = []
+for filepath, (covered, total) in coverage_data.items():
+    if total == 0 or filepath == 'reexport.mbt':
+        continue
+    coverage = covered / total
+    complexity = calc_complexity(filepath)
+    crap = complexity ** 2 * (1 - coverage) ** 3 + complexity
+    crap_results.append((crap, filepath, complexity, coverage, covered, total))
+
+avg_crap = sum(r[0] for r in crap_results) / len(crap_results) if crap_results else 0
+print(f"Current avg CRAP: {avg_crap:.1f}")
+
+# Find files that need improvement (CRAP > 8)
+need_improve = [(crap, f, cov, c, t) for crap, f, cx, cov, c, t in crap_results if crap > 8]
+need_improve.sort(reverse=True)
+print(f"Files with CRAP > 8: {len(need_improve)}")
+print(f"\nTop 30 (need most improvement):")
+for crap, f, cov, c, t in need_improve[:30]:
+    print(f"  CRAP={crap:6.1f}  cov={cov*100:5.1f}%  {c}/{t}  {f}")

@@ -66,16 +66,3 @@ fn compute_hull(points : Array[@core.Point2D]) -> Array[@core.Point2D] {
   for i in 1..<(upper.length() - 1) { result.push(upper[i]) }
   result
 }
-
-///|
-/// Count the number of convex layers. / 计算凸包层次数。
-pub fn layer_count(points : Array[@core.Point2D]) -> Int {
-  convex_layers(points).length()
-}
-
-///|
-/// Get the outermost layer (first convex hull). / 获取最外层（第一个凸包）。
-pub fn outermost_layer(points : Array[@core.Point2D]) -> Array[@core.Point2D] {
-  let layers = convex_layers(points)
-  if layers.length() > 0 { layers[0] } else { [] }
-}
