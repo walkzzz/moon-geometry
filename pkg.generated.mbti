@@ -15,6 +15,7 @@ import {
   "walkzzz/moon-geometry/base/affine_arithmetic",
   "walkzzz/moon-geometry/base/big_rational",
   "walkzzz/moon-geometry/base/core",
+  "walkzzz/moon-geometry/base/degenerate",
   "walkzzz/moon-geometry/base/interval",
   "walkzzz/moon-geometry/base/interval_arith",
   "walkzzz/moon-geometry/base/interval_arithmetic",
@@ -23,6 +24,7 @@ import {
   "walkzzz/moon-geometry/base/plane",
   "walkzzz/moon-geometry/base/random_gen",
   "walkzzz/moon-geometry/base/ray",
+  "walkzzz/moon-geometry/base/tolerance",
   "walkzzz/moon-geometry/curves/bezier",
   "walkzzz/moon-geometry/curves/conic_section",
   "walkzzz/moon-geometry/curves/dubins",
@@ -42,6 +44,7 @@ import {
   "walkzzz/moon-geometry/geometry/delaunay_terrain",
   "walkzzz/moon-geometry/geometry/euler_tour",
   "walkzzz/moon-geometry/geometry/half_plane",
+  "walkzzz/moon-geometry/geometry/incremental_delaunay",
   "walkzzz/moon-geometry/geometry/overlay",
   "walkzzz/moon-geometry/geometry/planar_graph",
   "walkzzz/moon-geometry/geometry/polygon_holes",
@@ -79,6 +82,7 @@ import {
   "walkzzz/moon-geometry/mesh/polyhedron_boolean",
   "walkzzz/moon-geometry/mesh/reeb_graph",
   "walkzzz/moon-geometry/mesh/simplicial_complex",
+  "walkzzz/moon-geometry/mesh/topology_check",
   "walkzzz/moon-geometry/mesh/watershed",
   "walkzzz/moon-geometry/numerics/genetic_algorithm",
   "walkzzz/moon-geometry/numerics/interior_point",
@@ -821,6 +825,14 @@ pub fn delaunay_triangulation(Array[@core.Point2D]) -> Array[@triangulation.Tria
 
 pub fn destination_point(Double, Double, Double, Double) -> (Double, Double)
 
+pub fn detect_degenerate_points(Array[@core.Point2D], Double) -> Array[@degenerate.DegenerateResult]
+
+pub fn detect_degenerate_triangles(Array[@core.Point3D], Array[(Int32, Int32, Int32)], Double) -> Array[@degenerate.DegenerateResult]
+
+pub fn detect_self_intersection(Array[@core.Point2D], Double) -> Array[@degenerate.DegenerateResult]
+
+pub fn detect_small_angles(Array[@core.Point2D], Double) -> Array[@degenerate.DegenerateResult]
+
 pub fn determinant(Array[Array[Double]], Int32) -> Double
 
 pub fn diagram_dimension(Array[@persistence_diagram.PersistencePoint]) -> Int32
@@ -1029,9 +1041,15 @@ pub fn find_all_roots((Double) -> Double, Double, Double, Int32) -> Array[Double
 
 pub fn find_boundary_edges(Array[(Int32, Int32, Int32)]) -> Array[(Int32, Int32)]
 
+pub fn find_dangling_edges(Array[(Int32, Int32, Int32)]) -> Array[@topology_check.TopologyResult]
+
 pub fn find_ear(Array[@core.Point2D], Array[Int32]) -> Int32?
 
 pub fn find_intersection_points(Array[@core.Segment]) -> Array[(Int32, Int32, @core.Point2D)]
+
+pub fn find_isolated_vertices(Int32, Array[(Int32, Int32, Int32)]) -> Array[@topology_check.TopologyResult]
+
+pub fn find_nonmanifold_edges(Array[(Int32, Int32, Int32)]) -> Array[@topology_check.TopologyResult]
 
 pub fn find_seed((Double, Double) -> Double, Double, Double, Double, Double, Int32) -> @core.Point2D?
 
@@ -1315,6 +1333,18 @@ pub fn implicit_surface_normal((Double, Double, Double) -> Double, (Double, Doub
 
 pub fn in_circumsphere(@core.Point3D, @core.Point3D, @core.Point3D, @core.Point3D, @core.Point3D) -> Bool
 
+pub fn incremental_delaunay_from_points(Array[@core.Point2D]) -> @incremental_delaunay.IncrementalDelaunay
+
+pub fn incremental_delaunay_insert(@incremental_delaunay.IncrementalDelaunay, @core.Point2D) -> Unit
+
+pub fn incremental_delaunay_new() -> @incremental_delaunay.IncrementalDelaunay
+
+pub fn incremental_delaunay_remove(@incremental_delaunay.IncrementalDelaunay, Int32) -> Unit
+
+pub fn incremental_delaunay_triangles(@incremental_delaunay.IncrementalDelaunay) -> Array[(Int32, Int32, Int32)]
+
+pub fn incremental_delaunay_vertices(@incremental_delaunay.IncrementalDelaunay) -> Array[@core.Point2D]
+
 pub fn initial_bearing(Double, Double, Double, Double) -> Double
 
 pub fn inradius(@core.Polygon) -> Double
@@ -1383,6 +1413,8 @@ pub fn is_bipartite(Int32, Array[Array[Int32]]) -> Bool
 
 pub fn is_boundary_voxel(Array[Bool], Int32, Int32, Int32, Int32, Int32, Int32) -> Bool
 
+pub fn is_closed_manifold(Array[(Int32, Int32, Int32)]) -> Bool
+
 pub fn is_conformal(Double, Double, Double, Double, Double) -> Bool
 
 pub fn is_connected(Int32, Array[@spanning_tree.WEdge]) -> Bool
@@ -1394,6 +1426,8 @@ pub fn is_convex(@core.Polygon) -> Bool
 pub fn is_convex_check(Array[@core.Point2D]) -> Bool
 
 pub fn is_convex_polygon(Array[@core.Point2D]) -> Bool
+
+pub fn is_degenerate_triangle_tol(@core.Point2D, @core.Point2D, @core.Point2D, @tolerance.ToleranceCtx) -> Bool
 
 pub fn is_delaunay(@delaunay_3d.Delaunay3D) -> Bool
 
@@ -1837,6 +1871,8 @@ pub fn optimal_shape_area(Double) -> Double
 
 pub fn orient_normal(@core.Point3D, @core.Point3D) -> @core.Point3D
 
+pub fn orient_with_tol(@core.Point2D, @core.Point2D, @core.Point2D, @tolerance.ToleranceCtx) -> Int32
+
 pub fn origin_inside(@core.Polygon) -> Bool
 
 pub fn ortho(Double, Double, Double, Double, Double, Double) -> Array[Array[Double]]
@@ -2002,6 +2038,10 @@ pub fn point_to_line_distance(@core.Point2D, @core.Line) -> Double
 pub fn point_to_polygon_distance(@core.Point2D, @core.Polygon) -> Double
 
 pub fn point_to_segment_distance(@core.Point2D, @core.Segment) -> Double
+
+pub fn points_coincide(@core.Point2D, @core.Point2D, @tolerance.ToleranceCtx) -> Bool
+
+pub fn points_collinear(@core.Point2D, @core.Point2D, @core.Point2D, @tolerance.ToleranceCtx) -> Bool
 
 pub fn points_equal(@core.Point2D, @core.Point2D, Double) -> Bool
 
@@ -2337,6 +2377,8 @@ pub fn regular_triangulation(Array[@power_diagram.WeightedPoint]) -> Array[(Int3
 
 pub fn reinitialize_step(Double, Double, Int32) -> Double
 
+pub fn remove_coincident_points(Array[@core.Point2D], Double) -> Array[@core.Point2D]
+
 pub fn remove_degenerate_faces(Array[@core.Point3D], Array[(Int32, Int32, Int32)], Double) -> (Array[(Int32, Int32, Int32)], Int32)
 
 pub fn removed_count(Int32, Int32) -> Int32
@@ -2621,6 +2663,10 @@ pub fn smooth_path(Array[@core.Point2D], @path_smooth.SmoothConfig) -> Array[@co
 
 pub fn smooth_preserve_keypoints(Array[@core.Point2D], Array[Int32], Int32) -> Array[@core.Point2D]
 
+pub fn snap_point(@core.Point2D, @core.Point2D, @tolerance.ToleranceCtx) -> @core.Point2D
+
+pub fn snap_to_zero(Double, @tolerance.ToleranceCtx) -> Double
+
 pub fn solve_eikonal_2d(Double, Double, Double, Double) -> Double
 
 pub fn solve_linear(Array[Array[Double]], Array[Double], Int32) -> Array[Double]
@@ -2759,6 +2805,14 @@ pub fn tin_triangle_count(@tin.TIN) -> Int32
 
 pub fn tin_volume(@tin.TIN) -> Double
 
+pub fn tolerance_ctx_custom(Double) -> @tolerance.ToleranceCtx
+
+pub fn tolerance_ctx_default() -> @tolerance.ToleranceCtx
+
+pub fn tolerance_ctx_loose() -> @tolerance.ToleranceCtx
+
+pub fn tolerance_ctx_strict() -> @tolerance.ToleranceCtx
+
 pub fn total_curvature_energy(Array[@core.Point2D]) -> Double
 
 pub fn total_triangle_area(Array[@core.Point2D]) -> Double
@@ -2837,6 +2891,8 @@ pub fn utm_zone_from_lon(Double) -> Int32
 
 pub fn validate_mesh(Array[(Double, Double, Double)], Array[(Int32, Int32, Int32)]) -> Bool
 
+pub fn validate_topology(Int32, Array[(Int32, Int32, Int32)]) -> Array[@topology_check.TopologyResult]
+
 pub fn vec_angle_between(@core.Point2D, @core.Point2D) -> Double
 
 pub fn vec_length(@core.Point2D) -> Double
@@ -2852,6 +2908,10 @@ pub fn vec_project(@core.Point2D, @core.Point2D) -> @core.Point2D
 pub fn vec_reflect(@core.Point2D, @core.Point2D) -> @core.Point2D
 
 pub fn vec_reject(@core.Point2D, @core.Point2D) -> @core.Point2D
+
+pub fn vectors_parallel(Double, Double, Double, Double, @tolerance.ToleranceCtx) -> Bool
+
+pub fn vectors_perpendicular(Double, Double, Double, Double, @tolerance.ToleranceCtx) -> Bool
 
 pub fn vertex_cache_optimize(Array[Int32], Int32) -> Array[Int32]
 
@@ -3032,6 +3092,10 @@ pub using @dcel {type DCEL}
 
 pub using @dcel {type Face as DcelFace}
 
+pub using @degenerate {type DegenerateResult}
+
+pub using @degenerate {type DegenerateType}
+
 pub using @delaunay_3d {type Delaunay3D}
 
 pub using @dubins {type DubinsPath}
@@ -3097,6 +3161,8 @@ pub using @interval_arithmetic {type Interval as IAInterval}
 pub using @interior_point {type IPResult}
 
 pub using @icp {type IcpResult}
+
+pub using @incremental_delaunay {type IncrementalDelaunay}
 
 pub using @interval {type Interval}
 
@@ -3287,6 +3353,12 @@ pub using @tin {type TIN}
 pub using @delaunay_terrain {type Terrain}
 
 pub using @delaunay_3d {type Tetrahedron}
+
+pub using @tolerance {type ToleranceCtx}
+
+pub using @topology_check {type TopologyIssue}
+
+pub using @topology_check {type TopologyResult}
 
 pub using @trapezoidal {type Trapezoid}
 

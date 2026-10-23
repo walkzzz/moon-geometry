@@ -277,4 +277,8 @@ import {
   "walkzzz/moon-geometry/applied/random_geom_graph",
   "walkzzz/moon-geometry/geometry/geom_hash",
   "walkzzz/moon-geometry/io/fractal_gen",
+  "walkzzz/moon-geometry/base/tolerance",
+  "walkzzz/moon-geometry/base/degenerate",
+  "walkzzz/moon-geometry/mesh/topology_check",
+  "walkzzz/moon-geometry/geometry/incremental_delaunay",
 }

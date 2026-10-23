@@ -11336,3 +11336,236 @@ pub fn cover_tree_radius_search(
 ) -> Array[Point2D] {
   @cover_tree.cover_tree_radius_search(tree, query, radius)
 }
+
+// ========== tolerance ==========
+
+///|
+pub type ToleranceCtx = @tolerance.ToleranceCtx
+
+///|
+pub fn tolerance_ctx_default() -> ToleranceCtx {
+  @tolerance.ToleranceCtx::default()
+}
+
+///|
+pub fn tolerance_ctx_strict() -> ToleranceCtx {
+  @tolerance.ToleranceCtx::strict()
+}
+
+///|
+pub fn tolerance_ctx_loose() -> ToleranceCtx {
+  @tolerance.ToleranceCtx::loose()
+}
+
+///|
+pub fn tolerance_ctx_custom(dist_tol : Double) -> ToleranceCtx {
+  @tolerance.ToleranceCtx::custom(dist_tol)
+}
+
+///|
+pub fn points_coincide(a : Point2D, b : Point2D, tol : ToleranceCtx) -> Bool {
+  @tolerance.points_coincide(a, b, tol)
+}
+
+///|
+pub fn points_collinear(
+  a : Point2D,
+  b : Point2D,
+  c : Point2D,
+  tol : ToleranceCtx,
+) -> Bool {
+  @tolerance.points_collinear(a, b, c, tol)
+}
+
+///|
+pub fn orient_with_tol(
+  a : Point2D,
+  b : Point2D,
+  c : Point2D,
+  tol : ToleranceCtx,
+) -> Int32 {
+  @tolerance.orient_with_tol(a, b, c, tol)
+}
+
+///|
+pub fn is_degenerate_triangle_tol(
+  a : Point2D,
+  b : Point2D,
+  c : Point2D,
+  tol : ToleranceCtx,
+) -> Bool {
+  @tolerance.is_degenerate_triangle(a, b, c, tol)
+}
+
+///|
+pub fn vectors_parallel(
+  v1x : Double,
+  v1y : Double,
+  v2x : Double,
+  v2y : Double,
+  tol : ToleranceCtx,
+) -> Bool {
+  @tolerance.vectors_parallel(v1x, v1y, v2x, v2y, tol)
+}
+
+///|
+pub fn vectors_perpendicular(
+  v1x : Double,
+  v1y : Double,
+  v2x : Double,
+  v2y : Double,
+  tol : ToleranceCtx,
+) -> Bool {
+  @tolerance.vectors_perpendicular(v1x, v1y, v2x, v2y, tol)
+}
+
+///|
+pub fn snap_to_zero(value : Double, tol : ToleranceCtx) -> Double {
+  @tolerance.snap_to_zero(value, tol)
+}
+
+///|
+pub fn snap_point(
+  p : Point2D,
+  reference : Point2D,
+  tol : ToleranceCtx,
+) -> Point2D {
+  @tolerance.snap_point(p, reference, tol)
+}
+
+// ========== degenerate ==========
+
+///|
+pub type DegenerateType = @degenerate.DegenerateType
+
+///|
+pub type DegenerateResult = @degenerate.DegenerateResult
+
+///|
+pub fn detect_degenerate_points(
+  points : Array[Point2D],
+  tol : Double,
+) -> Array[DegenerateResult] {
+  @degenerate.detect_degenerate_points(points, tol)
+}
+
+///|
+pub fn detect_degenerate_triangles(
+  vertices : Array[Point3D],
+  faces : Array[(Int32, Int32, Int32)],
+  tol : Double,
+) -> Array[DegenerateResult] {
+  @degenerate.detect_degenerate_triangles(vertices, faces, tol)
+}
+
+///|
+pub fn detect_self_intersection(
+  points : Array[Point2D],
+  tol : Double,
+) -> Array[DegenerateResult] {
+  @degenerate.detect_self_intersection(points, tol)
+}
+
+///|
+pub fn detect_small_angles(
+  points : Array[Point2D],
+  angle_tol : Double,
+) -> Array[DegenerateResult] {
+  @degenerate.detect_small_angles(points, angle_tol)
+}
+
+///|
+pub fn remove_coincident_points(
+  points : Array[Point2D],
+  tol : Double,
+) -> Array[Point2D] {
+  @degenerate.remove_coincident_points(points, tol)
+}
+
+// ========== topology_check ==========
+
+///|
+pub type TopologyIssue = @topology_check.TopologyIssue
+
+///|
+pub type TopologyResult = @topology_check.TopologyResult
+
+///|
+pub fn is_closed_manifold(faces : Array[(Int32, Int32, Int32)]) -> Bool {
+  @topology_check.is_closed_manifold(faces)
+}
+
+///|
+pub fn find_nonmanifold_edges(
+  faces : Array[(Int32, Int32, Int32)],
+) -> Array[TopologyResult] {
+  @topology_check.find_nonmanifold_edges(faces)
+}
+
+///|
+pub fn find_dangling_edges(
+  faces : Array[(Int32, Int32, Int32)],
+) -> Array[TopologyResult] {
+  @topology_check.find_dangling_edges(faces)
+}
+
+///|
+pub fn find_isolated_vertices(
+  num_vertices : Int32,
+  faces : Array[(Int32, Int32, Int32)],
+) -> Array[TopologyResult] {
+  @topology_check.find_isolated_vertices(num_vertices, faces)
+}
+
+///|
+pub fn validate_topology(
+  num_vertices : Int32,
+  faces : Array[(Int32, Int32, Int32)],
+) -> Array[TopologyResult] {
+  @topology_check.validate_topology(num_vertices, faces)
+}
+
+// ========== incremental_delaunay ==========
+
+///|
+pub type IncrementalDelaunay = @incremental_delaunay.IncrementalDelaunay
+
+///|
+pub fn incremental_delaunay_new() -> IncrementalDelaunay {
+  @incremental_delaunay.IncrementalDelaunay::new()
+}
+
+///|
+pub fn incremental_delaunay_from_points(
+  points : Array[Point2D],
+) -> IncrementalDelaunay {
+  @incremental_delaunay.IncrementalDelaunay::from_points(points)
+}
+
+///|
+pub fn incremental_delaunay_insert(
+  d : IncrementalDelaunay,
+  p : Point2D,
+) -> Unit {
+  @incremental_delaunay.IncrementalDelaunay::insert(d, p)
+}
+
+///|
+pub fn incremental_delaunay_remove(
+  d : IncrementalDelaunay,
+  index : Int32,
+) -> Unit {
+  @incremental_delaunay.IncrementalDelaunay::remove(d, index)
+}
+
+///|
+pub fn incremental_delaunay_triangles(
+  d : IncrementalDelaunay,
+) -> Array[(Int32, Int32, Int32)] {
+  @incremental_delaunay.IncrementalDelaunay::get_triangles(d)
+}
+
+///|
+pub fn incremental_delaunay_vertices(d : IncrementalDelaunay) -> Array[Point2D] {
+  @incremental_delaunay.IncrementalDelaunay::get_vertices(d)
+}
