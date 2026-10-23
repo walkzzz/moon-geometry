@@ -5,7 +5,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![MoonBit](https://img.shields.io/badge/MoonBit-0.1.20260920-blue.svg)](https://moonbitlang.com)
-[![Tests](https://img.shields.io/badge/tests-2518-brightgreen.svg)]()
+[![Tests](https://img.shields.io/badge/tests-2278-brightgreen.svg)]()
 [![Targets](https://img.shields.io/badge/targets-native%20%7C%20wasm--gc%20%7C%20js%20%7C%20wasm-green.svg)]()
 
 Moon Geometry 是一个**纯 MoonBit** 实现的计算几何库，**零 C FFI 依赖**，四目标（native / wasm-gc / js / wasm）原生支持。为 CAD、碰撞检测、GIS、路径规划、图像处理等场景提供可复用的几何算法基础组件。
@@ -43,87 +43,73 @@ moon add walkzzz/moon-geometry
 
 ## 项目结构 | Project Structure
 
-283 个模块按 24 个领域分类组织 | 283 modules organized into 24 domain categories：
+283 个模块按 10 个领域分类组织 | 283 modules organized into 10 domain categories：
 
 ```
-src/
-  algebraic/          # (5) Algebraic geometry | 代数几何
-                  #   conic_section, geometric_algebra, implicit_surface, quadric_surface, resultant
-  arrangement/          # (12) Planar subdivision & triangulation | 平面细分与三角剖分
-                  #   arrangement, centroidal_voronoi, constrained_delaunay, dcel, delaunay_3d, delaunay_terrain,
-                  #   geom_arrangement, planar_graph, power_diagram, triangulation, voronoi_3d, voronoi_adv
-  base/          # (30) Core types & robust arithmetic | 基础类型与鲁棒算术
-                  #   adaptive_pred, affine_arithmetic, angle, big_rational, compare, constants, core, exact_pred, exact_predicates, expansion_arith, filtered_pred, filtered_predicates, hash, interval, interval_arith,
-                  #   interval_arithmetic, lazy_exact, linalg, matrix, matrix3d, perturbation, polynomial, random_gen, robust_arith, robust_construction, robust_inter, robust_orient, root_find, sort_search, vector
-  computational/          # (9) Computational geometry theory | 计算几何理论
-                  #   art_gallery, covering, euler_tour, geom_hash, geom_prob, packing, rounded_geometry, spanning_tree, visibility
-  curves/          # (22) Curves & splines | 曲线与样条
-                  #   arc_length, bezier, bezier_surface, bspline, catmull_rom, circle_ops, curvature, curvature_est, curvature_scale, curve_arc, curve_intersect,
-                  #   dubins, ellipse, hermite, implicit_curve, interpolation, lagrange, nurbs, path_smooth, polyline, reed_shepp, spline
-  differential/          # (5) Differential geometry | 微分几何
-                  #   bend_energy, discrete_curvature, discrete_diff_geom, discrete_laplacian, geodesic
-  distance/          # (8) Distance metrics | 距离度量
-                  #   bottleneck, chamfer, distance, dtw, emd, frechet, hausdorff, nearest
-  graphics/          # (11) Graphics & rendering | 图形与渲染
-                  #   contour_line, fractal_gen, gpu_geometry, hidden_line, hough_transform,
-                  #   raster_2d, raster_ops, rasterization, ray_trace_ops, ray_tracing, svg_out
-  hull/          # (18) Convex hull & convex geometry | 凸包与凸几何
-                  #   concave_hull, convex_center, convex_clip, convex_decomp, convex_diameter, convex_hull3d, convex_hull_3d_dynamic, convex_hull_approx, convex_hull_dynamic,
-                  #   convex_intersection, convex_layers, convex_polygon, convex_sum, convex_width, hull, polar_dual, separating, support
-  io/          # (7) File I/O | 文件输入输出
-                  #   dxf_io, geojson_io, gltf_io, json_out, obj_io, ply_io, stl_io
-  mesh/          # (18) Mesh & surface processing | 网格与曲面处理
-                  #   face_extract, marching_cubes, medial_axis_3d, mesh_boolean, mesh_data, mesh_normal, mesh_param, mesh_quality, mesh_repair,
-                  #   mesh_simplify, mesh_smooth, mesh_subdiv, polyhedron, polyhedron_boolean, reconstruction, skeleton_3d, surface_mesh, watershed
-  misc/          # (7) Miscellaneous utilities | 杂项工具
-                  #   delaunay_refine, fitting, gis_buffer, gis_projection, intersect, project3d, trapezoidal
-  ml/          # (7) ML geometry | 机器学习几何
-                  #   clustering, graph_color, graph_cut, icp, matching, shape_context, shape_matching
-  optim/          # (13) Numerical optimization | 数值优化
-                  #   conjugate_gradient, eigen, genetic_algorithm, gradient_descent, interior_point, levenberg_marquardt,
-                  #   linear_prog, newton_method, optim, pso, quadratic_prog, simplex_method, simulated_annealing
-  pde/          # (11) Partial differential equations | 偏微分方程
-                  #   advection_solver, boundary_element, diffusion_solver, fast_marching, fast_sweeping,
-                  #   finite_element, heat_equation, level_set, navier_stokes, poisson_solver, wave_equation
-  pointcloud/          # (7) Point cloud processing | 点云处理
-                  #   normal_est, pc_feature, pc_filter, pc_segment, pc_transform, point_cloud, sampling
-  polygon/          # (26) Polygon algorithms | 多边形算法
-                  #   boolean, de9im, ear_clip, half_plane, isoperimetric, minkowski, monotone, overlay, polygon, polygon_cover, polygon_decomp_opt, polygon_evolve, polygon_holes,
-                  #   polygon_kernel, polygon_medial, polygon_morph, polygon_offset, polygon_round, polygon_simplify, polygon_skeleton, polygon_symmetry, polygon_triangulate_fast, rotating_calipers, sweep_line, triangulate, zone
-  robotics/          # (10) Robotics & motion planning | 机器人与运动规划
-                  #   a_star, collision_detect, config_space, gjk, motion_plan, prm, rrt, sat, shortest_path, visibility_graph
-  shapes/          # (2) Basic shapes | 基本形状
-                  #   plane, ray
-  spatial/          # (22) Spatial data structures | 空间数据结构
-                  #   aabb3d, aabb_tree, ball_tree, bounding, bounding_sphere, bucket_pr, bvh, cover_tree, grid_index, interval_tree, kdtree,
-                  #   loose_octree, metric_tree, obb, octree, quadtree, range_tree, rtree, skip_quadtree, spatial_hash, voxel_grid, vp_tree
-  stats/          # (5) Statistical & molecular geometry | 统计与分子几何
-                  #   fourier_descriptor, moment_invariants, pmatch, random_geom_graph, tin
-  testing/          # (5) Testing infrastructure | 测试基础设施
-                  #   ai_property_tests, e2e_workflows, formal_invariants, formal_properties, mock_geometric
-  topology/          # (9) Topological data analysis | 拓扑数据分析
-                  #   alpha_complex, betti_numbers, cech_complex, euler_char, knot_theory, persistence_diagram, persistent_homology, reeb_graph, simplicial_complex
-  transform/          # (14) Geometric transforms | 几何变换
-                  #   affine2, conformal_map, coordinate_convert, datum_transform, homography, inversion, perspective,
-                  #   procrustes, rational_map, registration, rigid, similarity, stereographic, transform
+base/          # (32) Core types & robust arithmetic | 基础类型与鲁棒算术
+geometry/      # (65) Convex hull, polygon, triangulation, computational geometry | 凸包、多边形、三角剖分、计算几何
+transform/     # (19) Geometric transforms & differential geometry | 几何变换与微分几何
+spatial/       # (30) Spatial data structures & distance metrics | 空间数据结构与距离度量
+curves/        # (27) Curves, splines & algebraic geometry | 曲线、样条与代数几何
+mesh/          # (27) Mesh processing & topological data analysis | 网格处理与拓扑数据分析
+numerics/      # (24) Numerical optimization & PDE solvers | 数值优化与偏微分方程求解
+applied/       # (29) Robotics, ML, point cloud & statistics | 机器人、机器学习、点云与统计
+io/            # (18) File I/O & graphics rendering | 文件输入输出与图形渲染
+testing/       # (12) Testing infrastructure & utilities | 测试基础设施与工具
 ```
 
 ## 快速示例 | Quick Example
 
 ```moonbit
-// Import core types and algorithm packages
-// 导入核心类型和算法包
-// import { "walkzzz/moon-geometry/src/core" as geom }
-// import { "walkzzz/moon-geometry/src/hull" }
-
+// 1. 凸包计算 | Convex hull
 let points = [
-  @geom.Point2D::new(0.0, 0.0),
-  @geom.Point2D::new(4.0, 0.0),
-  @geom.Point2D::new(4.0, 4.0),
-  @geom.Point2D::new(0.0, 4.0),
-  @geom.Point2D::new(2.0, 2.0),  // 内部点 | interior point
+  @moon_geometry.Point2D::new(0.0, 0.0),
+  @moon_geometry.Point2D::new(4.0, 0.0),
+  @moon_geometry.Point2D::new(4.0, 4.0),
+  @moon_geometry.Point2D::new(0.0, 4.0),
+  @moon_geometry.Point2D::new(2.0, 2.0),  // 内部点 | interior point
 ]
-let hull = @hull.convex_hull_andrew(points)  // 凸包顶点（逆时针）| hull vertices (CCW)
+let hull = @moon_geometry.convex_hull_andrew(points)  // 凸包顶点（逆时针）
+
+// 2. 多边形面积 | Polygon area
+let polygon = [
+  @moon_geometry.Point2D::new(0.0, 0.0),
+  @moon_geometry.Point2D::new(4.0, 0.0),
+  @moon_geometry.Point2D::new(4.0, 4.0),
+  @moon_geometry.Point2D::new(0.0, 4.0),
+]
+let area = @moon_geometry.polygon_area(polygon)  // 16.0
+
+// 3. Delaunay 三角剖分 | Delaunay triangulation
+let tri = @moon_geometry.delaunay_triangulation(points)
+
+// 4. 几何变换 | Transform
+let affine = @moon_geometry.Affine2::new(
+  1.0, 0.0, 0.0,  // a, b, c
+  0.0, 1.0, 0.0,  // d, e, f
+)
+let transformed = affine.apply(@moon_geometry.Point2D::new(1.0, 1.0))
+
+// 5. 距离计算 | Distance
+let dist = @moon_geometry.Point2D::new(0.0, 0.0).dist(
+  @moon_geometry.Point2D::new(3.0, 4.0)
+)  // 5.0
+
+// 6. 点在多边形内 | Point in polygon
+let inside = @moon_geometry.point_in_polygon(
+  @moon_geometry.Point2D::new(2.0, 2.0),
+  polygon
+)  // true
+
+// 7. Trait 多态 | Trait polymorphism (Measurable)
+let circle = @moon_geometry.Circle::new(
+  @moon_geometry.Point2D::new(0.0, 0.0),
+  5.0
+)
+let circle_area = circle.area()  // 78.54...
+
+// 8. 形式化验证 | Proof-carrying code
+// dist 函数带有非负性契约: proof_ensure: result => result >= 0.0
 ```
 
 ## API 概览 | API Overview
@@ -202,15 +188,64 @@ let hull = @hull.convex_hull_andrew(points)  // 凸包顶点（逆时针）| hul
 ## 测试 | Tests
 
 ```bash
-moon test                          # 全部 2518 测试 | all 2518 tests
+moon test                          # 全部 2278 测试 | all 2278 tests
 moon test --target native          # 四目标分别验证 | verify each backend
 moon test --target wasm-gc
 moon test --target js
 moon test --target wasm
 ```
 
-四目标全绿：2518 × 4 = 10072 次测试通过。
-All four targets pass: 2518 × 4 = 10072 test runs green.
+四目标全绿：2278 × 4 = 9112 次测试通过。
+All four targets pass: 2278 × 4 = 9112 test runs green.
+
+## 使用场景 | Use Cases
+
+| 场景 | Scenario | 推荐模块 | Recommended modules |
+|------|-----------|----------|---------------------|
+| CAD/几何建模 | CAD/Geometry modeling | `base/core`, `geometry/hull`, `geometry/polygon`, `curves/bezier`, `transform/affine2` |
+| 碰撞检测 | Collision detection | `applied/collision_detect`, `applied/gjk`, `applied/sat`, `geometry/minkowski` |
+| 路径规划 | Path planning | `applied/rrt`, `applied/prm`, `applied/a_star`, `applied/shortest_path` |
+| GIS/地理信息 | GIS/Geospatial | `testing/gis_projection`, `testing/gis_buffer`, `io/geojson_io`, `applied/tin` |
+| 网格处理 | Mesh processing | `mesh/mesh_data`, `mesh/mesh_simplify`, `mesh/mesh_smooth`, `mesh/marching_cubes` |
+| 数据可视化 | Data visualization | `io/svg_out`, `io/rasterization`, `io/ray_tracing` |
+| 机器学习 | Machine learning | `applied/clustering`, `applied/icp`, `applied/shape_matching` |
+| 数值优化 | Numerical optimization | `numerics/gradient_descent`, `numerics/newton_method`, `numerics/levenberg_marquardt` |
+| 拓扑分析 | Topological analysis | `mesh/persistent_homology`, `mesh/alpha_complex`, `mesh/reeb_graph` |
+| 鲁棒计算 | Robust computation | `base/robust_arith`, `base/exact_predicates`, `base/adaptive_pred` |
+
+## Trait 系统 | Trait System
+
+库提供 12 个 `pub(open) trait`，支持跨包多态调度：
+
+| Trait | 方法 | 实现类型 |
+|-------|------|---------|
+| `PointTransform` | `apply`, `apply_batch` | Affine2, Rigid, Similarity |
+| `Curve2D` | `eval`, `derivative`, `length` | Bezier2, Bezier3 |
+| `Measurable` | `area` | Circle, Rectangle, Triangle, Ellipse |
+| `PerimeterMeasurable` | `perimeter` | Circle, Rectangle, Ellipse |
+| `Containable` | `contains` | Circle, Rectangle, Ellipse |
+| `Measurable3D` | `volume`, `surface_area` | AABB3D, BoundingSphere, OBB, Polyhedron |
+| `Composable` | `compose` | Affine2, Rigid, Similarity, Homography |
+| `VertexCountable` | `vertex_count` | DCEL, Delaunay3D, PlanarGraph, Mesh, Polyhedron, ... |
+| `FaceCountable` | `face_count` | DCEL, PlanarGraph, DynamicHull3D, Mesh, Polyhedron, ... |
+| `EdgeCountable` | `edge_count` | DCEL, PlanarGraph, Mesh, Polyhedron, ReebGraph |
+| `Bounded2D` | `bbox` | Bezier2, Bezier3 |
+| `Subdivisible` | `subdivide` | Bezier2, Bezier3 |
+
+## 形式化验证 | Formal Verification
+
+核心函数带有 `proof_ensure` 契约，确保数学性质正确：
+
+| 函数 | 契约 | 性质 |
+|------|------|------|
+| `Point2D::dist` | `result >= 0.0` | 距离非负性 |
+| `Point2D::dist_sq` | `result >= 0.0` | 距离平方非负性 |
+| `Point2D::dot` | `result == other.x * self.x + other.y * self.y` | 点积对称性 |
+| `Point2D::cross` | `result == -(other.x * self.y - other.y * self.x)` | 叉积反对称性 |
+| `turn` | `result == -(...)` | 叉积反对称性 |
+| `approx_eq` | `result == ((b - a).abs() <= eps)` | 近似比较对称性 |
+| `polyline_length` | `result >= 0.0` | 折线长度非负性 |
+| `min_dist_to_set` | `result >= 0.0` | 最小距离非负性 |
 
 ## 交付路线图 | Roadmap
 
@@ -251,7 +286,10 @@ All four targets pass: 2518 × 4 = 10072 test runs green.
 | v0.236.0 | v0.236.0 | 形式化验证+MOCK/FAKE+E2E+AI属性测试（5模块）| Formal verification + MOCK/FAKE + E2E + AI property tests (5 modules) | ✅ 完成 | ✅ Done |
 | v0.237.0 | v0.237.0 | Trait 去重（PointTransform trait, cross/approx_eq/map_points 统一）| Trait-based deduplication | ✅ 完成 | ✅ Done |
 | v0.238.0 | v0.238.0 | 目录重构（401模块→24分类子目录）| Directory restructuring (401 modules → 24 categories) | ✅ 完成 | ✅ Done |
-| v0.239.0 | v0.239.0 | Warning 治理（204→55）| Warning governance (204→55) | ✅ 完成 | ✅ Done |
+| v0.239.0 | v0.239.0 | Warning 治理（204→0）| Warning governance (204→0) | ✅ 完成 | ✅ Done |
+| v0.240.0 | v0.240.0 | Curve2D trait + 代码去重 | Curve2D trait + code dedup | ✅ 完成 | ✅ Done |
+| v0.245.0 | v0.245.0 | 项目瘦身（401→283 模块）| Project slimming (401→283) | ✅ 完成 | ✅ Done |
+| v0.249.0 | v0.249.0 | 10 分类合并 + CRAP 优化 + 形式化验证 | 10-category merge + CRAP optimization + proof | ✅ 完成 | ✅ Done |
 
 详见 [docs/roadmap.md](docs/roadmap.md) 与 [docs/changelog.md](docs/changelog.md)。
 See [docs/roadmap.md](docs/roadmap.md) and [docs/changelog.md](docs/changelog.md).
