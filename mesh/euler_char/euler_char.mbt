@@ -30,3 +30,104 @@ pub fn surface_genus(mesh : @mesh_data.Mesh) -> Int32 {
 pub fn is_sphere(mesh : @mesh_data.Mesh) -> Bool {
   euler_characteristic(mesh) == 2
 }
+
+///|
+/// Check if the mesh is a valid torus (χ = 0). / 检查网格是否为环面（χ = 0）。
+pub fn is_torus(mesh : @mesh_data.Mesh) -> Bool {
+  euler_characteristic(mesh) == 0
+}
+
+///|
+/// Compute the Euler characteristic from component counts. / 由分量计数计算欧拉示性数。
+pub fn euler_from_counts(
+  vertices : Int32,
+  edges : Int32,
+  faces : Int32,
+) -> Int32 {
+  vertices - edges + faces
+}
+
+///|
+/// Compute the Betti number b0 (number of connected components, approximation). / 计算 Betti 数 b0（连通分量数，近似）。
+pub fn betti_0(mesh : @mesh_data.Mesh) -> Int32 {
+  let n = @mesh_data.Mesh::vertex_count(mesh)
+  if n == 0 {
+    return 0
+  }
+  let visited = Array::make(n, false)
+  let mut components = 0
+  for start in 0..<n {
+    if visited[start] {
+      continue
+    }
+    components += 1
+    let queue : Array[Int32] = [start]
+    visited[start] = true
+    while queue.length() > 0 {
+      let v = queue.remove(0)
+      for fi in 0..<@mesh_data.Mesh::face_count(mesh) {
+        let f = @mesh_data.Mesh::get_face(mesh, fi)
+        let neighbors = get_face_neighbors(f, v)
+        for u in neighbors {
+          if !visited[u] {
+            visited[u] = true
+            queue.push(u)
+          }
+        }
+      }
+    }
+  }
+  components
+}
+
+///|
+fn get_face_neighbors(f : @mesh_data.MeshFace, v : Int32) -> Array[Int32] {
+  let result : Array[Int32] = []
+  if f.v0 == v {
+    result.push(f.v1)
+    result.push(f.v2)
+  }
+  if f.v1 == v {
+    result.push(f.v0)
+    result.push(f.v2)
+  }
+  if f.v2 == v {
+    result.push(f.v0)
+    result.push(f.v1)
+  }
+  result
+}
+
+///|
+/// Check if the mesh is manifold (each edge shared by at most 2 faces). / 检查网格是否为流形（每条边最多被 2 个面共享）。
+pub fn is_manifold(mesh : @mesh_data.Mesh) -> Bool {
+  let edge_count_map : Array[(Int32, Int32, Int32)] = []
+  for fi in 0..<@mesh_data.Mesh::face_count(mesh) {
+    let f = @mesh_data.Mesh::get_face(mesh, fi)
+    check_edge_manifold(edge_count_map, f.v0, f.v1)
+    check_edge_manifold(edge_count_map, f.v1, f.v2)
+    check_edge_manifold(edge_count_map, f.v2, f.v0)
+  }
+  for e in edge_count_map {
+    if e.2 > 2 {
+      return false
+    }
+  }
+  true
+}
+
+///|
+fn check_edge_manifold(
+  map : Array[(Int32, Int32, Int32)],
+  a : Int32,
+  b : Int32,
+) -> Unit {
+  let (lo, hi) = if a < b { (a, b) } else { (b, a) }
+  for i in 0..<map.length() {
+    if map[i].0 == lo && map[i].1 == hi {
+      map[i] = (lo, hi, map[i].2 + 1)
+      return
+    }
+  }
+  map.push((lo, hi, 1))
+}

@@ -103,3 +103,115 @@ fn build_recursive(
   nodes.push({ bounds, left: left_idx, right: right_idx, index: -1, })
   nodes.length() - 1
 }
+
+///|
+/// Build an AABB tree from an array of rectangles. / 由矩形数组构建 AABB 树。
+pub fn build_aabb_tree(rects : Array[@core.Rectangle]) -> Array[AABBNode] {
+  if rects.length() == 0 {
+    return []
+  }
+  let nodes : Array[AABBNode] = []
+  let indices : Array[Int32] = []
+  for i in 0..<rects.length() {
+    indices.push(i)
+  }
+  ignore(build_recursive(rects, indices, nodes))
+  nodes
+}
+
+///|
+fn rects_overlap(a : @core.Rectangle, b : @core.Rectangle) -> Bool {
+  a.min_x <= b.max_x &&
+  a.max_x >= b.min_x &&
+  a.min_y <= b.max_y &&
+  a.max_y >= b.min_y
+}
+
+///|
+fn rect_contains_point(r : @core.Rectangle, p : @core.Point2D) -> Bool {
+  p.x() >= r.min_x && p.x() <= r.max_x && p.y() >= r.min_y && p.y() <= r.max_y
+}
+
+///|
+fn query_recursive(
+  nodes : Array[AABBNode],
+  node_idx : Int32,
+  query : @core.Rectangle,
+  result : Array[Int32],
+) -> Unit {
+  if node_idx < 0 || node_idx >= nodes.length() {
+    return
+  }
+  let node = nodes[node_idx]
+  if !rects_overlap(node.bounds, query) {
+    return
+  }
+  if node.index >= 0 {
+    result.push(node.index)
+    return
+  }
+  query_recursive(nodes, node.left, query, result)
+  query_recursive(nodes, node.right, query, result)
+}
+
+///|
+/// Query all rectangle indices overlapping the query rectangle. / 查询所有与查询矩形重叠的矩形索引。
+pub fn query_aabb(
+  nodes : Array[AABBNode],
+  query : @core.Rectangle,
+) -> Array[Int32] {
+  let result : Array[Int32] = []
+  if nodes.length() == 0 {
+    return result
+  }
+  query_recursive(nodes, nodes.length() - 1, query, result)
+  result
+}
+
+///|
+fn query_point_recursive(
+  nodes : Array[AABBNode],
+  node_idx : Int32,
+  p : @core.Point2D,
+  result : Array[Int32],
+) -> Unit {
+  if node_idx < 0 || node_idx >= nodes.length() {
+    return
+  }
+  let node = nodes[node_idx]
+  if !rect_contains_point(node.bounds, p) {
+    return
+  }
+  if node.index >= 0 {
+    result.push(node.index)
+    return
+  }
+  query_point_recursive(nodes, node.left, p, result)
+  query_point_recursive(nodes, node.right, p, result)
+}
+
+///|
+/// Query all rectangle indices containing the point. / 查询所有包含点的矩形索引。
+pub fn query_point_aabb(
+  nodes : Array[AABBNode],
+  p : @core.Point2D,
+) -> Array[Int32] {
+  let result : Array[Int32] = []
+  if nodes.length() == 0 {
+    return result
+  }
+  query_point_recursive(nodes, nodes.length() - 1, p, result)
+  result
+}
+
+///|
+/// Count leaf nodes in the tree. / 统计树中叶子节点数。
+pub fn count_leaves(nodes : Array[AABBNode]) -> Int32 {
+  let mut count = 0
+  for i in 0..<nodes.length() {
+    if nodes[i].index >= 0 {
+      count += 1
+    }
+  }
+  count
+}

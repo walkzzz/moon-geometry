@@ -86,3 +86,113 @@ fn bvh_build_rec(
   nodes.push({ bounds, left: left_idx, right: right_idx, index: -1, })
   nodes.length() - 1
 }
+
+///|
+/// Build a BVH from rectangles (median split). / 构建 BVH。
+pub fn build_bvh(rects : Array[@core.Rectangle]) -> Array[BVHNode] {
+  if rects.length() == 0 {
+    return []
+  }
+  let nodes : Array[BVHNode] = []
+  let indices : Array[Int32] = []
+  for i in 0..<rects.length() {
+    indices.push(i)
+  }
+  ignore(bvh_build_rec(rects, indices, nodes))
+  nodes
+}
+
+///|
+fn bvh_overlap(a : @core.Rectangle, b : @core.Rectangle) -> Bool {
+  a.min_x <= b.max_x &&
+  a.max_x >= b.min_x &&
+  a.min_y <= b.max_y &&
+  a.max_y >= b.min_y
+}
+
+///|
+fn bvh_query_rec(
+  nodes : Array[BVHNode],
+  node_idx : Int32,
+  rect : @core.Rectangle,
+  result : Array[Int32],
+) -> Unit {
+  if node_idx < 0 || node_idx >= nodes.length() {
+    return
+  }
+  let node = nodes[node_idx]
+  if !bvh_overlap(node.bounds, rect) {
+    return
+  }
+  if node.index >= 0 {
+    result.push(node.index)
+    return
+  }
+  bvh_query_rec(nodes, node.left, rect, result)
+  bvh_query_rec(nodes, node.right, rect, result)
+}
+
+///|
+/// Query overlapping rectangle indices. / 查询重叠矩形索引。
+pub fn bvh_query(
+  nodes : Array[BVHNode],
+  rect : @core.Rectangle,
+) -> Array[Int32] {
+  let result : Array[Int32] = []
+  if nodes.length() == 0 {
+    return result
+  }
+  bvh_query_rec(nodes, nodes.length() - 1, rect, result)
+  result
+}
+
+///|
+fn bvh_point_rec(
+  nodes : Array[BVHNode],
+  node_idx : Int32,
+  p : @core.Point2D,
+  result : Array[Int32],
+) -> Unit {
+  if node_idx < 0 || node_idx >= nodes.length() {
+    return
+  }
+  let node = nodes[node_idx]
+  if p.x() < node.bounds.min_x ||
+    p.x() > node.bounds.max_x ||
+    p.y() < node.bounds.min_y ||
+    p.y() > node.bounds.max_y {
+    return
+  }
+  if node.index >= 0 {
+    result.push(node.index)
+    return
+  }
+  bvh_point_rec(nodes, node.left, p, result)
+  bvh_point_rec(nodes, node.right, p, result)
+}
+
+///|
+/// Query rectangle indices containing a point. / 查询包含点的矩形索引。
+pub fn bvh_query_point(
+  nodes : Array[BVHNode],
+  p : @core.Point2D,
+) -> Array[Int32] {
+  let result : Array[Int32] = []
+  if nodes.length() == 0 {
+    return result
+  }
+  bvh_point_rec(nodes, nodes.length() - 1, p, result)
+  result
+}
+
+///|
+/// Count leaf nodes. / 统计叶子节点数。
+pub fn bvh_count_leaves(nodes : Array[BVHNode]) -> Int32 {
+  let mut count = 0
+  for i in 0..<nodes.length() {
+    if nodes[i].index >= 0 {
+      count += 1
+    }
+  }
+  count
+}

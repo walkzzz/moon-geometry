@@ -28,3 +28,60 @@ pub fn face_normal_normalized(
 ) -> @core.Point3D {
   normalize(face_normal(mesh, face_idx))
 }
+
+///|
+/// Compute vertex normal by averaging adjacent face normals. / 通过平均相邻面法向量计算顶点法向量。
+pub fn vertex_normal(
+  mesh : @mesh_data.Mesh,
+  vertex_idx : Int32,
+) -> @core.Point3D {
+  let mut nx = 0.0
+  let mut ny = 0.0
+  let mut nz = 0.0
+  for i in 0..<@mesh_data.Mesh::face_count(mesh) {
+    let f = @mesh_data.Mesh::get_face(mesh, i)
+    if f.v0 == vertex_idx || f.v1 == vertex_idx || f.v2 == vertex_idx {
+      let n = face_normal(mesh, i)
+      nx += n.x
+      ny += n.y
+      nz += n.z
+    }
+  }
+  normalize(@core.Point3D::new(nx, ny, nz))
+}
+
+///|
+/// Compute all face normals. / 计算所有面法向量。
+pub fn all_face_normals(mesh : @mesh_data.Mesh) -> Array[@core.Point3D] {
+  let result : Array[@core.Point3D] = []
+  for i in 0..<@mesh_data.Mesh::face_count(mesh) {
+    result.push(face_normal_normalized(mesh, i))
+  }
+  result
+}
+
+///|
+/// Compute all vertex normals. / 计算所有顶点法向量。
+pub fn all_vertex_normals(mesh : @mesh_data.Mesh) -> Array[@core.Point3D] {
+  let result : Array[@core.Point3D] = []
+  for i in 0..<@mesh_data.Mesh::vertex_count(mesh) {
+    result.push(vertex_normal(mesh, i))
+  }
+  result
+}
+
+///|
+/// Compute the area-weighted normal of a face. / 计算面的面积加权法向量。
+pub fn area_weighted_normal(
+  mesh : @mesh_data.Mesh,
+  face_idx : Int32,
+) -> @core.Point3D {
+  face_normal(mesh, face_idx)
+}
+
+///|
+/// Compute the area of a triangle face. / 计算三角面的面积。
+pub fn face_area(mesh : @mesh_data.Mesh, face_idx : Int32) -> Double {
+  let n = face_normal(mesh, face_idx)
+  0.5 * (n.x * n.x + n.y * n.y + n.z * n.z).sqrt()
+}

@@ -47,3 +47,42 @@ pub fn grid_query_radius(
   }
   result
 }
+
+///|
+/// Query all point indices within a rectangle. / 查询矩形内的点索引。
+pub fn grid_query_rect(
+  grid : GridIndex,
+  rect : @core.Rectangle,
+) -> Array[Int32] {
+  let result : Array[Int32] = []
+  for i in 0..<grid.points.length() {
+    let px = grid.points[i].x()
+    let py = grid.points[i].y()
+    if px >= rect.min_x &&
+      px <= rect.max_x &&
+      py >= rect.min_y &&
+      py <= rect.max_y {
+      result.push(i)
+    }
+  }
+  result
+}
+
+///|
+/// Query all point indices within a grid cell. / 查询网格单元内的点索引。
+pub fn grid_query_cell(grid : GridIndex, p : @core.Point2D) -> Array[Int32] {
+  let key = grid_key(p, grid.cell_size)
+  let result : Array[Int32] = []
+  for i in 0..<grid.points.length() {
+    if grid.cell_keys[i] == key {
+      result.push(i)
+    }
+  }
+  result
+}
+
+///|
+/// Number of points in the grid. / 网格中的点数。
+pub fn grid_size(grid : GridIndex) -> Int32 {
+  grid.points.length()
+}

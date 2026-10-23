@@ -48,3 +48,43 @@ pub fn polygon_kernel(poly : Array[@core.Point2D]) -> Array[@core.Point2D] {
   }
   kernel
 }
+
+///|
+/// Check if a polygon is star-shaped (kernel is non-empty). / 检查多边形是否为星形（核非空）。
+pub fn is_star_shaped(poly : Array[@core.Point2D]) -> Bool {
+  let kernel = polygon_kernel(poly)
+  kernel.length() >= 3
+}
+
+///|
+/// Compute the area of the kernel. / 计算核的面积。
+pub fn polygon_kernel_area(poly : Array[@core.Point2D]) -> Double {
+  let kernel = polygon_kernel(poly)
+  let n = kernel.length()
+  if n < 3 {
+    return 0.0
+  }
+  let mut area = 0.0
+  for i in 0..<n {
+    let j = (i + 1) % n
+    area += kernel[i].x() * kernel[j].y() - kernel[j].x() * kernel[i].y()
+  }
+  area.abs() / 2.0
+}
+
+///|
+/// Find a point in the kernel (centroid of kernel vertices). / 在核中找一点（核顶点的质心）。
+pub fn kernel_point(poly : Array[@core.Point2D]) -> @core.Point2D? {
+  let kernel = polygon_kernel(poly)
+  if kernel.length() < 3 {
+    return None
+  }
+  let mut sx = 0.0
+  let mut sy = 0.0
+  for p in kernel {
+    sx += p.x()
+    sy += p.y()
+  }
+  let n = kernel.length().to_double()
+  Some(@core.Point2D::new(sx / n, sy / n))
+}

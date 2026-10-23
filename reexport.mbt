@@ -125,6 +125,7 @@ pub fn interval_tree_count(node : IntervalNode?) -> Int32 {
 // ---------------------------------------------------------------------------
 
 ///|
+
 ///|
 pub type SkipQuadtree = @skip_quadtree.SkipQuadtree
 
@@ -426,6 +427,7 @@ pub fn min_cut_partition(
 // ---------------------------------------------------------------------------
 
 ///|
+
 ///|
 pub type WEdge = @spanning_tree.WEdge
 
@@ -4271,6 +4273,7 @@ pub fn icp_rms_error(
 // ---------------------------------------------------------------------------
 
 ///|
+
 ///|
 pub type QPResult = @quadratic_prog.QPResult
 
@@ -4784,6 +4787,7 @@ pub fn sa_reheat(
 pub type GAConfig = @genetic_algorithm.GAConfig
 
 ///|
+
 ///|
 pub type GAResult = @genetic_algorithm.GAResult
 
@@ -4865,6 +4869,7 @@ pub fn ga_mutation_schedule(
 pub type PSOConfig = @pso.PSOConfig
 
 ///|
+
 ///|
 pub type PSOResult = @pso.PSOResult
 
@@ -4947,6 +4952,7 @@ pub fn pso_inertia_schedule(
 // ---------------------------------------------------------------------------
 
 ///|
+
 ///|
 pub type ObjFaceVertex = @obj_io.ObjFaceVertex
 
@@ -9495,6 +9501,7 @@ pub fn metric_tree_nearest(node : MetricNode?, q : Point2D) -> Point2D? {
 pub type HalfEdge = @dcel.HalfEdge
 
 ///|
+
 ///|
 pub type DcelFace = @dcel.Face
 
@@ -9564,6 +9571,7 @@ pub fn dcel_from_polygon(d : DCEL, poly : Polygon) -> DCEL {
 pub type ArrangementVertex = @arrangement.ArrangementVertex
 
 ///|
+
 ///|
 pub type Arrangement = @arrangement.Arrangement
 
@@ -9600,6 +9608,7 @@ pub fn arrangement_face_count(arr : Arrangement) -> Int32 {
 pub type PlanarEdge = @planar_graph.PlanarEdge
 
 ///|
+
 ///|
 pub type PlanarGraph = @planar_graph.PlanarGraph
 
@@ -10548,6 +10557,7 @@ pub fn closest_to_centroid(pts : Array[Point2D]) -> Point2D? {
 // ---------------------------------------------------------------------------
 
 ///|
+
 ///|
 pub type Rng = @random_gen.Rng
 
@@ -11177,6 +11187,7 @@ pub fn total_triangle_area(pts : Array[Point2D]) -> Double {
 // ---------------------------------------------------------------------------
 
 ///|
+
 ///|
 pub type RTree = @rtree.RTree
 

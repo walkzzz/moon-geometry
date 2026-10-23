@@ -25,3 +25,53 @@ pub fn VoxelGrid::new(
 ) -> VoxelGrid {
   { origin, voxel_size, nx, ny, nz, data: Array::make(nx * ny * nz, false), }
 }
+
+///|
+pub fn voxel_index(grid : VoxelGrid, p : @core.Point3D) -> Int32 {
+  let ix = ((p.x - grid.origin.x) / grid.voxel_size).floor().to_int()
+  let iy = ((p.y - grid.origin.y) / grid.voxel_size).floor().to_int()
+  let iz = ((p.z - grid.origin.z) / grid.voxel_size).floor().to_int()
+  if ix < 0 ||
+    ix >= grid.nx ||
+    iy < 0 ||
+    iy >= grid.ny ||
+    iz < 0 ||
+    iz >= grid.nz {
+    return -1
+  }
+  ix * grid.ny * grid.nz + iy * grid.nz + iz
+}
+
+///|
+pub fn voxel_set(grid : VoxelGrid, p : @core.Point3D) -> VoxelGrid {
+  let idx = voxel_index(grid, p)
+  if idx >= 0 && idx < grid.data.length() {
+    let new_data = Array::make(grid.data.length(), false)
+    for i in 0..<grid.data.length() {
+      new_data[i] = grid.data[i]
+    }
+    new_data[idx] = true
+    return { ..grid, data: new_data, }
+  }
+  grid
+}
+
+///|
+pub fn voxel_occupied(grid : VoxelGrid, p : @core.Point3D) -> Bool {
+  let idx = voxel_index(grid, p)
+  if idx < 0 {
+    return false
+  }
+  grid.data[idx]
+}
+
+///|
+pub fn voxel_count_occupied(grid : VoxelGrid) -> Int32 {
+  let mut count = 0
+  for i in 0..<grid.data.length() {
+    if grid.data[i] {
+      count += 1
+    }
+  }
+  count
+}
