@@ -117,3 +117,80 @@ test "procrustes_analyze basic" {
   let aligned = procrustes_analyze([shape1, shape2], 5)
   assert_true(aligned.length() == 2)
 }
+test "procrustes_result_new accessors" {
+  let r = ProcrustesResult::new(0.5, 1.0, 2.0, 3.0, 0.1)
+  assert_true((r.rotation() - 0.5).abs() < 0.0001)
+  assert_true((r.tx() - 1.0).abs() < 0.0001)
+  assert_true((r.ty() - 2.0).abs() < 0.0001)
+  assert_true((r.scale() - 3.0).abs() < 0.0001)
+  assert_true((r.error() - 0.1).abs() < 0.0001)
+}
+
+test "procrustes mismatched lengths" {
+  let src = [@core.Point2D::new(0.0, 0.0), @core.Point2D::new(1.0, 0.0)]
+  let tgt = [@core.Point2D::new(0.0, 0.0)]
+  let result = procrustes(src, tgt)
+  assert_true(result.error == 0.0)
+  assert_true(result.scale == 1.0)
+}
+
+test "procrustes_analyze empty" {
+  let aligned = procrustes_analyze([], 3)
+  assert_true(aligned.length() == 0)
+}
+
+test "procrustes_analyze single shape" {
+  let shape = [
+    @core.Point2D::new(2.0, 3.0),
+    @core.Point2D::new(4.0, 3.0),
+    @core.Point2D::new(2.0, 5.0),
+  ]
+  let aligned = procrustes_analyze([shape], 2)
+  assert_true(aligned.length() == 1)
+  assert_true(aligned[0].length() == 3)
+}
+
+test "procrustes_apply empty" {
+  let result = ProcrustesResult::new(0.0, 0.0, 0.0, 1.0, 0.0)
+  let applied = procrustes_apply([], result)
+  assert_true(applied.length() == 0)
+}
+
+test "procrustes_apply with rotation" {
+  let src = [@core.Point2D::new(1.0, 0.0)]
+  let result = ProcrustesResult::new(1.5707963267948966, 0.0, 0.0, 1.0, 0.0)
+  let applied = procrustes_apply(src, result)
+  assert_true(applied[0].x().abs() < 0.001)
+  assert_true((applied[0].y() - 1.0).abs() < 0.001)
+}
+
+test "procrustes_apply with scale" {
+  let src = [@core.Point2D::new(2.0, 3.0)]
+  let result = ProcrustesResult::new(0.0, 1.0, 1.0, 2.0, 0.0)
+  let applied = procrustes_apply(src, result)
+  assert_true((applied[0].x() - 5.0).abs() < 0.0001)
+  assert_true((applied[0].y() - 7.0).abs() < 0.0001)
+}
+
+test "procrustes_error mismatched" {
+  let src = [@core.Point2D::new(0.0, 0.0), @core.Point2D::new(1.0, 0.0)]
+  let tgt = [@core.Point2D::new(0.0, 0.0)]
+  let err = procrustes_error(src, tgt)
+  assert_true(err == 0.0)
+}
+
+test "procrustes degenerate src" {
+  let src = [
+    @core.Point2D::new(1.0, 1.0),
+    @core.Point2D::new(1.0, 1.0),
+    @core.Point2D::new(1.0, 1.0),
+  ]
+  let tgt = [
+    @core.Point2D::new(2.0, 2.0),
+    @core.Point2D::new(2.0, 2.0),
+    @core.Point2D::new(2.0, 2.0),
+  ]
+  let result = procrustes(src, tgt)
+  assert_true(result.scale == 1.0)
+  assert_true(result.error < 0.001)
+}

@@ -42,3 +42,54 @@ test "mesh_bounding_box basic" {
   assert_true((max_x - 1.0).abs() < 0.0001)
   assert_true((min_z - (-3.0)).abs() < 0.0001)
 }
+test "vertex_normal basic" {
+  let verts = [(0.0, 0.0, 0.0), (1.0, 0.0, 0.0), (0.0, 1.0, 0.0)]
+  let faces = [(0, 1, 2)]
+  let (nx, ny, nz) = vertex_normal(verts, faces, 0)
+  assert_true(nx.abs() < 0.0001)
+  assert_true(ny.abs() < 0.0001)
+  assert_true((nz - 1.0).abs() < 0.0001)
+}
+
+test "vertex_normal isolated vertex" {
+  let verts = [
+    (0.0, 0.0, 0.0), (1.0, 0.0, 0.0), (0.0, 1.0, 0.0), (2.0, 2.0, 2.0),
+  ]
+  let faces = [(0, 1, 2)]
+  let (nx, ny, nz) = vertex_normal(verts, faces, 3)
+  assert_true(nx.abs() < 0.0001)
+  assert_true(ny.abs() < 0.0001)
+  assert_true(nz.abs() < 0.0001)
+}
+
+test "face_normal degenerate" {
+  let verts = [(0.0, 0.0, 0.0), (0.0, 0.0, 0.0), (0.0, 0.0, 0.0)]
+  let (nx, ny, nz) = face_normal(verts, (0, 1, 2))
+  assert_true(nx.abs() < 0.0001)
+  assert_true(ny.abs() < 0.0001)
+  assert_true(nz.abs() < 0.0001)
+}
+
+test "validate_mesh duplicate indices" {
+  let verts = [(0.0, 0.0, 0.0), (1.0, 0.0, 0.0), (0.0, 1.0, 0.0)]
+  assert_false(validate_mesh(verts, [(0, 0, 1)]))
+  assert_false(validate_mesh(verts, [(0, 1, 0)]))
+  assert_false(validate_mesh(verts, [(1, 0, 1)]))
+}
+
+test "triangle_area degenerate" {
+  let verts = [(0.0, 0.0, 0.0), (0.0, 0.0, 0.0), (0.0, 0.0, 0.0)]
+  let area = triangle_area(verts, (0, 1, 2))
+  assert_true(area.abs() < 0.0001)
+}
+
+test "mesh_bounding_box single vertex" {
+  let verts = [(1.0, 2.0, 3.0)]
+  let (min_x, min_y, min_z, max_x, max_y, max_z) = mesh_bounding_box(verts)
+  assert_true((min_x - 1.0).abs() < 0.0001)
+  assert_true((max_x - 1.0).abs() < 0.0001)
+  assert_true((min_y - 2.0).abs() < 0.0001)
+  assert_true((max_y - 2.0).abs() < 0.0001)
+  assert_true((min_z - 3.0).abs() < 0.0001)
+  assert_true((max_z - 3.0).abs() < 0.0001)
+}

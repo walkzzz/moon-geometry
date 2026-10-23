@@ -17,3 +17,24 @@ test "geo interval overlaps" {
   let b = GeoInterval::new(1.5, 1.0)
   assert_true(a.overlaps(b))
 }
+test "geo interval sub" {
+  let a = GeoInterval::new(5.0, 0.2)
+  let b = GeoInterval::new(2.0, 0.1)
+  let c = a.sub(b)
+  assert_true((c.center - 3.0).abs() < 1.0e-10)
+  assert_true((c.radius - 0.3).abs() < 1.0e-10)
+}
+
+test "geo interval mul" {
+  let a = GeoInterval::new(2.0, 0.1)
+  let b = GeoInterval::new(3.0, 0.2)
+  let c = a.mul(b)
+  assert_true((c.center - 6.0).abs() < 1.0e-10)
+  assert_true(c.radius >= 0.0)
+}
+
+test "geo interval not overlaps" {
+  let a = GeoInterval::new(0.0, 0.5)
+  let b = GeoInterval::new(5.0, 0.5)
+  assert_true(!a.overlaps(b))
+}

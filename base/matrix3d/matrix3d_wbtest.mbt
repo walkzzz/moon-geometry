@@ -75,3 +75,79 @@ test "transform_direction ignores translation" {
   assert_true((y - 0.0).abs() < 0.0000001)
   assert_true((z - 0.0).abs() < 0.0000001)
 }
+test "rotation_x 90 degrees" {
+  let r = rotation_x(1.5707963267948966)
+  let (_, y, z) = transform_point(r, 0.0, 1.0, 0.0)
+  assert_true(y.abs() < 0.0001)
+  assert_true((z - 1.0).abs() < 0.0001)
+}
+
+test "rotation_y 90 degrees" {
+  let r = rotation_y(1.5707963267948966)
+  let (x, _, z) = transform_point(r, 0.0, 0.0, 1.0)
+  assert_true((x - 1.0).abs() < 0.0001)
+  assert_true(z.abs() < 0.0001)
+}
+
+test "look_at basic" {
+  let m = look_at((0.0, 0.0, 5.0), (0.0, 0.0, 0.0), (0.0, 1.0, 0.0))
+  let (x, y, z) = transform_point(m, 0.0, 0.0, 0.0)
+  assert_true(x.abs() < 0.0001)
+  assert_true(y.abs() < 0.0001)
+  assert_true((z + 5.0).abs() < 0.0001)
+}
+
+test "perspective basic" {
+  let p = perspective(1.5707963267948966, 1.0, 0.1, 100.0)
+  assert_true((p[3][2] - (-1.0)).abs() < 0.0001)
+  assert_true(p[3][3].abs() < 0.0001)
+  assert_true(p[0][1].abs() < 0.0001)
+}
+
+test "ortho basic" {
+  let o = ortho(-1.0, 1.0, -1.0, 1.0, 0.1, 100.0)
+  assert_true((o[0][0] - 1.0).abs() < 0.0001)
+  assert_true((o[1][1] - 1.0).abs() < 0.0001)
+  assert_true((o[3][3] - 1.0).abs() < 0.0001)
+}
+
+test "mat4_inverse singular returns None" {
+  let m = [
+    [1.0, 2.0, 3.0, 4.0],
+    [2.0, 4.0, 6.0, 8.0],
+    [1.0, 1.0, 1.0, 1.0],
+    [0.0, 0.0, 0.0, 1.0],
+  ]
+  let inv = mat4_inverse(m)
+  assert_true(inv is None)
+}
+
+test "mat4_determinant scaling" {
+  let m = scaling(2.0, 3.0, 4.0)
+  let det = mat4_determinant(m)
+  assert_true((det - 24.0).abs() < 0.0001)
+}
+
+test "rotation_x preserves length" {
+  let r = rotation_x(0.5)
+  let (x, y, z) = transform_direction(r, 1.0, 1.0, 1.0)
+  let len2 = x * x + y * y + z * z
+  assert_true((len2 - 3.0).abs() < 0.0001)
+}
+
+test "rotation_y preserves length" {
+  let r = rotation_y(0.7)
+  let (x, y, z) = transform_direction(r, 1.0, 1.0, 1.0)
+  let len2 = x * x + y * y + z * z
+  assert_true((len2 - 3.0).abs() < 0.0001)
+}
+
+test "mat4_mul identity" {
+  let m = translation(1.0, 2.0, 3.0)
+  let id = identity4()
+  let c = mat4_mul(m, id)
+  let (x, y, z) = transform_point(c, 0.0, 0.0, 0.0)
+  assert_true((x - 1.0).abs() < 0.0001)
+  assert_true((y - 2.0).abs() < 0.0001)
+  assert_true((z - 3.0).abs() < 0.0001)
+}

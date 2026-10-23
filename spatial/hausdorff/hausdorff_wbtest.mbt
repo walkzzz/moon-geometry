@@ -30,3 +30,56 @@ test "partial_hausdorff" {
   let d = partial_hausdorff(a, b, 0)
   assert_true((d - 0.0).abs() < 0.001)
 }
+test "hausdorff_directed empty a" {
+  let a : Array[@core.Point2D] = []
+  let b = [@core.Point2D::new(0.0, 0.0)]
+  let d = hausdorff_directed(a, b)
+  assert_true(d.abs() < 0.001)
+}
+
+test "hausdorff_directed empty b" {
+  let a = [@core.Point2D::new(0.0, 0.0)]
+  let b : Array[@core.Point2D] = []
+  let d = hausdorff_directed(a, b)
+  assert_true(d >= 1000000000000.0)
+}
+
+test "hausdorff_distance empty both" {
+  let a : Array[@core.Point2D] = []
+  let b : Array[@core.Point2D] = []
+  let d = hausdorff_distance(a, b)
+  assert_true(d.abs() < 0.001)
+}
+
+test "partial_hausdorff empty a" {
+  let a : Array[@core.Point2D] = []
+  let b = [@core.Point2D::new(0.0, 0.0)]
+  let d = partial_hausdorff(a, b, 0)
+  assert_true(d.abs() < 0.001)
+}
+
+test "partial_hausdorff empty b" {
+  let a = [@core.Point2D::new(0.0, 0.0)]
+  let b : Array[@core.Point2D] = []
+  let d = partial_hausdorff(a, b, 0)
+  assert_true(d.abs() < 0.001)
+}
+
+test "partial_hausdorff k out of range" {
+  let a = [@core.Point2D::new(0.0, 0.0), @core.Point2D::new(2.0, 0.0)]
+  let b = [@core.Point2D::new(0.0, 0.0)]
+  let d = partial_hausdorff(a, b, 10)
+  assert_true(d >= 0.0)
+}
+
+test "hausdorff_within identical" {
+  let a = [@core.Point2D::new(1.0, 2.0)]
+  assert_true(hausdorff_within(a, a, 0.0))
+}
+
+test "hausdorff_directed single points" {
+  let a = [@core.Point2D::new(0.0, 0.0)]
+  let b = [@core.Point2D::new(3.0, 4.0)]
+  let d = hausdorff_directed(a, b)
+  assert_true((d - 5.0).abs() < 0.001)
+}
