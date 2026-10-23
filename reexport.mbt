@@ -11576,6 +11576,6 @@ pub fn incremental_delaunay_vertices(d : IncrementalDelaunay) -> Array[Point2D] 
 pub type GeomError = @geom_error.GeomError
 
 ///|
-pub fn GeomError::geom_error_to_message(self : GeomError) -> String {
-  @geom_error.GeomError::to_message(self)
+pub fn geom_error_to_message(err : GeomError) -> String {
+  @geom_error.GeomError::to_message(err)
 }

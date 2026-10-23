@@ -16,6 +16,7 @@ import {
   "walkzzz/moon-geometry/base/big_rational",
   "walkzzz/moon-geometry/base/core",
   "walkzzz/moon-geometry/base/degenerate",
+  "walkzzz/moon-geometry/base/geom_error",
   "walkzzz/moon-geometry/base/interval",
   "walkzzz/moon-geometry/base/interval_arith",
   "walkzzz/moon-geometry/base/interval_arithmetic",
@@ -1150,6 +1151,8 @@ pub fn geojson_polygon(Array[Array[@core.Point2D]]) -> String
 pub fn geojson_write(@geojson_io.GeoJsonGeometry) -> String
 
 pub let geom_eps : Double
+
+pub fn geom_error_to_message(@geom_error.GeomError) -> String
 
 pub fn geometric_probability_hit(Double, Double) -> Double
 
@@ -3133,6 +3136,8 @@ pub using @interval_arith {type GeoInterval}
 pub using @geojson_io {type GeoJsonGeometry}
 
 pub using @coordinate_convert {type Geodetic}
+
+pub using @geom_error {type GeomError}
 
 pub using @gltf_io {type GltfMesh}
 
