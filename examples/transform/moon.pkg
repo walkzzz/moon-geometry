@@ -1,0 +1,7 @@
+import {
+  "walkzzz/moon-geometry" @geo,
+}
+
+options(
+  "is-main": true,
+)

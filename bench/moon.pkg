@@ -1,0 +1,5 @@
+import {
+  "walkzzz/moon-geometry" @geo,
+  "moonbitlang/core/bench" @benchlib,
+  "moonbitlang/core/math",
+}

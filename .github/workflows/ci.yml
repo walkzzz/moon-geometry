@@ -1,0 +1,15 @@
+name: CI
+on: [push, pull_request]
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install MoonBit
+        run: curl -fsSL https://cli.moonbitlang.com/install/unix.sh | bash
+      - name: Moon check
+        run: ~/.moon/bin/moon check
+      - name: Moon test
+        run: ~/.moon/bin/moon test
+      - name: Moon fmt check
+        run: ~/.moon/bin/moon fmt --check
