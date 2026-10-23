@@ -34,6 +34,10 @@ Moon Geometry 是一个**纯 MoonBit** 实现的计算几何库，**零 C FFI �
 - **Unified import | 统一导入**: `import "walkzzz/moon-geometry"` re-exports all APIs
 - **Pure MoonBit, zero deps | 纯 MoonBit 零依赖**: no C FFI, single codebase for all targets
 - **Full degenerate coverage | 退化情况全覆盖**: collinear, coincident, empty, single/two-point
+- **Tolerance system | 统一公差体系**: configurable `ToleranceCtx` for distance/angle/area, default/strict/loose presets
+- **Degenerate robustness | 退化构型鲁棒性**: detect collinear/overlap/zero-area/self-intersect/small-angle, remove coincident points
+- **Topology validation | 拓扑一致性验证**: closed manifold check, non-manifold edges, dangling edges, isolated vertices, normal consistency
+- **Incremental computation | 增量计算**: incremental Delaunay with dynamic insert/remove, supports interactive editing
 
 ## Installation | 安装
 
