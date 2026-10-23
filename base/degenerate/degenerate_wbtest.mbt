@@ -30,3 +30,14 @@ test "detect small angles" {
   let results = detect_small_angles(pts, 0.001)
   assert_true(results.length() > 0)
 }
+
+///|
+test "DegenerateType variants" {
+  ignore(CollinearPoints)
+  ignore(OverlappingEdges)
+  ignore(NearTangent)
+  ignore(ZeroAreaTriangle)
+  ignore(SmallAngle)
+  ignore(SelfIntersecting)
+  ignore(CoincidentPoints)
+}

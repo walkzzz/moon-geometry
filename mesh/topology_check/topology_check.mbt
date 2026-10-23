@@ -12,6 +12,16 @@ pub enum TopologyIssue {
 pub extend TopologyIssue with Eq::{not_equal, equal}
 
 ///|
+pub extend TopologyIssue with @moonbitlang/core/debug.Debug::{to_repr}
+
+///|
+/// Suppress unused constructor warnings — all variants are part of public API. / 抑制未使用构造子警告。
+fn _suppress_unused_topology() -> Unit {
+  ignore(NonManifoldVertex)
+  ignore(InconsistentNormal)
+}
+
+///|
 pub struct TopologyResult {
   issue_type : TopologyIssue
   element_index : Int32

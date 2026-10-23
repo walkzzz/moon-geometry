@@ -28,6 +28,7 @@ pub enum TopologyIssue {
 } derive(Eq, @debug.Debug)
 pub fn TopologyIssue::equal(Self, Self) -> Bool
 pub fn TopologyIssue::not_equal(Self, Self) -> Bool
+pub fn TopologyIssue::to_repr(Self) -> @debug.Repr
 
 pub struct TopologyResult {
   issue_type : TopologyIssue

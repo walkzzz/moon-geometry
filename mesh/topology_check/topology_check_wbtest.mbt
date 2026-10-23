@@ -25,3 +25,12 @@ test "validate_topology" {
   let results = validate_topology(4, faces)
   assert_true(results.length() >= 1)
 }
+
+///|
+test "TopologyIssue variants" {
+  ignore(NonManifoldEdge)
+  ignore(NonManifoldVertex)
+  ignore(DanglingEdge)
+  ignore(InconsistentNormal)
+  ignore(IsolatedVertex)
+}

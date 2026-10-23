@@ -31,6 +31,17 @@ pub enum DegenerateType {
 pub extend DegenerateType with Eq::{not_equal, equal}
 
 ///|
+pub extend DegenerateType with @moonbitlang/core/debug.Debug::{to_repr}
+
+///|
+/// Suppress unused constructor warnings — all variants are part of public API. / 抑制未使用构造子警告——所有变体都是公共 API 的一部分。
+fn _suppress_unused_degenerate() -> Unit {
+  ignore(CollinearPoints)
+  ignore(OverlappingEdges)
+  ignore(NearTangent)
+}
+
+///|
 /// Degenerate case detection result. / 退化检测结果。
 pub struct DegenerateResult {
   degenerate_type : DegenerateType
