@@ -30,6 +30,21 @@ pub enum GeomError {
 pub extend GeomError with Eq::{not_equal, equal}
 
 ///|
+pub extend GeomError with @moonbitlang/core/debug.Debug::{to_repr}
+
+///|
+/// Suppress unused constructor warnings — all variants are part of public API. / 抑制未使用构造子警告——所有变体都是公共 API 的一部分。
+fn _suppress_unused_geom_error() -> Unit {
+  ignore(EmptyInput)
+  ignore(InsufficientInput(""))
+  ignore(DegenerateGeometry(""))
+  ignore(NumericalFailure(""))
+  ignore(InvalidParameter(""))
+  ignore(TopologyError(""))
+  ignore(IoError(""))
+}
+
+///|
 /// Convert GeomError to a human-readable message. / 将 GeomError 转换为可读消息。
 pub fn GeomError::to_message(self : GeomError) -> String {
   match self {

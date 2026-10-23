@@ -22,6 +22,7 @@ pub enum GeomError {
 pub fn GeomError::equal(Self, Self) -> Bool
 pub fn GeomError::not_equal(Self, Self) -> Bool
 pub fn GeomError::to_message(Self) -> String
+pub fn GeomError::to_repr(Self) -> @debug.Repr
 
 // Type aliases
 
