@@ -6,6 +6,16 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
 Moon Geometry 的所有重要变更记录于此。
 格式基于 [Keep a Changelog](https://keepachangelog.com/)。
 
+## [0.250.0] - 2026-10-23
+
+### Added — 工程级扩展 | Engineering-Grade Extensions
+
+- **统一公差体系** `base/tolerance/`：`ToleranceCtx`（距离/角度/面积/相对公差），预设 default/strict/loose，点重合/共线/方向判定/线段重叠/退化三角形/向量平行/垂直/吸附
+- **退化构型鲁棒性** `base/degenerate/`：检测共线点/重叠边/零面积三角形/近切相交/极小角度/自交轮廓，移除重合点
+- **拓扑一致性验证** `mesh/topology_check/`：闭合流形检测/非流形边/悬挂边/孤立顶点/法向一致性/完整验证
+- **增量 Delaunay** `geometry/incremental_delaunay/`：动态插入/删除点，增量更新三角剖分，支持交互式编辑
+- 新模块已添加到根 `moon.pkg` 和 `reexport.mbt`
+
 ## [0.249.0] - 2026-10-21
 
 ### Added — R19 Trait 化续 | R19 Trait-ification Continued
