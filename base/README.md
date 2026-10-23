@@ -1,6 +1,6 @@
 # base — Core types & robust arithmetic | 基础类型与鲁棒算术
 
-## Modules | 模块 (30)
+## Modules | 模块 (34)
 
 - [`adaptive_pred`](./adaptive_pred/)
 - [`affine_arithmetic`](./affine_arithmetic/)
@@ -9,6 +9,7 @@
 - [`compare`](./compare/)
 - [`constants`](./constants/)
 - [`core`](./core/)
+- [`degenerate`](./degenerate/)
 - [`exact_pred`](./exact_pred/)
 - [`exact_predicates`](./exact_predicates/)
 - [`expansion_arith`](./expansion_arith/)
@@ -23,15 +24,19 @@
 - [`matrix`](./matrix/)
 - [`matrix3d`](./matrix3d/)
 - [`perturbation`](./perturbation/)
+- [`plane`](./plane/)
 - [`polynomial`](./polynomial/)
 - [`random_gen`](./random_gen/)
+- [`ray`](./ray/)
 - [`robust_arith`](./robust_arith/)
 - [`robust_construction`](./robust_construction/)
 - [`robust_inter`](./robust_inter/)
 - [`robust_orient`](./robust_orient/)
 - [`root_find`](./root_find/)
 - [`sort_search`](./sort_search/)
+- [`tolerance`](./tolerance/)
 - [`vector`](./vector/)
 
 ---
-> Part of [Moon Geometry](../../README.md) | Moon Geometry `base` category
+> Part of [Moon Geometry](../README.md) | Moon Geometry `base` category
+
