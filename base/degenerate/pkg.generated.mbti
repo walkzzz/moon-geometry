@@ -1,0 +1,43 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/base/degenerate"
+
+import {
+  "moonbitlang/core/debug",
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+pub fn detect_degenerate_points(Array[@core.Point2D], Double) -> Array[DegenerateResult]
+
+pub fn detect_degenerate_triangles(Array[@core.Point3D], Array[(Int32, Int32, Int32)], Double) -> Array[DegenerateResult]
+
+pub fn detect_self_intersection(Array[@core.Point2D], Double) -> Array[DegenerateResult]
+
+pub fn detect_small_angles(Array[@core.Point2D], Double) -> Array[DegenerateResult]
+
+pub fn remove_coincident_points(Array[@core.Point2D], Double) -> Array[@core.Point2D]
+
+// Errors
+
+// Types and methods
+pub struct DegenerateResult {
+  degenerate_type : DegenerateType
+  severity : Double
+  message : String
+}
+
+pub enum DegenerateType {
+  CollinearPoints
+  OverlappingEdges
+  ZeroAreaTriangle
+  NearTangent
+  SmallAngle
+  SelfIntersecting
+  CoincidentPoints
+} derive(Eq, @debug.Debug)
+pub fn DegenerateType::equal(Self, Self) -> Bool
+pub fn DegenerateType::not_equal(Self, Self) -> Bool
+
+// Type aliases
+
+// Traits

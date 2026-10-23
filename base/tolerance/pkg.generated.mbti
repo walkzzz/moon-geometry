@@ -1,0 +1,45 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/base/tolerance"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+pub fn angles_equal(Double, Double, ToleranceCtx) -> Bool
+
+pub fn is_degenerate_triangle(@core.Point2D, @core.Point2D, @core.Point2D, ToleranceCtx) -> Bool
+
+pub fn orient_with_tol(@core.Point2D, @core.Point2D, @core.Point2D, ToleranceCtx) -> Int32
+
+pub fn points_coincide(@core.Point2D, @core.Point2D, ToleranceCtx) -> Bool
+
+pub fn points_collinear(@core.Point2D, @core.Point2D, @core.Point2D, ToleranceCtx) -> Bool
+
+pub fn segments_overlap(@core.Point2D, @core.Point2D, @core.Point2D, @core.Point2D, ToleranceCtx) -> Bool
+
+pub fn snap_point(@core.Point2D, @core.Point2D, ToleranceCtx) -> @core.Point2D
+
+pub fn snap_to_zero(Double, ToleranceCtx) -> Double
+
+pub fn vectors_parallel(Double, Double, Double, Double, ToleranceCtx) -> Bool
+
+pub fn vectors_perpendicular(Double, Double, Double, Double, ToleranceCtx) -> Bool
+
+// Errors
+
+// Types and methods
+pub struct ToleranceCtx {
+  dist_tol : Double
+  angle_tol : Double
+  area_tol : Double
+  rel_tol : Double
+}
+pub fn ToleranceCtx::custom(Double) -> Self
+pub fn ToleranceCtx::default() -> Self
+pub fn ToleranceCtx::loose() -> Self
+pub fn ToleranceCtx::strict() -> Self
+
+// Type aliases
+
+// Traits

@@ -1,0 +1,28 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/geometry/incremental_delaunay"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+
+// Errors
+
+// Types and methods
+pub struct IncrementalDelaunay {
+  mut vertices : Array[@core.Point2D]
+  mut triangles : Array[(Int32, Int32, Int32)]
+}
+pub fn IncrementalDelaunay::from_points(Array[@core.Point2D]) -> Self
+pub fn IncrementalDelaunay::get_triangles(Self) -> Array[(Int32, Int32, Int32)]
+pub fn IncrementalDelaunay::get_vertices(Self) -> Array[@core.Point2D]
+pub fn IncrementalDelaunay::insert(Self, @core.Point2D) -> Unit
+pub fn IncrementalDelaunay::new() -> Self
+pub fn IncrementalDelaunay::remove(Self, Int32) -> Unit
+pub fn IncrementalDelaunay::triangle_count(Self) -> Int32
+pub fn IncrementalDelaunay::vertex_count(Self) -> Int32
+
+// Type aliases
+
+// Traits
