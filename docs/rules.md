@@ -198,10 +198,11 @@ pub using @pkg { type T, name1, trait Trait1 }
 | v0.246.0 | Composable trait + proof-carrying code | ✅ | ad1c6a4 |
 | v0.247.0 | VertexCountable(9) + FaceCountable(7) traits | ✅ | f6058c4 |
 | v0.248.0 | EdgeCountable(5) trait | ✅ | 3e57287 |
-| v0.249.0 | Bounded2D + Subdivisible traits | ✅ | 0299d62 |
+| v0.249.0 | Bounded2D + Subdivisible traits, 10 分类合并, CRAP 优化 | ✅ | 0299d62 |
+| v0.250.0 | 工程级扩展：公差体系+退化鲁棒性+拓扑验证+增量Delaunay | ✅ | da3317e |
 
-**当前测试**：2111 passed · **当前模块**：283（24 分类） · **当前 warning**：0 · **当前 error**：0 · **未文档化 pub fn**：0 · **Trait 数**：12
+**当前测试**：2296 passed · **当前模块**：287（10 分类） · **当前 warning**：1 · **当前 error**：0 · **未文档化 pub fn**：0 · **Trait 数**：12
 
 ---
 
-> **文件结束** | Moon Geometry Rules v1.0 | 2026-10-21
+> **文件结束** | Moon Geometry Rules v1.0 | 2026-10-23
