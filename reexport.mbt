@@ -11569,3 +11569,13 @@ pub fn incremental_delaunay_triangles(
 pub fn incremental_delaunay_vertices(d : IncrementalDelaunay) -> Array[Point2D] {
   @incremental_delaunay.IncrementalDelaunay::get_vertices(d)
 }
+
+// ========== geom_error ==========
+
+///|
+pub type GeomError = @geom_error.GeomError
+
+///|
+pub fn GeomError::geom_error_to_message(self : GeomError) -> String {
+  @geom_error.GeomError::to_message(self)
+}

@@ -281,4 +281,5 @@ import {
   "walkzzz/moon-geometry/base/degenerate",
   "walkzzz/moon-geometry/mesh/topology_check",
   "walkzzz/moon-geometry/geometry/incremental_delaunay",
+  "walkzzz/moon-geometry/base/geom_error",
 }

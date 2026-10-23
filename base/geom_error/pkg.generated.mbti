@@ -1,0 +1,28 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/base/geom_error"
+
+import {
+  "moonbitlang/core/debug",
+}
+
+// Values
+
+// Errors
+
+// Types and methods
+pub enum GeomError {
+  EmptyInput
+  InsufficientInput(String)
+  DegenerateGeometry(String)
+  NumericalFailure(String)
+  InvalidParameter(String)
+  TopologyError(String)
+  IoError(String)
+} derive(Eq, @debug.Debug)
+pub fn GeomError::equal(Self, Self) -> Bool
+pub fn GeomError::not_equal(Self, Self) -> Bool
+pub fn GeomError::to_message(Self) -> String
+
+// Type aliases
+
+// Traits

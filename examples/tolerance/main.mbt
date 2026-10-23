@@ -12,7 +12,9 @@ fn main {
   println("a coincide b (loose tol): \{@geo.points_coincide(a, b, tol)}")
   println("a coincide c (loose tol): \{@geo.points_coincide(a, c, tol)}")
   let strict_tol = @geo.tolerance_ctx_strict()
-  println("a coincide b (strict tol): \{@geo.points_coincide(a, b, strict_tol)}")
+  println(
+    "a coincide b (strict tol): \{@geo.points_coincide(a, b, strict_tol)}",
+  )
   let p1 = @geo.Point2D::new(0.0, 0.0)
   let p2 = @geo.Point2D::new(1.0, 0.0)
   let p3 = @geo.Point2D::new(2.0, 0.0)
