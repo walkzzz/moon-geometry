@@ -19,3 +19,4 @@ keywords = [
 preferred_target = "wasm"
 
 description = "Pure MoonBit computational geometry library: convex hull, Delaunay, Voronoi, polygon boolean ops, transforms, Minkowski"
+toolchain = "0.1.20261020"
