@@ -1,11 +1,19 @@
 ///|
 /// Bilinear resampling to target size. / 双线性重采样到目标尺寸。
-pub fn resample_bilinear(r : Raster, new_cols : Int, new_rows : Int) -> Raster {
+pub fn resample_bilinear(
+  r : Raster,
+  new_cols : Int32,
+  new_rows : Int32,
+) -> Raster {
   let result = Raster::new(new_cols, new_rows, r.nodata, r.nodata)
   for row in 0..<new_rows {
     for col in 0..<new_cols {
-      let fx = col.to_double() * (r.cols - 1).to_double() / (new_cols - 1).to_double()
-      let fy = row.to_double() * (r.rows - 1).to_double() / (new_rows - 1).to_double()
+      let fx = col.to_double() *
+        (r.cols - 1).to_double() /
+        (new_cols - 1).to_double()
+      let fy = row.to_double() *
+        (r.rows - 1).to_double() /
+        (new_rows - 1).to_double()
       let ix = fx.floor().to_int()
       let iy = fy.floor().to_int()
       let dx = fx - ix.to_double()

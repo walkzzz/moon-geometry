@@ -1,4 +1,5 @@
-fn make_cube_faces() -> Array[Array[Int]] {
+///|
+fn make_cube_faces() -> Array[Array[Int32]] {
   [
     [0, 3, 2, 1],
     [4, 5, 6, 7],
@@ -9,6 +10,7 @@ fn make_cube_faces() -> Array[Array[Int]] {
   ]
 }
 
+///|
 fn make_cube_verts() -> Array[@core.Point3D] {
   [
     @core.Point3D::new(0.0, 0.0, 0.0),
@@ -22,6 +24,7 @@ fn make_cube_verts() -> Array[@core.Point3D] {
   ]
 }
 
+///|
 fn make_cube2_verts() -> Array[@core.Point3D] {
   [
     @core.Point3D::new(0.5, 0.5, 0.5),
@@ -35,6 +38,7 @@ fn make_cube2_verts() -> Array[@core.Point3D] {
   ]
 }
 
+///|
 test "polyhedron union" {
   let va = make_cube_verts()
   let fa = make_cube_faces()
@@ -45,6 +49,7 @@ test "polyhedron union" {
   assert_true(result.vertices.length() > 0)
 }
 
+///|
 test "polyhedron intersection" {
   let va = make_cube_verts()
   let fa = make_cube_faces()
@@ -54,6 +59,7 @@ test "polyhedron intersection" {
   assert_true(result.success)
 }
 
+///|
 test "polyhedron difference" {
   let va = make_cube_verts()
   let fa = make_cube_faces()
@@ -63,6 +69,7 @@ test "polyhedron difference" {
   assert_true(result.success)
 }
 
+///|
 fn make_tet_verts() -> Array[@core.Point3D] {
   [
     @core.Point3D::new(0.0, 0.0, 0.0),
@@ -72,10 +79,12 @@ fn make_tet_verts() -> Array[@core.Point3D] {
   ]
 }
 
-fn make_tet_faces() -> Array[Array[Int]] {
+///|
+fn make_tet_faces() -> Array[Array[Int32]] {
   [[0, 2, 1], [0, 1, 3], [0, 3, 2], [1, 2, 3]]
 }
 
+///|
 fn make_tet2_verts() -> Array[@core.Point3D] {
   [
     @core.Point3D::new(10.0, 10.0, 10.0),
@@ -85,6 +94,7 @@ fn make_tet2_verts() -> Array[@core.Point3D] {
   ]
 }
 
+///|
 test "polyhedron union disjoint" {
   let va = make_tet_verts()
   let fa = make_tet_faces()
@@ -95,6 +105,7 @@ test "polyhedron union disjoint" {
   assert_eq(result.faces.length(), 8)
 }
 
+///|
 test "polyhedron difference disjoint" {
   let va = make_tet_verts()
   let fa = make_tet_faces()
@@ -104,6 +115,7 @@ test "polyhedron difference disjoint" {
   assert_eq(result.faces.length(), 4)
 }
 
+///|
 test "poly bool result construct" {
   let r = PolyBoolResult::new([], [], true)
   assert_true(r.success)

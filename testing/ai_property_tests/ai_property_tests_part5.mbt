@@ -1,4 +1,5 @@
-///| Random hull contains all points | 随机凸包包含所有点
+///|
+/// Random hull contains all points | 随机凸包包含所有点
 test "ai: random hull contains all points" {
   let mut seed = 7777
   for _ in 0..<10 {
@@ -17,8 +18,8 @@ test "ai: random hull contains all points" {
   }
 }
 
-
-///| Random dot product symmetry | 随机点积对称性
+///|
+/// Random dot product symmetry | 随机点积对称性
 test "ai: random dot product symmetry" {
   let mut seed = 31415
   for _ in 0..<50 {
@@ -36,8 +37,8 @@ test "ai: random dot product symmetry" {
   }
 }
 
-
-///| Random cross product anti-symmetry | 随机叉积反对称性
+///|
+/// Random cross product anti-symmetry | 随机叉积反对称性
 test "ai: random cross product anti-symmetry" {
   let mut seed = 27182
   for _ in 0..<50 {

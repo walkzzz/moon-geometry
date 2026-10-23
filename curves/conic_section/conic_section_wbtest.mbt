@@ -1,51 +1,66 @@
+///|
 test "conic ellipse classification" {
   let c = Conic::new(9.0, 0.0, 4.0, 0.0, 0.0, -36.0)
   let ct = Conic::classify(c)
-  assert_true(match ct {
-    Ellipse => true
-    _ => false
-  })
+  assert_true(
+    match ct {
+      Ellipse => true
+      _ => false
+    },
+  )
 }
 
+///|
 test "conic hyperbola classification" {
   let c = Conic::new(9.0, 0.0, -4.0, 0.0, 0.0, -36.0)
   let ct = Conic::classify(c)
-  assert_true(match ct {
-    Hyperbola => true
-    _ => false
-  })
+  assert_true(
+    match ct {
+      Hyperbola => true
+      _ => false
+    },
+  )
 }
 
+///|
 test "conic parabola classification" {
   let c = Conic::new(0.0, 0.0, 1.0, -4.0, 0.0, 0.0)
   let ct = Conic::classify(c)
-  assert_true(match ct {
-    Parabola => true
-    _ => false
-  })
+  assert_true(
+    match ct {
+      Parabola => true
+      _ => false
+    },
+  )
 }
 
+///|
 test "conic circle classification" {
   let c = Conic::new(1.0, 0.0, 1.0, 0.0, 0.0, -1.0)
   let ct = Conic::classify(c)
-  assert_true(match ct {
-    Ellipse => true
-    _ => false
-  })
+  assert_true(
+    match ct {
+      Ellipse => true
+      _ => false
+    },
+  )
 }
 
+///|
 test "conic eval on curve" {
   let c = Conic::new(1.0, 0.0, 1.0, 0.0, 0.0, -1.0)
   let p = @core.Point2D::new(1.0, 0.0)
   assert_true(Conic::on_curve(c, p, 0.000000001))
 }
 
+///|
 test "conic eval off curve" {
   let c = Conic::new(1.0, 0.0, 1.0, 0.0, 0.0, -1.0)
   let p = @core.Point2D::new(2.0, 0.0)
   assert_false(Conic::on_curve(c, p, 0.000000001))
 }
 
+///|
 test "conic discriminant" {
   let ellipse = Conic::new(9.0, 0.0, 4.0, 0.0, 0.0, -36.0)
   assert_true(Conic::discriminant(ellipse) < 0.0)
@@ -55,6 +70,7 @@ test "conic discriminant" {
   assert_true(Conic::discriminant(para).abs() < 0.000000001)
 }
 
+///|
 test "conic center ellipse" {
   let c = Conic::new(1.0, 0.0, 1.0, -4.0, -6.0, 4.0)
   match Conic::center(c) {
@@ -66,6 +82,7 @@ test "conic center ellipse" {
   }
 }
 
+///|
 test "conic center parabola none" {
   let c = Conic::new(0.0, 0.0, 1.0, -4.0, 0.0, 0.0)
   match Conic::center(c) {
@@ -74,6 +91,7 @@ test "conic center parabola none" {
   }
 }
 
+///|
 test "conic tangent at point" {
   let c = Conic::new(1.0, 0.0, 1.0, 0.0, 0.0, -1.0)
   let p = @core.Point2D::new(1.0, 0.0)
@@ -82,6 +100,7 @@ test "conic tangent at point" {
   assert_true(b.abs() < 0.000000001)
 }
 
+///|
 test "conic asymptotes hyperbola" {
   let c = Conic::new(1.0, 0.0, -1.0, 0.0, 0.0, -1.0)
   match Conic::asymptotes(c) {
@@ -90,6 +109,7 @@ test "conic asymptotes hyperbola" {
   }
 }
 
+///|
 test "conic asymptotes ellipse none" {
   let c = Conic::new(1.0, 0.0, 1.0, 0.0, 0.0, -1.0)
   match Conic::asymptotes(c) {
@@ -98,6 +118,7 @@ test "conic asymptotes ellipse none" {
   }
 }
 
+///|
 test "conic eccentricity parabola" {
   let c = Conic::new(0.0, 0.0, 1.0, -4.0, 0.0, 0.0)
   match Conic::eccentricity(c) {
@@ -106,6 +127,7 @@ test "conic eccentricity parabola" {
   }
 }
 
+///|
 test "conic axis aligned" {
   let c = Conic::new(5.0, 6.0, 5.0, 0.0, 0.0, -8.0)
   let (aligned, _theta) = Conic::axis_aligned(c)

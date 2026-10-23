@@ -1,8 +1,6 @@
 ///|
 /// Check if a polyline self-intersects. / 检查折线是否自相交。
-pub fn curve_self_intersect(
-  points : Array[@core.Point2D],
-) -> Bool {
+pub fn curve_self_intersect(points : Array[@core.Point2D]) -> Bool {
   let n = points.length()
   if n < 4 {
     return false

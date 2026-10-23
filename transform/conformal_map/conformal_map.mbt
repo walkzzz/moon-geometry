@@ -7,12 +7,20 @@
 
 ///|
 pub fn conformal_factor(scale_x : Double, scale_y : Double) -> Double {
-  if scale_x.abs() < 0.000000000001 { return 0.0 }
+  if scale_x.abs() < 0.000000000001 {
+    return 0.0
+  }
   scale_y / scale_x
 }
 
 ///|
-pub fn is_conformal(j11 : Double, j12 : Double, j21 : Double, j22 : Double, tol : Double) -> Bool {
+pub fn is_conformal(
+  j11 : Double,
+  j12 : Double,
+  j21 : Double,
+  j22 : Double,
+  tol : Double,
+) -> Bool {
   let a = j11 - j22
   let b = j12 + j21
   (a * a + b * b).sqrt() < tol
@@ -31,5 +39,9 @@ pub fn angle_distortion(theta_before : Double, theta_after : Double) -> Double {
 
 ///|
 pub fn area_distortion(area_before : Double, area_after : Double) -> Double {
-  if area_before.abs() < 0.000000000001 { 0.0 } else { @math.ln(area_after / area_before).abs() }
+  if area_before.abs() < 0.000000000001 {
+    0.0
+  } else {
+    @math.ln(area_after / area_before).abs()
+  }
 }

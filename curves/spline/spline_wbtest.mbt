@@ -1,3 +1,4 @@
+///|
 test "spline_length" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -8,6 +9,7 @@ test "spline_length" {
   assert_true((len - 7.0).abs() < 0.001)
 }
 
+///|
 test "spline_curvature" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -18,6 +20,7 @@ test "spline_curvature" {
   assert_true(k > 0.0)
 }
 
+///|
 test "spline_curvature_profile" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -29,6 +32,7 @@ test "spline_curvature_profile" {
   assert_true(profile.length() == 2)
 }
 
+///|
 test "spline_total_curvature" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -40,6 +44,7 @@ test "spline_total_curvature" {
   assert_true(total > 0.0)
 }
 
+///|
 test "spline_max_curvature_point" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),

@@ -1,3 +1,4 @@
+///|
 test "simplify edge length" {
   let m = @mesh_data.Mesh::new()
   let v0 = add_vertex_coords(m, 0.0, 0.0, 0.0)
@@ -8,6 +9,7 @@ test "simplify edge length" {
   assert_true(@mesh_data.Mesh::vertex_count(simplified) <= 3)
 }
 
+///|
 test "edge collapse cost" {
   let m = @mesh_data.Mesh::new()
   let v0 = add_vertex_coords(m, 0.0, 0.0, 0.0)
@@ -16,6 +18,7 @@ test "edge collapse cost" {
   assert_true((cost - 5.0).abs() < 0.001)
 }
 
+///|
 test "collapsible edges" {
   let m = @mesh_data.Mesh::new()
   ignore(add_vertex_coords(m, 0.0, 0.0, 0.0))
@@ -25,6 +28,7 @@ test "collapsible edges" {
   assert_eq(count, 1)
 }
 
+///|
 test "simplification ratio" {
   let m1 = @mesh_data.Mesh::new()
   ignore(add_vertex_coords(m1, 0.0, 0.0, 0.0))
@@ -36,6 +40,7 @@ test "simplification ratio" {
   assert_true((ratio - 0.6667).abs() < 0.01)
 }
 
+///|
 test "simplify no change" {
   let m = @mesh_data.Mesh::new()
   let v0 = add_vertex_coords(m, 0.0, 0.0, 0.0)

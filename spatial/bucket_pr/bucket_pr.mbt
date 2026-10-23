@@ -2,22 +2,24 @@
 /// Bucket PR k-d tree node. / 桶 PR k-d 树节点。
 pub struct BucketPRNode {
   is_leaf : Bool
-  bucket : Array[Int]
-  axis : Int
+  bucket : Array[Int32]
+  axis : Int32
   split_val : Double
-  left : Int
-  right : Int
+  left : Int32
+  right : Int32
 } derive(Debug)
 
+///|
 pub extend BucketPRNode with @moonbitlang/core/debug.Debug::{to_repr}
 
+///|
 fn bucket_pr_build_rec(
   points : Array[@core.Point2D],
-  indices : Array[Int],
-  axis : Int,
-  bucket_size : Int,
+  indices : Array[Int32],
+  axis : Int32,
+  bucket_size : Int32,
   nodes : Array[BucketPRNode],
-) -> Int {
+) -> Int32 {
   if indices.length() <= bucket_size {
     nodes.push({
       is_leaf: true,
@@ -29,7 +31,7 @@ fn bucket_pr_build_rec(
     })
     return nodes.length() - 1
   }
-  let sorted : Array[Int] = []
+  let sorted : Array[Int32] = []
   for i in 0..<indices.length() {
     sorted.push(indices[i])
   }
@@ -50,16 +52,28 @@ fn bucket_pr_build_rec(
   } else {
     points[sorted[mid]].y()
   }
-  let left_indices : Array[Int] = []
-  let right_indices : Array[Int] = []
+  let left_indices : Array[Int32] = []
+  let right_indices : Array[Int32] = []
   for i in 0..<mid {
     left_indices.push(sorted[i])
   }
   for i in mid..<sorted.length() {
     right_indices.push(sorted[i])
   }
-  let left_idx = bucket_pr_build_rec(points, left_indices, 1 - axis, bucket_size, nodes)
-  let right_idx = bucket_pr_build_rec(points, right_indices, 1 - axis, bucket_size, nodes)
+  let left_idx = bucket_pr_build_rec(
+    points,
+    left_indices,
+    1 - axis,
+    bucket_size,
+    nodes,
+  )
+  let right_idx = bucket_pr_build_rec(
+    points,
+    right_indices,
+    1 - axis,
+    bucket_size,
+    nodes,
+  )
   nodes.push({
     is_leaf: false,
     bucket: [],

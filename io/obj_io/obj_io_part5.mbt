@@ -4,6 +4,7 @@ pub fn parse_double_sv(s : StringView) -> Double {
   pd(s)
 }
 
+///|
 fn pd(s : StringView) -> Double {
   let t = s.trim()
   if t.length() == 0 {
@@ -71,7 +72,8 @@ fn pd(s : StringView) -> Double {
   }
 }
 
-fn pi(s : StringView) -> Int {
+///|
+fn pi(s : StringView) -> Int32 {
   let t = s.trim()
   if t.length() == 0 {
     return 0
@@ -98,6 +100,7 @@ fn pi(s : StringView) -> Int {
   }
 }
 
+///|
 fn tokens(s : StringView) -> Array[StringView] {
   let result : Array[StringView] = []
   let mut cur = ""

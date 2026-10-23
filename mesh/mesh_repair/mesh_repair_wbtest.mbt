@@ -1,3 +1,4 @@
+///|
 test "remove degenerate faces" {
   let verts = [
     @core.Point3D::new(0.0, 0.0, 0.0),
@@ -11,6 +12,7 @@ test "remove degenerate faces" {
   assert_eq(result.length(), 1)
 }
 
+///|
 test "merge duplicate vertices" {
   let verts = [
     @core.Point3D::new(0.0, 0.0, 0.0),
@@ -25,18 +27,21 @@ test "merge duplicate vertices" {
   assert_eq(nf.length(), 2)
 }
 
+///|
 test "find boundary edges" {
   let faces = [(0, 1, 2)]
   let boundary = find_boundary_edges(faces)
   assert_eq(boundary.length(), 3)
 }
 
+///|
 test "find boundary edges closed" {
   let faces = [(0, 2, 1), (0, 1, 3), (0, 3, 2), (1, 2, 3)]
   let boundary = find_boundary_edges(faces)
   assert_eq(boundary.length(), 0)
 }
 
+///|
 test "fill holes" {
   let verts = [
     @core.Point3D::new(0.0, 0.0, 0.0),
@@ -50,6 +55,7 @@ test "fill holes" {
   assert_true(new_faces.length() >= faces.length())
 }
 
+///|
 test "repair mesh full" {
   let verts = [
     @core.Point3D::new(0.0, 0.0, 0.0),
@@ -62,6 +68,7 @@ test "repair mesh full" {
   assert_true(result.degenerate_removed >= 1)
 }
 
+///|
 test "no degenerate faces" {
   let verts = [
     @core.Point3D::new(0.0, 0.0, 0.0),
@@ -74,6 +81,7 @@ test "no degenerate faces" {
   assert_eq(result.length(), 1)
 }
 
+///|
 test "merge no duplicates" {
   let verts = [
     @core.Point3D::new(0.0, 0.0, 0.0),

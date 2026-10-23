@@ -24,18 +24,22 @@ pub fn poisson_disk_sample(
   result
 }
 
-
 ///|
 /// Sample points along a line segment. / 沿线段采样点。
 pub fn segment_sample(
   p1 : @core.Point2D,
   p2 : @core.Point2D,
-  n : Int,
+  n : Int32,
 ) -> Array[@core.Point2D] {
   let result : Array[@core.Point2D] = []
   for i in 0..<n {
     let t = i.to_double() / (n - 1).to_double()
-    result.push(@core.Point2D::new(p1.x() + t * (p2.x() - p1.x()), p1.y() + t * (p2.y() - p1.y())))
+    result.push(
+      @core.Point2D::new(
+        p1.x() + t * (p2.x() - p1.x()),
+        p1.y() + t * (p2.y() - p1.y()),
+      ),
+    )
   }
   result
 }

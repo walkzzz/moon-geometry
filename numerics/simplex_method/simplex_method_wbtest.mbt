@@ -1,3 +1,4 @@
+///|
 test "simplex basic min" {
   let a = [[1.0, 1.0], [1.0, 0.0], [0.0, 1.0]]
   let b = [4.0, 3.0, 2.0]
@@ -7,6 +8,7 @@ test "simplex basic min" {
   assert_true((r.value + 4.0).abs() < 0.001)
 }
 
+///|
 test "simplex trivial" {
   let a = [[1.0]]
   let b = [5.0]
@@ -16,6 +18,7 @@ test "simplex trivial" {
   assert_true(r.value >= -0.001)
 }
 
+///|
 test "simplex two vars" {
   let a = [[2.0, 1.0], [1.0, 3.0]]
   let b = [4.0, 6.0]
@@ -25,6 +28,7 @@ test "simplex two vars" {
   assert_true(r.value >= 0.0)
 }
 
+///|
 test "simplex_max basic" {
   let a = [[1.0, 1.0], [1.0, 0.0], [0.0, 1.0]]
   let b = [4.0, 3.0, 2.0]
@@ -34,6 +38,7 @@ test "simplex_max basic" {
   assert_true((r.value - 4.0).abs() < 0.001)
 }
 
+///|
 test "simplex_max single var" {
   let a = [[1.0]]
   let b = [10.0]
@@ -43,6 +48,7 @@ test "simplex_max single var" {
   assert_true((r.value - 30.0).abs() < 0.001)
 }
 
+///|
 test "simplex_result construct" {
   let r = SimplexResult::new([1.0, 2.0], 5.0, true)
   assert_true(r.success)
@@ -50,6 +56,7 @@ test "simplex_result construct" {
   assert_eq(r.x.length(), 2)
 }
 
+///|
 test "simplex empty constraints" {
   let a : Array[Array[Double]] = []
   let b : Array[Double] = []
@@ -58,6 +65,7 @@ test "simplex empty constraints" {
   assert_true(r.success)
 }
 
+///|
 test "simplex unbounded direction handled" {
   let a = [[-1.0, 1.0]]
   let b = [1.0]
@@ -67,6 +75,7 @@ test "simplex unbounded direction handled" {
   assert_true(true)
 }
 
+///|
 test "simplex degenerate" {
   let a = [[1.0, 1.0], [2.0, 2.0]]
   let b = [3.0, 6.0]
@@ -76,6 +85,7 @@ test "simplex degenerate" {
   assert_true(r.value.abs() < 0.01)
 }
 
+///|
 test "simplex_max two constraints" {
   let a = [[2.0, 1.0], [1.0, 2.0]]
   let b = [4.0, 4.0]
@@ -84,6 +94,8 @@ test "simplex_max two constraints" {
   assert_true(r.success)
   assert_true(r.value > 0.0)
 }
+
+///|
 test "simplex negative b two phase" {
   let a = [[-1.0, 1.0], [1.0, 1.0]]
   let b = [-1.0, 4.0]
@@ -93,6 +105,7 @@ test "simplex negative b two phase" {
   assert_true(true)
 }
 
+///|
 test "simplex_max negative b" {
   let a = [[-1.0, 1.0], [1.0, 1.0]]
   let b = [-1.0, 4.0]
@@ -102,6 +115,7 @@ test "simplex_max negative b" {
   assert_true(true)
 }
 
+///|
 test "simplex empty c" {
   let a = [[1.0]]
   let b = [5.0]
@@ -110,6 +124,7 @@ test "simplex empty c" {
   assert_true(r.success)
 }
 
+///|
 test "simplex zero iterations" {
   let a = [[1.0, 1.0]]
   let b = [4.0]
@@ -119,13 +134,9 @@ test "simplex zero iterations" {
   assert_true(true)
 }
 
+///|
 test "simplex three vars" {
-  let a = [
-    [1.0, 1.0, 1.0],
-    [1.0, 0.0, 0.0],
-    [0.0, 1.0, 0.0],
-    [0.0, 0.0, 1.0],
-  ]
+  let a = [[1.0, 1.0, 1.0], [1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0]]
   let b = [6.0, 2.0, 2.0, 2.0]
   let c = [1.0, 1.0, 1.0]
   let r = simplex(a, b, c, 100)
@@ -133,13 +144,9 @@ test "simplex three vars" {
   assert_true(r.value >= 0.0)
 }
 
+///|
 test "simplex_max three vars" {
-  let a = [
-    [1.0, 1.0, 1.0],
-    [1.0, 0.0, 0.0],
-    [0.0, 1.0, 0.0],
-    [0.0, 0.0, 1.0],
-  ]
+  let a = [[1.0, 1.0, 1.0], [1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0]]
   let b = [6.0, 2.0, 2.0, 2.0]
   let c = [1.0, 1.0, 1.0]
   let r = simplex_max(a, b, c, 100)
@@ -147,6 +154,7 @@ test "simplex_max three vars" {
   assert_true(r.value > 0.0)
 }
 
+///|
 test "simplex infeasible two phase" {
   let a = [[1.0, 1.0], [-1.0, -1.0]]
   let b = [1.0, -2.0]
@@ -156,6 +164,7 @@ test "simplex infeasible two phase" {
   assert_true(true)
 }
 
+///|
 test "simplex result accessors" {
   let r = SimplexResult::new([1.0, 2.0, 3.0], 10.0, true)
   assert_eq(r.x.length(), 3)
@@ -165,12 +174,14 @@ test "simplex result accessors" {
   assert_true((r.value - 10.0).abs() < 0.000001)
 }
 
+///|
 test "simplex failed result" {
   let r = SimplexResult::new([], 0.0, false)
   assert_false(r.success)
   assert_eq(r.x.length(), 0)
 }
 
+///|
 test "simplex single var negative b" {
   let a = [[-1.0]]
   let b = [-5.0]
@@ -180,6 +191,7 @@ test "simplex single var negative b" {
   assert_true(true)
 }
 
+///|
 test "simplex_max empty constraints" {
   let a : Array[Array[Double]] = []
   let b : Array[Double] = []

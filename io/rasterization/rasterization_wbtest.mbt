@@ -1,3 +1,4 @@
+///|
 test "buffer create" {
   let buf = RasterBuffer::new(10, 10)
   assert_eq(buf.width, 10)
@@ -5,6 +6,7 @@ test "buffer create" {
   assert_eq(get_pixel(buf, 0, 0), 0)
 }
 
+///|
 test "set pixel" {
   let buf = RasterBuffer::new(10, 10)
   set_pixel(buf, 5, 5, 1)
@@ -12,6 +14,7 @@ test "set pixel" {
   assert_eq(get_pixel(buf, 0, 0), 0)
 }
 
+///|
 test "set pixel out of bounds" {
   let buf = RasterBuffer::new(10, 10)
   set_pixel(buf, -1, 0, 1)
@@ -19,6 +22,7 @@ test "set pixel out of bounds" {
   assert_eq(get_pixel(buf, 0, 0), 0)
 }
 
+///|
 test "raster horizontal line" {
   let buf = RasterBuffer::new(10, 10)
   raster_line(buf, 0, 5, 9, 5, 1)
@@ -31,6 +35,7 @@ test "raster horizontal line" {
   assert_eq(count, 10)
 }
 
+///|
 test "raster vertical line" {
   let buf = RasterBuffer::new(10, 10)
   raster_line(buf, 5, 0, 5, 9, 1)
@@ -43,6 +48,7 @@ test "raster vertical line" {
   assert_eq(count, 10)
 }
 
+///|
 test "raster diagonal line" {
   let buf = RasterBuffer::new(10, 10)
   raster_line(buf, 0, 0, 9, 9, 1)
@@ -51,6 +57,7 @@ test "raster diagonal line" {
   assert_eq(get_pixel(buf, 5, 5), 1)
 }
 
+///|
 test "raster triangle" {
   let buf = RasterBuffer::new(10, 10)
   raster_triangle(
@@ -64,6 +71,7 @@ test "raster triangle" {
   assert_true(count_filled(buf, 0) > 0)
 }
 
+///|
 test "depth test" {
   let buf = RasterBuffer::new(10, 10)
   set_pixel_depth(buf, 5, 5, 1, 0.5)
@@ -74,6 +82,7 @@ test "depth test" {
   assert_eq(get_pixel(buf, 5, 5), 3)
 }
 
+///|
 test "clear buffer" {
   let buf = RasterBuffer::new(5, 5)
   set_pixel(buf, 2, 2, 1)
@@ -81,6 +90,7 @@ test "clear buffer" {
   assert_eq(get_pixel(buf, 2, 2), 0)
 }
 
+///|
 test "count filled" {
   let buf = RasterBuffer::new(10, 10)
   set_pixel(buf, 0, 0, 1)
@@ -88,6 +98,7 @@ test "count filled" {
   assert_eq(count_filled(buf, 0), 2)
 }
 
+///|
 test "triangle depth interpolation" {
   let buf = RasterBuffer::new(10, 10)
   raster_triangle(

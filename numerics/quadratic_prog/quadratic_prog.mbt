@@ -10,13 +10,14 @@
 /// ## Complexity: O(n^3) per KKT solve, O(iter * n^3) for active set
 /// ## 复杂度: 每次 KKT 求解 O(n^3)，活跃集 O(iter * n^3)
 
+///|
 /// |
 /// Solve a linear system A x = b via Gaussian elimination with partial pivoting.
 /// 用部分主元高斯消元法求解线性方程组 A x = b。
 pub fn solve_linear(
   a : Array[Array[Double]],
   b : Array[Double],
-  n : Int,
+  n : Int32,
 ) -> Array[Double]? {
   let m : Array[Array[Double]] = []
   for i in 0..<n {
@@ -71,13 +72,14 @@ pub fn solve_linear(
   Some(x)
 }
 
+///|
 /// |
 /// Solve unconstrained QP: minimize 1/2 x^T Q x + c^T x. Solution: Q x = -c.
 /// 求解无约束二次规划。解：Q x = -c。
 pub fn solve_unconstrained_qp(
   q : Array[Array[Double]],
   c : Array[Double],
-  n : Int,
+  n : Int32,
 ) -> Array[Double]? {
   let neg_c : Array[Double] = Array::make(n, 0.0)
   for i in 0..<n {
@@ -86,6 +88,7 @@ pub fn solve_unconstrained_qp(
   solve_linear(q, neg_c, n)
 }
 
+///|
 /// |
 /// Result of a quadratic program. / 二次规划结果。
 pub struct QPResult {
@@ -94,12 +97,18 @@ pub struct QPResult {
   success : Bool
 }
 
+///|
 /// |
 /// Construct QP result. / 构造二次规划结果。
-pub fn QPResult::new(x : Array[Double], value : Double, success : Bool) -> QPResult {
-  { x, value, success }
+pub fn QPResult::new(
+  x : Array[Double],
+  value : Double,
+  success : Bool,
+) -> QPResult {
+  { x, value, success, }
 }
 
+///|
 /// |
 /// Solve QP with inequality constraints A x <= b using active-set method.
 /// 用活跃集方法求解带不等式约束 A x <= b 的二次规划。
@@ -108,14 +117,14 @@ pub fn active_set_qp(
   c : Array[Double],
   a : Array[Array[Double]],
   b : Array[Double],
-  n : Int,
-  max_iter : Int,
+  n : Int32,
+  max_iter : Int32,
 ) -> QPResult {
   let m_con = a.length()
   let x : Array[Double] = Array::make(n, 0.0)
   let active : Array[Bool] = Array::make(m_con, false)
   for _ in 0..<max_iter {
-    let active_idx : Array[Int] = []
+    let active_idx : Array[Int32] = []
     for i in 0..<m_con {
       if active[i] {
         active_idx.push(i)
@@ -145,16 +154,14 @@ pub fn active_set_qp(
     let sol = solve_linear(kkt, rhs, n + na)
     let new_x : Array[Double] = Array::make(n, 0.0)
     match sol {
-      Some(s) => {
+      Some(s) =>
         for i in 0..<n {
           new_x[i] = s[i]
         }
-      }
-      None => {
+      None =>
         for i in 0..<n {
           new_x[i] = x[i]
         }
-      }
     }
     let mut all_feasible = true
     let mut worst_viol = -1
@@ -179,7 +186,7 @@ pub fn active_set_qp(
       let mut remove_idx = -1
       let mut min_lam = -0.0000000001
       match sol {
-        Some(s) => {
+        Some(s) =>
           for k in 0..<na {
             let lam = s[n + k]
             if lam < min_lam {
@@ -187,7 +194,6 @@ pub fn active_set_qp(
               remove_idx = active_idx[k]
             }
           }
-        }
         None => ()
       }
       if remove_idx >= 0 {
@@ -203,7 +209,7 @@ pub fn active_set_qp(
             val += 0.5 * q[i][j] * x[i] * x[j]
           }
         }
-        return { x, value: val, success: true }
+        return { x, value: val, success: true, }
       }
     }
     for i in 0..<n {
@@ -217,9 +223,10 @@ pub fn active_set_qp(
       val += 0.5 * q[i][j] * x[i] * x[j]
     }
   }
-  { x, value: val, success: false }
+  { x, value: val, success: false, }
 }
 
+///|
 /// |
 /// Solve a 2D QP: minimize 1/2 x^T Q x + c^T x with box constraints lo <= x <= hi.
 /// 求解二维二次规划，带盒约束 lo <= x <= hi。
@@ -236,17 +243,13 @@ pub fn qp_2d_box(
 ) -> @core.Point2D {
   let q = [[q11, q12], [q12, q22]]
   let c = [c1, c2]
-  let a = [
-    [1.0, 0.0],
-    [-1.0, 0.0],
-    [0.0, 1.0],
-    [0.0, -1.0],
-  ]
+  let a = [[1.0, 0.0], [-1.0, 0.0], [0.0, 1.0], [0.0, -1.0]]
   let b = [hi1, -lo1, hi2, -lo2]
   let result = active_set_qp(q, c, a, b, 2, 100)
   @core.Point2D::new(result.x[0], result.x[1])
 }
 
+///|
 /// |
 /// Evaluate quadratic objective 1/2 x^T Q x + c^T x.
 /// 计算二次目标函数值。
@@ -254,7 +257,7 @@ pub fn qp_objective(
   q : Array[Array[Double]],
   c : Array[Double],
   x : Array[Double],
-  n : Int,
+  n : Int32,
 ) -> Double {
   let mut val = 0.0
   for i in 0..<n {

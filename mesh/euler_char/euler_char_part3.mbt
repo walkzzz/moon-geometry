@@ -1,6 +1,6 @@
 ///|
 /// Compute the Betti number b0 (number of connected components, approximation). / 计算 Betti 数 b0（连通分量数，近似）。
-pub fn betti_0(mesh : @mesh_data.Mesh) -> Int {
+pub fn betti_0(mesh : @mesh_data.Mesh) -> Int32 {
   let n = @mesh_data.Mesh::vertex_count(mesh)
   if n == 0 {
     return 0
@@ -12,7 +12,7 @@ pub fn betti_0(mesh : @mesh_data.Mesh) -> Int {
       continue
     }
     components += 1
-    let queue : Array[Int] = [start]
+    let queue : Array[Int32] = [start]
     visited[start] = true
     while queue.length() > 0 {
       let v = queue.remove(0)
@@ -31,11 +31,9 @@ pub fn betti_0(mesh : @mesh_data.Mesh) -> Int {
   components
 }
 
-fn get_face_neighbors(
-  f : @mesh_data.MeshFace,
-  v : Int,
-) -> Array[Int] {
-  let result : Array[Int] = []
+///|
+fn get_face_neighbors(f : @mesh_data.MeshFace, v : Int32) -> Array[Int32] {
+  let result : Array[Int32] = []
   if f.v0 == v {
     result.push(f.v1)
     result.push(f.v2)

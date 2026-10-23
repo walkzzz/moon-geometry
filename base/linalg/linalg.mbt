@@ -8,6 +8,7 @@
 /// ## Complexity: O(n³)
 /// ## 复杂度: O(n³)
 
+///|
 /// |
 /// Solve linear system Ax = b using Gaussian elimination.
 /// 使用高斯消元法求解 Ax = b。
@@ -22,7 +23,7 @@
 pub fn solve_linear(
   a : Array[Array[Double]],
   b : Array[Double],
-  n : Int,
+  n : Int32,
 ) -> Array[Double] {
   let m : Array[Array[Double]] = []
   for i in 0..<n {
@@ -50,7 +51,7 @@ pub fn solve_linear(
     }
     for row in (col + 1)..<n {
       let factor = m[row][col] / m[col][col]
-      for j in col..=(n) {
+      for j in col..<=n {
         m[row][j] -= factor * m[col][j]
       }
     }
@@ -71,10 +72,11 @@ pub fn solve_linear(
   x
 }
 
+///|
 /// |
 /// Compute matrix determinant.
 /// 计算矩阵行列式。
-pub fn determinant(a : Array[Array[Double]], n : Int) -> Double {
+pub fn determinant(a : Array[Array[Double]], n : Int32) -> Double {
   let m : Array[Array[Double]] = []
   for i in 0..<n {
     let row : Array[Double] = []
@@ -111,12 +113,13 @@ pub fn determinant(a : Array[Array[Double]], n : Int) -> Double {
   det
 }
 
+///|
 /// |
 /// Compute matrix inverse.
 /// 计算矩阵逆。
 pub fn matrix_inverse(
   a : Array[Array[Double]],
-  n : Int,
+  n : Int32,
 ) -> Array[Array[Double]]? {
   let det = determinant(a, n)
   if det.abs() < 0.0000000001 {

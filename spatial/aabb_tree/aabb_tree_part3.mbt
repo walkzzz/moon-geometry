@@ -3,8 +3,8 @@
 pub fn query_aabb(
   nodes : Array[AABBNode],
   query : @core.Rectangle,
-) -> Array[Int] {
-  let result : Array[Int] = []
+) -> Array[Int32] {
+  let result : Array[Int32] = []
   if nodes.length() == 0 {
     return result
   }
@@ -12,11 +12,12 @@ pub fn query_aabb(
   result
 }
 
+///|
 fn query_point_recursive(
   nodes : Array[AABBNode],
-  node_idx : Int,
+  node_idx : Int32,
   p : @core.Point2D,
-  result : Array[Int],
+  result : Array[Int32],
 ) -> Unit {
   if node_idx < 0 || node_idx >= nodes.length() {
     return

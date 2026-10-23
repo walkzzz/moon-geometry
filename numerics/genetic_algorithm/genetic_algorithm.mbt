@@ -8,74 +8,82 @@
 /// ## Complexity: O(generations * pop_size * n_genes)
 /// ## 复杂度: O(世代数 * 种群大小 * 基因数)
 
+///|
 /// |
 /// GA configuration. / 遗传算法配置。
 pub struct GAConfig {
-  pop_size : Int
-  n_genes : Int
+  pop_size : Int32
+  n_genes : Int32
   crossover_rate : Double
   mutation_rate : Double
-  elite_count : Int
+  elite_count : Int32
   lo : Array[Double]
   hi : Array[Double]
 }
 
+///|
 /// |
 /// Construct GA config. / 构造遗传算法配置。
 pub fn GAConfig::new(
-  pop_size : Int,
-  n_genes : Int,
+  pop_size : Int32,
+  n_genes : Int32,
   crossover_rate : Double,
   mutation_rate : Double,
-  elite_count : Int,
+  elite_count : Int32,
   lo : Array[Double],
   hi : Array[Double],
 ) -> GAConfig {
-  { pop_size, n_genes, crossover_rate, mutation_rate, elite_count, lo, hi }
+  { pop_size, n_genes, crossover_rate, mutation_rate, elite_count, lo, hi, }
 }
 
+///|
 /// |
 /// Result of genetic algorithm. / 遗传算法结果。
 pub struct GAResult {
   x : Array[Double]
   fitness : Double
-  generations : Int
+  generations : Int32
 }
 
+///|
 /// |
 /// Construct GA result. / 构造遗传算法结果。
 pub fn GAResult::new(
   x : Array[Double],
   fitness : Double,
-  generations : Int,
+  generations : Int32,
 ) -> GAResult {
-  { x, fitness, generations }
+  { x, fitness, generations, }
 }
 
+///|
 /// |
 /// Simple LCG random generator. / 简单线性同余随机生成器。
 priv struct GA_rng {
-  mut state : UInt
+  mut state : UInt32
 }
 
-fn GA_rng::new(seed : UInt) -> GA_rng {
-  { state: seed }
+///|
+fn GA_rng::new(seed : UInt32) -> GA_rng {
+  { state: seed, }
 }
 
+///|
 fn GA_rng::next(r : GA_rng) -> Double {
   r.state = r.state * 1103515245U + 12345U
   (r.state % 1000000U).to_double() / 1000000.0
 }
 
+///|
 /// |
 /// Tournament selection: pick best of k random individuals.
 /// 锦标赛选择：从 k 个随机个体中选最优。
 fn tournament_select(
   pop : Array[Array[Double]],
   fitness : Array[Double],
-  k : Int,
+  k : Int32,
   rng : GA_rng,
-) -> Int {
+) -> Int32 {
   let n = pop.length()
   let mut best = rng.next().to_int() % n
   if best < 0 {
@@ -93,6 +101,7 @@ fn tournament_select(
   best
 }
 
+///|
 /// |
 /// Arithmetic crossover: child = alpha * p1 + (1 - alpha) * p2.
 /// 算术交叉。
@@ -100,7 +109,7 @@ fn crossover(
   p1 : Array[Double],
   p2 : Array[Double],
   alpha : Double,
-  n : Int,
+  n : Int32,
 ) -> (Array[Double], Array[Double]) {
   let c1 : Array[Double] = Array::make(n, 0.0)
   let c2 : Array[Double] = Array::make(n, 0.0)
@@ -111,14 +120,11 @@ fn crossover(
   (c1, c2)
 }
 
+///|
 /// |
 /// Uniform mutation: replace gene with random value in [lo, hi].
 /// 均匀变异。
-fn mutate(
-  x : Array[Double],
-  config : GAConfig,
-  rng : GA_rng,
-) -> Array[Double] {
+fn mutate(x : Array[Double], config : GAConfig, rng : GA_rng) -> Array[Double] {
   let n = config.n_genes
   let result : Array[Double] = Array::make(n, 0.0)
   for i in 0..<n {
@@ -131,12 +137,10 @@ fn mutate(
   result
 }
 
+///|
 /// |
 /// Clamp individual to bounds. / 将个体限制在边界内。
-fn clamp_individual(
-  x : Array[Double],
-  config : GAConfig,
-) -> Array[Double] {
+fn clamp_individual(x : Array[Double], config : GAConfig) -> Array[Double] {
   let n = config.n_genes
   let result : Array[Double] = Array::make(n, 0.0)
   for i in 0..<n {
@@ -148,14 +152,15 @@ fn clamp_individual(
   result
 }
 
+///|
 /// |
 /// Genetic algorithm: maximize fitness(x). Returns best individual found.
 /// 遗传算法：最大化适应度。返回找到的最优个体。
 pub fn genetic_algorithm(
   fitness : (Array[Double]) -> Double,
   config : GAConfig,
-  max_generations : Int,
-  seed : UInt,
+  max_generations : Int32,
+  seed : UInt32,
 ) -> GAResult {
   let n = config.n_genes
   let ps = config.pop_size
@@ -187,7 +192,7 @@ pub fn genetic_algorithm(
         }
       }
     }
-    let indices : Array[Int] = Array::make(ps, 0)
+    let indices : Array[Int32] = Array::make(ps, 0)
     for i in 0..<ps {
       indices[i] = i
     }
@@ -261,25 +266,25 @@ pub fn genetic_algorithm(
       }
     }
   }
-  { x: best_x, fitness: best_fit, generations: gen_done }
+  { x: best_x, fitness: best_fit, generations: gen_done, }
 }
 
+///|
 /// |
 /// Genetic algorithm for minimization: minimizes f(x).
 /// 遗传算法用于最小化：最小化 f(x)。
 pub fn ga_minimize(
   f : (Array[Double]) -> Double,
   config : GAConfig,
-  max_generations : Int,
-  seed : UInt,
+  max_generations : Int32,
+  seed : UInt32,
 ) -> GAResult {
-  let neg_f = fn(x : Array[Double]) -> Double {
-    -f(x)
-  }
+  let neg_f = fn(x : Array[Double]) -> Double { -f(x) }
   let result = genetic_algorithm(neg_f, config, max_generations, seed)
-  { x: result.x, fitness: -result.fitness, generations: result.generations }
+  { x: result.x, fitness: -result.fitness, generations: result.generations, }
 }
 
+///|
 /// |
 /// 1D genetic algorithm convenience wrapper for minimization.
 /// 一维遗传算法便捷封装（最小化）。
@@ -287,17 +292,17 @@ pub fn ga_1d(
   f : (Double) -> Double,
   lo : Double,
   hi : Double,
-  pop_size : Int,
-  max_generations : Int,
-  seed : UInt,
+  pop_size : Int32,
+  max_generations : Int32,
+  seed : UInt32,
 ) -> Double {
-  let f_wrap = fn(x : Array[Double]) -> Double {
-    f(x[0])
-  }
+  let f_wrap = fn(x : Array[Double]) -> Double { f(x[0]) }
   let config = GAConfig::new(pop_size, 1, 0.8, 0.1, 2, [lo], [hi])
   let result = ga_minimize(f_wrap, config, max_generations, seed)
   result.x[0]
 }
+
+///|
 /// |
 /// Population standard deviation of fitness values. / 种群适应度的标准差。
 ///
@@ -319,9 +324,10 @@ pub fn ga_population_std(fitness : Array[Double]) -> Double {
     variance += d * d
   }
   variance = variance / (n - 1).to_double()
-  (variance).sqrt()
+  variance.sqrt()
 }
 
+///|
 /// |
 /// Exponential decay mutation rate schedule. / 指数衰减变异率调度。
 ///
@@ -330,7 +336,7 @@ pub fn ga_population_std(fitness : Array[Double]) -> Double {
 pub fn ga_mutation_schedule(
   initial_rate : Double,
   decay : Double,
-  generation : Int,
+  generation : Int32,
 ) -> Double {
   initial_rate * @math.exp(-decay * generation.to_double())
 }

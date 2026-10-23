@@ -16,10 +16,12 @@ pub fn ray_line_intersect(r : Ray, line : @core.Line) -> @core.Point2D? {
   }
 }
 
-
 ///|
 /// Ray-polygon boundary intersections. / 射线与多边形边界交点。
-pub fn ray_polygon_intersect(r : Ray, poly : @core.Polygon) -> Array[@core.Point2D] {
+pub fn ray_polygon_intersect(
+  r : Ray,
+  poly : @core.Polygon,
+) -> Array[@core.Point2D] {
   let result : Array[@core.Point2D] = []
   let n = poly.vertices.length()
   for i in 0..<n {

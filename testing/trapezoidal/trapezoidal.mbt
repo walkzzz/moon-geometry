@@ -3,12 +3,11 @@
 pub struct Trapezoid {
   left : Double
   right : Double
-  top : Int
-  bottom : Int
+  top : Int32
+  bottom : Int32
   left_p : @core.Point2D?
   right_p : @core.Point2D?
 }
-
 
 ///|
 /// Trapezoidal map for point location queries. / 用于点定位查询的梯形图。

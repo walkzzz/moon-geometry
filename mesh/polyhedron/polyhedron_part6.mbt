@@ -28,7 +28,6 @@ pub fn Polyhedron::centroid(p : Polyhedron) -> @core.Point3D {
   @core.Point3D::new(cx / total_vol, cy / total_vol, cz / total_vol)
 }
 
-
 ///|
 /// Create a unit cube. / 创建单位立方体。
 pub fn Polyhedron::cube(
@@ -56,7 +55,6 @@ pub fn Polyhedron::cube(
   p.add_face([v3, v0, v4, v7])
   p
 }
-
 
 ///|
 /// Create a tetrahedron. / 创建四面体。

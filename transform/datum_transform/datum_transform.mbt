@@ -22,7 +22,7 @@ pub fn Helmert7::new(
   rz : Double,
   scale : Double,
 ) -> Helmert7 {
-  { tx, ty, tz, rx, ry, rz, scale }
+  { tx, ty, tz, rx, ry, rz, scale, }
 }
 
 ///|
@@ -36,12 +36,17 @@ pub struct Helmert3 {
 ///|
 /// Construct 3-parameter transform. / 构造三参数变换。
 pub fn Helmert3::new(tx : Double, ty : Double, tz : Double) -> Helmert3 {
-  { tx, ty, tz }
+  { tx, ty, tz, }
 }
 
 ///|
 /// Apply 7-parameter Bursa-Wolf transform to ECEF point. / 对 ECEF 点应用七参数 Bursa-Wolf 变换。
-pub fn apply_helmert7(h : Helmert7, x : Double, y : Double, z : Double) -> (Double, Double, Double) {
+pub fn apply_helmert7(
+  h : Helmert7,
+  x : Double,
+  y : Double,
+  z : Double,
+) -> (Double, Double, Double) {
   let s = 1.0 + h.scale / 1000000.0
   let rx = h.rx
   let ry = h.ry
@@ -71,7 +76,12 @@ pub fn apply_helmert7(h : Helmert7, x : Double, y : Double, z : Double) -> (Doub
 
 ///|
 /// Apply 3-parameter translation to ECEF point. / 对 ECEF 点应用三参数平移。
-pub fn apply_helmert3(h : Helmert3, x : Double, y : Double, z : Double) -> (Double, Double, Double) {
+pub fn apply_helmert3(
+  h : Helmert3,
+  x : Double,
+  y : Double,
+  z : Double,
+) -> (Double, Double, Double) {
   (x + h.tx, y + h.ty, z + h.tz)
 }
 
@@ -102,13 +112,13 @@ pub fn inverse_helmert7(h : Helmert7) -> Helmert7 {
 ///|
 /// Inverse of 3-parameter transform. / 三参数变换的逆。
 pub fn inverse_helmert3(h : Helmert3) -> Helmert3 {
-  { tx: -h.tx, ty: -h.ty, tz: -h.tz }
+  { tx: -h.tx, ty: -h.ty, tz: -h.tz, }
 }
 
 ///|
 /// Identity 7-parameter transform. / 单位七参数变换。
 pub fn helmert7_identity() -> Helmert7 {
-  { tx: 0.0, ty: 0.0, tz: 0.0, rx: 0.0, ry: 0.0, rz: 0.0, scale: 0.0 }
+  { tx: 0.0, ty: 0.0, tz: 0.0, rx: 0.0, ry: 0.0, rz: 0.0, scale: 0.0, }
 }
 
 ///|

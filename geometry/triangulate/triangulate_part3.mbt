@@ -5,10 +5,10 @@
 /// 凸顶点且无其他顶点在三角形内部。
 fn is_ear(
   vertices : Array[@core.Point2D],
-  indices : Array[Int],
-  prev_idx : Int,
-  curr_idx : Int,
-  next_idx : Int,
+  indices : Array[Int32],
+  prev_idx : Int32,
+  curr_idx : Int32,
+  next_idx : Int32,
 ) -> Bool {
   let a = vertices[indices[prev_idx]]
   let b = vertices[indices[curr_idx]]

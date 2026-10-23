@@ -7,12 +7,12 @@
 /// 体素为边界体素、对象 6-邻居数 >= 2（非端点）且 < 6（非完全内部）时可删除。
 fn is_deletable(
   voxels : Array[Bool],
-  x : Int,
-  y : Int,
-  z : Int,
-  nx : Int,
-  ny : Int,
-  nz : Int,
+  x : Int32,
+  y : Int32,
+  z : Int32,
+  nx : Int32,
+  ny : Int32,
+  nz : Int32,
 ) -> Bool {
   if !is_boundary(voxels, x, y, z, nx, ny, nz) {
     return false

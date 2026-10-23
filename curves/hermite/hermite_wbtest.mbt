@@ -1,3 +1,4 @@
+///|
 test "hermite_eval_endpoints" {
   let p0 = @core.Point2D::new(0.0, 0.0)
   let p1 = @core.Point2D::new(1.0, 1.0)
@@ -11,6 +12,7 @@ test "hermite_eval_endpoints" {
   assert_true((at1.y() - 1.0).abs() < 0.001)
 }
 
+///|
 test "hermite_points" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -26,6 +28,7 @@ test "hermite_points" {
   assert_true(result.length() > 0)
 }
 
+///|
 test "hermite_derivative" {
   let p0 = @core.Point2D::new(0.0, 0.0)
   let p1 = @core.Point2D::new(1.0, 1.0)
@@ -36,6 +39,7 @@ test "hermite_derivative" {
   assert_true((d.y() - 0.0).abs() < 0.001)
 }
 
+///|
 test "cardinal_tangents" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -46,6 +50,7 @@ test "cardinal_tangents" {
   assert_true(tans.length() == 3)
 }
 
+///|
 test "hermite_points_short" {
   let pts = [@core.Point2D::new(0.0, 0.0)]
   let mags = [@core.Point2D::new(1.0, 0.0)]

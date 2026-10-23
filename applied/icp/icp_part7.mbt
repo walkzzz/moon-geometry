@@ -1,10 +1,7 @@
 ///|
 /// Solve n x n linear system via Gaussian elimination with partial pivoting.
 /// 高斯消元法（部分选主元）解 n x n 线性方程组。
-fn solve_linear(
-  a : Array[Array[Double]],
-  b : Array[Double],
-) -> Array[Double]? {
+fn solve_linear(a : Array[Array[Double]], b : Array[Double]) -> Array[Double]? {
   let n = a.length()
   if n == 0 {
     return Some([])
@@ -37,7 +34,7 @@ fn solve_linear(
     }
     for i in (col + 1)..<n {
       let factor = m[i][col] / m[col][col]
-      for j in col..=(n) {
+      for j in col..<=n {
         m[i][j] = m[i][j] - factor * m[col][j]
       }
     }

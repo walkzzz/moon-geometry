@@ -2,7 +2,7 @@
 /// Generate a random convex polygon with n vertices. / 生成 n 个顶点的随机凸多边形。
 pub fn Rng::random_convex_polygon(
   r : Rng,
-  n : Int,
+  n : Int32,
   radius : Double,
 ) -> Array[@core.Point2D] {
   let angles : Array[Double] = []
@@ -12,7 +12,9 @@ pub fn Rng::random_convex_polygon(
   angles.sort()
   let result : Array[@core.Point2D] = []
   for a in angles {
-    result.push(@core.Point2D::new(radius * @math.cos(a), radius * @math.sin(a)))
+    result.push(
+      @core.Point2D::new(radius * @math.cos(a), radius * @math.sin(a)),
+    )
   }
   result
 }

@@ -7,12 +7,11 @@ pub fn affine_to_interval(a : AffineForm) -> (Double, Double) {
   (a.center - radius, a.center + radius)
 }
 
-
 ///|
 pub fn affine_scale(a : AffineForm, s : Double) -> AffineForm {
   let errors : Array[Double] = []
   for i in 0..<a.errors.length() {
     errors.push(a.errors[i] * s)
   }
-  { center: a.center * s, errors }
+  { center: a.center * s, errors, }
 }

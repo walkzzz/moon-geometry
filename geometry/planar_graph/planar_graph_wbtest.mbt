@@ -1,9 +1,11 @@
+///|
 test "planar graph basic" {
   let g = PlanarGraph::new()
   assert_eq(PlanarGraph::vertex_count(g), 0)
   assert_eq(PlanarGraph::edge_count(g), 0)
 }
 
+///|
 test "planar graph add vertex and edge" {
   let g = PlanarGraph::new()
   let v0 = g.add_vertex(@core.Point2D::new(0.0, 0.0))
@@ -16,6 +18,7 @@ test "planar graph add vertex and edge" {
   assert_eq(PlanarGraph::edge_count(g), 3)
 }
 
+///|
 test "planar graph is planar" {
   let g = PlanarGraph::new()
   for i in 0..<4 {
@@ -27,6 +30,7 @@ test "planar graph is planar" {
   assert_true(PlanarGraph::is_planar(g))
 }
 
+///|
 test "planar graph connected" {
   let g = PlanarGraph::new()
   let v0 = g.add_vertex(@core.Point2D::new(0.0, 0.0))
@@ -37,6 +41,7 @@ test "planar graph connected" {
   assert_true(PlanarGraph::is_connected(g))
 }
 
+///|
 test "planar graph from polygon" {
   let g = PlanarGraph::new()
   let pts = [

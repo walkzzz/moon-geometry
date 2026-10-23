@@ -3,7 +3,7 @@
 pub fn betti_from_barcode(
   barcodes : Array[Barcode],
   threshold : Double,
-) -> Array[Int] {
+) -> Array[Int32] {
   let betti = Array::make(3, 0)
   for b in barcodes {
     if b.birth <= threshold + 0.0000000001 &&

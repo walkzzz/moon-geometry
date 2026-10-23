@@ -1,3 +1,4 @@
+///|
 test "polygon_with_holes_area" {
   let outer = [
     @core.Point2D::new(0.0, 0.0),
@@ -16,6 +17,7 @@ test "polygon_with_holes_area" {
   assert_true((area - 84.0).abs() < 0.001)
 }
 
+///|
 test "polygon_with_holes_contains" {
   let outer = [
     @core.Point2D::new(0.0, 0.0),
@@ -35,6 +37,7 @@ test "polygon_with_holes_contains" {
   assert_false(polygon_with_holes_contains(p, @core.Point2D::new(15.0, 15.0)))
 }
 
+///|
 test "polygon_with_holes_perimeter" {
   let outer = [
     @core.Point2D::new(0.0, 0.0),
@@ -53,6 +56,7 @@ test "polygon_with_holes_perimeter" {
   assert_true((perim - 24.0).abs() < 0.001)
 }
 
+///|
 test "polygon_with_holes_count" {
   let outer = [
     @core.Point2D::new(0.0, 0.0),
@@ -76,6 +80,7 @@ test "polygon_with_holes_count" {
   assert_true(polygon_with_holes_count(p) == 2)
 }
 
+///|
 test "polygon_with_holes_no_holes" {
   let outer = [
     @core.Point2D::new(0.0, 0.0),

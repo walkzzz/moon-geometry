@@ -18,7 +18,6 @@ pub fn point_set_sum(
   result
 }
 
-
 ///|
 /// All pairwise differences of two point sets. / 两个点集的所有成对差。
 pub fn point_set_difference(

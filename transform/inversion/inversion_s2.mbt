@@ -14,7 +14,6 @@ pub fn Inversion::apply_batch(
   result
 }
 
-
 ///|
 /// Inversion preserves the inversion circle. / 反演保持反演圆不变。
 pub fn Inversion::preserves_circle(inv : Inversion) -> Bool {

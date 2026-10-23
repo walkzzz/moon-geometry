@@ -5,12 +5,9 @@ pub fn is_star_shaped(poly : Array[@core.Point2D]) -> Bool {
   kernel.length() >= 3
 }
 
-
 ///|
 /// Compute the area of the kernel. / 计算核的面积。
-pub fn polygon_kernel_area(
-  poly : Array[@core.Point2D],
-) -> Double {
+pub fn polygon_kernel_area(poly : Array[@core.Point2D]) -> Double {
   let kernel = polygon_kernel(poly)
   let n = kernel.length()
   if n < 3 {

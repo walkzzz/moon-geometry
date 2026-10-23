@@ -3,7 +3,7 @@
 pub fn centroidal_voronoi(
   sites : Array[@core.Point2D],
   bounds : (@core.Point2D, @core.Point2D),
-  max_iter : Int,
+  max_iter : Int32,
 ) -> CVTResult {
   let final_sites = lloyd_iteration(sites, bounds, max_iter)
   let cells : Array[Array[@core.Point2D]] = []
@@ -32,5 +32,5 @@ pub fn centroidal_voronoi(
     cells.push(voronoi_cell(final_sites, i, bounds))
   }
   let energy = lloyd_energy(final_sites, bounds)
-  { sites: final_sites, cells, iterations: actual_iter, energy }
+  { sites: final_sites, cells, iterations: actual_iter, energy, }
 }

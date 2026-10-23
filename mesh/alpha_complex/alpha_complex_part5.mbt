@@ -6,11 +6,11 @@ pub fn alpha_complex(
 ) -> AlphaComplex {
   let n = points.length()
   if n == 0 {
-    return { simplices: [], alpha }
+    return { simplices: [], alpha, }
   }
   let simplices : Array[AlphaSimplex] = []
   for i in 0..<n {
-    simplices.push({ vertices: [i], dimension: 0, circumradius: 0.0 })
+    simplices.push({ vertices: [i], dimension: 0, circumradius: 0.0, })
   }
   for i in 0..<n {
     for j in (i + 1)..<n {
@@ -20,7 +20,7 @@ pub fn alpha_complex(
       )
       let radius = mid.dist(points[i])
       if radius <= alpha + 0.0000000001 {
-        simplices.push({ vertices: [i, j], dimension: 1, circumradius: radius })
+        simplices.push({ vertices: [i, j], dimension: 1, circumradius: radius, })
       }
     }
   }
@@ -36,5 +36,5 @@ pub fn alpha_complex(
       })
     }
   }
-  { simplices, alpha }
+  { simplices, alpha, }
 }

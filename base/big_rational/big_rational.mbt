@@ -7,23 +7,27 @@
 
 ///|
 pub struct Rational {
-  num : Int
-  den : Int
+  num : Int32
+  den : Int32
 }
 
 ///|
-pub fn Rational::new(num : Int, den : Int) -> Rational {
-  if den == 0 { { num: 0, den: 1 } } else { { num, den } }
+pub fn Rational::new(num : Int32, den : Int32) -> Rational {
+  if den == 0 {
+    { num: 0, den: 1, }
+  } else {
+    { num, den, }
+  }
 }
 
 ///|
 pub fn rational_add(a : Rational, b : Rational) -> Rational {
-  { num: a.num * b.den + b.num * a.den, den: a.den * b.den }
+  { num: a.num * b.den + b.num * a.den, den: a.den * b.den, }
 }
 
 ///|
 pub fn rational_mul(a : Rational, b : Rational) -> Rational {
-  { num: a.num * b.num, den: a.den * b.den }
+  { num: a.num * b.num, den: a.den * b.den, }
 }
 
 ///|
@@ -38,5 +42,5 @@ pub fn rational_equal(a : Rational, b : Rational) -> Bool {
 
 ///|
 pub fn rational_sub(a : Rational, b : Rational) -> Rational {
-  { num: a.num * b.den - b.num * a.den, den: a.den * b.den }
+  { num: a.num * b.den - b.num * a.den, den: a.den * b.den, }
 }

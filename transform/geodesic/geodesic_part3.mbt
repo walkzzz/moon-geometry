@@ -31,9 +31,9 @@ pub fn vincenty_distance(
   while iter < max_iter {
     let sin_lambda = @math.sin(lambda)
     let cos_lambda = @math.cos(lambda)
-    sin_sigma = ((cos_u2 * sin_lambda) * (cos_u2 * sin_lambda) +
-      (cos_u1 * sin_u2 - sin_u1 * cos_u2 * cos_lambda) *
-        (cos_u1 * sin_u2 - sin_u1 * cos_u2 * cos_lambda)).sqrt()
+    sin_sigma = (cos_u2 * sin_lambda * (cos_u2 * sin_lambda) +
+    (cos_u1 * sin_u2 - sin_u1 * cos_u2 * cos_lambda) *
+    (cos_u1 * sin_u2 - sin_u1 * cos_u2 * cos_lambda)).sqrt()
     if sin_sigma == 0.0 {
       return 0.0
     }
@@ -48,8 +48,19 @@ pub fn vincenty_distance(
     }
     let c = f / 16.0 * cos_sq_alpha * (4.0 + f * (4.0 - 3.0 * cos_sq_alpha))
     let lambda_prev = lambda
-    lambda = l + (1.0 - c) * f * sin_alpha *
-      (sigma + c * sin_sigma * (cos2_sigma_m + c * cos_sigma * (-1.0 + 2.0 * cos2_sigma_m * cos2_sigma_m)))
+    lambda = l +
+      (1.0 - c) *
+      f *
+      sin_alpha *
+      (
+        sigma +
+        c *
+        sin_sigma *
+        (
+          cos2_sigma_m +
+          c * cos_sigma * (-1.0 + 2.0 * cos2_sigma_m * cos2_sigma_m)
+        )
+      )
     if (lambda - lambda_prev).abs() < 0.0000000000001 {
       converged = true
       break
@@ -60,12 +71,25 @@ pub fn vincenty_distance(
     return -1.0
   }
   let u_sq = cos_sq_alpha * (a * a - b * b) / (b * b)
-  let aa = 1.0 + u_sq / 16384.0 * (4096.0 + u_sq * (-768.0 + u_sq * (74.0 - 71.0 * u_sq)))
-  let bb = u_sq / 1024.0 * (256.0 + u_sq * (-128.0 + u_sq * (74.0 - 47.0 * u_sq)))
-  let delta_sigma = bb * sin_sigma *
-    (cos2_sigma_m + bb / 4.0 *
-      (cos_sigma * (-1.0 + 2.0 * cos2_sigma_m * cos2_sigma_m) -
-        bb / 6.0 * cos2_sigma_m * (-3.0 + 4.0 * sin_sigma * sin_sigma) *
-          (-3.0 + 4.0 * cos2_sigma_m * cos2_sigma_m)))
+  let aa = 1.0 +
+    u_sq / 16384.0 * (4096.0 + u_sq * (-768.0 + u_sq * (74.0 - 71.0 * u_sq)))
+  let bb = u_sq /
+    1024.0 *
+    (256.0 + u_sq * (-128.0 + u_sq * (74.0 - 47.0 * u_sq)))
+  let delta_sigma = bb *
+    sin_sigma *
+    (
+      cos2_sigma_m +
+      bb /
+      4.0 *
+      (
+        cos_sigma * (-1.0 + 2.0 * cos2_sigma_m * cos2_sigma_m) -
+        bb /
+        6.0 *
+        cos2_sigma_m *
+        (-3.0 + 4.0 * sin_sigma * sin_sigma) *
+        (-3.0 + 4.0 * cos2_sigma_m * cos2_sigma_m)
+      )
+    )
   b * aa * (sigma - delta_sigma)
 }

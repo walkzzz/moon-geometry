@@ -8,6 +8,7 @@
 /// ## Complexity: O(max_iter * cost_of_neighbor)
 /// ## 复杂度: O(max_iter * 邻域生成代价)
 
+///|
 /// |
 /// Cooling schedule type. / 冷却调度类型。
 pub(all) enum CoolingSchedule {
@@ -16,18 +17,21 @@ pub(all) enum CoolingSchedule {
   Logarithmic(Double)
 }
 
+///|
 /// |
 /// Simple LCG random generator for simulated annealing. / 模拟退火用简单线性同余随机生成器。
 pub struct SA_rng {
-  mut state : UInt
+  mut state : UInt32
 }
 
+///|
 /// |
 /// Create RNG with seed. / 用种子创建 RNG。
-pub fn SA_rng::new(seed : UInt) -> SA_rng {
-  { state: seed }
+pub fn SA_rng::new(seed : UInt32) -> SA_rng {
+  { state: seed, }
 }
 
+///|
 /// |
 /// Next random Double in [0, 1). / 生成 [0, 1) 中的随机 Double。
 pub fn SA_rng::next(r : SA_rng) -> Double {
@@ -35,32 +39,31 @@ pub fn SA_rng::next(r : SA_rng) -> Double {
   (r.state % 1000000U).to_double() / 1000000.0
 }
 
+///|
 /// |
 /// Result of simulated annealing. / 模拟退火结果。
 pub struct SAResult {
   x : Array[Double]
   value : Double
-  iterations : Int
+  iterations : Int32
 }
 
+///|
 /// |
 /// Construct SA result. / 构造模拟退火结果。
 pub fn SAResult::new(
   x : Array[Double],
   value : Double,
-  iterations : Int,
+  iterations : Int32,
 ) -> SAResult {
-  { x, value, iterations }
+  { x, value, iterations, }
 }
 
+///|
 /// |
 /// Compute temperature at iteration t for given schedule.
 /// 计算给定调度在第 t 次迭代时的温度。
-fn temperature(
-  schedule : CoolingSchedule,
-  t0 : Double,
-  t : Int,
-) -> Double {
+fn temperature(schedule : CoolingSchedule, t0 : Double, t : Int32) -> Double {
   match schedule {
     Geometric(rate) => {
       let mut temp = t0
@@ -71,14 +74,17 @@ fn temperature(
     }
     Linear(step) => {
       let temp = t0 - step * t.to_double()
-      if temp > 0.0 { temp } else { 0.0000001 }
+      if temp > 0.0 {
+        temp
+      } else {
+        0.0000001
+      }
     }
-    Logarithmic(c) => {
-      c / @math.ln(t.to_double() + 2.0)
-    }
+    Logarithmic(c) => c / @math.ln(t.to_double() + 2.0)
   }
 }
 
+///|
 /// |
 /// Simulated annealing optimization.
 /// 模拟退火优化。
@@ -99,8 +105,8 @@ pub fn simulated_annealing(
   t0 : Double,
   schedule : CoolingSchedule,
   min_temp : Double,
-  max_iter : Int,
-  seed : UInt,
+  max_iter : Int32,
+  seed : UInt32,
 ) -> SAResult {
   let n = x0.length()
   let rng = SA_rng::new(seed)
@@ -144,9 +150,10 @@ pub fn simulated_annealing(
       }
     }
   }
-  { x: best, value: best_val, iterations: iter_done }
+  { x: best, value: best_val, iterations: iter_done, }
 }
 
+///|
 /// |
 /// Gaussian-like neighbor: perturb each coordinate by uniform random in [-step, step].
 /// 高斯式邻域：每个坐标加 [-step, step] 均匀随机扰动。
@@ -164,6 +171,7 @@ pub fn uniform_neighbor(
   result
 }
 
+///|
 /// |
 /// 1D simulated annealing convenience wrapper.
 /// 一维模拟退火便捷封装。
@@ -173,12 +181,10 @@ pub fn sa_1d(
   step : Double,
   t0 : Double,
   cooling_rate : Double,
-  max_iter : Int,
-  seed : UInt,
+  max_iter : Int32,
+  seed : UInt32,
 ) -> Double {
-  let f_wrap = fn(x : Array[Double]) -> Double {
-    f(x[0])
-  }
+  let f_wrap = fn(x : Array[Double]) -> Double { f(x[0]) }
   let neighbor = fn(x : Array[Double], rng : SA_rng) -> Array[Double] {
     uniform_neighbor(x, step, rng)
   }
@@ -195,6 +201,7 @@ pub fn sa_1d(
   result.x[0]
 }
 
+///|
 /// |
 /// Reheat: restart annealing from best solution with reset temperature.
 /// 重加热：从最优解重启退火并重置温度。
@@ -204,9 +211,9 @@ pub fn sa_reheat(
   neighbor : (Array[Double], SA_rng) -> Array[Double],
   t0 : Double,
   cooling_rate : Double,
-  max_iter : Int,
-  n_reheats : Int,
-  seed : UInt,
+  max_iter : Int32,
+  n_reheats : Int32,
+  seed : UInt32,
 ) -> SAResult {
   let n = x0.length()
   let best : Array[Double] = Array::make(n, 0.0)
@@ -236,5 +243,5 @@ pub fn sa_reheat(
     }
     s = s + 1U
   }
-  { x: best, value: best_val, iterations: total_iter }
+  { x: best, value: best_val, iterations: total_iter, }
 }

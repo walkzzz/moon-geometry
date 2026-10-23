@@ -1,9 +1,6 @@
 ///|
 /// Merge two sorted arrays. / 合并两个有序数组。
-pub fn merge_sorted(
-  a : Array[Double],
-  b : Array[Double],
-) -> Array[Double] {
+pub fn merge_sorted(a : Array[Double], b : Array[Double]) -> Array[Double] {
   let result : Array[Double] = []
   let mut i = 0
   let mut j = 0

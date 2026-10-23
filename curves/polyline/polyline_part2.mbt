@@ -11,15 +11,16 @@ pub fn polyline_simplify(
   dp_simplify(points, 0, n - 1, eps)
 }
 
+///|
 fn dp_simplify(
   points : Array[@core.Point2D],
-  start : Int,
-  end : Int,
+  start : Int32,
+  end : Int32,
   eps : Double,
 ) -> Array[@core.Point2D] {
   if end - start < 2 {
     let result : Array[@core.Point2D] = []
-    for i in start..=end {
+    for i in start..<=end {
       result.push(points[i])
     }
     return result
@@ -50,6 +51,7 @@ fn dp_simplify(
   [p1, p2]
 }
 
+///|
 fn point_to_line_dist(
   p : @core.Point2D,
   a : @core.Point2D,
@@ -61,5 +63,5 @@ fn point_to_line_dist(
   if len < 0.000000000001 {
     return p.dist(a)
   }
-  ((dx * (a.y() - p.y()) - dy * (a.x() - p.x())).abs()) / len
+  (dx * (a.y() - p.y()) - dy * (a.x() - p.x())).abs() / len
 }

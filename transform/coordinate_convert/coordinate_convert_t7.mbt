@@ -10,5 +10,5 @@ pub fn cgcs2000_to_ecef(g : Geodetic) -> ECEF {
   let x = (n + g.h) * @math.cos(lat_r) * @math.cos(lon_r)
   let y = (n + g.h) * @math.cos(lat_r) * @math.sin(lon_r)
   let z = (n * (1.0 - e2) + g.h) * @math.sin(lat_r)
-  { x, y, z }
+  { x, y, z, }
 }

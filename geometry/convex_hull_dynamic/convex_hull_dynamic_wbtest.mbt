@@ -1,8 +1,10 @@
+///|
 test "dynamic hull basic" {
   let dh = DynamicHull::new()
   assert_eq(DynamicHull::size(dh), 0)
 }
 
+///|
 test "dynamic hull insert" {
   let dh = DynamicHull::new()
   dh.insert(@core.Point2D::new(0.0, 0.0))
@@ -13,6 +15,7 @@ test "dynamic hull insert" {
   assert_eq(h.length(), 3)
 }
 
+///|
 test "dynamic hull contains" {
   let dh = DynamicHull::new()
   dh.insert(@core.Point2D::new(0.0, 0.0))
@@ -21,6 +24,7 @@ test "dynamic hull contains" {
   assert_true(DynamicHull::contains(dh, @core.Point2D::new(2.0, 1.0)))
 }
 
+///|
 test "dynamic hull size" {
   let dh = DynamicHull::new()
   dh.insert(@core.Point2D::new(0.0, 0.0))
@@ -28,6 +32,7 @@ test "dynamic hull size" {
   assert_eq(DynamicHull::size(dh), 2)
 }
 
+///|
 test "dynamic hull square" {
   let dh = DynamicHull::new()
   dh.insert(@core.Point2D::new(0.0, 0.0))

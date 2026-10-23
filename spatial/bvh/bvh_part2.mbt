@@ -5,7 +5,7 @@ pub fn build_bvh(rects : Array[@core.Rectangle]) -> Array[BVHNode] {
     return []
   }
   let nodes : Array[BVHNode] = []
-  let indices : Array[Int] = []
+  let indices : Array[Int32] = []
   for i in 0..<rects.length() {
     indices.push(i)
   }
@@ -13,15 +13,20 @@ pub fn build_bvh(rects : Array[@core.Rectangle]) -> Array[BVHNode] {
   nodes
 }
 
+///|
 fn bvh_overlap(a : @core.Rectangle, b : @core.Rectangle) -> Bool {
-  a.min_x <= b.max_x && a.max_x >= b.min_x && a.min_y <= b.max_y && a.max_y >= b.min_y
+  a.min_x <= b.max_x &&
+  a.max_x >= b.min_x &&
+  a.min_y <= b.max_y &&
+  a.max_y >= b.min_y
 }
 
+///|
 fn bvh_query_rec(
   nodes : Array[BVHNode],
-  node_idx : Int,
+  node_idx : Int32,
   rect : @core.Rectangle,
-  result : Array[Int],
+  result : Array[Int32],
 ) -> Unit {
   if node_idx < 0 || node_idx >= nodes.length() {
     return

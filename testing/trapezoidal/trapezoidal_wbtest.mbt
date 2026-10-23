@@ -1,9 +1,11 @@
+///|
 test "trapezoidal map empty" {
   let segs : Array[@core.Segment] = []
   let map = build_trapezoidal_map(segs)
   assert_eq(trapezoidal_count(map), 1)
 }
 
+///|
 test "trapezoidal map basic" {
   let segs = [
     @core.Segment::new(
@@ -15,6 +17,7 @@ test "trapezoidal map basic" {
   assert_true(trapezoidal_count(map) >= 1)
 }
 
+///|
 test "trapezoidal locate" {
   let segs = [
     @core.Segment::new(
@@ -27,6 +30,7 @@ test "trapezoidal locate" {
   assert_true(idx >= 0)
 }
 
+///|
 test "trapezoidal above segment" {
   let seg = @core.Segment::new(
     @core.Point2D::new(0.0, 0.0),
@@ -38,6 +42,7 @@ test "trapezoidal above segment" {
   assert_false(below)
 }
 
+///|
 test "trapezoidal expected count" {
   let segs = [
     @core.Segment::new(

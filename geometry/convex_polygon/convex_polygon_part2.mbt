@@ -3,7 +3,7 @@
 /// Returns the vertex index. O(n).
 ///
 /// 极点：在方向 dir 上投影最大的顶点。返回顶点索引。O(n)。
-pub fn extreme_point(poly : @core.Polygon, dir : @core.Point2D) -> Int {
+pub fn extreme_point(poly : @core.Polygon, dir : @core.Point2D) -> Int32 {
   let n = poly.size()
   if n == 0 {
     return -1

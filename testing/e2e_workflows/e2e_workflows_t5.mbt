@@ -1,6 +1,7 @@
 ///| E2E: Point set → Both hull algorithms → Compare
 
-///| 端到端：点集 → 两种凸包算法 → 比较
+///|
+/// 端到端：点集 → 两种凸包算法 → 比较
 test "e2e: hull algorithm comparison" {
   let pts = [
     @core.Point2D::new(2.0, 3.0),
@@ -20,6 +21,5 @@ test "e2e: hull algorithm comparison" {
   assert_eq(hull_a.length(), hull_g.length())
   assert_true(@core.approx_eq(area_a, area_g, 1.0e-8))
 }
-
 
 ///| E2E: Square → Scale → Area check

@@ -1,3 +1,4 @@
+///|
 test "face normal" {
   let m = @mesh_data.Mesh::new()
   let v0 = m.add_vertex(@core.Point3D::new(0.0, 0.0, 0.0))
@@ -8,12 +9,14 @@ test "face normal" {
   assert_true((n.z - 1.0).abs() < 0.001)
 }
 
+///|
 test "normalize" {
   let v = @core.Point3D::new(3.0, 0.0, 0.0)
   let n = normalize(v)
   assert_true((n.x - 1.0).abs() < 0.001)
 }
 
+///|
 test "vertex normal" {
   let m = @mesh_data.Mesh::tetrahedron(
     @core.Point3D::new(0.0, 0.0, 0.0),
@@ -26,6 +29,7 @@ test "vertex normal" {
   assert_true((len - 1.0).abs() < 0.001 || len.abs() < 0.001)
 }
 
+///|
 test "all face normals" {
   let m = @mesh_data.Mesh::tetrahedron(
     @core.Point3D::new(0.0, 0.0, 0.0),
@@ -37,6 +41,7 @@ test "all face normals" {
   assert_eq(normals.length(), 4)
 }
 
+///|
 test "face area" {
   let m = @mesh_data.Mesh::new()
   let v0 = m.add_vertex(@core.Point3D::new(0.0, 0.0, 0.0))

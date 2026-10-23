@@ -1,6 +1,6 @@
 ///|
 /// Compute rank of boundary matrix over Z/2Z via Gaussian elimination. / 通过高斯消元计算边界矩阵在 Z/2Z 上的秩。
-fn matrix_rank(matrix : Array[Array[Int]]) -> Int {
+fn matrix_rank(matrix : Array[Array[Int32]]) -> Int32 {
   let rows = matrix.length()
   if rows == 0 {
     return 0

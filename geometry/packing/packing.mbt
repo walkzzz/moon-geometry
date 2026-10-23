@@ -8,6 +8,7 @@
 /// ## Complexity: O(n²) for greedy packing
 /// ## 复杂度: 贪心装填 O(n²)
 
+///|
 /// |
 /// Pack circles into a square container using greedy placement.
 /// 使用贪心放置将圆形装入方形容器。
@@ -58,6 +59,7 @@ pub fn pack_circles(
   positions
 }
 
+///|
 /// |
 /// Pack rectangles into a bin using first-fit decreasing heuristic.
 /// 使用首次适应递减启发式将矩形装入箱子。
@@ -74,7 +76,7 @@ pub fn pack_rectangles(
   bin_h : Double,
 ) -> Array[(Double, Double)] {
   let n = rects.length()
-  let order : Array[Int] = []
+  let order : Array[Int32] = []
   for i in 0..<n {
     order.push(i)
   }
@@ -119,6 +121,7 @@ pub fn pack_rectangles(
   positions
 }
 
+///|
 /// |
 /// Compute packing density (fraction of container area used).
 /// 计算装填密度（使用的容器面积比例）。

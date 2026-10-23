@@ -5,7 +5,6 @@
 /// Implicit surface f(x, y, z) = 0: normal and curvature computation.
 /// 隐式曲面 f(x, y, z) = 0：法向与曲率计算。
 
-
 ///|
 /// Unit normal at a point on the implicit surface (normalized gradient).
 /// 隐式曲面上一点处的单位法向量（归一化梯度）。
@@ -25,7 +24,6 @@ pub fn surface_normal(
   @core.Point3D::new(gx / norm, gy / norm, gz / norm)
 }
 
-
 ///|
 /// Gradient (unnormalized normal) at a point. / 一点处的梯度（未归一化法向）。
 pub fn surface_gradient(
@@ -36,7 +34,6 @@ pub fn surface_gradient(
 ) -> @core.Point3D {
   @core.Point3D::new(fx(p.x, p.y, p.z), fy(p.x, p.y, p.z), fz(p.x, p.y, p.z))
 }
-
 
 ///|
 /// Gaussian curvature of the implicit surface at a point.

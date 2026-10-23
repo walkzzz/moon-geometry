@@ -8,6 +8,7 @@
 /// ## Complexity: O(n²) for construction, O(n) for evaluation
 /// ## 复杂度: 构建 O(n²)，求值 O(n)
 
+///|
 /// |
 /// Lagrange interpolation at point x.
 /// Lagrange 插值在点 x 处求值。
@@ -38,13 +39,11 @@ pub fn lagrange_interp(
   result
 }
 
+///|
 /// |
 /// Newton divided differences.
 /// Newton 差商。
-pub fn newton_divdiff(
-  xs : Array[Double],
-  ys : Array[Double],
-) -> Array[Double] {
+pub fn newton_divdiff(xs : Array[Double], ys : Array[Double]) -> Array[Double] {
   let n = xs.length()
   let table : Array[Array[Double]] = []
   for i in 0..<n {
@@ -60,7 +59,8 @@ pub fn newton_divdiff(
   }
   for j in 1..<n {
     for i in 0..<(n - j) {
-      table[i][j] = (table[i + 1][j - 1] - table[i][j - 1]) / (xs[i + j] - xs[i])
+      table[i][j] = (table[i + 1][j - 1] - table[i][j - 1]) /
+        (xs[i + j] - xs[i])
     }
   }
   let coeffs : Array[Double] = []
@@ -70,6 +70,7 @@ pub fn newton_divdiff(
   coeffs
 }
 
+///|
 /// |
 /// Newton interpolation at point x.
 /// Newton 插值在点 x 处求值。
@@ -89,6 +90,7 @@ pub fn newton_interp(
   result
 }
 
+///|
 /// |
 /// Linear interpolation between two points.
 /// 两点间的线性插值。
@@ -105,6 +107,7 @@ pub fn linear_interp(
   y0 + (y1 - y0) * (x - x0) / (x1 - x0)
 }
 
+///|
 /// |
 /// Bilinear interpolation on a grid.
 /// 网格上的双线性插值。
@@ -123,7 +126,7 @@ pub fn bilinear_interp(
   let tx = (x - x0) / (x1 - x0)
   let ty = (y - y0) / (y1 - y0)
   f00 * (1.0 - tx) * (1.0 - ty) +
-    f10 * tx * (1.0 - ty) +
-    f01 * (1.0 - tx) * ty +
-    f11 * tx * ty
+  f10 * tx * (1.0 - ty) +
+  f01 * (1.0 - tx) * ty +
+  f11 * tx * ty
 }

@@ -2,7 +2,7 @@
 /// Triangulate a y-monotone polygon using stack-based algorithm. / 使用栈算法三角剖分 y-单调多边形。
 pub fn triangulate_monotone(
   poly : Array[@core.Point2D],
-) -> Array[(Int, Int, Int)] {
+) -> Array[(Int32, Int32, Int32)] {
   let n = poly.length()
   if n < 3 {
     return []
@@ -10,7 +10,7 @@ pub fn triangulate_monotone(
   if n == 3 {
     return [(0, 1, 2)]
   }
-  let triangles : Array[(Int, Int, Int)] = []
+  let triangles : Array[(Int32, Int32, Int32)] = []
   let mut top_idx = 0
   let mut bottom_idx = 0
   for i in 1..<n {
@@ -21,8 +21,8 @@ pub fn triangulate_monotone(
       bottom_idx = i
     }
   }
-  let left_chain : Array[Int] = []
-  let right_chain : Array[Int] = []
+  let left_chain : Array[Int32] = []
+  let right_chain : Array[Int32] = []
   let mut i = top_idx
   while i != bottom_idx {
     left_chain.push(i)
@@ -35,7 +35,7 @@ pub fn triangulate_monotone(
     i = (i - 1 + n) % n
   }
   right_chain.push(bottom_idx)
-  let merged : Array[(Int, Int)] = []
+  let merged : Array[(Int32, Int32)] = []
   let mut li = 0
   let mut ri = 0
   while li < left_chain.length() || ri < right_chain.length() {
@@ -56,7 +56,7 @@ pub fn triangulate_monotone(
       li += 1
     }
   }
-  let stack : Array[(Int, Int)] = []
+  let stack : Array[(Int32, Int32)] = []
   stack.push(merged[0])
   stack.push(merged[1])
   for k in 2..<merged.length() {
@@ -76,7 +76,8 @@ pub fn triangulate_monotone(
       while stack.length() > 1 && keep_going {
         let (s1, _) = stack[stack.length() - 1]
         let (s2, _) = stack[stack.length() - 2]
-        let cross = (poly[s1].x() - poly[s2].x()) * (poly[curr].y() - poly[s2].y()) -
+        let cross = (poly[s1].x() - poly[s2].x()) *
+          (poly[curr].y() - poly[s2].y()) -
           (poly[s1].y() - poly[s2].y()) * (poly[curr].x() - poly[s2].x())
         if (chain == 0 && cross > 0.0) || (chain == 1 && cross < 0.0) {
           ignore(stack.remove(stack.length() - 1))

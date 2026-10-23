@@ -17,7 +17,7 @@ pub fn Perspective::new(
   near : Double,
   far : Double,
 ) -> Perspective {
-  { focal, cx, cy, near, far }
+  { focal, cx, cy, near, far, }
 }
 
 ///|
@@ -47,10 +47,7 @@ pub fn Perspective::unproject(
 
 ///|
 /// Compute depth value for a 3D point. / 计算三维点的深度值。
-pub fn Perspective::depth(
-  persp : Perspective,
-  p : @core.Point3D,
-) -> Double {
+pub fn Perspective::depth(persp : Perspective, p : @core.Point3D) -> Double {
   let z = p.z
   (persp.far + persp.near) / (persp.far - persp.near) -
   2.0 * persp.far * persp.near / ((persp.far - persp.near) * z)
@@ -58,10 +55,7 @@ pub fn Perspective::depth(
 
 ///|
 /// Field of view from focal length and image width. / 由焦距和图像宽度计算视场角。
-pub fn Perspective::fov(
-  persp : Perspective,
-  width : Double,
-) -> Double {
+pub fn Perspective::fov(persp : Perspective, width : Double) -> Double {
   2.0 * @math.atan(width / (2.0 * persp.focal))
 }
 

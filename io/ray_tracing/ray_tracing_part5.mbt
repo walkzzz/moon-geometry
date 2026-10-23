@@ -8,7 +8,9 @@ pub fn point_in_shadow(
 ) -> Bool {
   let eps = 0.0001
   let to_light = light.sub(point)
-  let dist = to_light.x * to_light.x + to_light.y * to_light.y + to_light.z * to_light.z
+  let dist = to_light.x * to_light.x +
+    to_light.y * to_light.y +
+    to_light.z * to_light.z
   let dist_sqrt = dist.sqrt()
   if dist_sqrt < eps {
     return false
@@ -21,10 +23,7 @@ pub fn point_in_shadow(
   let ray = Ray3::new(point, dir)
   for tri in triangles {
     match ray_triangle_intersect(ray, tri.0, tri.1, tri.2) {
-      Some(t) =>
-        if t > eps && t < dist_sqrt - eps {
-          return true
-        }
+      Some(t) => if t > eps && t < dist_sqrt - eps { return true }
       None => ()
     }
   }

@@ -2,13 +2,13 @@
 /// Fill simple holes (single triangle fan). / 填充简单孔洞（单三角扇）。
 pub fn fill_holes(
   _vertices : Array[@core.Point3D],
-  faces : Array[(Int, Int, Int)],
-) -> (Array[(Int, Int, Int)], Int) {
+  faces : Array[(Int32, Int32, Int32)],
+) -> (Array[(Int32, Int32, Int32)], Int32) {
   let boundary = find_boundary_edges(faces)
   if boundary.length() < 3 {
     return (faces, 0)
   }
-  let new_faces : Array[(Int, Int, Int)] = []
+  let new_faces : Array[(Int32, Int32, Int32)] = []
   for f in faces {
     new_faces.push(f)
   }

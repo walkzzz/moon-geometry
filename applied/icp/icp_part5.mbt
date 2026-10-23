@@ -17,13 +17,9 @@ fn centroid3d(points : Array[@core.Point3D]) -> @core.Point3D {
   @core.Point3D::new(sx / nd, sy / nd, sz / nd)
 }
 
-
 ///|
 /// Find closest point index in target. / 在目标中找最近点索引。
-fn closest_idx(
-  target : Array[@core.Point3D],
-  p : @core.Point3D,
-) -> Int {
+fn closest_idx(target : Array[@core.Point3D], p : @core.Point3D) -> Int32 {
   let mut best = 0
   let mut best_d = 1.7976931348623157e+308
   for j in 0..<target.length() {
@@ -35,7 +31,6 @@ fn closest_idx(
   }
   best
 }
-
 
 ///|
 /// Apply rotation and translation to a point. / 对点应用旋转和平移。

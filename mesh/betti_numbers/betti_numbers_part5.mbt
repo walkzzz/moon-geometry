@@ -1,6 +1,6 @@
 ///|
 /// Compute b0 (number of connected components). / 计算 b0（连通分量数）。
-pub fn betti_0(simplices : Array[Array[Int]]) -> Int {
+pub fn betti_0(simplices : Array[Array[Int32]]) -> Int32 {
   let nv = count_vertices(simplices)
   if nv == 0 {
     return 0

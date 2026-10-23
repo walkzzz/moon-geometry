@@ -21,9 +21,15 @@ pub fn rrt_connect_plan(
     let result = rrt_connect_extend(tree_a, sample, config.step_size, obstacles)
     if result >= 0 {
       let new_pt = tree_a[result].point
-      let result_b = rrt_connect_extend(tree_b, new_pt, config.step_size, obstacles)
+      let result_b = rrt_connect_extend(
+        tree_b,
+        new_pt,
+        config.step_size,
+        obstacles,
+      )
       if result_b >= 0 {
-        if point_dist(tree_a[result].point, tree_b[result_b].point) <= config.step_size {
+        if point_dist(tree_a[result].point, tree_b[result_b].point) <=
+          config.step_size {
           let path_a = reconstruct_path(tree_a, result)
           let path_b = reconstruct_path(tree_b, result_b)
           let reversed_b : Array[@core.Point2D] = []
@@ -47,12 +53,13 @@ pub fn rrt_connect_plan(
   RRTResult::new([], false, config.max_iterations)
 }
 
+///|
 fn rrt_connect_extend(
   tree : Array[RRTNode],
   target : @core.Point2D,
   step : Double,
   obstacles : Array[Array[@core.Point2D]],
-) -> Int {
+) -> Int32 {
   let near_idx = nearest_node(tree, target)
   let new_pt = steer(tree[near_idx].point, target, step)
   if segment_hits_obstacle(tree[near_idx].point, new_pt, obstacles) {

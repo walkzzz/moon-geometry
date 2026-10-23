@@ -4,7 +4,6 @@ pub fn raster_multiply(r1 : Raster, r2 : Raster) -> Raster {
   raster_binary_op(r1, r2, fn(a, b) { a * b })
 }
 
-
 ///|
 /// Apply scalar to all cells (add constant). / 所有像元加常量。
 pub fn raster_add_scalar(r : Raster, c : Double) -> Raster {

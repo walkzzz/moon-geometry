@@ -4,7 +4,11 @@ pub fn wave_damping(u : Double, damping : Double, dt : Double) -> Double {
 }
 
 ///|
-pub fn wave_energy(u : Array[Double], u_prev : Array[Double], dt : Double) -> Double {
+pub fn wave_energy(
+  u : Array[Double],
+  u_prev : Array[Double],
+  dt : Double,
+) -> Double {
   let mut sum = 0.0
   for i in 0..<u.length() {
     let v = (u[i] - u_prev[i]) / dt

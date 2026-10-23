@@ -13,8 +13,14 @@ fn rodrigues(w : @core.Point3D) -> Array[Double] {
   let s = @math.sin(angle)
   let omc = 1.0 - c
   [
-    c + ax * ax * omc, ax * ay * omc - az * s, ax * az * omc + ay * s,
-    ay * ax * omc + az * s, c + ay * ay * omc, ay * az * omc - ax * s,
-    az * ax * omc - ay * s, az * ay * omc + ax * s, c + az * az * omc,
+    c + ax * ax * omc,
+    ax * ay * omc - az * s,
+    ax * az * omc + ay * s,
+    ay * ax * omc + az * s,
+    c + ay * ay * omc,
+    ay * az * omc - ax * s,
+    az * ax * omc - ay * s,
+    az * ay * omc + ax * s,
+    c + az * az * omc,
   ]
 }

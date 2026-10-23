@@ -1,3 +1,4 @@
+///|
 test "convex_sum_points" {
   let p1 = [@core.Point2D::new(1.0, 0.0), @core.Point2D::new(0.0, 1.0)]
   let p2 = [@core.Point2D::new(2.0, 0.0), @core.Point2D::new(0.0, 2.0)]
@@ -5,6 +6,7 @@ test "convex_sum_points" {
   assert_eq(result.length(), 4)
 }
 
+///|
 test "convex_sum_difference" {
   let p1 = [@core.Point2D::new(3.0, 3.0)]
   let p2 = [@core.Point2D::new(1.0, 1.0)]
@@ -14,6 +16,7 @@ test "convex_sum_difference" {
   assert_true(@core.approx_eq(result[0].y(), 2.0, 0.000000000001))
 }
 
+///|
 test "convex_sum_scale" {
   let points = [@core.Point2D::new(2.0, 4.0)]
   let result = point_set_scale(points, 0.5)
@@ -21,6 +24,7 @@ test "convex_sum_scale" {
   assert_true(@core.approx_eq(result[0].y(), 2.0, 0.000000000001))
 }
 
+///|
 test "convex_sum_centroid" {
   let points = [
     @core.Point2D::new(0.0, 0.0),
@@ -36,6 +40,7 @@ test "convex_sum_centroid" {
   }
 }
 
+///|
 test "convex_sum_equal" {
   let a = [@core.Point2D::new(1.0, 2.0), @core.Point2D::new(3.0, 4.0)]
   let b = [@core.Point2D::new(3.0, 4.0), @core.Point2D::new(1.0, 2.0)]

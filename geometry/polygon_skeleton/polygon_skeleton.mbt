@@ -9,6 +9,7 @@
 /// ## Complexity: O(n²)
 /// ## 复杂度: O(n²)
 
+///|
 /// |
 /// Compute approximate straight skeleton edges.
 /// 计算近似直骨架边。
@@ -41,7 +42,10 @@ pub fn straight_skeleton(poly : @core.Polygon) -> Array[@core.Segment] {
           if t > 0.0000001 && t < best_t {
             best_t = t
             best_hit = Some(
-              @core.Point2D::new(cur.x() + bisector.0 * t, cur.y() + bisector.1 * t),
+              @core.Point2D::new(
+                cur.x() + bisector.0 * t,
+                cur.y() + bisector.1 * t,
+              ),
             )
           }
         None => ()
@@ -55,6 +59,7 @@ pub fn straight_skeleton(poly : @core.Polygon) -> Array[@core.Segment] {
   result
 }
 
+///|
 /// |
 /// Compute skeleton faces (cells) of the polygon.
 /// 计算多边形的骨架面（单元）。
@@ -71,7 +76,10 @@ pub fn skeleton_faces(poly : @core.Polygon) -> Array[Array[@core.Point2D]] {
   for i in 0..<n {
     let cur = pts[i]
     let next = pts[(i + 1) % n]
-    let mid = @core.Point2D::new((cur.x() + next.x()) / 2.0, (cur.y() + next.y()) / 2.0)
+    let mid = @core.Point2D::new(
+      (cur.x() + next.x()) / 2.0,
+      (cur.y() + next.y()) / 2.0,
+    )
     let face : Array[@core.Point2D] = [cur, next]
     let dx = next.x() - cur.x()
     let dy = next.y() - cur.y()
@@ -108,6 +116,7 @@ pub fn skeleton_faces(poly : @core.Polygon) -> Array[Array[@core.Point2D]] {
   result
 }
 
+///|
 fn get_points(poly : @core.Polygon) -> Array[@core.Point2D] {
   let n = poly.size()
   let pts : Array[@core.Point2D] = []
@@ -117,6 +126,7 @@ fn get_points(poly : @core.Polygon) -> Array[@core.Point2D] {
   pts
 }
 
+///|
 fn angle_bisector(
   prev : @core.Point2D,
   cur : @core.Point2D,
@@ -150,6 +160,7 @@ fn angle_bisector(
   (bx / bl, by / bl)
 }
 
+///|
 fn ray_segment_intersect(
   origin : @core.Point2D,
   dir : (Double, Double),

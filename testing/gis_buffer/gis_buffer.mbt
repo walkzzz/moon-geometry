@@ -3,7 +3,7 @@
 pub fn point_buffer(
   center : @core.Point2D,
   radius : Double,
-  n : Int,
+  n : Int32,
 ) -> @core.Polygon {
   let verts : Array[@core.Point2D] = []
   let segs = if n < 3 { 3 } else { n }

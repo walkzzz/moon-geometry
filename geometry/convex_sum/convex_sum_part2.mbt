@@ -6,11 +6,12 @@ pub fn point_set_scale(
 ) -> Array[@core.Point2D] {
   let result : Array[@core.Point2D] = []
   for i in 0..<points.length() {
-    result.push(@core.Point2D::new(points[i].x() * factor, points[i].y() * factor))
+    result.push(
+      @core.Point2D::new(points[i].x() * factor, points[i].y() * factor),
+    )
   }
   result
 }
-
 
 ///|
 /// Translate a point set. / 平移点集。
@@ -25,7 +26,6 @@ pub fn point_set_translate(
   }
   result
 }
-
 
 ///|
 /// Centroid of a point set. / 点集质心。

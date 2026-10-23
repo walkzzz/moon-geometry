@@ -1,3 +1,4 @@
+///|
 test "gaussian_smooth sigma_zero" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -12,6 +13,7 @@ test "gaussian_smooth sigma_zero" {
   }
 }
 
+///|
 test "gaussian_smooth basic" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -23,11 +25,13 @@ test "gaussian_smooth basic" {
   assert_true(smoothed.length() == 4)
 }
 
+///|
 test "gaussian_smooth empty" {
   let smoothed = gaussian_smooth([], 1.0)
   assert_true(smoothed.length() == 0)
 }
 
+///|
 test "css_curvature basic" {
   let pts = [
     @core.Point2D::new(1.0, 0.0),
@@ -39,6 +43,7 @@ test "css_curvature basic" {
   assert_true(kappa.length() == 4)
 }
 
+///|
 test "css_curvature constant curvature circle" {
   let pts : Array[@core.Point2D] = []
   for i in 0..<16 {
@@ -52,16 +57,23 @@ test "css_curvature constant curvature circle" {
   }
 }
 
+///|
 test "css_inflection_points basic" {
   let pts : Array[@core.Point2D] = []
   for i in 0..<32 {
     let t = i.to_double() / 32.0 * 6.283185307179586
-    pts.push(@core.Point2D::new(@math.cos(t) + 0.3 * @math.cos(3.0 * t), @math.sin(t) + 0.3 * @math.sin(3.0 * t)))
+    pts.push(
+      @core.Point2D::new(
+        @math.cos(t) + 0.3 * @math.cos(3.0 * t),
+        @math.sin(t) + 0.3 * @math.sin(3.0 * t),
+      ),
+    )
   }
   let infl = css_inflection_points(pts, 1.0)
   assert_true(infl.length() >= 0)
 }
 
+///|
 test "css_image basic" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -74,6 +86,7 @@ test "css_image basic" {
   assert_true(img.length() >= 0)
 }
 
+///|
 test "css_maxima basic" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -85,6 +98,7 @@ test "css_maxima basic" {
   assert_true(maxima.length() >= 0)
 }
 
+///|
 test "css_curvature preserves length" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),

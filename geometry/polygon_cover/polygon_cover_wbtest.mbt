@@ -1,3 +1,4 @@
+///|
 test "cover_by_rectangles" {
   let poly = [
     @core.Point2D::new(0.0, 0.0),
@@ -10,6 +11,7 @@ test "cover_by_rectangles" {
   assert_true((rects[0].area() - 16.0).abs() < 0.001)
 }
 
+///|
 test "cover_by_triangles" {
   let poly = [
     @core.Point2D::new(0.0, 0.0),
@@ -21,6 +23,7 @@ test "cover_by_triangles" {
   assert_true(tris.length() == 2)
 }
 
+///|
 test "cover_area_rectangles" {
   let poly = [
     @core.Point2D::new(0.0, 0.0),
@@ -32,6 +35,7 @@ test "cover_area_rectangles" {
   assert_true((area - 18.0).abs() < 0.001)
 }
 
+///|
 test "cover_area_triangles" {
   let poly = [
     @core.Point2D::new(0.0, 0.0),
@@ -43,6 +47,7 @@ test "cover_area_triangles" {
   assert_true((area - 16.0).abs() < 0.001)
 }
 
+///|
 test "cover_count" {
   let poly = [
     @core.Point2D::new(0.0, 0.0),

@@ -2,20 +2,22 @@
 /// K-d tree node. / K-d 树节点。
 pub struct KDNode {
   point : @core.Point2D
-  left : Int
-  right : Int
-  axis : Int
-  index : Int
+  left : Int32
+  right : Int32
+  axis : Int32
+  index : Int32
 } derive(Debug)
 
+///|
 pub extend KDNode with @moonbitlang/core/debug.Debug::{to_repr}
 
+///|
 fn kdtree_build_rec(
   points : Array[@core.Point2D],
-  indices : Array[Int],
-  axis : Int,
+  indices : Array[Int32],
+  axis : Int32,
   nodes : Array[KDNode],
-) -> Int {
+) -> Int32 {
   let n = indices.length()
   if n == 0 {
     return -1
@@ -30,7 +32,7 @@ fn kdtree_build_rec(
     })
     return nodes.length() - 1
   }
-  let sorted : Array[Int] = []
+  let sorted : Array[Int32] = []
   for i in 0..<n {
     sorted.push(indices[i])
   }
@@ -46,8 +48,8 @@ fn kdtree_build_rec(
     }
   })
   let mid = n / 2
-  let left_indices : Array[Int] = []
-  let right_indices : Array[Int] = []
+  let left_indices : Array[Int32] = []
+  let right_indices : Array[Int32] = []
   for i in 0..<mid {
     left_indices.push(sorted[i])
   }

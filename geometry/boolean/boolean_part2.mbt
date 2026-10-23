@@ -9,7 +9,6 @@ fn is_inside_edge(
   @core.turn(a, b, p) >= 0.0
 }
 
-
 ///|
 /// Intersection point of segment (p1,p2) with line through (p3,p4).
 /// 线段 (p1,p2) 与过 (p3,p4) 直线的交点。
@@ -29,7 +28,6 @@ fn line_intersect_pt(
   Some(@core.Point2D::new(p1.x + t * r.x, p1.y + t * r.y))
 }
 
-
 ///|
 /// Clip a polygon by an axis-aligned rectangle (Sutherland-Hodgman).
 /// Returns the clipped polygon vertices (possibly empty).
@@ -46,7 +44,6 @@ pub fn clip_polygon(
   ]
   sutherland_hodgman(poly.vertices, clip)
 }
-
 
 ///|
 /// Intersection of two polygons. Uses Sutherland-Hodgman; requires `clip`

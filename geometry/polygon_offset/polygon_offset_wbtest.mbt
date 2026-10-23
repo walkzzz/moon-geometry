@@ -1,3 +1,4 @@
+///|
 test "polygon_offset_outward_square" {
   let sq = [
     @core.Point2D::new(0.0, 0.0),
@@ -11,6 +12,7 @@ test "polygon_offset_outward_square" {
   assert_true(offset[0].y() < 0.0)
 }
 
+///|
 test "polygon_offset_inward_square" {
   let sq = [
     @core.Point2D::new(0.0, 0.0),
@@ -24,6 +26,7 @@ test "polygon_offset_inward_square" {
   assert_true(offset[0].y() > 0.0)
 }
 
+///|
 test "polygon_offset_area_square" {
   let sq = [
     @core.Point2D::new(0.0, 0.0),
@@ -36,6 +39,7 @@ test "polygon_offset_area_square" {
   assert_true((area - expected).abs() < 0.001)
 }
 
+///|
 test "polygon_offset_valid" {
   let tri = [
     @core.Point2D::new(0.0, 0.0),
@@ -45,6 +49,7 @@ test "polygon_offset_valid" {
   assert_true(polygon_offset_valid(tri, 0.5))
 }
 
+///|
 test "polygon_offset_empty" {
   let empty : Array[@core.Point2D] = []
   let offset = polygon_offset_outward(empty, 1.0)

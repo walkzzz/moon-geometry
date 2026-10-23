@@ -7,7 +7,7 @@
 /// 三角形的外心，边连接相邻三角形的外心。
 pub fn voronoi_diagram(
   points : Array[@core.Point2D],
-) -> (Array[@core.Point2D], Array[(Int, Int)]) {
+) -> (Array[@core.Point2D], Array[(Int32, Int32)]) {
   let tris = delaunay_triangulation(points)
   let vertices : Array[@core.Point2D] = []
   for t in tris {
@@ -15,7 +15,7 @@ pub fn voronoi_diagram(
     vertices.push(tri.circumcenter())
   }
   // Edges: for each pair of triangles sharing an edge, connect their circumcenters
-  let edges : Array[(Int, Int)] = []
+  let edges : Array[(Int32, Int32)] = []
   let m = tris.length()
   for i in 0..<m {
     let ei = tri_edges(tris[i])

@@ -1,8 +1,8 @@
 ///|
 /// Count catchment basin cells for each label. / 统计各标签的汇水盆地像元数。
-pub fn basin_cell_counts(r : WatershedResult) -> Array[(Int, Int)] {
+pub fn basin_cell_counts(r : WatershedResult) -> Array[(Int32, Int32)] {
   // Collect unique labels
-  let unique_labels : Array[Int] = []
+  let unique_labels : Array[Int32] = []
   for label in r.labels {
     if label != 0 {
       let mut found = false
@@ -17,7 +17,7 @@ pub fn basin_cell_counts(r : WatershedResult) -> Array[(Int, Int)] {
       }
     }
   }
-  let result : Array[(Int, Int)] = []
+  let result : Array[(Int32, Int32)] = []
   for ul in unique_labels {
     let mut count = 0
     for label in r.labels {

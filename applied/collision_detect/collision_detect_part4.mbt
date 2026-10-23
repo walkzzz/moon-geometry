@@ -24,10 +24,9 @@ pub fn aabb_from_polygon(poly : Array[@core.Point2D]) -> AABB {
   AABB::new(min_x, min_y, max_x, max_y)
 }
 
-
 ///|
 /// Collision pair result. / 碰撞对结果。
 pub struct CollisionPair {
-  id_a : Int
-  id_b : Int
+  id_a : Int32
+  id_b : Int32
 }

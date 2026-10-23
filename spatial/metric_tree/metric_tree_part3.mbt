@@ -10,6 +10,7 @@ pub fn metric_tree_query(
   result
 }
 
+///|
 fn metric_tree_query_helper(
   node : MetricNode?,
   query : @core.Point2D,
@@ -33,10 +34,9 @@ fn metric_tree_query_helper(
   }
 }
 
-
 ///|
 /// Count nodes in metric tree. / 度量树节点数。
-pub fn metric_tree_count(node : MetricNode?) -> Int {
+pub fn metric_tree_count(node : MetricNode?) -> Int32 {
   match node {
     Some(n) => 1 + metric_tree_count(n.left) + metric_tree_count(n.right)
     None => 0

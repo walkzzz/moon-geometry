@@ -1,16 +1,14 @@
 ///|
 /// Get the number of trapezoids. / 获取梯形数量。
-pub fn trapezoidal_count(map : TrapezoidalMap) -> Int {
+pub fn trapezoidal_count(map : TrapezoidalMap) -> Int32 {
   map.trapezoids.length()
 }
-
 
 ///|
 /// Get all trapezoids. / 获取所有梯形。
 pub fn trapezoidal_all(map : TrapezoidalMap) -> Array[Trapezoid] {
   map.trapezoids
 }
-
 
 ///|
 /// Query if a point is above or below a segment. / 查询点在线段上方还是下方。

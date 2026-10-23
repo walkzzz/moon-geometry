@@ -8,6 +8,7 @@
 /// ## Representation: row-major Array[Array[Double]], 4×4
 /// ## 表示: 行主序 Array[Array[Double]], 4×4
 
+///|
 /// |
 /// Create 4×4 identity matrix.
 /// 创建 4×4 单位矩阵。
@@ -20,13 +21,18 @@ pub fn identity4() -> Array[Array[Double]] {
   ]
 }
 
+///|
 /// |
 /// Create translation matrix.
 /// 创建平移矩阵。
 ///
 /// # Arguments / 参数
 /// - `tx`, `ty`, `tz`: translation offsets / 平移偏移量
-pub fn translation(tx : Double, ty : Double, tz : Double) -> Array[Array[Double]] {
+pub fn translation(
+  tx : Double,
+  ty : Double,
+  tz : Double,
+) -> Array[Array[Double]] {
   [
     [1.0, 0.0, 0.0, tx],
     [0.0, 1.0, 0.0, ty],
@@ -35,6 +41,7 @@ pub fn translation(tx : Double, ty : Double, tz : Double) -> Array[Array[Double]
   ]
 }
 
+///|
 /// |
 /// Create scaling matrix.
 /// 创建缩放矩阵。
@@ -50,6 +57,7 @@ pub fn scaling(sx : Double, sy : Double, sz : Double) -> Array[Array[Double]] {
   ]
 }
 
+///|
 /// |
 /// Create rotation matrix around X-axis.
 /// 创建绕 X 轴旋转矩阵。
@@ -67,6 +75,7 @@ pub fn rotation_x(angle : Double) -> Array[Array[Double]] {
   ]
 }
 
+///|
 /// |
 /// Create rotation matrix around Y-axis.
 /// 创建绕 Y 轴旋转矩阵。
@@ -84,6 +93,7 @@ pub fn rotation_y(angle : Double) -> Array[Array[Double]] {
   ]
 }
 
+///|
 /// |
 /// Create rotation matrix around Z-axis.
 /// 创建绕 Z 轴旋转矩阵。
@@ -101,6 +111,7 @@ pub fn rotation_z(angle : Double) -> Array[Array[Double]] {
   ]
 }
 
+///|
 /// |
 /// Multiply two 4×4 matrices: result = a × b.
 /// 两个 4×4 矩阵相乘: result = a × b。
@@ -123,6 +134,7 @@ pub fn mat4_mul(
   result
 }
 
+///|
 /// |
 /// Transform a 3D point by a 4×4 matrix (homogeneous coordinates).
 /// 用 4×4 矩阵变换 3D 点（齐次坐标）。
@@ -150,6 +162,7 @@ pub fn transform_point(
   }
 }
 
+///|
 /// |
 /// Transform a 3D direction vector by a 4×4 matrix (ignores translation).
 /// 用 4×4 矩阵变换 3D 方向向量（忽略平移分量）。
@@ -169,6 +182,7 @@ pub fn transform_direction(
   (wx, wy, wz)
 }
 
+///|
 /// |
 /// Transpose a 4×4 matrix.
 /// 转置 4×4 矩阵。
@@ -184,6 +198,7 @@ pub fn mat4_transpose(m : Array[Array[Double]]) -> Array[Array[Double]] {
   result
 }
 
+///|
 /// |
 /// Compute 4×4 matrix determinant using cofactor expansion.
 /// 使用余子式展开计算 4×4 矩阵行列式。
@@ -196,16 +211,17 @@ pub fn mat4_determinant(m : Array[Array[Double]]) -> Double {
   det
 }
 
+///|
 /// |
 /// Compute 3×3 minor determinant (excluding row `excl_row` and col `excl_col`).
 /// 计算 3×3 子行列式（排除行 `excl_row` 和列 `excl_col`）。
 fn mat3_determinant(
   m : Array[Array[Double]],
-  excl_row : Int,
-  excl_col : Int,
+  excl_row : Int32,
+  excl_col : Int32,
 ) -> Double {
-  let rows : Array[Int] = []
-  let cols : Array[Int] = []
+  let rows : Array[Int32] = []
+  let cols : Array[Int32] = []
   for i in 0..<4 {
     if i != excl_row {
       rows.push(i)
@@ -228,6 +244,7 @@ fn mat3_determinant(
   a * (e * k - f * h) - b * (d * k - f * g) + c * (d * h - e * g)
 }
 
+///|
 /// |
 /// Compute 4×4 matrix inverse using adjugate method.
 /// 使用伴随矩阵法计算 4×4 矩阵逆。
@@ -252,6 +269,7 @@ pub fn mat4_inverse(m : Array[Array[Double]]) -> Array[Array[Double]]? {
   Some(inv)
 }
 
+///|
 /// |
 /// Create a look-at view matrix (camera transformation).
 /// 创建观察矩阵（相机变换）。
@@ -293,6 +311,7 @@ pub fn look_at(
   ]
 }
 
+///|
 /// |
 /// Create a perspective projection matrix.
 /// 创建透视投影矩阵。
@@ -317,6 +336,7 @@ pub fn perspective(
   ]
 }
 
+///|
 /// |
 /// Create an orthographic projection matrix.
 /// 创建正交投影矩阵。

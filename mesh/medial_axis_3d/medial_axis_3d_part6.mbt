@@ -7,7 +7,13 @@ pub fn medial_axis_sort(balls : Array[MedialBall3D]) -> Array[MedialBall3D] {
     result.push(b)
   }
   result.sort_by(fn(b1, b2) {
-    if b2.radius > b1.radius { 1 } else if b2.radius < b1.radius { -1 } else { 0 }
+    if b2.radius > b1.radius {
+      1
+    } else if b2.radius < b1.radius {
+      -1
+    } else {
+      0
+    }
   })
   result
 }

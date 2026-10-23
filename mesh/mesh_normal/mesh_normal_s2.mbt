@@ -2,7 +2,7 @@
 /// Compute vertex normal by averaging adjacent face normals. / 通过平均相邻面法向量计算顶点法向量。
 pub fn vertex_normal(
   mesh : @mesh_data.Mesh,
-  vertex_idx : Int,
+  vertex_idx : Int32,
 ) -> @core.Point3D {
   let mut nx = 0.0
   let mut ny = 0.0

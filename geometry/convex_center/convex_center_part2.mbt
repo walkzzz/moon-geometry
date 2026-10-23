@@ -19,7 +19,6 @@ pub fn bbox_center(poly : @core.Polygon) -> @core.Point2D {
   @core.Point2D::new((min_x + max_x) / 2.0, (min_y + max_y) / 2.0)
 }
 
-
 ///|
 /// Compute the vertex average center of a convex polygon. / 计算凸多边形的顶点平均中心。
 pub fn vertex_center(poly : @core.Polygon) -> @core.Point2D {

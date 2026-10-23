@@ -9,7 +9,7 @@
 pub fn cspace_expand_circle(
   obstacle : Array[@core.Point2D],
   radius : Double,
-  num_arc_samples : Int,
+  num_arc_samples : Int32,
 ) -> CSpaceObstacle {
   let n = obstacle.length()
   if n == 0 {
@@ -27,8 +27,12 @@ pub fn cspace_expand_circle(
     }
     let nx = dy / len
     let ny = -dx / len
-    result.push(@core.Point2D::new(cur.x() + nx * radius, cur.y() + ny * radius))
-    result.push(@core.Point2D::new(nxt.x() + nx * radius, nxt.y() + ny * radius))
+    result.push(
+      @core.Point2D::new(cur.x() + nx * radius, cur.y() + ny * radius),
+    )
+    result.push(
+      @core.Point2D::new(nxt.x() + nx * radius, nxt.y() + ny * radius),
+    )
   }
   if num_arc_samples > 2 {
     for i in 0..<n {
@@ -56,20 +60,28 @@ pub fn cspace_expand_circle(
       for s in 1..<(num_arc_samples - 1) {
         let t = s.to_double() / (num_arc_samples - 1).to_double()
         let angle = angle1 + t * (angle2 - angle1)
-        result.push(@core.Point2D::new(vertex.x() + radius * cos_impl(angle), vertex.y() + radius * sin_impl(angle)))
+        result.push(
+          @core.Point2D::new(
+            vertex.x() + radius * cos_impl(angle),
+            vertex.y() + radius * sin_impl(angle),
+          ),
+        )
       }
     }
   }
   CSpaceObstacle::new(result)
 }
 
+///|
 fn atan2_impl(y : Double, x : Double) -> Double {
   if x > 0.0 {
     2.0 * atan_approx(y / ((x * x + y * y).sqrt() + x))
   } else if y >= 0.0 && x < 0.0 {
-    2.0 * atan_approx((y * y + x * x).sqrt() - x) / y + 3.141592653589793 - 3.141592653589793
+    2.0 * atan_approx((y * y + x * x).sqrt() - x) / y +
+    3.141592653589793 -
+    3.141592653589793
   } else if y < 0.0 && x < 0.0 {
-    -2.0 * atan_approx((y * y + x * x).sqrt() - x) / (-y)
+    -2.0 * atan_approx((y * y + x * x).sqrt() - x) / -y
   } else if y > 0.0 && x == 0.0 {
     1.5707963267948966
   } else if y < 0.0 && x == 0.0 {
@@ -79,28 +91,31 @@ fn atan2_impl(y : Double, x : Double) -> Double {
   }
 }
 
+///|
 fn atan_approx(x : Double) -> Double {
   x - x * x * x / 3.0 + x * x * x * x * x / 5.0
 }
 
+///|
 fn cos_impl(x : Double) -> Double {
   let mut result = 0.0
   let mut term = 1.0
   let x2 = x * x
   for i in 0..<10 {
     result += term
-    term = term * (-x2) / ((2 * i + 1).to_double() * (2 * i + 2).to_double())
+    term = term * -x2 / ((2 * i + 1).to_double() * (2 * i + 2).to_double())
   }
   result
 }
 
+///|
 fn sin_impl(x : Double) -> Double {
   let mut result = 0.0
   let mut term = x
   let x2 = x * x
   for i in 0..<10 {
     result += term
-    term = term * (-x2) / ((2 * i + 2).to_double() * (2 * i + 3).to_double())
+    term = term * -x2 / ((2 * i + 2).to_double() * (2 * i + 3).to_double())
   }
   result
 }

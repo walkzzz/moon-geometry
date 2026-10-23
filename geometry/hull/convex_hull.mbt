@@ -1,6 +1,5 @@
 ///|
 
-
 ///|
 /// Three-point orientation test.
 /// 三点方向判定。

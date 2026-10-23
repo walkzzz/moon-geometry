@@ -1,3 +1,4 @@
+///|
 test "grid_index_build" {
   let points = [
     @core.Point2D::new(1.5, 2.5),
@@ -8,6 +9,7 @@ test "grid_index_build" {
   assert_eq(grid_size(grid), 3)
 }
 
+///|
 test "grid_index_query_radius" {
   let points = [
     @core.Point2D::new(0.0, 0.0),
@@ -21,6 +23,7 @@ test "grid_index_query_radius" {
   assert_eq(result.length(), 3)
 }
 
+///|
 test "grid_index_query_rect" {
   let points = [
     @core.Point2D::new(1.0, 1.0),
@@ -34,6 +37,7 @@ test "grid_index_query_rect" {
   assert_eq(result.length(), 2)
 }
 
+///|
 test "grid_index_query_cell" {
   let points = [
     @core.Point2D::new(1.5, 2.5),
@@ -46,6 +50,7 @@ test "grid_index_query_cell" {
   assert_eq(result.length(), 2)
 }
 
+///|
 test "grid_index_empty" {
   let points : Array[@core.Point2D] = []
   let grid = build_grid_index(points, 1.0)

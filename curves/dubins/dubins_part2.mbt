@@ -5,9 +5,8 @@ pub fn DubinsPath::new(
   total_length : Double,
   radius : Double,
 ) -> DubinsPath {
-  { segments, total_length, radius }
+  { segments, total_length, radius, }
 }
-
 
 ///|
 /// Pose (position + heading) for Dubins car. / Dubins 小车的位姿（位置 + 朝向）。
@@ -17,13 +16,13 @@ pub struct DubinsPose {
   theta : Double
 }
 
-
 ///|
 /// Construct a Dubins pose. / 构造 Dubins 位姿。
 pub fn DubinsPose::new(x : Double, y : Double, theta : Double) -> DubinsPose {
-  { x, y, theta }
+  { x, y, theta, }
 }
 
+///|
 fn normalize_angle(a : Double) -> Double {
   let two_pi = 6.283185307179586
   let mut result = a % two_pi
@@ -33,6 +32,7 @@ fn normalize_angle(a : Double) -> Double {
   result
 }
 
+///|
 fn mod2pi(a : Double) -> Double {
   normalize_angle(a)
 }

@@ -1,6 +1,6 @@
 ///|
 /// Count non-background pixels. / 统计非背景像素数。
-pub fn count_filled(buf : RasterBuffer, bg : Int) -> Int {
+pub fn count_filled(buf : RasterBuffer, bg : Int32) -> Int32 {
   let mut count = 0
   for c in buf.color {
     if c != bg {
@@ -10,6 +10,7 @@ pub fn count_filled(buf : RasterBuffer, bg : Int) -> Int {
   count
 }
 
+///|
 fn min3(a : Double, b : Double) -> Double {
   if a < b {
     a
@@ -18,6 +19,7 @@ fn min3(a : Double, b : Double) -> Double {
   }
 }
 
+///|
 fn max3(a : Double, b : Double) -> Double {
   if a > b {
     a
@@ -26,7 +28,8 @@ fn max3(a : Double, b : Double) -> Double {
   }
 }
 
-fn min2(a : Int, b : Int) -> Int {
+///|
+fn min2(a : Int32, b : Int32) -> Int32 {
   if a < b {
     a
   } else {
@@ -34,7 +37,8 @@ fn min2(a : Int, b : Int) -> Int {
   }
 }
 
-fn max2(a : Int, b : Int) -> Int {
+///|
+fn max2(a : Int32, b : Int32) -> Int32 {
   if a > b {
     a
   } else {
@@ -42,12 +46,14 @@ fn max2(a : Int, b : Int) -> Int {
   }
 }
 
-fn floor_int(x : Double) -> Int {
+///|
+fn floor_int(x : Double) -> Int32 {
   let f = @math.floor(x)
   f.to_int()
 }
 
-fn ceil_int(x : Double) -> Int {
+///|
+fn ceil_int(x : Double) -> Int32 {
   let f = @math.ceil(x)
   f.to_int()
 }

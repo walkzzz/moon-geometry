@@ -8,7 +8,7 @@
 /// Returns array of length = rows, where result[i] = assigned column index,
 /// or -1 if row i is unassigned (matrix was padded). / 返回长度为行数的数组，
 /// result[i] 为指派的列索引，未指派时为 -1。
-pub fn hungarian(cost : Array[Array[Double]]) -> Array[Int] {
+pub fn hungarian(cost : Array[Array[Double]]) -> Array[Int32] {
   let n = cost.length()
   if n == 0 {
     return []
@@ -16,11 +16,11 @@ pub fn hungarian(cost : Array[Array[Double]]) -> Array[Int] {
   let m = cost[0].length()
   let sz = if n > m { n } else { m }
   let a : Array[Array[Double]] = []
-  for _ in 0..=(sz) {
+  for _ in 0..<=sz {
     a.push(Array::make(sz + 1, inf_val))
   }
-  for i in 1..=sz {
-    for j in 1..=sz {
+  for i in 1..<=sz {
+    for j in 1..<=sz {
       if i - 1 < n && j - 1 < m {
         a[i][j] = cost[i - 1][j - 1]
       }
@@ -28,9 +28,9 @@ pub fn hungarian(cost : Array[Array[Double]]) -> Array[Int] {
   }
   let u : Array[Double] = Array::make(sz + 1, 0.0)
   let v : Array[Double] = Array::make(sz + 1, 0.0)
-  let p : Array[Int] = Array::make(sz + 1, 0)
-  let way : Array[Int] = Array::make(sz + 1, 0)
-  for i in 1..=sz {
+  let p : Array[Int32] = Array::make(sz + 1, 0)
+  let way : Array[Int32] = Array::make(sz + 1, 0)
+  for i in 1..<=sz {
     p[0] = i
     let mut j0 = 0
     let minv : Array[Double] = Array::make(sz + 1, inf_val)
@@ -40,7 +40,7 @@ pub fn hungarian(cost : Array[Array[Double]]) -> Array[Int] {
       let i0 = p[j0]
       let mut delta = inf_val
       let mut j1 = -1
-      for j in 1..=sz {
+      for j in 1..<=sz {
         if !used[j] {
           let cur = a[i0][j] - u[i0] - v[j]
           if cur < minv[j] {
@@ -53,7 +53,7 @@ pub fn hungarian(cost : Array[Array[Double]]) -> Array[Int] {
           }
         }
       }
-      for j in 0..=sz {
+      for j in 0..<=sz {
         if used[j] {
           u[p[j]] = u[p[j]] + delta
           v[j] = v[j] - delta
@@ -76,8 +76,8 @@ pub fn hungarian(cost : Array[Array[Double]]) -> Array[Int] {
       j0 = j1
     }
   }
-  let result : Array[Int] = Array::make(n, -1)
-  for j in 1..=sz {
+  let result : Array[Int32] = Array::make(n, -1)
+  for j in 1..<=sz {
     let row = p[j]
     if row > 0 && row - 1 < n && j - 1 < m {
       result[row - 1] = j - 1

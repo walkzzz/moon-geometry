@@ -14,13 +14,9 @@ pub fn Homography::from_array(h : Array[Double]) -> Homography {
   }
 }
 
-
 ///|
 /// Apply homography to a 2D point. / 将单应矩阵应用于二维点。
-pub fn Homography::apply(
-  m : Homography,
-  p : @core.Point2D,
-) -> @core.Point2D? {
+pub fn Homography::apply(m : Homography, p : @core.Point2D) -> @core.Point2D? {
   let w = m.h20 * p.x() + m.h21 * p.y() + m.h22
   if @core.approx_eq(w, 0.0, 0.000000001) {
     return None

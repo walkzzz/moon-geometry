@@ -2,7 +2,7 @@
 /// Find critical points of a scalar field on a mesh. / 寻找网格上标量场的临界点。
 pub fn critical_points(
   values : Array[Double],
-  edges : Array[(Int, Int)],
+  edges : Array[(Int32, Int32)],
 ) -> Array[ReebNode] {
   let n = values.length()
   if n == 0 {
@@ -36,7 +36,7 @@ pub fn critical_points(
         Regular
       }
     }
-    nodes.push({ vertex_idx: i, level: values[i], crit_type })
+    nodes.push({ vertex_idx: i, level: values[i], crit_type, })
   }
   nodes
 }

@@ -4,7 +4,6 @@ pub fn ProcrustesResult::error(self : ProcrustesResult) -> Double {
   self.error
 }
 
-
 ///|
 /// Centroid of a point set. / 点集质心。
 fn centroid(points : Array[@core.Point2D]) -> @core.Point2D {

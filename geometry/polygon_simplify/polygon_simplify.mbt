@@ -8,6 +8,7 @@
 /// ## Complexity: O(n² log n)
 /// ## 复杂度: O(n² log n)
 
+///|
 /// |
 /// Simplify polygon preserving topology (Douglas-Peucker + topology check).
 /// 拓扑保持简化（Douglas-Peucker + 拓扑检查）。
@@ -44,6 +45,7 @@ pub fn simplify_topology_preserve(
   pts.copy()
 }
 
+///|
 /// |
 /// Visvalingam-Whyatt simplification algorithm.
 /// Visvalingam-Whyatt 简化算法。
@@ -56,7 +58,7 @@ pub fn simplify_topology_preserve(
 /// - `target_count`: desired number of vertices / 目标顶点数
 pub fn simplify_visvalingam(
   pts : Array[@core.Point2D],
-  target_count : Int,
+  target_count : Int32,
 ) -> Array[@core.Point2D] {
   let n = pts.length()
   if n <= target_count || target_count < 3 {
@@ -92,6 +94,7 @@ pub fn simplify_visvalingam(
   points
 }
 
+///|
 /// |
 /// Douglas-Peucker simplification for a closed polygon.
 /// 闭合多边形的 Douglas-Peucker 简化。
@@ -114,11 +117,11 @@ pub fn douglas_peucker(
   }
   if max_dist > eps {
     let left : Array[@core.Point2D] = []
-    for i in 0..=(max_idx) {
+    for i in 0..<=max_idx {
       left.push(pts[i])
     }
     let right : Array[@core.Point2D] = []
-    for i in max_idx..<(n) {
+    for i in max_idx..<n {
       right.push(pts[i])
     }
     let left_result = douglas_peucker(left, eps)
@@ -136,6 +139,7 @@ pub fn douglas_peucker(
   }
 }
 
+///|
 fn point_line_dist(
   p : @core.Point2D,
   a : @core.Point2D,
@@ -145,19 +149,23 @@ fn point_line_dist(
   let dy = b.y() - a.y()
   let len = (dx * dx + dy * dy).sqrt()
   if len < 0.0000000001 {
-    return ((p.x() - a.x()) * (p.x() - a.x()) + (p.y() - a.y()) * (p.y() - a.y())).sqrt()
+    return ((p.x() - a.x()) * (p.x() - a.x()) +
+    (p.y() - a.y()) * (p.y() - a.y())).sqrt()
   }
-  ((dx * (a.y() - p.y()) - dy * (a.x() - p.x())).abs()) / len
+  (dx * (a.y() - p.y()) - dy * (a.x() - p.x())).abs() / len
 }
 
+///|
 fn triangle_area(
   a : @core.Point2D,
   b : @core.Point2D,
   c : @core.Point2D,
 ) -> Double {
-  ((b.x() - a.x()) * (c.y() - a.y()) - (b.y() - a.y()) * (c.x() - a.x())).abs() / 2.0
+  ((b.x() - a.x()) * (c.y() - a.y()) - (b.y() - a.y()) * (c.x() - a.x())).abs() /
+  2.0
 }
 
+///|
 fn has_self_intersection(pts : Array[@core.Point2D]) -> Bool {
   let n = pts.length()
   if n < 4 {
@@ -180,6 +188,7 @@ fn has_self_intersection(pts : Array[@core.Point2D]) -> Bool {
   false
 }
 
+///|
 fn segments_intersect(
   a1 : @core.Point2D,
   a2 : @core.Point2D,
@@ -197,4 +206,3 @@ fn segments_intersect(
     false
   }
 }
-

@@ -1,8 +1,14 @@
 ///|
 /// # Navier-Stokes | 纳维-斯托克斯
 /// Navier-Stokes solver. / 纳维-斯托克斯求解器。
+
 ///|
-pub fn ns_advection(u : Array[Double], v : Array[Double], dx : Double, dy : Double) -> Array[Double] {
+pub fn ns_advection(
+  u : Array[Double],
+  v : Array[Double],
+  dx : Double,
+  dy : Double,
+) -> Array[Double] {
   let n = u.length()
   let result = Array::make(n, 0.0)
   for i in 1..<(n - 1) {
@@ -12,8 +18,13 @@ pub fn ns_advection(u : Array[Double], v : Array[Double], dx : Double, dy : Doub
   }
   result
 }
+
 ///|
-pub fn ns_diffusion(u : Array[Double], nu : Double, dx : Double) -> Array[Double] {
+pub fn ns_diffusion(
+  u : Array[Double],
+  nu : Double,
+  dx : Double,
+) -> Array[Double] {
   let n = u.length()
   let result = Array::make(n, 0.0)
   for i in 1..<(n - 1) {
@@ -21,6 +32,7 @@ pub fn ns_diffusion(u : Array[Double], nu : Double, dx : Double) -> Array[Double
   }
   result
 }
+
 ///|
 pub fn ns_pressure_gradient(p : Array[Double], dx : Double) -> Array[Double] {
   let n = p.length()
@@ -30,7 +42,17 @@ pub fn ns_pressure_gradient(p : Array[Double], dx : Double) -> Array[Double] {
   }
   result
 }
+
 ///|
-pub fn ns_reynolds_number(rho : Double, v : Double, length : Double, mu : Double) -> Double {
-  if mu.abs() < 0.000000000001 { 0.0 } else { rho * v * length / mu }
+pub fn ns_reynolds_number(
+  rho : Double,
+  v : Double,
+  length : Double,
+  mu : Double,
+) -> Double {
+  if mu.abs() < 0.000000000001 {
+    0.0
+  } else {
+    rho * v * length / mu
+  }
 }

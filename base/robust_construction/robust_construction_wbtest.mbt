@@ -1,3 +1,4 @@
+///|
 test "robust_circumcenter" {
   let a = @core.Point2D::new(0.0, 0.0)
   let b = @core.Point2D::new(2.0, 0.0)
@@ -6,6 +7,7 @@ test "robust_circumcenter" {
   assert_true((center.x() - 1.0).abs() < 0.001)
 }
 
+///|
 test "robust_intersection" {
   let a = @core.Point2D::new(0.0, 0.0)
   let b = @core.Point2D::new(2.0, 2.0)
@@ -16,6 +18,7 @@ test "robust_intersection" {
   assert_true((p.y() - 1.0).abs() < 0.001)
 }
 
+///|
 test "robust_midpoint" {
   let a = @core.Point2D::new(0.0, 0.0)
   let b = @core.Point2D::new(2.0, 4.0)

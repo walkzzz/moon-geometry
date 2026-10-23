@@ -8,6 +8,7 @@
 /// ## Complexity: O(n^3) per step for multi-dimensional (Hessian solve)
 /// ## 复杂度: 多维每步 O(n^3)（Hessian 求解）
 
+///|
 /// |
 /// 1D Newton's method for finding f(x) = 0.
 /// 一维牛顿法求根。
@@ -16,7 +17,7 @@ pub fn newton_1d(
   fp : (Double) -> Double,
   x0 : Double,
   tol : Double,
-  max_iter : Int,
+  max_iter : Int32,
 ) -> Double {
   let mut x = x0
   for _ in 0..<max_iter {
@@ -33,13 +34,14 @@ pub fn newton_1d(
   x
 }
 
+///|
 /// |
 /// Solve linear system A x = b via Gaussian elimination.
 /// 高斯消元法求解线性方程组。
 fn solve_linear(
   a : Array[Array[Double]],
   b : Array[Double],
-  n : Int,
+  n : Int32,
 ) -> Array[Double]? {
   let m : Array[Array[Double]] = []
   for i in 0..<n {
@@ -87,6 +89,7 @@ fn solve_linear(
   Some(x)
 }
 
+///|
 /// |
 /// Multi-dimensional Newton's method for optimization.
 /// 多维牛顿法优化：x = x - H^{-1} * grad。
@@ -95,7 +98,7 @@ pub fn newton_multi(
   hess : (Array[Double]) -> Array[Array[Double]],
   x0 : Array[Double],
   tol : Double,
-  max_iter : Int,
+  max_iter : Int32,
 ) -> Array[Double] {
   let n = x0.length()
   let x : Array[Double] = Array::make(n, 0.0)
@@ -117,17 +120,17 @@ pub fn newton_multi(
       neg_g[i] = -g[i]
     }
     match solve_linear(h, neg_g, n) {
-      Some(d) => {
+      Some(d) =>
         for i in 0..<n {
           x[i] += d[i]
         }
-      }
       None => break
     }
   }
   x
 }
 
+///|
 /// |
 /// Newton's method with backtracking line search.
 /// 带回溯线搜索的牛顿法。
@@ -136,7 +139,7 @@ pub fn newton_line_search(
   grad : (Array[Double]) -> Array[Double],
   hess : (Array[Double]) -> Array[Array[Double]],
   x0 : Array[Double],
-  max_iter : Int,
+  max_iter : Int32,
 ) -> Array[Double] {
   let n = x0.length()
   let x : Array[Double] = Array::make(n, 0.0)
@@ -194,6 +197,7 @@ pub fn newton_line_search(
   x
 }
 
+///|
 /// |
 /// Trust region Newton's method.
 /// 信赖域牛顿法。
@@ -203,7 +207,7 @@ pub fn newton_trust_region(
   hess : (Array[Double]) -> Array[Array[Double]],
   x0 : Array[Double],
   max_delta : Double,
-  max_iter : Int,
+  max_iter : Int32,
 ) -> Array[Double] {
   let n = x0.length()
   let x : Array[Double] = Array::make(n, 0.0)
@@ -277,6 +281,7 @@ pub fn newton_trust_region(
   x
 }
 
+///|
 /// |
 /// 2D Newton's method convenience wrapper.
 /// 二维牛顿法便捷封装。
@@ -285,7 +290,7 @@ pub fn newton_2d(
   hess : (Double, Double) -> ((Double, Double), (Double, Double)),
   x0 : Double,
   y0 : Double,
-  max_iter : Int,
+  max_iter : Int32,
 ) -> @core.Point2D {
   let g_wrap = fn(x : Array[Double]) -> Array[Double] {
     let (gx, gy) = grad(x[0], x[1])

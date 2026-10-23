@@ -4,10 +4,10 @@
 pub fn css_inflection_points(
   points : Array[@core.Point2D],
   sigma : Double,
-) -> Array[Int] {
+) -> Array[Int32] {
   let kappa = css_curvature(points, sigma)
   let n = kappa.length()
-  let result : Array[Int] = []
+  let result : Array[Int32] = []
   for i in 0..<n {
     let j = (i + 1) % n
     if kappa[i] * kappa[j] < 0.0 {

@@ -1,6 +1,6 @@
 ///|
 /// Upper bound: first index where arr[i] > target. / 上界。
-pub fn upper_bound(arr : Array[Double], target : Double) -> Int {
+pub fn upper_bound(arr : Array[Double], target : Double) -> Int32 {
   let mut lo = 0
   let mut hi = arr.length()
   while lo < hi {
@@ -13,7 +13,6 @@ pub fn upper_bound(arr : Array[Double], target : Double) -> Int {
   }
   lo
 }
-
 
 ///|
 /// Remove duplicates from a sorted array. / 去重有序数组。

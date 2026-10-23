@@ -8,22 +8,20 @@
 /// ## Complexity: O(n * k) where n = path length, k = samples per segment
 /// ## 复杂度: O(n * k)，n = 路径长度，k = 每段采样数
 
-
 ///|
 /// Smoothing configuration. / 平滑配置。
 pub struct SmoothConfig {
-  num_samples : Int
+  num_samples : Int32
   tension : Double
   preserve_endpoints : Bool
 }
 
-
 ///|
 /// Construct smoothing configuration. / 构造平滑配置。
 pub fn SmoothConfig::new(
-  num_samples : Int,
+  num_samples : Int32,
   tension : Double,
   preserve_endpoints : Bool,
 ) -> SmoothConfig {
-  { num_samples, tension, preserve_endpoints }
+  { num_samples, tension, preserve_endpoints, }
 }

@@ -1,3 +1,4 @@
+///|
 test "convex_hull3d_tetrahedron" {
   let points = [
     @core.Point3D::new(0.0, 0.0, 0.0),
@@ -9,6 +10,7 @@ test "convex_hull3d_tetrahedron" {
   assert_eq(faces.length(), 4)
 }
 
+///|
 test "convex_hull3d_face_count" {
   let points = [
     @core.Point3D::new(0.0, 0.0, 0.0),
@@ -20,6 +22,7 @@ test "convex_hull3d_face_count" {
   assert_eq(hull_face_count(faces), 4)
 }
 
+///|
 test "convex_hull3d_volume" {
   let points = [
     @core.Point3D::new(0.0, 0.0, 0.0),
@@ -32,6 +35,7 @@ test "convex_hull3d_volume" {
   assert_true(vol > 0.0)
 }
 
+///|
 test "convex_hull3d_octahedron" {
   let points = [
     @core.Point3D::new(1.0, 0.0, 0.0),

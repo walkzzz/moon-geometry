@@ -7,27 +7,19 @@
 /// - `num_samples`: samples per segment / 每段采样数
 pub fn smooth_preserve_keypoints(
   path : Array[@core.Point2D],
-  keypoints : Array[Int],
-  num_samples : Int,
+  keypoints : Array[Int32],
+  num_samples : Int32,
 ) -> Array[@core.Point2D] {
   let n = path.length()
   if n < 2 {
     return path
   }
-  let sorted_kp : Array[Int] = []
+  let sorted_kp : Array[Int32] = []
   for i in 0..<keypoints.length() {
     sorted_kp.push(keypoints[i])
   }
-  sorted_kp.sort_by(fn(a, b) {
-    if a < b {
-      -1
-    } else if a > b {
-      1
-    } else {
-      0
-    }
-  })
-  let segments : Array[(Int, Int)] = []
+  sorted_kp.sort_by(fn(a, b) { if a < b { -1 } else if a > b { 1 } else { 0 } })
+  let segments : Array[(Int32, Int32)] = []
   let mut prev = 0
   for i in 0..<sorted_kp.length() {
     let kp = sorted_kp[i]
@@ -48,7 +40,10 @@ pub fn smooth_preserve_keypoints(
       for i in start..<(end + 1) {
         sub_path.push(path[i])
       }
-      let smoothed = smooth_path(sub_path, SmoothConfig::new(num_samples, 0.0, true))
+      let smoothed = smooth_path(
+        sub_path,
+        SmoothConfig::new(num_samples, 0.0, true),
+      )
       for i in 1..<smoothed.length() {
         result.push(smoothed[i])
       }

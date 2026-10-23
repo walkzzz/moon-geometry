@@ -40,7 +40,7 @@ pub fn ply_parse_ascii(text : String) -> PlyMesh {
     } else if section == 2 && mesh.faces.length() < expect_faces {
       if parts.length() >= 2 {
         let n = pi(parts[0])
-        let face : Array[Int] = []
+        let face : Array[Int32] = []
         for k in 1..<(n + 1) {
           if k < parts.length() {
             face.push(pi(parts[k]))

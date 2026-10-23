@@ -1,14 +1,13 @@
 ///|
 /// Area of the ellipse: π * a * b. / 椭圆面积：π * a * b。
-pub impl @core.Measurable for Ellipse with area(self) {
+pub impl @core.Measurable for Ellipse with fn area(self) {
   3.141592653589793 * self.a * self.b
 }
-
 
 ///|
 /// Perimeter of the ellipse (Ramanujan's second approximation).
 /// 椭圆周长（Ramanujan 第二近似公式）。
-pub impl @core.PerimeterMeasurable for Ellipse with perimeter(self) {
+pub impl @core.PerimeterMeasurable for Ellipse with fn perimeter(self) {
   let a = self.a
   let b = self.b
   let h = (a - b) * (a - b) / ((a + b) * (a + b))
@@ -16,7 +15,6 @@ pub impl @core.PerimeterMeasurable for Ellipse with perimeter(self) {
   (a + b) *
   (1.0 + 3.0 * h / (10.0 + (4.0 - 3.0 * h).sqrt()))
 }
-
 
 ///|
 /// Eccentricity of the ellipse: e = sqrt(1 - b²/a²).
@@ -27,7 +25,6 @@ pub fn Ellipse::eccentricity(self : Ellipse) -> Double {
   }
   (1.0 - self.b * self.b / (self.a * self.a)).sqrt()
 }
-
 
 ///|
 /// Transform a point from world coordinates to the ellipse's local

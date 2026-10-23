@@ -20,6 +20,7 @@ pub fn convex_polygon_intersection(
   result
 }
 
+///|
 fn clip_polygon(
   polygon : Array[@core.Point2D],
   edge_start : @core.Point2D,
@@ -48,6 +49,7 @@ fn clip_polygon(
   result
 }
 
+///|
 fn is_inside_edge(
   p : @core.Point2D,
   edge_start : @core.Point2D,
@@ -58,6 +60,7 @@ fn is_inside_edge(
   dx * (p.y() - edge_start.y()) - dy * (p.x() - edge_start.x()) >= 0.0
 }
 
+///|
 fn line_intersect(
   p1 : @core.Point2D,
   p2 : @core.Point2D,

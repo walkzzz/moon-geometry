@@ -1,5 +1,10 @@
 ///|
-pub fn heat_explicit_step(u : Array[Double], alpha : Double, dt : Double, dx : Double) -> Array[Double] {
+pub fn heat_explicit_step(
+  u : Array[Double],
+  alpha : Double,
+  dt : Double,
+  dx : Double,
+) -> Array[Double] {
   let n = u.length()
   let r = alpha * dt / (dx * dx)
   let result = Array::make(n, 0.0)

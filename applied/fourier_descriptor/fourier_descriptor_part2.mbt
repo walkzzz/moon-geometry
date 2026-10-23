@@ -3,11 +3,7 @@
 ///
 /// `re` and `im` are real/imag parts. `inverse` = true for inverse transform.
 /// `re` 和 `im` 为实/虚部。`inverse` 为 true 时执行逆变换。
-fn fft(
-  re : Array[Double],
-  im : Array[Double],
-  inverse : Bool,
-) -> Unit {
+fn fft(re : Array[Double], im : Array[Double], inverse : Bool) -> Unit {
   let n = re.length()
   if n <= 1 {
     return

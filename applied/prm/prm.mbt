@@ -8,52 +8,47 @@
 /// ## Complexity: O(n²) construction + O(n² log n) query
 /// ## 复杂度: 构建 O(n²) + 查询 O(n² log n)
 
-
 ///|
 /// PRM configuration. / PRM 配置。
 pub struct PRMConfig {
-  num_samples : Int
+  num_samples : Int32
   connection_radius : Double
-  seed : UInt
+  seed : UInt32
   x_min : Double
   x_max : Double
   y_min : Double
   y_max : Double
 }
 
-
 ///|
 /// Construct PRM configuration. / 构造 PRM 配置。
 pub fn PRMConfig::new(
-  num_samples : Int,
+  num_samples : Int32,
   connection_radius : Double,
-  seed : UInt,
+  seed : UInt32,
   x_min : Double,
   x_max : Double,
   y_min : Double,
   y_max : Double,
 ) -> PRMConfig {
-  { num_samples, connection_radius, seed, x_min, x_max, y_min, y_max }
+  { num_samples, connection_radius, seed, x_min, x_max, y_min, y_max, }
 }
-
 
 ///|
 /// PRM roadmap storing nodes and edges. / PRM 路线图，存储节点和边。
 pub struct PRMRoadmap {
   nodes : Array[@core.Point2D]
-  edges : Array[Array[(Int, Double)]]
+  edges : Array[Array[(Int32, Double)]]
 }
-
 
 ///|
 /// Construct PRM roadmap. / 构造 PRM 路线图。
 pub fn PRMRoadmap::new(
   nodes : Array[@core.Point2D],
-  edges : Array[Array[(Int, Double)]],
+  edges : Array[Array[(Int32, Double)]],
 ) -> PRMRoadmap {
-  { nodes, edges }
+  { nodes, edges, }
 }
-
 
 ///|
 /// PRM query result. / PRM 查询结果。

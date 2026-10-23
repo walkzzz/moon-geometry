@@ -2,15 +2,22 @@
 /// Count 6-connected object neighbors. / 统计 6-连通对象邻居数。
 pub fn count_6_neighbors(
   voxels : Array[Bool],
-  x : Int,
-  y : Int,
-  z : Int,
-  nx : Int,
-  ny : Int,
-  nz : Int,
-) -> Int {
+  x : Int32,
+  y : Int32,
+  z : Int32,
+  nx : Int32,
+  ny : Int32,
+  nz : Int32,
+) -> Int32 {
   let mut count = 0
-  let offsets = [(1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, -1, 0), (0, 0, 1), (0, 0, -1)]
+  let offsets = [
+    (1, 0, 0),
+    (-1, 0, 0),
+    (0, 1, 0),
+    (0, -1, 0),
+    (0, 0, 1),
+    (0, 0, -1),
+  ]
   for off in offsets {
     let (dx, dy, dz) = off
     let nx_ = x + dx

@@ -1,5 +1,6 @@
 ///|
 
+///|
 /// Support function for a convex polygon. / 凸多边形的支撑函数。
 pub fn polygon_support(
   poly : Array[@core.Point2D],
@@ -18,7 +19,6 @@ pub fn polygon_support(
   best
 }
 
-
 ///|
 /// Support function for a circle. / 圆的支撑函数。
 pub fn circle_support(
@@ -31,5 +31,8 @@ pub fn circle_support(
   if len < 0.000000000001 {
     return center
   }
-  @core.Point2D::new(center.x() + radius * dx / len, center.y() + radius * dy / len)
+  @core.Point2D::new(
+    center.x() + radius * dx / len,
+    center.y() + radius * dy / len,
+  )
 }

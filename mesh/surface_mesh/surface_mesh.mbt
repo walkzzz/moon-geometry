@@ -8,6 +8,7 @@
 /// ## Representation: vertices Array[(x,y,z)], faces Array[(i,j,k)]
 /// ## 表示: 顶点 Array[(x,y,z)], 面 Array[(i,j,k)]
 
+///|
 /// |
 /// Compute face normal of a triangle.
 /// 计算三角面的法线。
@@ -17,7 +18,7 @@
 /// - `face`: triangle indices (i, j, k) / 三角形索引
 pub fn face_normal(
   vertices : Array[(Double, Double, Double)],
-  face : (Int, Int, Int),
+  face : (Int32, Int32, Int32),
 ) -> (Double, Double, Double) {
   let (i, j, k) = face
   let (x1, y1, z1) = vertices[i]
@@ -39,6 +40,7 @@ pub fn face_normal(
   (nx / len, ny / len, nz / len)
 }
 
+///|
 /// |
 /// Compute vertex normal by averaging adjacent face normals.
 /// 通过平均相邻面法线计算顶点法线。
@@ -49,8 +51,8 @@ pub fn face_normal(
 /// - `vidx`: vertex index / 顶点索引
 pub fn vertex_normal(
   vertices : Array[(Double, Double, Double)],
-  faces : Array[(Int, Int, Int)],
-  vidx : Int,
+  faces : Array[(Int32, Int32, Int32)],
+  vidx : Int32,
 ) -> (Double, Double, Double) {
   let mut nx = 0.0
   let mut ny = 0.0
@@ -71,12 +73,13 @@ pub fn vertex_normal(
   (nx / len, ny / len, nz / len)
 }
 
+///|
 /// |
 /// Compute triangle area.
 /// 计算三角形面积。
 pub fn triangle_area(
   vertices : Array[(Double, Double, Double)],
-  face : (Int, Int, Int),
+  face : (Int32, Int32, Int32),
 ) -> Double {
   let (i, j, k) = face
   let (x1, y1, z1) = vertices[i]
@@ -94,12 +97,13 @@ pub fn triangle_area(
   0.5 * (cx * cx + cy * cy + cz * cz).sqrt()
 }
 
+///|
 /// |
 /// Compute total mesh surface area.
 /// 计算网格总表面积。
 pub fn mesh_area(
   vertices : Array[(Double, Double, Double)],
-  faces : Array[(Int, Int, Int)],
+  faces : Array[(Int32, Int32, Int32)],
 ) -> Double {
   let mut total = 0.0
   for face in faces {
@@ -108,6 +112,7 @@ pub fn mesh_area(
   total
 }
 
+///|
 /// |
 /// Subdivide a triangle mesh using midpoint subdivision.
 /// 使用中点细分三角网格。
@@ -116,13 +121,13 @@ pub fn mesh_area(
 /// 返回 (新顶点, 新面)。
 pub fn midpoint_subdivide(
   vertices : Array[(Double, Double, Double)],
-  faces : Array[(Int, Int, Int)],
-) -> (Array[(Double, Double, Double)], Array[(Int, Int, Int)]) {
+  faces : Array[(Int32, Int32, Int32)],
+) -> (Array[(Double, Double, Double)], Array[(Int32, Int32, Int32)]) {
   let new_verts : Array[(Double, Double, Double)] = []
   for v in vertices {
     new_verts.push(v)
   }
-  let new_faces : Array[(Int, Int, Int)] = []
+  let new_faces : Array[(Int32, Int32, Int32)] = []
   for face in faces {
     let (i, j, k) = face
     let (xi, yi, zi) = vertices[i]
@@ -142,6 +147,7 @@ pub fn midpoint_subdivide(
   (new_verts, new_faces)
 }
 
+///|
 /// |
 /// Compute mesh bounding box.
 /// 计算网格包围盒。
@@ -182,12 +188,13 @@ pub fn mesh_bounding_box(
   (min_x, min_y, min_z, max_x, max_y, max_z)
 }
 
+///|
 /// |
 /// Validate mesh: check face indices are in range.
 /// 验证网格: 检查面索引在范围内。
 pub fn validate_mesh(
   vertices : Array[(Double, Double, Double)],
-  faces : Array[(Int, Int, Int)],
+  faces : Array[(Int32, Int32, Int32)],
 ) -> Bool {
   let n = vertices.length()
   for face in faces {

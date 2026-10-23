@@ -16,12 +16,18 @@ pub fn cspace_expand_polygon(
   let result : Array[@core.Point2D] = []
   for i in 0..<obstacle.length() {
     for j in 0..<neg_robot.length() {
-      result.push(@core.Point2D::new(obstacle[i].x() + neg_robot[j].x(), obstacle[i].y() + neg_robot[j].y()))
+      result.push(
+        @core.Point2D::new(
+          obstacle[i].x() + neg_robot[j].x(),
+          obstacle[i].y() + neg_robot[j].y(),
+        ),
+      )
     }
   }
   CSpaceObstacle::new(convex_hull(result))
 }
 
+///|
 fn convex_hull(points : Array[@core.Point2D]) -> Array[@core.Point2D] {
   if points.length() <= 2 {
     return points
@@ -29,7 +35,13 @@ fn convex_hull(points : Array[@core.Point2D]) -> Array[@core.Point2D] {
   let sorted = sort_by_x(points)
   let lower : Array[@core.Point2D] = []
   for i in 0..<sorted.length() {
-    while lower.length() >= 2 && @core.turn(lower[lower.length() - 2], lower[lower.length() - 1], sorted[i]) <= 0.0 {
+    while lower.length() >= 2 &&
+          @core.turn(
+            lower[lower.length() - 2],
+            lower[lower.length() - 1],
+            sorted[i],
+          ) <=
+          0.0 {
       lower.remove(lower.length() - 1) |> ignore
     }
     lower.push(sorted[i])
@@ -37,7 +49,13 @@ fn convex_hull(points : Array[@core.Point2D]) -> Array[@core.Point2D] {
   let upper : Array[@core.Point2D] = []
   let mut i = sorted.length() - 1
   while i >= 0 {
-    while upper.length() >= 2 && @core.turn(upper[upper.length() - 2], upper[upper.length() - 1], sorted[i]) <= 0.0 {
+    while upper.length() >= 2 &&
+          @core.turn(
+            upper[upper.length() - 2],
+            upper[upper.length() - 1],
+            sorted[i],
+          ) <=
+          0.0 {
       upper.remove(upper.length() - 1) |> ignore
     }
     upper.push(sorted[i])
@@ -51,6 +69,7 @@ fn convex_hull(points : Array[@core.Point2D]) -> Array[@core.Point2D] {
   lower
 }
 
+///|
 fn sort_by_x(points : Array[@core.Point2D]) -> Array[@core.Point2D] {
   let result : Array[@core.Point2D] = []
   for i in 0..<points.length() {

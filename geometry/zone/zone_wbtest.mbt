@@ -1,3 +1,4 @@
+///|
 test "zone empty" {
   let line = @core.Line::new(0.0, 1.0, -2.0)
   let segs : Array[@core.Segment] = []
@@ -5,6 +6,7 @@ test "zone empty" {
   assert_eq(zone_crossed_count(z), 0)
 }
 
+///|
 test "zone basic" {
   let line = @core.Line::new(0.0, 1.0, -2.0)
   let segs = [
@@ -17,6 +19,7 @@ test "zone basic" {
   assert_eq(zone_crossed_count(z), 1)
 }
 
+///|
 test "zone no crossing" {
   let line = @core.Line::new(0.0, 1.0, -10.0)
   let segs = [
@@ -29,6 +32,7 @@ test "zone no crossing" {
   assert_eq(zone_crossed_count(z), 0)
 }
 
+///|
 test "zone complexity" {
   let line = @core.Line::new(0.0, 1.0, -2.0)
   let segs = [
@@ -46,6 +50,7 @@ test "zone complexity" {
   assert_true(c >= 1)
 }
 
+///|
 test "zone bound" {
   let bound = zone_complexity_bound(10)
   assert_eq(bound, 51)

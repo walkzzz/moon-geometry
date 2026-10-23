@@ -4,7 +4,7 @@ pub fn AABB3D::ray_intersect(
   b : AABB3D,
   origin : @core.Point3D,
   dir : @core.Point3D,
-) -> Option[(Double, Double)] {
+) -> (Double, Double)? {
   let mut t_min = -1.7976931348623157e+308
   let mut t_max = 1.7976931348623157e+308
   let oarr = [origin.x, origin.y, origin.z]

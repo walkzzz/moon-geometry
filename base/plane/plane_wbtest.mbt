@@ -1,3 +1,4 @@
+///|
 test "plane_from_normal_point" {
   let normal = @core.Point3D::new(0.0, 0.0, 1.0)
   let point = @core.Point3D::new(1.0, 2.0, 3.0)
@@ -5,6 +6,7 @@ test "plane_from_normal_point" {
   assert_true(@core.approx_eq(plane.d, -3.0, 0.000000000001))
 }
 
+///|
 test "plane_from_three_points" {
   let a = @core.Point3D::new(1.0, 0.0, 0.0)
   let b = @core.Point3D::new(0.0, 1.0, 0.0)
@@ -14,6 +16,7 @@ test "plane_from_three_points" {
   assert_true(Plane::contains(plane, p, 0.000000000001))
 }
 
+///|
 test "plane_distance" {
   let normal = @core.Point3D::new(0.0, 0.0, 1.0)
   let point = @core.Point3D::new(0.0, 0.0, 0.0)
@@ -23,6 +26,7 @@ test "plane_distance" {
   assert_true(@core.approx_eq(d, 5.0, 0.000000000001))
 }
 
+///|
 test "plane_contains" {
   let normal = @core.Point3D::new(1.0, 1.0, 1.0)
   let point = @core.Point3D::new(1.0, 0.0, 0.0)
@@ -31,6 +35,7 @@ test "plane_contains" {
   assert_true(Plane::contains(plane, p, 0.000000000001))
 }
 
+///|
 test "plane_line_intersect" {
   let normal = @core.Point3D::new(0.0, 0.0, 1.0)
   let point = @core.Point3D::new(0.0, 0.0, 5.0)
@@ -43,6 +48,7 @@ test "plane_line_intersect" {
   }
 }
 
+///|
 test "plane_line_parallel" {
   let normal = @core.Point3D::new(0.0, 0.0, 1.0)
   let point = @core.Point3D::new(0.0, 0.0, 5.0)
@@ -55,15 +61,19 @@ test "plane_line_parallel" {
   }
 }
 
+///|
 test "plane_normalize" {
   let normal = @core.Point3D::new(0.0, 0.0, 3.0)
   let point = @core.Point3D::new(0.0, 0.0, 1.0)
   let plane = Plane::from_normal_point(normal, point)
   let np = Plane::normalize(plane)
-  let nlen = (np.normal.x * np.normal.x + np.normal.y * np.normal.y + np.normal.z * np.normal.z).sqrt()
+  let nlen = (np.normal.x * np.normal.x +
+  np.normal.y * np.normal.y +
+  np.normal.z * np.normal.z).sqrt()
   assert_true(@core.approx_eq(nlen, 1.0, 0.000000000001))
 }
 
+///|
 test "plane_project" {
   let normal = @core.Point3D::new(0.0, 0.0, 1.0)
   let point = @core.Point3D::new(0.0, 0.0, 0.0)

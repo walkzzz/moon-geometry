@@ -1,10 +1,9 @@
 ///|
 pub extend Similarity with @core.Composable::{compose}
 
-
 ///|
 /// Compose two similarity transformations (self then other). / 组合两个相似变换（先 self 后 other）。
-pub impl @core.Composable for Similarity with compose(self, other) {
+pub impl @core.Composable for Similarity with fn compose(self, other) {
   let c = @math.cos(self.angle)
   let sn = @math.sin(self.angle)
   {

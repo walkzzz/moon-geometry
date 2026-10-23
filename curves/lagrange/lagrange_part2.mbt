@@ -1,10 +1,6 @@
 ///|
 /// Lagrange basis polynomial L_i(x). / Lagrange 基多项式 L_i(x)。
-pub fn lagrange_basis(
-  xs : Array[Double],
-  i : Int,
-  x : Double,
-) -> Double {
+pub fn lagrange_basis(xs : Array[Double], i : Int32, x : Double) -> Double {
   let n = xs.length()
   if n == 0 {
     return 0.0
@@ -21,7 +17,6 @@ pub fn lagrange_basis(
   }
   result
 }
-
 
 ///|
 /// Interpolate 2D points using Lagrange interpolation (x-coordinates as nodes). / 使用 Lagrange 插值对2D点进行插值。

@@ -2,7 +2,7 @@
 /// Evaluate B-spline curve at parameter t. / 计算 B样条曲线在参数 t 处的值。
 pub fn bspline_eval(
   control_points : Array[@core.Point2D],
-  degree : Int,
+  degree : Int32,
   knots : Array[Double],
   t : Double,
 ) -> @core.Point2D {
@@ -20,12 +20,11 @@ pub fn bspline_eval(
   @core.Point2D::new(x, y)
 }
 
-
 ///|
 /// Generate uniform knot vector. / 生成均匀节点向量。
 pub fn uniform_knots(
-  num_control_points : Int,
-  degree : Int,
+  num_control_points : Int32,
+  degree : Int32,
 ) -> Array[Double] {
   let n = num_control_points + degree + 1
   let knots : Array[Double] = []

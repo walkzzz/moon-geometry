@@ -1,3 +1,4 @@
+///|
 test "convex intersection basic" {
   let pts1 = [
     @core.Point2D::new(0.0, 0.0),
@@ -17,6 +18,7 @@ test "convex intersection basic" {
   assert_true(inter.length() >= 3)
 }
 
+///|
 test "convex polygons intersect" {
   let pts1 = [
     @core.Point2D::new(0.0, 0.0),
@@ -35,6 +37,7 @@ test "convex polygons intersect" {
   assert_true(convex_polygons_intersect(poly1, poly2))
 }
 
+///|
 test "convex polygons no intersect" {
   let pts1 = [
     @core.Point2D::new(0.0, 0.0),
@@ -53,6 +56,7 @@ test "convex polygons no intersect" {
   assert_false(convex_polygons_intersect(poly1, poly2))
 }
 
+///|
 test "intersection area" {
   let pts1 = [
     @core.Point2D::new(0.0, 0.0),
@@ -72,6 +76,7 @@ test "intersection area" {
   assert_true(area > 0.0)
 }
 
+///|
 test "intersection contained" {
   let pts1 = [
     @core.Point2D::new(0.0, 0.0),

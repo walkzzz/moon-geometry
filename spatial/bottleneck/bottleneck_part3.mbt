@@ -3,13 +3,13 @@
 pub fn bottleneck_match(
   a : Array[@core.Point2D],
   b : Array[@core.Point2D],
-) -> Array[(Int, Int, Double)] {
+) -> Array[(Int32, Int32, Double)] {
   let n = a.length()
   let m = b.length()
   if n == 0 || m == 0 {
     return []
   }
-  let pairs : Array[(Int, Int, Double)] = []
+  let pairs : Array[(Int32, Int32, Double)] = []
   let used_b : Array[Bool] = []
   for _ in 0..<m {
     used_b.push(false)

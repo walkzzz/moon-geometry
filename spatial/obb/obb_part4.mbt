@@ -1,12 +1,13 @@
 ///|
 /// Surface area of the OBB. / OBB 表面积。
-pub impl @core.Measurable3D for OBB with surface_area(self) {
+pub impl @core.Measurable3D for OBB with fn surface_area(self) {
   let a = self.half_extents[0]
   let bb = self.half_extents[1]
   let c = self.half_extents[2]
   8.0 * (a * bb + bb * c + a * c)
 }
 
+///|
 fn jacobi_eigen_3x3(
   m00 : Double,
   m01 : Double,

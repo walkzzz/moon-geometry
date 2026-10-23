@@ -6,7 +6,7 @@ pub fn raster_triangle(
   v0 : @core.Point3D,
   v1 : @core.Point3D,
   v2 : @core.Point3D,
-  color : Int,
+  color : Int32,
 ) -> Unit {
   let eps = 0.0000001
   let min_x = max3(min3(v0.x, v1.x), min3(v1.x, v2.x)) - 1.0

@@ -1,9 +1,11 @@
+///|
 test "mesh basic" {
   let m = Mesh::new()
   assert_eq(Mesh::vertex_count(m), 0)
   assert_eq(Mesh::face_count(m), 0)
 }
 
+///|
 test "mesh add vertex" {
   let m = Mesh::new()
   let i0 = m.add_vertex(@core.Point3D::new(0.0, 0.0, 0.0))
@@ -13,6 +15,7 @@ test "mesh add vertex" {
   assert_eq(Mesh::vertex_count(m), 2)
 }
 
+///|
 test "mesh add face" {
   let m = Mesh::new()
   let v0 = m.add_vertex(@core.Point3D::new(0.0, 0.0, 0.0))
@@ -23,6 +26,7 @@ test "mesh add face" {
   assert_eq(Mesh::edge_count(m), 3)
 }
 
+///|
 test "mesh tetrahedron" {
   let m = Mesh::tetrahedron(
     @core.Point3D::new(0.0, 0.0, 0.0),
@@ -34,6 +38,7 @@ test "mesh tetrahedron" {
   assert_eq(Mesh::face_count(m), 4)
 }
 
+///|
 test "mesh bounding box" {
   let m = Mesh::tetrahedron(
     @core.Point3D::new(0.0, 0.0, 0.0),

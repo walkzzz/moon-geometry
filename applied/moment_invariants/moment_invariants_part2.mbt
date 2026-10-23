@@ -3,8 +3,8 @@
 /// 原始（几何）矩 M_pq = sum x^p * y^q。
 pub fn raw_moment(
   points : Array[@core.Point2D],
-  p : Int,
-  q : Int,
+  p : Int32,
+  q : Int32,
 ) -> Double {
   let mut m = 0.0
   for pt in points {
@@ -12,7 +12,6 @@ pub fn raw_moment(
   }
   m
 }
-
 
 ///|
 /// Centroid of a point set. / 点集质心。
@@ -26,14 +25,13 @@ pub fn centroid(points : Array[@core.Point2D]) -> (@core.Point2D, Double) {
   (@core.Point2D::new(m10 / m00, m01 / m00), m00)
 }
 
-
 ///|
 /// Central moment mu_pq = sum (x-x_bar)^p * (y-y_bar)^q.
 /// 中心矩 mu_pq = sum (x-x_bar)^p * (y-y_bar)^q。
 pub fn central_moment(
   points : Array[@core.Point2D],
-  p : Int,
-  q : Int,
+  p : Int32,
+  q : Int32,
 ) -> Double {
   let (c, m00) = centroid(points)
   if m00.abs() < 0.000000000001 {

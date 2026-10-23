@@ -1,3 +1,4 @@
+///|
 test "solve_linear identity" {
   let a = [[1.0, 0.0], [0.0, 1.0]]
   let b = [3.0, 5.0]
@@ -10,6 +11,7 @@ test "solve_linear identity" {
   }
 }
 
+///|
 test "solve_linear 2x2" {
   let a = [[2.0, 1.0], [1.0, 3.0]]
   let b = [3.0, 4.0]
@@ -22,6 +24,7 @@ test "solve_linear 2x2" {
   }
 }
 
+///|
 test "solve_linear singular" {
   let a = [[1.0, 2.0], [2.0, 4.0]]
   let b = [1.0, 2.0]
@@ -31,6 +34,7 @@ test "solve_linear singular" {
   }
 }
 
+///|
 test "solve_unconstrained_qp" {
   let q = [[2.0, 0.0], [0.0, 2.0]]
   let c = [-2.0, -4.0]
@@ -43,6 +47,7 @@ test "solve_unconstrained_qp" {
   }
 }
 
+///|
 test "active_set_qp unconstrained" {
   let q = [[2.0, 0.0], [0.0, 2.0]]
   let c = [-2.0, -4.0]
@@ -53,6 +58,7 @@ test "active_set_qp unconstrained" {
   assert_true((r.x[1] - 2.0).abs() < 0.001)
 }
 
+///|
 test "active_set_qp with constraint" {
   let q = [[2.0, 0.0], [0.0, 2.0]]
   let c = [-2.0, -4.0]
@@ -62,26 +68,30 @@ test "active_set_qp with constraint" {
   assert_true(r.x[0] >= -0.001)
 }
 
+///|
 test "qp_2d_box" {
   let p = qp_2d_box(2.0, 0.0, 2.0, -2.0, -4.0, 0.0, 10.0, 0.0, 10.0)
   assert_true((p.x() - 1.0).abs() < 0.01)
   assert_true((p.y() - 2.0).abs() < 0.01)
 }
 
+///|
 test "qp_2d_box constrained" {
   let p = qp_2d_box(2.0, 0.0, 2.0, -2.0, -4.0, 0.0, 0.5, 0.0, 10.0)
   assert_true(p.x() <= 0.5 + 0.01)
   assert_true(p.x() >= 0.0 - 0.01)
 }
 
+///|
 test "qp_objective" {
   let q = [[2.0, 0.0], [0.0, 2.0]]
   let c = [-2.0, -4.0]
   let x = [1.0, 2.0]
   let v = qp_objective(q, c, x, 2)
-  assert_true((v - (-5.0)).abs() < 0.000001)
+  assert_true((v - -5.0).abs() < 0.000001)
 }
 
+///|
 test "solve_linear 3x3" {
   let a = [[4.0, 3.0, 0.0], [3.0, 4.0, -1.0], [0.0, -1.0, 4.0]]
   let b = [24.0, 30.0, -24.0]

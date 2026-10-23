@@ -5,13 +5,11 @@ pub struct Ray3 {
   dir : @core.Point3D
 }
 
-
 ///|
 /// Construct a 3D ray. / 构造三维射线。
 pub fn Ray3::new(origin : @core.Point3D, dir : @core.Point3D) -> Ray3 {
-  { origin, dir }
+  { origin, dir, }
 }
-
 
 ///|
 /// Evaluate ray at parameter t. / 计算射线上参数 t 处的点。

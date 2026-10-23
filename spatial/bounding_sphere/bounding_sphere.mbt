@@ -5,31 +5,29 @@ pub struct BoundingSphere {
   radius : Double
 }
 
-
 ///|
 pub extend BoundingSphere with @core.Measurable3D::{volume, surface_area}
 
-
 ///|
 /// Construct a bounding sphere. / 构造包围球。
-pub fn BoundingSphere::new(center : @core.Point3D, radius : Double) -> BoundingSphere {
-  { center, radius }
+pub fn BoundingSphere::new(
+  center : @core.Point3D,
+  radius : Double,
+) -> BoundingSphere {
+  { center, radius, }
 }
-
 
 ///|
 /// Trivial sphere from 0 points. / 零点的平凡球。
 fn sphere_from_0() -> BoundingSphere {
-  { center: @core.Point3D::new(0.0, 0.0, 0.0), radius: 0.0 }
+  { center: @core.Point3D::new(0.0, 0.0, 0.0), radius: 0.0, }
 }
-
 
 ///|
 /// Sphere from 1 point. / 一点的球。
 fn sphere_from_1(p0 : @core.Point3D) -> BoundingSphere {
-  { center: p0, radius: 0.0 }
+  { center: p0, radius: 0.0, }
 }
-
 
 ///|
 /// Sphere from 2 points (diameter = segment). / 两点的球（直径为线段）。
@@ -40,5 +38,5 @@ fn sphere_from_2(p0 : @core.Point3D, p1 : @core.Point3D) -> BoundingSphere {
     (p0.z + p1.z) / 2.0,
   )
   let r = p0.dist(p1) / 2.0
-  { center: c, radius: r }
+  { center: c, radius: r, }
 }

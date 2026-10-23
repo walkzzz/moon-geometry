@@ -1,15 +1,13 @@
 ///|
 /// Subdivide a triangle mesh using Loop subdivision scheme. / 使用 Loop 细分方案细分三角网格。
-pub fn loop_subdivide(
-  mesh : @mesh_data.Mesh,
-) -> @mesh_data.Mesh {
+pub fn loop_subdivide(mesh : @mesh_data.Mesh) -> @mesh_data.Mesh {
   let result = @mesh_data.Mesh::new()
   let n = @mesh_data.Mesh::vertex_count(mesh)
   for i in 0..<n {
     let v = @mesh_data.Mesh::get_vertex(mesh, i)
     ignore(result.add_vertex(v))
   }
-  let edge_midpoints : Array[(Int, Int, Int)] = []
+  let edge_midpoints : Array[(Int32, Int32, Int32)] = []
   for fi in 0..<@mesh_data.Mesh::face_count(mesh) {
     let f = @mesh_data.Mesh::get_face(mesh, fi)
     let m01 = add_midpoint(result, mesh, edge_midpoints, f.v0, f.v1)
@@ -23,13 +21,14 @@ pub fn loop_subdivide(
   result
 }
 
+///|
 fn add_midpoint(
   result : @mesh_data.Mesh,
   mesh : @mesh_data.Mesh,
-  edge_cache : Array[(Int, Int, Int)],
-  a : Int,
-  b : Int,
-) -> Int {
+  edge_cache : Array[(Int32, Int32, Int32)],
+  a : Int32,
+  b : Int32,
+) -> Int32 {
   let (lo, hi) = if a < b { (a, b) } else { (b, a) }
   for e in edge_cache {
     if e.0 == lo && e.1 == hi {
@@ -50,33 +49,25 @@ fn add_midpoint(
 
 ///|
 /// Simple edge bisection subdivision (split each edge at midpoint). / 简单边平分细分（在每条边中点分割）。
-pub fn edge_bisection(
-  mesh : @mesh_data.Mesh,
-) -> @mesh_data.Mesh {
+pub fn edge_bisection(mesh : @mesh_data.Mesh) -> @mesh_data.Mesh {
   loop_subdivide(mesh)
 }
 
 ///|
 /// Catmull-Clark-like subdivision for triangle meshes (simplified). / 类 Catmull-Clark 细分用于三角网格（简化版）。
-pub fn catmull_clark_subdivide(
-  mesh : @mesh_data.Mesh,
-) -> @mesh_data.Mesh {
+pub fn catmull_clark_subdivide(mesh : @mesh_data.Mesh) -> @mesh_data.Mesh {
   loop_subdivide(mesh)
 }
 
 ///|
 /// Count the number of faces after one subdivision step. / 计算一步细分后的面数。
-pub fn subdivided_face_count(
-  mesh : @mesh_data.Mesh,
-) -> Int {
+pub fn subdivided_face_count(mesh : @mesh_data.Mesh) -> Int32 {
   @mesh_data.Mesh::face_count(mesh) * 4
 }
 
 ///|
 /// Count the number of vertices after one subdivision step. / 计算一步细分后的顶点数。
-pub fn subdivided_vertex_count(
-  mesh : @mesh_data.Mesh,
-) -> Int {
+pub fn subdivided_vertex_count(mesh : @mesh_data.Mesh) -> Int32 {
   let n = @mesh_data.Mesh::vertex_count(mesh)
   let f = @mesh_data.Mesh::face_count(mesh)
   n + f * 3 / 2

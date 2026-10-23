@@ -1,3 +1,4 @@
+///|
 test "build terrain basic" {
   let pts = [
     @core.Point3D::new(0.0, 0.0, 0.0),
@@ -10,6 +11,7 @@ test "build terrain basic" {
   assert_true(Terrain::triangle_count(t) >= 1)
 }
 
+///|
 test "build terrain too few" {
   let pts = [
     @core.Point3D::new(0.0, 0.0, 0.0),
@@ -19,6 +21,7 @@ test "build terrain too few" {
   assert_eq(Terrain::triangle_count(t), 0)
 }
 
+///|
 test "build constrained terrain" {
   let pts = [
     @core.Point3D::new(0.0, 0.0, 0.0),
@@ -31,6 +34,7 @@ test "build constrained terrain" {
   assert_true(Terrain::triangle_count(t) >= 1)
 }
 
+///|
 test "terrain average slope flat" {
   let pts = [
     @core.Point3D::new(0.0, 0.0, 5.0),
@@ -42,6 +46,7 @@ test "terrain average slope flat" {
   assert_true(@core.approx_eq(s, 0.0, 0.001))
 }
 
+///|
 test "terrain average slope inclined" {
   let pts = [
     @core.Point3D::new(0.0, 0.0, 0.0),
@@ -54,6 +59,7 @@ test "terrain average slope inclined" {
   assert_true(s > 0.0)
 }
 
+///|
 test "terrain slope at point" {
   let pts = [
     @core.Point3D::new(0.0, 0.0, 0.0),
@@ -66,6 +72,7 @@ test "terrain slope at point" {
   assert_true(s.unwrap() > 0.0)
 }
 
+///|
 test "terrain aspect at point" {
   let pts = [
     @core.Point3D::new(0.0, 0.0, 0.0),
@@ -77,6 +84,7 @@ test "terrain aspect at point" {
   assert_true(a is Some(_))
 }
 
+///|
 test "terrain surface area flat" {
   let pts = [
     @core.Point3D::new(0.0, 0.0, 0.0),
@@ -88,6 +96,7 @@ test "terrain surface area flat" {
   assert_true(@core.approx_eq(area, 50.0, 0.001))
 }
 
+///|
 test "terrain surface area inclined" {
   let pts = [
     @core.Point3D::new(0.0, 0.0, 0.0),
@@ -99,6 +108,7 @@ test "terrain surface area inclined" {
   assert_true(area > 50.0)
 }
 
+///|
 test "terrain slope outside" {
   let pts = [
     @core.Point3D::new(0.0, 0.0, 0.0),

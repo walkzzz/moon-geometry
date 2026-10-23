@@ -1,3 +1,4 @@
+///|
 test "aabb3d from points" {
   let pts = [
     @core.Point3D::new(1.0, 2.0, 3.0),
@@ -13,16 +14,19 @@ test "aabb3d from points" {
   assert_eq(b.max_z, 4.0)
 }
 
+///|
 test "aabb3d volume" {
   let b = AABB3D::new(0.0, 0.0, 0.0, 2.0, 3.0, 4.0)
   assert_eq(AABB3D::volume(b), 24.0)
 }
 
+///|
 test "aabb3d surface area" {
   let b = AABB3D::new(0.0, 0.0, 0.0, 2.0, 3.0, 4.0)
   assert_eq(AABB3D::surface_area(b), 52.0)
 }
 
+///|
 test "aabb3d center" {
   let b = AABB3D::new(0.0, 0.0, 0.0, 2.0, 4.0, 6.0)
   let c = AABB3D::center(b)
@@ -31,6 +35,7 @@ test "aabb3d center" {
   assert_eq(c.z, 3.0)
 }
 
+///|
 test "aabb3d intersects" {
   let a = AABB3D::new(0.0, 0.0, 0.0, 2.0, 2.0, 2.0)
   let b = AABB3D::new(1.0, 1.0, 1.0, 3.0, 3.0, 3.0)
@@ -39,12 +44,14 @@ test "aabb3d intersects" {
   assert_false(AABB3D::intersects(a, c))
 }
 
+///|
 test "aabb3d contains point" {
   let b = AABB3D::new(0.0, 0.0, 0.0, 2.0, 2.0, 2.0)
   assert_true(AABB3D::contains_point(b, @core.Point3D::new(1.0, 1.0, 1.0)))
   assert_false(AABB3D::contains_point(b, @core.Point3D::new(3.0, 1.0, 1.0)))
 }
 
+///|
 test "aabb3d merge" {
   let a = AABB3D::new(0.0, 0.0, 0.0, 2.0, 2.0, 2.0)
   let b = AABB3D::new(1.0, 1.0, 1.0, 3.0, 3.0, 3.0)
@@ -55,6 +62,7 @@ test "aabb3d merge" {
   assert_eq(m.max_y, 3.0)
 }
 
+///|
 test "aabb3d ray intersect hit" {
   let b = AABB3D::new(-1.0, -1.0, -1.0, 1.0, 1.0, 1.0)
   let origin = @core.Point3D::new(-5.0, 0.0, 0.0)
@@ -68,6 +76,7 @@ test "aabb3d ray intersect hit" {
   }
 }
 
+///|
 test "aabb3d ray intersect miss" {
   let b = AABB3D::new(-1.0, -1.0, -1.0, 1.0, 1.0, 1.0)
   let origin = @core.Point3D::new(-5.0, 5.0, 0.0)

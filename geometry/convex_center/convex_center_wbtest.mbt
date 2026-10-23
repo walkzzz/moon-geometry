@@ -1,3 +1,4 @@
+///|
 test "convex centroid" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -10,6 +11,7 @@ test "convex centroid" {
   assert_true((c.y() - 2.0).abs() < 0.01)
 }
 
+///|
 test "chebyshev center" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -22,6 +24,7 @@ test "chebyshev center" {
   assert_true((c.x() - 2.0).abs() < 0.1)
 }
 
+///|
 test "bbox center" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -35,6 +38,7 @@ test "bbox center" {
   assert_true((c.y() - 2.0).abs() < 0.01)
 }
 
+///|
 test "vertex center" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -47,6 +51,7 @@ test "vertex center" {
   assert_true((c.x() - 2.0).abs() < 0.01)
 }
 
+///|
 test "inradius" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),

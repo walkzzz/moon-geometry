@@ -7,8 +7,10 @@ fn clip_by_bisector(
 ) -> Array[@core.Point2D] {
   let nx = s2.x() - s1.x()
   let ny = s2.y() - s1.y()
-  let c = ((s2.x() * s2.x() + s2.y() * s2.y()) -
-    (s1.x() * s1.x() + s1.y() * s1.y())) / 2.0
+  let c = (
+      s2.x() * s2.x() + s2.y() * s2.y() - (s1.x() * s1.x() + s1.y() * s1.y())
+    ) /
+    2.0
   let result : Array[@core.Point2D] = []
   let m = poly.length()
   if m == 0 {
@@ -26,10 +28,12 @@ fn clip_by_bisector(
     }
     if curr_inside != next_inside {
       let t = dc / (dc - dn)
-      result.push(@core.Point2D::new(
-        curr.x() + t * (next.x() - curr.x()),
-        curr.y() + t * (next.y() - curr.y()),
-      ))
+      result.push(
+        @core.Point2D::new(
+          curr.x() + t * (next.x() - curr.x()),
+          curr.y() + t * (next.y() - curr.y()),
+        ),
+      )
     }
   }
   result

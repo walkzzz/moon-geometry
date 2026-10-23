@@ -1,3 +1,4 @@
+///|
 test "kdtree_build" {
   let points = [
     @core.Point2D::new(2.0, 3.0),
@@ -11,6 +12,7 @@ test "kdtree_build" {
   assert_true(nodes.length() > 0)
 }
 
+///|
 test "kdtree_nearest" {
   let points = [
     @core.Point2D::new(0.0, 0.0),
@@ -29,6 +31,7 @@ test "kdtree_nearest" {
   }
 }
 
+///|
 test "kdtree_range_query" {
   let points = [
     @core.Point2D::new(1.0, 1.0),
@@ -43,6 +46,7 @@ test "kdtree_range_query" {
   assert_eq(result.length(), 3)
 }
 
+///|
 test "kdtree_empty" {
   let points : Array[@core.Point2D] = []
   let nodes = build_kdtree(points)
@@ -54,6 +58,7 @@ test "kdtree_empty" {
   }
 }
 
+///|
 test "kdtree_single" {
   let points = [@core.Point2D::new(3.0, 4.0)]
   let nodes = build_kdtree(points)

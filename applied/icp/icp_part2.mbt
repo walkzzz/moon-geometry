@@ -4,7 +4,6 @@ fn mat3_identity() -> Array[Double] {
   [1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0]
 }
 
-
 ///|
 /// 3x3 matrix multiply. / 3x3 矩阵乘法。
 fn mat3_mul(a : Array[Double], b : Array[Double]) -> Array[Double] {
@@ -21,17 +20,11 @@ fn mat3_mul(a : Array[Double], b : Array[Double]) -> Array[Double] {
   r
 }
 
-
 ///|
 /// 3x3 transpose. / 3x3 转置。
 fn mat3_transpose(a : Array[Double]) -> Array[Double] {
-  [
-    a[0], a[3], a[6],
-    a[1], a[4], a[7],
-    a[2], a[5], a[8],
-  ]
+  [a[0], a[3], a[6], a[1], a[4], a[7], a[2], a[5], a[8]]
 }
-
 
 ///|
 /// 3x3 matrix times 3D vector. / 3x3 矩阵乘三维向量。

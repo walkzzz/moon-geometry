@@ -21,10 +21,7 @@ pub fn hidden_line_remove(
       let c2 = @core.Point2D::new(tri.2.x, tri.2.y)
       if point_in_triangle_2d(p2, a2, b2, c2) {
         match triangle_z_at(tri, mid.x, mid.y) {
-          Some(tz) =>
-            if tz > mid.z + eps {
-              occluded = true
-            }
+          Some(tz) => if tz > mid.z + eps { occluded = true }
           None => ()
         }
       }

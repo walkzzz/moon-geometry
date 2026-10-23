@@ -1,3 +1,4 @@
+///|
 test "aabb_tree_build_single" {
   let rects = [@core.Rectangle::new(0.0, 0.0, 1.0, 1.0)]
   let nodes = build_aabb_tree(rects)
@@ -5,6 +6,7 @@ test "aabb_tree_build_single" {
   assert_eq(count_leaves(nodes), 1)
 }
 
+///|
 test "aabb_tree_build_multiple" {
   let rects = [
     @core.Rectangle::new(0.0, 0.0, 1.0, 1.0),
@@ -16,6 +18,7 @@ test "aabb_tree_build_multiple" {
   assert_eq(count_leaves(nodes), 4)
 }
 
+///|
 test "aabb_tree_query_overlap" {
   let rects = [
     @core.Rectangle::new(0.0, 0.0, 2.0, 2.0),
@@ -29,6 +32,7 @@ test "aabb_tree_query_overlap" {
   assert_true(result.contains(2))
 }
 
+///|
 test "aabb_tree_query_point" {
   let rects = [
     @core.Rectangle::new(0.0, 0.0, 2.0, 2.0),
@@ -42,6 +46,7 @@ test "aabb_tree_query_point" {
   assert_true(result.contains(1))
 }
 
+///|
 test "aabb_tree_empty" {
   let rects : Array[@core.Rectangle] = []
   let nodes = build_aabb_tree(rects)
@@ -50,6 +55,7 @@ test "aabb_tree_empty" {
   assert_eq(result.length(), 0)
 }
 
+///|
 test "aabb_tree_query_no_overlap" {
   let rects = [
     @core.Rectangle::new(0.0, 0.0, 1.0, 1.0),
@@ -61,6 +67,7 @@ test "aabb_tree_query_no_overlap" {
   assert_eq(result.length(), 0)
 }
 
+///|
 test "aabb_tree_query_point_miss" {
   let rects = [
     @core.Rectangle::new(0.0, 0.0, 1.0, 1.0),

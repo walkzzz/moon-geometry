@@ -224,6 +224,7 @@ test "Point2D mul by one identity" {
   assert_true(approx_eq(m.x, p.x, 0.000000001))
   assert_true(approx_eq(m.y, p.y, 0.000000001))
 }
+
 ///|
 test "approx_eq boundary: diff exactly equals eps" {
   assert_true(approx_eq(1.0, 1.5, 0.5))

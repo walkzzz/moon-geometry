@@ -1,3 +1,4 @@
+///|
 test "convex_clip_by_line" {
   let poly = @core.Polygon::new([
     @core.Point2D::new(0.0, 0.0),
@@ -10,6 +11,7 @@ test "convex_clip_by_line" {
   assert_eq(result.length(), 4)
 }
 
+///|
 test "convex_clip_by_half_plane" {
   let poly = @core.Polygon::new([
     @core.Point2D::new(0.0, 0.0),
@@ -21,6 +23,7 @@ test "convex_clip_by_half_plane" {
   assert_eq(result.length(), 4)
 }
 
+///|
 test "convex_clip_area" {
   let verts = [
     @core.Point2D::new(0.0, 0.0),
@@ -32,6 +35,7 @@ test "convex_clip_area" {
   assert_true(@core.approx_eq(area, 16.0, 0.000000000001))
 }
 
+///|
 test "convex_clip_points_by_line" {
   let points = [
     @core.Point2D::new(1.0, 1.0),

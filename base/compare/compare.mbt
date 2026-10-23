@@ -4,8 +4,9 @@ pub fn robust_orientation(
   a : @core.Point2D,
   b : @core.Point2D,
   c : @core.Point2D,
-) -> Int {
-  let cross = (b.x() - a.x()) * (c.y() - a.y()) - (b.y() - a.y()) * (c.x() - a.x())
+) -> Int32 {
+  let cross = (b.x() - a.x()) * (c.y() - a.y()) -
+    (b.y() - a.y()) * (c.x() - a.x())
   let eps = @core.default_eps
   if cross > eps {
     1
@@ -15,4 +16,3 @@ pub fn robust_orientation(
     0
   }
 }
-

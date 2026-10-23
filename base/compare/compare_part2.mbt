@@ -8,7 +8,6 @@ pub fn robust_right_turn(
   robust_orientation(a, b, c) < 0
 }
 
-
 ///|
 /// Robust collinearity test. / 鲁棒共线判定。
 pub fn robust_collinear(
@@ -17,9 +16,11 @@ pub fn robust_collinear(
   c : @core.Point2D,
   eps : Double,
 ) -> Bool {
-  let cross = (b.x() - a.x()) * (c.y() - a.y()) - (b.y() - a.y()) * (c.x() - a.x())
+  let cross = (b.x() - a.x()) * (c.y() - a.y()) -
+    (b.y() - a.y()) * (c.x() - a.x())
   let area = cross.abs()
-  let len = ((b.x() - a.x()) * (b.x() - a.x()) + (b.y() - a.y()) * (b.y() - a.y())).sqrt()
+  let len = ((b.x() - a.x()) * (b.x() - a.x()) +
+  (b.y() - a.y()) * (b.y() - a.y())).sqrt()
   if len < eps {
     return true
   }

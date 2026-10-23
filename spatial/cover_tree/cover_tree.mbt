@@ -8,15 +8,17 @@
 /// ## Complexity: O(n log n) build, O(log n) query
 /// ## 复杂度: 构建 O(n log n)，查询 O(log n)
 
+///|
 /// |
 /// Cover tree node.
 /// 覆盖树节点。
 pub struct CoverNode {
   point : @core.Point2D
   children : Array[CoverNode]
-  level : Int
+  level : Int32
 }
 
+///|
 /// |
 /// Cover tree structure.
 /// 覆盖树结构。
@@ -25,20 +27,22 @@ pub struct CoverTree {
   base : Double
 }
 
+///|
 /// |
 /// Build a cover tree from points.
 /// 从点集构建覆盖树。
 pub fn cover_tree_build(points : Array[@core.Point2D]) -> CoverTree {
   if points.is_empty() {
-    return { root: None, base: 2.0 }
+    return { root: None, base: 2.0, }
   }
-  let root : CoverNode = { point: points[0], children: [], level: 0 }
+  let root : CoverNode = { point: points[0], children: [], level: 0, }
   for i in 1..<points.length() {
     cover_insert(root, points[i], 0)
   }
-  { root: Some(root), base: 2.0 }
+  { root: Some(root), base: 2.0, }
 }
 
+///|
 /// |
 /// Find all points within radius of query.
 /// 查找查询点半径内的所有点。
@@ -55,17 +59,19 @@ pub fn cover_tree_radius_search(
   result
 }
 
+///|
 /// |
 /// Count nodes in cover tree.
 /// 计算覆盖树中的节点数。
-pub fn cover_tree_count(tree : CoverTree) -> Int {
+pub fn cover_tree_count(tree : CoverTree) -> Int32 {
   match tree.root {
     Some(root) => cover_count(root)
     None => 0
   }
 }
 
-fn cover_insert(node : CoverNode, p : @core.Point2D, level : Int) -> Unit {
+///|
+fn cover_insert(node : CoverNode, p : @core.Point2D, level : Int32) -> Unit {
   let d = dist(node.point, p)
   let threshold = pow2(2.0, level)
   if d <= threshold {
@@ -79,13 +85,14 @@ fn cover_insert(node : CoverNode, p : @core.Point2D, level : Int) -> Unit {
       }
     }
     if !inserted {
-      node.children.push({ point: p, children: [], level: level - 1 })
+      node.children.push({ point: p, children: [], level: level - 1, })
     }
   } else {
-    node.children.push({ point: p, children: [], level })
+    node.children.push({ point: p, children: [], level, })
   }
 }
 
+///|
 fn cover_search(
   node : CoverNode,
   query : @core.Point2D,
@@ -104,7 +111,8 @@ fn cover_search(
   }
 }
 
-fn cover_count(node : CoverNode) -> Int {
+///|
+fn cover_count(node : CoverNode) -> Int32 {
   let mut count = 1
   for i in 0..<node.children.length() {
     count += cover_count(node.children[i])
@@ -112,18 +120,20 @@ fn cover_count(node : CoverNode) -> Int {
   count
 }
 
+///|
 fn dist(a : @core.Point2D, b : @core.Point2D) -> Double {
   ((a.x() - b.x()) * (a.x() - b.x()) + (a.y() - b.y()) * (a.y() - b.y())).sqrt()
 }
 
-fn pow2(base : Double, exp : Int) -> Double {
+///|
+fn pow2(base : Double, exp : Int32) -> Double {
   let mut result = 1.0
   if exp >= 0 {
     for _ in 0..<exp {
       result *= base
     }
   } else {
-    for _ in 0..<(-exp) {
+    for _ in 0..<-exp {
       result /= base
     }
   }

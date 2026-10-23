@@ -1,3 +1,4 @@
+///|
 test "simplify_topology_preserve basic" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -12,6 +13,7 @@ test "simplify_topology_preserve basic" {
   assert_true(result.length() <= pts.length())
 }
 
+///|
 test "simplify_visvalingam basic" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -26,6 +28,7 @@ test "simplify_visvalingam basic" {
   assert_eq(result.length(), 4)
 }
 
+///|
 test "douglas_peucker basic" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -40,6 +43,7 @@ test "douglas_peucker basic" {
   assert_true(result.length() < pts.length())
 }
 
+///|
 test "simplify_topology_preserve small" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -50,6 +54,7 @@ test "simplify_topology_preserve small" {
   assert_eq(result.length(), 3)
 }
 
+///|
 test "simplify_visvalingam target too large" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),

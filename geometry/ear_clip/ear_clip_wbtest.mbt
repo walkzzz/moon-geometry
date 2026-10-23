@@ -1,3 +1,4 @@
+///|
 test "is_ear_convex" {
   let sq = [
     @core.Point2D::new(0.0, 0.0),
@@ -12,6 +13,7 @@ test "is_ear_convex" {
   assert_true(is_ear(sq, indices, 3))
 }
 
+///|
 test "find_ear" {
   let sq = [
     @core.Point2D::new(0.0, 0.0),
@@ -24,6 +26,7 @@ test "find_ear" {
   assert_true(ear is Some(_))
 }
 
+///|
 test "ear_clip_triangulate_square" {
   let sq = [
     @core.Point2D::new(0.0, 0.0),
@@ -35,6 +38,7 @@ test "ear_clip_triangulate_square" {
   assert_true(tris.length() == 2)
 }
 
+///|
 test "ear_clip_count" {
   let pent = [
     @core.Point2D::new(0.0, 0.0),
@@ -46,6 +50,7 @@ test "ear_clip_count" {
   assert_true(ear_clip_count(pent) == 3)
 }
 
+///|
 test "ear_clip_area" {
   let sq = [
     @core.Point2D::new(0.0, 0.0),

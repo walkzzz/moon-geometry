@@ -1,3 +1,4 @@
+///|
 test "delaunay_refine basic" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -8,6 +9,7 @@ test "delaunay_refine basic" {
   assert_true(refined.length() >= pts.length())
 }
 
+///|
 test "circumcenter equilateral" {
   let a = @core.Point2D::new(0.0, 0.0)
   let b = @core.Point2D::new(4.0, 0.0)
@@ -16,6 +18,7 @@ test "circumcenter equilateral" {
   assert_true((cc.x() - 2.0).abs() < 0.01)
 }
 
+///|
 test "min_triangle_angle right" {
   let a = @core.Point2D::new(0.0, 0.0)
   let b = @core.Point2D::new(4.0, 0.0)
@@ -24,6 +27,7 @@ test "min_triangle_angle right" {
   assert_true((angle - 45.0).abs() < 1.0)
 }
 
+///|
 test "triangle_count basic" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -34,6 +38,7 @@ test "triangle_count basic" {
   assert_eq(triangle_count(pts), 2)
 }
 
+///|
 test "delaunay_refine no refinement" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),

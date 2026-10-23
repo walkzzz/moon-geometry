@@ -13,7 +13,6 @@ pub fn project_to_plane(
   @core.Point3D::new(p.x - t * normal.x, p.y - t * normal.y, p.z - t * normal.z)
 }
 
-
 ///|
 /// Isometric projection of a 3D point to 2D. / 三维点到二维的等距投影。
 pub fn isometric(p : @core.Point3D) -> @core.Point2D {

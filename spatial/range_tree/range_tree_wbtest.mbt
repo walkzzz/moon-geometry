@@ -1,3 +1,4 @@
+///|
 test "range_tree_build" {
   let points = [
     @core.Point2D::new(3.0, 4.0),
@@ -9,6 +10,7 @@ test "range_tree_build" {
   assert_eq(range_tree_size(tree), 4)
 }
 
+///|
 test "range_tree_query" {
   let points = [
     @core.Point2D::new(1.0, 1.0),
@@ -22,6 +24,7 @@ test "range_tree_query" {
   assert_eq(result.length(), 3)
 }
 
+///|
 test "range_tree_query_x" {
   let points = [
     @core.Point2D::new(1.0, 1.0),
@@ -34,6 +37,7 @@ test "range_tree_query_x" {
   assert_eq(result.length(), 2)
 }
 
+///|
 test "range_tree_query_y" {
   let points = [
     @core.Point2D::new(1.0, 1.0),
@@ -46,6 +50,7 @@ test "range_tree_query_y" {
   assert_eq(result.length(), 2)
 }
 
+///|
 test "range_tree_empty" {
   let points : Array[@core.Point2D] = []
   let tree = build_range_tree(points)

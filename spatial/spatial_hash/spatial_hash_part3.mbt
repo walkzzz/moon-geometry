@@ -3,12 +3,15 @@
 pub fn spatial_hash_query_rect(
   hash : SpatialHash,
   rect : @core.Rectangle,
-) -> Array[Int] {
-  let result : Array[Int] = []
+) -> Array[Int32] {
+  let result : Array[Int32] = []
   for i in 0..<hash.points.length() {
     let px = hash.points[i].x()
     let py = hash.points[i].y()
-    if px >= rect.min_x && px <= rect.max_x && py >= rect.min_y && py <= rect.max_y {
+    if px >= rect.min_x &&
+      px <= rect.max_x &&
+      py >= rect.min_y &&
+      py <= rect.max_y {
       result.push(i)
     }
   }

@@ -5,7 +5,7 @@ pub fn segment_buffer(
   a : @core.Point2D,
   b : @core.Point2D,
   radius : Double,
-  cap_segments : Int,
+  cap_segments : Int32,
 ) -> @core.Polygon {
   let dx = b.x - a.x
   let dy = b.y - a.y
@@ -27,7 +27,12 @@ pub fn segment_buffer(
   for i in 1..<segs {
     let t = i.to_double() / segs.to_double()
     let angle = base_angle_b + t * @math.PI
-    verts.push(@core.Point2D::new(b.x + radius * @math.cos(angle), b.y + radius * @math.sin(angle)))
+    verts.push(
+      @core.Point2D::new(
+        b.x + radius * @math.cos(angle),
+        b.y + radius * @math.sin(angle),
+      ),
+    )
   }
   // left side
   let p3 = @core.Point2D::new(b.x - radius * nx, b.y - radius * ny)
@@ -39,7 +44,12 @@ pub fn segment_buffer(
   for i in 1..<segs {
     let t = i.to_double() / segs.to_double()
     let angle = base_angle_a + t * @math.PI
-    verts.push(@core.Point2D::new(a.x + radius * @math.cos(angle), a.y + radius * @math.sin(angle)))
+    verts.push(
+      @core.Point2D::new(
+        a.x + radius * @math.cos(angle),
+        a.y + radius * @math.sin(angle),
+      ),
+    )
   }
   @core.Polygon::new(verts)
 }

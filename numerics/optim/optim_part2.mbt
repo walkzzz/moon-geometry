@@ -1,8 +1,6 @@
 ///|
 /// Find the minimum area rectangle enclosing a set of points. / 找到包围点集的最小面积矩形。
-pub fn min_area_rect(
-  points : Array[@core.Point2D],
-) -> @core.Rectangle {
+pub fn min_area_rect(points : Array[@core.Point2D]) -> @core.Rectangle {
   if points.length() == 0 {
     return @core.Rectangle::new(0.0, 0.0, 0.0, 0.0)
   }
@@ -19,12 +17,9 @@ pub fn min_area_rect(
   @core.Rectangle::new(min_x, min_y, max_x, max_y)
 }
 
-
 ///|
 /// Compute the centroid of a set of points. / 计算点集的质心。
-pub fn centroid(
-  points : Array[@core.Point2D],
-) -> @core.Point2D {
+pub fn centroid(points : Array[@core.Point2D]) -> @core.Point2D {
   if points.length() == 0 {
     return @core.Point2D::new(0.0, 0.0)
   }

@@ -1,10 +1,8 @@
 ///|
 pub extend Triangle with @moonbitlang/core/debug.Debug::{to_repr}
 
-
 ///|
 pub extend Triangle with Measurable::{area}
-
 
 ///|
 /// Construct a triangle.
@@ -12,7 +10,6 @@ pub extend Triangle with Measurable::{area}
 pub fn Triangle::new(a : Point2D, b : Point2D, c : Point2D) -> Triangle {
   { a, b, c, }
 }
-
 
 ///|
 /// Signed area of the triangle (positive if CCW).
@@ -25,10 +22,9 @@ pub fn Triangle::signed_area(self : Triangle) -> Double {
   2.0
 }
 
-
 ///|
 /// Absolute area of the triangle.
 /// 三角形绝对面积。
-pub impl Measurable for Triangle with area(self) {
+pub impl Measurable for Triangle with fn area(self) {
   self.signed_area().abs()
 }

@@ -34,13 +34,12 @@ pub fn minkowski_sum_convex(
   @core.Polygon::new(result)
 }
 
-
 ///|
 /// Buffer a convex polygon by Minkowski sum with a disk (approximated by n-gon). / 通过与圆盘（n 边形近似）的 Minkowski 和缓冲凸多边形。
 pub fn convex_polygon_buffer(
   poly : @core.Polygon,
   radius : Double,
-  n : Int,
+  n : Int32,
 ) -> @core.Polygon {
   let disk = point_buffer(@core.Point2D::new(0.0, 0.0), radius, n)
   minkowski_sum_convex(poly, disk)

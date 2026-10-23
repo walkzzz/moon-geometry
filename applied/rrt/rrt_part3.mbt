@@ -46,7 +46,11 @@ pub fn rrt_plan(
   RRTResult::new([], false, config.max_iterations)
 }
 
-fn reconstruct_path(nodes : Array[RRTNode], idx : Int) -> Array[@core.Point2D] {
+///|
+fn reconstruct_path(
+  nodes : Array[RRTNode],
+  idx : Int32,
+) -> Array[@core.Point2D] {
   let path : Array[@core.Point2D] = []
   let mut cur = idx
   while cur != -1 {
@@ -56,6 +60,7 @@ fn reconstruct_path(nodes : Array[RRTNode], idx : Int) -> Array[@core.Point2D] {
   path
 }
 
+///|
 fn path_push_goal(
   path : Array[@core.Point2D],
   goal : @core.Point2D,

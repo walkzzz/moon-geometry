@@ -1,3 +1,4 @@
+///|
 test "arrangement basic" {
   let segs = [
     @core.Segment::new(
@@ -14,6 +15,7 @@ test "arrangement basic" {
   assert_eq(ic, 1)
 }
 
+///|
 test "arrangement no intersection" {
   let segs = [
     @core.Segment::new(
@@ -30,6 +32,7 @@ test "arrangement no intersection" {
   assert_eq(ic, 0)
 }
 
+///|
 test "arrangement vertices" {
   let segs = [
     @core.Segment::new(
@@ -42,6 +45,7 @@ test "arrangement vertices" {
   assert_eq(vs.length(), 2)
 }
 
+///|
 test "arrangement edge count" {
   let segs = [
     @core.Segment::new(
@@ -58,6 +62,7 @@ test "arrangement edge count" {
   assert_eq(ec, 3)
 }
 
+///|
 test "arrangement parallel" {
   let segs = [
     @core.Segment::new(

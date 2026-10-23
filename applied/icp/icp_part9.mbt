@@ -11,11 +11,16 @@ pub fn icp_point_to_plane(
   source : Array[@core.Point3D],
   target : Array[@core.Point3D],
   normals : Array[@core.Point3D],
-  max_iter : Int,
+  max_iter : Int32,
 ) -> IcpResult {
   let n = source.length()
   if n == 0 || target.length() == 0 {
-    return IcpResult::new(mat3_identity(), @core.Point3D::new(0.0, 0.0, 0.0), 0.0, 0)
+    return IcpResult::new(
+      mat3_identity(),
+      @core.Point3D::new(0.0, 0.0, 0.0),
+      0.0,
+      0,
+    )
   }
   let aligned : Array[@core.Point3D] = []
   for p in source {

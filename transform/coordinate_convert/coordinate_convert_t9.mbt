@@ -5,14 +5,12 @@ pub fn wgs84_to_cgcs2000(g : Geodetic) -> Geodetic {
   ecef_to_cgcs2000(e)
 }
 
-
 ///|
 /// Convert CGCS2000 to WGS84 (via ECEF). / CGCS2000 转 WGS84（经 ECEF）。
 pub fn cgcs2000_to_wgs84(g : Geodetic) -> Geodetic {
   let e = cgcs2000_to_ecef(g)
   ecef_to_wgs84(e)
 }
-
 
 ///|
 /// ECEF distance (Euclidean, meters). / ECEF 欧氏距离（米）。

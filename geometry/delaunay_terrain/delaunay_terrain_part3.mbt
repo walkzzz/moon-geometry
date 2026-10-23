@@ -14,8 +14,10 @@ pub fn Terrain::average_slope(t : Terrain) -> Double {
     if area.abs() < 0.0000000001 {
       continue
     }
-    let dz_dx = ((b.z - a.z) * (c.y - a.y) - (c.z - a.z) * (b.y - a.y)) / (2.0 * area)
-    let dz_dy = ((c.z - a.z) * (b.x - a.x) - (b.z - a.z) * (c.x - a.x)) / (2.0 * area)
+    let dz_dx = ((b.z - a.z) * (c.y - a.y) - (c.z - a.z) * (b.y - a.y)) /
+      (2.0 * area)
+    let dz_dy = ((c.z - a.z) * (b.x - a.x) - (b.z - a.z) * (c.x - a.x)) /
+      (2.0 * area)
     let grad = (dz_dx * dz_dx + dz_dy * dz_dy).sqrt()
     total += @math.atan(grad)
   }

@@ -1,3 +1,4 @@
+///|
 test "smallest enclosing circle single" {
   let pts = [@core.Point2D::new(1.0, 2.0)]
   let c = smallest_enclosing_circle(pts)
@@ -5,16 +6,15 @@ test "smallest enclosing circle single" {
   assert_true((c.center.y() - 2.0).abs() < 0.001)
 }
 
+///|
 test "smallest enclosing circle two" {
-  let pts = [
-    @core.Point2D::new(0.0, 0.0),
-    @core.Point2D::new(4.0, 0.0),
-  ]
+  let pts = [@core.Point2D::new(0.0, 0.0), @core.Point2D::new(4.0, 0.0)]
   let c = smallest_enclosing_circle(pts)
   assert_true((c.center.x() - 2.0).abs() < 0.001)
   assert_true((c.radius - 2.0).abs() < 0.001)
 }
 
+///|
 test "smallest enclosing circle three" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -25,6 +25,7 @@ test "smallest enclosing circle three" {
   assert_true(c.radius > 0.0)
 }
 
+///|
 test "min area rect" {
   let pts = [
     @core.Point2D::new(1.0, 2.0),
@@ -36,6 +37,7 @@ test "min area rect" {
   assert_true((r.max_x - 5.0).abs() < 0.001)
 }
 
+///|
 test "centroid" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),

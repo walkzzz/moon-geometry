@@ -1,3 +1,4 @@
+///|
 test "cover_tree build and count" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -9,6 +10,7 @@ test "cover_tree build and count" {
   assert_eq(cover_tree_count(tree), 4)
 }
 
+///|
 test "cover_tree radius search" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -21,16 +23,19 @@ test "cover_tree radius search" {
   assert_true(result.length() >= 1)
 }
 
+///|
 test "cover_tree empty" {
   let tree = cover_tree_build([])
   assert_eq(cover_tree_count(tree), 0)
 }
 
+///|
 test "cover_tree single" {
   let tree = cover_tree_build([@core.Point2D::new(1.0, 1.0)])
   assert_eq(cover_tree_count(tree), 1)
 }
 
+///|
 test "cover_tree many points" {
   let pts : Array[@core.Point2D] = []
   for i in 0..<10 {

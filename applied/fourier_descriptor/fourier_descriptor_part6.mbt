@@ -3,7 +3,7 @@
 /// 截断傅里叶描述子，仅保留前 k 个系数（低通）。
 pub fn fourier_truncate(
   coeffs : Array[(Double, Double)],
-  k : Int,
+  k : Int32,
 ) -> Array[(Double, Double)] {
   let result : Array[(Double, Double)] = []
   let nc = coeffs.length()

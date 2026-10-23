@@ -1,7 +1,7 @@
 ///|
 /// Classify cube configuration into one of 33 equivalence classes.
 /// 将立方体配置分类为 33 个等价类之一。
-pub fn cube_config_class(cube_idx : Int) -> Int {
+pub fn cube_config_class(cube_idx : Int32) -> Int32 {
   // Count inside corners; use popcount to reduce to base classes.
   // 统计内部角数，归约为基类。
   let mut bits = 0
@@ -31,7 +31,8 @@ pub fn cube_config_class(cube_idx : Int) -> Int {
   }
 }
 
-fn is_edge_pair(idx : Int) -> Bool {
+///|
+fn is_edge_pair(idx : Int32) -> Bool {
   let pairs = [
     (0, 1),
     (1, 2),
@@ -54,7 +55,8 @@ fn is_edge_pair(idx : Int) -> Bool {
   false
 }
 
-fn is_face_diag(idx : Int) -> Bool {
+///|
+fn is_face_diag(idx : Int32) -> Bool {
   let diags = [
     (0, 2),
     (1, 3),

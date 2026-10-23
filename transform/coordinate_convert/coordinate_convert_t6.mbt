@@ -21,5 +21,5 @@ pub fn ecef_to_wgs84(e : ECEF) -> Geodetic {
   }
   let lon = @math.atan2(e.y, e.x)
   let h = p / @math.cos(lat) - n
-  { lat: lat * rad2deg, lon: lon * rad2deg, h }
+  { lat: lat * rad2deg, lon: lon * rad2deg, h, }
 }

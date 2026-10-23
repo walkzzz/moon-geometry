@@ -10,7 +10,6 @@ pub fn Conic::centered(conic : Conic) -> Conic {
   { a: conic.a, b: conic.b, c: conic.c, d: 0.0, e: 0.0, f: nf, }
 }
 
-
 ///|
 /// Rotate the conic to eliminate the xy term. Returns new conic and rotation angle.
 /// 旋转圆锥曲线消去 xy 项，返回新圆锥曲线和旋转角。
@@ -30,5 +29,5 @@ pub fn Conic::axis_aligned(conic : Conic) -> (Conic, Double) {
   let nc = conic.a * s2 - conic.b * sc + conic.c * c2
   let nd = conic.d * cs + conic.e * sn
   let ne = -conic.d * sn + conic.e * cs
-  ({ a: na, b: nb, c: nc, d: nd, e: ne, f: conic.f }, theta)
+  ({ a: na, b: nb, c: nc, d: nd, e: ne, f: conic.f, }, theta)
 }

@@ -26,10 +26,9 @@ pub fn Rectangle::from_corners(p1 : Point2D, p2 : Point2D) -> Rectangle {
   }
 }
 
-
 ///|
 /// Area of the rectangle.
 /// 矩形面积。
-pub impl Measurable for Rectangle with area(self) {
+pub impl Measurable for Rectangle with fn area(self) {
   (self.max_x - self.min_x) * (self.max_y - self.min_y)
 }

@@ -4,8 +4,8 @@ pub fn range_query_x(
   tree : RangeTree,
   x_lo : Double,
   x_hi : Double,
-) -> Array[Int] {
-  let result : Array[Int] = []
+) -> Array[Int32] {
+  let result : Array[Int32] = []
   for i in 0..<tree.sorted_x.length() {
     let idx = tree.sorted_x[i]
     let px = tree.points[idx].x()

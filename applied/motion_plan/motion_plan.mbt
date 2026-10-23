@@ -8,6 +8,7 @@
 /// ## Complexity: O(n³) for graph construction + O(n² log n) for shortest path
 /// ## 复杂度: 图构建 O(n³) + 最短路径 O(n² log n)
 
+///|
 /// |
 /// Plan a path from start to goal avoiding obstacles.
 /// 规划从起点到终点避开障碍物的路径。
@@ -31,7 +32,7 @@ pub fn plan_path(
     }
   }
   let n = vertices.length()
-  let adj : Array[Array[(Int, Double)]] = []
+  let adj : Array[Array[(Int32, Double)]] = []
   for _ in 0..<n {
     adj.push([])
   }
@@ -52,6 +53,7 @@ pub fn plan_path(
   result
 }
 
+///|
 /// |
 /// Compute the length of the planned path.
 /// 计算规划路径的长度。
@@ -63,6 +65,7 @@ pub fn path_length(path : Array[@core.Point2D]) -> Double {
   sum
 }
 
+///|
 /// |
 /// Check if a path is collision-free.
 /// 检查路径是否无碰撞。
@@ -84,14 +87,15 @@ pub fn is_path_valid(
   true
 }
 
+///|
 fn dijkstra_path(
-  n : Int,
-  adj : Array[Array[(Int, Double)]],
-  src : Int,
-  dst : Int,
-) -> Array[Int] {
+  n : Int32,
+  adj : Array[Array[(Int32, Double)]],
+  src : Int32,
+  dst : Int32,
+) -> Array[Int32] {
   let dist : Array[Double] = []
-  let prev : Array[Int] = []
+  let prev : Array[Int32] = []
   let visited : Array[Bool] = []
   for _ in 0..<n {
     dist.push(1000000000000000000.0)
@@ -123,7 +127,7 @@ fn dijkstra_path(
   if dist[dst] >= 1000000000000000000.0 {
     return []
   }
-  let path : Array[Int] = []
+  let path : Array[Int32] = []
   let mut cur = dst
   while cur != -1 {
     path.insert(0, cur)
@@ -132,11 +136,12 @@ fn dijkstra_path(
   path
 }
 
+///|
 fn is_visible(
   vertices : Array[@core.Point2D],
   obstacles : Array[Array[@core.Point2D]],
-  i : Int,
-  j : Int,
+  i : Int32,
+  j : Int32,
 ) -> Bool {
   let a = vertices[i]
   let b = vertices[j]
@@ -152,10 +157,12 @@ fn is_visible(
   true
 }
 
+///|
 fn dist(a : @core.Point2D, b : @core.Point2D) -> Double {
   ((a.x() - b.x()) * (a.x() - b.x()) + (a.y() - b.y()) * (a.y() - b.y())).sqrt()
 }
 
+///|
 fn segments_cross(
   a1 : @core.Point2D,
   a2 : @core.Point2D,
@@ -167,6 +174,5 @@ fn segments_cross(
   let d3 = @core.turn(a1, a2, b1)
   let d4 = @core.turn(a1, a2, b2)
   ((d1 > 0.0 && d2 < 0.0) || (d1 < 0.0 && d2 > 0.0)) &&
-    ((d3 > 0.0 && d4 < 0.0) || (d3 < 0.0 && d4 > 0.0))
+  ((d3 > 0.0 && d4 < 0.0) || (d3 < 0.0 && d4 > 0.0))
 }
-

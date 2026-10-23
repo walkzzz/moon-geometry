@@ -1,6 +1,8 @@
 ///|
 /// Compute 3D convex hull using incremental insertion. / 使用增量插入计算3D凸包。
-pub fn compute_hull_3d(points : Array[@core.Point3D]) -> Array[(Int, Int, Int)] {
+pub fn compute_hull_3d(
+  points : Array[@core.Point3D],
+) -> Array[(Int32, Int32, Int32)] {
   let n = points.length()
   if n < 4 {
     return []
@@ -44,7 +46,7 @@ pub fn compute_hull_3d(points : Array[@core.Point3D]) -> Array[(Int, Int, Int)] 
   let v2 = points[i2].sub(points[i0])
   let v3 = points[i3].sub(points[i0])
   let det = v1.dot(v2.cross(v3))
-  let faces : Array[(Int, Int, Int)] = []
+  let faces : Array[(Int32, Int32, Int32)] = []
   if det > 0.0 {
     faces.push((i0, i2, i1))
     faces.push((i0, i1, i3))
@@ -65,7 +67,7 @@ pub fn compute_hull_3d(points : Array[@core.Point3D]) -> Array[(Int, Int, Int)] 
     if !inside[i] {
       continue
     }
-    let visible : Array[Int] = []
+    let visible : Array[Int32] = []
     for j in 0..<faces.length() {
       let f = faces[j]
       let a = points[f.0]
@@ -81,7 +83,7 @@ pub fn compute_hull_3d(points : Array[@core.Point3D]) -> Array[(Int, Int, Int)] 
       continue
     }
     inside[i] = false
-    let boundary : Array[(Int, Int)] = []
+    let boundary : Array[(Int32, Int32)] = []
     let removed = Array::make(faces.length(), false)
     for j in visible {
       removed[j] = true
@@ -90,7 +92,7 @@ pub fn compute_hull_3d(points : Array[@core.Point3D]) -> Array[(Int, Int, Int)] 
       add_boundary_edge(boundary, f.1, f.2)
       add_boundary_edge(boundary, f.2, f.0)
     }
-    let new_faces : Array[(Int, Int, Int)] = []
+    let new_faces : Array[(Int32, Int32, Int32)] = []
     for j in 0..<faces.length() {
       if !removed[j] {
         new_faces.push(faces[j])
@@ -107,7 +109,12 @@ pub fn compute_hull_3d(points : Array[@core.Point3D]) -> Array[(Int, Int, Int)] 
   faces
 }
 
-fn add_boundary_edge(boundary : Array[(Int, Int)], a : Int, b : Int) -> Unit {
+///|
+fn add_boundary_edge(
+  boundary : Array[(Int32, Int32)],
+  a : Int32,
+  b : Int32,
+) -> Unit {
   let mut found = false
   let mut idx = -1
   for j in 0..<boundary.length() {

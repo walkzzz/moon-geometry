@@ -1,3 +1,4 @@
+///|
 test "medial_axis square" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -10,6 +11,7 @@ test "medial_axis square" {
   assert_true(ma.length() >= 0)
 }
 
+///|
 test "medial_axis_points square" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -22,6 +24,7 @@ test "medial_axis_points square" {
   assert_true(mp.length() >= 1)
 }
 
+///|
 test "medial_axis triangle" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -33,6 +36,7 @@ test "medial_axis triangle" {
   assert_true(ma.length() >= 0)
 }
 
+///|
 test "medial_axis degenerate" {
   let pts = [@core.Point2D::new(0.0, 0.0)]
   let poly = @core.Polygon::new(pts)
@@ -40,6 +44,7 @@ test "medial_axis degenerate" {
   assert_eq(ma.length(), 0)
 }
 
+///|
 test "medial_axis_points degenerate" {
   let pts = [@core.Point2D::new(0.0, 0.0)]
   let poly = @core.Polygon::new(pts)

@@ -1,3 +1,4 @@
+///|
 test "equilateral triangle quality" {
   let p0 = @core.Point3D::new(0.0, 0.0, 0.0)
   let p1 = @core.Point3D::new(1.0, 0.0, 0.0)
@@ -8,6 +9,7 @@ test "equilateral triangle quality" {
   assert_true((q.min_angle - 1.0471975511965976).abs() < 0.01)
 }
 
+///|
 test "degenerate triangle" {
   let p0 = @core.Point3D::new(0.0, 0.0, 0.0)
   let p1 = @core.Point3D::new(1.0, 0.0, 0.0)
@@ -16,6 +18,7 @@ test "degenerate triangle" {
   assert_true(q.aspect_ratio > 100.0)
 }
 
+///|
 test "right triangle quality" {
   let p0 = @core.Point3D::new(0.0, 0.0, 0.0)
   let p1 = @core.Point3D::new(3.0, 0.0, 0.0)
@@ -25,6 +28,7 @@ test "right triangle quality" {
   assert_true(q.max_angle > q.min_angle)
 }
 
+///|
 test "mesh average quality" {
   let verts = [
     @core.Point3D::new(0.0, 0.0, 0.0),
@@ -37,6 +41,7 @@ test "mesh average quality" {
   assert_true(q.aspect_ratio > 0.0)
 }
 
+///|
 test "count degenerate" {
   let verts = [
     @core.Point3D::new(0.0, 0.0, 0.0),
@@ -49,6 +54,7 @@ test "count degenerate" {
   assert_eq(count, 1)
 }
 
+///|
 test "isoceles triangle" {
   let p0 = @core.Point3D::new(0.0, 0.0, 0.0)
   let p1 = @core.Point3D::new(2.0, 0.0, 0.0)
@@ -58,6 +64,7 @@ test "isoceles triangle" {
   assert_true(q.max_angle < 3.14159265358979323846)
 }
 
+///|
 test "thin sliver" {
   let p0 = @core.Point3D::new(0.0, 0.0, 0.0)
   let p1 = @core.Point3D::new(1.0, 0.0, 0.0)
@@ -66,6 +73,7 @@ test "thin sliver" {
   assert_true(q.aspect_ratio > 10.0)
 }
 
+///|
 test "area ratio equilateral" {
   let p0 = @core.Point3D::new(0.0, 0.0, 0.0)
   let p1 = @core.Point3D::new(1.0, 0.0, 0.0)
@@ -74,6 +82,7 @@ test "area ratio equilateral" {
   assert_true((q.area_ratio - 1.0).abs() < 0.01)
 }
 
+///|
 test "empty mesh quality" {
   let q = mesh_average_quality([], [])
   assert_eq(q.aspect_ratio, 0.0)

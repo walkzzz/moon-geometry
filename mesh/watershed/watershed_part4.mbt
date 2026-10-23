@@ -1,10 +1,10 @@
 ///|
 /// Compute drainage direction (D8) at each cell: 0-7 for 8 directions, -1 for pit. / 各像元的 D8 排水方向：0-7 表示 8 个方向，-1 表示洼地。
 pub fn d8_flow_directions(
-  cols : Int,
-  rows : Int,
+  cols : Int32,
+  rows : Int32,
   dem : Array[Double],
-) -> Array[Int] {
+) -> Array[Int32] {
   let n = cols * rows
   let dirs = Array::make(n, -1)
   let dx = [1, 1, 0, -1, -1, -1, 0, 1]

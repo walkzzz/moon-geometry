@@ -6,7 +6,7 @@ pub fn find_seed(
   x_hi : Double,
   y_lo : Double,
   y_hi : Double,
-  n_samples : Int,
+  n_samples : Int32,
 ) -> @core.Point2D? {
   let dx = (x_hi - x_lo) / n_samples.to_double()
   let dy = (y_hi - y_lo) / n_samples.to_double()
@@ -25,7 +25,6 @@ pub fn find_seed(
   None
 }
 
-
 ///|
 /// Trace the curve in both directions from a seed. / 从种子点向两个方向追踪曲线。
 pub fn trace_both_directions(
@@ -34,7 +33,7 @@ pub fn trace_both_directions(
   fy : (Double, Double) -> Double,
   seed : @core.Point2D,
   step : Double,
-  n_steps : Int,
+  n_steps : Int32,
 ) -> Array[@core.Point2D] {
   let forward = trace_curve(f, fx, fy, seed, step, n_steps)
   let backward = trace_curve(f, fx, fy, seed, -step, n_steps)

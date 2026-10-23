@@ -2,7 +2,7 @@
 /// Subdivide a polyline segment at parameter t. / 在参数 t 处细分折线段。
 pub fn polyline_subdivide(
   points : Array[@core.Point2D],
-  segment_idx : Int,
+  segment_idx : Int32,
   t : Double,
 ) -> Array[@core.Point2D] {
   let n = points.length()
@@ -16,7 +16,7 @@ pub fn polyline_subdivide(
     p1.y() + t * (p2.y() - p1.y()),
   )
   let result : Array[@core.Point2D] = []
-  for i in 0..=segment_idx {
+  for i in 0..<=segment_idx {
     result.push(points[i])
   }
   result.push(mid)
@@ -26,10 +26,9 @@ pub fn polyline_subdivide(
   result
 }
 
-
 ///|
 /// Count segments in a polyline. / 折线线段数。
-pub fn polyline_segment_count(points : Array[@core.Point2D]) -> Int {
+pub fn polyline_segment_count(points : Array[@core.Point2D]) -> Int32 {
   let n = points.length()
   if n < 2 {
     return 0

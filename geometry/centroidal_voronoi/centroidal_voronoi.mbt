@@ -3,13 +3,12 @@
 pub struct CVTResult {
   sites : Array[@core.Point2D]
   cells : Array[Array[@core.Point2D]]
-  iterations : Int
+  iterations : Int32
   energy : Double
 }
-
 
 ///|
 /// Construct an empty CVT result. / 构造空的 CVT 结果。
 pub fn CVTResult::new() -> CVTResult {
-  { sites: [], cells: [], iterations: 0, energy: 0.0 }
+  { sites: [], cells: [], iterations: 0, energy: 0.0, }
 }

@@ -1,3 +1,4 @@
+///|
 test "bucket_pr_build" {
   let points = [
     @core.Point2D::new(2.0, 3.0),
@@ -10,6 +11,7 @@ test "bucket_pr_build" {
   assert_eq(bucket_pr_count(nodes), 5)
 }
 
+///|
 test "bucket_pr_nearest" {
   let points = [
     @core.Point2D::new(0.0, 0.0),
@@ -25,6 +27,7 @@ test "bucket_pr_nearest" {
   }
 }
 
+///|
 test "bucket_pr_count" {
   let points = [
     @core.Point2D::new(1.0, 1.0),
@@ -35,12 +38,14 @@ test "bucket_pr_count" {
   assert_eq(bucket_pr_count(nodes), 3)
 }
 
+///|
 test "bucket_pr_empty" {
   let points : Array[@core.Point2D] = []
   let nodes = build_bucket_pr(points, 2)
   assert_eq(nodes.length(), 0)
 }
 
+///|
 test "bucket_pr_single" {
   let points = [@core.Point2D::new(3.0, 4.0)]
   let nodes = build_bucket_pr(points, 2)

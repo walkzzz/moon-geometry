@@ -9,19 +9,14 @@ pub fn PlanarGraph::is_planar(graph : PlanarGraph) -> Bool {
   e <= 3 * v - 6
 }
 
-
 ///|
 /// Compute the degree of a vertex. / 计算顶点的度数。
-pub fn PlanarGraph::degree(graph : PlanarGraph, v : Int) -> Int {
+pub fn PlanarGraph::degree(graph : PlanarGraph, v : Int32) -> Int32 {
   graph.adj[v].length()
 }
 
-
 ///|
 /// Get neighbors of a vertex. / 获取顶点的邻居。
-pub fn PlanarGraph::neighbors(
-  graph : PlanarGraph,
-  v : Int,
-) -> Array[Int] {
+pub fn PlanarGraph::neighbors(graph : PlanarGraph, v : Int32) -> Array[Int32] {
   graph.adj[v]
 }

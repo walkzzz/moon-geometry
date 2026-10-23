@@ -8,6 +8,7 @@
 /// ## Complexity: O(n)
 /// ## 复杂度: O(n)
 
+///|
 /// |
 /// Linear interpolation morph at parameter t ∈ [0, 1].
 /// 参数 t ∈ [0, 1] 的线性插值变形。
@@ -26,13 +27,7 @@ pub fn morph(
   if n != pts2.length() || n == 0 {
     return result
   }
-  let tc = if t < 0.0 {
-    0.0
-  } else if t > 1.0 {
-    1.0
-  } else {
-    t
-  }
+  let tc = if t < 0.0 { 0.0 } else if t > 1.0 { 1.0 } else { t }
   for i in 0..<n {
     let p1 = pts1[i]
     let p2 = pts2[i]
@@ -43,6 +38,7 @@ pub fn morph(
   result
 }
 
+///|
 /// |
 /// Generate a sequence of morphs from source to target.
 /// 生成从源到目标的变形序列。
@@ -54,19 +50,20 @@ pub fn morph(
 pub fn morph_sequence(
   pts1 : Array[@core.Point2D],
   pts2 : Array[@core.Point2D],
-  n_steps : Int,
+  n_steps : Int32,
 ) -> Array[Array[@core.Point2D]] {
   let result : Array[Array[@core.Point2D]] = []
   if n_steps < 1 || pts1.length() != pts2.length() {
     return result
   }
-  for i in 0..=n_steps {
+  for i in 0..<=n_steps {
     let t = i.to_double() / n_steps.to_double()
     result.push(morph(pts1, pts2, t))
   }
   result
 }
 
+///|
 /// |
 /// Find the best vertex alignment to minimize morphing distance.
 /// 寻找最佳顶点对齐以最小化变形距离。
@@ -77,7 +74,7 @@ pub fn morph_sequence(
 pub fn best_alignment(
   pts1 : Array[@core.Point2D],
   pts2 : Array[@core.Point2D],
-) -> Int {
+) -> Int32 {
   let n = pts1.length()
   if n != pts2.length() || n == 0 {
     return 0
@@ -101,6 +98,7 @@ pub fn best_alignment(
   best_shift
 }
 
+///|
 /// |
 /// Morph with optimal vertex alignment.
 /// 带最优顶点对齐的变形。

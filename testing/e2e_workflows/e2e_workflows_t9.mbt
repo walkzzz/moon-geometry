@@ -1,4 +1,5 @@
-///| 端到端：距离矩阵 → 对称性检查
+///|
+/// 端到端：距离矩阵 → 对称性检查
 test "e2e: distance matrix symmetry" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),

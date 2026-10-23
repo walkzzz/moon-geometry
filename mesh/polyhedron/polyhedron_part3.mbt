@@ -1,7 +1,7 @@
 ///|
 /// Number of edges (unique). / 边数（去重）。
-pub impl @core.EdgeCountable for Polyhedron with edge_count(self) {
-  let edges : Array[(Int, Int)] = []
+pub impl @core.EdgeCountable for Polyhedron with fn edge_count(self) {
+  let edges : Array[(Int32, Int32)] = []
   for face in self.faces {
     let n = face.length()
     for i in 0..<n {
@@ -13,7 +13,8 @@ pub impl @core.EdgeCountable for Polyhedron with edge_count(self) {
   edges.length()
 }
 
-fn add_edge(edges : Array[(Int, Int)], a : Int, b : Int) -> Unit {
+///|
+fn add_edge(edges : Array[(Int32, Int32)], a : Int32, b : Int32) -> Unit {
   let (x, y) = if a < b { (a, b) } else { (b, a) }
   for e in edges {
     if e.0 == x && e.1 == y {

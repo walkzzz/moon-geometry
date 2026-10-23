@@ -15,19 +15,17 @@ pub fn curvature_signed(
   if len1 < 0.000000000001 || len2 < 0.000000000001 {
     return 0.0
   }
-  let len3 = ((p3.x() - p1.x()) * (p3.x() - p1.x()) + (p3.y() - p1.y()) * (p3.y() - p1.y())).sqrt()
+  let len3 = ((p3.x() - p1.x()) * (p3.x() - p1.x()) +
+  (p3.y() - p1.y()) * (p3.y() - p1.y())).sqrt()
   if len3 < 0.000000000001 {
     return 0.0
   }
   2.0 * cross / (len1 * len2 * len3)
 }
 
-
 ///|
 /// Curvature profile at all interior points. / 所有内部点的曲率分布。
-pub fn curvature_profile(
-  points : Array[@core.Point2D],
-) -> Array[Double] {
+pub fn curvature_profile(points : Array[@core.Point2D]) -> Array[Double] {
   let n = points.length()
   let result : Array[Double] = []
   if n < 3 {

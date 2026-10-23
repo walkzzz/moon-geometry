@@ -8,15 +8,14 @@
 /// ## Complexity: O(n^2) per sigma level
 /// ## 复杂度: 每个 sigma 层 O(n^2)
 
-
 ///|
 /// Gaussian kernel weights for given sigma and window size.
 /// 给定 sigma 和窗口大小的高斯核权重。
-fn gaussian_kernel(sigma : Double, radius : Int) -> Array[Double] {
+fn gaussian_kernel(sigma : Double, radius : Int32) -> Array[Double] {
   let kernel : Array[Double] = Array::make(2 * radius + 1, 0.0)
   let two_sigma_sq = 2.0 * sigma * sigma
   let mut sum = 0.0
-  for i in -radius..=radius {
+  for i in -radius..<=radius {
     let w = @math.exp(i.to_double() * i.to_double() / -two_sigma_sq)
     kernel[i + radius] = w
     sum += w

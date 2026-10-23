@@ -5,7 +5,6 @@ fn prime_vertical(lat_r : Double, a : Double, f : Double) -> Double {
   a / (1.0 - e2 * @math.sin(lat_r) * @math.sin(lat_r)).sqrt()
 }
 
-
 ///|
 /// Convert WGS84 geodetic to ECEF. / WGS84 大地坐标转 ECEF。
 pub fn wgs84_to_ecef(g : Geodetic) -> ECEF {
@@ -18,5 +17,5 @@ pub fn wgs84_to_ecef(g : Geodetic) -> ECEF {
   let x = (n + g.h) * @math.cos(lat_r) * @math.cos(lon_r)
   let y = (n + g.h) * @math.cos(lat_r) * @math.sin(lon_r)
   let z = (n * (1.0 - e2) + g.h) * @math.sin(lat_r)
-  { x, y, z }
+  { x, y, z, }
 }

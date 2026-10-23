@@ -24,7 +24,6 @@ pub fn polygon_to_polygon_distance(
   min_dist
 }
 
-
 ///|
 /// Distance from a point to a line (infinite).
 /// 点到直线（无限长）的距离。

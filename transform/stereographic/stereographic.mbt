@@ -12,5 +12,7 @@ pub fn stereographic_from_sphere(
   if @core.approx_eq(denom, 0.0, 0.000000001) {
     return None
   }
-  Some(@core.Point2D::new(2.0 * radius * p.x / denom, 2.0 * radius * p.y / denom))
+  Some(
+    @core.Point2D::new(2.0 * radius * p.x / denom, 2.0 * radius * p.y / denom),
+  )
 }

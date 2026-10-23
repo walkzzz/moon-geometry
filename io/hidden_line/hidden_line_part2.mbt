@@ -16,10 +16,7 @@ pub fn point_in_triangle_2d(
   !(has_neg && has_pos)
 }
 
-fn sign2(
-  p : @core.Point2D,
-  a : @core.Point2D,
-  b : @core.Point2D,
-) -> Double {
+///|
+fn sign2(p : @core.Point2D, a : @core.Point2D, b : @core.Point2D) -> Double {
   (p.x() - b.x()) * (a.y() - b.y()) - (a.x() - b.x()) * (p.y() - b.y())
 }

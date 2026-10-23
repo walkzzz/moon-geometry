@@ -47,14 +47,16 @@ pub fn obb_from_points(points : Array[@core.Point3D]) -> OBB {
   c11 = c11 / n.to_double()
   c12 = c12 / n.to_double()
   c22 = c22 / n.to_double()
-  let (_eigenvalues, eigenvectors) = jacobi_eigen_3x3(c00, c01, c02, c11, c12, c22)
+  let (_eigenvalues, eigenvectors) = jacobi_eigen_3x3(
+    c00, c01, c02, c11, c12, c22,
+  )
   let axes = eigenvectors
-  let mut min0 : Option[Double] = None
-  let mut max0 : Option[Double] = None
-  let mut min1 : Option[Double] = None
-  let mut max1 : Option[Double] = None
-  let mut min2 : Option[Double] = None
-  let mut max2 : Option[Double] = None
+  let mut min0 : Double? = None
+  let mut max0 : Double? = None
+  let mut min1 : Double? = None
+  let mut max1 : Double? = None
+  let mut min2 : Double? = None
+  let mut max2 : Double? = None
   for p in points {
     let dx = p.x - cx
     let dy = p.y - cy
@@ -116,5 +118,5 @@ pub fn obb_from_points(points : Array[@core.Point3D]) -> OBB {
     cy + c0 * axes[0].y + c1 * axes[1].y + c2 * axes[2].y,
     cz + c0 * axes[0].z + c1 * axes[1].z + c2 * axes[2].z,
   )
-  { center, axes, half_extents: [he0, he1, he2] }
+  { center, axes, half_extents: [he0, he1, he2], }
 }

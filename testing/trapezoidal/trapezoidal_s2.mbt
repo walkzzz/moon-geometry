@@ -1,8 +1,6 @@
 ///|
 /// Build a trapezoidal decomposition from a set of non-crossing segments. / 从一组不相交线段构建梯形分解。
-pub fn build_trapezoidal_map(
-  segments : Array[@core.Segment],
-) -> TrapezoidalMap {
+pub fn build_trapezoidal_map(segments : Array[@core.Segment]) -> TrapezoidalMap {
   let mut min_x = 999999.0
   let mut max_x = -999999.0
   let mut min_y = 999999.0
@@ -29,5 +27,5 @@ pub fn build_trapezoidal_map(
     right_p: None,
   }
   trapezoids.push(initial)
-  { segments, trapezoids }
+  { segments, trapezoids, }
 }

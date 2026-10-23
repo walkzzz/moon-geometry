@@ -1,8 +1,6 @@
 ///|
 /// Find the point closest to the centroid. / 找到最接近质心的点。
-pub fn closest_to_centroid(
-  points : Array[@core.Point2D],
-) -> @core.Point2D? {
+pub fn closest_to_centroid(points : Array[@core.Point2D]) -> @core.Point2D? {
   if points.length() == 0 {
     return None
   }

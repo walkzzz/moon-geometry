@@ -2,7 +2,7 @@
 /// Compute area distortion of parameterization. / 计算参数化面积畸变。
 pub fn area_distortion(
   vertices : Array[@core.Point3D],
-  faces : Array[(Int, Int, Int)],
+  faces : Array[(Int32, Int32, Int32)],
   uv : Array[UV],
 ) -> Double {
   let mut total_3d = 0.0
@@ -14,7 +14,8 @@ pub fn area_distortion(
     let v1 = p1.sub(p0)
     let v2 = p2.sub(p0)
     let cross = v1.cross(v2)
-    total_3d += 0.5 * (cross.x * cross.x + cross.y * cross.y + cross.z * cross.z).sqrt()
+    total_3d += 0.5 *
+      (cross.x * cross.x + cross.y * cross.y + cross.z * cross.z).sqrt()
     let du1 = uv[f.1].u - uv[f.0].u
     let dv1 = uv[f.1].v - uv[f.0].v
     let du2 = uv[f.2].u - uv[f.0].u

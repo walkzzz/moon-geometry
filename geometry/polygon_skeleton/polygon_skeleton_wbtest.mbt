@@ -1,3 +1,4 @@
+///|
 test "straight_skeleton basic square" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -10,6 +11,7 @@ test "straight_skeleton basic square" {
   assert_true(skel.length() >= 3)
 }
 
+///|
 test "straight_skeleton triangle" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -21,6 +23,7 @@ test "straight_skeleton triangle" {
   assert_true(skel.length() >= 2)
 }
 
+///|
 test "skeleton_faces square" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -33,6 +36,7 @@ test "skeleton_faces square" {
   assert_eq(faces.length(), 4)
 }
 
+///|
 test "straight_skeleton degenerate" {
   let pts = [@core.Point2D::new(0.0, 0.0), @core.Point2D::new(1.0, 1.0)]
   let poly = @core.Polygon::new(pts)
@@ -40,6 +44,7 @@ test "straight_skeleton degenerate" {
   assert_eq(skel.length(), 0)
 }
 
+///|
 test "skeleton_faces pentagon" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),

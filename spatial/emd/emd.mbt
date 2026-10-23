@@ -1,9 +1,6 @@
 ///|
 /// Earth Mover's Distance for 1D distributions (sorted arrays). / 一维分布的 EMD（已排序数组）。
-pub fn emd_1d(
-  a : Array[Double],
-  b : Array[Double],
-) -> Double {
+pub fn emd_1d(a : Array[Double], b : Array[Double]) -> Double {
   let n = a.length()
   let m = b.length()
   if n == 0 || m == 0 {

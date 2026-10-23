@@ -18,11 +18,12 @@ pub fn marching_cubes(
   result
 }
 
+///|
 fn process_cube(
   grid : McGrid,
-  i : Int,
-  j : Int,
-  k : Int,
+  i : Int32,
+  j : Int32,
+  k : Int32,
   isolevel : Double,
   result : Array[(@core.Point3D, @core.Point3D, @core.Point3D)],
 ) -> Unit {
@@ -95,11 +96,7 @@ fn process_cube(
     let va = v[e.0]
     let vb = v[e.1]
     if (va < isolevel && vb >= isolevel) || (va >= isolevel && vb < isolevel) {
-      let t = if vb - va == 0.0 {
-        0.5
-      } else {
-        (isolevel - va) / (vb - va)
-      }
+      let t = if vb - va == 0.0 { 0.5 } else { (isolevel - va) / (vb - va) }
       verts.push(
         @core.Point3D::new(
           px[e.0] + t * (px[e.1] - px[e.0]),

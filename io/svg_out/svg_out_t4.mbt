@@ -7,7 +7,6 @@ pub fn svg_polygon(
   svg_shape("polygon", points, settings)
 }
 
-
 ///|
 /// Generate SVG line element. / 生成 SVG 线段元素。
 pub fn svg_line(
@@ -30,7 +29,6 @@ pub fn svg_line(
   "\"/>\n"
 }
 
-
 ///|
 /// Generate SVG polyline element. / 生成 SVG 折线元素。
 pub fn svg_polyline(
@@ -39,4 +37,3 @@ pub fn svg_polyline(
 ) -> String {
   svg_shape("polyline", points, settings)
 }
-

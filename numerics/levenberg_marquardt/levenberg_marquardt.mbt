@@ -8,26 +8,29 @@
 /// ## Complexity: O(m * n^2 + n^3) per step (m residuals, n parameters)
 /// ## 复杂度: 每步 O(m * n^2 + n^3)（m 个残差，n 个参数）
 
+///|
 /// |
 /// Result of Levenberg-Marquardt optimization. / Levenberg-Marquardt 优化结果。
 pub struct LMResult {
   x : Array[Double]
   residual : Double
-  iterations : Int
+  iterations : Int32
   success : Bool
 }
 
+///|
 /// |
 /// Construct LM result. / 构造 LM 结果。
 pub fn LMResult::new(
   x : Array[Double],
   residual : Double,
-  iterations : Int,
+  iterations : Int32,
   success : Bool,
 ) -> LMResult {
-  { x, residual, iterations, success }
+  { x, residual, iterations, success, }
 }
 
+///|
 /// |
 /// Compute sum of squared residuals. / 计算残差平方和。
 fn residual_sq(r : Array[Double]) -> Double {
@@ -38,13 +41,14 @@ fn residual_sq(r : Array[Double]) -> Double {
   s
 }
 
+///|
 /// |
 /// Solve linear system A x = b via Gaussian elimination.
 /// 高斯消元法求解线性方程组。
 fn solve_linear(
   a : Array[Array[Double]],
   b : Array[Double],
-  n : Int,
+  n : Int32,
 ) -> Array[Double]? {
   let m : Array[Array[Double]] = []
   for i in 0..<n {
@@ -92,13 +96,14 @@ fn solve_linear(
   Some(x)
 }
 
+///|
 /// |
 /// Levenberg-Marquardt with numerical Jacobian.
 /// 使用数值雅可比矩阵的 Levenberg-Marquardt 算法。
 pub fn levenberg_marquardt(
   residual : (Array[Double]) -> Array[Double],
   x0 : Array[Double],
-  max_iter : Int,
+  max_iter : Int32,
 ) -> LMResult {
   let n = x0.length()
   let x : Array[Double] = Array::make(n, 0.0)
@@ -187,23 +192,22 @@ pub fn levenberg_marquardt(
             lam = 0.0000000001
           }
           if improvement < 0.0000000000000001 {
-            return { x, residual: cost, iterations: iter_done, success: true }
+            return { x, residual: cost, iterations: iter_done, success: true, }
           }
         } else {
           lam *= 2.0
           if lam > 1000000000000.0 {
-            return { x, residual: cost, iterations: iter_done, success: true }
+            return { x, residual: cost, iterations: iter_done, success: true, }
           }
         }
       }
-      None => {
-        lam *= 10.0
-      }
+      None => lam *= 10.0
     }
   }
-  { x, residual: cost, iterations: iter_done, success: false }
+  { x, residual: cost, iterations: iter_done, success: false, }
 }
 
+///|
 /// |
 /// Levenberg-Marquardt with analytic Jacobian.
 /// 使用解析雅可比矩阵的 Levenberg-Marquardt 算法。
@@ -211,7 +215,7 @@ pub fn levenberg_marquardt_jac(
   residual : (Array[Double]) -> Array[Double],
   jacobian : (Array[Double]) -> Array[Array[Double]],
   x0 : Array[Double],
-  max_iter : Int,
+  max_iter : Int32,
 ) -> LMResult {
   let n = x0.length()
   let x : Array[Double] = Array::make(n, 0.0)
@@ -285,16 +289,14 @@ pub fn levenberg_marquardt_jac(
       None => lam *= 10.0
     }
   }
-  { x, residual: cost, iterations: iter_done, success: false }
+  { x, residual: cost, iterations: iter_done, success: false, }
 }
 
+///|
 /// |
 /// 2D curve fitting convenience: fit y = a + b*x to data points.
 /// 二维曲线拟合便捷：拟合 y = a + b*x。
-pub fn lm_line_fit(
-  xs : Array[Double],
-  ys : Array[Double],
-) -> (Double, Double) {
+pub fn lm_line_fit(xs : Array[Double], ys : Array[Double]) -> (Double, Double) {
   let residual = fn(p : Array[Double]) -> Array[Double] {
     let r : Array[Double] = Array::make(xs.length(), 0.0)
     for i in 0..<xs.length() {
@@ -305,17 +307,20 @@ pub fn lm_line_fit(
   let result = levenberg_marquardt(residual, [0.0, 0.0], 100)
   (result.x[0], result.x[1])
 }
+
+///|
 /// |
 /// Root mean square error from residual sum of squares. / 拋差平方和的均方根误差。
 ///
 /// RMS = sqrt(rss / n). / RMS = sqrt(rss / n)。
-pub fn lm_rms_error(residual_sq : Double, n : Int) -> Double {
+pub fn lm_rms_error(residual_sq : Double, n : Int32) -> Double {
   if n <= 0 {
     return 0.0
   }
   (residual_sq / n.to_double()).sqrt()
 }
 
+///|
 /// |
 /// Log of residual sum of squares for convergence monitoring.
 /// 拋差平方和的自然对数，用于收敛监测。

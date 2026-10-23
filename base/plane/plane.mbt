@@ -5,8 +5,8 @@ pub struct Plane {
   d : Double
 } derive(Debug)
 
+///|
 pub extend Plane with @moonbitlang/core/debug.Debug::{to_repr}
-
 
 ///|
 /// Construct a plane from normal and a point on the plane. / 由法向量和面上一点构造平面。
@@ -15,9 +15,8 @@ pub fn Plane::from_normal_point(
   point : @core.Point3D,
 ) -> Plane {
   let d = -(normal.x * point.x + normal.y * point.y + normal.z * point.z)
-  { normal, d }
+  { normal, d, }
 }
-
 
 ///|
 /// Construct a plane from three points. / 由三点构造平面。
@@ -37,5 +36,5 @@ pub fn Plane::from_three_points(
   let nz = ux * vy - uy * vx
   let normal = @core.Point3D::new(nx, ny, nz)
   let d = -(nx * a.x + ny * a.y + nz * a.z)
-  { normal, d }
+  { normal, d, }
 }

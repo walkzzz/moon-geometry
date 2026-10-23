@@ -2,9 +2,9 @@
 /// Set a pixel with depth test. / 设置像素（带深度测试）。
 pub fn set_pixel_depth(
   buf : RasterBuffer,
-  x : Int,
-  y : Int,
-  color : Int,
+  x : Int32,
+  y : Int32,
+  color : Int32,
   depth : Double,
 ) -> Unit {
   if x < 0 || x >= buf.width || y < 0 || y >= buf.height {

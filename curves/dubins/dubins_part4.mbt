@@ -8,7 +8,7 @@
 pub fn dubins_sample(
   path : DubinsPath,
   start : DubinsPose,
-  num_samples : Int,
+  num_samples : Int32,
 ) -> Array[@core.Point2D] {
   let points : Array[@core.Point2D] = []
   if num_samples <= 0 || path.total_length <= 0.0 {
@@ -23,6 +23,7 @@ pub fn dubins_sample(
   points
 }
 
+///|
 fn dubins_sample_at(
   path : DubinsPath,
   start : DubinsPose,
@@ -38,25 +39,27 @@ fn dubins_sample_at(
       break
     }
     let seg = path.segments[i]
-    let seg_len = if remaining < seg.length {
-      remaining
-    } else {
-      seg.length
-    }
+    let seg_len = if remaining < seg.length { remaining } else { seg.length }
     let (dx, dy, dtheta) = match seg.seg_type {
       Left => {
         let r = radius
         let dth = seg_len / r
-        (r * (@math.sin(theta + dth) - @math.sin(theta)), r * (-@math.cos(theta + dth) + @math.cos(theta)), dth)
+        (
+          r * (@math.sin(theta + dth) - @math.sin(theta)),
+          r * (-@math.cos(theta + dth) + @math.cos(theta)),
+          dth,
+        )
       }
       Right => {
         let r = radius
         let dth = seg_len / r
-        (r * (-@math.sin(theta - dth) + @math.sin(theta)), r * (@math.cos(theta - dth) - @math.cos(theta)), -dth)
+        (
+          r * (-@math.sin(theta - dth) + @math.sin(theta)),
+          r * (@math.cos(theta - dth) - @math.cos(theta)),
+          -dth,
+        )
       }
-      Straight => {
-        (seg_len * @math.cos(theta), seg_len * @math.sin(theta), 0.0)
-      }
+      Straight => (seg_len * @math.cos(theta), seg_len * @math.sin(theta), 0.0)
     }
     x += dx
     y += dy

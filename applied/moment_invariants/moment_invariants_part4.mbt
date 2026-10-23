@@ -6,8 +6,8 @@
 /// 点被映射到以质心为中心的单位圆盘。
 pub fn zernike_moment(
   points : Array[@core.Point2D],
-  n : Int,
-  m : Int,
+  n : Int32,
+  m : Int32,
 ) -> (Double, Double) {
   let (c, _) = centroid(points)
   let mut r_max = 0.0
@@ -35,14 +35,13 @@ pub fn zernike_moment(
   (re / count, im / count)
 }
 
-
 ///|
 /// Magnitude of a Zernike moment (rotation invariant).
 /// Zernike 矩的模长（旋转不变）。
 pub fn zernike_magnitude(
   points : Array[@core.Point2D],
-  n : Int,
-  m : Int,
+  n : Int32,
+  m : Int32,
 ) -> Double {
   let (re, im) = zernike_moment(points, n, m)
   (re * re + im * im).sqrt()

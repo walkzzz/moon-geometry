@@ -9,9 +9,11 @@
 /// 返回顶点索引三元组数组 `(i, j, k)`。
 /// 每个三元组是原始多边形的顶点索引。
 /// 反复寻找并移除"耳朵"（凸顶点且其三角形内无其他多边形顶点）。
-pub fn triangulate_polygon(poly : @core.Polygon) -> Array[(Int, Int, Int)] {
+pub fn triangulate_polygon(
+  poly : @core.Polygon,
+) -> Array[(Int32, Int32, Int32)] {
   let n = poly.size()
-  let result : Array[(Int, Int, Int)] = []
+  let result : Array[(Int32, Int32, Int32)] = []
   if n < 3 {
     return result
   }
@@ -23,7 +25,7 @@ pub fn triangulate_polygon(poly : @core.Polygon) -> Array[(Int, Int, Int)] {
   for i in 0..<n {
     vertices.push(poly.get(i))
   }
-  let indices : Array[Int] = []
+  let indices : Array[Int32] = []
   for i in 0..<n {
     indices.push(i)
   }

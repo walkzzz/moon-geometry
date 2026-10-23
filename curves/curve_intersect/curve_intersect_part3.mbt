@@ -1,8 +1,6 @@
 ///|
 /// Count self-intersections of a polyline. / 计数折线自相交次数。
-pub fn curve_self_intersect_count(
-  points : Array[@core.Point2D],
-) -> Int {
+pub fn curve_self_intersect_count(points : Array[@core.Point2D]) -> Int32 {
   let n = points.length()
   if n < 4 {
     return 0

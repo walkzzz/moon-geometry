@@ -8,6 +8,7 @@
 /// ## Complexity: O(log(1/eps)) for bisection, O(log log(1/eps)) for Newton
 /// ## 复杂度: 二分法 O(log(1/eps))，牛顿法 O(log log(1/eps))
 
+///|
 /// |
 /// Find root using bisection method.
 /// 使用二分法求根。
@@ -21,7 +22,7 @@ pub fn bisection(
   f : (Double) -> Double,
   lo : Double,
   hi : Double,
-  max_iter : Int,
+  max_iter : Int32,
 ) -> Double {
   let mut a = lo
   let mut b = hi
@@ -41,6 +42,7 @@ pub fn bisection(
   (a + b) / 2.0
 }
 
+///|
 /// |
 /// Find root using Newton's method.
 /// 使用牛顿法求根。
@@ -54,7 +56,7 @@ pub fn newton(
   f : (Double) -> Double,
   fp : (Double) -> Double,
   x0 : Double,
-  max_iter : Int,
+  max_iter : Int32,
 ) -> Double {
   let mut x = x0
   for _ in 0..<max_iter {
@@ -71,6 +73,7 @@ pub fn newton(
   x
 }
 
+///|
 /// |
 /// Find root using secant method.
 /// 使用割线法求根。
@@ -84,7 +87,7 @@ pub fn secant(
   f : (Double) -> Double,
   x0 : Double,
   x1 : Double,
-  max_iter : Int,
+  max_iter : Int32,
 ) -> Double {
   let mut a = x0
   let mut b = x1
@@ -105,6 +108,7 @@ pub fn secant(
   b
 }
 
+///|
 /// |
 /// Find all roots in an interval by scanning.
 /// 通过扫描查找区间内所有根。
@@ -112,7 +116,7 @@ pub fn find_all_roots(
   f : (Double) -> Double,
   lo : Double,
   hi : Double,
-  n_samples : Int,
+  n_samples : Int32,
 ) -> Array[Double] {
   let roots : Array[Double] = []
   let step = (hi - lo) / n_samples.to_double()

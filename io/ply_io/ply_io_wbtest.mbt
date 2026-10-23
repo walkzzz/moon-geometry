@@ -1,9 +1,11 @@
+///|
 test "ply empty mesh" {
   let m = PlyMesh::new()
   assert_eq(PlyMesh::vertex_count(m), 0)
   assert_eq(PlyMesh::face_count(m), 0)
 }
 
+///|
 test "ply write ascii header" {
   let m = PlyMesh::new()
   m.vertices.push(@core.Point3D::new(1.0, 2.0, 3.0))
@@ -14,6 +16,7 @@ test "ply write ascii header" {
   assert_true(s.contains("end_header"))
 }
 
+///|
 test "ply write ascii vertices and faces" {
   let m = PlyMesh::new()
   m.vertices.push(@core.Point3D::new(1.0, 2.0, 3.0))
@@ -25,6 +28,7 @@ test "ply write ascii vertices and faces" {
   assert_true(s.contains("3 0 1 2"))
 }
 
+///|
 test "ply parse ascii" {
   let text = "ply\nformat ascii 1.0\nelement vertex 3\nproperty float x\nproperty float y\nproperty float z\nelement face 1\nproperty list uchar int vertex_indices\nend_header\n1 2 3\n4 5 6\n7 8 9\n3 0 1 2\n"
   let m = ply_parse_ascii(text)
@@ -34,6 +38,7 @@ test "ply parse ascii" {
   assert_eq(m.faces[0].length(), 3)
 }
 
+///|
 test "ply parse ascii no faces" {
   let text = "ply\nformat ascii 1.0\nelement vertex 2\nproperty float x\nproperty float y\nproperty float z\nelement face 0\nproperty list uchar int vertex_indices\nend_header\n1 2 3\n4 5 6\n"
   let m = ply_parse_ascii(text)
@@ -41,6 +46,7 @@ test "ply parse ascii no faces" {
   assert_eq(PlyMesh::face_count(m), 0)
 }
 
+///|
 test "ply binary roundtrip" {
   let m = PlyMesh::new()
   m.vertices.push(@core.Point3D::new(1.0, 2.0, 3.0))
@@ -55,6 +61,7 @@ test "ply binary roundtrip" {
   assert_eq(m2.faces[0].length(), 2)
 }
 
+///|
 test "ply binary empty" {
   let m = PlyMesh::new()
   let bytes = ply_write_binary(m)
@@ -63,6 +70,7 @@ test "ply binary empty" {
   assert_eq(PlyMesh::face_count(m2), 0)
 }
 
+///|
 test "ply ascii roundtrip" {
   let m = PlyMesh::new()
   m.vertices.push(@core.Point3D::new(1.5, 2.5, 3.5))
@@ -75,6 +83,7 @@ test "ply ascii roundtrip" {
   assert_true(@core.approx_eq(m2.vertices[2].z, 9.5, 0.000001))
 }
 
+///|
 test "ply binary quad face" {
   let m = PlyMesh::new()
   m.vertices.push(@core.Point3D::new(0.0, 0.0, 0.0))

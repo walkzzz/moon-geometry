@@ -7,7 +7,6 @@ pub fn angle_defect(angles : Array[Double]) -> Double {
   6.283185307179586 - sum
 }
 
-
 ///|
 pub fn voronoi_area(edge_len : Double) -> Double {
   edge_len * edge_len / 8.0

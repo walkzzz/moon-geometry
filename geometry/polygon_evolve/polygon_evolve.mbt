@@ -8,6 +8,7 @@
 /// ## Complexity: O(n × steps)
 /// ## 复杂度: O(n × steps)
 
+///|
 /// |
 /// Perform curve shortening flow for multiple steps.
 /// 执行多步曲率流。
@@ -21,7 +22,7 @@
 /// 返回每一步的多边形序列。
 pub fn curve_shortening_flow(
   pts : Array[@core.Point2D],
-  steps : Int,
+  steps : Int32,
   dt : Double,
 ) -> Array[Array[@core.Point2D]] {
   let result : Array[Array[@core.Point2D]] = []
@@ -41,6 +42,7 @@ pub fn curve_shortening_flow(
   result
 }
 
+///|
 /// |
 /// Perform a single evolution step.
 /// 执行单步演化。
@@ -69,12 +71,13 @@ pub fn evolve_step(
   result
 }
 
+///|
 /// |
 /// Compute the perimeter of a polygon at each evolution step.
 /// 计算每个演化步骤的多边形周长。
 pub fn flow_perimeters(
   pts : Array[@core.Point2D],
-  steps : Int,
+  steps : Int32,
   dt : Double,
 ) -> Array[Double] {
   let result : Array[Double] = []
@@ -85,12 +88,13 @@ pub fn flow_perimeters(
   result
 }
 
+///|
 /// |
 /// Compute the area of a polygon at each evolution step.
 /// 计算每个演化步骤的多边形面积。
 pub fn flow_areas(
   pts : Array[@core.Point2D],
-  steps : Int,
+  steps : Int32,
   dt : Double,
 ) -> Array[Double] {
   let result : Array[Double] = []
@@ -101,6 +105,7 @@ pub fn flow_areas(
   result
 }
 
+///|
 fn perimeter(pts : Array[@core.Point2D]) -> Double {
   let n = pts.length()
   let mut sum = 0.0
@@ -114,6 +119,7 @@ fn perimeter(pts : Array[@core.Point2D]) -> Double {
   sum
 }
 
+///|
 fn signed_area(pts : Array[@core.Point2D]) -> Double {
   let n = pts.length()
   let mut sum = 0.0

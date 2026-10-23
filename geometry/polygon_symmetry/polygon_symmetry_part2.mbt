@@ -2,7 +2,7 @@
 /// Check if a polygon has rotational symmetry of given order. / 检查多边形是否具有给定阶的旋转对称性。
 pub fn has_rotation_symmetry(
   poly : Array[@core.Point2D],
-  order : Int,
+  order : Int32,
 ) -> Bool {
   let n = poly.length()
   if n < 3 || order < 2 {

@@ -1,3 +1,4 @@
+///|
 test "centroid_3d basic" {
   let pts = [(0.0, 0.0, 0.0), (2.0, 2.0, 2.0)]
   let (cx, cy, cz) = centroid_3d(pts)
@@ -6,6 +7,7 @@ test "centroid_3d basic" {
   assert_true((cz - 1.0).abs() < 0.001)
 }
 
+///|
 test "translate_pts basic" {
   let pts = [(0.0, 0.0, 0.0), (1.0, 1.0, 1.0)]
   let translated = translate_pts(pts, 1.0, 2.0, 3.0)
@@ -15,6 +17,7 @@ test "translate_pts basic" {
   assert_true((z - 3.0).abs() < 0.001)
 }
 
+///|
 test "icp basic" {
   let target = [(0.0, 0.0, 0.0), (1.0, 0.0, 0.0), (0.0, 1.0, 0.0)]
   let source = [(1.0, 1.0, 0.0), (2.0, 1.0, 0.0), (1.0, 2.0, 0.0)]
@@ -23,6 +26,7 @@ test "icp basic" {
   assert_true(err < 0.1)
 }
 
+///|
 test "rms_error basic" {
   let a = [(0.0, 0.0, 0.0), (1.0, 0.0, 0.0)]
   let b = [(0.0, 0.0, 0.0), (0.0, 0.0, 0.0)]

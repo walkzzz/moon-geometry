@@ -7,18 +7,24 @@ pub struct Mat2 {
   a22 : Double
 } derive(Debug)
 
+///|
 pub extend Mat2 with @moonbitlang/core/debug.Debug::{to_repr}
 
 ///|
 /// Construct a 2x2 matrix. / 构造 2x2 矩阵。
-pub fn Mat2::new(a11 : Double, a12 : Double, a21 : Double, a22 : Double) -> Mat2 {
-  { a11, a12, a21, a22 }
+pub fn Mat2::new(
+  a11 : Double,
+  a12 : Double,
+  a21 : Double,
+  a22 : Double,
+) -> Mat2 {
+  { a11, a12, a21, a22, }
 }
 
 ///|
 /// Identity matrix. / 单位矩阵。
 pub fn Mat2::identity() -> Mat2 {
-  { a11: 1.0, a12: 0.0, a21: 0.0, a22: 1.0 }
+  { a11: 1.0, a12: 0.0, a21: 0.0, a22: 1.0, }
 }
 
 ///|
@@ -41,7 +47,10 @@ pub fn Mat2::mul(m : Mat2, other : Mat2) -> Mat2 {
 ///|
 /// Apply matrix to a 2D point. / 矩阵作用于点。
 pub fn Mat2::transform(m : Mat2, p : @core.Point2D) -> @core.Point2D {
-  @core.Point2D::new(m.a11 * p.x() + m.a12 * p.y(), m.a21 * p.x() + m.a22 * p.y())
+  @core.Point2D::new(
+    m.a11 * p.x() + m.a12 * p.y(),
+    m.a21 * p.x() + m.a22 * p.y(),
+  )
 }
 
 ///|
@@ -51,7 +60,7 @@ pub fn Mat2::inverse(m : Mat2) -> Mat2? {
   if @core.approx_eq(d, 0.0, 0.000000000001) {
     return None
   }
-  Some({ a11: m.a22 / d, a12: -m.a12 / d, a21: -m.a21 / d, a22: m.a11 / d })
+  Some({ a11: m.a22 / d, a12: -m.a12 / d, a21: -m.a21 / d, a22: m.a11 / d, })
 }
 
 ///|
@@ -59,13 +68,13 @@ pub fn Mat2::inverse(m : Mat2) -> Mat2? {
 pub fn Mat2::rotation(angle : Double) -> Mat2 {
   let c = @math.cos(angle)
   let s = @math.sin(angle)
-  { a11: c, a12: -s, a21: s, a22: c }
+  { a11: c, a12: -s, a21: s, a22: c, }
 }
 
 ///|
 /// Scaling matrix. / 缩放矩阵。
 pub fn Mat2::scaling(sx : Double, sy : Double) -> Mat2 {
-  { a11: sx, a12: 0.0, a21: 0.0, a22: sy }
+  { a11: sx, a12: 0.0, a21: 0.0, a22: sy, }
 }
 
 ///|

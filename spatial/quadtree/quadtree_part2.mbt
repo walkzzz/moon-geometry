@@ -30,11 +30,12 @@ pub fn build_quadtree(
   nodes
 }
 
+///|
 fn quad_range_rec(
   nodes : Array[QuadNode],
-  node_idx : Int,
+  node_idx : Int32,
   rect : @core.Rectangle,
-  result : Array[Int],
+  result : Array[Int32],
 ) -> Unit {
   if node_idx < 0 || node_idx >= nodes.length() {
     return
@@ -44,13 +45,19 @@ fn quad_range_rec(
   let max_nx = node.cx + node.half
   let min_ny = node.cy - node.half
   let max_ny = node.cy + node.half
-  if min_nx > rect.max_x || max_nx < rect.min_x || min_ny > rect.max_y || max_ny < rect.min_y {
+  if min_nx > rect.max_x ||
+    max_nx < rect.min_x ||
+    min_ny > rect.max_y ||
+    max_ny < rect.min_y {
     return
   }
   if node.has_point {
     let px = node.point.x()
     let py = node.point.y()
-    if px >= rect.min_x && px <= rect.max_x && py >= rect.min_y && py <= rect.max_y {
+    if px >= rect.min_x &&
+      px <= rect.max_x &&
+      py >= rect.min_y &&
+      py <= rect.max_y {
       result.push(node.index)
     }
   }

@@ -8,7 +8,6 @@ pub fn path_length(path : Array[@core.Point2D]) -> Double {
   sum
 }
 
-
 ///|
 /// Reduce path to key points by removing collinear points. / 通过移除共线点将路径简化为关键点。
 pub fn simplify_path(
@@ -24,7 +23,8 @@ pub fn simplify_path(
     let prev = path[i - 1]
     let cur = path[i]
     let next = path[i + 1]
-    let area = ((cur.x() - prev.x()) * (next.y() - prev.y()) - (cur.y() - prev.y()) * (next.x() - prev.x())).abs()
+    let area = ((cur.x() - prev.x()) * (next.y() - prev.y()) -
+    (cur.y() - prev.y()) * (next.x() - prev.x())).abs()
     if area > eps {
       result.push(cur)
     }

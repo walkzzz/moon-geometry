@@ -1,8 +1,6 @@
 ///|
 /// Compute the kernel of a polygon (intersection of interior half-planes). / 计算多边形的核（内部半平面交集）。
-pub fn polygon_kernel(
-  poly : Array[@core.Point2D],
-) -> Array[@core.Point2D] {
+pub fn polygon_kernel(poly : Array[@core.Point2D]) -> Array[@core.Point2D] {
   let n = poly.length()
   if n < 3 {
     return []
@@ -23,8 +21,10 @@ pub fn polygon_kernel(
       let next = kernel[(k + 1) % kn]
       let dx = edge_end.x() - edge_start.x()
       let dy = edge_end.y() - edge_start.y()
-      let curr_side = dx * (curr.y() - edge_start.y()) - dy * (curr.x() - edge_start.x())
-      let next_side = dx * (next.y() - edge_start.y()) - dy * (next.x() - edge_start.x())
+      let curr_side = dx * (curr.y() - edge_start.y()) -
+        dy * (curr.x() - edge_start.x())
+      let next_side = dx * (next.y() - edge_start.y()) -
+        dy * (next.x() - edge_start.x())
       if curr_side >= -eps {
         clipped.push(curr)
       }

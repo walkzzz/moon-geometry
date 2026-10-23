@@ -1,3 +1,4 @@
+///|
 test "optimal_convex_decomp convex" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -9,6 +10,7 @@ test "optimal_convex_decomp convex" {
   assert_eq(result.length(), 1)
 }
 
+///|
 test "optimal_convex_decomp L-shape" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -22,6 +24,7 @@ test "optimal_convex_decomp L-shape" {
   assert_true(result.length() >= 1)
 }
 
+///|
 test "decomp_count convex" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -32,6 +35,7 @@ test "decomp_count convex" {
   assert_eq(decomp_count(pts), 1)
 }
 
+///|
 test "is_convex_polygon square" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -42,6 +46,7 @@ test "is_convex_polygon square" {
   assert_true(is_convex_polygon(pts))
 }
 
+///|
 test "is_convex_polygon L-shape" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),

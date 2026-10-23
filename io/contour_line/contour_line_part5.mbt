@@ -2,10 +2,10 @@
 /// Label a cell with its case index (0-15) for a given level. / 用给定等值层的情形索引（0-15）标记单元。
 pub fn label_cell(
   g : ContourGrid,
-  col : Int,
-  row : Int,
+  col : Int32,
+  row : Int32,
   level : Double,
-) -> Int {
+) -> Int32 {
   if col < 0 || col >= g.cols - 1 || row < 0 || row >= g.rows - 1 {
     return -1
   }

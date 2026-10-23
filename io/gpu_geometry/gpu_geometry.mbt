@@ -3,7 +3,7 @@
 /// GPU-friendly geometry operations. / GPU 友好几何操作。
 
 ///|
-pub fn morton_code_2d(x : Int, y : Int) -> Int {
+pub fn morton_code_2d(x : Int32, y : Int32) -> Int32 {
   let mut result = 0
   for i in 0..<16 {
     result = result | (((x >> i) & 1) << (2 * i))

@@ -1,3 +1,4 @@
+///|
 test "exact_orientation ccw" {
   let a = @core.Point2D::new(0.0, 0.0)
   let b = @core.Point2D::new(1.0, 0.0)
@@ -5,6 +6,7 @@ test "exact_orientation ccw" {
   assert_eq(exact_orientation(a, b, c), 1)
 }
 
+///|
 test "exact_orientation cw" {
   let a = @core.Point2D::new(0.0, 0.0)
   let b = @core.Point2D::new(0.0, 1.0)
@@ -12,6 +14,7 @@ test "exact_orientation cw" {
   assert_eq(exact_orientation(a, b, c), -1)
 }
 
+///|
 test "exact_orientation collinear" {
   let a = @core.Point2D::new(0.0, 0.0)
   let b = @core.Point2D::new(1.0, 0.0)
@@ -19,6 +22,7 @@ test "exact_orientation collinear" {
   assert_eq(exact_orientation(a, b, c), 0)
 }
 
+///|
 test "exact_left_turn" {
   let a = @core.Point2D::new(0.0, 0.0)
   let b = @core.Point2D::new(1.0, 0.0)
@@ -26,6 +30,7 @@ test "exact_left_turn" {
   assert_true(exact_left_turn(a, b, c))
 }
 
+///|
 test "exact_collinear" {
   let a = @core.Point2D::new(0.0, 0.0)
   let b = @core.Point2D::new(1.0, 0.0)

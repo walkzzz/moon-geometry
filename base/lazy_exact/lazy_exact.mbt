@@ -13,7 +13,7 @@ pub struct LazyExact {
 
 ///|
 pub fn LazyExact::new(approx : Double, exact_val : Double) -> LazyExact {
-  { approx, exact_val }
+  { approx, exact_val, }
 }
 
 ///|

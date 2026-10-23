@@ -1,3 +1,4 @@
+///|
 test "dubins_shortest_path straight" {
   let start = DubinsPose::new(0.0, 0.0, 0.0)
   let goal = DubinsPose::new(10.0, 0.0, 0.0)
@@ -5,6 +6,7 @@ test "dubins_shortest_path straight" {
   assert_true(dubins_segment_count(path) >= 1)
 }
 
+///|
 test "dubins_shortest_path left turn" {
   let start = DubinsPose::new(0.0, 0.0, 0.0)
   let goal = DubinsPose::new(1.0, 1.0, 1.5707963267948966)
@@ -12,6 +14,7 @@ test "dubins_shortest_path left turn" {
   assert_true(dubins_segment_count(path) >= 1)
 }
 
+///|
 test "dubins_shortest_path right turn" {
   let start = DubinsPose::new(0.0, 0.0, 0.0)
   let goal = DubinsPose::new(1.0, -1.0, -1.5707963267948966)
@@ -19,6 +22,7 @@ test "dubins_shortest_path right turn" {
   assert_true(dubins_segment_count(path) >= 1)
 }
 
+///|
 test "dubins_shortest_path same pose" {
   let start = DubinsPose::new(0.0, 0.0, 0.0)
   let goal = DubinsPose::new(0.0, 0.0, 0.0)
@@ -26,6 +30,7 @@ test "dubins_shortest_path same pose" {
   assert_true(dubins_path_length(path) >= 0.0)
 }
 
+///|
 test "dubins_sample basic" {
   let start = DubinsPose::new(0.0, 0.0, 0.0)
   let goal = DubinsPose::new(10.0, 0.0, 0.0)
@@ -34,6 +39,7 @@ test "dubins_sample basic" {
   assert_true(points.length() == 10)
 }
 
+///|
 test "dubins_sample zero samples" {
   let start = DubinsPose::new(0.0, 0.0, 0.0)
   let goal = DubinsPose::new(10.0, 0.0, 0.0)
@@ -42,6 +48,7 @@ test "dubins_sample zero samples" {
   assert_eq(points.length(), 0)
 }
 
+///|
 test "dubins_path_length positive" {
   let start = DubinsPose::new(0.0, 0.0, 0.0)
   let goal = DubinsPose::new(5.0, 0.0, 0.0)
@@ -49,6 +56,7 @@ test "dubins_path_length positive" {
   assert_true(dubins_path_length(path) >= 0.0)
 }
 
+///|
 test "dubins_segment_count max 3" {
   let start = DubinsPose::new(0.0, 0.0, 0.0)
   let goal = DubinsPose::new(3.0, 4.0, 1.0)
@@ -56,6 +64,7 @@ test "dubins_segment_count max 3" {
   assert_true(dubins_segment_count(path) <= 3)
 }
 
+///|
 test "dubins_shortest_path larger radius" {
   let start = DubinsPose::new(0.0, 0.0, 0.0)
   let goal = DubinsPose::new(10.0, 5.0, 0.5)
@@ -63,6 +72,7 @@ test "dubins_shortest_path larger radius" {
   assert_true(dubins_segment_count(path) >= 1)
 }
 
+///|
 test "dubins_sample start point" {
   let start = DubinsPose::new(2.0, 3.0, 0.0)
   let goal = DubinsPose::new(12.0, 3.0, 0.0)

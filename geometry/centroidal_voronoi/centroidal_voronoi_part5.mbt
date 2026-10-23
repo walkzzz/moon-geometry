@@ -19,7 +19,8 @@ pub fn lloyd_energy(
       let mx = (p0.x() + p1.x() + site.x()) / 3.0
       let my = (p0.y() + p1.y() + site.y()) / 3.0
       let tri_area = ((p1.x() - p0.x()) * (site.y() - p0.y()) -
-        (site.x() - p0.x()) * (p1.y() - p0.y())).abs() * 0.5
+        (site.x() - p0.x()) * (p1.y() - p0.y())).abs() *
+        0.5
       let dx = mx - site.x()
       let dy = my - site.y()
       energy += (dx * dx + dy * dy) * tri_area

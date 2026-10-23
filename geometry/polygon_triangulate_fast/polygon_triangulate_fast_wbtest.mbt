@@ -1,3 +1,4 @@
+///|
 test "fast_triangulate square" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -9,6 +10,7 @@ test "fast_triangulate square" {
   assert_eq(tris.length(), 2)
 }
 
+///|
 test "fast_triangulate pentagon" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -21,6 +23,7 @@ test "fast_triangulate pentagon" {
   assert_eq(tris.length(), 3)
 }
 
+///|
 test "fast_triangulate_points square" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -32,6 +35,7 @@ test "fast_triangulate_points square" {
   assert_eq(tris.length(), 2)
 }
 
+///|
 test "triangle_count hexagon" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -45,6 +49,7 @@ test "triangle_count hexagon" {
   assert_eq(count, 4)
 }
 
+///|
 test "total_triangle_area square" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),

@@ -11,7 +11,9 @@ fn sphere_from_3(
   let bx = p2.x - p0.x
   let by = p2.y - p0.y
   let bz = p2.z - p0.z
-  let d = ax * (ay * bz - az * by) - ay * (ax * bz - az * bx) + az * (ax * by - ay * bx)
+  let d = ax * (ay * bz - az * by) -
+    ay * (ax * bz - az * bx) +
+    az * (ax * by - ay * bx)
   if d.abs() < 0.0000000001 {
     return sphere_from_2(p0, p1)
   }
@@ -22,9 +24,8 @@ fn sphere_from_3(
   let cz = (asq * (bx * by - by * bx) - bsq * (ax * by - ay * bx)) / (2.0 * d)
   let center = @core.Point3D::new(p0.x + cx, p0.y + cy, p0.z + cz)
   let radius = center.dist(p0)
-  { center, radius }
+  { center, radius, }
 }
-
 
 ///|
 /// Sphere from 4 points (circumsphere of tetrahedron). / 四点的球（四面体外接球）。
@@ -43,7 +44,9 @@ fn sphere_from_4(
   let dx3 = p3.x - p0.x
   let dy3 = p3.y - p0.y
   let dz3 = p3.z - p0.z
-  let det = dx1 * (dy2 * dz3 - dz2 * dy3) - dy1 * (dx2 * dz3 - dz2 * dx3) + dz1 * (dx2 * dy3 - dy2 * dx3)
+  let det = dx1 * (dy2 * dz3 - dz2 * dy3) -
+    dy1 * (dx2 * dz3 - dz2 * dx3) +
+    dz1 * (dx2 * dy3 - dy2 * dx3)
   if det.abs() < 0.0000000001 {
     return sphere_from_3(p0, p1, p2)
   }
@@ -64,9 +67,8 @@ fn sphere_from_4(
   let cz = (sq1 * a31 + sq2 * a32 + sq3 * a33) / (2.0 * det)
   let center = @core.Point3D::new(p0.x + cx, p0.y + cy, p0.z + cz)
   let radius = center.dist(p0)
-  { center, radius }
+  { center, radius, }
 }
-
 
 ///|
 /// Check if point is inside sphere (with tolerance). / 检查点是否在球内（带容差）。

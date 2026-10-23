@@ -8,6 +8,7 @@
 /// ## Complexity: O(n²) for greedy covering
 /// ## 复杂度: 贪心覆盖 O(n²)
 
+///|
 /// |
 /// Compute minimum enclosing circle of a point set (Welzl's algorithm, simplified).
 /// 计算点集的最小包围圆（Welzl 算法简化版）。
@@ -17,7 +18,9 @@
 ///
 /// Returns (center_x, center_y, radius).
 /// 返回 (圆心x, 圆心y, 半径)。
-pub fn min_enclosing_circle(pts : Array[(Double, Double)]) -> (Double, Double, Double) {
+pub fn min_enclosing_circle(
+  pts : Array[(Double, Double)],
+) -> (Double, Double, Double) {
   let n = pts.length()
   if n == 0 {
     return (0.0, 0.0, 0.0)
@@ -76,6 +79,7 @@ pub fn min_enclosing_circle(pts : Array[(Double, Double)]) -> (Double, Double, D
   (cx, cy, max_r)
 }
 
+///|
 /// |
 /// Greedy set cover: find disks of given radius to cover all points.
 /// 贪心集合覆盖: 查找给定半径的圆盘覆盖所有点。
@@ -136,6 +140,7 @@ pub fn greedy_cover(
   centers
 }
 
+///|
 /// |
 /// Compute covering radius: minimum radius such that k disks cover all points.
 /// 计算覆盖半径: 使得 k 个圆盘覆盖所有点的最小半径。
@@ -143,13 +148,10 @@ pub fn greedy_cover(
 /// # Arguments / 参数
 /// - `pts`: points / 点
 /// - `k`: number of disks / 圆盘数
-pub fn covering_radius(
-  pts : Array[(Double, Double)],
-  k : Int,
-) -> Double {
+pub fn covering_radius(pts : Array[(Double, Double)], k : Int32) -> Double {
   let (_, _, r) = min_enclosing_circle(pts)
   if k <= 1 {
     return r
   }
-  r / (k.to_double()).sqrt()
+  r / k.to_double().sqrt()
 }

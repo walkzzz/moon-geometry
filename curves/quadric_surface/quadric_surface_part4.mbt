@@ -27,16 +27,14 @@ pub fn Quadric::classify(q : Quadric) -> QuadricType {
         } else {
           Degenerate
         }
+      } else if pos == 3 {
+        Ellipsoid
+      } else if pos == 2 && neg == 1 {
+        HyperboloidOneSheet
+      } else if pos == 1 && neg == 2 {
+        HyperboloidTwoSheets
       } else {
-        if pos == 3 {
-          Ellipsoid
-        } else if pos == 2 && neg == 1 {
-          HyperboloidOneSheet
-        } else if pos == 1 && neg == 2 {
-          HyperboloidTwoSheets
-        } else {
-          Degenerate
-        }
+        Degenerate
       }
     }
   } else {
@@ -57,10 +55,15 @@ pub fn Quadric::classify(q : Quadric) -> QuadricType {
   }
 }
 
-fn eigen_signs(q : Quadric) -> Array[Int] {
+///|
+fn eigen_signs(q : Quadric) -> Array[Int32] {
   let eps = 0.0000000001
   let tr = q.a + q.b + q.c
-  let m2 = q.a * q.b + q.a * q.c + q.b * q.c - q.d * q.d / 4.0 - q.e * q.e / 4.0 -
+  let m2 = q.a * q.b +
+    q.a * q.c +
+    q.b * q.c -
+    q.d * q.d / 4.0 -
+    q.e * q.e / 4.0 -
     q.f * q.f / 4.0
   let m3 = Quadric::quadratic_det(q) / 8.0
   let mut pos = 0

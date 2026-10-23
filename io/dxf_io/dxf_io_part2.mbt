@@ -8,6 +8,7 @@ pub fn dxf_write(doc : DxfDocument) -> String {
   out + "0\nENDSEC\n0\nEOF\n"
 }
 
+///|
 fn entity_to_dxf(e : DxfEntity) -> String {
   match e {
     DxfLine(p1, p2) =>

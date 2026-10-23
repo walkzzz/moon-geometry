@@ -25,6 +25,7 @@ pub fn poly_gcd(a : Array[Double], b : Array[Double]) -> Array[Double] {
   result
 }
 
+///|
 fn poly_rem(a : Array[Double], b : Array[Double]) -> Array[Double] {
   let da = poly_degree(a)
   let db = poly_degree(b)

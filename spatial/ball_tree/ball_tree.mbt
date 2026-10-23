@@ -8,6 +8,7 @@
 /// ## Complexity: O(n log n) build, O(log n) query
 /// ## 复杂度: 构建 O(n log n)，查询 O(log n)
 
+///|
 /// |
 /// Ball tree node.
 /// 球树节点。
@@ -19,6 +20,7 @@ pub struct BallNode {
   right : BallNode?
 }
 
+///|
 /// |
 /// Build a ball tree from points.
 /// 从点集构建球树。
@@ -28,7 +30,13 @@ pub fn ball_tree_build(points : Array[@core.Point2D]) -> BallNode? {
   }
   if points.length() <= 10 {
     let (center, radius) = compute_bounding_ball(points)
-    return Some({ center, radius, points: points.copy(), left: None, right: None })
+    return Some({
+      center,
+      radius,
+      points: points.copy(),
+      left: None,
+      right: None,
+    })
   }
   let (center, radius) = compute_bounding_ball(points)
   let spread_x = variance_x(points)
@@ -73,13 +81,14 @@ pub fn ball_tree_build(points : Array[@core.Point2D]) -> BallNode? {
   })
 }
 
+///|
 /// |
 /// Find k nearest neighbors.
 /// 查找 k 个最近邻。
 pub fn ball_tree_knn(
   root : BallNode?,
   query : @core.Point2D,
-  k : Int,
+  k : Int32,
 ) -> Array[@core.Point2D] {
   let result : Array[(@core.Point2D, Double)] = []
   ball_knn_impl(root, query, k, result)
@@ -90,10 +99,11 @@ pub fn ball_tree_knn(
   result_arr
 }
 
+///|
 /// |
 /// Count nodes in the ball tree.
 /// 计算球树中的节点数。
-pub fn ball_tree_count(root : BallNode?) -> Int {
+pub fn ball_tree_count(root : BallNode?) -> Int32 {
   match root {
     Some(node) => {
       let mut count = node.points.length()
@@ -105,17 +115,18 @@ pub fn ball_tree_count(root : BallNode?) -> Int {
   }
 }
 
+///|
 fn ball_knn_impl(
   node : BallNode?,
   query : @core.Point2D,
-  k : Int,
+  k : Int32,
   result : Array[(@core.Point2D, Double)],
 ) -> Unit {
   match node {
     Some(n) => {
-      let dist_to_center = ((query.x() - n.center.x()) * (query.x() - n.center.x()) +
-        (query.y() - n.center.y()) * (query.y() - n.center.y()))
-        .sqrt()
+      let dist_to_center = ((query.x() - n.center.x()) *
+      (query.x() - n.center.x()) +
+      (query.y() - n.center.y()) * (query.y() - n.center.y())).sqrt()
       if result.length() >= k {
         let (_, worst) = result[result.length() - 1]
         if dist_to_center - n.radius > worst {
@@ -126,8 +137,7 @@ fn ball_knn_impl(
         for i in 0..<n.points.length() {
           let p = n.points[i]
           let d = ((query.x() - p.x()) * (query.x() - p.x()) +
-            (query.y() - p.y()) * (query.y() - p.y()))
-            .sqrt()
+          (query.y() - p.y()) * (query.y() - p.y())).sqrt()
           if result.length() < k {
             result.push((p, d))
             result.sort_by(fn(a, b) {
@@ -160,7 +170,10 @@ fn ball_knn_impl(
   }
 }
 
-fn compute_bounding_ball(points : Array[@core.Point2D]) -> (@core.Point2D, Double) {
+///|
+fn compute_bounding_ball(
+  points : Array[@core.Point2D],
+) -> (@core.Point2D, Double) {
   let n = points.length()
   let mut cx = 0.0
   let mut cy = 0.0
@@ -174,8 +187,7 @@ fn compute_bounding_ball(points : Array[@core.Point2D]) -> (@core.Point2D, Doubl
   let mut max_r = 0.0
   for i in 0..<n {
     let d = ((points[i].x() - cx) * (points[i].x() - cx) +
-      (points[i].y() - cy) * (points[i].y() - cy))
-      .sqrt()
+    (points[i].y() - cy) * (points[i].y() - cy)).sqrt()
     if d > max_r {
       max_r = d
     }
@@ -183,6 +195,7 @@ fn compute_bounding_ball(points : Array[@core.Point2D]) -> (@core.Point2D, Doubl
   (center, max_r)
 }
 
+///|
 fn variance_x(points : Array[@core.Point2D]) -> Double {
   let n = points.length()
   let mut sum = 0.0
@@ -196,6 +209,7 @@ fn variance_x(points : Array[@core.Point2D]) -> Double {
   sum_sq / n.to_double() - mean * mean
 }
 
+///|
 fn variance_y(points : Array[@core.Point2D]) -> Double {
   let n = points.length()
   let mut sum = 0.0

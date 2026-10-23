@@ -1,7 +1,7 @@
 ///|
 /// Find the index of the bottom-most (then left-most) vertex.
 /// 查找最底（然后最左）顶点的索引。
-fn bottom_left_index(pts : Array[@core.Point2D]) -> Int {
+fn bottom_left_index(pts : Array[@core.Point2D]) -> Int32 {
   let n = pts.length()
   let mut best = 0
   for i in 1..<n {
@@ -13,11 +13,10 @@ fn bottom_left_index(pts : Array[@core.Point2D]) -> Int {
   best
 }
 
-
 ///|
 /// Edge angle of vertex at index i in CCW polygon.
 /// Returns angle in [0, 2*PI). / CCW 多边形中顶点 i 的边角度，返回 [0, 2*PI)。
-fn edge_angle(pts : Array[@core.Point2D], i : Int) -> Double {
+fn edge_angle(pts : Array[@core.Point2D], i : Int32) -> Double {
   let n = pts.length()
   let dx = pts[(i + 1) % n].x() - pts[i].x()
   let dy = pts[(i + 1) % n].y() - pts[i].y()

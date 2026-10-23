@@ -8,10 +8,11 @@
 /// ## Complexity: O((V + E) log V)
 /// ## 复杂度: O((V + E) log V)
 
+///|
 /// |
 /// Weighted graph edge.
 /// 加权图边。
 pub struct GraphEdge {
-  to : Int
+  to : Int32
   weight : Double
 }

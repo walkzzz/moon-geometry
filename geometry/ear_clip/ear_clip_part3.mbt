@@ -2,13 +2,13 @@
 /// Triangulate a simple polygon using ear clipping. / 使用耳裁剪法三角剖分简单多边形。
 pub fn ear_clip_triangulate(
   poly : Array[@core.Point2D],
-) -> Array[(Int, Int, Int)] {
+) -> Array[(Int32, Int32, Int32)] {
   let n = poly.length()
   if n < 3 {
     return []
   }
-  let triangles : Array[(Int, Int, Int)] = []
-  let indices : Array[Int] = []
+  let triangles : Array[(Int32, Int32, Int32)] = []
+  let indices : Array[Int32] = []
   for i in 0..<n {
     indices.push(i)
   }
@@ -31,11 +31,8 @@ pub fn ear_clip_triangulate(
   triangles
 }
 
-
 ///|
 /// Count triangles in ear clipping triangulation. / 耳裁剪三角剖分中三角形数量。
-pub fn ear_clip_count(
-  poly : Array[@core.Point2D],
-) -> Int {
+pub fn ear_clip_count(poly : Array[@core.Point2D]) -> Int32 {
   ear_clip_triangulate(poly).length()
 }

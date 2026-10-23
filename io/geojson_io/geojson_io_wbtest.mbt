@@ -1,3 +1,4 @@
+///|
 test "geojson point write" {
   let p = @core.Point2D::new(1.0, 2.0)
   let s = geojson_point(p)
@@ -5,6 +6,7 @@ test "geojson point write" {
   assert_true(s.contains("[1,2]"))
 }
 
+///|
 test "geojson linestring write" {
   let pts = [@core.Point2D::new(0.0, 0.0), @core.Point2D::new(1.0, 1.0)]
   let s = geojson_linestring(pts)
@@ -13,6 +15,7 @@ test "geojson linestring write" {
   assert_true(s.contains("[1,1]"))
 }
 
+///|
 test "geojson polygon write" {
   let ring = [
     @core.Point2D::new(0.0, 0.0),
@@ -25,6 +28,7 @@ test "geojson polygon write" {
   assert_true(s.contains("[[0,0]"))
 }
 
+///|
 test "geojson parse point" {
   let text = "{\"type\":\"Point\",\"coordinates\":[3.0,4.0]}"
   match geojson_parse(text) {
@@ -36,6 +40,7 @@ test "geojson parse point" {
   }
 }
 
+///|
 test "geojson parse linestring" {
   let text = "{\"type\":\"LineString\",\"coordinates\":[[0,0],[1,1],[2,2]]}"
   match geojson_parse(text) {
@@ -44,6 +49,7 @@ test "geojson parse linestring" {
   }
 }
 
+///|
 test "geojson parse polygon" {
   let text = "{\"type\":\"Polygon\",\"coordinates\":[[[0,0],[1,0],[0,1],[0,0]]]}"
   match geojson_parse(text) {
@@ -55,6 +61,7 @@ test "geojson parse polygon" {
   }
 }
 
+///|
 test "geojson parse multipoint" {
   let text = "{\"type\":\"MultiPoint\",\"coordinates\":[[0,0],[1,1]]}"
   match geojson_parse(text) {
@@ -63,12 +70,14 @@ test "geojson parse multipoint" {
   }
 }
 
+///|
 test "geojson write via geojson_write" {
   let s = geojson_write(GeoPoint(@core.Point2D::new(5.0, 6.0)))
   assert_true(s.contains("\"type\":\"Point\""))
   assert_true(s.contains("[5,6]"))
 }
 
+///|
 test "geojson roundtrip point" {
   let p = @core.Point2D::new(1.5, 2.5)
   let s = geojson_point(p)
@@ -81,6 +90,7 @@ test "geojson roundtrip point" {
   }
 }
 
+///|
 test "geojson parse multipolygon" {
   let text = "{\"type\":\"MultiPolygon\",\"coordinates\":[[[[0,0],[1,0],[0,1],[0,0]]]]}"
   match geojson_parse(text) {
@@ -91,6 +101,8 @@ test "geojson parse multipolygon" {
     _ => assert_true(false)
   }
 }
+
+///|
 test "geojson multipoint write" {
   let pts = [@core.Point2D::new(0.0, 0.0), @core.Point2D::new(1.0, 1.0)]
   let s = geojson_multipoint(pts)
@@ -99,6 +111,7 @@ test "geojson multipoint write" {
   assert_true(s.contains("[1,1]"))
 }
 
+///|
 test "geojson multilinestring write" {
   let line1 = [@core.Point2D::new(0.0, 0.0), @core.Point2D::new(1.0, 0.0)]
   let line2 = [@core.Point2D::new(0.0, 1.0), @core.Point2D::new(1.0, 1.0)]
@@ -108,6 +121,7 @@ test "geojson multilinestring write" {
   assert_true(s.contains("[1,1]"))
 }
 
+///|
 test "geojson multipolygon write" {
   let ring = [
     @core.Point2D::new(0.0, 0.0),
@@ -120,12 +134,14 @@ test "geojson multipolygon write" {
   assert_true(s.contains("[0,0]"))
 }
 
+///|
 test "geojson write linestring" {
   let pts = [@core.Point2D::new(1.0, 2.0), @core.Point2D::new(3.0, 4.0)]
   let s = geojson_write(GeoLineString(pts))
   assert_true(s.contains("\"type\":\"LineString\""))
 }
 
+///|
 test "geojson write polygon" {
   let ring = [
     @core.Point2D::new(0.0, 0.0),
@@ -136,18 +152,21 @@ test "geojson write polygon" {
   assert_true(s.contains("\"type\":\"Polygon\""))
 }
 
+///|
 test "geojson write multipoint" {
   let pts = [@core.Point2D::new(1.0, 2.0)]
   let s = geojson_write(GeoMultiPoint(pts))
   assert_true(s.contains("\"type\":\"MultiPoint\""))
 }
 
+///|
 test "geojson write multilinestring" {
   let line = [@core.Point2D::new(1.0, 2.0)]
   let s = geojson_write(GeoMultiLineString([line]))
   assert_true(s.contains("\"type\":\"MultiLineString\""))
 }
 
+///|
 test "geojson write multipolygon" {
   let ring = [
     @core.Point2D::new(0.0, 0.0),
@@ -158,6 +177,7 @@ test "geojson write multipolygon" {
   assert_true(s.contains("\"type\":\"MultiPolygon\""))
 }
 
+///|
 test "geojson parse multilinestring" {
   let text = "{\"type\":\"MultiLineString\",\"coordinates\":[[[0,0],[1,1]],[[2,2],[3,3]]]}"
   match geojson_parse(text) {
@@ -166,6 +186,7 @@ test "geojson parse multilinestring" {
   }
 }
 
+///|
 test "geojson parse missing coordinates" {
   let text = "{\"type\":\"Point\"}"
   match geojson_parse(text) {
@@ -174,6 +195,7 @@ test "geojson parse missing coordinates" {
   }
 }
 
+///|
 test "geojson parse missing type" {
   let text = "{\"coordinates\":[1,2]}"
   match geojson_parse(text) {
@@ -182,6 +204,7 @@ test "geojson parse missing type" {
   }
 }
 
+///|
 test "geojson parse unknown type" {
   let text = "{\"type\":\"Unknown\",\"coordinates\":[1,2]}"
   match geojson_parse(text) {
@@ -190,6 +213,7 @@ test "geojson parse unknown type" {
   }
 }
 
+///|
 test "geojson parse empty array" {
   let text = "{\"type\":\"LineString\",\"coordinates\":[]}"
   match geojson_parse(text) {
@@ -198,6 +222,7 @@ test "geojson parse empty array" {
   }
 }
 
+///|
 test "geojson polygon multiple rings" {
   let ring1 = [
     @core.Point2D::new(0.0, 0.0),
@@ -213,6 +238,7 @@ test "geojson polygon multiple rings" {
   assert_true(s.contains("\"type\":\"Polygon\""))
 }
 
+///|
 test "geojson point negative coords" {
   let p = @core.Point2D::new(-1.5, -2.5)
   let s = geojson_point(p)
@@ -220,6 +246,7 @@ test "geojson point negative coords" {
   assert_true(s.contains("-2.5"))
 }
 
+///|
 test "geojson roundtrip linestring" {
   let pts = [@core.Point2D::new(1.0, 2.0), @core.Point2D::new(3.0, 4.0)]
   let s = geojson_linestring(pts)

@@ -18,7 +18,6 @@ pub fn bend_energy(points : Array[@core.Point2D]) -> Double {
   energy
 }
 
-
 ///|
 /// Bend energy of an open curve (endpoints not wrapped).
 /// 开放曲线的弯曲能量（端点不环绕）。

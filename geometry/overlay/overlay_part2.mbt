@@ -5,7 +5,7 @@ pub fn overlay(
   segs2 : Array[@core.Segment],
 ) -> OverlayResult {
   let vertices : Array[@core.Point2D] = []
-  let edges : Array[(Int, Int)] = []
+  let edges : Array[(Int32, Int32)] = []
   for seg in segs1 {
     let i0 = add_vertex_unique(vertices, seg.start)
     let i1 = add_vertex_unique(vertices, seg.end)
@@ -19,12 +19,13 @@ pub fn overlay(
   let all_segs = segs1 + segs2
   for i in 0..<all_segs.length() {
     for j in (i + 1)..<all_segs.length() {
-      match seg_intersect(
-        all_segs[i].start,
-        all_segs[i].end,
-        all_segs[j].start,
-        all_segs[j].end,
-      ) {
+      match
+        seg_intersect(
+          all_segs[i].start,
+          all_segs[i].end,
+          all_segs[j].start,
+          all_segs[j].end,
+        ) {
         Some(pt) => {
           let vi = add_vertex_unique(vertices, pt)
           ignore(vi)
@@ -33,13 +34,14 @@ pub fn overlay(
       }
     }
   }
-  { vertices, edges }
+  { vertices, edges, }
 }
 
+///|
 fn add_vertex_unique(
   vertices : Array[@core.Point2D],
   p : @core.Point2D,
-) -> Int {
+) -> Int32 {
   for k in 0..<vertices.length() {
     if vertices[k].dist(p) < 0.000000001 {
       return k
@@ -50,6 +52,7 @@ fn add_vertex_unique(
   idx
 }
 
+///|
 fn seg_intersect(
   p1 : @core.Point2D,
   p2 : @core.Point2D,

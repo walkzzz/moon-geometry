@@ -8,6 +8,7 @@
 /// ## Complexity: O(V × E × max_flow)
 /// ## 复杂度: O(V × E × max_flow)
 
+///|
 /// |
 /// Compute max flow from source to sink.
 /// 计算从源点到汇点的最大流。
@@ -18,10 +19,10 @@
 /// - `src`: source / 源点
 /// - `sink`: sink / 汇点
 pub fn max_flow(
-  n : Int,
+  n : Int32,
   capacity : Array[Array[Double]],
-  src : Int,
-  sink : Int,
+  src : Int32,
+  sink : Int32,
 ) -> Double {
   let mut flow = 0.0
   let residual : Array[Array[Double]] = []
@@ -55,18 +56,20 @@ pub fn max_flow(
   flow
 }
 
+///|
 /// |
 /// Compute min cut value (equals max flow).
 /// 计算最小割值（等于最大流）。
 pub fn min_cut(
-  n : Int,
+  n : Int32,
   capacity : Array[Array[Double]],
-  src : Int,
-  sink : Int,
+  src : Int32,
+  sink : Int32,
 ) -> Double {
   max_flow(n, capacity, src, sink)
 }
 
+///|
 /// |
 /// Find min cut partition (S, T).
 /// 查找最小割划分 (S, T)。
@@ -74,18 +77,18 @@ pub fn min_cut(
 /// Returns vertices reachable from source in residual graph.
 /// 返回残量图中从源点可达的顶点。
 pub fn min_cut_partition(
-  n : Int,
+  n : Int32,
   capacity : Array[Array[Double]],
-  src : Int,
-  sink : Int,
-) -> Array[Int] {
+  src : Int32,
+  sink : Int32,
+) -> Array[Int32] {
   let _ = max_flow(n, capacity, src, sink)
   let visited : Array[Bool] = []
   for _ in 0..<n {
     visited.push(false)
   }
   visited[src] = true
-  let queue : Array[Int] = [src]
+  let queue : Array[Int32] = [src]
   while queue.length() > 0 {
     let v = queue.remove(0)
     ignore(queue.length())
@@ -96,7 +99,7 @@ pub fn min_cut_partition(
       }
     }
   }
-  let result : Array[Int] = []
+  let result : Array[Int32] = []
   for i in 0..<n {
     if visited[i] {
       result.push(i)
@@ -105,25 +108,26 @@ pub fn min_cut_partition(
   result
 }
 
+///|
 fn bfs_path(
-  n : Int,
+  n : Int32,
   residual : Array[Array[Double]],
-  src : Int,
-  sink : Int,
-) -> Array[Int] {
+  src : Int32,
+  sink : Int32,
+) -> Array[Int32] {
   let visited : Array[Bool] = []
-  let prev : Array[Int] = []
+  let prev : Array[Int32] = []
   for _ in 0..<n {
     visited.push(false)
     prev.push(-1)
   }
   visited[src] = true
-  let queue : Array[Int] = [src]
+  let queue : Array[Int32] = [src]
   while queue.length() > 0 {
     let v = queue.remove(0)
     ignore(queue.length())
     if v == sink {
-      let path : Array[Int] = []
+      let path : Array[Int32] = []
       let mut cur = sink
       while cur != -1 {
         path.insert(0, cur)

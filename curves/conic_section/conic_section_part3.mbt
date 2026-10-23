@@ -12,12 +12,14 @@ pub fn Conic::center(conic : Conic) -> @core.Point2D? {
   Some(@core.Point2D::new(cx, cy))
 }
 
-
 ///|
 /// Tangent line at a point on the conic. / 圆锥曲线上一点处的切线。
 /// Returns line coefficients (a, b, c) for a*x + b*y + c = 0.
 /// 返回直线系数 (a, b, c)，满足 a*x + b*y + c = 0。
-pub fn Conic::tangent_at(conic : Conic, p : @core.Point2D) -> (Double, Double, Double) {
+pub fn Conic::tangent_at(
+  conic : Conic,
+  p : @core.Point2D,
+) -> (Double, Double, Double) {
   let x0 = p.x()
   let y0 = p.y()
   let la = 2.0 * conic.a * x0 + conic.b * y0 + conic.d

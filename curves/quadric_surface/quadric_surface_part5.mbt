@@ -6,5 +6,5 @@ pub fn Quadric::centered(q : Quadric) -> Quadric {
     None => return q
   }
   let nf = Quadric::eval(q, center)
-  { ..q, g: 0.0, h: 0.0, i: 0.0, j: nf }
+  { ..q, g: 0.0, h: 0.0, i: 0.0, j: nf, }
 }

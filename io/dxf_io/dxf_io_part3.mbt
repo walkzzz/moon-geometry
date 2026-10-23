@@ -23,7 +23,9 @@ pub fn dxf_parse(text : String) -> DxfDocument {
     let value = lines[i + 1]
     if code == 0 {
       if cur_type != "" {
-        let e = build_entity(cur_type, cur_x1, cur_y1, cur_z1, cur_x2, cur_y2, cur_z2, cur_r, cur_pts)
+        let e = build_entity(
+          cur_type, cur_x1, cur_y1, cur_z1, cur_x2, cur_y2, cur_z2, cur_r, cur_pts,
+        )
         match e {
           Some(ent) => doc.entities.push(ent)
           None => ()
@@ -74,7 +76,9 @@ pub fn dxf_parse(text : String) -> DxfDocument {
     i += 2
   }
   if cur_type != "" {
-    let e = build_entity(cur_type, cur_x1, cur_y1, cur_z1, cur_x2, cur_y2, cur_z2, cur_r, cur_pts)
+    let e = build_entity(
+      cur_type, cur_x1, cur_y1, cur_z1, cur_x2, cur_y2, cur_z2, cur_r, cur_pts,
+    )
     match e {
       Some(ent) => doc.entities.push(ent)
       None => ()
@@ -83,6 +87,7 @@ pub fn dxf_parse(text : String) -> DxfDocument {
   doc
 }
 
+///|
 fn build_entity(
   typ : String,
   x1 : Double,
@@ -95,7 +100,9 @@ fn build_entity(
   pts : Array[@core.Point2D],
 ) -> DxfEntity? {
   if typ == "LINE" {
-    Some(DxfLine(@core.Point3D::new(x1, y1, z1), @core.Point3D::new(x2, y2, z2)))
+    Some(
+      DxfLine(@core.Point3D::new(x1, y1, z1), @core.Point3D::new(x2, y2, z2)),
+    )
   } else if typ == "CIRCLE" {
     Some(DxfCircle(@core.Point2D::new(x1, y1), r))
   } else if typ == "LWPOLYLINE" {
@@ -105,6 +112,7 @@ fn build_entity(
   }
 }
 
+///|
 fn pd(s : StringView) -> Double {
   let t = s.trim()
   if t.length() == 0 {
@@ -151,7 +159,8 @@ fn pd(s : StringView) -> Double {
   }
 }
 
-fn pi(s : StringView) -> Int {
+///|
+fn pi(s : StringView) -> Int32 {
   let t = s.trim()
   if t.length() == 0 {
     return 0

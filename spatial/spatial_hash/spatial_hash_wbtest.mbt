@@ -1,3 +1,4 @@
+///|
 test "spatial_hash_build" {
   let points = [
     @core.Point2D::new(1.5, 2.5),
@@ -8,6 +9,7 @@ test "spatial_hash_build" {
   assert_eq(spatial_hash_size(hash), 3)
 }
 
+///|
 test "spatial_hash_query_radius" {
   let points = [
     @core.Point2D::new(0.0, 0.0),
@@ -21,6 +23,7 @@ test "spatial_hash_query_radius" {
   assert_eq(result.length(), 3)
 }
 
+///|
 test "spatial_hash_query_rect" {
   let points = [
     @core.Point2D::new(1.0, 1.0),
@@ -34,6 +37,7 @@ test "spatial_hash_query_rect" {
   assert_eq(result.length(), 2)
 }
 
+///|
 test "spatial_hash_nearby" {
   let points = [
     @core.Point2D::new(1.5, 1.5),
@@ -47,6 +51,7 @@ test "spatial_hash_nearby" {
   assert_true(result.length() >= 2)
 }
 
+///|
 test "spatial_hash_empty" {
   let points : Array[@core.Point2D] = []
   let hash = build_spatial_hash(points, 1.0)

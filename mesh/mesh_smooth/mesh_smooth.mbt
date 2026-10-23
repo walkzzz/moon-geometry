@@ -10,7 +10,7 @@ pub fn laplacian_smooth(
     n,
     @core.Point3D::new(0.0, 0.0, 0.0),
   )
-  let neighbor_counts : Array[Int] = Array::make(n, 0)
+  let neighbor_counts : Array[Int32] = Array::make(n, 0)
   for i in 0..<@mesh_data.Mesh::face_count(mesh) {
     let f = @mesh_data.Mesh::get_face(mesh, i)
     accumulate_neighbor(neighbor_sums, neighbor_counts, mesh, f.v0, f.v1)
@@ -45,15 +45,20 @@ pub fn laplacian_smooth(
   result
 }
 
+///|
 fn accumulate_neighbor(
   sums : Array[@core.Point3D],
-  counts : Array[Int],
+  counts : Array[Int32],
   mesh : @mesh_data.Mesh,
-  v : Int,
-  u : Int,
+  v : Int32,
+  u : Int32,
 ) -> Unit {
   let pu = @mesh_data.Mesh::get_vertex(mesh, u)
-  sums[v] = @core.Point3D::new(sums[v].x + pu.x, sums[v].y + pu.y, sums[v].z + pu.z)
+  sums[v] = @core.Point3D::new(
+    sums[v].x + pu.x,
+    sums[v].y + pu.y,
+    sums[v].z + pu.z,
+  )
   counts[v] += 1
 }
 
@@ -62,7 +67,7 @@ fn accumulate_neighbor(
 pub fn laplacian_smooth_iter(
   mesh : @mesh_data.Mesh,
   lambda : Double,
-  iterations : Int,
+  iterations : Int32,
 ) -> @mesh_data.Mesh {
   let mut result = mesh
   for _ in 0..<iterations {

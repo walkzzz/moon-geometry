@@ -31,12 +31,15 @@ pub fn polygon_offset_outward(
     let ny = (ny1 + ny2) / 2.0
     let nlen = (nx * nx + ny * ny).sqrt()
     if nlen < 0.000000000001 {
-      result.push(@core.Point2D::new(curr.x() + nx1 * dist, curr.y() + ny1 * dist))
+      result.push(
+        @core.Point2D::new(curr.x() + nx1 * dist, curr.y() + ny1 * dist),
+      )
     } else {
       let scale = dist / nlen
-      result.push(@core.Point2D::new(curr.x() + nx * scale, curr.y() + ny * scale))
+      result.push(
+        @core.Point2D::new(curr.x() + nx * scale, curr.y() + ny * scale),
+      )
     }
   }
   result
 }
-

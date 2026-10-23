@@ -1,3 +1,4 @@
+///|
 test "solve_linear basic" {
   let a = [[2.0, 1.0], [1.0, 3.0]]
   let b = [3.0, 4.0]
@@ -7,12 +8,14 @@ test "solve_linear basic" {
   assert_true((x[0] + 3.0 * x[1] - 4.0).abs() < 0.001)
 }
 
+///|
 test "determinant basic" {
   let a = [[1.0, 2.0], [3.0, 4.0]]
   let det = determinant(a, 2)
-  assert_true((det - (-2.0)).abs() < 0.001)
+  assert_true((det - -2.0).abs() < 0.001)
 }
 
+///|
 test "matrix_inverse basic" {
   let a = [[2.0, 0.0], [0.0, 4.0]]
   let inv = matrix_inverse(a, 2)
@@ -25,6 +28,7 @@ test "matrix_inverse basic" {
   }
 }
 
+///|
 test "solve_linear singular" {
   let a = [[1.0, 2.0], [2.0, 4.0]]
   let b = [1.0, 2.0]
@@ -32,6 +36,7 @@ test "solve_linear singular" {
   assert_eq(x.length(), 0)
 }
 
+///|
 test "determinant identity" {
   let a = [[1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0]]
   let det = determinant(a, 3)

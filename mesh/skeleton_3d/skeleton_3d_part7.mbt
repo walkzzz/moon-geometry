@@ -10,9 +10,9 @@
 /// 返回细化后的骨架体素网格。
 pub fn skeleton_3d(
   voxels : Array[Bool],
-  nx : Int,
-  ny : Int,
-  nz : Int,
+  nx : Int32,
+  ny : Int32,
+  nz : Int32,
 ) -> Array[Bool] {
   let result : Array[Bool] = []
   for v in voxels {
@@ -21,7 +21,7 @@ pub fn skeleton_3d(
   let mut changed = true
   while changed {
     changed = false
-    let to_remove : Array[Int] = []
+    let to_remove : Array[Int32] = []
     for z in 0..<nz {
       for y in 0..<ny {
         for x in 0..<nx {

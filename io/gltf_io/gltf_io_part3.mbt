@@ -17,6 +17,7 @@ pub fn gltf_parse_json(text : String) -> GltfMesh {
   mesh
 }
 
+///|
 fn extract_array(text : String, key : String) -> Array[StringView] {
   let result : Array[StringView] = []
   let start = match text.find(key) {
@@ -57,4 +58,3 @@ fn extract_array(text : String, key : String) -> Array[StringView] {
   }
   result
 }
-

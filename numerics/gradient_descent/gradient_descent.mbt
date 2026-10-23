@@ -8,6 +8,7 @@
 /// ## Complexity: O(iter * n) where n is dimension
 /// ## 复杂度: O(iter * n)，n 为维度
 
+///|
 /// |
 /// Vanilla gradient descent: x = x - lr * grad(x).
 /// 基本梯度下降。
@@ -15,7 +16,7 @@ pub fn gradient_descent(
   grad : (Array[Double]) -> Array[Double],
   x0 : Array[Double],
   lr : Double,
-  max_iter : Int,
+  max_iter : Int32,
 ) -> Array[Double] {
   let n = x0.length()
   let x : Array[Double] = Array::make(n, 0.0)
@@ -38,6 +39,7 @@ pub fn gradient_descent(
   x
 }
 
+///|
 /// |
 /// Momentum gradient descent: v = momentum * v + lr * grad; x = x - v.
 /// 动量梯度下降。
@@ -46,7 +48,7 @@ pub fn momentum_gd(
   x0 : Array[Double],
   lr : Double,
   momentum : Double,
-  max_iter : Int,
+  max_iter : Int32,
 ) -> Array[Double] {
   let n = x0.length()
   let x : Array[Double] = Array::make(n, 0.0)
@@ -64,6 +66,7 @@ pub fn momentum_gd(
   x
 }
 
+///|
 /// |
 /// Nesterov accelerated gradient.
 /// Nesterov 加速梯度。
@@ -72,7 +75,7 @@ pub fn nesterov_gd(
   x0 : Array[Double],
   lr : Double,
   momentum : Double,
-  max_iter : Int,
+  max_iter : Int32,
 ) -> Array[Double] {
   let n = x0.length()
   let x : Array[Double] = Array::make(n, 0.0)
@@ -94,6 +97,7 @@ pub fn nesterov_gd(
   x
 }
 
+///|
 /// |
 /// Adam optimizer.
 /// Adam 优化器。
@@ -104,7 +108,7 @@ pub fn adam(
   beta1 : Double,
   beta2 : Double,
   eps : Double,
-  max_iter : Int,
+  max_iter : Int32,
 ) -> Array[Double] {
   let n = x0.length()
   let x : Array[Double] = Array::make(n, 0.0)
@@ -130,6 +134,7 @@ pub fn adam(
   x
 }
 
+///|
 /// |
 /// 2D gradient descent convenience wrapper. Returns the optimized point.
 /// 二维梯度下降便捷封装，返回优化后的点。
@@ -138,7 +143,7 @@ pub fn gd_2d(
   x0 : Double,
   y0 : Double,
   lr : Double,
-  max_iter : Int,
+  max_iter : Int32,
 ) -> @core.Point2D {
   let g_wrap = fn(x : Array[Double]) -> Array[Double] {
     let (gx, gy) = grad(x[0], x[1])
@@ -148,6 +153,7 @@ pub fn gd_2d(
   @core.Point2D::new(result[0], result[1])
 }
 
+///|
 /// |
 /// RMSprop optimizer.
 /// RMSprop 优化器。
@@ -157,7 +163,7 @@ pub fn rmsprop(
   lr : Double,
   decay : Double,
   eps : Double,
-  max_iter : Int,
+  max_iter : Int32,
 ) -> Array[Double] {
   let n = x0.length()
   let x : Array[Double] = Array::make(n, 0.0)

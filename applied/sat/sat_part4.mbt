@@ -11,27 +11,11 @@ pub fn sat_collide_circles(
   let dist = (dx * dx + dy * dy).sqrt()
   let r_sum = r1 + r2
   if dist > r_sum {
-    let ax = if dist > 0.000000000001 {
-      dx / dist
-    } else {
-      1.0
-    }
-    let ay = if dist > 0.000000000001 {
-      dy / dist
-    } else {
-      0.0
-    }
+    let ax = if dist > 0.000000000001 { dx / dist } else { 1.0 }
+    let ay = if dist > 0.000000000001 { dy / dist } else { 0.0 }
     return SATResult::new(false, 0.0, ax, ay)
   }
-  let ax = if dist > 0.000000000001 {
-    dx / dist
-  } else {
-    1.0
-  }
-  let ay = if dist > 0.000000000001 {
-    dy / dist
-  } else {
-    0.0
-  }
+  let ax = if dist > 0.000000000001 { dx / dist } else { 1.0 }
+  let ay = if dist > 0.000000000001 { dy / dist } else { 0.0 }
   SATResult::new(true, r_sum - dist, ax, ay)
 }

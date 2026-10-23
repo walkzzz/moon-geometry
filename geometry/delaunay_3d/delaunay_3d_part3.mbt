@@ -3,7 +3,7 @@
 pub fn delaunay_3d(points : Array[@core.Point3D]) -> Delaunay3D {
   let n = points.length()
   if n < 4 {
-    return { vertices: points.copy(), tetrahedra: [] }
+    return { vertices: points.copy(), tetrahedra: [], }
   }
   let mut min_x = points[0].x
   let mut max_x = points[0].x
@@ -46,7 +46,7 @@ pub fn delaunay_3d(points : Array[@core.Point3D]) -> Delaunay3D {
     dz
   }
   if dmax < 0.0000000001 {
-    return { vertices: points.copy(), tetrahedra: [] }
+    return { vertices: points.copy(), tetrahedra: [], }
   }
   let mid_x = (min_x + max_x) * 0.5
   let mid_y = (min_y + max_y) * 0.5
@@ -61,9 +61,7 @@ pub fn delaunay_3d(points : Array[@core.Point3D]) -> Delaunay3D {
   all_points.push(super_v1)
   all_points.push(super_v2)
   all_points.push(super_v3)
-  let tets : Array[Tetrahedron] = [
-    { v0: n, v1: n + 1, v2: n + 2, v3: n + 3 },
-  ]
+  let tets : Array[Tetrahedron] = [{ v0: n, v1: n + 1, v2: n + 2, v3: n + 3, }]
   for i in 0..<n {
     insert_point(all_points, tets, i)
   }
@@ -73,16 +71,17 @@ pub fn delaunay_3d(points : Array[@core.Point3D]) -> Delaunay3D {
       result_tets.push(t)
     }
   }
-  { vertices: points.copy(), tetrahedra: result_tets }
+  { vertices: points.copy(), tetrahedra: result_tets, }
 }
 
+///|
 fn insert_point(
   points : Array[@core.Point3D],
   tets : Array[Tetrahedron],
-  p_idx : Int,
+  p_idx : Int32,
 ) -> Unit {
   let p = points[p_idx]
-  let bad_indices : Array[Int] = []
+  let bad_indices : Array[Int32] = []
   for i in 0..<tets.length() {
     let t = tets[i]
     let a = points[t.v0]
@@ -96,7 +95,7 @@ fn insert_point(
   if bad_indices.length() == 0 {
     return
   }
-  let faces : Array[(Int, Int, Int, Int)] = []
+  let faces : Array[(Int32, Int32, Int32, Int32)] = []
   for bi in bad_indices {
     let t = tets[bi]
     add_face(faces, t.v0, t.v1, t.v2)
@@ -104,7 +103,7 @@ fn insert_point(
     add_face(faces, t.v0, t.v2, t.v3)
     add_face(faces, t.v1, t.v2, t.v3)
   }
-  let boundary : Array[(Int, Int, Int)] = []
+  let boundary : Array[(Int32, Int32, Int32)] = []
   for f in faces {
     if f.3 == 1 {
       boundary.push((f.0, f.1, f.2))
@@ -125,15 +124,16 @@ fn insert_point(
     tets.push(t)
   }
   for f in boundary {
-    tets.push({ v0: f.0, v1: f.1, v2: f.2, v3: p_idx })
+    tets.push({ v0: f.0, v1: f.1, v2: f.2, v3: p_idx, })
   }
 }
 
+///|
 fn add_face(
-  faces : Array[(Int, Int, Int, Int)],
-  a : Int,
-  b : Int,
-  c : Int,
+  faces : Array[(Int32, Int32, Int32, Int32)],
+  a : Int32,
+  b : Int32,
+  c : Int32,
 ) -> Unit {
   let (i0, i1, i2) = sort3(a, b, c)
   for i in 0..<faces.length() {
@@ -145,21 +145,10 @@ fn add_face(
   faces.push((i0, i1, i2, 1))
 }
 
-fn sort3(a : Int, b : Int, c : Int) -> (Int, Int, Int) {
-  let (a1, b1) = if a <= b {
-    (a, b)
-  } else {
-    (b, a)
-  }
-  let (a2, c1) = if a1 <= c {
-    (a1, c)
-  } else {
-    (c, a1)
-  }
-  let (b2, c2) = if b1 <= c1 {
-    (b1, c1)
-  } else {
-    (c1, b1)
-  }
+///|
+fn sort3(a : Int32, b : Int32, c : Int32) -> (Int32, Int32, Int32) {
+  let (a1, b1) = if a <= b { (a, b) } else { (b, a) }
+  let (a2, c1) = if a1 <= c { (a1, c) } else { (c, a1) }
+  let (b2, c2) = if b1 <= c1 { (b1, c1) } else { (c1, b1) }
   (a2, b2, c2)
 }

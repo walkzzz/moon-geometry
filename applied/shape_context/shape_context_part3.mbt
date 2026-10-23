@@ -1,10 +1,7 @@
 ///|
 /// Chi-square distance between two shape context histograms.
 /// 两个形状上下文直方图间的卡方距离。
-pub fn shape_context_distance(
-  h1 : Array[Double],
-  h2 : Array[Double],
-) -> Double {
+pub fn shape_context_distance(h1 : Array[Double], h2 : Array[Double]) -> Double {
   let n = h1.length()
   let m = h2.length()
   let len = if n < m { n } else { m }
@@ -18,7 +15,6 @@ pub fn shape_context_distance(
   }
   dist / 2.0
 }
-
 
 ///|
 /// Cost matrix between two sets of shape context descriptors.

@@ -58,13 +58,13 @@ pub fn delaunay_triangulation(
       }
     }
     // Collect boundary edges of the bad-triangle hole (edges appearing once)
-    let all_edges : Array[(Int, Int)] = []
+    let all_edges : Array[(Int32, Int32)] = []
     for t in bad {
       for e in tri_edges(t) {
         all_edges.push(e)
       }
     }
-    let boundary : Array[(Int, Int)] = []
+    let boundary : Array[(Int32, Int32)] = []
     for e in all_edges {
       let mut cnt = 0
       for f in all_edges {

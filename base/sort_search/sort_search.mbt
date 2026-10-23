@@ -1,6 +1,6 @@
 ///|
 /// Binary search in a sorted array. Returns index or None. / 二分查找。
-pub fn binary_search(arr : Array[Double], target : Double) -> Int? {
+pub fn binary_search(arr : Array[Double], target : Double) -> Int32? {
   let mut lo = 0
   let mut hi = arr.length() - 1
   while lo <= hi {
@@ -16,10 +16,9 @@ pub fn binary_search(arr : Array[Double], target : Double) -> Int? {
   None
 }
 
-
 ///|
 /// Lower bound: first index where arr[i] >= target. / 下界。
-pub fn lower_bound(arr : Array[Double], target : Double) -> Int {
+pub fn lower_bound(arr : Array[Double], target : Double) -> Int32 {
   let mut lo = 0
   let mut hi = arr.length()
   while lo < hi {

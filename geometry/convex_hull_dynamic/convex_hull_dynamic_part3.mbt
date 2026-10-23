@@ -4,20 +4,15 @@ pub fn DynamicHull::get_hull(dh : DynamicHull) -> Array[@core.Point2D] {
   dh.hull
 }
 
-
 ///|
 /// Get the number of points. / 获取点数。
-pub fn DynamicHull::size(dh : DynamicHull) -> Int {
+pub fn DynamicHull::size(dh : DynamicHull) -> Int32 {
   dh.points.length()
 }
 
-
 ///|
 /// Check if a point is inside the hull. / 检查点是否在凸包内。
-pub fn DynamicHull::contains(
-  dh : DynamicHull,
-  p : @core.Point2D,
-) -> Bool {
+pub fn DynamicHull::contains(dh : DynamicHull, p : @core.Point2D) -> Bool {
   let h = dh.hull
   let n = h.length()
   if n < 3 {

@@ -4,7 +4,7 @@
 /// Returns list of potentially colliding pairs. / 返回潜在碰撞对列表。
 pub fn broad_phase_aabb(boxes : Array[AABB]) -> Array[CollisionPair] {
   let n = boxes.length()
-  let indices : Array[Int] = []
+  let indices : Array[Int32] = []
   for i in 0..<n {
     indices.push(i)
   }

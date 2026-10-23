@@ -8,7 +8,6 @@ pub fn is_feasible(constraints : Array[(Double, Double, Double)]) -> Bool {
   }
 }
 
-
 ///|
 /// Find a feasible point. / 寻找可行点。
 pub fn find_feasible_point(

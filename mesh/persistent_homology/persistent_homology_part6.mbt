@@ -3,5 +3,5 @@
 pub fn persistent_homology(
   simplices : Array[SimplexWithFiltration],
 ) -> PersistenceDiagram {
-  { barcodes: compute_barcode(simplices) }
+  { barcodes: compute_barcode(simplices), }
 }

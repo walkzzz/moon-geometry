@@ -29,7 +29,7 @@ pub fn css_curvature(
       result.push(0.0)
     } else {
       let len3 = ((next.x() - prev.x()) * (next.x() - prev.x()) +
-        (next.y() - prev.y()) * (next.y() - prev.y())).sqrt()
+      (next.y() - prev.y()) * (next.y() - prev.y())).sqrt()
       if len3 < 0.000000000001 {
         result.push(0.0)
       } else {

@@ -1,3 +1,4 @@
+///|
 test "separating_find_axis" {
   let poly1 = @core.Polygon::new([
     @core.Point2D::new(0.0, 0.0),
@@ -17,6 +18,7 @@ test "separating_find_axis" {
   }
 }
 
+///|
 test "separating_no_axis" {
   let poly1 = @core.Polygon::new([
     @core.Point2D::new(0.0, 0.0),
@@ -36,6 +38,7 @@ test "separating_no_axis" {
   }
 }
 
+///|
 test "separating_distance" {
   let poly1 = @core.Polygon::new([
     @core.Point2D::new(0.0, 0.0),
@@ -53,6 +56,7 @@ test "separating_distance" {
   assert_true(d > 0.0)
 }
 
+///|
 test "separating_are_separated" {
   let poly1 = @core.Polygon::new([
     @core.Point2D::new(0.0, 0.0),

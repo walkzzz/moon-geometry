@@ -28,7 +28,8 @@ pub fn gltf_parse_binary(data : Bytes) -> GltfMesh {
   mesh
 }
 
-fn set_u32le(buf : Array[Byte], offset : Int, v : Int) -> Int {
+///|
+fn set_u32le(buf : Array[Byte], offset : Int32, v : Int32) -> Int32 {
   buf[offset] = (v & 255).to_byte()
   buf[offset + 1] = ((v >> 8) & 255).to_byte()
   buf[offset + 2] = ((v >> 16) & 255).to_byte()
@@ -36,14 +37,16 @@ fn set_u32le(buf : Array[Byte], offset : Int, v : Int) -> Int {
   offset + 4
 }
 
-fn get_u32le(data : Bytes, offset : Int) -> Int {
+///|
+fn get_u32le(data : Bytes, offset : Int32) -> Int32 {
   data.at(offset).to_int() |
   (data.at(offset + 1).to_int() << 8) |
   (data.at(offset + 2).to_int() << 16) |
   (data.at(offset + 3).to_int() << 24)
 }
 
-fn set_f32le(buf : Array[Byte], offset : Int, v : Double) -> Int {
+///|
+fn set_f32le(buf : Array[Byte], offset : Int32, v : Double) -> Int32 {
   let bits = Float::from_double(v).reinterpret_as_int()
   buf[offset] = (bits & 255).to_byte()
   buf[offset + 1] = ((bits >> 8) & 255).to_byte()
@@ -52,7 +55,8 @@ fn set_f32le(buf : Array[Byte], offset : Int, v : Double) -> Int {
   offset + 4
 }
 
-fn get_f32le(data : Bytes, offset : Int) -> Double {
+///|
+fn get_f32le(data : Bytes, offset : Int32) -> Double {
   let b0 = data.at(offset).to_int()
   let b1 = data.at(offset + 1).to_int() << 8
   let b2 = data.at(offset + 2).to_int() << 16
@@ -60,6 +64,7 @@ fn get_f32le(data : Bytes, offset : Int) -> Double {
   Float::reinterpret_from_int(b0 | b1 | b2 | b3).to_double()
 }
 
+///|
 fn pd(s : StringView) -> Double {
   let t = s.trim()
   if t.length() == 0 {
@@ -127,7 +132,8 @@ fn pd(s : StringView) -> Double {
   }
 }
 
-fn pi(s : StringView) -> Int {
+///|
+fn pi(s : StringView) -> Int32 {
   let t = s.trim()
   if t.length() == 0 {
     return 0

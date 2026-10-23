@@ -1,10 +1,10 @@
 ///|
 /// Compute b1 (number of tunnels/loops). / 计算 b1（隧道/环数）。
-pub fn betti_1(simplices : Array[Array[Int]]) -> Int {
+pub fn betti_1(simplices : Array[Array[Int32]]) -> Int32 {
   let nv = count_vertices(simplices)
   let edges = collect_edges(simplices)
   let ne = edges.length()
-  let triangles : Array[Array[Int]] = []
+  let triangles : Array[Array[Int32]] = []
   for s in simplices {
     if s.length() == 3 {
       triangles.push(s)
@@ -13,7 +13,7 @@ pub fn betti_1(simplices : Array[Array[Int]]) -> Int {
   let nf = triangles.length()
   let b0 = betti_0(simplices)
   let rank1 = nv - b0
-  let d2 : Array[Array[Int]] = Array::make(ne, Array::make(nf, 0))
+  let d2 : Array[Array[Int32]] = Array::make(ne, Array::make(nf, 0))
   for fi in 0..<nf {
     let t = triangles[fi]
     let tri_edges = [

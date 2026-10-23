@@ -1,6 +1,6 @@
 ///|
 /// Check if simplex a is a face of simplex b (subset of vertices). / 检查单纯形 a 是否为单纯形 b 的面（顶点子集）。
-fn is_face(a : Array[Int], b : Array[Int]) -> Bool {
+fn is_face(a : Array[Int32], b : Array[Int32]) -> Bool {
   if a.length() != b.length() - 1 {
     return false
   }

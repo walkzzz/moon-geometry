@@ -1,16 +1,16 @@
 ///|
 /// Compute b2 (number of voids/cavities). / 计算 b2（空洞/腔数）。
-pub fn betti_2(simplices : Array[Array[Int]]) -> Int {
+pub fn betti_2(simplices : Array[Array[Int32]]) -> Int32 {
   let edges = collect_edges(simplices)
   let ne = edges.length()
-  let triangles : Array[Array[Int]] = []
+  let triangles : Array[Array[Int32]] = []
   for s in simplices {
     if s.length() == 3 {
       triangles.push(s)
     }
   }
   let nf = triangles.length()
-  let d2 : Array[Array[Int]] = Array::make(ne, Array::make(nf, 0))
+  let d2 : Array[Array[Int32]] = Array::make(ne, Array::make(nf, 0))
   for fi in 0..<nf {
     let t = triangles[fi]
     let tri_edges = [
@@ -31,7 +31,8 @@ pub fn betti_2(simplices : Array[Array[Int]]) -> Int {
   nf - rank2
 }
 
-fn min2(a : Int, b : Int) -> Int {
+///|
+fn min2(a : Int32, b : Int32) -> Int32 {
   if a < b {
     a
   } else {
@@ -39,7 +40,8 @@ fn min2(a : Int, b : Int) -> Int {
   }
 }
 
-fn max2(a : Int, b : Int) -> Int {
+///|
+fn max2(a : Int32, b : Int32) -> Int32 {
   if a > b {
     a
   } else {

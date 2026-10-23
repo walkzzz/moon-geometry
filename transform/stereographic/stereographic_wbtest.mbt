@@ -1,3 +1,4 @@
+///|
 test "stereographic from sphere" {
   let p = @core.Point3D::new(0.0, 0.0, 0.0)
   match stereographic_from_sphere(p, 1.0) {
@@ -9,6 +10,7 @@ test "stereographic from sphere" {
   }
 }
 
+///|
 test "stereographic north pole" {
   let p = @core.Point3D::new(0.0, 0.0, 1.0)
   match stereographic_from_sphere(p, 1.0) {
@@ -17,12 +19,14 @@ test "stereographic north pole" {
   }
 }
 
+///|
 test "stereographic to sphere" {
   let p = @core.Point2D::new(0.0, 0.0)
   let s = stereographic_to_sphere(p, 1.0)
   assert_true((s.z - 1.0).abs() < 0.0001)
 }
 
+///|
 test "on sphere" {
   let p = @core.Point3D::new(1.0, 0.0, 0.0)
   assert_true(on_sphere(p, 1.0))
@@ -30,6 +34,7 @@ test "on sphere" {
   assert_false(on_sphere(p2, 1.0))
 }
 
+///|
 test "stereographic scale" {
   let p = @core.Point3D::new(0.0, 0.0, 0.0)
   let s = stereographic_scale(p, 1.0)

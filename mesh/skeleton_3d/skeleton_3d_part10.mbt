@@ -6,9 +6,9 @@
 /// (approximated by neighbor count). / 简化：保留距离变换局部极大值体素。
 pub fn skeleton_field(
   voxels : Array[Bool],
-  nx : Int,
-  ny : Int,
-  nz : Int,
+  nx : Int32,
+  ny : Int32,
+  nz : Int32,
 ) -> Array[Bool] {
   let result : Array[Bool] = Array::make(voxels.length(), false)
   for z in 0..<nz {

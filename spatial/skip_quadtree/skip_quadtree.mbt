@@ -8,6 +8,7 @@
 /// ## Complexity: O(log n) insert/delete/query
 /// ## 复杂度: 插入/删除/查询 O(log n)
 
+///|
 /// |
 /// Skip quadtree node.
 /// 跳跃四叉树节点。
@@ -17,17 +18,19 @@ pub struct SkipQuadNode {
   size : Double
   points : Array[@core.Point2D]
   mut children : Array[SkipQuadNode]?
-  level : Int
+  level : Int32
 }
 
+///|
 /// |
 /// Skip quadtree structure.
 /// 跳跃四叉树结构。
 pub struct SkipQuadtree {
   root : SkipQuadNode?
-  max_level : Int
+  max_level : Int32
 }
 
+///|
 /// |
 /// Create a new skip quadtree.
 /// 创建新的跳跃四叉树。
@@ -35,7 +38,7 @@ pub fn skip_quadtree_new(
   cx : Double,
   cy : Double,
   size : Double,
-  max_level : Int,
+  max_level : Int32,
 ) -> SkipQuadtree {
   let root : SkipQuadNode = {
     cx,
@@ -45,9 +48,10 @@ pub fn skip_quadtree_new(
     children: None,
     level: 0,
   }
-  { root: Some(root), max_level: if max_level < 1 { 10 } else { max_level } }
+  { root: Some(root), max_level: if max_level < 1 { 10 } else { max_level }, }
 }
 
+///|
 /// |
 /// Insert a point.
 /// 插入点。
@@ -58,6 +62,7 @@ pub fn skip_quadtree_insert(tree : SkipQuadtree, p : @core.Point2D) -> Unit {
   }
 }
 
+///|
 /// |
 /// Range query.
 /// 范围查询。
@@ -70,24 +75,29 @@ pub fn skip_quadtree_query(
 ) -> Array[@core.Point2D] {
   let result : Array[@core.Point2D] = []
   match tree.root {
-    Some(root) =>
-      skip_query_impl(root, min_x, min_y, max_x, max_y, result)
+    Some(root) => skip_query_impl(root, min_x, min_y, max_x, max_y, result)
     None => ()
   }
   result
 }
 
+///|
 /// |
 /// Count points.
 /// 计算点数。
-pub fn skip_quadtree_count(tree : SkipQuadtree) -> Int {
+pub fn skip_quadtree_count(tree : SkipQuadtree) -> Int32 {
   match tree.root {
     Some(root) => skip_count(root)
     None => 0
   }
 }
 
-fn skip_insert_impl(node : SkipQuadNode, p : @core.Point2D, max_level : Int) -> Unit {
+///|
+fn skip_insert_impl(
+  node : SkipQuadNode,
+  p : @core.Point2D,
+  max_level : Int32,
+) -> Unit {
   if node.level >= max_level || node.points.length() < 4 {
     node.points.push(p)
     return
@@ -104,6 +114,7 @@ fn skip_insert_impl(node : SkipQuadNode, p : @core.Point2D, max_level : Int) -> 
   }
 }
 
+///|
 fn skip_subdivide(node : SkipQuadNode) -> Unit {
   let half = node.size / 2.0
   let quarter = node.size / 4.0
@@ -129,7 +140,8 @@ fn skip_subdivide(node : SkipQuadNode) -> Unit {
   node.children = Some(children)
 }
 
-fn skip_child_index(node : SkipQuadNode, p : @core.Point2D) -> Int {
+///|
+fn skip_child_index(node : SkipQuadNode, p : @core.Point2D) -> Int32 {
   let mut idx = 0
   if p.x() >= node.cx {
     idx += 1
@@ -140,6 +152,7 @@ fn skip_child_index(node : SkipQuadNode, p : @core.Point2D) -> Int {
   idx
 }
 
+///|
 fn skip_query_impl(
   node : SkipQuadNode,
   min_x : Double,
@@ -149,8 +162,10 @@ fn skip_query_impl(
   result : Array[@core.Point2D],
 ) -> Unit {
   let half = node.size / 2.0
-  if node.cx + half < min_x || node.cx - half > max_x ||
-    node.cy + half < min_y || node.cy - half > max_y {
+  if node.cx + half < min_x ||
+    node.cx - half > max_x ||
+    node.cy + half < min_y ||
+    node.cy - half > max_y {
     return
   }
   for i in 0..<node.points.length() {
@@ -168,7 +183,8 @@ fn skip_query_impl(
   }
 }
 
-fn skip_count(node : SkipQuadNode) -> Int {
+///|
+fn skip_count(node : SkipQuadNode) -> Int32 {
   let mut count = node.points.length()
   match node.children {
     Some(children) =>

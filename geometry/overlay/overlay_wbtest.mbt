@@ -1,3 +1,4 @@
+///|
 test "overlay basic" {
   let segs1 = [
     @core.Segment::new(
@@ -15,6 +16,7 @@ test "overlay basic" {
   assert_true(overlay_vertex_count(result) >= 4)
 }
 
+///|
 test "overlay no intersection" {
   let segs1 = [
     @core.Segment::new(
@@ -33,6 +35,7 @@ test "overlay no intersection" {
   assert_eq(overlay_edge_count(result), 2)
 }
 
+///|
 test "overlay edge count" {
   let segs1 = [
     @core.Segment::new(
@@ -50,6 +53,7 @@ test "overlay edge count" {
   assert_true(overlay_edge_count(result) >= 2)
 }
 
+///|
 test "overlay vertices" {
   let segs1 = [
     @core.Segment::new(
@@ -62,6 +66,7 @@ test "overlay vertices" {
   assert_eq(overlay_vertex_count(result), 2)
 }
 
+///|
 test "overlay parallel" {
   let segs1 = [
     @core.Segment::new(

@@ -32,4 +32,3 @@ pub fn convex_centroid(poly : @core.Polygon) -> @core.Point2D {
   }
   @core.Point2D::new(cx / (6.0 * area), cy / (6.0 * area))
 }
-

@@ -6,10 +6,8 @@ pub struct OBB {
   half_extents : Array[Double]
 }
 
-
 ///|
 pub extend OBB with @core.Measurable3D::{volume, surface_area}
-
 
 ///|
 /// Construct an OBB. / 构造 OBB。
@@ -18,5 +16,5 @@ pub fn OBB::new(
   axes : Array[@core.Point3D],
   half_extents : Array[Double],
 ) -> OBB {
-  { center, axes, half_extents }
+  { center, axes, half_extents, }
 }

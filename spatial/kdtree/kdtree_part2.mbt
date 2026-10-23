@@ -5,7 +5,7 @@ pub fn build_kdtree(points : Array[@core.Point2D]) -> Array[KDNode] {
     return []
   }
   let nodes : Array[KDNode] = []
-  let indices : Array[Int] = []
+  let indices : Array[Int32] = []
   for i in 0..<points.length() {
     indices.push(i)
   }
@@ -13,11 +13,12 @@ pub fn build_kdtree(points : Array[@core.Point2D]) -> Array[KDNode] {
   nodes
 }
 
+///|
 fn kdtree_nearest_rec(
   nodes : Array[KDNode],
-  node_idx : Int,
+  node_idx : Int32,
   query : @core.Point2D,
-  best : Array[(Int, Double)],
+  best : Array[(Int32, Double)],
 ) -> Unit {
   if node_idx < 0 || node_idx >= nodes.length() {
     return

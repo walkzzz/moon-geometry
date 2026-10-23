@@ -1,6 +1,6 @@
 ///|
 /// Compute volume using divergence theorem. / 使用散度定理计算体积。
-pub impl @core.Measurable3D for Polyhedron with volume(self) {
+pub impl @core.Measurable3D for Polyhedron with fn volume(self) {
   let mut vol = 0.0
   for face in self.faces {
     let n = face.length()

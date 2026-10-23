@@ -4,8 +4,8 @@ pub fn spatial_hash_query_radius(
   hash : SpatialHash,
   center : @core.Point2D,
   radius : Double,
-) -> Array[Int] {
-  let result : Array[Int] = []
+) -> Array[Int32] {
+  let result : Array[Int32] = []
   let r2 = radius * radius
   let cell_range = (radius / hash.cell_size).ceil().to_int()
   let cx = (center.x() / hash.cell_size).floor().to_int()

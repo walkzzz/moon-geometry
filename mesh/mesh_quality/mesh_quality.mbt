@@ -8,7 +8,6 @@ pub struct MeshQualityMetrics {
   edge_ratio : Double
 }
 
-
 ///|
 /// Construct quality metrics. / 构造质量度量。
 pub fn MeshQualityMetrics::new(
@@ -18,5 +17,5 @@ pub fn MeshQualityMetrics::new(
   max_angle : Double,
   edge_ratio : Double,
 ) -> MeshQualityMetrics {
-  { aspect_ratio, area_ratio, min_angle, max_angle, edge_ratio }
+  { aspect_ratio, area_ratio, min_angle, max_angle, edge_ratio, }
 }

@@ -1,3 +1,4 @@
+///|
 test "build tin basic" {
   let pts = [
     @core.Point3D::new(0.0, 0.0, 0.0),
@@ -10,6 +11,7 @@ test "build tin basic" {
   assert_true(TIN::triangle_count(tin) >= 1)
 }
 
+///|
 test "build tin too few points" {
   let pts = [
     @core.Point3D::new(0.0, 0.0, 0.0),
@@ -19,6 +21,7 @@ test "build tin too few points" {
   assert_eq(TIN::triangle_count(tin), 0)
 }
 
+///|
 test "tin interpolate vertex" {
   let pts = [
     @core.Point3D::new(0.0, 0.0, 5.0),
@@ -31,6 +34,7 @@ test "tin interpolate vertex" {
   assert_true(@core.approx_eq(z.unwrap(), 5.0, 0.001))
 }
 
+///|
 test "tin interpolate centroid" {
   let pts = [
     @core.Point3D::new(0.0, 0.0, 0.0),
@@ -43,6 +47,7 @@ test "tin interpolate centroid" {
   assert_true(@core.approx_eq(z.unwrap(), 1.0, 0.001))
 }
 
+///|
 test "tin interpolate outside" {
   let pts = [
     @core.Point3D::new(0.0, 0.0, 0.0),
@@ -54,6 +59,7 @@ test "tin interpolate outside" {
   assert_true(z is None)
 }
 
+///|
 test "tin volume flat" {
   let pts = [
     @core.Point3D::new(0.0, 0.0, 5.0),
@@ -66,6 +72,7 @@ test "tin volume flat" {
   assert_true(@core.approx_eq(v, 500.0, 0.001))
 }
 
+///|
 test "tin slope flat" {
   let pts = [
     @core.Point3D::new(0.0, 0.0, 5.0),
@@ -78,6 +85,7 @@ test "tin slope flat" {
   assert_true(@core.approx_eq(s.unwrap(), 0.0, 0.001))
 }
 
+///|
 test "tin slope inclined" {
   let pts = [
     @core.Point3D::new(0.0, 0.0, 0.0),
@@ -91,6 +99,7 @@ test "tin slope inclined" {
   assert_true(s.unwrap() > 0.0)
 }
 
+///|
 test "tin elevation range" {
   let pts = [
     @core.Point3D::new(0.0, 0.0, 1.0),
@@ -103,6 +112,7 @@ test "tin elevation range" {
   assert_true(@core.approx_eq(zmax, 9.0, 0.001))
 }
 
+///|
 test "tin aspect flat" {
   let pts = [
     @core.Point3D::new(0.0, 0.0, 5.0),

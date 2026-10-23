@@ -5,9 +5,8 @@ pub fn RSPath::new(
   total_length : Double,
   radius : Double,
 ) -> RSPath {
-  { segments, total_length, radius }
+  { segments, total_length, radius, }
 }
-
 
 ///|
 /// Pose for Reeds-Shepp car. / Reeds-Shepp 小车位姿。
@@ -17,13 +16,13 @@ pub struct RSPose {
   theta : Double
 }
 
-
 ///|
 /// Construct a Reeds-Shepp pose. / 构造 Reeds-Shepp 位姿。
 pub fn RSPose::new(x : Double, y : Double, theta : Double) -> RSPose {
-  { x, y, theta }
+  { x, y, theta, }
 }
 
+///|
 fn mod2pi(a : Double) -> Double {
   let two_pi = 6.283185307179586
   let mut result = a % two_pi
@@ -32,4 +31,3 @@ fn mod2pi(a : Double) -> Double {
   }
   result
 }
-

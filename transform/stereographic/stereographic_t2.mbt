@@ -12,7 +12,6 @@ pub fn stereographic_to_sphere(
   @core.Point3D::new(x, y, z)
 }
 
-
 ///|
 /// Stereographic projection from south pole. / 从南极的球极投影。
 pub fn stereographic_from_south(
@@ -23,5 +22,7 @@ pub fn stereographic_from_south(
   if @core.approx_eq(denom, 0.0, 0.000000001) {
     return None
   }
-  Some(@core.Point2D::new(2.0 * radius * p.x / denom, 2.0 * radius * p.y / denom))
+  Some(
+    @core.Point2D::new(2.0 * radius * p.x / denom, 2.0 * radius * p.y / denom),
+  )
 }

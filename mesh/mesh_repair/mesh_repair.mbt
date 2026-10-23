@@ -2,34 +2,32 @@
 /// Mesh repair result. / 网格修复结果。
 pub struct MeshRepairResult {
   vertices : Array[@core.Point3D]
-  faces : Array[(Int, Int, Int)]
-  holes_filled : Int
-  degenerate_removed : Int
-  non_manifold_fixed : Int
+  faces : Array[(Int32, Int32, Int32)]
+  holes_filled : Int32
+  degenerate_removed : Int32
+  non_manifold_fixed : Int32
 }
-
 
 ///|
 /// Construct repair result. / 构造修复结果。
 pub fn MeshRepairResult::new(
   vertices : Array[@core.Point3D],
-  faces : Array[(Int, Int, Int)],
-  holes_filled : Int,
-  degenerate_removed : Int,
-  non_manifold_fixed : Int,
+  faces : Array[(Int32, Int32, Int32)],
+  holes_filled : Int32,
+  degenerate_removed : Int32,
+  non_manifold_fixed : Int32,
 ) -> MeshRepairResult {
-  { vertices, faces, holes_filled, degenerate_removed, non_manifold_fixed }
+  { vertices, faces, holes_filled, degenerate_removed, non_manifold_fixed, }
 }
-
 
 ///|
 /// Remove degenerate triangles (zero area). / 移除退化三角形（零面积）。
 pub fn remove_degenerate_faces(
   vertices : Array[@core.Point3D],
-  faces : Array[(Int, Int, Int)],
+  faces : Array[(Int32, Int32, Int32)],
   eps : Double,
-) -> (Array[(Int, Int, Int)], Int) {
-  let result : Array[(Int, Int, Int)] = []
+) -> (Array[(Int32, Int32, Int32)], Int32) {
+  let result : Array[(Int32, Int32, Int32)] = []
   let mut removed = 0
   for f in faces {
     let p0 = vertices[f.0]

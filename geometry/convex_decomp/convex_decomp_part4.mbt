@@ -1,8 +1,6 @@
 ///|
 /// Total area of all convex pieces. / 所有凸块的总面积。
-pub fn convex_decomp_area(
-  poly : Array[@core.Point2D],
-) -> Double {
+pub fn convex_decomp_area(poly : Array[@core.Point2D]) -> Double {
   let pieces = convex_decomposition(poly)
   let mut total = 0.0
   for piece in pieces {

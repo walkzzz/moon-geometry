@@ -2,7 +2,7 @@
 /// Approximate convex hull using grid-based sampling. / 基于网格采样的近似凸包。
 pub fn approx_convex_hull(
   points : Array[@core.Point2D],
-  grid_size : Int,
+  grid_size : Int32,
 ) -> Array[@core.Point2D] {
   if points.length() <= 3 {
     return points
@@ -22,7 +22,10 @@ pub fn approx_convex_hull(
   if dx < 0.000000001 || dy < 0.000000001 {
     return points
   }
-  let grid : Array[@core.Point2D] = Array::make(grid_size * grid_size, @core.Point2D::new(0.0, 0.0))
+  let grid : Array[@core.Point2D] = Array::make(
+    grid_size * grid_size,
+    @core.Point2D::new(0.0, 0.0),
+  )
   let filled : Array[Bool] = Array::make(grid_size * grid_size, false)
   for p in points {
     let gx = ((p.x() - min_x) / dx).floor().to_int()

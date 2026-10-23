@@ -3,10 +3,10 @@
 /// 统计骨架端点（对象 6-邻居数恰为 1 的体素）。
 pub fn skeleton_endpoints(
   voxels : Array[Bool],
-  nx : Int,
-  ny : Int,
-  nz : Int,
-) -> Int {
+  nx : Int32,
+  ny : Int32,
+  nz : Int32,
+) -> Int32 {
   let mut count = 0
   for z in 0..<nz {
     for y in 0..<ny {

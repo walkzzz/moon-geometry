@@ -1,3 +1,4 @@
+///|
 test "art_gallery_guard_count" {
   assert_true(art_gallery_guard_count(3) == 1)
   assert_true(art_gallery_guard_count(6) == 2)
@@ -6,6 +7,7 @@ test "art_gallery_guard_count" {
   assert_true(art_gallery_guard_count(2) == 0)
 }
 
+///|
 test "art_gallery_place_guards" {
   let poly = [
     @core.Point2D::new(0.0, 0.0),
@@ -21,6 +23,7 @@ test "art_gallery_place_guards" {
   assert_true(guards[1].x() == 3.0)
 }
 
+///|
 test "art_gallery_covers_vertices" {
   let poly = [
     @core.Point2D::new(0.0, 0.0),
@@ -34,10 +37,12 @@ test "art_gallery_covers_vertices" {
   assert_false(art_gallery_covers_vertices(poly, partial))
 }
 
+///|
 test "art_gallery_convex_guards" {
   assert_true(art_gallery_convex_guards() == 1)
 }
 
+///|
 test "art_gallery_estimate" {
   let poly = [
     @core.Point2D::new(0.0, 0.0),

@@ -19,7 +19,6 @@ pub fn minkowski_difference_convex(
   minkowski_sum_convex(poly1, neg_poly)
 }
 
-
 ///|
 /// Minkowski sum of a circle and a convex polygon (rounded polygon).
 /// Returns (polygon vertices, radius) representing the rounded result.

@@ -18,6 +18,7 @@ pub fn half_plane_intersect(planes : Array[HalfPlane]) -> Array[@core.Point2D] {
   result
 }
 
+///|
 fn clip_by_half_plane(
   poly : Array[@core.Point2D],
   hp : HalfPlane,
@@ -40,7 +41,10 @@ fn clip_by_half_plane(
       let dn = HalfPlane::eval(hp, nxt)
       let t = dc / (dc - dn)
       result.push(
-        @core.Point2D::new(cur.x() + (nxt.x() - cur.x()) * t, cur.y() + (nxt.y() - cur.y()) * t),
+        @core.Point2D::new(
+          cur.x() + (nxt.x() - cur.x()) * t,
+          cur.y() + (nxt.y() - cur.y()) * t,
+        ),
       )
     }
   }

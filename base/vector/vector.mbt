@@ -8,7 +8,6 @@ pub fn normalize(v : @core.Point2D) -> @core.Point2D {
   @core.Point2D::new(v.x() / len, v.y() / len)
 }
 
-
 ///|
 /// Reflect vector v across normal n. / 向量 v 关于法线 n 反射。
 pub fn reflect(v : @core.Point2D, n : @core.Point2D) -> @core.Point2D {

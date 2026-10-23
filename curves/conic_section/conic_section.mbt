@@ -7,7 +7,6 @@
 /// 一般二次曲线 Ax^2 + Bxy + Cy^2 + Dx + Ey + F = 0，
 /// 通过判别式 B^2 - 4AC 分类为椭圆 / 抛物线 / 双曲线。
 
-
 ///|
 /// Conic section type. / 圆锥曲线类型。
 pub(all) enum ConicType {
@@ -16,7 +15,6 @@ pub(all) enum ConicType {
   Parabola
   Degenerate
 }
-
 
 ///|
 /// Conic section coefficients Ax^2 + Bxy + Cy^2 + Dx + Ey + F = 0.
@@ -30,7 +28,6 @@ pub struct Conic {
   f : Double
 }
 
-
 ///|
 /// Construct a conic from coefficients. / 由系数构造圆锥曲线。
 pub fn Conic::new(
@@ -41,9 +38,8 @@ pub fn Conic::new(
   e : Double,
   f : Double,
 ) -> Conic {
-  { a, b, c, d, e, f }
+  { a, b, c, d, e, f, }
 }
-
 
 ///|
 /// Evaluate the conic polynomial at a point. / 在一点求值圆锥曲线多项式。
@@ -57,7 +53,6 @@ pub fn Conic::eval(conic : Conic, p : @core.Point2D) -> Double {
   conic.e * y +
   conic.f
 }
-
 
 ///|
 /// Check if a point lies on the conic. / 检查点是否在圆锥曲线上。

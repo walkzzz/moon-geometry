@@ -5,16 +5,14 @@ pub struct PolygonWithHoles {
   holes : Array[Array[@core.Point2D]]
 }
 
-
 ///|
 /// Create a polygon with holes. / 创建带孔多边形。
 pub fn polygon_with_holes_new(
   outer : Array[@core.Point2D],
   holes : Array[Array[@core.Point2D]],
 ) -> PolygonWithHoles {
-  { outer, holes }
+  { outer, holes, }
 }
-
 
 ///|
 /// Compute area of polygon with holes (outer area minus holes areas). / 计算带孔多边形面积（外面积减去孔面积）。

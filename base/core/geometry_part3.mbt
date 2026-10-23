@@ -9,7 +9,6 @@ pub fn Point2D::approx_eq(
   (self.x - other.x).abs() <= eps && (self.y - other.y).abs() <= eps
 }
 
-
 ///|
 /// Three-dimensional point with Double coordinates.
 /// 使用 Double 坐标的三维点。
@@ -19,14 +18,12 @@ pub struct Point3D {
   z : Double
 } derive(Debug)
 
-
 ///|
 /// Construct a 3D point.
 /// 构造三维点。
 pub fn Point3D::new(x : Double, y : Double, z : Double) -> Point3D {
   { x, y, z, }
 }
-
 
 ///|
 /// Squared distance to another point.
@@ -38,14 +35,12 @@ pub fn Point3D::dist_sq(self : Point3D, other : Point3D) -> Double {
   dx * dx + dy * dy + dz * dz
 }
 
-
 ///|
 /// Euclidean distance to another point.
 /// 到另一点的欧几里得距离。
 pub fn Point3D::dist(self : Point3D, other : Point3D) -> Double {
   self.dist_sq(other).sqrt()
 }
-
 
 ///|
 /// Vector addition.

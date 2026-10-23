@@ -1,3 +1,4 @@
+///|
 test "bvh_build" {
   let rects = [
     @core.Rectangle::new(0.0, 0.0, 2.0, 2.0),
@@ -9,6 +10,7 @@ test "bvh_build" {
   assert_eq(bvh_count_leaves(nodes), 4)
 }
 
+///|
 test "bvh_query" {
   let rects = [
     @core.Rectangle::new(0.0, 0.0, 2.0, 2.0),
@@ -22,6 +24,7 @@ test "bvh_query" {
   assert_true(result.contains(2))
 }
 
+///|
 test "bvh_query_point" {
   let rects = [
     @core.Rectangle::new(0.0, 0.0, 2.0, 2.0),
@@ -35,12 +38,14 @@ test "bvh_query_point" {
   assert_true(result.contains(1))
 }
 
+///|
 test "bvh_empty" {
   let rects : Array[@core.Rectangle] = []
   let nodes = build_bvh(rects)
   assert_eq(nodes.length(), 0)
 }
 
+///|
 test "bvh_single" {
   let rects = [@core.Rectangle::new(0.0, 0.0, 1.0, 1.0)]
   let nodes = build_bvh(rects)

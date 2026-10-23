@@ -11,13 +11,11 @@ pub fn geojson_polygon(rings : Array[Array[@core.Point2D]]) -> String {
   out + "]}"
 }
 
-
 ///|
 /// Write a GeoJSON MultiPoint. / 写 GeoJSON 多点。
 pub fn geojson_multipoint(points : Array[@core.Point2D]) -> String {
   "{\"type\":\"MultiPoint\",\"coordinates\":" + pts_to_json(points) + "}"
 }
-
 
 ///|
 /// Write a GeoJSON MultiLineString. / 写 GeoJSON 多线串。

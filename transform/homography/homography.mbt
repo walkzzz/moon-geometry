@@ -12,7 +12,6 @@ pub struct Homography {
   h22 : Double
 }
 
-
 ///|
 /// Create identity homography. / 创建单位单应矩阵。
 pub fn Homography::identity() -> Homography {

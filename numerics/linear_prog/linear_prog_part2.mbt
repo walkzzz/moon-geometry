@@ -30,11 +30,12 @@ pub fn linear_program_2d(
     }
   }
   match best_pt {
-    Some(p) => Some({ point: p, value: best_val })
+    Some(p) => Some({ point: p, value: best_val, })
     None => None
   }
 }
 
+///|
 fn lp_clip(
   poly : Array[@core.Point2D],
   a : Double,
@@ -59,7 +60,10 @@ fn lp_clip(
     if cur_in != nxt_in {
       let t = cur_val / (cur_val - nxt_val)
       result.push(
-        @core.Point2D::new(cur.x() + (nxt.x() - cur.x()) * t, cur.y() + (nxt.y() - cur.y()) * t),
+        @core.Point2D::new(
+          cur.x() + (nxt.x() - cur.x()) * t,
+          cur.y() + (nxt.y() - cur.y()) * t,
+        ),
       )
     }
   }

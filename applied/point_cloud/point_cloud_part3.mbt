@@ -1,11 +1,14 @@
 ///|
 /// Grid downsampling: keep one point per voxel of given size. / 网格降采样：每体素保留一个点。
-pub fn voxel_downsample(points : Array[@core.Point3D], voxel_size : Double) -> Array[@core.Point3D] {
+pub fn voxel_downsample(
+  points : Array[@core.Point3D],
+  voxel_size : Double,
+) -> Array[@core.Point3D] {
   if voxel_size <= 0.0 || points.length() == 0 {
     return points
   }
   let result : Array[@core.Point3D] = []
-  let seen : Array[(Int, Int, Int)] = []
+  let seen : Array[(Int32, Int32, Int32)] = []
   for i in 0..<points.length() {
     let key = (
       (points[i].x / voxel_size).floor().to_int(),

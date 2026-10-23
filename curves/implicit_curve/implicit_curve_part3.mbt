@@ -14,7 +14,6 @@ pub fn normal(
   @core.Point2D::new(gx / norm, gy / norm)
 }
 
-
 ///|
 /// Curvature of the implicit curve at a point.
 /// kappa = (fxx*fy^2 - 2*fxy*fx*fy + fyy*fx^2) / (fx^2 + fy^2)^(3/2)

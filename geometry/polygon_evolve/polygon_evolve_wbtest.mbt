@@ -1,3 +1,4 @@
+///|
 test "curve_shortening_flow basic" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -9,6 +10,7 @@ test "curve_shortening_flow basic" {
   assert_eq(flow.length(), 5)
 }
 
+///|
 test "evolve_step basic" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -20,6 +22,7 @@ test "evolve_step basic" {
   assert_eq(next.length(), 4)
 }
 
+///|
 test "flow_perimeters decreasing" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -31,6 +34,7 @@ test "flow_perimeters decreasing" {
   assert_true(perims.length() == 10)
 }
 
+///|
 test "flow_areas basic" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -42,6 +46,7 @@ test "flow_areas basic" {
   assert_true(areas.length() == 5)
 }
 
+///|
 test "evolve_step degenerate" {
   let pts = [@core.Point2D::new(0.0, 0.0), @core.Point2D::new(1.0, 1.0)]
   let next = evolve_step(pts, 0.01)

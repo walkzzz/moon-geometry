@@ -1,4 +1,5 @@
-///| 端到端：点集 → 凸包 → 面积 → 包含检查
+///|
+/// 端到端：点集 → 凸包 → 面积 → 包含检查
 test "e2e: convex hull pipeline" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),

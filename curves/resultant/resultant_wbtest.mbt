@@ -1,3 +1,4 @@
+///|
 test "resultant sylvester matrix" {
   let p = [1.0, 2.0]
   let q = [3.0, 4.0]
@@ -7,18 +8,21 @@ test "resultant sylvester matrix" {
   assert_true((m[0][1] - 2.0).abs() < 0.000000001)
 }
 
+///|
 test "resultant matrix determinant 2x2" {
   let m = [[1.0, 2.0], [3.0, 4.0]]
   let d = matrix_determinant(m)
-  assert_true((d - (-2.0)).abs() < 0.000000001)
+  assert_true((d - -2.0).abs() < 0.000000001)
 }
 
+///|
 test "resultant matrix determinant 3x3" {
   let m = [[1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0]]
   let d = matrix_determinant(m)
   assert_true((d - 1.0).abs() < 0.000000001)
 }
 
+///|
 test "resultant no common root" {
   let p = [-2.0, 1.0]
   let q = [-3.0, 1.0]
@@ -26,6 +30,7 @@ test "resultant no common root" {
   assert_true(r.abs() > 0.000000001)
 }
 
+///|
 test "resultant common root" {
   let p = [-2.0, 1.0]
   let q = [-2.0, 1.0]
@@ -33,6 +38,7 @@ test "resultant common root" {
   assert_true(r.abs() < 0.000000001)
 }
 
+///|
 test "resultant common root quadratic" {
   let p = [-6.0, 5.0, 1.0]
   let q = [-1.0, 1.0]
@@ -40,24 +46,28 @@ test "resultant common root quadratic" {
   assert_true(r.abs() < 0.0000001)
 }
 
+///|
 test "discriminant quadratic" {
   let coeffs = [-6.0, 5.0, 1.0]
   let d = discriminant(coeffs)
   assert_true((d - 49.0).abs() < 0.0000001)
 }
 
+///|
 test "discriminant zero repeated root" {
   let coeffs = [1.0, -2.0, 1.0]
   let d = discriminant(coeffs)
   assert_true(d.abs() < 0.0000001)
 }
 
+///|
 test "poly degree" {
   assert_eq(poly_degree([1.0, 2.0, 3.0]), 2)
   assert_eq(poly_degree([1.0, 2.0, 0.0]), 1)
   assert_eq(poly_degree([0.0, 0.0]), -1)
 }
 
+///|
 test "poly sub" {
   let a = [5.0, 7.0, 9.0]
   let b = [1.0, 2.0]
@@ -67,6 +77,7 @@ test "poly sub" {
   assert_true((r[2] - 9.0).abs() < 0.000000001)
 }
 
+///|
 test "poly gcd common factor" {
   let a = [-1.0, 0.0, 1.0]
   let b = [-1.0, 1.0]
@@ -74,6 +85,7 @@ test "poly gcd common factor" {
   assert_true(poly_degree(g) >= 0)
 }
 
+///|
 test "have common root" {
   let p = [-2.0, 1.0]
   let q = [-2.0, 1.0]

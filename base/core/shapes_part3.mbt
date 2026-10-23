@@ -8,7 +8,6 @@ pub fn Triangle::centroid(self : Triangle) -> Point2D {
   )
 }
 
-
 ///|
 /// Circumcenter (center of circumscribed circle).
 /// 外心（外接圆中心）。
@@ -38,7 +37,6 @@ pub fn Triangle::circumcenter(self : Triangle) -> Point2D {
   Point2D::new(ux, uy)
 }
 
-
 ///|
 /// Incenter (center of inscribed circle).
 /// 内心（内切圆中心）。
@@ -56,7 +54,6 @@ pub fn Triangle::incenter(self : Triangle) -> Point2D {
   )
 }
 
-
 ///|
 /// A circle defined by center and radius.
 /// 由圆心和半径定义的圆。
@@ -64,7 +61,6 @@ pub struct Circle {
   center : Point2D
   radius : Double
 } derive(Debug)
-
 
 ///|
 pub extend Circle with @moonbitlang/core/debug.Debug::{to_repr}

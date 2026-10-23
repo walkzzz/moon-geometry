@@ -1,5 +1,6 @@
-///| Return Mandelbrot escape iteration count for parameter c. / 返回参数 c 的 Mandelbrot 逃逸迭代次数。
-pub fn mandelbrot_escape(cx : Double, cy : Double, max_iter : Int) -> Int {
+///|
+/// Return Mandelbrot escape iteration count for parameter c. / 返回参数 c 的 Mandelbrot 逃逸迭代次数。
+pub fn mandelbrot_escape(cx : Double, cy : Double, max_iter : Int32) -> Int32 {
   let mut x = 0.0
   let mut y = 0.0
   let mut iter = 0

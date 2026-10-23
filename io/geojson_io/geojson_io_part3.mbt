@@ -1,6 +1,8 @@
 ///|
 /// Write a GeoJSON MultiPolygon. / 写 GeoJSON 多多边形。
-pub fn geojson_multipolygon(polygons : Array[Array[Array[@core.Point2D]]]) -> String {
+pub fn geojson_multipolygon(
+  polygons : Array[Array[Array[@core.Point2D]]],
+) -> String {
   let mut out = "{\"type\":\"MultiPolygon\",\"coordinates\":["
   for i in 0..<polygons.length() {
     if i > 0 {
@@ -17,7 +19,6 @@ pub fn geojson_multipolygon(polygons : Array[Array[Array[@core.Point2D]]]) -> St
   }
   out + "]}"
 }
-
 
 ///|
 /// Write any GeoJSON geometry. / 写任意 GeoJSON 几何。

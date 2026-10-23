@@ -1,8 +1,10 @@
-///| Create a new graph edge with target and weight. / 用目标和权重创建新图边。
-pub fn GraphEdge::new(to : Int, weight : Double) -> GraphEdge {
-  { to, weight }
+///|
+/// Create a new graph edge with target and weight. / 用目标和权重创建新图边。
+pub fn GraphEdge::new(to : Int32, weight : Double) -> GraphEdge {
+  { to, weight, }
 }
 
+///|
 /// |
 /// Find shortest path from source to all vertices.
 /// 从源点到所有顶点的最短路径。
@@ -15,9 +17,9 @@ pub fn GraphEdge::new(to : Int, weight : Double) -> GraphEdge {
 /// Returns array of distances (infinity = 1e18 if unreachable).
 /// 返回距离数组（不可达 = 1e18）。
 pub fn dijkstra(
-  n : Int,
+  n : Int32,
   adj : Array[Array[GraphEdge]],
-  src : Int,
+  src : Int32,
 ) -> Array[Double] {
   let dist : Array[Double] = []
   let visited : Array[Bool] = []
@@ -49,6 +51,7 @@ pub fn dijkstra(
   dist
 }
 
+///|
 /// |
 /// Find shortest path from source to target.
 /// 从源点到目标点的最短路径。
@@ -56,10 +59,10 @@ pub fn dijkstra(
 /// Returns the distance, or -1 if unreachable.
 /// 返回距离，不可达返回 -1。
 pub fn shortest_path_dist(
-  n : Int,
+  n : Int32,
   adj : Array[Array[GraphEdge]],
-  src : Int,
-  dst : Int,
+  src : Int32,
+  dst : Int32,
 ) -> Double {
   let dist = dijkstra(n, adj, src)
   if dist[dst] >= 1000000000000000000.0 {
@@ -69,17 +72,18 @@ pub fn shortest_path_dist(
   }
 }
 
+///|
 /// |
 /// Reconstruct the shortest path as a sequence of vertices.
 /// 重构最短路径为顶点序列。
 pub fn shortest_path_vertices(
-  n : Int,
+  n : Int32,
   adj : Array[Array[GraphEdge]],
-  src : Int,
-  dst : Int,
-) -> Array[Int] {
+  src : Int32,
+  dst : Int32,
+) -> Array[Int32] {
   let dist : Array[Double] = []
-  let prev : Array[Int] = []
+  let prev : Array[Int32] = []
   let visited : Array[Bool] = []
   for _ in 0..<n {
     dist.push(1000000000000000000.0)
@@ -111,7 +115,7 @@ pub fn shortest_path_vertices(
   if dist[dst] >= 1000000000000000000.0 {
     return []
   }
-  let path : Array[Int] = []
+  let path : Array[Int32] = []
   let mut cur = dst
   while cur != -1 {
     path.insert(0, cur)

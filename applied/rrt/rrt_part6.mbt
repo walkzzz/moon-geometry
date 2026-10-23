@@ -8,9 +8,8 @@ pub fn rrt_path_length(path : Array[@core.Point2D]) -> Double {
   sum
 }
 
-
 ///|
 /// Count nodes in an RRT tree. / 统计 RRT 树中节点数。
-pub fn rrt_node_count(nodes : Array[RRTNode]) -> Int {
+pub fn rrt_node_count(nodes : Array[RRTNode]) -> Int32 {
   nodes.length()
 }

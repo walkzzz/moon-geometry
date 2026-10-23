@@ -7,7 +7,7 @@ pub fn project_to_surface(
   fy : (Double, Double, Double) -> Double,
   fz : (Double, Double, Double) -> Double,
   p : @core.Point3D,
-  max_iter : Int,
+  max_iter : Int32,
 ) -> @core.Point3D {
   let mut x = p.x
   let mut y = p.y
@@ -31,7 +31,6 @@ pub fn project_to_surface(
   }
   @core.Point3D::new(x, y, z)
 }
-
 
 ///|
 /// Tangent plane coefficients (a, b, c, d) for a*x + b*y + c*z + d = 0 at point p.

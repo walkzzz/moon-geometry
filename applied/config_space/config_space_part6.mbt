@@ -20,6 +20,7 @@ pub fn cspace_segment_valid(
   true
 }
 
+///|
 fn point_in_polygon(p : @core.Point2D, poly : Array[@core.Point2D]) -> Bool {
   let n = poly.length()
   if n == 0 {
@@ -43,6 +44,7 @@ fn point_in_polygon(p : @core.Point2D, poly : Array[@core.Point2D]) -> Bool {
   inside
 }
 
+///|
 fn seg_cross(
   a1 : @core.Point2D,
   a2 : @core.Point2D,
@@ -54,5 +56,5 @@ fn seg_cross(
   let d3 = @core.turn(a1, a2, b1)
   let d4 = @core.turn(a1, a2, b2)
   ((d1 > 0.0 && d2 < 0.0) || (d1 < 0.0 && d2 > 0.0)) &&
-    ((d3 > 0.0 && d4 < 0.0) || (d3 < 0.0 && d4 > 0.0))
+  ((d3 > 0.0 && d4 < 0.0) || (d3 < 0.0 && d4 > 0.0))
 }

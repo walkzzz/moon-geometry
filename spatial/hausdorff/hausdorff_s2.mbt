@@ -13,7 +13,6 @@ pub fn hausdorff_distance(
   }
 }
 
-
 ///|
 /// Hausdorff distance with early termination (epsilon check). / 带提前终止的 Hausdorff 距离。
 pub fn hausdorff_within(

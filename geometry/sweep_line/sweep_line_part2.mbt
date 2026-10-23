@@ -6,8 +6,8 @@
 /// 找出所有相交线段对。返回 (i, j) 索引对数组，i < j。
 pub fn find_all_intersections(
   segments : Array[@core.Segment],
-) -> Array[(Int, Int)] {
-  let result : Array[(Int, Int)] = []
+) -> Array[(Int32, Int32)] {
+  let result : Array[(Int32, Int32)] = []
   let n = segments.length()
   for i in 0..<n {
     for j in (i + 1)..<n {

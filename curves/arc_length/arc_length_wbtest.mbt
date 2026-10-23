@@ -1,9 +1,11 @@
+///|
 test "arc_length_segment" {
   let p1 = @core.Point2D::new(0.0, 0.0)
   let p2 = @core.Point2D::new(3.0, 4.0)
   assert_true((arc_length_segment(p1, p2) - 5.0).abs() < 0.001)
 }
 
+///|
 test "arc_length_total" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -13,6 +15,7 @@ test "arc_length_total" {
   assert_true((arc_length_total(pts) - 7.0).abs() < 0.001)
 }
 
+///|
 test "arc_length_cumulative" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -26,6 +29,7 @@ test "arc_length_cumulative" {
   assert_true((cum[2] - 7.0).abs() < 0.001)
 }
 
+///|
 test "arc_length_average" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -35,6 +39,7 @@ test "arc_length_average" {
   assert_true((arc_length_average(pts) - 2.0).abs() < 0.001)
 }
 
+///|
 test "arc_length_max_segment" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),

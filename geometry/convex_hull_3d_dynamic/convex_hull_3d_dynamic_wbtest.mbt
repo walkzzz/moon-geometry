@@ -1,9 +1,11 @@
+///|
 test "dynamic hull empty" {
   let h = DynamicHull3D::new()
   assert_eq(DynamicHull3D::size(h), 0)
   assert_eq(DynamicHull3D::face_count(h), 0)
 }
 
+///|
 test "dynamic hull tetrahedron" {
   let h = DynamicHull3D::new()
   h.insert(@core.Point3D::new(0.0, 0.0, 0.0))
@@ -14,6 +16,7 @@ test "dynamic hull tetrahedron" {
   assert_eq(DynamicHull3D::face_count(h), 4)
 }
 
+///|
 test "dynamic hull cube" {
   let h = DynamicHull3D::new()
   h.insert(@core.Point3D::new(0.0, 0.0, 0.0))
@@ -28,6 +31,7 @@ test "dynamic hull cube" {
   assert_eq(DynamicHull3D::face_count(h), 12)
 }
 
+///|
 test "dynamic hull with interior point" {
   let h = DynamicHull3D::new()
   h.insert(@core.Point3D::new(0.0, 0.0, 0.0))
@@ -39,6 +43,7 @@ test "dynamic hull with interior point" {
   assert_eq(DynamicHull3D::face_count(h), 4)
 }
 
+///|
 test "dynamic hull volume" {
   let h = DynamicHull3D::new()
   h.insert(@core.Point3D::new(0.0, 0.0, 0.0))
@@ -49,6 +54,7 @@ test "dynamic hull volume" {
   assert_true(v.abs() > 0.0)
 }
 
+///|
 test "dynamic hull surface area" {
   let h = DynamicHull3D::new()
   h.insert(@core.Point3D::new(0.0, 0.0, 0.0))
@@ -59,6 +65,7 @@ test "dynamic hull surface area" {
   assert_true(a > 0.0)
 }
 
+///|
 test "compute hull 3d directly" {
   let pts = [
     @core.Point3D::new(0.0, 0.0, 0.0),
@@ -70,6 +77,7 @@ test "compute hull 3d directly" {
   assert_eq(faces.length(), 4)
 }
 
+///|
 test "dynamic hull octahedron" {
   let h = DynamicHull3D::new()
   h.insert(@core.Point3D::new(1.0, 0.0, 0.0))

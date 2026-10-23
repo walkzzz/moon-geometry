@@ -16,6 +16,7 @@ pub fn geojson_parse(text : String) -> GeoJsonGeometry? {
   }
 }
 
+///|
 fn build_geometry(typ : String, val : JsonValue) -> GeoJsonGeometry? {
   if typ == "Point" {
     match val {
@@ -56,6 +57,7 @@ fn build_geometry(typ : String, val : JsonValue) -> GeoJsonGeometry? {
   }
 }
 
+///|
 fn jarr_to_point(arr : Array[JsonValue]) -> @core.Point2D? {
   if arr.length() >= 2 {
     match (arr[0], arr[1]) {
@@ -67,6 +69,7 @@ fn jarr_to_point(arr : Array[JsonValue]) -> @core.Point2D? {
   }
 }
 
+///|
 fn jarr_to_points(arr : Array[JsonValue]) -> Array[@core.Point2D] {
   let result : Array[@core.Point2D] = []
   for v in arr {
@@ -82,6 +85,7 @@ fn jarr_to_points(arr : Array[JsonValue]) -> Array[@core.Point2D] {
   result
 }
 
+///|
 fn jarr_to_rings(arr : Array[JsonValue]) -> Array[Array[@core.Point2D]] {
   let result : Array[Array[@core.Point2D]] = []
   for v in arr {
@@ -93,7 +97,10 @@ fn jarr_to_rings(arr : Array[JsonValue]) -> Array[Array[@core.Point2D]] {
   result
 }
 
-fn jarr_to_polygons(arr : Array[JsonValue]) -> Array[Array[Array[@core.Point2D]]] {
+///|
+fn jarr_to_polygons(
+  arr : Array[JsonValue],
+) -> Array[Array[Array[@core.Point2D]]] {
   let result : Array[Array[Array[@core.Point2D]]] = []
   for v in arr {
     match v {
@@ -104,17 +111,23 @@ fn jarr_to_polygons(arr : Array[JsonValue]) -> Array[Array[Array[@core.Point2D]]
   result
 }
 
+///|
 fn pts_to_json(points : Array[@core.Point2D]) -> String {
   let mut out = "["
   for i in 0..<points.length() {
     if i > 0 {
       out += ","
     }
-    out += "[" + points[i].x().to_string() + "," + points[i].y().to_string() + "]"
+    out += "[" +
+      points[i].x().to_string() +
+      "," +
+      points[i].y().to_string() +
+      "]"
   }
   out + "]"
 }
 
+///|
 fn extract_string(text : String, key : String) -> String? {
   let start = match text.find(key) {
     Some(i) => i + key.length()
@@ -131,7 +144,8 @@ fn extract_string(text : String, key : String) -> String? {
   Some(out)
 }
 
-fn parse_json_value(chars : Array[Char], start : Int) -> (JsonValue, Int)? {
+///|
+fn parse_json_value(chars : Array[Char], start : Int32) -> (JsonValue, Int32)? {
   let n = chars.length()
   let mut i = start
   while i < n && (chars[i] == ' ' || chars[i] == '\n' || chars[i] == '\t') {
@@ -148,12 +162,19 @@ fn parse_json_value(chars : Array[Char], start : Int) -> (JsonValue, Int)? {
   }
 }
 
-fn parse_json_array(chars : Array[Char], start : Int) -> (JsonValue, Int)? {
+///|
+fn parse_json_array(chars : Array[Char], start : Int32) -> (JsonValue, Int32)? {
   let n = chars.length()
   let mut i = start + 1
   let arr : Array[JsonValue] = []
   while i < n {
-    while i < n && (chars[i] == ' ' || chars[i] == ',' || chars[i] == '\n' || chars[i] == '\t') {
+    while i < n &&
+          (
+            chars[i] == ' ' ||
+            chars[i] == ',' ||
+            chars[i] == '\n' ||
+            chars[i] == '\t'
+          ) {
       i += 1
     }
     if i >= n {
@@ -179,7 +200,8 @@ fn parse_json_array(chars : Array[Char], start : Int) -> (JsonValue, Int)? {
   Some((JArray(arr), i))
 }
 
-fn parse_json_number(chars : Array[Char], start : Int) -> (Double, Int) {
+///|
+fn parse_json_number(chars : Array[Char], start : Int32) -> (Double, Int32) {
   let n = chars.length()
   let mut i = start
   let mut s = ""
@@ -194,6 +216,7 @@ fn parse_json_number(chars : Array[Char], start : Int) -> (Double, Int) {
   (pd(s.to_string_view()), i)
 }
 
+///|
 fn pd(s : StringView) -> Double {
   let t = s.trim()
   if t.length() == 0 {

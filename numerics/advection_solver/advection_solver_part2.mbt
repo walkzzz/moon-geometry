@@ -1,5 +1,10 @@
 ///|
-pub fn lax_friedrichs(u : Array[Double], c : Double, dt : Double, dx : Double) -> Array[Double] {
+pub fn lax_friedrichs(
+  u : Array[Double],
+  c : Double,
+  dt : Double,
+  dx : Double,
+) -> Array[Double] {
   let n = u.length()
   let coef = c * dt / (2.0 * dx)
   let result = Array::make(n, 0.0)

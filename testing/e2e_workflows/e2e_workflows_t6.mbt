@@ -1,4 +1,5 @@
-///| 端到端：正方形 → 缩放 → 面积检查
+///|
+/// 端到端：正方形 → 缩放 → 面积检查
 test "e2e: scale area pipeline" {
   let side = 4.0
   let poly = @core.Polygon::new([
@@ -9,16 +10,20 @@ test "e2e: scale area pipeline" {
   ])
   let original_area = @polygon.polygon_area(poly)
   let scale_factor = 2.5
-  let scaled_verts = @core.map_points(poly.vertices, fn(v) { @transform.scale(v, scale_factor, scale_factor) })
+  let scaled_verts = @core.map_points(poly.vertices, fn(v) {
+    @transform.scale(v, scale_factor, scale_factor)
+  })
   let scaled_poly = @core.Polygon::new(scaled_verts)
   let scaled_area = @polygon.polygon_area(scaled_poly)
-  assert_true(approx_eq(scaled_area, original_area * scale_factor * scale_factor))
+  assert_true(
+    approx_eq(scaled_area, original_area * scale_factor * scale_factor),
+  )
 }
-
 
 ///| E2E: Multiple transforms → Composition
 
-///| 端到端：多重变换 → 合成
+///|
+/// 端到端：多重变换 → 合成
 test "e2e: transform composition" {
   let p = @core.Point2D::new(3.0, 4.0)
   let dx = 5.0

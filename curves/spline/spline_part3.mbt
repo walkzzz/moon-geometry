@@ -1,8 +1,6 @@
 ///|
 /// Find the point of maximum curvature. / 找到最大曲率点。
-pub fn spline_max_curvature_point(
-  points : Array[@core.Point2D],
-) -> Int? {
+pub fn spline_max_curvature_point(points : Array[@core.Point2D]) -> Int32? {
   let n = points.length()
   if n < 3 {
     return None

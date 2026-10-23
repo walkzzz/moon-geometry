@@ -7,7 +7,8 @@ pub fn rational_is_defined(m : RationalMap, x : Double) -> Bool {
   den.abs() > 0.000000000001
 }
 
-fn pow(base : Double, exp : Int) -> Double {
+///|
+fn pow(base : Double, exp : Int32) -> Double {
   let mut result = 1.0
   for _ in 0..<exp {
     result *= base

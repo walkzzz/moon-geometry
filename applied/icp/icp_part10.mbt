@@ -12,7 +12,6 @@ pub fn icp_apply(
   out
 }
 
-
 ///|
 /// RMS error between two point clouds (point-to-point).
 /// 两个点云间的 RMS 误差（点到点）。

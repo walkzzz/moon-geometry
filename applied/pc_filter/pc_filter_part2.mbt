@@ -1,9 +1,13 @@
 ///|
 /// Statistical outlier removal: remove points whose mean neighbor distance is too large.
 /// 统计离群点去除：移除平均邻距过大的点。
-pub fn statistical_filter(points : Array[@core.Point3D], k : Int, threshold : Double) -> Array[Int] {
+pub fn statistical_filter(
+  points : Array[@core.Point3D],
+  k : Int32,
+  threshold : Double,
+) -> Array[Int32] {
   let n = points.length()
-  let result : Array[Int] = []
+  let result : Array[Int32] = []
   for i in 0..<n {
     let dists : Array[Double] = []
     for j in 0..<n {

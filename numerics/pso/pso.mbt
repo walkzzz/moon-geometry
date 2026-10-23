@@ -8,11 +8,12 @@
 /// ## Complexity: O(iter * n_particles * n_dims)
 /// ## 复杂度: O(迭代数 * 粒子数 * 维度)
 
+///|
 /// |
 /// PSO configuration. / 粒子群优化配置。
 pub struct PSOConfig {
-  n_particles : Int
-  n_dims : Int
+  n_particles : Int32
+  n_dims : Int32
   w : Double
   c1 : Double
   c2 : Double
@@ -21,11 +22,12 @@ pub struct PSOConfig {
   v_max : Double
 }
 
+///|
 /// |
 /// Construct PSO config. / 构造粒子群优化配置。
 pub fn PSOConfig::new(
-  n_particles : Int,
-  n_dims : Int,
+  n_particles : Int32,
+  n_dims : Int32,
   w : Double,
   c1 : Double,
   c2 : Double,
@@ -33,64 +35,78 @@ pub fn PSOConfig::new(
   hi : Array[Double],
   v_max : Double,
 ) -> PSOConfig {
-  { n_particles, n_dims, w, c1, c2, lo, hi, v_max }
+  { n_particles, n_dims, w, c1, c2, lo, hi, v_max, }
 }
 
+///|
 /// |
 /// Result of PSO. / 粒子群优化结果。
 pub struct PSOResult {
   x : Array[Double]
   value : Double
-  iterations : Int
+  iterations : Int32
 }
 
+///|
 /// |
 /// Construct PSO result. / 构造粒子群优化结果。
 pub fn PSOResult::new(
   x : Array[Double],
   value : Double,
-  iterations : Int,
+  iterations : Int32,
 ) -> PSOResult {
-  { x, value, iterations }
+  { x, value, iterations, }
 }
 
+///|
 /// |
 /// Topology type. / 拓扑类型。
 pub(all) enum PSOTopology {
   Global
-  Local(Int)
+  Local(Int32)
 }
 
+///|
 /// |
 /// Simple LCG random generator. / 简单线性同余随机生成器。
 priv struct PSO_rng {
-  mut state : UInt
+  mut state : UInt32
 }
 
-fn PSO_rng::new(seed : UInt) -> PSO_rng {
-  { state: seed }
+///|
+fn PSO_rng::new(seed : UInt32) -> PSO_rng {
+  { state: seed, }
 }
 
+///|
 fn PSO_rng::next(r : PSO_rng) -> Double {
   r.state = r.state * 1103515245U + 12345U
   (r.state % 1000000U).to_double() / 1000000.0
 }
 
+///|
 /// |
 /// Clamp value to [lo, hi]. / 将值限制在 [lo, hi]。
 fn clamp(v : Double, lo : Double, hi : Double) -> Double {
-  if v < lo { lo } else if v > hi { hi } else { v }
+  if v < lo {
+    lo
+  } else if v > hi {
+    hi
+  } else {
+    v
+  }
 }
 
+///|
 /// |
 /// Find best neighbor index for local topology (ring).
 /// 局部拓扑（环形）中找最优邻居索引。
 fn best_neighbor(
-  idx : Int,
-  n_particles : Int,
-  neighborhood : Int,
+  idx : Int32,
+  n_particles : Int32,
+  neighborhood : Int32,
   pbest_vals : Array[Double],
-) -> Int {
+) -> Int32 {
   let mut best = idx
   let mut best_val = pbest_vals[idx]
   for d in 1..<(neighborhood + 1) {
@@ -108,6 +124,7 @@ fn best_neighbor(
   best
 }
 
+///|
 /// |
 /// Particle swarm optimization for minimization.
 /// 粒子群优化（最小化）。
@@ -115,8 +132,8 @@ pub fn pso(
   f : (Array[Double]) -> Double,
   config : PSOConfig,
   topology : PSOTopology,
-  max_iter : Int,
-  seed : UInt,
+  max_iter : Int32,
+  seed : UInt32,
 ) -> PSOResult {
   let np = config.n_particles
   let nd = config.n_dims
@@ -193,9 +210,10 @@ pub fn pso(
       }
     }
   }
-  { x: gbest, value: gbest_val, iterations: iter_done }
+  { x: gbest, value: gbest_val, iterations: iter_done, }
 }
 
+///|
 /// |
 /// PSO with decreasing inertia weight (common variant).
 /// 惯性权重递减的粒子群优化（常见变体）。
@@ -205,8 +223,8 @@ pub fn pso_decreasing_w(
   w_max : Double,
   w_min : Double,
   topology : PSOTopology,
-  max_iter : Int,
-  seed : UInt,
+  max_iter : Int32,
+  seed : UInt32,
 ) -> PSOResult {
   let np = config.n_particles
   let nd = config.n_dims
@@ -284,9 +302,10 @@ pub fn pso_decreasing_w(
       }
     }
   }
-  { x: gbest, value: gbest_val, iterations: iter_done }
+  { x: gbest, value: gbest_val, iterations: iter_done, }
 }
 
+///|
 /// |
 /// 1D PSO convenience wrapper for minimization.
 /// 一维粒子群优化便捷封装（最小化）。
@@ -294,17 +313,26 @@ pub fn pso_1d(
   f : (Double) -> Double,
   lo : Double,
   hi : Double,
-  n_particles : Int,
-  max_iter : Int,
-  seed : UInt,
+  n_particles : Int32,
+  max_iter : Int32,
+  seed : UInt32,
 ) -> Double {
-  let f_wrap = fn(x : Array[Double]) -> Double {
-    f(x[0])
-  }
-  let config = PSOConfig::new(n_particles, 1, 0.7, 1.5, 1.5, [lo], [hi], (hi - lo) * 0.2)
+  let f_wrap = fn(x : Array[Double]) -> Double { f(x[0]) }
+  let config = PSOConfig::new(
+    n_particles,
+    1,
+    0.7,
+    1.5,
+    1.5,
+    [lo],
+    [hi],
+    (hi - lo) * 0.2,
+  )
   let result = pso(f_wrap, config, Global, max_iter, seed)
   result.x[0]
 }
+
+///|
 /// |
 /// Swarm radius: standard deviation of particle positions in one dimension.
 /// 粒子群半径：一维粒子位置的标准差。
@@ -326,9 +354,10 @@ pub fn pso_swarm_radius(positions : Array[Double]) -> Double {
     variance += d * d
   }
   variance = variance / (n - 1).to_double()
-  (variance).sqrt()
+  variance.sqrt()
 }
 
+///|
 /// |
 /// Exponential decay inertia weight schedule. / 指数衰减惯性权重调度。
 ///
@@ -337,7 +366,7 @@ pub fn pso_swarm_radius(positions : Array[Double]) -> Double {
 pub fn pso_inertia_schedule(
   w_max : Double,
   decay : Double,
-  iteration : Int,
+  iteration : Int32,
 ) -> Double {
   w_max * @math.exp(-decay * iteration.to_double())
 }

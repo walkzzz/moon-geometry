@@ -3,7 +3,7 @@
 pub fn reed_shepp_sample(
   path : RSPath,
   start : RSPose,
-  num_samples : Int,
+  num_samples : Int32,
 ) -> Array[@core.Point2D] {
   let points : Array[@core.Point2D] = []
   if num_samples <= 0 || path.total_length <= 0.0 {
@@ -18,6 +18,7 @@ pub fn reed_shepp_sample(
   points
 }
 
+///|
 fn rs_sample_at(
   path : RSPath,
   start : RSPose,
@@ -33,30 +34,33 @@ fn rs_sample_at(
       break
     }
     let seg = path.segments[i]
-    let seg_len = if remaining < seg.length {
-      remaining
-    } else {
-      seg.length
-    }
-    let dir = if seg.forward {
-      1.0
-    } else {
-      -1.0
-    }
+    let seg_len = if remaining < seg.length { remaining } else { seg.length }
+    let dir = if seg.forward { 1.0 } else { -1.0 }
     let (dx, dy, dtheta) = match seg.seg_type {
       Left => {
         let r = radius
         let dth = seg_len / r * dir
-        (r * (@math.sin(theta + dth) - @math.sin(theta)), r * (-@math.cos(theta + dth) + @math.cos(theta)), dth)
+        (
+          r * (@math.sin(theta + dth) - @math.sin(theta)),
+          r * (-@math.cos(theta + dth) + @math.cos(theta)),
+          dth,
+        )
       }
       Right => {
         let r = radius
         let dth = seg_len / r * dir
-        (r * (-@math.sin(theta - dth) + @math.sin(theta)), r * (@math.cos(theta - dth) - @math.cos(theta)), -dth)
+        (
+          r * (-@math.sin(theta - dth) + @math.sin(theta)),
+          r * (@math.cos(theta - dth) - @math.cos(theta)),
+          -dth,
+        )
       }
-      Straight => {
-        (seg_len * @math.cos(theta) * dir, seg_len * @math.sin(theta) * dir, 0.0)
-      }
+      Straight =>
+        (
+          seg_len * @math.cos(theta) * dir,
+          seg_len * @math.sin(theta) * dir,
+          0.0,
+        )
     }
     x += dx
     y += dy

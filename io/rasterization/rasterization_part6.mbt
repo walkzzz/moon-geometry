@@ -3,11 +3,11 @@
 /// 用 Bresenham 算法光栅化线段。
 pub fn raster_line(
   buf : RasterBuffer,
-  x0 : Int,
-  y0 : Int,
-  x1 : Int,
-  y1 : Int,
-  color : Int,
+  x0 : Int32,
+  y0 : Int32,
+  x1 : Int32,
+  y1 : Int32,
+  color : Int32,
 ) -> Unit {
   let mut dx = x1 - x0
   let dy = y1 - y0

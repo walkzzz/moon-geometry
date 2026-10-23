@@ -20,7 +20,6 @@ pub fn point_in_polygon(p : @core.Point2D, poly : Array[@core.Point2D]) -> Bool 
   inside
 }
 
-
 ///|
 /// Narrow phase: circle-circle collision. / 窄相：圆-圆碰撞。
 pub fn circle_circle_collide(

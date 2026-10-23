@@ -1,3 +1,4 @@
+///|
 test "approx convex hull" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -10,6 +11,7 @@ test "approx convex hull" {
   assert_true(hull.length() >= 3)
 }
 
+///|
 test "approx hull area" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -21,6 +23,7 @@ test "approx hull area" {
   assert_true(area > 0.0)
 }
 
+///|
 test "approx hull perimeter" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -32,15 +35,14 @@ test "approx hull perimeter" {
   assert_true(per > 0.0)
 }
 
+///|
 test "approx error bound" {
-  let pts = [
-    @core.Point2D::new(0.0, 0.0),
-    @core.Point2D::new(10.0, 10.0),
-  ]
+  let pts = [@core.Point2D::new(0.0, 0.0), @core.Point2D::new(10.0, 10.0)]
   let err = approx_error_bound(pts, 10)
   assert_true(err > 0.0)
 }
 
+///|
 test "approx hull small" {
   let pts = [@core.Point2D::new(1.0, 1.0)]
   let hull = approx_convex_hull(pts, 10)

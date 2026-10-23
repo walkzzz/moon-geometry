@@ -1,3 +1,4 @@
+///|
 test "face extract triangle" {
   let verts = [
     @core.Point2D::new(0.0, 0.0),
@@ -9,6 +10,7 @@ test "face extract triangle" {
   assert_true(faces.length() >= 1)
 }
 
+///|
 test "face area" {
   let face : Face = {
     boundary: [
@@ -23,11 +25,13 @@ test "face area" {
   assert_true((area - 16.0).abs() < 0.0001)
 }
 
+///|
 test "face count" {
   let faces : Array[Face] = []
   assert_eq(face_count(faces), 0)
 }
 
+///|
 test "face extract square" {
   let verts = [
     @core.Point2D::new(0.0, 0.0),
@@ -40,6 +44,7 @@ test "face extract square" {
   assert_true(faces.length() >= 1)
 }
 
+///|
 test "face area triangle" {
   let face : Face = {
     boundary: [

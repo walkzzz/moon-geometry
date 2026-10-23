@@ -1,3 +1,4 @@
+///|
 test "astar_grid no obstacles" {
   let grid = AStarGrid::new(10, 10)
   let result = astar_grid(grid, (0, 0), (9, 9), Euclidean, false)
@@ -5,6 +6,7 @@ test "astar_grid no obstacles" {
   assert_true(result.path.length() >= 2)
 }
 
+///|
 test "astar_grid with obstacle" {
   let grid = AStarGrid::new(10, 10)
   for i in 0..<8 {
@@ -14,12 +16,14 @@ test "astar_grid with obstacle" {
   assert_true(result.success)
 }
 
+///|
 test "astar_grid diagonal" {
   let grid = AStarGrid::new(10, 10)
   let result = astar_grid(grid, (0, 0), (9, 9), Euclidean, true)
   assert_true(result.success)
 }
 
+///|
 test "astar_grid blocked start" {
   let grid = AStarGrid::new(10, 10)
   grid.set_blocked(0, 0)
@@ -27,6 +31,7 @@ test "astar_grid blocked start" {
   assert_false(result.success)
 }
 
+///|
 test "astar_grid blocked goal" {
   let grid = AStarGrid::new(10, 10)
   grid.set_blocked(9, 9)
@@ -34,6 +39,7 @@ test "astar_grid blocked goal" {
   assert_false(result.success)
 }
 
+///|
 test "astar_grid start equals goal" {
   let grid = AStarGrid::new(10, 10)
   let result = astar_grid(grid, (5, 5), (5, 5), Euclidean, false)
@@ -41,6 +47,7 @@ test "astar_grid start equals goal" {
   assert_eq(result.path.length(), 1)
 }
 
+///|
 test "astar_grid no path" {
   let grid = AStarGrid::new(10, 10)
   for i in 0..<10 {
@@ -50,13 +57,14 @@ test "astar_grid no path" {
   assert_false(result.success)
 }
 
+///|
 test "astar_graph basic" {
   let nodes = [
     AStarGraphNode::new(0, 0.0, 0.0),
     AStarGraphNode::new(1, 1.0, 0.0),
     AStarGraphNode::new(2, 2.0, 0.0),
   ]
-  let adj : Array[Array[(Int, Double)]] = [
+  let adj : Array[Array[(Int32, Double)]] = [
     [(1, 1.0)],
     [(0, 1.0), (2, 1.0)],
     [(1, 1.0)],
@@ -66,22 +74,25 @@ test "astar_graph basic" {
   assert_eq(result.path.length(), 3)
 }
 
+///|
 test "astar_graph no path" {
   let nodes = [
     AStarGraphNode::new(0, 0.0, 0.0),
     AStarGraphNode::new(1, 5.0, 5.0),
   ]
-  let adj : Array[Array[(Int, Double)]] = [[], []]
+  let adj : Array[Array[(Int32, Double)]] = [[], []]
   let result = astar_graph(nodes, adj, 0, 1)
   assert_false(result.success)
 }
 
+///|
 test "astar_path_cost basic" {
   let path = [(0, 0), (3, 4)]
   let cost = astar_path_cost(path)
   assert_true((cost - 5.0).abs() < 0.001)
 }
 
+///|
 test "astar_grid chebyshev heuristic" {
   let grid = AStarGrid::new(10, 10)
   let result = astar_grid(grid, (0, 0), (9, 9), Chebyshev, true)

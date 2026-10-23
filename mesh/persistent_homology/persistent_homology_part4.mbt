@@ -2,15 +2,15 @@
 /// Compute persistence pairs via boundary matrix reduction (Z/2Z). / 通过边界矩阵约化计算持久对（Z/2Z）。
 pub fn persistence_pairs(
   simplices : Array[SimplexWithFiltration],
-) -> Array[(Int, Int)] {
+) -> Array[(Int32, Int32)] {
   let n = simplices.length()
   if n == 0 {
     return []
   }
   let order = sort_by_filtration(simplices)
-  let boundary : Array[Array[Int]] = Array::make(n, [])
+  let boundary : Array[Array[Int32]] = Array::make(n, [])
   for j in 0..<n {
-    let col : Array[Int] = []
+    let col : Array[Int32] = []
     for i in 0..<n {
       if is_face(simplices[order[i]].vertices, simplices[order[j]].vertices) {
         col.push(i)
@@ -18,7 +18,7 @@ pub fn persistence_pairs(
     }
     boundary[j] = col
   }
-  let lowest : Array[Int] = Array::make(n, -1)
+  let lowest : Array[Int32] = Array::make(n, -1)
   for j in 0..<n {
     if boundary[j].length() > 0 {
       let mut mx = boundary[j][0]
@@ -30,12 +30,12 @@ pub fn persistence_pairs(
       lowest[j] = mx
     }
   }
-  let pairs : Array[(Int, Int)] = []
-  let reduced : Array[Array[Int]] = []
+  let pairs : Array[(Int32, Int32)] = []
+  let reduced : Array[Array[Int32]] = []
   for i in 0..<n {
     reduced.push(boundary[i].copy())
   }
-  let low_map : Array[Int] = Array::make(n, -1)
+  let low_map : Array[Int32] = Array::make(n, -1)
   for j in 0..<n {
     while reduced[j].length() > 0 {
       let mut mx = reduced[j][0]
@@ -55,7 +55,7 @@ pub fn persistence_pairs(
         low_map[j] = mx
         break
       }
-      let new_col : Array[Int] = []
+      let new_col : Array[Int32] = []
       for v in reduced[j] {
         let mut in_other = false
         for w in reduced[found_col] {
@@ -91,9 +91,8 @@ pub fn persistence_pairs(
   pairs
 }
 
-fn sort_by_filtration(
-  simplices : Array[SimplexWithFiltration],
-) -> Array[Int] {
+///|
+fn sort_by_filtration(simplices : Array[SimplexWithFiltration]) -> Array[Int32] {
   let n = simplices.length()
   let order = Array::make(n, 0)
   for i in 0..<n {

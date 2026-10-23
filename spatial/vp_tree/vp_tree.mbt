@@ -8,6 +8,7 @@
 /// ## Complexity: O(n log n) build, O(log n) query
 /// ## 复杂度: 构建 O(n log n)，查询 O(log n)
 
+///|
 /// |
 /// VP-tree node.
 /// 基点树节点。
@@ -18,6 +19,7 @@ pub struct VPNode {
   right : VPNode?
 }
 
+///|
 /// |
 /// Build a VP-tree from points.
 /// 从点集构建基点树。
@@ -26,10 +28,10 @@ pub fn vp_tree_build(points : Array[@core.Point2D]) -> VPNode? {
     return None
   }
   if points.length() == 1 {
-    return Some({ vp: points[0], threshold: 0.0, left: None, right: None })
+    return Some({ vp: points[0], threshold: 0.0, left: None, right: None, })
   }
   let vp = points[0]
-  let dists : Array[(Int, Double)] = []
+  let dists : Array[(Int32, Double)] = []
   for i in 1..<points.length() {
     let d = dist(vp, points[i])
     dists.push((i, d))
@@ -62,13 +64,14 @@ pub fn vp_tree_build(points : Array[@core.Point2D]) -> VPNode? {
   })
 }
 
+///|
 /// |
 /// Find k nearest neighbors in VP-tree.
 /// 在基点树中查找 k 个最近邻。
 pub fn vp_tree_knn(
   root : VPNode?,
   query : @core.Point2D,
-  k : Int,
+  k : Int32,
 ) -> Array[@core.Point2D] {
   let result : Array[(@core.Point2D, Double)] = []
   vp_knn_impl(root, query, k, result)
@@ -79,20 +82,22 @@ pub fn vp_tree_knn(
   result_arr
 }
 
+///|
 /// |
 /// Count nodes in VP-tree.
 /// 计算基点树中的节点数。
-pub fn vp_tree_count(root : VPNode?) -> Int {
+pub fn vp_tree_count(root : VPNode?) -> Int32 {
   match root {
     Some(node) => 1 + vp_tree_count(node.left) + vp_tree_count(node.right)
     None => 0
   }
 }
 
+///|
 fn vp_knn_impl(
   node : VPNode?,
   query : @core.Point2D,
-  k : Int,
+  k : Int32,
   result : Array[(@core.Point2D, Double)],
 ) -> Unit {
   match node {
@@ -137,6 +142,7 @@ fn vp_knn_impl(
   }
 }
 
+///|
 fn dist(a : @core.Point2D, b : @core.Point2D) -> Double {
   ((a.x() - b.x()) * (a.x() - b.x()) + (a.y() - b.y()) * (a.y() - b.y())).sqrt()
 }

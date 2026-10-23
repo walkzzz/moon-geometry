@@ -1,8 +1,6 @@
 ///|
 /// Simple projection parameterization (project to best-fit plane). / 简单投影参数化（投影到最佳拟合平面）。
-pub fn project_parametrize(
-  vertices : Array[@core.Point3D],
-) -> Array[UV] {
+pub fn project_parametrize(vertices : Array[@core.Point3D]) -> Array[UV] {
   let n = vertices.length()
   if n == 0 {
     return []
@@ -35,7 +33,11 @@ pub fn project_parametrize(
     sxz += dx * dz
     syz += dy * dz
   }
-  let normal = @core.Point3D::new(sxy * syz - sxz * syy, sxz * sxy - sxx * syz, sxx * syy - sxy * sxy)
+  let normal = @core.Point3D::new(
+    sxy * syz - sxz * syy,
+    sxz * sxy - sxx * syz,
+    sxx * syy - sxy * sxy,
+  )
   let nlen = (normal.x * normal.x + normal.y * normal.y + normal.z * normal.z).sqrt()
   let nx = if nlen > 0.0000000001 { normal.x / nlen } else { 0.0 }
   let ny = if nlen > 0.0000000001 { normal.y / nlen } else { 0.0 }
@@ -61,7 +63,7 @@ pub fn project_parametrize(
     let dz = p.z - cz
     let u = dx * ux + dy * uy + dz * uz
     let v = dx * vaxis.x + dy * vaxis.y + dz * vaxis.z
-    result.push({ u, v })
+    result.push({ u, v, })
   }
   result
 }

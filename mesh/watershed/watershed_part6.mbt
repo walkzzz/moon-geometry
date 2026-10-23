@@ -1,8 +1,8 @@
 ///|
 /// Fill depressions (pits) in DEM to ensure drainage. / 填充 DEM 中的洼地以确保排水。
 pub fn fill_depressions(
-  cols : Int,
-  rows : Int,
+  cols : Int32,
+  rows : Int32,
   dem : Array[Double],
 ) -> Array[Double] {
   let n = cols * rows

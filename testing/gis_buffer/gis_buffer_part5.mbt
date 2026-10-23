@@ -30,7 +30,9 @@ pub fn polygon_offset_buffer(
     let ny = n1y + n2y
     let nlen = (nx * nx + ny * ny).sqrt()
     if nlen < 0.0000000001 {
-      verts.push(@core.Point2D::new(curr.x + radius * n1x, curr.y + radius * n1y))
+      verts.push(
+        @core.Point2D::new(curr.x + radius * n1x, curr.y + radius * n1y),
+      )
     } else {
       let scale = radius / nlen
       verts.push(@core.Point2D::new(curr.x + scale * nx, curr.y + scale * ny))

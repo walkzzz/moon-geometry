@@ -28,7 +28,8 @@ pub fn has_reflection_symmetry(
     let reflected = @core.Point2D::new(cx + perp_x, cy + perp_y)
     let mut found = false
     for q in poly {
-      if (q.x() - reflected.x()).abs() < eps && (q.y() - reflected.y()).abs() < eps {
+      if (q.x() - reflected.x()).abs() < eps &&
+        (q.y() - reflected.y()).abs() < eps {
         found = true
         break
       }

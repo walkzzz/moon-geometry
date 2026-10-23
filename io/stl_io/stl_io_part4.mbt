@@ -36,21 +36,24 @@ pub fn stl_parse_binary(data : Bytes) -> StlMesh {
   mesh
 }
 
-fn set_uint32_le(fa : Array[Byte], offset : Int, v : Int) -> Unit {
+///|
+fn set_uint32_le(fa : Array[Byte], offset : Int32, v : Int32) -> Unit {
   fa[offset] = (v & 255).to_byte()
   fa[offset + 1] = ((v >> 8) & 255).to_byte()
   fa[offset + 2] = ((v >> 16) & 255).to_byte()
   fa[offset + 3] = ((v >> 24) & 255).to_byte()
 }
 
-fn get_uint32_le(data : Bytes, offset : Int) -> Int {
+///|
+fn get_uint32_le(data : Bytes, offset : Int32) -> Int32 {
   data.at(offset).to_int() |
   (data.at(offset + 1).to_int() << 8) |
   (data.at(offset + 2).to_int() << 16) |
   (data.at(offset + 3).to_int() << 24)
 }
 
-fn set_float_le(fa : Array[Byte], offset : Int, v : Double) -> Int {
+///|
+fn set_float_le(fa : Array[Byte], offset : Int32, v : Double) -> Int32 {
   let bits = Float::from_double(v).reinterpret_as_int()
   fa[offset] = (bits & 255).to_byte()
   fa[offset + 1] = ((bits >> 8) & 255).to_byte()
@@ -59,7 +62,8 @@ fn set_float_le(fa : Array[Byte], offset : Int, v : Double) -> Int {
   offset + 4
 }
 
-fn get_float_le(data : Bytes, offset : Int) -> Double {
+///|
+fn get_float_le(data : Bytes, offset : Int32) -> Double {
   let b0 = data.at(offset).to_int()
   let b1 = data.at(offset + 1).to_int() << 8
   let b2 = data.at(offset + 2).to_int() << 16
@@ -68,6 +72,7 @@ fn get_float_le(data : Bytes, offset : Int) -> Double {
   Float::reinterpret_from_int(bits).to_double()
 }
 
+///|
 fn pd(s : StringView) -> Double {
   let t = s.trim()
   if t.length() == 0 {
@@ -135,6 +140,7 @@ fn pd(s : StringView) -> Double {
   }
 }
 
+///|
 fn tokens(s : StringView) -> Array[StringView] {
   let result : Array[StringView] = []
   let mut cur = ""

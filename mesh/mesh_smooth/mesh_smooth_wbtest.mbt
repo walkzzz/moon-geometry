@@ -1,3 +1,4 @@
+///|
 test "laplacian smooth" {
   let m = @mesh_data.Mesh::new()
   let v0 = m.add_vertex(@core.Point3D::new(0.0, 0.0, 0.0))
@@ -9,6 +10,7 @@ test "laplacian smooth" {
   assert_eq(@mesh_data.Mesh::face_count(smoothed), 1)
 }
 
+///|
 test "laplacian smooth iter" {
   let m = @mesh_data.Mesh::new()
   let v0 = m.add_vertex(@core.Point3D::new(0.0, 0.0, 0.0))
@@ -19,6 +21,7 @@ test "laplacian smooth iter" {
   assert_eq(@mesh_data.Mesh::vertex_count(smoothed), 3)
 }
 
+///|
 test "taubin smooth" {
   let m = @mesh_data.Mesh::new()
   let v0 = m.add_vertex(@core.Point3D::new(0.0, 0.0, 0.0))
@@ -29,6 +32,7 @@ test "taubin smooth" {
   assert_eq(@mesh_data.Mesh::vertex_count(smoothed), 3)
 }
 
+///|
 test "smooth displacement" {
   let m = @mesh_data.Mesh::new()
   ignore(m.add_vertex(@core.Point3D::new(0.0, 0.0, 0.0)))
@@ -40,6 +44,7 @@ test "smooth displacement" {
   assert_true((d - 1.0).abs() < 0.001)
 }
 
+///|
 test "laplacian preserves flat" {
   let m = @mesh_data.Mesh::new()
   let v0 = m.add_vertex(@core.Point3D::new(0.0, 0.0, 0.0))

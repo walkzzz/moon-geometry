@@ -28,9 +28,15 @@ pub fn dtw_distance(
     for j in 1..<m {
       let cost = c1[i].dist_sq(c2[j])
       let min_prev = if dp[i - 1][j] < dp[i][j - 1] {
-        if dp[i - 1][j] < dp[i - 1][j - 1] { dp[i - 1][j] } else { dp[i - 1][j - 1] }
+        if dp[i - 1][j] < dp[i - 1][j - 1] {
+          dp[i - 1][j]
+        } else {
+          dp[i - 1][j - 1]
+        }
+      } else if dp[i][j - 1] < dp[i - 1][j - 1] {
+        dp[i][j - 1]
       } else {
-        if dp[i][j - 1] < dp[i - 1][j - 1] { dp[i][j - 1] } else { dp[i - 1][j - 1] }
+        dp[i - 1][j - 1]
       }
       dp[i][j] = cost + min_prev
     }

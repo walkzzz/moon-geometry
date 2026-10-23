@@ -13,7 +13,6 @@ pub fn clip_points_by_line(
   result
 }
 
-
 ///|
 /// Area of a convex polygon given as vertex array. / 凸多边形面积。
 pub fn convex_area(vertices : Array[@core.Point2D]) -> Double {
@@ -26,5 +25,5 @@ pub fn convex_area(vertices : Array[@core.Point2D]) -> Double {
     let j = (i + 1) % n
     sum += vertices[i].x() * vertices[j].y() - vertices[j].x() * vertices[i].y()
   }
-  (sum.abs()) / 2.0
+  sum.abs() / 2.0
 }

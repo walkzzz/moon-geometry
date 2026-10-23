@@ -1,24 +1,23 @@
 ///|
 /// Get a vertex by index. / 按索引获取顶点。
-pub fn Mesh::get_vertex(m : Mesh, i : Int) -> @core.Point3D {
+pub fn Mesh::get_vertex(m : Mesh, i : Int32) -> @core.Point3D {
   m.vertices[i]
 }
 
-
 ///|
 /// Get a face by index. / 按索引获取面。
-pub fn Mesh::get_face(m : Mesh, i : Int) -> MeshFace {
+pub fn Mesh::get_face(m : Mesh, i : Int32) -> MeshFace {
   m.faces[i]
 }
 
-
 ///|
 /// Compute the bounding box of the mesh. / 计算网格的包围盒。
-pub fn Mesh::bounding_box(
-  m : Mesh,
-) -> (@core.Point3D, @core.Point3D) {
+pub fn Mesh::bounding_box(m : Mesh) -> (@core.Point3D, @core.Point3D) {
   if m.vertices.length() == 0 {
-    return (@core.Point3D::new(0.0, 0.0, 0.0), @core.Point3D::new(0.0, 0.0, 0.0))
+    return (
+      @core.Point3D::new(0.0, 0.0, 0.0),
+      @core.Point3D::new(0.0, 0.0, 0.0),
+    )
   }
   let mut min_x = m.vertices[0].x
   let mut min_y = m.vertices[0].y
@@ -34,9 +33,11 @@ pub fn Mesh::bounding_box(
     max_y = max_y.max(v.y)
     max_z = max_z.max(v.z)
   }
-  (@core.Point3D::new(min_x, min_y, min_z), @core.Point3D::new(max_x, max_y, max_z))
+  (
+    @core.Point3D::new(min_x, min_y, min_z),
+    @core.Point3D::new(max_x, max_y, max_z),
+  )
 }
-
 
 ///|
 /// Build a mesh from a tetrahedron. / 由四面体构建网格。

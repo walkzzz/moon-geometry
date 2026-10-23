@@ -8,7 +8,6 @@ pub fn polar_dual_point(p : @core.Point2D) -> @core.Point2D {
   @core.Point2D::new(p.x() / d, p.y() / d)
 }
 
-
 ///|
 /// Polar dual of a convex polygon (assuming origin inside). / 凸多边形的极对偶。
 pub fn polar_dual(poly : @core.Polygon) -> Array[@core.Point2D] {

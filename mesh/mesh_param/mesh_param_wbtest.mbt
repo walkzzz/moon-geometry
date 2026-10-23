@@ -1,3 +1,4 @@
+///|
 test "project parametrize planar" {
   let verts = [
     @core.Point3D::new(0.0, 0.0, 0.0),
@@ -9,6 +10,7 @@ test "project parametrize planar" {
   assert_eq(uv.length(), 4)
 }
 
+///|
 test "project parametrize 3d" {
   let verts = [
     @core.Point3D::new(0.0, 0.0, 0.0),
@@ -20,11 +22,13 @@ test "project parametrize 3d" {
   assert_eq(uv.length(), 4)
 }
 
+///|
 test "project parametrize empty" {
   let uv = project_parametrize([])
   assert_eq(uv.length(), 0)
 }
 
+///|
 test "harmonic parametrize" {
   let verts = [
     @core.Point3D::new(0.0, 0.0, 0.0),
@@ -39,6 +43,7 @@ test "harmonic parametrize" {
   assert_eq(result.uv.length(), 4)
 }
 
+///|
 test "harmonic boundary on circle" {
   let verts = [
     @core.Point3D::new(0.0, 0.0, 0.0),
@@ -57,6 +62,7 @@ test "harmonic boundary on circle" {
   }
 }
 
+///|
 test "area distortion" {
   let verts = [
     @core.Point3D::new(0.0, 0.0, 0.0),
@@ -64,21 +70,19 @@ test "area distortion" {
     @core.Point3D::new(0.0, 1.0, 0.0),
   ]
   let faces = [(0, 1, 2)]
-  let uv = [
-    UV::new(0.0, 0.0),
-    UV::new(1.0, 0.0),
-    UV::new(0.0, 1.0),
-  ]
+  let uv = [UV::new(0.0, 0.0), UV::new(1.0, 0.0), UV::new(0.0, 1.0)]
   let d = area_distortion(verts, faces, uv)
   assert_true(d < 0.001)
 }
 
+///|
 test "uv construct" {
   let uv = UV::new(1.0, 2.0)
   assert_eq(uv.u, 1.0)
   assert_eq(uv.v, 2.0)
 }
 
+///|
 test "harmonic empty" {
   let result = harmonic_parametrize([], [], [])
   assert_false(result.success)

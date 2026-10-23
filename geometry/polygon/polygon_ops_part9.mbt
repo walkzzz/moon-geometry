@@ -3,8 +3,8 @@
 /// Douglas-Peucker 递归核心。
 fn dp_recursive(
   pts : Array[@core.Point2D],
-  start : Int,
-  end : Int,
+  start : Int32,
+  end : Int32,
   epsilon : Double,
   keep : Array[Bool],
 ) -> Unit {

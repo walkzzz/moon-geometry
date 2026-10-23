@@ -1,4 +1,5 @@
-///| Random triangle inequality check | 随机三角不等式检查
+///|
+/// Random triangle inequality check | 随机三角不等式检查
 test "ai: random triangle inequality" {
   let mut seed = 42
   for _ in 0..<50 {
@@ -24,8 +25,8 @@ test "ai: random triangle inequality" {
   }
 }
 
-
-///| Random distance symmetry check | 随机距离对称性检查
+///|
+/// Random distance symmetry check | 随机距离对称性检查
 test "ai: random distance symmetry" {
   let mut seed = 123
   for _ in 0..<50 {
@@ -43,8 +44,8 @@ test "ai: random distance symmetry" {
   }
 }
 
-
-///| Random rotation preserves distance | 随机旋转保持距离
+///|
+/// Random rotation preserves distance | 随机旋转保持距离
 test "ai: random rotation preserves distance" {
   let mut seed = 999
   for _ in 0..<30 {

@@ -1,10 +1,15 @@
+///|
 test "ray eval" {
-  let r = Ray3::new(@core.Point3D::new(0.0, 0.0, 0.0), @core.Point3D::new(1.0, 0.0, 0.0))
+  let r = Ray3::new(
+    @core.Point3D::new(0.0, 0.0, 0.0),
+    @core.Point3D::new(1.0, 0.0, 0.0),
+  )
   let p = ray_eval(r, 5.0)
   assert_true(@core.approx_eq(p.x, 5.0, 0.000001))
   assert_true(@core.approx_eq(p.y, 0.0, 0.000001))
 }
 
+///|
 test "ray triangle hit" {
   let r = Ray3::new(
     @core.Point3D::new(0.0, 0.0, -1.0),
@@ -19,6 +24,7 @@ test "ray triangle hit" {
   }
 }
 
+///|
 test "ray triangle miss" {
   let r = Ray3::new(
     @core.Point3D::new(5.0, 5.0, -1.0),
@@ -33,6 +39,7 @@ test "ray triangle miss" {
   }
 }
 
+///|
 test "ray sphere hit" {
   let r = Ray3::new(
     @core.Point3D::new(0.0, 0.0, -5.0),
@@ -44,6 +51,7 @@ test "ray sphere hit" {
   }
 }
 
+///|
 test "ray sphere miss" {
   let r = Ray3::new(
     @core.Point3D::new(5.0, 0.0, -5.0),
@@ -55,12 +63,14 @@ test "ray sphere miss" {
   }
 }
 
+///|
 test "ray plane hit" {
   let r = Ray3::new(
     @core.Point3D::new(0.0, 0.0, -1.0),
     @core.Point3D::new(0.0, 0.0, 1.0),
   )
-  match ray_plane_intersect(
+  match
+    ray_plane_intersect(
       r,
       @core.Point3D::new(0.0, 0.0, 0.0),
       @core.Point3D::new(0.0, 0.0, 1.0),
@@ -70,12 +80,14 @@ test "ray plane hit" {
   }
 }
 
+///|
 test "ray plane parallel" {
   let r = Ray3::new(
     @core.Point3D::new(0.0, 0.0, 1.0),
     @core.Point3D::new(1.0, 0.0, 0.0),
   )
-  match ray_plane_intersect(
+  match
+    ray_plane_intersect(
       r,
       @core.Point3D::new(0.0, 0.0, 0.0),
       @core.Point3D::new(0.0, 0.0, 1.0),
@@ -85,6 +97,7 @@ test "ray plane parallel" {
   }
 }
 
+///|
 test "point in shadow" {
   let tri = (
     @core.Point3D::new(-1.0, -1.0, 0.0),
@@ -96,6 +109,7 @@ test "point in shadow" {
   assert_true(point_in_shadow(point, light, [tri]))
 }
 
+///|
 test "point not in shadow" {
   let tri = (
     @core.Point3D::new(-1.0, -1.0, 5.0),
@@ -107,6 +121,7 @@ test "point not in shadow" {
   assert_false(point_in_shadow(point, light, [tri]))
 }
 
+///|
 test "ray nearest triangle" {
   let r = Ray3::new(
     @core.Point3D::new(0.0, 0.0, -5.0),

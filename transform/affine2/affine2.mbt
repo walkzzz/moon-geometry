@@ -12,31 +12,34 @@ pub struct Affine2 {
 ///|
 /// Create identity affine transformation. / 创建单位仿射变换。
 pub fn Affine2::identity() -> Affine2 {
-  { a: 1.0, b: 0.0, tx: 0.0, c: 0.0, d: 1.0, ty: 0.0 }
+  { a: 1.0, b: 0.0, tx: 0.0, c: 0.0, d: 1.0, ty: 0.0, }
 }
 
 ///|
 /// Create affine from translation. / 由平移创建仿射变换。
 pub fn Affine2::translation(tx : Double, ty : Double) -> Affine2 {
-  { a: 1.0, b: 0.0, tx, c: 0.0, d: 1.0, ty }
+  { a: 1.0, b: 0.0, tx, c: 0.0, d: 1.0, ty, }
 }
 
 ///|
 /// Create affine from scaling. / 由缩放创建仿射变换。
 pub fn Affine2::scale(sx : Double, sy : Double) -> Affine2 {
-  { a: sx, b: 0.0, tx: 0.0, c: 0.0, d: sy, ty: 0.0 }
+  { a: sx, b: 0.0, tx: 0.0, c: 0.0, d: sy, ty: 0.0, }
 }
 
 ///|
 /// Create affine from shear. / 由剪切创建仿射变换。
 pub fn Affine2::shear(shx : Double, shy : Double) -> Affine2 {
-  { a: 1.0, b: shx, tx: 0.0, c: shy, d: 1.0, ty: 0.0 }
+  { a: 1.0, b: shx, tx: 0.0, c: shy, d: 1.0, ty: 0.0, }
 }
 
 ///|
 /// Apply affine to a point. / 将仿射变换应用于点。
-pub impl @core.PointTransform for Affine2 with apply(m, p) {
-  @core.Point2D::new(m.a * p.x() + m.b * p.y() + m.tx, m.c * p.x() + m.d * p.y() + m.ty)
+pub impl @core.PointTransform for Affine2 with fn apply(m, p) {
+  @core.Point2D::new(
+    m.a * p.x() + m.b * p.y() + m.tx,
+    m.c * p.x() + m.d * p.y() + m.ty,
+  )
 }
 
 ///|
@@ -44,7 +47,7 @@ pub extend Affine2 with @core.PointTransform::{apply, apply_batch}
 
 ///|
 /// Compose two affine transformations (self after other). / 组合两个仿射变换（先 other 后 self）。
-pub impl @core.Composable for Affine2 with compose(self, other) {
+pub impl @core.Composable for Affine2 with fn compose(self, other) {
   {
     a: self.a * other.a + self.b * other.c,
     b: self.a * other.b + self.b * other.d,
@@ -85,4 +88,3 @@ pub fn Affine2::inverse(m : Affine2) -> Affine2? {
     ty: -(inv_c * m.tx + inv_d * m.ty),
   })
 }
-

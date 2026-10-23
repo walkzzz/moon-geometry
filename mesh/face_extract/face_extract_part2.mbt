@@ -2,10 +2,10 @@
 /// Extract faces from a set of edges forming a planar subdivision. / 从构成平面细分的边集提取面。
 pub fn extract_faces(
   vertices : Array[@core.Point2D],
-  edges : Array[(Int, Int)],
+  edges : Array[(Int32, Int32)],
 ) -> Array[Face] {
   let n = vertices.length()
-  let adj : Array[Array[Int]] = Array::make(n, [])
+  let adj : Array[Array[Int32]] = Array::make(n, [])
   for e in edges {
     adj[e.0].push(e.1)
     adj[e.1].push(e.0)
@@ -22,17 +22,18 @@ pub fn extract_faces(
       }
       let face_boundary = trace_face(v, ei, adj, visited, vertices)
       if face_boundary.length() >= 3 {
-        faces.push({ boundary: face_boundary, holes: [] })
+        faces.push({ boundary: face_boundary, holes: [], })
       }
     }
   }
   faces
 }
 
+///|
 fn trace_face(
-  start_v : Int,
-  start_ei : Int,
-  adj : Array[Array[Int]],
+  start_v : Int32,
+  start_ei : Int32,
+  adj : Array[Array[Int32]],
   visited : Array[Array[Bool]],
   vertices : Array[@core.Point2D],
 ) -> Array[@core.Point2D] {

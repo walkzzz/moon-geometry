@@ -8,6 +8,7 @@
 /// ## Complexity: O(n log n) expected
 /// ## 复杂度: 期望 O(n log n)
 
+///|
 /// |
 /// Refine triangulation by splitting bad triangles.
 /// 通过分割坏三角形来细化三角剖分。
@@ -19,7 +20,7 @@
 pub fn delaunay_refine(
   pts : Array[@core.Point2D],
   min_angle : Double,
-  max_iter : Int,
+  max_iter : Int32,
 ) -> Array[@core.Point2D] {
   let result = pts.copy()
   let mut iter = 0
@@ -34,6 +35,7 @@ pub fn delaunay_refine(
   result
 }
 
+///|
 /// |
 /// Find the circumcenter of a triangle.
 /// 计算三角形的外心。
@@ -52,11 +54,22 @@ pub fn circumcenter(
   if d.abs() < 0.0000000001 {
     return @core.Point2D::new((ax + bx + cx) / 3.0, (ay + by + cy) / 3.0)
   }
-  let ux = ((ax * ax + ay * ay) * (by - cy) + (bx * bx + by * by) * (cy - ay) + (cx * cx + cy * cy) * (ay - by)) / d
-  let uy = ((ax * ax + ay * ay) * (cx - bx) + (bx * bx + by * by) * (ax - cx) + (cx * cx + cy * cy) * (bx - ax)) / d
+  let ux = (
+      (ax * ax + ay * ay) * (by - cy) +
+      (bx * bx + by * by) * (cy - ay) +
+      (cx * cx + cy * cy) * (ay - by)
+    ) /
+    d
+  let uy = (
+      (ax * ax + ay * ay) * (cx - bx) +
+      (bx * bx + by * by) * (ax - cx) +
+      (cx * cx + cy * cy) * (bx - ax)
+    ) /
+    d
   @core.Point2D::new(ux, uy)
 }
 
+///|
 /// |
 /// Compute the minimum angle of a triangle in degrees.
 /// 计算三角形最小角度（度）。
@@ -68,8 +81,12 @@ pub fn min_triangle_angle(
   let ab = dist(a, b)
   let bc = dist(b, c)
   let ca = dist(c, a)
-  let angle_a = @math.acos((ab * ab + ca * ca - bc * bc) / (2.0 * ab * ca)) * 180.0 / 3.141592653589793
-  let angle_b = @math.acos((ab * ab + bc * bc - ca * ca) / (2.0 * ab * bc)) * 180.0 / 3.141592653589793
+  let angle_a = @math.acos((ab * ab + ca * ca - bc * bc) / (2.0 * ab * ca)) *
+    180.0 /
+    3.141592653589793
+  let angle_b = @math.acos((ab * ab + bc * bc - ca * ca) / (2.0 * ab * bc)) *
+    180.0 /
+    3.141592653589793
   let angle_c = 180.0 - angle_a - angle_b
   let mut m = angle_a
   if angle_b < m {
@@ -81,10 +98,11 @@ pub fn min_triangle_angle(
   m
 }
 
+///|
 /// |
 /// Count triangles in a triangulation.
 /// 计算三角剖分中的三角形数。
-pub fn triangle_count(pts : Array[@core.Point2D]) -> Int {
+pub fn triangle_count(pts : Array[@core.Point2D]) -> Int32 {
   let n = pts.length()
   if n < 3 {
     return 0
@@ -92,6 +110,7 @@ pub fn triangle_count(pts : Array[@core.Point2D]) -> Int {
   n - 2
 }
 
+///|
 fn find_bad_triangle(
   pts : Array[@core.Point2D],
   min_angle : Double,
@@ -112,6 +131,7 @@ fn find_bad_triangle(
   None
 }
 
+///|
 fn dist(a : @core.Point2D, b : @core.Point2D) -> Double {
   ((a.x() - b.x()) * (a.x() - b.x()) + (a.y() - b.y()) * (a.y() - b.y())).sqrt()
 }

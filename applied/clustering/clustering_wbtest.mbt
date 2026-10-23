@@ -1,22 +1,33 @@
+///|
 test "kmeans basic" {
   let pts = [
-    (0.0, 0.0), (0.5, 0.0), (0.0, 0.5),
-    (5.0, 5.0), (5.5, 5.0), (5.0, 5.5),
+    (0.0, 0.0),
+    (0.5, 0.0),
+    (0.0, 0.5),
+    (5.0, 5.0),
+    (5.5, 5.0),
+    (5.0, 5.5),
   ]
   let labels = kmeans(pts, 2, 100)
   assert_eq(labels.length(), 6)
   assert_true(labels[0] != labels[3])
 }
 
+///|
 test "dbscan basic" {
   let pts = [
-    (0.0, 0.0), (0.5, 0.0), (0.0, 0.5),
-    (5.0, 5.0), (5.5, 5.0), (5.0, 5.5),
+    (0.0, 0.0),
+    (0.5, 0.0),
+    (0.0, 0.5),
+    (5.0, 5.0),
+    (5.5, 5.0),
+    (5.0, 5.5),
   ]
   let labels = dbscan(pts, 1.0, 2)
   assert_eq(labels.length(), 6)
 }
 
+///|
 test "cluster_centroids basic" {
   let pts = [(0.0, 0.0), (2.0, 0.0), (10.0, 10.0), (12.0, 10.0)]
   let labels = [0, 0, 1, 1]

@@ -8,6 +8,7 @@
 /// ## Complexity: O(n³) where n = total vertices
 /// ## 复杂度: O(n³)，n = 总顶点数
 
+///|
 /// |
 /// Build visibility graph from obstacle vertices.
 /// 从障碍物顶点构建可见性图。
@@ -23,7 +24,7 @@ pub fn build_visibility_graph(
   obstacles : Array[Array[@core.Point2D]],
   start : @core.Point2D,
   goal : @core.Point2D,
-) -> Array[Array[(Int, Double)]] {
+) -> Array[Array[(Int32, Double)]] {
   let vertices : Array[@core.Point2D] = [start, goal]
   for i in 0..<obstacles.length() {
     for j in 0..<obstacles[i].length() {
@@ -31,7 +32,7 @@ pub fn build_visibility_graph(
     }
   }
   let n = vertices.length()
-  let adj : Array[Array[(Int, Double)]] = []
+  let adj : Array[Array[(Int32, Double)]] = []
   for _ in 0..<n {
     adj.push([])
   }
@@ -47,6 +48,7 @@ pub fn build_visibility_graph(
   adj
 }
 
+///|
 /// |
 /// Get all vertices of the visibility graph.
 /// 获取可见性图的所有顶点。
@@ -64,6 +66,7 @@ pub fn visibility_vertices(
   vertices
 }
 
+///|
 /// |
 /// Count edges in the visibility graph.
 /// 计算可见性图中的边数。
@@ -71,7 +74,7 @@ pub fn visibility_edge_count(
   obstacles : Array[Array[@core.Point2D]],
   start : @core.Point2D,
   goal : @core.Point2D,
-) -> Int {
+) -> Int32 {
   let adj = build_visibility_graph(obstacles, start, goal)
   let mut count = 0
   for i in 0..<adj.length() {
@@ -80,11 +83,12 @@ pub fn visibility_edge_count(
   count / 2
 }
 
+///|
 fn is_visible(
   vertices : Array[@core.Point2D],
   obstacles : Array[Array[@core.Point2D]],
-  i : Int,
-  j : Int,
+  i : Int32,
+  j : Int32,
 ) -> Bool {
   let a = vertices[i]
   let b = vertices[j]
@@ -102,10 +106,12 @@ fn is_visible(
   true
 }
 
+///|
 fn dist(a : @core.Point2D, b : @core.Point2D) -> Double {
   ((a.x() - b.x()) * (a.x() - b.x()) + (a.y() - b.y()) * (a.y() - b.y())).sqrt()
 }
 
+///|
 fn segments_cross(
   a1 : @core.Point2D,
   a2 : @core.Point2D,
@@ -117,6 +123,5 @@ fn segments_cross(
   let d3 = @core.turn(a1, a2, b1)
   let d4 = @core.turn(a1, a2, b2)
   ((d1 > 0.0 && d2 < 0.0) || (d1 < 0.0 && d2 > 0.0)) &&
-    ((d3 > 0.0 && d4 < 0.0) || (d3 < 0.0 && d4 > 0.0))
+  ((d3 > 0.0 && d4 < 0.0) || (d3 < 0.0 && d4 > 0.0))
 }
-

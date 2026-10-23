@@ -4,7 +4,7 @@
 fn estimate_rigid(
   src : Array[@core.Point2D],
   tgt : Array[@core.Point2D],
-  correspondences : Array[Int],
+  correspondences : Array[Int32],
 ) -> (Double, Double, Double) {
   let n = src.length()
   let mut sx = 0.0

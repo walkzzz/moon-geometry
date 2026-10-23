@@ -8,6 +8,7 @@
 /// ## Complexity: O(p²) per basis evaluation
 /// ## 复杂度: 每次基函数求值 O(p²)
 
+///|
 /// |
 /// Compute B-spline basis function N(i, p, u) using Cox-de Boor recursion.
 /// 使用 Cox-de Boor 递推计算 B 样条基函数 N(i, p, u)。
@@ -18,8 +19,8 @@
 /// - `u`: parameter / 参数
 /// - `knots`: knot vector / 节点向量
 pub fn bspline_basis(
-  i : Int,
-  p : Int,
+  i : Int32,
+  p : Int32,
   u : Double,
   knots : Array[Double],
 ) -> Double {
@@ -36,11 +37,14 @@ pub fn bspline_basis(
   }
   let denom2 = knots[i + p + 1] - knots[i + 1]
   if denom2.abs() > 0.0000000001 {
-    result += (knots[i + p + 1] - u) / denom2 * bspline_basis(i, p - 1, u, knots)
+    result += (knots[i + p + 1] - u) /
+      denom2 *
+      bspline_basis(i, p - 1, u, knots)
   }
   result
 }
 
+///|
 /// |
 /// Evaluate a B-spline curve at parameter u.
 /// 在参数 u 处求值 B 样条曲线。
@@ -52,7 +56,7 @@ pub fn bspline_basis(
 /// - `knots`: knot vector / 节点向量
 pub fn bspline_curve_point(
   control_pts : Array[(Double, Double, Double)],
-  degree : Int,
+  degree : Int32,
   u : Double,
   knots : Array[Double],
 ) -> (Double, Double, Double) {
@@ -70,6 +74,7 @@ pub fn bspline_curve_point(
   (x, y, z)
 }
 
+///|
 /// |
 /// Evaluate a NURBS curve at parameter u (rational B-spline).
 /// 在参数 u 处求值 NURBS 曲线（有理 B 样条）。
@@ -83,7 +88,7 @@ pub fn bspline_curve_point(
 pub fn nurbs_curve_point(
   control_pts : Array[(Double, Double, Double)],
   weights : Array[Double],
-  degree : Int,
+  degree : Int32,
   u : Double,
   knots : Array[Double],
 ) -> (Double, Double, Double) {
@@ -108,6 +113,7 @@ pub fn nurbs_curve_point(
   (nx / dw, ny / dw, nz / dw)
 }
 
+///|
 /// |
 /// Evaluate a NURBS surface at (u, v).
 /// 在 (u, v) 处求值 NURBS 曲面。
@@ -121,8 +127,8 @@ pub fn nurbs_curve_point(
 pub fn nurbs_surface_point(
   control_net : Array[Array[(Double, Double, Double)]],
   weights : Array[Array[Double]],
-  degree_u : Int,
-  degree_v : Int,
+  degree_u : Int32,
+  degree_v : Int32,
   u : Double,
   v : Double,
   knots_u : Array[Double],
@@ -153,6 +159,7 @@ pub fn nurbs_surface_point(
   (sx / sw, sy / sw, sz / sw)
 }
 
+///|
 /// |
 /// Find the knot span index for parameter u.
 /// 查找参数 u 所在的节点区间索引。
@@ -163,11 +170,11 @@ pub fn nurbs_surface_point(
 /// - `u`: parameter / 参数
 /// - `knots`: knot vector / 节点向量
 pub fn find_span(
-  n : Int,
-  p : Int,
+  n : Int32,
+  p : Int32,
   u : Double,
   knots : Array[Double],
-) -> Int {
+) -> Int32 {
   if u >= knots[n + 1] {
     return n
   }
@@ -188,6 +195,7 @@ pub fn find_span(
   mid
 }
 
+///|
 /// |
 /// Generate uniform clamped knot vector.
 /// 生成均匀钳制节点向量。
@@ -195,7 +203,7 @@ pub fn find_span(
 /// # Arguments / 参数
 /// - `num_ctrl`: number of control points / 控制点数
 /// - `degree`: spline degree / 样条次数
-pub fn uniform_knots(num_ctrl : Int, degree : Int) -> Array[Double] {
+pub fn uniform_knots(num_ctrl : Int32, degree : Int32) -> Array[Double] {
   let n = num_ctrl + degree + 1
   let knots : Array[Double] = []
   for i in 0..<n {

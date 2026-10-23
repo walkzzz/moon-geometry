@@ -1,3 +1,4 @@
+///|
 test "gjk_collide_polygons overlapping" {
   let poly1 = [
     @core.Point2D::new(0.0, 0.0),
@@ -15,6 +16,7 @@ test "gjk_collide_polygons overlapping" {
   assert_true(result.collides)
 }
 
+///|
 test "gjk_collide_polygons disjoint" {
   let poly1 = [
     @core.Point2D::new(0.0, 0.0),
@@ -32,6 +34,7 @@ test "gjk_collide_polygons disjoint" {
   assert_false(result.collides)
 }
 
+///|
 test "gjk_collide_circles overlapping" {
   let c1 = @core.Point2D::new(0.0, 0.0)
   let c2 = @core.Point2D::new(1.0, 0.0)
@@ -39,6 +42,7 @@ test "gjk_collide_circles overlapping" {
   assert_true(result.collides)
 }
 
+///|
 test "gjk_collide_circles disjoint" {
   let c1 = @core.Point2D::new(0.0, 0.0)
   let c2 = @core.Point2D::new(5.0, 0.0)
@@ -46,6 +50,7 @@ test "gjk_collide_circles disjoint" {
   assert_false(result.collides)
 }
 
+///|
 test "gjk_collide_polygon_circle overlapping" {
   let poly = [
     @core.Point2D::new(0.0, 0.0),
@@ -58,6 +63,7 @@ test "gjk_collide_polygon_circle overlapping" {
   assert_true(result.collides)
 }
 
+///|
 test "gjk_collide_polygon_circle disjoint" {
   let poly = [
     @core.Point2D::new(0.0, 0.0),
@@ -70,6 +76,7 @@ test "gjk_collide_polygon_circle disjoint" {
   assert_false(result.collides)
 }
 
+///|
 test "gjk_point_in_polygon inside" {
   let poly = [
     @core.Point2D::new(0.0, 0.0),
@@ -82,6 +89,7 @@ test "gjk_point_in_polygon inside" {
   assert_true(result.collides)
 }
 
+///|
 test "gjk_point_in_polygon outside" {
   let poly = [
     @core.Point2D::new(0.0, 0.0),
@@ -94,6 +102,7 @@ test "gjk_point_in_polygon outside" {
   assert_false(result.collides)
 }
 
+///|
 test "gjk_collide_polygons touching" {
   let poly1 = [
     @core.Point2D::new(0.0, 0.0),
@@ -111,12 +120,14 @@ test "gjk_collide_polygons touching" {
   assert_true(result.collides)
 }
 
+///|
 test "gjk_collide_circles same center" {
   let c = @core.Point2D::new(0.0, 0.0)
   let result = gjk_collide_circles(c, 1.0, c, 1.0)
   assert_true(result.collides)
 }
 
+///|
 test "polygon_support basic" {
   let poly = [
     @core.Point2D::new(0.0, 0.0),

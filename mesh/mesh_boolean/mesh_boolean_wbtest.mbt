@@ -1,4 +1,5 @@
-fn make_cube() -> (Array[@core.Point3D], Array[(Int, Int, Int)]) {
+///|
+fn make_cube() -> (Array[@core.Point3D], Array[(Int32, Int32, Int32)]) {
   let verts = [
     @core.Point3D::new(0.0, 0.0, 0.0),
     @core.Point3D::new(1.0, 0.0, 0.0),
@@ -10,17 +11,24 @@ fn make_cube() -> (Array[@core.Point3D], Array[(Int, Int, Int)]) {
     @core.Point3D::new(0.0, 1.0, 1.0),
   ]
   let faces = [
-    (0, 2, 1), (0, 3, 2),
-    (4, 5, 6), (4, 6, 7),
-    (0, 1, 5), (0, 5, 4),
-    (1, 2, 6), (1, 6, 5),
-    (2, 3, 7), (2, 7, 6),
-    (3, 0, 4), (3, 4, 7),
+    (0, 2, 1),
+    (0, 3, 2),
+    (4, 5, 6),
+    (4, 6, 7),
+    (0, 1, 5),
+    (0, 5, 4),
+    (1, 2, 6),
+    (1, 6, 5),
+    (2, 3, 7),
+    (2, 7, 6),
+    (3, 0, 4),
+    (3, 4, 7),
   ]
   (verts, faces)
 }
 
-fn make_cube2() -> (Array[@core.Point3D], Array[(Int, Int, Int)]) {
+///|
+fn make_cube2() -> (Array[@core.Point3D], Array[(Int32, Int32, Int32)]) {
   let verts = [
     @core.Point3D::new(0.5, 0.5, 0.5),
     @core.Point3D::new(1.5, 0.5, 0.5),
@@ -32,16 +40,23 @@ fn make_cube2() -> (Array[@core.Point3D], Array[(Int, Int, Int)]) {
     @core.Point3D::new(0.5, 1.5, 1.5),
   ]
   let faces = [
-    (0, 2, 1), (0, 3, 2),
-    (4, 5, 6), (4, 6, 7),
-    (0, 1, 5), (0, 5, 4),
-    (1, 2, 6), (1, 6, 5),
-    (2, 3, 7), (2, 7, 6),
-    (3, 0, 4), (3, 4, 7),
+    (0, 2, 1),
+    (0, 3, 2),
+    (4, 5, 6),
+    (4, 6, 7),
+    (0, 1, 5),
+    (0, 5, 4),
+    (1, 2, 6),
+    (1, 6, 5),
+    (2, 3, 7),
+    (2, 7, 6),
+    (3, 0, 4),
+    (3, 4, 7),
   ]
   (verts, faces)
 }
 
+///|
 test "mesh union" {
   let (va, fa) = make_cube()
   let (vb, fb) = make_cube2()
@@ -50,6 +65,7 @@ test "mesh union" {
   assert_true(result.faces.length() > 0)
 }
 
+///|
 test "mesh intersection" {
   let (va, fa) = make_cube()
   let (vb, fb) = make_cube2()
@@ -57,6 +73,7 @@ test "mesh intersection" {
   assert_true(result.faces.length() > 0)
 }
 
+///|
 test "mesh difference" {
   let (va, fa) = make_cube()
   let (vb, fb) = make_cube2()
@@ -64,7 +81,8 @@ test "mesh difference" {
   assert_true(result.faces.length() > 0)
 }
 
-fn make_tet_a() -> (Array[@core.Point3D], Array[(Int, Int, Int)]) {
+///|
+fn make_tet_a() -> (Array[@core.Point3D], Array[(Int32, Int32, Int32)]) {
   let v = [
     @core.Point3D::new(0.0, 0.0, 0.0),
     @core.Point3D::new(1.0, 0.0, 0.0),
@@ -75,7 +93,8 @@ fn make_tet_a() -> (Array[@core.Point3D], Array[(Int, Int, Int)]) {
   (v, f)
 }
 
-fn make_tet_b() -> (Array[@core.Point3D], Array[(Int, Int, Int)]) {
+///|
+fn make_tet_b() -> (Array[@core.Point3D], Array[(Int32, Int32, Int32)]) {
   let v = [
     @core.Point3D::new(10.0, 10.0, 10.0),
     @core.Point3D::new(11.0, 10.0, 10.0),
@@ -86,6 +105,7 @@ fn make_tet_b() -> (Array[@core.Point3D], Array[(Int, Int, Int)]) {
   (v, f)
 }
 
+///|
 test "mesh union disjoint" {
   let (va, fa) = make_tet_a()
   let (vb, fb) = make_tet_b()
@@ -94,6 +114,7 @@ test "mesh union disjoint" {
   assert_eq(result.faces.length(), 8)
 }
 
+///|
 test "mesh difference disjoint" {
   let (va, fa) = make_tet_a()
   let (vb, fb) = make_tet_b()
@@ -101,6 +122,7 @@ test "mesh difference disjoint" {
   assert_eq(result.faces.length(), 4)
 }
 
+///|
 test "mesh bool result construct" {
   let r = MeshBoolResult::new([], [])
   assert_eq(r.vertices.length(), 0)

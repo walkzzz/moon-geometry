@@ -5,7 +5,6 @@
 /// Trace an implicit curve f(x, y) = 0 using a predictor-corrector (continuation) method.
 /// 使用预测-校正（延拓）方法追踪隐式曲线 f(x, y) = 0。
 
-
 ///|
 /// Trace an implicit curve starting from a seed point.
 /// Uses tangent prediction followed by Newton correction along the normal.
@@ -24,7 +23,7 @@ pub fn trace_curve(
   fy : (Double, Double) -> Double,
   seed : @core.Point2D,
   step : Double,
-  n_steps : Int,
+  n_steps : Int32,
 ) -> Array[@core.Point2D] {
   let points : Array[@core.Point2D] = []
   let mut p = newton_correct(f, fx, fy, seed, 20)

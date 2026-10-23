@@ -1,18 +1,19 @@
 ///|
 /// Halton sequence sampling (low-discrepancy). / Halton 序列采样（低差异）。
 pub fn halton_sample(
-  base_x : Int,
-  base_y : Int,
-  n : Int,
+  base_x : Int32,
+  base_y : Int32,
+  n : Int32,
 ) -> Array[@core.Point2D] {
   let result : Array[@core.Point2D] = []
-  for i in 1..=n {
+  for i in 1..<=n {
     result.push(@core.Point2D::new(halton(i, base_x), halton(i, base_y)))
   }
   result
 }
 
-fn halton(index : Int, base : Int) -> Double {
+///|
+fn halton(index : Int32, base : Int32) -> Double {
   let mut f = 1.0
   let mut r = 0.0
   let mut i = index

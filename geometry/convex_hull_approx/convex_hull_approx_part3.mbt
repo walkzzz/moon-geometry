@@ -2,7 +2,7 @@
 /// Quick hull approximation error bound. / 快速凸包近似误差界。
 pub fn approx_error_bound(
   points : Array[@core.Point2D],
-  grid_size : Int,
+  grid_size : Int32,
 ) -> Double {
   if points.length() == 0 {
     return 0.0

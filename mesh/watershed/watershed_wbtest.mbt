@@ -1,3 +1,4 @@
+///|
 test "marker watershed basic" {
   let cols = 3
   let rows = 3
@@ -8,6 +9,7 @@ test "marker watershed basic" {
   assert_eq(WatershedResult::rows(result), 3)
 }
 
+///|
 test "marker watershed all labeled" {
   let cols = 2
   let rows = 2
@@ -20,6 +22,7 @@ test "marker watershed all labeled" {
   assert_eq(WatershedResult::get(result, 1, 1), 4)
 }
 
+///|
 test "marker watershed single marker" {
   let cols = 3
   let rows = 3
@@ -33,6 +36,7 @@ test "marker watershed single marker" {
   }
 }
 
+///|
 test "marker watershed two markers" {
   let cols = 4
   let rows = 1
@@ -43,6 +47,7 @@ test "marker watershed two markers" {
   assert_eq(WatershedResult::get(result, 3, 0), 2)
 }
 
+///|
 test "d8 flow directions" {
   let cols = 3
   let rows = 3
@@ -53,6 +58,7 @@ test "d8 flow directions" {
   assert_eq(dirs[4], -1)
 }
 
+///|
 test "basin cell counts" {
   let cols = 2
   let rows = 2
@@ -63,6 +69,7 @@ test "basin cell counts" {
   assert_eq(counts.length(), 2)
 }
 
+///|
 test "fill depressions no change" {
   let cols = 3
   let rows = 1
@@ -73,6 +80,7 @@ test "fill depressions no change" {
   assert_true((filled[2] - 3.0).abs() <= 0.001)
 }
 
+///|
 test "fill depressions pit" {
   let cols = 3
   let rows = 1
@@ -81,11 +89,13 @@ test "fill depressions pit" {
   assert_true(filled[1] >= filled[0] || filled[1] >= filled[2])
 }
 
+///|
 test "watershed result out of bounds" {
   let result = marker_watershed(2, 2, [1.0, 2.0, 3.0, 4.0], [0, 0, 0, 0])
   assert_eq(WatershedResult::get(result, 5, 5), 0)
 }
 
+///|
 test "d8 flow directions edge" {
   let cols = 2
   let rows = 2

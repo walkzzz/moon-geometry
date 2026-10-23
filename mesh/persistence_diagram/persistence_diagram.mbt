@@ -12,7 +12,10 @@ pub struct PersistencePoint {
 }
 
 ///|
-pub fn PersistencePoint::new(birth : Double, death : Double) -> PersistencePoint {
+pub fn PersistencePoint::new(
+  birth : Double,
+  death : Double,
+) -> PersistencePoint {
   { birth, death, }
 }
 
@@ -27,7 +30,7 @@ pub fn is_essential(p : PersistencePoint) -> Bool {
 }
 
 ///|
-pub fn diagram_dimension(diagram : Array[PersistencePoint]) -> Int {
+pub fn diagram_dimension(diagram : Array[PersistencePoint]) -> Int32 {
   diagram.length()
 }
 
@@ -36,7 +39,9 @@ pub fn max_persistence(diagram : Array[PersistencePoint]) -> Double {
   let mut max_p = 0.0
   for i in 0..<diagram.length() {
     let p = persistence(diagram[i])
-    if p > max_p { max_p = p }
+    if p > max_p {
+      max_p = p
+    }
   }
   max_p
 }

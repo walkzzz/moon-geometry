@@ -3,4 +3,3 @@
 pub fn spline_length(points : Array[@core.Point2D]) -> Double {
   @core.polyline_length(points)
 }
-

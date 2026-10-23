@@ -6,23 +6,20 @@ pub(all) enum DxfEntity {
   DxfPolyline(Array[@core.Point2D])
 }
 
-
 ///|
 /// DXF document: list of entities. / DXF 文档：实体列表。
 pub struct DxfDocument {
   entities : Array[DxfEntity]
 }
 
-
 ///|
 /// Create an empty DXF document. / 创建空 DXF 文档。
 pub fn DxfDocument::new() -> DxfDocument {
-  { entities: [] }
+  { entities: [], }
 }
-
 
 ///|
 /// Number of entities. / 实体数量。
-pub fn DxfDocument::entity_count(d : DxfDocument) -> Int {
+pub fn DxfDocument::entity_count(d : DxfDocument) -> Int32 {
   d.entities.length()
 }

@@ -1,3 +1,4 @@
+///|
 test "ball_tree build and count" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -10,6 +11,7 @@ test "ball_tree build and count" {
   assert_eq(ball_tree_count(tree), 5)
 }
 
+///|
 test "ball_tree knn" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -23,16 +25,19 @@ test "ball_tree knn" {
   assert_eq(nn.length(), 2)
 }
 
+///|
 test "ball_tree empty" {
   let tree = ball_tree_build([])
   assert_eq(ball_tree_count(tree), 0)
 }
 
+///|
 test "ball_tree single point" {
   let tree = ball_tree_build([@core.Point2D::new(1.0, 1.0)])
   assert_eq(ball_tree_count(tree), 1)
 }
 
+///|
 test "ball_tree many points" {
   let pts : Array[@core.Point2D] = []
   for i in 0..<20 {

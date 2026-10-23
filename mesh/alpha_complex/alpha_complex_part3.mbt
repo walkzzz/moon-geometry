@@ -1,8 +1,6 @@
 ///|
 /// Compute 2D Delaunay triangulation (Bowyer-Watson). / 计算二维 Delaunay 三角剖分（Bowyer-Watson 算法）。
-fn delaunay_2d(
-  points : Array[@core.Point2D],
-) -> Array[(Int, Int, Int)] {
+fn delaunay_2d(points : Array[@core.Point2D]) -> Array[(Int32, Int32, Int32)] {
   let n = points.length()
   if n < 3 {
     return []
@@ -27,11 +25,7 @@ fn delaunay_2d(
   }
   let dx = max_x - min_x
   let dy = max_y - min_y
-  let dmax = if dx > dy {
-    dx
-  } else {
-    dy
-  }
+  let dmax = if dx > dy { dx } else { dy }
   if dmax < 0.0000000001 {
     return []
   }
@@ -42,11 +36,11 @@ fn delaunay_2d(
   all_pts.push(@core.Point2D::new(mid_x - s, mid_y - s))
   all_pts.push(@core.Point2D::new(mid_x + s, mid_y - s))
   all_pts.push(@core.Point2D::new(mid_x, mid_y + s))
-  let tris : Array[(Int, Int, Int)] = [(n, n + 1, n + 2)]
+  let tris : Array[(Int32, Int32, Int32)] = [(n, n + 1, n + 2)]
   for i in 0..<n {
     insert_pt(all_pts, tris, i)
   }
-  let result : Array[(Int, Int, Int)] = []
+  let result : Array[(Int32, Int32, Int32)] = []
   for t in tris {
     if t.0 < n && t.1 < n && t.2 < n {
       result.push(t)
@@ -55,13 +49,14 @@ fn delaunay_2d(
   result
 }
 
+///|
 fn insert_pt(
   points : Array[@core.Point2D],
-  tris : Array[(Int, Int, Int)],
-  p_idx : Int,
+  tris : Array[(Int32, Int32, Int32)],
+  p_idx : Int32,
 ) -> Unit {
   let p = points[p_idx]
-  let bad : Array[Int] = []
+  let bad : Array[Int32] = []
   for i in 0..<tris.length() {
     let t = tris[i]
     if in_circumcircle(p, points[t.0], points[t.1], points[t.2]) {
@@ -71,14 +66,14 @@ fn insert_pt(
   if bad.length() == 0 {
     return
   }
-  let edges : Array[(Int, Int, Int)] = []
+  let edges : Array[(Int32, Int32, Int32)] = []
   for bi in bad {
     let t = tris[bi]
     add_e(edges, t.0, t.1)
     add_e(edges, t.1, t.2)
     add_e(edges, t.2, t.0)
   }
-  let boundary : Array[(Int, Int)] = []
+  let boundary : Array[(Int32, Int32)] = []
   for e in edges {
     if e.2 == 1 {
       boundary.push((e.0, e.1))
@@ -88,7 +83,7 @@ fn insert_pt(
   for bi in bad {
     bad_set[bi] = true
   }
-  let new_tris : Array[(Int, Int, Int)] = []
+  let new_tris : Array[(Int32, Int32, Int32)] = []
   for i in 0..<tris.length() {
     if !bad_set[i] {
       new_tris.push(tris[i])
@@ -103,12 +98,9 @@ fn insert_pt(
   }
 }
 
-fn add_e(edges : Array[(Int, Int, Int)], a : Int, b : Int) -> Unit {
-  let (lo, hi) = if a < b {
-    (a, b)
-  } else {
-    (b, a)
-  }
+///|
+fn add_e(edges : Array[(Int32, Int32, Int32)], a : Int32, b : Int32) -> Unit {
+  let (lo, hi) = if a < b { (a, b) } else { (b, a) }
   for i in 0..<edges.length() {
     if edges[i].0 == lo && edges[i].1 == hi {
       edges[i] = (lo, hi, edges[i].2 + 1)

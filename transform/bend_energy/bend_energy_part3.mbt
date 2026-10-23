@@ -18,7 +18,6 @@ pub fn total_curvature_energy(points : Array[@core.Point2D]) -> Double {
   total
 }
 
-
 ///|
 /// Elastic energy: bend + tension (stretch) energy.
 /// 弹性能量：弯曲 + 张力（拉伸）能量。

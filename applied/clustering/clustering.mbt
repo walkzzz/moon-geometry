@@ -8,6 +8,7 @@
 /// ## Complexity: O(n × k × iter) for K-means
 /// ## 复杂度: K-means O(n × k × iter)
 
+///|
 /// |
 /// K-means clustering.
 /// K-means 聚类。
@@ -21,9 +22,9 @@
 /// 返回每个点的聚类标签数组（0 到 k-1）。
 pub fn kmeans(
   pts : Array[(Double, Double)],
-  k : Int,
-  max_iter : Int,
-) -> Array[Int] {
+  k : Int32,
+  max_iter : Int32,
+) -> Array[Int32] {
   let n = pts.length()
   if n == 0 || k <= 0 {
     return []
@@ -33,7 +34,7 @@ pub fn kmeans(
     let idx = i * n / k
     centroids.push(pts[idx])
   }
-  let labels : Array[Int] = []
+  let labels : Array[Int32] = []
   for _ in 0..<n {
     labels.push(0)
   }
@@ -79,6 +80,7 @@ pub fn kmeans(
   labels
 }
 
+///|
 /// |
 /// DBSCAN clustering (Density-Based Spatial Clustering).
 /// DBSCAN 聚类（基于密度的空间聚类）。
@@ -93,10 +95,10 @@ pub fn kmeans(
 pub fn dbscan(
   pts : Array[(Double, Double)],
   eps : Double,
-  min_pts : Int,
-) -> Array[Int] {
+  min_pts : Int32,
+) -> Array[Int32] {
   let n = pts.length()
-  let labels : Array[Int] = []
+  let labels : Array[Int32] = []
   for _ in 0..<n {
     labels.push(-2)
   }
@@ -144,15 +146,16 @@ pub fn dbscan(
   labels
 }
 
+///|
 /// |
 /// Find all points within eps distance of point i.
 /// 查找点 i 的 eps 邻域内所有点。
 fn range_query(
   pts : Array[(Double, Double)],
-  i : Int,
+  i : Int32,
   eps : Double,
-) -> Array[Int] {
-  let result : Array[Int] = []
+) -> Array[Int32] {
+  let result : Array[Int32] = []
   let (px, py) = pts[i]
   for j in 0..<pts.length() {
     let (qx, qy) = pts[j]
@@ -164,6 +167,7 @@ fn range_query(
   result
 }
 
+///|
 /// |
 /// Compute cluster centroids from labels.
 /// 从标签计算聚类中心。
@@ -174,8 +178,8 @@ fn range_query(
 /// - `k`: number of clusters / 聚类数
 pub fn cluster_centroids(
   pts : Array[(Double, Double)],
-  labels : Array[Int],
-  k : Int,
+  labels : Array[Int32],
+  k : Int32,
 ) -> Array[(Double, Double)] {
   let centroids : Array[(Double, Double)] = []
   for j in 0..<k {

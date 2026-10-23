@@ -1,4 +1,5 @@
-///| Hull of convex polygon is itself | 凸多边形的凸包为自身
+///|
+/// Hull of convex polygon is itself | 凸多边形的凸包为自身
 test "extreme: hull of convex polygon" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -10,8 +11,8 @@ test "extreme: hull of convex polygon" {
   assert_eq(hull.length(), 4)
 }
 
-
-///| Graham and Andrew hull agree on size | Graham 和 Andrew 凸包大小一致
+///|
+/// Graham and Andrew hull agree on size | Graham 和 Andrew 凸包大小一致
 test "extreme: graham andrew agreement" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),

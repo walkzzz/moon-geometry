@@ -32,7 +32,7 @@ pub fn gaussian_smooth(
   for i in 0..<n {
     let mut sx = 0.0
     let mut sy = 0.0
-    for k in -rad..=rad {
+    for k in -rad..<=rad {
       let j = ((i + k) % n + n) % n
       let w = kernel[k + rad]
       sx += w * points[j].x()

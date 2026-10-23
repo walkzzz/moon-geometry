@@ -21,9 +21,8 @@ pub fn avg_nearest_neighbor_dist(points : Array[@core.Point3D]) -> Double {
   total / n.to_double()
 }
 
-
 ///|
 /// Point cloud size. / 点云大小。
-pub fn point_cloud_size(points : Array[@core.Point3D]) -> Int {
+pub fn point_cloud_size(points : Array[@core.Point3D]) -> Int32 {
   points.length()
 }

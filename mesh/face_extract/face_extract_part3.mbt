@@ -8,16 +8,14 @@ pub fn face_area(face : Face) -> Double {
   let mut area = 0.0
   for i in 0..<n {
     let j = (i + 1) % n
-    area +=
-      face.boundary[i].x() * face.boundary[j].y() -
+    area += face.boundary[i].x() * face.boundary[j].y() -
       face.boundary[j].x() * face.boundary[i].y()
   }
   (area / 2.0).abs()
 }
 
-
 ///|
 /// Count the number of faces. / 计算面数。
-pub fn face_count(faces : Array[Face]) -> Int {
+pub fn face_count(faces : Array[Face]) -> Int32 {
   faces.length()
 }

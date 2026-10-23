@@ -7,12 +7,12 @@
 pub fn shape_context_match(
   source : Array[@core.Point2D],
   target : Array[@core.Point2D],
-  n_r_bins : Int,
-  n_theta_bins : Int,
-) -> Array[Int] {
+  n_r_bins : Int32,
+  n_theta_bins : Int32,
+) -> Array[Int32] {
   let sc1 = shape_context(source, n_r_bins, n_theta_bins)
   let sc2 = shape_context(target, n_r_bins, n_theta_bins)
-  let result : Array[Int] = []
+  let result : Array[Int32] = []
   for i in 0..<sc1.length() {
     let mut best_idx = 0
     let mut best_d = 1.7976931348623157e+308

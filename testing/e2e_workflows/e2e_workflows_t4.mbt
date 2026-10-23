@@ -1,6 +1,7 @@
 ///| E2E: Polygon → Transform → Inverse → Restore
 
-///| 端到端：多边形 → 变换 → 逆变换 → 恢复
+///|
+/// 端到端：多边形 → 变换 → 逆变换 → 恢复
 test "e2e: transform inverse pipeline" {
   let original = @core.Polygon::new([
     @core.Point2D::new(1.0, 2.0),
@@ -20,7 +21,19 @@ test "e2e: transform inverse pipeline" {
   })
   let restored = @core.Polygon::new(restored_verts)
   for i in 0..<original.size() {
-    assert_true(@core.approx_eq(original.vertices[i].x(), restored.vertices[i].x(), 1.0e-8))
-    assert_true(@core.approx_eq(original.vertices[i].y(), restored.vertices[i].y(), 1.0e-8))
+    assert_true(
+      @core.approx_eq(
+        original.vertices[i].x(),
+        restored.vertices[i].x(),
+        1.0e-8,
+      ),
+    )
+    assert_true(
+      @core.approx_eq(
+        original.vertices[i].y(),
+        restored.vertices[i].y(),
+        1.0e-8,
+      ),
+    )
   }
 }

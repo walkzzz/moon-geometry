@@ -1,3 +1,4 @@
+///|
 test "max_flow basic" {
   let n = 4
   let cap : Array[Array[Double]] = [
@@ -10,6 +11,7 @@ test "max_flow basic" {
   assert_true(flow > 0.0)
 }
 
+///|
 test "min_cut equals max_flow" {
   let n = 4
   let cap : Array[Array[Double]] = [
@@ -23,6 +25,7 @@ test "min_cut equals max_flow" {
   assert_true((mc - mf).abs() < 0.001)
 }
 
+///|
 test "min_cut_partition basic" {
   let n = 4
   let cap : Array[Array[Double]] = [
@@ -35,6 +38,7 @@ test "min_cut_partition basic" {
   assert_true(partition.length() >= 1)
 }
 
+///|
 test "max_flow no path" {
   let n = 3
   let cap : Array[Array[Double]] = [
@@ -46,12 +50,10 @@ test "max_flow no path" {
   assert_true(flow.abs() < 0.001)
 }
 
+///|
 test "max_flow single edge" {
   let n = 2
-  let cap : Array[Array[Double]] = [
-    [0.0, 5.0],
-    [0.0, 0.0],
-  ]
+  let cap : Array[Array[Double]] = [[0.0, 5.0], [0.0, 0.0]]
   let flow = max_flow(n, cap, 0, 1)
   assert_true((flow - 5.0).abs() < 0.001)
 }

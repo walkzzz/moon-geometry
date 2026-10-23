@@ -1,4 +1,5 @@
-///| 端到端：凸包 → 凸性不变量
+///|
+/// 端到端：凸包 → 凸性不变量
 test "e2e: hull convexity invariant" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -16,6 +17,5 @@ test "e2e: hull convexity invariant" {
   let hull_g_poly = @core.Polygon::new(hull_g)
   assert_true(@polygon.is_convex(hull_g_poly))
 }
-
 
 ///| E2E: Distance matrix → Symmetry check

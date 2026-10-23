@@ -16,7 +16,9 @@ pub fn stl_parse_ascii(text : String) -> StlMesh {
     } else if cmd == "facet" && parts.length() >= 5 {
       cur_normal = @core.Point3D::new(pd(parts[2]), pd(parts[3]), pd(parts[4]))
     } else if cmd == "vertex" && parts.length() >= 4 {
-      cur_verts.push(@core.Point3D::new(pd(parts[1]), pd(parts[2]), pd(parts[3])))
+      cur_verts.push(
+        @core.Point3D::new(pd(parts[1]), pd(parts[2]), pd(parts[3])),
+      )
     } else if cmd == "endfacet" {
       if cur_verts.length() >= 3 {
         triangles.push(

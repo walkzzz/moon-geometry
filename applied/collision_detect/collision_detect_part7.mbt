@@ -11,5 +11,5 @@ pub fn segment_segment_collide(
   let d3 = @core.turn(a1, a2, b1)
   let d4 = @core.turn(a1, a2, b2)
   ((d1 > 0.0 && d2 < 0.0) || (d1 < 0.0 && d2 > 0.0)) &&
-    ((d3 > 0.0 && d4 < 0.0) || (d3 < 0.0 && d4 > 0.0))
+  ((d3 > 0.0 && d4 < 0.0) || (d3 < 0.0 && d4 > 0.0))
 }

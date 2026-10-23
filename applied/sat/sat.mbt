@@ -8,7 +8,6 @@
 /// ## Complexity: O(n + m) where n, m are vertex counts
 /// ## 复杂度: O(n + m)，n, m 为顶点数
 
-
 ///|
 /// SAT collision result. / SAT 碰撞结果。
 pub struct SATResult {
@@ -18,7 +17,6 @@ pub struct SATResult {
   axis_y : Double
 }
 
-
 ///|
 /// Construct a SAT result. / 构造 SAT 结果。
 pub fn SATResult::new(
@@ -27,5 +25,5 @@ pub fn SATResult::new(
   axis_x : Double,
   axis_y : Double,
 ) -> SATResult {
-  { collides, overlap, axis_x, axis_y }
+  { collides, overlap, axis_x, axis_y, }
 }

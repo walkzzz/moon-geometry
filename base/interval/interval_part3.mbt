@@ -3,16 +3,14 @@
 pub fn Interval::union(a : Interval, b : Interval) -> Interval {
   let lo = if a.lo < b.lo { a.lo } else { b.lo }
   let hi = if a.hi > b.hi { a.hi } else { b.hi }
-  { lo, hi }
+  { lo, hi, }
 }
-
 
 ///|
 /// Length of the interval. / 区间长度。
 pub fn Interval::length(i : Interval) -> Double {
   i.hi - i.lo
 }
-
 
 ///|
 /// Midpoint of the interval. / 区间中点。

@@ -1,3 +1,4 @@
+///|
 test "octree basic insert" {
   let tree = octree_new(5.0, 5.0, 5.0, 10.0, 4, 5)
   octree_insert(tree, @core.Point3D::new(1.0, 1.0, 1.0))
@@ -6,6 +7,7 @@ test "octree basic insert" {
   assert_eq(octree_size(tree), 3)
 }
 
+///|
 test "octree range query" {
   let tree = octree_new(5.0, 5.0, 5.0, 10.0, 2, 5)
   octree_insert(tree, @core.Point3D::new(1.0, 1.0, 1.0))
@@ -15,6 +17,7 @@ test "octree range query" {
   assert_eq(result.length(), 2)
 }
 
+///|
 test "octree subdivision" {
   let tree = octree_new(5.0, 5.0, 5.0, 10.0, 2, 5)
   octree_insert(tree, @core.Point3D::new(1.0, 1.0, 1.0))
@@ -23,16 +26,21 @@ test "octree subdivision" {
   assert_eq(octree_size(tree), 3)
 }
 
+///|
 test "octree empty query" {
   let tree = octree_new(5.0, 5.0, 5.0, 10.0, 4, 5)
   let result = octree_range_query(tree, 0.0, 0.0, 0.0, 10.0, 10.0, 10.0)
   assert_eq(result.length(), 0)
 }
 
+///|
 test "octree many points" {
   let tree = octree_new(50.0, 50.0, 50.0, 100.0, 4, 8)
   for i in 0..<20 {
-    octree_insert(tree, @core.Point3D::new(i.to_double(), i.to_double(), i.to_double()))
+    octree_insert(
+      tree,
+      @core.Point3D::new(i.to_double(), i.to_double(), i.to_double()),
+    )
   }
   assert_eq(octree_size(tree), 20)
 }

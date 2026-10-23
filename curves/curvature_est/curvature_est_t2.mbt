@@ -1,6 +1,11 @@
 ///|
 /// Estimate mean curvature from normal variation. / 从法线变化估计平均曲率。
-pub fn estimate_mean_curvature(center : @core.Point3D, neighbors : Array[@core.Point3D], normals : Array[@core.Point3D], center_normal : @core.Point3D) -> Double {
+pub fn estimate_mean_curvature(
+  center : @core.Point3D,
+  neighbors : Array[@core.Point3D],
+  normals : Array[@core.Point3D],
+  center_normal : @core.Point3D,
+) -> Double {
   let n = neighbors.length()
   if n == 0 || normals.length() != n {
     return 0.0

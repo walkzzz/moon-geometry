@@ -6,7 +6,7 @@ pub fn power_diagram(
 ) -> PowerDiagram {
   let n = sites.length()
   if n == 0 {
-    return { sites: [], cells: [] }
+    return { sites: [], cells: [], }
   }
   let (bl, tr) = bounds
   let cells : Array[PowerCell] = []
@@ -23,7 +23,7 @@ pub fn power_diagram(
       }
       cell = clip_by_power(cell, sites[i], sites[j])
     }
-    cells.push({ site_idx: i, vertices: cell })
+    cells.push({ site_idx: i, vertices: cell, })
   }
-  { sites: sites.copy(), cells }
+  { sites: sites.copy(), cells, }
 }

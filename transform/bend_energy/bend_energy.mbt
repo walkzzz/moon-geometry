@@ -8,7 +8,6 @@
 /// ## Complexity: O(n)
 /// ## 复杂度: O(n)
 
-
 ///|
 /// Discrete signed curvature at the middle of three points.
 /// 三点中间点的离散有符号曲率。
@@ -28,13 +27,12 @@ fn curvature_at(
     return 0.0
   }
   let len3 = ((p3.x() - p1.x()) * (p3.x() - p1.x()) +
-    (p3.y() - p1.y()) * (p3.y() - p1.y())).sqrt()
+  (p3.y() - p1.y()) * (p3.y() - p1.y())).sqrt()
   if len3 < 0.000000000001 {
     return 0.0
   }
   2.0 * cross / (len1 * len2 * len3)
 }
-
 
 ///|
 /// Arc length element at a point (average of adjacent edge lengths).

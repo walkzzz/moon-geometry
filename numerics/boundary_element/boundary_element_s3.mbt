@@ -1,5 +1,8 @@
 ///|
-pub fn bem_solve(matrix : Array[Array[Double]], rhs : Array[Double]) -> Array[Double] {
+pub fn bem_solve(
+  matrix : Array[Array[Double]],
+  rhs : Array[Double],
+) -> Array[Double] {
   let n = rhs.length()
   let result : Array[Double] = Array::make(n, 0.0)
   for i in 0..<n {

@@ -3,14 +3,21 @@
 /// 检查体素是否为边界体素（至少有一个背景 6-邻居）。
 pub fn is_boundary(
   voxels : Array[Bool],
-  x : Int,
-  y : Int,
-  z : Int,
-  nx : Int,
-  ny : Int,
-  nz : Int,
+  x : Int32,
+  y : Int32,
+  z : Int32,
+  nx : Int32,
+  ny : Int32,
+  nz : Int32,
 ) -> Bool {
-  let offsets = [(1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, -1, 0), (0, 0, 1), (0, 0, -1)]
+  let offsets = [
+    (1, 0, 0),
+    (-1, 0, 0),
+    (0, 1, 0),
+    (0, -1, 0),
+    (0, 0, 1),
+    (0, 0, -1),
+  ]
   for off in offsets {
     let (dx, dy, dz) = off
     let nx_ = x + dx

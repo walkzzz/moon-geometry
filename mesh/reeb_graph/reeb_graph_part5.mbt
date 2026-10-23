@@ -1,12 +1,12 @@
 ///|
 /// Count connected components of lower/upper link. / 计算下/上链接的连通分量数。
 fn count_components(
-  v : Int,
-  adj : Array[Array[Int]],
+  v : Int32,
+  adj : Array[Array[Int32]],
   values : Array[Double],
   lower : Bool,
-) -> Int {
-  let neighbors : Array[Int] = []
+) -> Int32 {
+  let neighbors : Array[Int32] = []
   for j in adj[v] {
     if lower && values[j] < values[v] - 0.0000000001 {
       neighbors.push(j)
@@ -18,7 +18,7 @@ fn count_components(
   if neighbors.length() == 0 {
     return 0
   }
-  let neighbor_set : Array[Int] = Array::make(values.length(), -1)
+  let neighbor_set : Array[Int32] = Array::make(values.length(), -1)
   for idx in 0..<neighbors.length() {
     neighbor_set[neighbors[idx]] = idx
   }

@@ -2,16 +2,18 @@
 /// BVH node (median split). / BVH 节点（中位数分割）。
 pub struct BVHNode {
   bounds : @core.Rectangle
-  left : Int
-  right : Int
-  index : Int
+  left : Int32
+  right : Int32
+  index : Int32
 } derive(Debug)
 
+///|
 pub extend BVHNode with @moonbitlang/core/debug.Debug::{to_repr}
 
+///|
 fn bvh_bounds(
   rects : Array[@core.Rectangle],
-  indices : Array[Int],
+  indices : Array[Int32],
 ) -> @core.Rectangle {
   let mut min_x = rects[indices[0]].min_x
   let mut min_y = rects[indices[0]].min_y
@@ -35,18 +37,19 @@ fn bvh_bounds(
   @core.Rectangle::new(min_x, min_y, max_x, max_y)
 }
 
+///|
 fn bvh_build_rec(
   rects : Array[@core.Rectangle],
-  indices : Array[Int],
+  indices : Array[Int32],
   nodes : Array[BVHNode],
-) -> Int {
+) -> Int32 {
   let bounds = bvh_bounds(rects, indices)
   if indices.length() == 1 {
-    nodes.push({ bounds, left: -1, right: -1, index: indices[0] })
+    nodes.push({ bounds, left: -1, right: -1, index: indices[0], })
     return nodes.length() - 1
   }
   let split_x = bounds.max_x - bounds.min_x >= bounds.max_y - bounds.min_y
-  let sorted : Array[Int] = []
+  let sorted : Array[Int32] = []
   for i in 0..<indices.length() {
     sorted.push(indices[i])
   }
@@ -70,8 +73,8 @@ fn bvh_build_rec(
     }
   })
   let mid = sorted.length() / 2
-  let left_indices : Array[Int] = []
-  let right_indices : Array[Int] = []
+  let left_indices : Array[Int32] = []
+  let right_indices : Array[Int32] = []
   for i in 0..<mid {
     left_indices.push(sorted[i])
   }
@@ -80,6 +83,6 @@ fn bvh_build_rec(
   }
   let left_idx = bvh_build_rec(rects, left_indices, nodes)
   let right_idx = bvh_build_rec(rects, right_indices, nodes)
-  nodes.push({ bounds, left: left_idx, right: right_idx, index: -1 })
+  nodes.push({ bounds, left: left_idx, right: right_idx, index: -1, })
   nodes.length() - 1
 }

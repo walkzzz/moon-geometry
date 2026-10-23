@@ -6,8 +6,8 @@ pub fn range_query(
   x_hi : Double,
   y_lo : Double,
   y_hi : Double,
-) -> Array[Int] {
-  let result : Array[Int] = []
+) -> Array[Int32] {
+  let result : Array[Int32] = []
   for i in 0..<tree.points.length() {
     let px = tree.points[i].x()
     let py = tree.points[i].y()

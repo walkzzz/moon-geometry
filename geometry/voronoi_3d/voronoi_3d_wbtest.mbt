@@ -1,9 +1,11 @@
+///|
 test "voronoi_3d empty" {
   let v = voronoi_3d([])
   assert_eq(v.cell_count(), 0)
   assert_eq(v.vertex_count(), 0)
 }
 
+///|
 test "voronoi_3d tetrahedron" {
   let pts = [
     @core.Point3D::new(0.0, 0.0, 0.0),
@@ -16,6 +18,7 @@ test "voronoi_3d tetrahedron" {
   assert_true(v.vertex_count() >= 1)
 }
 
+///|
 test "voronoi_3d five points" {
   let pts = [
     @core.Point3D::new(0.0, 0.0, 0.0),
@@ -28,6 +31,7 @@ test "voronoi_3d five points" {
   assert_eq(v.cell_count(), 5)
 }
 
+///|
 test "voronoi_cell_3d" {
   let pts = [
     @core.Point3D::new(0.0, 0.0, 0.0),
@@ -41,6 +45,7 @@ test "voronoi_cell_3d" {
   assert_true(cell.vertices.length() >= 0)
 }
 
+///|
 test "voronoi_cell_3d invalid" {
   let pts = [
     @core.Point3D::new(0.0, 0.0, 0.0),
@@ -54,6 +59,7 @@ test "voronoi_cell_3d invalid" {
   assert_eq(cell.vertices.length(), 0)
 }
 
+///|
 test "voronoi_cell_count" {
   let pts = [
     @core.Point3D::new(0.0, 0.0, 0.0),
@@ -63,6 +69,7 @@ test "voronoi_cell_count" {
   assert_eq(voronoi_cell_count(pts), 3)
 }
 
+///|
 test "voronoi_vertex_count" {
   let pts = [
     @core.Point3D::new(0.0, 0.0, 0.0),
@@ -74,6 +81,7 @@ test "voronoi_vertex_count" {
   assert_true(cnt >= 1)
 }
 
+///|
 test "dual_delaunay" {
   let pts = [
     @core.Point3D::new(0.0, 0.0, 0.0),
@@ -86,6 +94,7 @@ test "dual_delaunay" {
   assert_true(d.tetrahedron_count() >= 1)
 }
 
+///|
 test "Voronoi3D::new" {
   let v = Voronoi3D::new()
   assert_eq(v.cell_count(), 0)

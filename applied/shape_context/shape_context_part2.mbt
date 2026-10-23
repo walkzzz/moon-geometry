@@ -11,8 +11,8 @@
 /// 返回每个点的直方图（展平为 r_bins * theta_bins）。
 pub fn shape_context(
   points : Array[@core.Point2D],
-  n_r_bins : Int,
-  n_theta_bins : Int,
+  n_r_bins : Int32,
+  n_theta_bins : Int32,
 ) -> Array[Array[Double]] {
   let n = points.length()
   let result : Array[Array[Double]] = []

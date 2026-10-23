@@ -31,6 +31,7 @@ pub fn obj_parse(text : String) -> ObjMesh {
   mesh
 }
 
+///|
 fn parse_face_vert(s : StringView) -> ObjFaceVertex {
   let mut v = 0
   let mut vt = 0
@@ -50,5 +51,5 @@ fn parse_face_vert(s : StringView) -> ObjFaceVertex {
     }
     idx += 1
   }
-  { v, vt, vn }
+  { v, vt, vn, }
 }

@@ -8,15 +8,14 @@
 /// ## Complexity: O(iter * nx * ny * nz)
 /// ## 复杂度: O(iter * nx * ny * nz)
 
-
 ///|
 /// Voxel index in flattened 3D grid. / 展平三维网格中的体素索引。
 pub fn voxel_index(
-  x : Int,
-  y : Int,
-  z : Int,
-  nx : Int,
-  ny : Int,
-) -> Int {
+  x : Int32,
+  y : Int32,
+  z : Int32,
+  nx : Int32,
+  ny : Int32,
+) -> Int32 {
   x + y * nx + z * nx * ny
 }

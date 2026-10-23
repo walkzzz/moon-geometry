@@ -1,13 +1,15 @@
-///| Construct a HoughCircle from center, radius, and votes. / 由圆心、半径与投票数构造 HoughCircle。
+///|
+/// Construct a HoughCircle from center, radius, and votes. / 由圆心、半径与投票数构造 HoughCircle。
 pub fn HoughCircle::new(
   cx : Double,
   cy : Double,
   radius : Double,
-  votes : Int,
+  votes : Int32,
 ) -> HoughCircle {
-  { cx, cy, radius, votes }
+  { cx, cy, radius, votes, }
 }
 
+///|
 /// |
 /// Detect lines in a point set using the Hough transform.
 /// 使用霍夫变换检测点集中的直线。
@@ -21,8 +23,8 @@ pub fn HoughCircle::new(
 /// 返回按投票数降序排列的检测直线。
 pub fn hough_lines(
   pts : Array[@core.Point2D],
-  threshold : Int,
-  theta_steps : Int,
+  threshold : Int32,
+  theta_steps : Int32,
 ) -> Array[HoughLine] {
   if pts.length() < 2 {
     return []
@@ -39,7 +41,7 @@ pub fn hough_lines(
   let rho_steps = theta_steps * 2
   let rho_min = -max_dist
   let theta_max = 3.141592653589793
-  let accumulator : Array[Array[Int]] = Array::make(theta_steps, [])
+  let accumulator : Array[Array[Int32]] = Array::make(theta_steps, [])
   for i in 0..<theta_steps {
     accumulator[i] = Array::make(rho_steps, 0)
   }
@@ -47,10 +49,9 @@ pub fn hough_lines(
     let x = pts[i].x()
     let y = pts[i].y()
     for t in 0..<theta_steps {
-      let theta = (t.to_double()) * theta_max / (theta_steps.to_double())
+      let theta = t.to_double() * theta_max / theta_steps.to_double()
       let rho = x * @math.cos(theta) + y * @math.sin(theta)
-      let rho_idx = (((rho - rho_min) / rho_range) * (rho_steps.to_double()))
-        .to_int()
+      let rho_idx = ((rho - rho_min) / rho_range * rho_steps.to_double()).to_int()
       if rho_idx >= 0 && rho_idx < rho_steps {
         accumulator[t][rho_idx] = accumulator[t][rho_idx] + 1
       }
@@ -60,8 +61,8 @@ pub fn hough_lines(
   for t in 0..<theta_steps {
     for r in 0..<rho_steps {
       if accumulator[t][r] >= threshold {
-        let theta = (t.to_double()) * theta_max / (theta_steps.to_double())
-        let rho = rho_min + (r.to_double()) * rho_range / (rho_steps.to_double())
+        let theta = t.to_double() * theta_max / theta_steps.to_double()
+        let rho = rho_min + r.to_double() * rho_range / rho_steps.to_double()
         lines.push(HoughLine::new(theta, rho, accumulator[t][r]))
       }
     }
@@ -70,6 +71,7 @@ pub fn hough_lines(
   lines
 }
 
+///|
 /// |
 /// Detect circles in a point set using the Hough transform.
 /// 使用霍夫变换检测点集中的圆。
@@ -85,8 +87,8 @@ pub fn hough_lines(
 pub fn hough_circles(
   pts : Array[@core.Point2D],
   radius : Double,
-  threshold : Int,
-  resolution : Int,
+  threshold : Int32,
+  resolution : Int32,
 ) -> Array[HoughCircle] {
   if pts.length() < 3 || radius <= 0.0 {
     return []
@@ -121,9 +123,9 @@ pub fn hough_circles(
   }
   let width = max_x - min_x + radius * 2.0
   let height = max_y - min_y + radius * 2.0
-  let cell_w = width / (resolution.to_double())
-  let cell_h = height / (resolution.to_double())
-  let accumulator : Array[Array[Int]] = Array::make(resolution, [])
+  let cell_w = width / resolution.to_double()
+  let cell_h = height / resolution.to_double()
+  let accumulator : Array[Array[Int32]] = Array::make(resolution, [])
   for i in 0..<resolution {
     accumulator[i] = Array::make(resolution, 0)
   }
@@ -132,12 +134,14 @@ pub fn hough_circles(
     let x = pts[i].x()
     let y = pts[i].y()
     for t in 0..<theta_steps {
-      let theta = (t.to_double()) * 6.283185307179586 / (theta_steps.to_double())
+      let theta = t.to_double() * 6.283185307179586 / theta_steps.to_double()
       let cx = x - radius * @math.cos(theta)
       let cy = y - radius * @math.sin(theta)
-      let cx_idx = (((cx - min_x + radius) / cell_w)).to_int()
-      let cy_idx = (((cy - min_y + radius) / cell_h)).to_int()
-      if cx_idx >= 0 && cx_idx < resolution && cy_idx >= 0 &&
+      let cx_idx = ((cx - min_x + radius) / cell_w).to_int()
+      let cy_idx = ((cy - min_y + radius) / cell_h).to_int()
+      if cx_idx >= 0 &&
+        cx_idx < resolution &&
+        cy_idx >= 0 &&
         cy_idx < resolution {
         accumulator[cx_idx][cy_idx] = accumulator[cx_idx][cy_idx] + 1
       }
@@ -147,8 +151,8 @@ pub fn hough_circles(
   for i in 0..<resolution {
     for j in 0..<resolution {
       if accumulator[i][j] >= threshold {
-        let cx = min_x - radius + (i.to_double()) * cell_w + cell_w / 2.0
-        let cy = min_y - radius + (j.to_double()) * cell_h + cell_h / 2.0
+        let cx = min_x - radius + i.to_double() * cell_w + cell_w / 2.0
+        let cy = min_y - radius + j.to_double() * cell_h + cell_h / 2.0
         circles.push(HoughCircle::new(cx, cy, radius, accumulator[i][j]))
       }
     }
@@ -157,6 +161,7 @@ pub fn hough_circles(
   circles
 }
 
+///|
 /// |
 /// Build a Hough accumulator for line detection.
 /// 构建直线检测的霍夫累加器。
@@ -165,9 +170,9 @@ pub fn hough_circles(
 /// 返回二维累加器数组 [theta_idx][rho_idx]。
 pub fn hough_accumulator(
   pts : Array[@core.Point2D],
-  theta_steps : Int,
-  rho_steps : Int,
-) -> Array[Array[Int]] {
+  theta_steps : Int32,
+  rho_steps : Int32,
+) -> Array[Array[Int32]] {
   let n = pts.length()
   let mut max_dist = 0.0
   for i in 0..<n {
@@ -179,7 +184,7 @@ pub fn hough_accumulator(
   let rho_range = max_dist * 2.0
   let rho_min = -max_dist
   let theta_max = 3.141592653589793
-  let accumulator : Array[Array[Int]] = Array::make(theta_steps, [])
+  let accumulator : Array[Array[Int32]] = Array::make(theta_steps, [])
   for i in 0..<theta_steps {
     accumulator[i] = Array::make(rho_steps, 0)
   }
@@ -187,10 +192,9 @@ pub fn hough_accumulator(
     let x = pts[i].x()
     let y = pts[i].y()
     for t in 0..<theta_steps {
-      let theta = (t.to_double()) * theta_max / (theta_steps.to_double())
+      let theta = t.to_double() * theta_max / theta_steps.to_double()
       let rho = x * @math.cos(theta) + y * @math.sin(theta)
-      let rho_idx = (((rho - rho_min) / rho_range) * (rho_steps.to_double()))
-        .to_int()
+      let rho_idx = ((rho - rho_min) / rho_range * rho_steps.to_double()).to_int()
       if rho_idx >= 0 && rho_idx < rho_steps {
         accumulator[t][rho_idx] = accumulator[t][rho_idx] + 1
       }
@@ -199,6 +203,7 @@ pub fn hough_accumulator(
   accumulator
 }
 
+///|
 /// |
 /// Find peaks in a Hough accumulator.
 /// 在霍夫累加器中寻找峰值。
@@ -211,16 +216,16 @@ pub fn hough_accumulator(
 /// Returns (theta_idx, rho_idx, votes) tuples sorted by votes descending.
 /// 返回 (theta_idx, rho_idx, votes) 元组，按投票数降序排列。
 pub fn hough_peaks(
-  accumulator : Array[Array[Int]],
-  threshold : Int,
-  window : Int,
-) -> Array[(Int, Int, Int)] {
+  accumulator : Array[Array[Int32]],
+  threshold : Int32,
+  window : Int32,
+) -> Array[(Int32, Int32, Int32)] {
   let theta_steps = accumulator.length()
   if theta_steps == 0 {
     return []
   }
   let rho_steps = accumulator[0].length()
-  let peaks : Array[(Int, Int, Int)] = []
+  let peaks : Array[(Int32, Int32, Int32)] = []
   let half = window / 2
   for t in 0..<theta_steps {
     for r in 0..<rho_steps {
@@ -230,7 +235,11 @@ pub fn hough_peaks(
       }
       let mut is_peak = true
       let t_start = if t - half < 0 { 0 } else { t - half }
-      let t_end = if t + half >= theta_steps { theta_steps } else { t + half + 1 }
+      let t_end = if t + half >= theta_steps {
+        theta_steps
+      } else {
+        t + half + 1
+      }
       let r_start = if r - half < 0 { 0 } else { r - half }
       let r_end = if r + half >= rho_steps { rho_steps } else { r + half + 1 }
       for dt in t_start..<t_end {
@@ -253,6 +262,7 @@ pub fn hough_peaks(
   peaks
 }
 
+///|
 /// |
 /// Convert a Hough line (theta, rho) to two endpoint points.
 /// 将霍夫直线（theta, rho）转换为两个端点。

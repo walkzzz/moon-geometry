@@ -5,24 +5,21 @@ pub struct WeightedPoint {
   weight : Double
 }
 
-
 ///|
 /// Construct a weighted point. / 构造加权点。
 pub fn WeightedPoint::new(
   point : @core.Point2D,
   weight : Double,
 ) -> WeightedPoint {
-  { point, weight }
+  { point, weight, }
 }
-
 
 ///|
 /// Power cell: region where a site has minimum power distance. / 幂单元：某站点幂距离最小的区域。
 pub struct PowerCell {
-  site_idx : Int
+  site_idx : Int32
   vertices : Array[@core.Point2D]
 }
-
 
 ///|
 /// Power diagram (weighted Voronoi diagram). / 幂图（加权 Voronoi 图）。
@@ -31,16 +28,14 @@ pub struct PowerDiagram {
   cells : Array[PowerCell]
 }
 
-
 ///|
 /// Construct an empty power diagram. / 构造空的幂图。
 pub fn PowerDiagram::new() -> PowerDiagram {
-  { sites: [], cells: [] }
+  { sites: [], cells: [], }
 }
-
 
 ///|
 /// Get the number of cells. / 获取单元数量。
-pub fn PowerDiagram::cell_count(pd : PowerDiagram) -> Int {
+pub fn PowerDiagram::cell_count(pd : PowerDiagram) -> Int32 {
   pd.cells.length()
 }

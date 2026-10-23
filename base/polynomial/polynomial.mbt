@@ -8,6 +8,7 @@
 /// ## Complexity: O(n) for evaluation
 /// ## 复杂度: 求值 O(n)
 
+///|
 /// |
 /// Evaluate polynomial at x. Coefficients in ascending order.
 /// 在 x 处求值多项式。系数升序排列。
@@ -25,6 +26,7 @@ pub fn poly_eval(coeffs : Array[Double], x : Double) -> Double {
   result
 }
 
+///|
 /// |
 /// Compute derivative polynomial.
 /// 计算导数多项式。
@@ -40,6 +42,7 @@ pub fn poly_derivative(coeffs : Array[Double]) -> Array[Double] {
   result
 }
 
+///|
 /// |
 /// Add two polynomials.
 /// 两个多项式相加。
@@ -54,6 +57,7 @@ pub fn poly_add(a : Array[Double], b : Array[Double]) -> Array[Double] {
   result
 }
 
+///|
 /// |
 /// Multiply two polynomials.
 /// 两个多项式相乘。
@@ -71,6 +75,7 @@ pub fn poly_mul(a : Array[Double], b : Array[Double]) -> Array[Double] {
   result
 }
 
+///|
 /// |
 /// Find real roots using companion matrix eigenvalues (simplified).
 /// 使用简化方法查找实根。

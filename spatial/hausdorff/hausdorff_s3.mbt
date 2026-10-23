@@ -3,7 +3,7 @@
 pub fn partial_hausdorff(
   a : Array[@core.Point2D],
   b : Array[@core.Point2D],
-  k : Int,
+  k : Int32,
 ) -> Double {
   if a.length() == 0 || b.length() == 0 {
     return 0.0

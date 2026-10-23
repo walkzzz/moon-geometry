@@ -3,8 +3,8 @@
 pub fn spatial_hash_nearby(
   hash : SpatialHash,
   p : @core.Point2D,
-) -> Array[Int] {
-  let result : Array[Int] = []
+) -> Array[Int32] {
+  let result : Array[Int32] = []
   let cx = (p.x() / hash.cell_size).floor().to_int()
   let cy = (p.y() / hash.cell_size).floor().to_int()
   for i in 0..<hash.points.length() {
@@ -17,9 +17,8 @@ pub fn spatial_hash_nearby(
   result
 }
 
-
 ///|
 /// Number of points. / 点数。
-pub fn spatial_hash_size(hash : SpatialHash) -> Int {
+pub fn spatial_hash_size(hash : SpatialHash) -> Int32 {
   hash.points.length()
 }

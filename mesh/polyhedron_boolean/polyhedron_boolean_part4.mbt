@@ -2,12 +2,12 @@
 /// Polyhedron intersection. / 多面体交集。
 pub fn polyhedron_intersection(
   verts_a : Array[@core.Point3D],
-  faces_a : Array[Array[Int]],
+  faces_a : Array[Array[Int32]],
   verts_b : Array[@core.Point3D],
-  faces_b : Array[Array[Int]],
+  faces_b : Array[Array[Int32]],
 ) -> PolyBoolResult {
   let result_verts : Array[@core.Point3D] = []
-  let result_faces : Array[Array[Int]] = []
+  let result_faces : Array[Array[Int32]] = []
   for v in verts_a {
     result_verts.push(v)
   }
@@ -17,5 +17,5 @@ pub fn polyhedron_intersection(
       result_faces.push(face)
     }
   }
-  { vertices: result_verts, faces: result_faces, success: true }
+  { vertices: result_verts, faces: result_faces, success: true, }
 }

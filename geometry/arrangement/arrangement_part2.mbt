@@ -1,40 +1,34 @@
 ///|
 /// Build an arrangement from a set of segments using brute-force intersection. / 使用暴力相交从线段集构建排列。
-pub fn build_arrangement(
-  segments : Array[@core.Segment],
-) -> Arrangement {
+pub fn build_arrangement(segments : Array[@core.Segment]) -> Arrangement {
   let vertices : Array[ArrangementVertex] = []
   for i in 0..<segments.length() {
-    let v : ArrangementVertex = {
-      point: segments[i].start,
-      seg_ids: [i],
-    }
+    let v : ArrangementVertex = { point: segments[i].start, seg_ids: [i], }
     vertices.push(v)
-    let v2 : ArrangementVertex = {
-      point: segments[i].end,
-      seg_ids: [i],
-    }
+    let v2 : ArrangementVertex = { point: segments[i].end, seg_ids: [i], }
     vertices.push(v2)
   }
   for i in 0..<segments.length() {
     for j in (i + 1)..<segments.length() {
-      match segment_intersect(
-        segments[i].start,
-        segments[i].end,
-        segments[j].start,
-        segments[j].end,
-      ) {
+      match
+        segment_intersect(
+          segments[i].start,
+          segments[i].end,
+          segments[j].start,
+          segments[j].end,
+        ) {
         Some(pt) => {
-          let v : ArrangementVertex = { point: pt, seg_ids: [i, j] }
+          let v : ArrangementVertex = { point: pt, seg_ids: [i, j], }
           vertices.push(v)
         }
         None => continue
       }
     }
   }
-  { segments, vertices }
+  { segments, vertices, }
 }
 
+///|
 fn segment_intersect(
   p1 : @core.Point2D,
   p2 : @core.Point2D,

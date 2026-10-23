@@ -8,6 +8,7 @@
 /// ## Complexity: O(sqrt(n) * log(1/eps)) iterations, O(n^3) per iteration
 /// ## 复杂度: O(sqrt(n) * log(1/eps)) 次迭代，每次迭代 O(n^3)
 
+///|
 /// |
 /// Result of interior point LP. / 内点法线性规划结果。
 pub struct IPResult {
@@ -16,19 +17,25 @@ pub struct IPResult {
   success : Bool
 }
 
+///|
 /// |
 /// Construct IP result. / 构造内点法结果。
-pub fn IPResult::new(x : Array[Double], value : Double, success : Bool) -> IPResult {
-  { x, value, success }
+pub fn IPResult::new(
+  x : Array[Double],
+  value : Double,
+  success : Bool,
+) -> IPResult {
+  { x, value, success, }
 }
 
+///|
 /// |
 /// Solve linear system A x = b via Gaussian elimination.
 /// 高斯消元法求解线性方程组。
 fn solve_linear(
   a : Array[Array[Double]],
   b : Array[Double],
-  n : Int,
+  n : Int32,
 ) -> Array[Double]? {
   let m : Array[Array[Double]] = []
   for i in 0..<n {
@@ -76,6 +83,7 @@ fn solve_linear(
   Some(x)
 }
 
+///|
 /// |
 /// Barrier interior point method: min c^T x s.t. A x = b, x >= 0.
 /// 障碍内点法：最小化 c^T x，约束 A x = b, x >= 0。
@@ -83,9 +91,9 @@ fn barrier_solve(
   a : Array[Array[Double]],
   b : Array[Double],
   c : Array[Double],
-  n : Int,
-  m : Int,
-  max_iter : Int,
+  n : Int32,
+  m : Int32,
+  max_iter : Int32,
 ) -> Array[Double] {
   let x : Array[Double] = Array::make(n, 1.0)
   let mut mu = 1.0
@@ -163,6 +171,7 @@ fn barrier_solve(
   x
 }
 
+///|
 /// |
 /// Interior point method for min c^T x s.t. A x <= b, x >= 0.
 /// 内点法求解 min c^T x，约束 A x <= b, x >= 0。
@@ -170,12 +179,12 @@ pub fn interior_point(
   a : Array[Array[Double]],
   b : Array[Double],
   c : Array[Double],
-  max_iter : Int,
+  max_iter : Int32,
 ) -> IPResult {
   let m = a.length()
   let n = c.length()
   if m == 0 || n == 0 {
-    return { x: Array::make(n, 0.0), value: 0.0, success: true }
+    return { x: Array::make(n, 0.0), value: 0.0, success: true, }
   }
   let n_total = n + m
   let a_eq : Array[Array[Double]] = []
@@ -211,9 +220,10 @@ pub fn interior_point(
       feasible = false
     }
   }
-  { x, value, success: feasible }
+  { x, value, success: feasible, }
 }
 
+///|
 /// |
 /// Maximize c^T x s.t. A x <= b, x >= 0 via interior point.
 /// 内点法最大化 c^T x，约束 A x <= b, x >= 0。
@@ -221,20 +231,21 @@ pub fn interior_point_max(
   a : Array[Array[Double]],
   b : Array[Double],
   c : Array[Double],
-  max_iter : Int,
+  max_iter : Int32,
 ) -> IPResult {
   let neg_c : Array[Double] = Array::make(c.length(), 0.0)
   for i in 0..<c.length() {
     neg_c[i] = -c[i]
   }
   let result = interior_point(a, b, neg_c, max_iter)
-  { x: result.x, value: -result.value, success: result.success }
+  { x: result.x, value: -result.value, success: result.success, }
 }
 
+///|
 /// |
 /// Compute duality gap for given primal x and dual (y, s).
 /// 计算给定原始 x 和对偶 (y, s) 的对偶间隙。
-pub fn duality_gap(x : Array[Double], s : Array[Double], n : Int) -> Double {
+pub fn duality_gap(x : Array[Double], s : Array[Double], n : Int32) -> Double {
   let mut gap = 0.0
   for i in 0..<n {
     gap += x[i] * s[i]

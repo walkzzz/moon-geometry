@@ -1,6 +1,9 @@
 ///|
 /// Marching Squares: extract contour segments at a given level. / Marching Squares：提取指定等值层的线段。
-pub fn marching_squares(g : ContourGrid, level : Double) -> Array[ContourSegment] {
+pub fn marching_squares(
+  g : ContourGrid,
+  level : Double,
+) -> Array[ContourSegment] {
   let segments : Array[ContourSegment] = []
   for row in 0..<(g.rows - 1) {
     for col in 0..<(g.cols - 1) {
@@ -49,12 +52,14 @@ pub fn marching_squares(g : ContourGrid, level : Double) -> Array[ContourSegment
       for seg in segs {
         let (sx1, sy1) = seg.0
         let (sx2, sy2) = seg.1
-        segments.push(ContourSegment::new(
-          world_x(g, sx1),
-          world_y(g, sy1),
-          world_x(g, sx2),
-          world_y(g, sy2),
-        ))
+        segments.push(
+          ContourSegment::new(
+            world_x(g, sx1),
+            world_y(g, sy1),
+            world_x(g, sx2),
+            world_y(g, sy2),
+          ),
+        )
       }
     }
   }

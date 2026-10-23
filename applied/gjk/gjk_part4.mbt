@@ -8,11 +8,9 @@
 pub fn gjk_collide(
   support_a : (Double, Double) -> @core.Point2D,
   support_b : (Double, Double) -> @core.Point2D,
-  max_iterations : Int,
+  max_iterations : Int32,
 ) -> GJKResult {
-  let support = fn(dx, dy) {
-    minkowski_support(support_a, support_b, dx, dy)
-  }
+  let support = fn(dx, dy) { minkowski_support(support_a, support_b, dx, dy) }
   let d = @core.Point2D::new(1.0, 0.0)
   let s1 = support(d.x(), d.y())
   let simplex : Array[@core.Point2D] = [s1]
@@ -38,6 +36,7 @@ pub fn gjk_collide(
   GJKResult::new(false, max_iterations)
 }
 
+///|
 fn gjk_simplex_update(simplex : Array[@core.Point2D]) -> (Bool, @core.Point2D) {
   if simplex.length() == 2 {
     let b = simplex[0]
@@ -46,7 +45,10 @@ fn gjk_simplex_update(simplex : Array[@core.Point2D]) -> (Bool, @core.Point2D) {
     let ao = @core.Point2D::new(-a.x(), -a.y())
     let dot = ab.x() * ao.x() + ab.y() * ao.y()
     if dot > 0.0 {
-      let d = @core.Point2D::new(ab.x() * dot / (ab.x() * ab.x() + ab.y() * ab.y()) - a.x(), ab.y() * dot / (ab.x() * ab.x() + ab.y() * ab.y()) - a.y())
+      let d = @core.Point2D::new(
+        ab.x() * dot / (ab.x() * ab.x() + ab.y() * ab.y()) - a.x(),
+        ab.y() * dot / (ab.x() * ab.x() + ab.y() * ab.y()) - a.y(),
+      )
       return (false, d)
     }
     simplex.remove(0) |> ignore
@@ -73,9 +75,16 @@ fn gjk_simplex_update(simplex : Array[@core.Point2D]) -> (Bool, @core.Point2D) {
     }
     return (true, @core.Point2D::new(0.0, 0.0))
   }
-  (false, @core.Point2D::new(-simplex[simplex.length() - 1].x(), -simplex[simplex.length() - 1].y()))
+  (
+    false,
+    @core.Point2D::new(
+      -simplex[simplex.length() - 1].x(),
+      -simplex[simplex.length() - 1].y(),
+    ),
+  )
 }
 
+///|
 fn triple_product(
   a : @core.Point2D,
   b : @core.Point2D,

@@ -23,11 +23,12 @@ pub fn frechet_distance(
   frechet_dp(c1, c2, n - 1, m - 1, dp)
 }
 
+///|
 fn frechet_dp(
   c1 : Array[@core.Point2D],
   c2 : Array[@core.Point2D],
-  i : Int,
-  j : Int,
+  i : Int32,
+  j : Int32,
   dp : Array[Array[Double]],
 ) -> Double {
   if dp[i][j] >= 0.0 {
@@ -47,7 +48,17 @@ fn frechet_dp(
     let a = frechet_dp(c1, c2, i - 1, j, dp)
     let b = frechet_dp(c1, c2, i, j - 1, dp)
     let c = frechet_dp(c1, c2, i - 1, j - 1, dp)
-    let min_prev = if a < b { if a < c { a } else { c } } else { if b < c { b } else { c } }
+    let min_prev = if a < b {
+      if a < c {
+        a
+      } else {
+        c
+      }
+    } else if b < c {
+      b
+    } else {
+      c
+    }
     result = if d > min_prev { d } else { min_prev }
   }
   dp[i][j] = result

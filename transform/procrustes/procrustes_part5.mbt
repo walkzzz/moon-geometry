@@ -6,7 +6,7 @@
 /// 返回对齐后的形状（每个已居中并旋转到参考）。
 pub fn procrustes_analyze(
   shapes : Array[Array[@core.Point2D]],
-  max_iter : Int,
+  max_iter : Int32,
 ) -> Array[Array[@core.Point2D]] {
   let n_shapes = shapes.length()
   if n_shapes == 0 {
@@ -23,7 +23,10 @@ pub fn procrustes_analyze(
   }
   for _ in 0..<max_iter {
     let n = aligned[0].length()
-    let ref_shape : Array[@core.Point2D] = Array::make(n, @core.Point2D::new(0.0, 0.0))
+    let ref_shape : Array[@core.Point2D] = Array::make(
+      n,
+      @core.Point2D::new(0.0, 0.0),
+    )
     for shape in aligned {
       for i in 0..<n {
         ref_shape[i] = @core.Point2D::new(
@@ -34,7 +37,10 @@ pub fn procrustes_analyze(
     }
     let nd = n_shapes.to_double()
     for i in 0..<n {
-      ref_shape[i] = @core.Point2D::new(ref_shape[i].x() / nd, ref_shape[i].y() / nd)
+      ref_shape[i] = @core.Point2D::new(
+        ref_shape[i].x() / nd,
+        ref_shape[i].y() / nd,
+      )
     }
     for k in 0..<n_shapes {
       let result = procrustes(aligned[k], ref_shape)

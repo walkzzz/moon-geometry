@@ -3,20 +3,18 @@
 pub struct Barcode {
   birth : Double
   death : Double
-  dimension : Int
+  dimension : Int32
 }
-
 
 ///|
 /// Construct a barcode. / 构造条形码。
 pub fn Barcode::new(
   birth : Double,
   death : Double,
-  dimension : Int,
+  dimension : Int32,
 ) -> Barcode {
-  { birth, death, dimension }
+  { birth, death, dimension, }
 }
-
 
 ///|
 /// Check if the barcode is infinite (death is infinity). / 检查条形码是否为无穷（死亡值为无穷）。
@@ -24,24 +22,21 @@ pub fn Barcode::is_infinite(self : Barcode) -> Bool {
   self.death >= 999999999.0
 }
 
-
 ///|
 /// A simplex with its filtration value. / 带过滤值的单纯形。
 pub struct SimplexWithFiltration {
-  vertices : Array[Int]
+  vertices : Array[Int32]
   filtration : Double
 }
-
 
 ///|
 /// Construct a simplex with filtration value. / 构造带过滤值的单纯形。
 pub fn SimplexWithFiltration::new(
-  vertices : Array[Int],
+  vertices : Array[Int32],
   filtration : Double,
 ) -> SimplexWithFiltration {
-  { vertices, filtration }
+  { vertices, filtration, }
 }
-
 
 ///|
 /// Persistence diagram: collection of barcodes. / 持久同调图：条形码集合。

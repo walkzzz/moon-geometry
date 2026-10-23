@@ -12,12 +12,9 @@ pub fn curvature_radius(
   1.0 / k
 }
 
-
 ///|
 /// Total absolute curvature (approximation of total curvature). / 总绝对曲率。
-pub fn curvature_total(
-  points : Array[@core.Point2D],
-) -> Double {
+pub fn curvature_total(points : Array[@core.Point2D]) -> Double {
   let profile = curvature_profile(points)
   let mut total = 0.0
   for k in profile {

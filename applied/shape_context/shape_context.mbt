@@ -8,7 +8,6 @@
 /// ## Complexity: O(n^2 * (r_bins * theta_bins))
 /// ## 复杂度: O(n^2 * (r_bins * theta_bins))
 
-
 ///|
 /// Natural log helper using log2. / 使用 log2 的自然对数辅助函数。
 fn ln(x : Double) -> Double {

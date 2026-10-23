@@ -1,3 +1,4 @@
+///|
 test "round_polygon square" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -9,6 +10,7 @@ test "round_polygon square" {
   assert_true(result.length() > pts.length())
 }
 
+///|
 test "round_corner right angle" {
   let p1 = @core.Point2D::new(0.0, 0.0)
   let p2 = @core.Point2D::new(5.0, 0.0)
@@ -17,6 +19,7 @@ test "round_corner right angle" {
   assert_true(result.length() >= 4)
 }
 
+///|
 test "round_polygon small radius" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -28,12 +31,14 @@ test "round_polygon small radius" {
   assert_true(result.length() > 4)
 }
 
+///|
 test "round_polygon degenerate" {
   let pts = [@core.Point2D::new(0.0, 0.0), @core.Point2D::new(1.0, 1.0)]
   let result = round_polygon(pts, 1.0, 5)
   assert_eq(result.length(), 2)
 }
 
+///|
 test "round_corner straight line" {
   let p1 = @core.Point2D::new(0.0, 0.0)
   let p2 = @core.Point2D::new(5.0, 0.0)

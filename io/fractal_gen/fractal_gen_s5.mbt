@@ -1,5 +1,6 @@
-///| Estimate fractal box-counting dimension from count samples. / 由计数样本估计分形盒计数维数。
-pub fn fractal_dimension_box(counts : Array[(Double, Int)]) -> Double {
+///|
+/// Estimate fractal box-counting dimension from count samples. / 由计数样本估计分形盒计数维数。
+pub fn fractal_dimension_box(counts : Array[(Double, Int32)]) -> Double {
   if counts.length() < 2 {
     return 0.0
   }
@@ -12,8 +13,8 @@ pub fn fractal_dimension_box(counts : Array[(Double, Int)]) -> Double {
   (log_n2 - log_n1) / (log_e2 - log_e1)
 }
 
-
-///| Compute Koch curve length at given iteration from base length. / 由基础长度计算给定迭代次数的 Koch 曲线长度。
-pub fn koch_curve_length(iteration : Int, base_length : Double) -> Double {
+///|
+/// Compute Koch curve length at given iteration from base length. / 由基础长度计算给定迭代次数的 Koch 曲线长度。
+pub fn koch_curve_length(iteration : Int32, base_length : Double) -> Double {
   base_length * @math.pow(4.0 / 3.0, iteration.to_double())
 }

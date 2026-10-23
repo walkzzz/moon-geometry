@@ -7,10 +7,8 @@ pub struct LineFit {
   r_squared : Double
 } derive(Debug)
 
-
 ///|
 pub extend LineFit with @moonbitlang/core/debug.Debug::{to_repr}
-
 
 ///|
 /// Result of a circle fit: center (cx, cy) and radius.
@@ -21,7 +19,6 @@ pub struct CircleFit {
   radius : Double
   r_squared : Double
 } derive(Debug)
-
 
 ///|
 pub extend CircleFit with @moonbitlang/core/debug.Debug::{to_repr}

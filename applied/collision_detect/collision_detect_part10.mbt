@@ -18,7 +18,12 @@ pub fn polygon_polygon_collide(
   let n2 = poly2.length()
   for i in 0..<n1 {
     for j in 0..<n2 {
-      if segment_segment_collide(poly1[i], poly1[(i + 1) % n1], poly2[j], poly2[(j + 1) % n2]) {
+      if segment_segment_collide(
+          poly1[i],
+          poly1[(i + 1) % n1],
+          poly2[j],
+          poly2[(j + 1) % n2],
+        ) {
         return true
       }
     }

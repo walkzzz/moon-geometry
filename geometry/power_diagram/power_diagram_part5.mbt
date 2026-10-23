@@ -2,12 +2,12 @@
 /// Compute the regular triangulation (weighted Delaunay) of weighted sites. / 计算加权站点的正则三角剖分（加权 Delaunay）。
 pub fn regular_triangulation(
   sites : Array[WeightedPoint],
-) -> Array[(Int, Int, Int)] {
+) -> Array[(Int32, Int32, Int32)] {
   let n = sites.length()
   if n < 3 {
     return []
   }
-  let tris : Array[(Int, Int, Int)] = []
+  let tris : Array[(Int32, Int32, Int32)] = []
   for i in 0..<(n - 2) {
     for j in (i + 1)..<(n - 1) {
       for k in (j + 1)..<n {
@@ -21,16 +21,18 @@ pub fn regular_triangulation(
   tris
 }
 
+///|
 fn check_regular(
   sites : Array[WeightedPoint],
-  i : Int,
-  j : Int,
-  k : Int,
+  i : Int32,
+  j : Int32,
+  k : Int32,
 ) -> Bool {
   let p1 = sites[i].point
   let p2 = sites[j].point
   let p3 = sites[k].point
-  let area = (p2.x() - p1.x()) * (p3.y() - p1.y()) - (p3.x() - p1.x()) * (p2.y() - p1.y())
+  let area = (p2.x() - p1.x()) * (p3.y() - p1.y()) -
+    (p3.x() - p1.x()) * (p2.y() - p1.y())
   if area.abs() < 0.0000000001 {
     return false
   }
@@ -49,6 +51,7 @@ fn check_regular(
   true
 }
 
+///|
 fn circumcenter2d(
   a : @core.Point2D,
   b : @core.Point2D,
@@ -64,9 +67,17 @@ fn circumcenter2d(
   if d.abs() < 0.0000000001 {
     return @core.Point2D::new((ax + bx + cx) / 3.0, (ay + by + cy) / 3.0)
   }
-  let ux = ((ax * ax + ay * ay) * (by - cy) + (bx * bx + by * by) * (cy - ay) +
-    (cx * cx + cy * cy) * (ay - by)) / d
-  let uy = ((ax * ax + ay * ay) * (cx - bx) + (bx * bx + by * by) * (ax - cx) +
-    (cx * cx + cy * cy) * (bx - ax)) / d
+  let ux = (
+      (ax * ax + ay * ay) * (by - cy) +
+      (bx * bx + by * by) * (cy - ay) +
+      (cx * cx + cy * cy) * (ay - by)
+    ) /
+    d
+  let uy = (
+      (ax * ax + ay * ay) * (cx - bx) +
+      (bx * bx + by * by) * (ax - cx) +
+      (cx * cx + cy * cy) * (bx - ax)
+    ) /
+    d
   @core.Point2D::new(ux, uy)
 }

@@ -2,7 +2,7 @@
 /// Compute concave hull using k-nearest neighbors approach. / 使用 k 近邻方法计算凹包。
 pub fn concave_hull(
   points : Array[@core.Point2D],
-  k : Int,
+  k : Int32,
 ) -> Array[@core.Point2D] {
   if points.length() <= 3 {
     return points.copy()
@@ -26,7 +26,11 @@ pub fn concave_hull(
       break
     }
     let mut best_idx = neighbors[0]
-    let mut best_angle = angle_to(points[current_idx], points[best_idx], current_angle)
+    let mut best_angle = angle_to(
+      points[current_idx],
+      points[best_idx],
+      current_angle,
+    )
     for idx in neighbors {
       let a = angle_to(points[current_idx], points[idx], current_angle)
       if a < best_angle {
@@ -45,22 +49,29 @@ pub fn concave_hull(
   result
 }
 
+///|
 fn k_nearest(
   points : Array[@core.Point2D],
-  center : Int,
-  k : Int,
+  center : Int32,
+  k : Int32,
   visited : Array[Bool],
-) -> Array[Int] {
-  let dists : Array[(Int, Double)] = []
+) -> Array[Int32] {
+  let dists : Array[(Int32, Double)] = []
   for i in 0..<points.length() {
     if i != center && !visited[i] {
       dists.push((i, points[center].dist(points[i])))
     }
   }
   dists.sort_by(fn(a, b) {
-    if a.1 < b.1 { -1 } else if a.1 > b.1 { 1 } else { 0 }
+    if a.1 < b.1 {
+      -1
+    } else if a.1 > b.1 {
+      1
+    } else {
+      0
+    }
   })
-  let result : Array[Int] = []
+  let result : Array[Int32] = []
   for i in 0..<dists.length() {
     if i >= k {
       break
@@ -70,6 +81,7 @@ fn k_nearest(
   result
 }
 
+///|
 fn angle_to(
   from : @core.Point2D,
   to : @core.Point2D,
@@ -78,5 +90,9 @@ fn angle_to(
   let dx = to.x() - from.x()
   let dy = to.y() - from.y()
   let angle = @math.atan2(dy, dx) - ref_angle
-  if angle < 0.0 { angle + 6.283185307179586 } else { angle }
+  if angle < 0.0 {
+    angle + 6.283185307179586
+  } else {
+    angle
+  }
 }

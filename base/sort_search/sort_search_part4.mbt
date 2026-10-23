@@ -1,6 +1,6 @@
 ///|
 /// Find k-th smallest element (quickselect). / 第 k 小元素。
-pub fn kth_element(arr : Array[Double], k : Int) -> Double? {
+pub fn kth_element(arr : Array[Double], k : Int32) -> Double? {
   if k < 0 || k >= arr.length() {
     return None
   }

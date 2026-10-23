@@ -4,20 +4,27 @@ pub fn point2d_to_json(p : @core.Point2D) -> String {
   "{\"x\":" + p.x().to_string() + ",\"y\":" + p.y().to_string() + "}"
 }
 
-
 ///|
 /// Export a Point3D as JSON. / 将 Point3D 导出为 JSON。
 pub fn point3d_to_json(p : @core.Point3D) -> String {
-  "{\"x\":" + p.x.to_string() + ",\"y\":" + p.y.to_string() + ",\"z\":" + p.z.to_string() + "}"
+  "{\"x\":" +
+  p.x.to_string() +
+  ",\"y\":" +
+  p.y.to_string() +
+  ",\"z\":" +
+  p.z.to_string() +
+  "}"
 }
-
 
 ///|
 /// Export a Segment as JSON. / 将 Segment 导出为 JSON。
 pub fn segment_to_json(s : @core.Segment) -> String {
-  "{\"start\":" + point2d_to_json(s.start) + ",\"end\":" + point2d_to_json(s.end) + "}"
+  "{\"start\":" +
+  point2d_to_json(s.start) +
+  ",\"end\":" +
+  point2d_to_json(s.end) +
+  "}"
 }
-
 
 ///|
 /// Export a Circle as JSON. / 将 Circle 导出为 JSON。
@@ -28,7 +35,6 @@ pub fn circle_to_json(c : @core.Circle) -> String {
   c.radius.to_string() +
   "}"
 }
-
 
 ///|
 /// Export a Rectangle as JSON. / 将 Rectangle 导出为 JSON。

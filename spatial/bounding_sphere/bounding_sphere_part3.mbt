@@ -15,10 +15,11 @@ pub fn min_bounding_sphere(points : Array[@core.Point3D]) -> BoundingSphere {
   welzl(pts, n, 0, [])
 }
 
+///|
 fn welzl(
   pts : Array[@core.Point3D],
-  n : Int,
-  end : Int,
+  n : Int32,
+  end : Int32,
   boundary : Array[@core.Point3D],
 ) -> BoundingSphere {
   if end == n || boundary.length() == 4 {

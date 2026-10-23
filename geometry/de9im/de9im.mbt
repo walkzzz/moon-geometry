@@ -4,4 +4,3 @@
 ///
 /// Dimensionally Extended 9-Intersection Model for spatial relations.
 /// 维度扩展9交模型，用于空间关系判定。
-

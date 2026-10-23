@@ -9,24 +9,24 @@ pub struct Rigid {
 ///|
 /// Create identity rigid transformation. / 创建单位刚体变换。
 pub fn Rigid::identity() -> Rigid {
-  { angle: 0.0, tx: 0.0, ty: 0.0 }
+  { angle: 0.0, tx: 0.0, ty: 0.0, }
 }
 
 ///|
 /// Create rigid from translation only. / 仅由平移创建刚体变换。
 pub fn Rigid::translation(tx : Double, ty : Double) -> Rigid {
-  { angle: 0.0, tx, ty }
+  { angle: 0.0, tx, ty, }
 }
 
 ///|
 /// Create rigid from rotation only. / 仅由旋转创建刚体变换。
 pub fn Rigid::rotation(angle : Double) -> Rigid {
-  { angle, tx: 0.0, ty: 0.0 }
+  { angle, tx: 0.0, ty: 0.0, }
 }
 
 ///|
 /// Apply rigid transformation to a point. / 将刚体变换应用于点。
-pub impl @core.PointTransform for Rigid with apply(r, p) {
+pub impl @core.PointTransform for Rigid with fn apply(r, p) {
   let c = @math.cos(r.angle)
   let s = @math.sin(r.angle)
   @core.Point2D::new(c * p.x() - s * p.y() + r.tx, s * p.x() + c * p.y() + r.ty)
@@ -40,7 +40,7 @@ pub extend Rigid with @core.Composable::{compose}
 
 ///|
 /// Compose two rigid transformations (self then other). / 组合两个刚体变换（先 self 后 other）。
-pub impl @core.Composable for Rigid with compose(self, other) {
+pub impl @core.Composable for Rigid with fn compose(self, other) {
   let c = @math.cos(self.angle)
   let s = @math.sin(self.angle)
   {
@@ -55,15 +55,12 @@ pub impl @core.Composable for Rigid with compose(self, other) {
 pub fn Rigid::inverse(r : Rigid) -> Rigid {
   let c = @math.cos(r.angle)
   let s = @math.sin(r.angle)
-  {
-    angle: -r.angle,
-    tx: -(c * r.tx + s * r.ty),
-    ty: -(-s * r.tx + c * r.ty),
-  }
+  { angle: -r.angle, tx: -(c * r.tx + s * r.ty), ty: -(-s * r.tx + c * r.ty), }
 }
 
 ///|
 
+///|
 /// Estimate rigid transform from two point correspondences. / 由两对对应点估计刚体变换。
 pub fn Rigid::from_correspondence(
   src1 : @core.Point2D,
@@ -76,5 +73,5 @@ pub fn Rigid::from_correspondence(
   let angle = dst_angle - src_angle
   let r = Rigid::rotation(angle)
   let transformed = r.apply(src1)
-  { angle, tx: dst1.x() - transformed.x(), ty: dst1.y() - transformed.y() }
+  { angle, tx: dst1.x() - transformed.x(), ty: dst1.y() - transformed.y(), }
 }

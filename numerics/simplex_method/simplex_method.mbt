@@ -8,6 +8,7 @@
 /// ## Complexity: O(iter * m * n) per iteration
 /// ## 复杂度: 每次迭代 O(iter * m * n)
 
+///|
 /// |
 /// Result of simplex linear program. / 单纯形线性规划结果。
 pub struct SimplexResult {
@@ -16,6 +17,7 @@ pub struct SimplexResult {
   success : Bool
 }
 
+///|
 /// |
 /// Construct simplex result. / 构造单纯形结果。
 pub fn SimplexResult::new(
@@ -23,18 +25,19 @@ pub fn SimplexResult::new(
   value : Double,
   success : Bool,
 ) -> SimplexResult {
-  { x, value, success }
+  { x, value, success, }
 }
 
+///|
 /// |
 /// Core simplex tableau pivot on element (pivot_row, pivot_col).
 /// 核心单纯形表旋转操作。
 fn pivot(
   table : Array[Array[Double]],
-  pivot_row : Int,
-  pivot_col : Int,
-  rows : Int,
-  cols : Int,
+  pivot_row : Int32,
+  pivot_col : Int32,
+  rows : Int32,
+  cols : Int32,
 ) -> Array[Array[Double]] {
   let result : Array[Array[Double]] = []
   for _ in 0..<rows {
@@ -55,14 +58,15 @@ fn pivot(
   result
 }
 
+///|
 /// |
 /// Simplex for min c^T x s.t. A x <= b, x >= 0, assuming b >= 0.
 /// 单纯形法求解 min c^T x s.t. A x <= b, x >= 0，假设 b >= 0。
 fn simplex_phase(
   table : Array[Array[Double]],
-  n_vars : Int,
-  n_slack : Int,
-  max_iter : Int,
+  n_vars : Int32,
+  n_slack : Int32,
+  max_iter : Int32,
 ) -> (Array[Array[Double]], Bool) {
   let rows = table.length()
   let cols = n_vars + n_slack + 1
@@ -103,6 +107,7 @@ fn simplex_phase(
   (t, optimal)
 }
 
+///|
 /// |
 /// Two-phase simplex method: minimize c^T x subject to A x <= b, x >= 0.
 /// 两阶段单纯形法：最小化 c^T x，约束 A x <= b, x >= 0。
@@ -110,12 +115,12 @@ pub fn simplex(
   a : Array[Array[Double]],
   b : Array[Double],
   c : Array[Double],
-  max_iter : Int,
+  max_iter : Int32,
 ) -> SimplexResult {
   let m = a.length()
   let n = c.length()
   if m == 0 || n == 0 {
-    return { x: Array::make(n, 0.0), value: 0.0, success: true }
+    return { x: Array::make(n, 0.0), value: 0.0, success: true, }
   }
   let n_slack = m
   let cols = n + n_slack + 1
@@ -148,21 +153,22 @@ pub fn simplex(
   }
   let (t, optimal) = simplex_phase(table, n, n_slack, max_iter)
   if !optimal {
-    return { x: Array::make(n, 0.0), value: 0.0, success: false }
+    return { x: Array::make(n, 0.0), value: 0.0, success: false, }
   }
   let x = extract_solution(t, n, m, cols)
   let value = -t[m][cols - 1]
-  { x, value, success: true }
+  { x, value, success: true, }
 }
 
+///|
 /// |
 /// Extract solution from simplex tableau.
 /// 从单纯形表提取解。
 fn extract_solution(
   table : Array[Array[Double]],
-  n : Int,
-  m : Int,
-  cols : Int,
+  n : Int32,
+  m : Int32,
+  cols : Int32,
 ) -> Array[Double] {
   let x : Array[Double] = Array::make(n, 0.0)
   for j in 0..<n {
@@ -181,6 +187,7 @@ fn extract_solution(
   x
 }
 
+///|
 /// |
 /// Two-phase simplex for problems with negative b values.
 /// 处理 b 含负值的两阶段单纯形。
@@ -188,9 +195,9 @@ fn simplex_two_phase(
   a : Array[Array[Double]],
   b : Array[Double],
   c : Array[Double],
-  n : Int,
-  m : Int,
-  max_iter : Int,
+  n : Int32,
+  m : Int32,
+  max_iter : Int32,
 ) -> SimplexResult {
   let n_slack = m
   let n_art = m
@@ -217,7 +224,7 @@ fn simplex_two_phase(
   let (t1, _) = simplex_phase(table, n + n_slack, n_art, max_iter)
   let aux_obj = t1[m][cols - 1]
   if aux_obj < -0.0001 {
-    return { x: Array::make(n, 0.0), value: 0.0, success: false }
+    return { x: Array::make(n, 0.0), value: 0.0, success: false, }
   }
   let cols2 = n + n_slack + 1
   let table2 : Array[Array[Double]] = []
@@ -251,13 +258,14 @@ fn simplex_two_phase(
   }
   let (t2, optimal) = simplex_phase(table2, n, n_slack, max_iter)
   if !optimal {
-    return { x: Array::make(n, 0.0), value: 0.0, success: false }
+    return { x: Array::make(n, 0.0), value: 0.0, success: false, }
   }
   let x = extract_solution(t2, n, m, cols2)
   let value = -t2[m][cols2 - 1]
-  { x, value, success: true }
+  { x, value, success: true, }
 }
 
+///|
 /// |
 /// Maximize c^T x subject to A x <= b, x >= 0.
 /// 最大化 c^T x，约束 A x <= b, x >= 0。
@@ -265,12 +273,12 @@ pub fn simplex_max(
   a : Array[Array[Double]],
   b : Array[Double],
   c : Array[Double],
-  max_iter : Int,
+  max_iter : Int32,
 ) -> SimplexResult {
   let neg_c : Array[Double] = Array::make(c.length(), 0.0)
   for i in 0..<c.length() {
     neg_c[i] = -c[i]
   }
   let result = simplex(a, b, neg_c, max_iter)
-  { x: result.x, value: -result.value, success: result.success }
+  { x: result.x, value: -result.value, success: result.success, }
 }

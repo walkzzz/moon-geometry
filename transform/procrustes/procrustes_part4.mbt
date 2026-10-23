@@ -17,7 +17,6 @@ pub fn procrustes_apply(
   result_arr
 }
 
-
 ///|
 /// Procrustes distance (error) between two point sets.
 /// 两个点集间的 Procrustes 距离（误差）。

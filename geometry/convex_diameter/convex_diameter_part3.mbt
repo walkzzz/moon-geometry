@@ -1,10 +1,8 @@
 ///|
 /// Compute all antipodal pairs of a convex polygon. / 计算凸多边形的所有对踵点对。
-pub fn antipodal_pairs(
-  poly : @core.Polygon,
-) -> Array[(Int, Int)] {
+pub fn antipodal_pairs(poly : @core.Polygon) -> Array[(Int32, Int32)] {
   let n = poly.size()
-  let pairs : Array[(Int, Int)] = []
+  let pairs : Array[(Int32, Int32)] = []
   if n < 3 {
     return pairs
   }
@@ -26,6 +24,7 @@ pub fn antipodal_pairs(
   pairs
 }
 
+///|
 fn cross_area(
   o : @core.Point2D,
   a : @core.Point2D,

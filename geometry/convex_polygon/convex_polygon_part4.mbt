@@ -7,7 +7,7 @@
 pub fn tangent_from_point(
   poly : @core.Polygon,
   p : @core.Point2D,
-) -> (Int, Int) {
+) -> (Int32, Int32) {
   let n = poly.size()
   if n == 0 {
     return (-1, -1)

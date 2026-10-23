@@ -3,7 +3,7 @@
 /// 从傅里叶描述子重建边界。
 pub fn fourier_reconstruct(
   coeffs : Array[(Double, Double)],
-  n : Int,
+  n : Int32,
 ) -> Array[@core.Point2D] {
   let result : Array[@core.Point2D] = []
   let nc = coeffs.length()

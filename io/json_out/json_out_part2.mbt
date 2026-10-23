@@ -11,7 +11,6 @@ pub fn polygon_to_json(poly : @core.Polygon) -> String {
   verts + "]"
 }
 
-
 ///|
 /// Export an array of Point2D as JSON. / 将 Point2D 数组导出为 JSON。
 pub fn points_to_json(points : Array[@core.Point2D]) -> String {
@@ -25,9 +24,14 @@ pub fn points_to_json(points : Array[@core.Point2D]) -> String {
   result + "]"
 }
 
-
 ///|
 /// Export a Triangle as JSON. / 将 Triangle 导出为 JSON。
 pub fn triangle_to_json(t : @core.Triangle) -> String {
-  "{\"a\":" + point2d_to_json(t.a) + ",\"b\":" + point2d_to_json(t.b) + ",\"c\":" + point2d_to_json(t.c) + "}"
+  "{\"a\":" +
+  point2d_to_json(t.a) +
+  ",\"b\":" +
+  point2d_to_json(t.b) +
+  ",\"c\":" +
+  point2d_to_json(t.c) +
+  "}"
 }

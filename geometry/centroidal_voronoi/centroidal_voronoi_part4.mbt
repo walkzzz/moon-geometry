@@ -2,7 +2,7 @@
 /// Compute Voronoi cell for a site within bounds. / 计算站点在包围盒内的 Voronoi 单元。
 fn voronoi_cell(
   sites : Array[@core.Point2D],
-  idx : Int,
+  idx : Int32,
   bounds : (@core.Point2D, @core.Point2D),
 ) -> Array[@core.Point2D] {
   let (bl, tr) = bounds

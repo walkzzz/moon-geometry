@@ -1,23 +1,24 @@
+///|
 test "alpha_complex empty" {
   let ac = alpha_complex([], 1.0)
   assert_eq(ac.simplex_count(), 0)
 }
 
+///|
 test "alpha_complex single point" {
   let pts = [@core.Point2D::new(0.0, 0.0)]
   let ac = alpha_complex(pts, 1.0)
   assert_eq(ac.simplex_count(), 1)
 }
 
+///|
 test "alpha_complex two points" {
-  let pts = [
-    @core.Point2D::new(0.0, 0.0),
-    @core.Point2D::new(1.0, 0.0),
-  ]
+  let pts = [@core.Point2D::new(0.0, 0.0), @core.Point2D::new(1.0, 0.0)]
   let ac = alpha_complex(pts, 1.0)
   assert_true(ac.simplex_count() >= 2)
 }
 
+///|
 test "alpha_complex triangle" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -28,6 +29,7 @@ test "alpha_complex triangle" {
   assert_true(ac.simplex_count() >= 3)
 }
 
+///|
 test "alpha_complex small alpha" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -38,6 +40,7 @@ test "alpha_complex small alpha" {
   assert_eq(ac.simplex_count(), 3)
 }
 
+///|
 test "alpha_shape" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -49,12 +52,14 @@ test "alpha_shape" {
   assert_true(shape.length() >= 0)
 }
 
+///|
 test "is_alpha_exposed" {
-  let s = { vertices: [0, 1], dimension: 1, circumradius: 2.0 }
+  let s = { vertices: [0, 1], dimension: 1, circumradius: 2.0, }
   assert_true(is_alpha_exposed(s, 3.0))
   assert_false(is_alpha_exposed(s, 1.0))
 }
 
+///|
 test "alpha_complex_count" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -66,6 +71,7 @@ test "alpha_complex_count" {
   assert_true(alpha_complex_count(ac) >= 4)
 }
 
+///|
 test "AlphaComplex::new" {
   let ac = AlphaComplex::new()
   assert_eq(ac.simplex_count(), 0)

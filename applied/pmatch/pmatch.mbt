@@ -4,13 +4,13 @@ pub fn point_match(
   a : Array[@core.Point2D],
   b : Array[@core.Point2D],
   threshold : Double,
-) -> Array[(Int, Int)] {
+) -> Array[(Int32, Int32)] {
   let n = a.length()
   let m = b.length()
   if n == 0 || m == 0 {
     return []
   }
-  let matches : Array[(Int, Int)] = []
+  let matches : Array[(Int32, Int32)] = []
   let used_b : Array[Bool] = []
   for _ in 0..<m {
     used_b.push(false)

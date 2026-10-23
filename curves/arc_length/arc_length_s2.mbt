@@ -1,8 +1,6 @@
 ///|
 /// Cumulative arc lengths at each point. / 每个点处的累积弧长。
-pub fn arc_length_cumulative(
-  points : Array[@core.Point2D],
-) -> Array[Double] {
+pub fn arc_length_cumulative(points : Array[@core.Point2D]) -> Array[Double] {
   let n = points.length()
   let result : Array[Double] = []
   if n == 0 {

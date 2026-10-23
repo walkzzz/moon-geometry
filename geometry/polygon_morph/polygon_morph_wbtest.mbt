@@ -1,3 +1,4 @@
+///|
 test "morph basic" {
   let pts1 = [
     @core.Point2D::new(0.0, 0.0),
@@ -17,6 +18,7 @@ test "morph basic" {
   assert_true(dx.abs() < 0.001)
 }
 
+///|
 test "morph_sequence basic" {
   let pts1 = [
     @core.Point2D::new(0.0, 0.0),
@@ -34,6 +36,7 @@ test "morph_sequence basic" {
   assert_eq(seq.length(), 5)
 }
 
+///|
 test "best_alignment basic" {
   let pts1 = [
     @core.Point2D::new(0.0, 0.0),
@@ -51,6 +54,7 @@ test "best_alignment basic" {
   assert_true(shift >= 0 && shift < 4)
 }
 
+///|
 test "morph_aligned basic" {
   let pts1 = [
     @core.Point2D::new(0.0, 0.0),
@@ -68,6 +72,7 @@ test "morph_aligned basic" {
   assert_eq(result.length(), 4)
 }
 
+///|
 test "morph mismatched sizes" {
   let pts1 = [@core.Point2D::new(0.0, 0.0), @core.Point2D::new(1.0, 1.0)]
   let pts2 = [

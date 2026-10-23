@@ -4,9 +4,7 @@
 ///
 /// Normalize by |FD[1]|, take magnitudes, skip DC component (index 0).
 /// 以 |FD[1]| 归一化，取模长，跳过直流分量（索引 0）。
-pub fn fourier_invariant(
-  points : Array[@core.Point2D],
-) -> Array[Double] {
+pub fn fourier_invariant(points : Array[@core.Point2D]) -> Array[Double] {
   let coeffs = fourier_descriptors(points)
   let result : Array[Double] = []
   if coeffs.length() < 2 {

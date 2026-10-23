@@ -5,7 +5,6 @@
 /// Basic point cloud operations: downsampling, bounding box, centroid.
 /// 点云基础操作：降采样、包围盒、质心。
 
-
 ///|
 /// Compute centroid of a 3D point cloud. / 计算3D点云质心。
 pub fn point_cloud_centroid(points : Array[@core.Point3D]) -> @core.Point3D {

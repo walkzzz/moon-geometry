@@ -1,7 +1,10 @@
 ///|
 /// Query rectangle indices containing a point. / 查询包含点的矩形索引。
-pub fn bvh_query_point(nodes : Array[BVHNode], p : @core.Point2D) -> Array[Int] {
-  let result : Array[Int] = []
+pub fn bvh_query_point(
+  nodes : Array[BVHNode],
+  p : @core.Point2D,
+) -> Array[Int32] {
+  let result : Array[Int32] = []
   if nodes.length() == 0 {
     return result
   }
@@ -9,10 +12,9 @@ pub fn bvh_query_point(nodes : Array[BVHNode], p : @core.Point2D) -> Array[Int] 
   result
 }
 
-
 ///|
 /// Count leaf nodes. / 统计叶子节点数。
-pub fn bvh_count_leaves(nodes : Array[BVHNode]) -> Int {
+pub fn bvh_count_leaves(nodes : Array[BVHNode]) -> Int32 {
   let mut count = 0
   for i in 0..<nodes.length() {
     if nodes[i].index >= 0 {

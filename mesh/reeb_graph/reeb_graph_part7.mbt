@@ -2,21 +2,21 @@
 /// Compute the Reeb graph of a scalar field. / 计算标量场的 Reeb 图。
 pub fn reeb_graph(
   values : Array[Double],
-  edges : Array[(Int, Int)],
+  edges : Array[(Int32, Int32)],
 ) -> ReebGraph {
   let nodes = critical_points(values, edges)
   let n = values.length()
   if n == 0 {
-    return { nodes: [], edges: [] }
+    return { nodes: [], edges: [], }
   }
   let adj = build_adjacency(n, edges)
   let order = sort_by_value(values)
-  let component : Array[Int] = Array::make(n, -1)
+  let component : Array[Int32] = Array::make(n, -1)
   let mut next_component = 0
   let reeb_edges : Array[ReebEdge] = []
-  let comp_start : Array[Int] = Array::make(n, -1)
+  let comp_start : Array[Int32] = Array::make(n, -1)
   for vi in order {
-    let lower_comps : Array[Int] = []
+    let lower_comps : Array[Int32] = []
     for j in adj[vi] {
       if values[j] < values[vi] - 0.0000000001 && component[j] != -1 {
         let mut found = false
@@ -38,16 +38,15 @@ pub fn reeb_graph(
         comp_start[next_component] = vi
         next_component += 1
       }
-      Maximum => {
+      Maximum =>
         if lower_comps.length() > 0 {
-          reeb_edges.push({ from: comp_start[lower_comps[0]], to: vi })
+          reeb_edges.push({ from: comp_start[lower_comps[0]], to: vi, })
           component[vi] = lower_comps[0]
         }
-      }
-      Saddle => {
+      Saddle =>
         if lower_comps.length() >= 2 {
           for c in lower_comps {
-            reeb_edges.push({ from: comp_start[c], to: vi })
+            reeb_edges.push({ from: comp_start[c], to: vi, })
           }
           component[vi] = lower_comps[0]
           for j in 0..<n {
@@ -58,8 +57,7 @@ pub fn reeb_graph(
         } else if lower_comps.length() == 1 {
           component[vi] = lower_comps[0]
         }
-      }
-      Regular => {
+      Regular =>
         if lower_comps.length() == 1 {
           component[vi] = lower_comps[0]
         } else {
@@ -67,13 +65,13 @@ pub fn reeb_graph(
           comp_start[next_component] = vi
           next_component += 1
         }
-      }
     }
   }
-  { nodes, edges: reeb_edges }
+  { nodes, edges: reeb_edges, }
 }
 
-fn sort_by_value(values : Array[Double]) -> Array[Int] {
+///|
+fn sort_by_value(values : Array[Double]) -> Array[Int32] {
   let n = values.length()
   let order = Array::make(n, 0)
   for i in 0..<n {

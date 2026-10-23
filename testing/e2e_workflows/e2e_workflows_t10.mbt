@@ -1,6 +1,7 @@
 ///| E2E: Transform chain → Identity recovery
 
-///| 端到端：变换链 → 恒等恢复
+///|
+/// 端到端：变换链 → 恒等恢复
 test "e2e: transform chain identity" {
   let p = @core.Point2D::new(7.0, 3.0)
   let p1 = @transform.translate(p, 10.0, 20.0)

@@ -1,9 +1,11 @@
+///|
 test "gltf empty mesh" {
   let m = GltfMesh::new()
   assert_eq(GltfMesh::vertex_count(m), 0)
   assert_eq(GltfMesh::index_count(m), 0)
 }
 
+///|
 test "gltf write json" {
   let m = GltfMesh::new()
   m.vertices.push(@core.Point3D::new(1.0, 2.0, 3.0))
@@ -14,6 +16,7 @@ test "gltf write json" {
   assert_true(s.contains("\"indices\":[0]"))
 }
 
+///|
 test "gltf parse json" {
   let text = "{\"asset\":{\"version\":\"2.0\"},\"vertices\":[1,2,3,4,5,6],\"indices\":[0,1,2]}"
   let m = gltf_parse_json(text)
@@ -23,6 +26,7 @@ test "gltf parse json" {
   assert_true(@core.approx_eq(m.vertices[1].z, 6.0, 0.000001))
 }
 
+///|
 test "gltf json roundtrip" {
   let m = GltfMesh::new()
   m.vertices.push(@core.Point3D::new(1.5, 2.5, 3.5))
@@ -38,6 +42,7 @@ test "gltf json roundtrip" {
   assert_true(@core.approx_eq(m2.vertices[2].z, 9.5, 0.000001))
 }
 
+///|
 test "gltf binary roundtrip" {
   let m = GltfMesh::new()
   m.vertices.push(@core.Point3D::new(1.0, 2.0, 3.0))
@@ -52,6 +57,7 @@ test "gltf binary roundtrip" {
   assert_eq(m2.indices[1], 1)
 }
 
+///|
 test "gltf binary empty" {
   let m = GltfMesh::new()
   let bytes = gltf_write_binary(m)
@@ -60,6 +66,7 @@ test "gltf binary empty" {
   assert_eq(GltfMesh::index_count(m2), 0)
 }
 
+///|
 test "gltf parse json negative" {
   let text = "{\"vertices\":[-1.5,-2.5,-3.5],\"indices\":[]}"
   let m = gltf_parse_json(text)
@@ -67,6 +74,7 @@ test "gltf parse json negative" {
   assert_true(@core.approx_eq(m.vertices[0].x, -1.5, 0.000001))
 }
 
+///|
 test "gltf write json empty arrays" {
   let m = GltfMesh::new()
   let s = gltf_write_json(m)
@@ -74,6 +82,7 @@ test "gltf write json empty arrays" {
   assert_true(s.contains("\"indices\":[]"))
 }
 
+///|
 test "gltf binary large indices" {
   let m = GltfMesh::new()
   for i in 0..<10 {

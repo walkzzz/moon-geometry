@@ -8,11 +8,12 @@
 /// ## Complexity: O(E log E)
 /// ## 复杂度: O(E log E)
 
+///|
 /// |
 /// Weighted edge.
 /// 加权边。
 pub struct WEdge {
-  u : Int
-  v : Int
+  u : Int32
+  v : Int32
   w : Double
 }

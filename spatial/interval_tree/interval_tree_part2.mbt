@@ -1,8 +1,10 @@
-///| Create a new interval with bounds and id. / 用上下界和 id 创建新区间。
-pub fn Interval::new(lo : Double, hi : Double, id : Int) -> Interval {
-  { lo, hi, id }
+///|
+/// Create a new interval with bounds and id. / 用上下界和 id 创建新区间。
+pub fn Interval::new(lo : Double, hi : Double, id : Int32) -> Interval {
+  { lo, hi, id, }
 }
 
+///|
 /// |
 /// Interval tree node.
 /// 区间树节点。
@@ -13,6 +15,7 @@ pub struct IntervalNode {
   right : IntervalNode?
 }
 
+///|
 /// |
 /// Build an interval tree.
 /// 构建区间树。
@@ -43,6 +46,7 @@ pub fn interval_tree_build(intervals : Array[Interval]) -> IntervalNode? {
   build_impl(sorted, min_val, max_val)
 }
 
+///|
 /// |
 /// Query all intervals containing point x.
 /// 查询包含点 x 的所有区间。
@@ -52,17 +56,21 @@ pub fn interval_tree_query(node : IntervalNode?, x : Double) -> Array[Interval] 
   result
 }
 
+///|
 /// |
 /// Count intervals in the tree.
 /// 计算树中的区间数。
-pub fn interval_tree_count(node : IntervalNode?) -> Int {
+pub fn interval_tree_count(node : IntervalNode?) -> Int32 {
   match node {
     Some(n) =>
-      n.intervals.length() + interval_tree_count(n.left) + interval_tree_count(n.right)
+      n.intervals.length() +
+      interval_tree_count(n.left) +
+      interval_tree_count(n.right)
     None => 0
   }
 }
 
+///|
 fn build_impl(
   intervals : Array[Interval],
   lo : Double,
@@ -102,9 +110,14 @@ fn build_impl(
   })
 }
 
-fn query_impl(node : IntervalNode?, x : Double, result : Array[Interval]) -> Unit {
+///|
+fn query_impl(
+  node : IntervalNode?,
+  x : Double,
+  result : Array[Interval],
+) -> Unit {
   match node {
-    Some(n) => {
+    Some(n) =>
       if x < n.center {
         for i in 0..<n.intervals.length() {
           if n.intervals[i].lo <= x {
@@ -124,7 +137,6 @@ fn query_impl(node : IntervalNode?, x : Double, result : Array[Interval]) -> Uni
           result.push(n.intervals[i])
         }
       }
-    }
     None => ()
   }
 }

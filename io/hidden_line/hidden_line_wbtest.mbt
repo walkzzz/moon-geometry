@@ -1,3 +1,4 @@
+///|
 test "project to 2d" {
   let p = @core.Point3D::new(3.0, 4.0, 5.0)
   let q = project_to_2d(p)
@@ -5,6 +6,7 @@ test "project to 2d" {
   assert_true(@core.approx_eq(q.y(), 4.0, 0.000001))
 }
 
+///|
 test "project segment" {
   let s = LineSeg3D::new(
     @core.Point3D::new(1.0, 2.0, 3.0),
@@ -15,6 +17,7 @@ test "project segment" {
   assert_true(@core.approx_eq(p2.y(), 5.0, 0.000001))
 }
 
+///|
 test "point in triangle inside" {
   let p = @core.Point2D::new(0.5, 0.5)
   let a = @core.Point2D::new(0.0, 0.0)
@@ -23,6 +26,7 @@ test "point in triangle inside" {
   assert_true(point_in_triangle_2d(p, a, b, c))
 }
 
+///|
 test "point in triangle outside" {
   let p = @core.Point2D::new(2.0, 2.0)
   let a = @core.Point2D::new(0.0, 0.0)
@@ -31,6 +35,7 @@ test "point in triangle outside" {
   assert_false(point_in_triangle_2d(p, a, b, c))
 }
 
+///|
 test "triangle z at" {
   let tri = (
     @core.Point3D::new(0.0, 0.0, 0.0),
@@ -43,6 +48,7 @@ test "triangle z at" {
   }
 }
 
+///|
 test "hidden line no occluders" {
   let segs = [
     LineSeg3D::new(
@@ -55,6 +61,7 @@ test "hidden line no occluders" {
   assert_eq(visible.length(), 1)
 }
 
+///|
 test "hidden line occluded" {
   let segs = [
     LineSeg3D::new(
@@ -71,6 +78,7 @@ test "hidden line occluded" {
   assert_eq(visible.length(), 0)
 }
 
+///|
 test "hidden line partial" {
   let segs = [
     LineSeg3D::new(
@@ -91,6 +99,7 @@ test "hidden line partial" {
   assert_eq(visible.length(), 1)
 }
 
+///|
 test "count visible" {
   let segs = [
     LineSeg3D::new(
@@ -101,6 +110,7 @@ test "count visible" {
   assert_eq(count_visible(segs, []), 1)
 }
 
+///|
 test "back face cull" {
   let tris = [
     (

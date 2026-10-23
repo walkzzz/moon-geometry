@@ -1,7 +1,7 @@
 ///|
 /// Bounding box of quadratic Bezier. Returns (min_x, min_y, max_x, max_y).
 /// 二次贝塞尔曲线包围盒，返回 (min_x, min_y, max_x, max_y)。
-pub impl @core.Bounded2D for Bezier2 with bbox(self) {
+pub impl @core.Bounded2D for Bezier2 with fn bbox(self) {
   let mut min_x = self.p0.x()
   let mut max_x = min_x
   let mut min_y = self.p0.y()

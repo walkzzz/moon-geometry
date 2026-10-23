@@ -1,8 +1,6 @@
 ///|
 /// Check if a polygon is y-monotone (single chain from top to bottom). / 检查多边形是否 y-单调（从顶到底的单链）。
-pub fn is_y_monotone(
-  poly : Array[@core.Point2D],
-) -> Bool {
+pub fn is_y_monotone(poly : Array[@core.Point2D]) -> Bool {
   let n = poly.length()
   if n < 3 {
     return false
@@ -17,8 +15,8 @@ pub fn is_y_monotone(
       bottom_idx = i
     }
   }
-  let left_chain : Array[Int] = []
-  let right_chain : Array[Int] = []
+  let left_chain : Array[Int32] = []
+  let right_chain : Array[Int32] = []
   let mut i = top_idx
   while i != bottom_idx {
     left_chain.push(i)

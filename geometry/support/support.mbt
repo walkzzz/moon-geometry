@@ -3,7 +3,7 @@
 pub fn support_point_set(
   points : Array[@core.Point2D],
   dir : @core.Point2D,
-) -> Int? {
+) -> Int32? {
   if points.length() == 0 {
     return None
   }

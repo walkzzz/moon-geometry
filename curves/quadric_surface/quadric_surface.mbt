@@ -6,7 +6,6 @@
 /// Classification into ellipsoid / hyperboloid / paraboloid / cone / cylinder.
 /// 一般二次曲面，分类为椭球面 / 双曲面 / 抛物面 / 锥面 / 柱面。
 
-
 ///|
 /// Quadric surface type. / 二次曲面类型。
 pub(all) enum QuadricType {
@@ -19,7 +18,6 @@ pub(all) enum QuadricType {
   EllipticCylinder
   Degenerate
 }
-
 
 ///|
 /// Quadric surface coefficients.
@@ -38,7 +36,6 @@ pub struct Quadric {
   j : Double
 }
 
-
 ///|
 /// Construct a quadric from 10 coefficients. / 由 10 个系数构造二次曲面。
 pub fn Quadric::new(
@@ -53,9 +50,8 @@ pub fn Quadric::new(
   i : Double,
   j : Double,
 ) -> Quadric {
-  { a, b, c, d, e, f, g, h, i, j }
+  { a, b, c, d, e, f, g, h, i, j, }
 }
-
 
 ///|
 /// Evaluate the quadric at a point. / 在一点求值二次曲面。
@@ -75,9 +71,12 @@ pub fn Quadric::eval(q : Quadric, p : @core.Point3D) -> Double {
   q.j
 }
 
-
 ///|
 /// Check if a point lies on the quadric. / 检查点是否在二次曲面上。
-pub fn Quadric::on_surface(q : Quadric, p : @core.Point3D, eps : Double) -> Bool {
+pub fn Quadric::on_surface(
+  q : Quadric,
+  p : @core.Point3D,
+  eps : Double,
+) -> Bool {
   Quadric::eval(q, p).abs() <= eps
 }

@@ -8,6 +8,7 @@
 /// ## Complexity: O(n × m) for nearest neighbor matching
 /// ## 复杂度: 最近邻匹配 O(n × m)
 
+///|
 /// |
 /// Match points from source to target using nearest neighbor.
 /// 使用最近邻将源点匹配到目标点。
@@ -21,8 +22,8 @@
 pub fn nearest_neighbor_match(
   source : Array[(Double, Double)],
   target : Array[(Double, Double)],
-) -> Array[Int] {
-  let result : Array[Int] = []
+) -> Array[Int32] {
+  let result : Array[Int32] = []
   for sp in source {
     let (sx, sy) = sp
     let mut best_idx = 0
@@ -40,6 +41,7 @@ pub fn nearest_neighbor_match(
   result
 }
 
+///|
 /// |
 /// Compute Hausdorff distance between two point sets.
 /// 计算两个点集之间的 Hausdorff 距离。
@@ -86,6 +88,7 @@ pub fn hausdorff_distance(
   }
 }
 
+///|
 /// |
 /// Compute Chamfer distance between two point sets.
 /// 计算两个点集之间的 Chamfer 距离。
@@ -124,6 +127,7 @@ pub fn chamfer_distance(
   sum_ab + sum_ba
 }
 
+///|
 /// |
 /// Find best matching by brute force (for small point sets).
 /// 使用暴力查找最佳匹配（适用于小点集）。
@@ -139,8 +143,8 @@ pub fn match_points(
   source : Array[(Double, Double)],
   target : Array[(Double, Double)],
   threshold : Double,
-) -> Array[(Int, Int)] {
-  let matches : Array[(Int, Int)] = []
+) -> Array[(Int32, Int32)] {
+  let matches : Array[(Int32, Int32)] = []
   let used : Array[Bool] = []
   for _ in 0..<target.length() {
     used.push(false)

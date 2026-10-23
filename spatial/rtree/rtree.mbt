@@ -8,15 +8,17 @@
 /// ## Complexity: O(log n) insertion, O(log n + k) query
 /// ## 复杂度: 插入 O(log n)，查询 O(log n + k)
 
+///|
 /// |
 /// R-tree node.
 /// R树节点。
 pub struct RTreeNode {
   entries : Array[RTreeEntry]
   is_leaf : Bool
-  height : Int
+  height : Int32
 }
 
+///|
 /// |
 /// R-tree entry (MBR + child or data).
 /// R树条目（最小外接矩形 + 子节点或数据）。
@@ -29,22 +31,25 @@ pub struct RTreeEntry {
   data : @core.Point2D?
 }
 
+///|
 /// |
 /// R-tree structure.
 /// R树结构。
 pub struct RTree {
   mut root : RTreeNode?
-  max_entries : Int
+  max_entries : Int32
 }
 
+///|
 /// |
 /// Create a new R-tree.
 /// 创建新的 R 树。
-pub fn rtree_new(max_entries : Int) -> RTree {
+pub fn rtree_new(max_entries : Int32) -> RTree {
   let me = if max_entries < 3 { 8 } else { max_entries }
-  { root: None, max_entries: me }
+  { root: None, max_entries: me, }
 }
 
+///|
 /// |
 /// Insert a point into the R-tree.
 /// 向 R 树插入点。
@@ -61,17 +66,13 @@ pub fn rtree_insert(tree : RTree, p : @core.Point2D) -> Unit {
     Some(root) => {
       let new_entries = root.entries.copy()
       new_entries.push(entry)
-      tree.root = Some({ ..root, entries: new_entries })
+      tree.root = Some({ ..root, entries: new_entries, })
     }
-    None =>
-      tree.root = Some({
-        entries: [entry],
-        is_leaf: true,
-        height: 0,
-      })
+    None => tree.root = Some({ entries: [entry], is_leaf: true, height: 0, })
   }
 }
 
+///|
 /// |
 /// Range query: find all points within a rectangle.
 /// 范围查询：查找矩形内所有点。
@@ -90,16 +91,18 @@ pub fn rtree_range_query(
   result
 }
 
+///|
 /// |
 /// Count entries in the R-tree.
 /// 计算 R 树中的条目数。
-pub fn rtree_size(tree : RTree) -> Int {
+pub fn rtree_size(tree : RTree) -> Int32 {
   match tree.root {
     Some(root) => root.entries.length()
     None => 0
   }
 }
 
+///|
 /// |
 /// Get all points in the R-tree.
 /// 获取 R 树中的所有点。
@@ -118,6 +121,7 @@ pub fn rtree_get_all(tree : RTree) -> Array[@core.Point2D] {
   result
 }
 
+///|
 fn query_node(
   node : RTreeNode,
   min_x : Double,
@@ -128,8 +132,10 @@ fn query_node(
 ) -> Unit {
   for i in 0..<node.entries.length() {
     let e = node.entries[i]
-    if e.mbr_max_x < min_x || e.mbr_min_x > max_x ||
-      e.mbr_max_y < min_y || e.mbr_min_y > max_y {
+    if e.mbr_max_x < min_x ||
+      e.mbr_min_x > max_x ||
+      e.mbr_max_y < min_y ||
+      e.mbr_min_y > max_y {
       continue
     }
     match e.data {

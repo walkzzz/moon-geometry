@@ -2,11 +2,15 @@
 /// Compute constrained Delaunay triangulation. / 计算约束 Delaunay 三角剖分。
 pub fn constrained_delaunay(
   points : Array[@core.Point2D],
-  constraints : Array[(Int, Int)],
+  constraints : Array[(Int32, Int32)],
 ) -> ConstrainedDelaunay {
   let n = points.length()
   if n < 3 {
-    return { points: points.copy(), triangles: [], constraints: constraints.copy() }
+    return {
+      points: points.copy(),
+      triangles: [],
+      constraints: constraints.copy(),
+    }
   }
   let mut min_x = points[0].x()
   let mut max_x = points[0].x()
@@ -28,13 +32,13 @@ pub fn constrained_delaunay(
   }
   let dx = max_x - min_x
   let dy = max_y - min_y
-  let dmax = if dx > dy {
-    dx
-  } else {
-    dy
-  }
+  let dmax = if dx > dy { dx } else { dy }
   if dmax < 0.0000000001 {
-    return { points: points.copy(), triangles: [], constraints: constraints.copy() }
+    return {
+      points: points.copy(),
+      triangles: [],
+      constraints: constraints.copy(),
+    }
   }
   let mid_x = (min_x + max_x) * 0.5
   let mid_y = (min_y + max_y) * 0.5
@@ -43,11 +47,11 @@ pub fn constrained_delaunay(
   all_pts.push(@core.Point2D::new(mid_x - s, mid_y - s))
   all_pts.push(@core.Point2D::new(mid_x + s, mid_y - s))
   all_pts.push(@core.Point2D::new(mid_x, mid_y + s))
-  let tris : Array[(Int, Int, Int)] = [(n, n + 1, n + 2)]
+  let tris : Array[(Int32, Int32, Int32)] = [(n, n + 1, n + 2)]
   for i in 0..<n {
     insert_point_2d(all_pts, tris, i)
   }
-  let result_tris : Array[(Int, Int, Int)] = []
+  let result_tris : Array[(Int32, Int32, Int32)] = []
   for t in tris {
     if t.0 < n && t.1 < n && t.2 < n {
       result_tris.push(t)
@@ -62,13 +66,14 @@ pub fn constrained_delaunay(
   cd
 }
 
+///|
 fn insert_point_2d(
   points : Array[@core.Point2D],
-  tris : Array[(Int, Int, Int)],
-  p_idx : Int,
+  tris : Array[(Int32, Int32, Int32)],
+  p_idx : Int32,
 ) -> Unit {
   let p = points[p_idx]
-  let bad_indices : Array[Int] = []
+  let bad_indices : Array[Int32] = []
   for i in 0..<tris.length() {
     let t = tris[i]
     if in_circumcircle(p, points[t.0], points[t.1], points[t.2]) {
@@ -78,14 +83,14 @@ fn insert_point_2d(
   if bad_indices.length() == 0 {
     return
   }
-  let edges : Array[(Int, Int, Int)] = []
+  let edges : Array[(Int32, Int32, Int32)] = []
   for bi in bad_indices {
     let t = tris[bi]
     add_edge_cnt(edges, t.0, t.1)
     add_edge_cnt(edges, t.1, t.2)
     add_edge_cnt(edges, t.2, t.0)
   }
-  let boundary : Array[(Int, Int)] = []
+  let boundary : Array[(Int32, Int32)] = []
   for e in edges {
     if e.2 == 1 {
       boundary.push((e.0, e.1))
@@ -95,7 +100,7 @@ fn insert_point_2d(
   for bi in bad_indices {
     bad_set[bi] = true
   }
-  let new_tris : Array[(Int, Int, Int)] = []
+  let new_tris : Array[(Int32, Int32, Int32)] = []
   for i in 0..<tris.length() {
     if !bad_set[i] {
       new_tris.push(tris[i])
@@ -110,16 +115,13 @@ fn insert_point_2d(
   }
 }
 
+///|
 fn add_edge_cnt(
-  edges : Array[(Int, Int, Int)],
-  a : Int,
-  b : Int,
+  edges : Array[(Int32, Int32, Int32)],
+  a : Int32,
+  b : Int32,
 ) -> Unit {
-  let (lo, hi) = if a < b {
-    (a, b)
-  } else {
-    (b, a)
-  }
+  let (lo, hi) = if a < b { (a, b) } else { (b, a) }
   for i in 0..<edges.length() {
     if edges[i].0 == lo && edges[i].1 == hi {
       edges[i] = (lo, hi, edges[i].2 + 1)
@@ -129,10 +131,11 @@ fn add_edge_cnt(
   edges.push((lo, hi, 1))
 }
 
+///|
 fn enforce_constraints(
   cd : ConstrainedDelaunay,
   all_pts : Array[@core.Point2D],
-  n : Int,
+  n : Int32,
 ) -> Unit {
   for c in cd.constraints {
     if c.0 < 0 || c.0 >= n || c.1 < 0 || c.1 >= n {
@@ -161,11 +164,8 @@ fn enforce_constraints(
   }
 }
 
-fn edge_in_triangle(
-  t : (Int, Int, Int),
-  a : Int,
-  b : Int,
-) -> Bool {
+///|
+fn edge_in_triangle(t : (Int32, Int32, Int32), a : Int32, b : Int32) -> Bool {
   (t.0 == a && t.1 == b) ||
   (t.1 == a && t.2 == b) ||
   (t.2 == a && t.0 == b) ||
@@ -174,6 +174,7 @@ fn edge_in_triangle(
   (t.2 == b && t.0 == a)
 }
 
+///|
 fn tri_circumradius(
   a : @core.Point2D,
   b : @core.Point2D,

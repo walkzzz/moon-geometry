@@ -2,7 +2,7 @@
 /// Smooth a path using uniform cubic B-spline. / 使用均匀三次 B 样条平滑路径。
 pub fn bspline_smooth(
   path : Array[@core.Point2D],
-  num_samples : Int,
+  num_samples : Int32,
 ) -> Array[@core.Point2D] {
   let n = path.length()
   if n < 2 {
@@ -10,18 +10,10 @@ pub fn bspline_smooth(
   }
   let result : Array[@core.Point2D] = []
   for i in 0..<(n - 1) {
-    let p0 = if i == 0 {
-      path[0]
-    } else {
-      path[i - 1]
-    }
+    let p0 = if i == 0 { path[0] } else { path[i - 1] }
     let p1 = path[i]
     let p2 = path[i + 1]
-    let p3 = if i + 2 < n {
-      path[i + 2]
-    } else {
-      path[n - 1]
-    }
+    let p3 = if i + 2 < n { path[i + 2] } else { path[n - 1] }
     for s in 0..<num_samples {
       let t = s.to_double() / num_samples.to_double()
       let pt = bspline_point(p0, p1, p2, p3, t)
@@ -32,6 +24,7 @@ pub fn bspline_smooth(
   result
 }
 
+///|
 fn bspline_point(
   p0 : @core.Point2D,
   p1 : @core.Point2D,

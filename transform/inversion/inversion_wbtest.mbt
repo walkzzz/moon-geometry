@@ -1,3 +1,4 @@
+///|
 test "inversion basic" {
   let inv = Inversion::new(@core.Point2D::new(0.0, 0.0), 1.0)
   let p = @core.Point2D::new(2.0, 0.0)
@@ -10,6 +11,7 @@ test "inversion basic" {
   }
 }
 
+///|
 test "inversion on circle" {
   let inv = Inversion::new(@core.Point2D::new(0.0, 0.0), 1.0)
   let p = @core.Point2D::new(1.0, 0.0)
@@ -22,6 +24,7 @@ test "inversion on circle" {
   }
 }
 
+///|
 test "inversion center" {
   let inv = Inversion::new(@core.Point2D::new(0.0, 0.0), 1.0)
   let p = @core.Point2D::new(0.0, 0.0)
@@ -31,6 +34,7 @@ test "inversion center" {
   }
 }
 
+///|
 test "inversion power" {
   let inv = Inversion::new(@core.Point2D::new(0.0, 0.0), 2.0)
   let p = @core.Point2D::new(3.0, 0.0)
@@ -38,6 +42,7 @@ test "inversion power" {
   assert_true((pow - 5.0).abs() < 0.0001)
 }
 
+///|
 test "inversion is inside" {
   let inv = Inversion::new(@core.Point2D::new(0.0, 0.0), 2.0)
   let p = @core.Point2D::new(1.0, 0.0)

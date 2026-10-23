@@ -6,29 +6,28 @@ pub struct QuadNode {
   half : Double
   point : @core.Point2D
   has_point : Bool
-  index : Int
-  mut nw : Int
-  mut ne : Int
-  mut sw : Int
-  mut se : Int
+  index : Int32
+  mut nw : Int32
+  mut ne : Int32
+  mut sw : Int32
+  mut se : Int32
 } derive(Debug)
 
+///|
 pub extend QuadNode with @moonbitlang/core/debug.Debug::{to_repr}
 
+///|
 fn quad_insert(
   nodes : Array[QuadNode],
-  node_idx : Int,
+  node_idx : Int32,
   p : @core.Point2D,
-  idx : Int,
+  idx : Int32,
 ) -> Unit {
   let node = nodes[node_idx]
   if node.has_point {
     let existing = node.point
-    if @core.approx_eq(existing.x(), p.x(), 0.000000000001) && @core.approx_eq(
-      existing.y(),
-      p.y(),
-      0.000000000001,
-    ) {
+    if @core.approx_eq(existing.x(), p.x(), 0.000000000001) &&
+      @core.approx_eq(existing.y(), p.y(), 0.000000000001) {
       return
     }
     let existing_idx = node.index
@@ -69,12 +68,13 @@ fn quad_insert(
   }
 }
 
+///|
 fn quad_ensure_child(
   nodes : Array[QuadNode],
   cx : Double,
   cy : Double,
   half : Double,
-) -> Int {
+) -> Int32 {
   nodes.push({
     cx,
     cy,
@@ -90,11 +90,12 @@ fn quad_ensure_child(
   nodes.length() - 1
 }
 
+///|
 fn quad_insert_into_child(
   nodes : Array[QuadNode],
-  node_idx : Int,
+  node_idx : Int32,
   p : @core.Point2D,
-  idx : Int,
+  idx : Int32,
 ) -> Unit {
   let node = nodes[node_idx]
   let child = if p.x() < node.cx {

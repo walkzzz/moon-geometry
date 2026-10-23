@@ -1,8 +1,6 @@
 ///|
 /// Find the order of rotational symmetry (1 = no rotational symmetry). / 求旋转对称阶（1 = 无旋转对称）。
-pub fn polygon_symmetry_order(
-  poly : Array[@core.Point2D],
-) -> Int {
+pub fn polygon_symmetry_order(poly : Array[@core.Point2D]) -> Int32 {
   let n = poly.length()
   if n < 3 {
     return 1

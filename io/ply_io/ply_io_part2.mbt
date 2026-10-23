@@ -7,7 +7,12 @@ pub fn ply_write_ascii(mesh : PlyMesh) -> String {
   out += "element face " + mesh.faces.length().to_string() + "\n"
   out += "property list uchar int vertex_indices\nend_header\n"
   for p in mesh.vertices {
-    out += p.x.to_string() + " " + p.y.to_string() + " " + p.z.to_string() + "\n"
+    out += p.x.to_string() +
+      " " +
+      p.y.to_string() +
+      " " +
+      p.z.to_string() +
+      "\n"
   }
   for f in mesh.faces {
     out += f.length().to_string()

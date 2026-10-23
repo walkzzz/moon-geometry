@@ -1,10 +1,8 @@
 ///|
 pub extend Rectangle with PerimeterMeasurable::{perimeter}
 
-
 ///|
 pub extend Rectangle with Containable::{contains}
-
 
 ///|
 /// Construct a rectangle from corner coordinates.

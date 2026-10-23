@@ -1,3 +1,4 @@
+///|
 test "convex diameter square" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -10,6 +11,7 @@ test "convex diameter square" {
   assert_true((d - 5.6569).abs() < 0.01)
 }
 
+///|
 test "convex diameter pair" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -22,6 +24,7 @@ test "convex diameter pair" {
   assert_true(p1.dist(p2) > 5.0)
 }
 
+///|
 test "convex radius lower bound" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -34,6 +37,7 @@ test "convex radius lower bound" {
   assert_true(r > 2.0)
 }
 
+///|
 test "antipodal pairs" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -46,6 +50,7 @@ test "antipodal pairs" {
   assert_true(pairs.length() >= 4)
 }
 
+///|
 test "convex diameter triangle" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),

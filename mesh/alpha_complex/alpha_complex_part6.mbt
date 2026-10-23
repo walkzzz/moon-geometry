@@ -3,18 +3,14 @@
 pub fn alpha_shape(
   points : Array[@core.Point2D],
   alpha : Double,
-) -> Array[(Int, Int)] {
+) -> Array[(Int32, Int32)] {
   let ac = alpha_complex(points, alpha)
-  let edge_count : Array[(Int, Int, Int)] = []
+  let edge_count : Array[(Int32, Int32, Int32)] = []
   for s in ac.simplices {
     if s.dimension == 1 && s.vertices.length() == 2 {
       let a = s.vertices[0]
       let b = s.vertices[1]
-      let (lo, hi) = if a < b {
-        (a, b)
-      } else {
-        (b, a)
-      }
+      let (lo, hi) = if a < b { (a, b) } else { (b, a) }
       add_e(edge_count, lo, hi)
     }
     if s.dimension == 2 && s.vertices.length() == 3 {
@@ -24,7 +20,7 @@ pub fn alpha_shape(
       add_e(edge_count, v[2], v[0])
     }
   }
-  let boundary : Array[(Int, Int)] = []
+  let boundary : Array[(Int32, Int32)] = []
   for e in edge_count {
     if e.2 == 1 {
       boundary.push((e.0, e.1))

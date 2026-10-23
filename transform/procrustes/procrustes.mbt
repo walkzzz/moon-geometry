@@ -8,7 +8,6 @@
 /// ## Complexity: O(n)
 /// ## 复杂度: O(n)
 
-
 ///|
 /// Result of Procrustes alignment. / Procrustes 对齐结果。
 pub struct ProcrustesResult {
@@ -18,7 +17,6 @@ pub struct ProcrustesResult {
   scale : Double
   error : Double
 }
-
 
 ///|
 /// Construct Procrustes result. / 构造 Procrustes 结果。
@@ -32,13 +30,11 @@ pub fn ProcrustesResult::new(
   { rotation, tx, ty, scale, error, }
 }
 
-
 ///|
 /// Rotation angle accessor. / 旋转角度访问器。
 pub fn ProcrustesResult::rotation(self : ProcrustesResult) -> Double {
   self.rotation
 }
-
 
 ///|
 /// X translation accessor. / X 平移访问器。
@@ -46,13 +42,11 @@ pub fn ProcrustesResult::tx(self : ProcrustesResult) -> Double {
   self.tx
 }
 
-
 ///|
 /// Y translation accessor. / Y 平移访问器。
 pub fn ProcrustesResult::ty(self : ProcrustesResult) -> Double {
   self.ty
 }
-
 
 ///|
 /// Scale accessor. / 缩放访问器。

@@ -36,5 +36,3 @@ pub fn compute_centroid(poly : Array[@core.Point2D]) -> @core.Point2D {
   }
   @core.Point2D::new(cx / (6.0 * area), cy / (6.0 * area))
 }
-
-

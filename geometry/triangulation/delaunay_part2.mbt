@@ -24,14 +24,13 @@ fn in_circumcircle(
   det > 0.0
 }
 
-
 ///|
 /// Build a triangle from indices, ensuring CCW orientation.
 /// 从索引构造三角形，确保逆时针方向。
 fn make_tri_ccw(
-  i : Int,
-  j : Int,
-  k : Int,
+  i : Int32,
+  j : Int32,
+  k : Int32,
   pts : Array[@core.Point2D],
 ) -> TriangleIdx {
   if @core.turn(pts[i], pts[j], pts[k]) < 0.0 {

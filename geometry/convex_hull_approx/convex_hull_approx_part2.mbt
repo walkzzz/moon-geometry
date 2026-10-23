@@ -1,8 +1,6 @@
 ///|
 /// Approximate convex hull area using bounding box ratio. / 使用包围盒比率近似凸包面积。
-pub fn approx_hull_area(
-  points : Array[@core.Point2D],
-) -> Double {
+pub fn approx_hull_area(points : Array[@core.Point2D]) -> Double {
   if points.length() < 3 {
     return 0.0
   }
@@ -19,12 +17,9 @@ pub fn approx_hull_area(
   (max_x - min_x) * (max_y - min_y) * 0.785
 }
 
-
 ///|
 /// Approximate convex hull perimeter. / 近似凸包周长。
-pub fn approx_hull_perimeter(
-  points : Array[@core.Point2D],
-) -> Double {
+pub fn approx_hull_perimeter(points : Array[@core.Point2D]) -> Double {
   if points.length() < 2 {
     return 0.0
   }
@@ -38,5 +33,5 @@ pub fn approx_hull_perimeter(
     min_y = min_y.min(p.y())
     max_y = max_y.max(p.y())
   }
-  2.0 * ((max_x - min_x) + (max_y - min_y)) * 0.9
+  2.0 * (max_x - min_x + (max_y - min_y)) * 0.9
 }

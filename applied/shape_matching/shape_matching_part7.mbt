@@ -12,7 +12,6 @@ fn sc_cost(
   @shape_context.shape_context_cost(sc1, sc2)
 }
 
-
 ///|
 /// Shape matching via shape context + Hungarian algorithm.
 /// 通过形状上下文 + 匈牙利算法进行形状匹配。
@@ -22,11 +21,10 @@ fn sc_cost(
 pub fn shape_matching_hungarian(
   source : Array[@core.Point2D],
   target : Array[@core.Point2D],
-) -> Array[Int] {
+) -> Array[Int32] {
   let cost = sc_cost(source, target)
   hungarian(cost)
 }
-
 
 ///|
 /// Overall shape matching score (lower = better match).

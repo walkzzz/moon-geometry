@@ -5,6 +5,6 @@ pub fn add_vertex_coords(
   x : Double,
   y : Double,
   z : Double,
-) -> Int {
+) -> Int32 {
   mesh.add_vertex(@core.Point3D::new(x, y, z))
 }

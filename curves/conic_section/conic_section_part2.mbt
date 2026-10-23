@@ -4,7 +4,6 @@ pub fn Conic::discriminant(conic : Conic) -> Double {
   conic.b * conic.b - 4.0 * conic.a * conic.c
 }
 
-
 ///|
 /// Classify the conic section. / 分类圆锥曲线。
 pub fn Conic::classify(conic : Conic) -> ConicType {
@@ -28,7 +27,6 @@ pub fn Conic::classify(conic : Conic) -> ConicType {
     }
   }
 }
-
 
 ///|
 /// Determinant of the 3x3 matrix of the conic (invariant I3).

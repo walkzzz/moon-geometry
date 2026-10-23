@@ -3,7 +3,7 @@
 pub fn lloyd_iteration(
   sites : Array[@core.Point2D],
   bounds : (@core.Point2D, @core.Point2D),
-  max_iter : Int,
+  max_iter : Int32,
 ) -> Array[@core.Point2D] {
   let result = sites.copy()
   let mut iter = 0

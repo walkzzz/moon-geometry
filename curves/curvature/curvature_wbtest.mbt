@@ -1,3 +1,4 @@
+///|
 test "curvature_at" {
   let p1 = @core.Point2D::new(0.0, 0.0)
   let p2 = @core.Point2D::new(1.0, 0.0)
@@ -6,6 +7,7 @@ test "curvature_at" {
   assert_true(k > 0.0)
 }
 
+///|
 test "curvature_signed" {
   let p1 = @core.Point2D::new(0.0, 0.0)
   let p2 = @core.Point2D::new(1.41421356, 1.41421356)
@@ -14,6 +16,7 @@ test "curvature_signed" {
   assert_true(k > 0.0)
 }
 
+///|
 test "curvature_profile" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -25,6 +28,7 @@ test "curvature_profile" {
   assert_true(profile.length() == 2)
 }
 
+///|
 test "curvature_radius" {
   let p1 = @core.Point2D::new(0.0, 0.0)
   let p2 = @core.Point2D::new(1.0, 0.0)
@@ -33,6 +37,7 @@ test "curvature_radius" {
   assert_true(r > 0.0)
 }
 
+///|
 test "curvature_total" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),

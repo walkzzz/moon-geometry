@@ -1,8 +1,6 @@
 ///|
 /// Check if a polygon is x-monotone. / 检查多边形是否 x-单调。
-pub fn is_x_monotone(
-  poly : Array[@core.Point2D],
-) -> Bool {
+pub fn is_x_monotone(poly : Array[@core.Point2D]) -> Bool {
   let n = poly.length()
   if n < 3 {
     return false
@@ -17,8 +15,8 @@ pub fn is_x_monotone(
       right_idx = i
     }
   }
-  let upper : Array[Int] = []
-  let lower : Array[Int] = []
+  let upper : Array[Int32] = []
+  let lower : Array[Int32] = []
   let mut i = left_idx
   while i != right_idx {
     upper.push(i)

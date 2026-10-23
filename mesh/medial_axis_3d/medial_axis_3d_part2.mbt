@@ -22,7 +22,6 @@ fn circumcircle(
   Some(MedialBall3D::new(center, radius))
 }
 
-
 ///|
 /// Check if a ball is empty (no point strictly inside).
 /// 检查球是否为空（无点严格在内部）。

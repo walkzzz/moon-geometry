@@ -12,7 +12,6 @@ pub fn polygon_union_area(p1 : @core.Polygon, p2 : @core.Polygon) -> Double {
   a1 + a2 - inter
 }
 
-
 ///|
 /// Difference area (p1 minus p2).
 /// 差集面积（p1 减 p2）。

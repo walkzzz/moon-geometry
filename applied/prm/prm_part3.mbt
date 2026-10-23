@@ -23,14 +23,15 @@ pub fn prm_build(
     }
   }
   let n = nodes.length()
-  let edges : Array[Array[(Int, Double)]] = []
+  let edges : Array[Array[(Int32, Double)]] = []
   for _ in 0..<n {
     edges.push([])
   }
   for i in 0..<n {
     for j in (i + 1)..<n {
       let d = point_dist(nodes[i], nodes[j])
-      if d <= config.connection_radius && !segment_hits_obstacle(nodes[i], nodes[j], obstacles) {
+      if d <= config.connection_radius &&
+        !segment_hits_obstacle(nodes[i], nodes[j], obstacles) {
         edges[i].push((j, d))
         edges[j].push((i, d))
       }
@@ -39,6 +40,7 @@ pub fn prm_build(
   PRMRoadmap::new(nodes, edges)
 }
 
+///|
 fn point_in_obstacle(
   p : @core.Point2D,
   obstacles : Array[Array[@core.Point2D]],
@@ -51,6 +53,7 @@ fn point_in_obstacle(
   false
 }
 
+///|
 fn point_in_polygon(p : @core.Point2D, poly : Array[@core.Point2D]) -> Bool {
   let n = poly.length()
   let mut inside = false

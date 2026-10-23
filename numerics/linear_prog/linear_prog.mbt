@@ -5,4 +5,5 @@ pub struct LPResult {
   value : Double
 } derive(Debug)
 
+///|
 pub extend LPResult with @moonbitlang/core/debug.Debug::{to_repr}

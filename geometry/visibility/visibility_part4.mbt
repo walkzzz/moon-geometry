@@ -3,7 +3,7 @@
 pub fn visible_vertex_count(
   poly : Array[@core.Point2D],
   pt : @core.Point2D,
-) -> Int {
+) -> Int32 {
   let mut count = 0
   for v in poly {
     if is_visible(poly, pt, v) {

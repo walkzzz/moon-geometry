@@ -4,7 +4,6 @@ fn world_y(g : ContourGrid, row : Double) -> Double {
   g.y_origin + (g.rows.to_double() - 1.0 - row) * g.cell_size
 }
 
-
 ///|
 /// Linear interpolation along an edge to find contour crossing. / 沿边线性插值找等值线交点。
 fn interp_edge(v1 : Double, v2 : Double, level : Double) -> Double {

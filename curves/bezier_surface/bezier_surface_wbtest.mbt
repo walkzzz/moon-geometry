@@ -1,3 +1,4 @@
+///|
 test "bernstein basic" {
   let b0 = bernstein(0, 2, 0.0)
   assert_true((b0 - 1.0).abs() < 0.0001)
@@ -7,6 +8,7 @@ test "bernstein basic" {
   assert_true((b1 - 0.5).abs() < 0.0001)
 }
 
+///|
 test "bezier_curve endpoints" {
   let pts = [(0.0, 0.0, 0.0), (1.0, 1.0, 0.0), (2.0, 0.0, 0.0)]
   let (x0, _, _) = bezier_curve(pts, 0.0)
@@ -15,6 +17,7 @@ test "bezier_curve endpoints" {
   assert_true((x1 - 2.0).abs() < 0.0001)
 }
 
+///|
 test "bezier_curve midpoint" {
   let pts = [(0.0, 0.0, 0.0), (1.0, 1.0, 0.0)]
   let (x, y, _) = bezier_curve(pts, 0.5)
@@ -22,6 +25,7 @@ test "bezier_curve midpoint" {
   assert_true((y - 0.5).abs() < 0.0001)
 }
 
+///|
 test "bezier_surface corners" {
   let net = [
     [(0.0, 0.0, 0.0), (1.0, 0.0, 0.0)],
@@ -36,6 +40,7 @@ test "bezier_surface corners" {
   assert_true((z11 - 1.0).abs() < 0.0001)
 }
 
+///|
 test "bezier_surface_decasteljau matches" {
   let net = [
     [(0.0, 0.0, 0.0), (1.0, 0.0, 1.0)],
@@ -48,12 +53,14 @@ test "bezier_surface_decasteljau matches" {
   assert_true((z1 - z2).abs() < 0.0001)
 }
 
+///|
 test "bezier_curve_derivative linear" {
   let pts = [(0.0, 0.0, 0.0), (2.0, 0.0, 0.0)]
   let (dx, _, _) = bezier_curve_derivative(pts, 0.5)
   assert_true((dx - 2.0).abs() < 0.0001)
 }
 
+///|
 test "bezier_degree_elevate basic" {
   let pts = [(0.0, 0.0, 0.0), (1.0, 1.0, 0.0)]
   let elevated = bezier_degree_elevate(pts)

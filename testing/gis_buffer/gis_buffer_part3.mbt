@@ -3,7 +3,7 @@
 pub fn polyline_buffer(
   points : Array[@core.Point2D],
   radius : Double,
-  cap_segments : Int,
+  cap_segments : Int32,
 ) -> @core.Polygon {
   let n = points.length()
   if n == 0 {

@@ -3,9 +3,11 @@
 fn point_in_polyhedron(
   p : @core.Point3D,
   vertices : Array[@core.Point3D],
-  faces : Array[Array[Int]],
+  faces : Array[Array[Int32]],
 ) -> Bool {
-  let ray_dir = @core.Point3D::new(0.5773502691896258, 0.5773502691896258, 0.5773502691896258)
+  let ray_dir = @core.Point3D::new(
+    0.5773502691896258, 0.5773502691896258, 0.5773502691896258,
+  )
   let mut count = 0
   for face in faces {
     let n = face.length()
@@ -24,6 +26,7 @@ fn point_in_polyhedron(
   count % 2 == 1
 }
 
+///|
 fn ray_tri(
   origin : @core.Point3D,
   dir : @core.Point3D,

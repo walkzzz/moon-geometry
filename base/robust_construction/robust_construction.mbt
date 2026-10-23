@@ -6,7 +6,11 @@
 /// 鲁棒构造外心、交点、中点。
 
 ///|
-pub fn robust_circumcenter(a : @core.Point2D, b : @core.Point2D, c : @core.Point2D) -> @core.Point2D {
+pub fn robust_circumcenter(
+  a : @core.Point2D,
+  b : @core.Point2D,
+  c : @core.Point2D,
+) -> @core.Point2D {
   let ax = a.x()
   let ay = a.y()
   let bx = b.x()
@@ -17,13 +21,28 @@ pub fn robust_circumcenter(a : @core.Point2D, b : @core.Point2D, c : @core.Point
   if d.abs() < 0.000000000001 {
     return @core.Point2D::new(0.0, 0.0)
   }
-  let ux = ((ax * ax + ay * ay) * (by - cy) + (bx * bx + by * by) * (cy - ay) + (cx * cx + cy * cy) * (ay - by)) / d
-  let uy = ((ax * ax + ay * ay) * (cx - bx) + (bx * bx + by * by) * (ax - cx) + (cx * cx + cy * cy) * (bx - ax)) / d
+  let ux = (
+      (ax * ax + ay * ay) * (by - cy) +
+      (bx * bx + by * by) * (cy - ay) +
+      (cx * cx + cy * cy) * (ay - by)
+    ) /
+    d
+  let uy = (
+      (ax * ax + ay * ay) * (cx - bx) +
+      (bx * bx + by * by) * (ax - cx) +
+      (cx * cx + cy * cy) * (bx - ax)
+    ) /
+    d
   @core.Point2D::new(ux, uy)
 }
 
 ///|
-pub fn robust_intersection(a : @core.Point2D, b : @core.Point2D, c : @core.Point2D, d : @core.Point2D) -> @core.Point2D {
+pub fn robust_intersection(
+  a : @core.Point2D,
+  b : @core.Point2D,
+  c : @core.Point2D,
+  d : @core.Point2D,
+) -> @core.Point2D {
   let x1 = a.x()
   let y1 = a.y()
   let x2 = b.x()

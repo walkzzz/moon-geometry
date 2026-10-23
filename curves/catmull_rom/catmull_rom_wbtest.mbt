@@ -1,3 +1,4 @@
+///|
 test "catmull_rom_eval_endpoints" {
   let p0 = @core.Point2D::new(0.0, 0.0)
   let p1 = @core.Point2D::new(1.0, 2.0)
@@ -11,6 +12,7 @@ test "catmull_rom_eval_endpoints" {
   assert_true((at1.y() - 3.0).abs() < 0.001)
 }
 
+///|
 test "catmull_rom_eval_midpoint" {
   let p0 = @core.Point2D::new(0.0, 0.0)
   let p1 = @core.Point2D::new(1.0, 0.0)
@@ -20,6 +22,7 @@ test "catmull_rom_eval_midpoint" {
   assert_true((mid.y() - 0.0).abs() < 0.001)
 }
 
+///|
 test "catmull_rom_points" {
   let cps = [
     @core.Point2D::new(0.0, 0.0),
@@ -32,6 +35,7 @@ test "catmull_rom_points" {
   assert_true(pts.length() > 0)
 }
 
+///|
 test "catmull_rom_derivative" {
   let p0 = @core.Point2D::new(0.0, 0.0)
   let p1 = @core.Point2D::new(1.0, 0.0)
@@ -41,11 +45,9 @@ test "catmull_rom_derivative" {
   assert_true((d.y() - 0.0).abs() < 0.001)
 }
 
+///|
 test "catmull_rom_points_short" {
-  let cps = [
-    @core.Point2D::new(0.0, 0.0),
-    @core.Point2D::new(1.0, 1.0),
-  ]
+  let cps = [@core.Point2D::new(0.0, 0.0), @core.Point2D::new(1.0, 1.0)]
   let pts = catmull_rom_points(cps, 10)
   assert_true(pts.length() == 0)
 }

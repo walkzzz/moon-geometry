@@ -7,11 +7,10 @@ pub fn voxel_set(grid : VoxelGrid, p : @core.Point3D) -> VoxelGrid {
       new_data[i] = grid.data[i]
     }
     new_data[idx] = true
-    return { ..grid, data: new_data }
+    return { ..grid, data: new_data, }
   }
   grid
 }
-
 
 ///|
 pub fn voxel_occupied(grid : VoxelGrid, p : @core.Point3D) -> Bool {

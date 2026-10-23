@@ -1,3 +1,4 @@
+///|
 test "quadtree_build" {
   let points = [
     @core.Point2D::new(1.0, 1.0),
@@ -10,6 +11,7 @@ test "quadtree_build" {
   assert_eq(quadtree_count(nodes), 4)
 }
 
+///|
 test "quadtree_range_query" {
   let points = [
     @core.Point2D::new(1.0, 1.0),
@@ -25,6 +27,7 @@ test "quadtree_range_query" {
   assert_eq(result.length(), 3)
 }
 
+///|
 test "quadtree_empty" {
   let points : Array[@core.Point2D] = []
   let bounds = @core.Rectangle::new(0.0, 0.0, 10.0, 10.0)
@@ -32,6 +35,7 @@ test "quadtree_empty" {
   assert_eq(quadtree_count(nodes), 0)
 }
 
+///|
 test "quadtree_single" {
   let points = [@core.Point2D::new(5.0, 5.0)]
   let bounds = @core.Rectangle::new(0.0, 0.0, 10.0, 10.0)

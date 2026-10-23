@@ -1,3 +1,4 @@
+///|
 test "build_metric_tree" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -10,6 +11,7 @@ test "build_metric_tree" {
   assert_true(metric_tree_count(tree) == 4)
 }
 
+///|
 test "metric_tree_query" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -22,12 +24,14 @@ test "metric_tree_query" {
   assert_true(result.length() >= 1)
 }
 
+///|
 test "metric_tree_count" {
   let pts = [@core.Point2D::new(0.0, 0.0)]
   let tree = build_metric_tree(pts)
   assert_true(metric_tree_count(tree) == 1)
 }
 
+///|
 test "metric_tree_nearest" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -39,6 +43,7 @@ test "metric_tree_nearest" {
   assert_true(nn is Some(_))
 }
 
+///|
 test "metric_tree_empty" {
   let pts : Array[@core.Point2D] = []
   let tree = build_metric_tree(pts)

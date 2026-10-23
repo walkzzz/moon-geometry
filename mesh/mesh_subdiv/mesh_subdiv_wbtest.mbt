@@ -1,3 +1,4 @@
+///|
 test "loop subdivide" {
   let m = @mesh_data.Mesh::new()
   let v0 = m.add_vertex(@core.Point3D::new(0.0, 0.0, 0.0))
@@ -9,6 +10,7 @@ test "loop subdivide" {
   assert_eq(@mesh_data.Mesh::vertex_count(sub), 6)
 }
 
+///|
 test "edge bisection" {
   let m = @mesh_data.Mesh::new()
   let v0 = m.add_vertex(@core.Point3D::new(0.0, 0.0, 0.0))
@@ -19,6 +21,7 @@ test "edge bisection" {
   assert_eq(@mesh_data.Mesh::face_count(sub), 4)
 }
 
+///|
 test "catmull clark" {
   let m = @mesh_data.Mesh::new()
   let v0 = m.add_vertex(@core.Point3D::new(0.0, 0.0, 0.0))
@@ -29,6 +32,7 @@ test "catmull clark" {
   assert_eq(@mesh_data.Mesh::face_count(sub), 4)
 }
 
+///|
 test "subdivided face count" {
   let m = @mesh_data.Mesh::tetrahedron(
     @core.Point3D::new(0.0, 0.0, 0.0),
@@ -39,6 +43,7 @@ test "subdivided face count" {
   assert_eq(subdivided_face_count(m), 16)
 }
 
+///|
 test "subdivided vertex count" {
   let m = @mesh_data.Mesh::new()
   let v0 = m.add_vertex(@core.Point3D::new(0.0, 0.0, 0.0))

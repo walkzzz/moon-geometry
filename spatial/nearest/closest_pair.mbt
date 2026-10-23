@@ -3,8 +3,8 @@
 /// 暴力最近点对 O(n^2)。用作回退和验证。
 fn closest_pair_brute(
   pts : Array[@core.Point2D],
-  lo : Int,
-  hi : Int,
+  lo : Int32,
+  hi : Int32,
 ) -> (@core.Point2D, @core.Point2D, Double)? {
   if hi <= lo {
     return None

@@ -19,6 +19,7 @@ pub fn circle_polygon_collide(
   false
 }
 
+///|
 fn point_segment_dist_sq(
   p : @core.Point2D,
   a : @core.Point2D,
@@ -31,13 +32,7 @@ fn point_segment_dist_sq(
     return p.dist_sq(a)
   }
   let t = ((p.x() - a.x()) * dx + (p.y() - a.y()) * dy) / len_sq
-  let tc = if t < 0.0 {
-    0.0
-  } else if t > 1.0 {
-    1.0
-  } else {
-    t
-  }
+  let tc = if t < 0.0 { 0.0 } else if t > 1.0 { 1.0 } else { t }
   let proj_x = a.x() + tc * dx
   let proj_y = a.y() + tc * dy
   (p.x() - proj_x) * (p.x() - proj_x) + (p.y() - proj_y) * (p.y() - proj_y)

@@ -9,8 +9,8 @@ pub fn compute_barcode(
   }
   let order = sort_by_filtration(simplices)
   let pairs = persistence_pairs(simplices)
-  let paired_death : Array[Int] = Array::make(n, -1)
-  let paired_birth : Array[Int] = Array::make(n, -1)
+  let paired_death : Array[Int32] = Array::make(n, -1)
+  let paired_birth : Array[Int32] = Array::make(n, -1)
   for p in pairs {
     paired_death[p.0] = p.1
     paired_birth[p.1] = p.0

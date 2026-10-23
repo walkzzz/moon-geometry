@@ -35,6 +35,7 @@ pub fn find_separating_axis(
   None
 }
 
+///|
 fn edge_normals(poly : @core.Polygon) -> Array[(Double, Double)] {
   let result : Array[(Double, Double)] = []
   let n = poly.vertices.length()
@@ -51,6 +52,7 @@ fn edge_normals(poly : @core.Polygon) -> Array[(Double, Double)] {
   result
 }
 
+///|
 fn projection_range(
   poly : @core.Polygon,
   a : Double,
@@ -70,6 +72,7 @@ fn projection_range(
   (min_val, max_val)
 }
 
+///|
 fn separates(
   poly1 : @core.Polygon,
   poly2 : @core.Polygon,

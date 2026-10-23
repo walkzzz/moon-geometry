@@ -12,7 +12,7 @@ pub fn sample_surface(
   y_hi : Double,
   z_lo : Double,
   z_hi : Double,
-  n_samples : Int,
+  n_samples : Int32,
 ) -> Array[@core.Point3D] {
   let result : Array[@core.Point3D] = []
   let n_side = if n_samples > 1 { n_samples } else { 2 }
@@ -27,7 +27,14 @@ pub fn sample_surface(
       while z < z_hi {
         let v = f(x, y, z)
         if v.abs() < 0.1 {
-          let proj = project_to_surface(f, fx, fy, fz, @core.Point3D::new(x, y, z), 10)
+          let proj = project_to_surface(
+            f,
+            fx,
+            fy,
+            fz,
+            @core.Point3D::new(x, y, z),
+            10,
+          )
           result.push(proj)
         }
         z += dz

@@ -2,9 +2,9 @@
 /// Remove duplicate vertices (merge within tolerance). / 移除重复顶点（容差内合并）。
 pub fn merge_duplicate_vertices(
   vertices : Array[@core.Point3D],
-  faces : Array[(Int, Int, Int)],
+  faces : Array[(Int32, Int32, Int32)],
   eps : Double,
-) -> (Array[@core.Point3D], Array[(Int, Int, Int)], Int) {
+) -> (Array[@core.Point3D], Array[(Int32, Int32, Int32)], Int32) {
   let n = vertices.length()
   let mapping = Array::make(n, -1)
   let new_verts : Array[@core.Point3D] = []
@@ -25,7 +25,7 @@ pub fn merge_duplicate_vertices(
       new_verts.push(vertices[i])
     }
   }
-  let new_faces : Array[(Int, Int, Int)] = []
+  let new_faces : Array[(Int32, Int32, Int32)] = []
   for f in faces {
     let a = mapping[f.0]
     let b = mapping[f.1]

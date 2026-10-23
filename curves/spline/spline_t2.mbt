@@ -1,9 +1,6 @@
 ///|
 /// Discrete curvature at point i (using three consecutive points). / 在点 i 处的离散曲率（使用三个连续点）。
-pub fn spline_curvature(
-  points : Array[@core.Point2D],
-  i : Int,
-) -> Double {
+pub fn spline_curvature(points : Array[@core.Point2D], i : Int32) -> Double {
   let n = points.length()
   if i < 1 || i > n - 2 {
     return 0.0
@@ -21,7 +18,8 @@ pub fn spline_curvature(
   if len1 < 0.000000000001 || len2 < 0.000000000001 {
     return 0.0
   }
-  let len3 = ((p3.x() - p1.x()) * (p3.x() - p1.x()) + (p3.y() - p1.y()) * (p3.y() - p1.y())).sqrt()
+  let len3 = ((p3.x() - p1.x()) * (p3.x() - p1.x()) +
+  (p3.y() - p1.y()) * (p3.y() - p1.y())).sqrt()
   if len3 < 0.000000000001 {
     return 0.0
   }

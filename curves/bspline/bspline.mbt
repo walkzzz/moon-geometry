@@ -1,9 +1,9 @@
 ///|
 /// B-spline basis function (Cox-de Boor recursion). / B样条基函数（Cox-de Boor 递归）。
 pub fn bspline_basis(
-  degree : Int,
+  degree : Int32,
   knots : Array[Double],
-  i : Int,
+  i : Int32,
   t : Double,
 ) -> Double {
   if degree == 0 {
@@ -20,7 +20,9 @@ pub fn bspline_basis(
   }
   let denom2 = knots[i + degree + 1] - knots[i + 1]
   if denom2.abs() > eps {
-    result += (knots[i + degree + 1] - t) / denom2 * bspline_basis(degree - 1, knots, i + 1, t)
+    result += (knots[i + degree + 1] - t) /
+      denom2 *
+      bspline_basis(degree - 1, knots, i + 1, t)
   }
   result
 }

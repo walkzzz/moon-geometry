@@ -9,8 +9,8 @@
 /// - `allow_diagonal`: allow 8-connected movement / 允许八连通移动
 pub fn astar_grid(
   grid : AStarGrid,
-  start : (Int, Int),
-  goal : (Int, Int),
+  start : (Int32, Int32),
+  goal : (Int32, Int32),
   heuristic : AStarHeuristic,
   allow_diagonal : Bool,
 ) -> AStarResult {
@@ -28,7 +28,7 @@ pub fn astar_grid(
   let goal_idx = gy * grid.width + gx
   g_score[start_idx] = 0.0
   f_score[start_idx] = heuristic_val(sx, sy, gx, gy, heuristic)
-  let open_set : Array[Int] = [start_idx]
+  let open_set : Array[Int32] = [start_idx]
   while open_set.length() > 0 {
     let mut best_i = 0
     let mut best_f = f_score[open_set[0]]
@@ -41,7 +41,7 @@ pub fn astar_grid(
     }
     let current = open_set[best_i]
     if current == goal_idx {
-      let path : Array[(Int, Int)] = []
+      let path : Array[(Int32, Int32)] = []
       let mut cur = current
       while cur != -1 {
         let cx = cur % grid.width
@@ -55,11 +55,16 @@ pub fn astar_grid(
     closed[current] = true
     let cx = current % grid.width
     let cy = current / grid.width
-    let dirs : Array[(Int, Int, Double)] = if allow_diagonal {
+    let dirs : Array[(Int32, Int32, Double)] = if allow_diagonal {
       [
-        (0, 1, 1.0), (0, -1, 1.0), (1, 0, 1.0), (-1, 0, 1.0),
-        (1, 1, 1.4142135623730951), (1, -1, 1.4142135623730951),
-        (-1, 1, 1.4142135623730951), (-1, -1, 1.4142135623730951),
+        (0, 1, 1.0),
+        (0, -1, 1.0),
+        (1, 0, 1.0),
+        (-1, 0, 1.0),
+        (1, 1, 1.4142135623730951),
+        (1, -1, 1.4142135623730951),
+        (-1, 1, 1.4142135623730951),
+        (-1, -1, 1.4142135623730951),
       ]
     } else {
       [(0, 1, 1.0), (0, -1, 1.0), (1, 0, 1.0), (-1, 0, 1.0)]
@@ -96,11 +101,12 @@ pub fn astar_grid(
   AStarResult::new([], false, -1.0)
 }
 
+///|
 fn heuristic_val(
-  x : Int,
-  y : Int,
-  gx : Int,
-  gy : Int,
+  x : Int32,
+  y : Int32,
+  gx : Int32,
+  gy : Int32,
   heuristic : AStarHeuristic,
 ) -> Double {
   let dx = (x - gx).abs().to_double()
@@ -108,10 +114,6 @@ fn heuristic_val(
   match heuristic {
     Manhattan => dx + dy
     Euclidean => (dx * dx + dy * dy).sqrt()
-    Chebyshev => if dx > dy {
-      dx
-    } else {
-      dy
-    }
+    Chebyshev => if dx > dy { dx } else { dy }
   }
 }

@@ -1,3 +1,4 @@
+///|
 test "polygon_kernel_convex" {
   let sq = [
     @core.Point2D::new(0.0, 0.0),
@@ -9,6 +10,7 @@ test "polygon_kernel_convex" {
   assert_true(kernel.length() >= 3)
 }
 
+///|
 test "is_star_shaped_convex" {
   let sq = [
     @core.Point2D::new(0.0, 0.0),
@@ -19,6 +21,7 @@ test "is_star_shaped_convex" {
   assert_true(is_star_shaped(sq))
 }
 
+///|
 test "is_star_shaped_concave" {
   let star = [
     @core.Point2D::new(0.0, 0.0),
@@ -33,6 +36,7 @@ test "is_star_shaped_concave" {
   assert_true(is_star_shaped(star))
 }
 
+///|
 test "polygon_kernel_area" {
   let sq = [
     @core.Point2D::new(0.0, 0.0),
@@ -44,6 +48,7 @@ test "polygon_kernel_area" {
   assert_true(area > 1.0)
 }
 
+///|
 test "kernel_point" {
   let sq = [
     @core.Point2D::new(0.0, 0.0),

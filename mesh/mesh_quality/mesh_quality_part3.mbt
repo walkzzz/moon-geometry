@@ -2,11 +2,17 @@
 /// Compute average quality of a mesh. / 计算网格的平均质量。
 pub fn mesh_average_quality(
   vertices : Array[@core.Point3D],
-  faces : Array[(Int, Int, Int)],
+  faces : Array[(Int32, Int32, Int32)],
 ) -> MeshQualityMetrics {
   let n = faces.length()
   if n == 0 {
-    return { aspect_ratio: 0.0, area_ratio: 0.0, min_angle: 0.0, max_angle: 0.0, edge_ratio: 0.0 }
+    return {
+      aspect_ratio: 0.0,
+      area_ratio: 0.0,
+      min_angle: 0.0,
+      max_angle: 0.0,
+      edge_ratio: 0.0,
+    }
   }
   let mut sum_ar = 0.0
   let mut sum_area_r = 0.0
@@ -30,14 +36,13 @@ pub fn mesh_average_quality(
   }
 }
 
-
 ///|
 /// Count degenerate triangles (zero area). / 统计退化三角形（零面积）数量。
 pub fn count_degenerate(
   vertices : Array[@core.Point3D],
-  faces : Array[(Int, Int, Int)],
+  faces : Array[(Int32, Int32, Int32)],
   eps : Double,
-) -> Int {
+) -> Int32 {
   let mut count = 0
   for f in faces {
     let p0 = vertices[f.0]

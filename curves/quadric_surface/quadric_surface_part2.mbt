@@ -10,7 +10,6 @@ pub fn Quadric::gradient(q : Quadric, p : @core.Point3D) -> @core.Point3D {
   @core.Point3D::new(gx, gy, gz)
 }
 
-
 ///|
 /// Unit normal at a point on the surface. / 曲面上一点处的单位法向量。
 pub fn Quadric::normal(q : Quadric, p : @core.Point3D) -> @core.Point3D {
@@ -21,7 +20,6 @@ pub fn Quadric::normal(q : Quadric, p : @core.Point3D) -> @core.Point3D {
   }
   @core.Point3D::new(g.x / norm, g.y / norm, g.z / norm)
 }
-
 
 ///|
 /// Center of the quadric (solve gradient = 0). Returns None for paraboloids.
@@ -40,21 +38,26 @@ pub fn Quadric::center(q : Quadric) -> @core.Point3D? {
   if det.abs() < eps {
     return None
   }
-  let cx = (rhs[0] * (m[1][1] * m[2][2] - m[1][2] * m[2][1]) -
-    m[0][1] * (rhs[1] * m[2][2] - m[1][2] * rhs[2]) +
-    m[0][2] * (rhs[1] * m[2][1] - m[1][1] * rhs[2])) /
+  let cx = (
+      rhs[0] * (m[1][1] * m[2][2] - m[1][2] * m[2][1]) -
+      m[0][1] * (rhs[1] * m[2][2] - m[1][2] * rhs[2]) +
+      m[0][2] * (rhs[1] * m[2][1] - m[1][1] * rhs[2])
+    ) /
     det
-  let cy = (m[0][0] * (rhs[1] * m[2][2] - m[1][2] * rhs[2]) -
-    rhs[0] * (m[1][0] * m[2][2] - m[1][2] * m[2][0]) +
-    m[0][2] * (m[1][0] * rhs[2] - rhs[1] * m[2][0])) /
+  let cy = (
+      m[0][0] * (rhs[1] * m[2][2] - m[1][2] * rhs[2]) -
+      rhs[0] * (m[1][0] * m[2][2] - m[1][2] * m[2][0]) +
+      m[0][2] * (m[1][0] * rhs[2] - rhs[1] * m[2][0])
+    ) /
     det
-  let cz = (m[0][0] * (m[1][1] * rhs[2] - rhs[1] * m[2][1]) -
-    m[0][1] * (m[1][0] * rhs[2] - rhs[1] * m[2][0]) +
-    rhs[0] * (m[1][0] * m[2][1] - m[1][1] * m[2][0])) /
+  let cz = (
+      m[0][0] * (m[1][1] * rhs[2] - rhs[1] * m[2][1]) -
+      m[0][1] * (m[1][0] * rhs[2] - rhs[1] * m[2][0]) +
+      rhs[0] * (m[1][0] * m[2][1] - m[1][1] * m[2][0])
+    ) /
     det
   Some(@core.Point3D::new(cx, cy, cz))
 }
-
 
 ///|
 /// Trace of the quadratic form (A + B + C). / 二次型的迹（A + B + C）。

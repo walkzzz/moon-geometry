@@ -8,7 +8,6 @@
 /// ## Complexity: O(1) for path computation (48 word families)
 /// ## 复杂度: 路径计算 O(1)（48 种路径字族）
 
-
 ///|
 /// Reeds-Shepp path segment type. / Reeds-Shepp 路径段类型。
 pub(all) enum RSSegmentType {
@@ -16,7 +15,6 @@ pub(all) enum RSSegmentType {
   Straight
   Right
 }
-
 
 ///|
 /// Reeds-Shepp path segment with direction. / 带方向的 Reeds-Shepp 路径段。
@@ -26,7 +24,6 @@ pub struct RSSegment {
   forward : Bool
 }
 
-
 ///|
 /// Construct a Reeds-Shepp segment. / 构造 Reeds-Shepp 路径段。
 pub fn RSSegment::new(
@@ -34,9 +31,8 @@ pub fn RSSegment::new(
   length : Double,
   forward : Bool,
 ) -> RSSegment {
-  { seg_type, length, forward }
+  { seg_type, length, forward, }
 }
-
 
 ///|
 /// Reeds-Shepp path. / Reeds-Shepp 路径。

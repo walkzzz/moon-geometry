@@ -5,12 +5,12 @@ pub fn DCEL::from_polygon(dcel : DCEL, poly : @core.Polygon) -> DCEL {
   if n < 3 {
     return dcel
   }
-  let vertex_indices : Array[Int] = []
+  let vertex_indices : Array[Int32] = []
   for i in 0..<n {
     let idx = dcel.add_vertex(poly.get(i))
     vertex_indices.push(idx)
   }
-  let edge_indices : Array[Int] = []
+  let edge_indices : Array[Int32] = []
   for i in 0..<n {
     let next_v = (i + 1) % n
     let ei = dcel.add_edge(vertex_indices[i], vertex_indices[next_v])

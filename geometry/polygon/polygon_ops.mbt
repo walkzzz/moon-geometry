@@ -16,4 +16,3 @@ pub fn polygon_signed_area(poly : @core.Polygon) -> Double {
   }
   sum / 2.0
 }
-

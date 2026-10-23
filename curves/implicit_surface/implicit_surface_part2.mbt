@@ -30,11 +30,13 @@ pub fn mean_curvature(
   (g2 * trace_h - quad) / (2.0 * g3)
 }
 
-
 ///|
 /// Principal curvatures (k1, k2) from Gaussian and mean curvature.
 /// 由高斯曲率和平均曲率求主曲率 (k1, k2)。
-pub fn principal_curvatures(k_gauss : Double, k_mean : Double) -> (Double, Double) {
+pub fn principal_curvatures(
+  k_gauss : Double,
+  k_mean : Double,
+) -> (Double, Double) {
   let disc = k_mean * k_mean - k_gauss
   if disc < 0.0 {
     return (k_mean, k_mean)

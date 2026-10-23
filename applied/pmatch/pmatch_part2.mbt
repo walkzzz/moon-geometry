@@ -4,10 +4,9 @@ pub fn match_count(
   a : Array[@core.Point2D],
   b : Array[@core.Point2D],
   threshold : Double,
-) -> Int {
+) -> Int32 {
   point_match(a, b, threshold).length()
 }
-
 
 ///|
 /// Match ratio (matched / min(|A|, |B|)). / 匹配比率。
@@ -26,17 +25,15 @@ pub fn match_ratio(
   count.to_double() / min_size.to_double()
 }
 
-
 ///|
 /// Unmatched points in set A. / A 中未匹配的点。
 pub fn unmatched_a(
   a : Array[@core.Point2D],
   b : Array[@core.Point2D],
   threshold : Double,
-) -> Int {
+) -> Int32 {
   a.length() - match_count(a, b, threshold)
 }
-
 
 ///|
 /// Unmatched points in set B. / B 中未匹配的点。
@@ -44,7 +41,7 @@ pub fn unmatched_b(
   a : Array[@core.Point2D],
   b : Array[@core.Point2D],
   threshold : Double,
-) -> Int {
+) -> Int32 {
   let matches = point_match(a, b, threshold)
   b.length() - matches.length()
 }

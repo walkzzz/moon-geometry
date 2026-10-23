@@ -1,3 +1,4 @@
+///|
 test "DCEL basic" {
   let d = DCEL::new()
   assert_eq(DCEL::vertex_count(d), 0)
@@ -5,6 +6,7 @@ test "DCEL basic" {
   assert_eq(DCEL::face_count(d), 0)
 }
 
+///|
 test "DCEL add vertex" {
   let d = DCEL::new()
   let i0 = d.add_vertex(@core.Point2D::new(0.0, 0.0))
@@ -16,6 +18,7 @@ test "DCEL add vertex" {
   assert_eq(DCEL::vertex_count(d), 3)
 }
 
+///|
 test "DCEL add edge" {
   let d = DCEL::new()
   let v0 = d.add_vertex(@core.Point2D::new(0.0, 0.0))
@@ -27,6 +30,7 @@ test "DCEL add edge" {
   assert_eq(d.half_edges[1].twin, 0)
 }
 
+///|
 test "DCEL from polygon" {
   let d = DCEL::new()
   let pts = [
@@ -42,6 +46,7 @@ test "DCEL from polygon" {
   assert_eq(DCEL::face_count(d2), 1)
 }
 
+///|
 test "DCEL trace face" {
   let d = DCEL::new()
   let pts = [

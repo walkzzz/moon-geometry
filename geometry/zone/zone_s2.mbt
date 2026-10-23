@@ -1,10 +1,7 @@
 ///|
 /// Compute the zone of a line with respect to a set of segments. / 计算线相对于线段集的区域。
-pub fn compute_zone(
-  line : @core.Line,
-  segments : Array[@core.Segment],
-) -> Zone {
-  let crossed_faces : Array[Int] = []
+pub fn compute_zone(line : @core.Line, segments : Array[@core.Segment]) -> Zone {
+  let crossed_faces : Array[Int32] = []
   let entry_points : Array[@core.Point2D] = []
   for i in 0..<segments.length() {
     match line_segment_intersect(line, segments[i]) {
@@ -15,9 +12,10 @@ pub fn compute_zone(
       None => continue
     }
   }
-  { line, crossed_faces, entry_points }
+  { line, crossed_faces, entry_points, }
 }
 
+///|
 fn line_segment_intersect(
   line : @core.Line,
   seg : @core.Segment,
@@ -36,5 +34,10 @@ fn line_segment_intersect(
     return None
   }
   let t = v1 / (v1 - v2)
-  Some(@core.Point2D::new(p1.x() + t * (p2.x() - p1.x()), p1.y() + t * (p2.y() - p1.y())))
+  Some(
+    @core.Point2D::new(
+      p1.x() + t * (p2.x() - p1.x()),
+      p1.y() + t * (p2.y() - p1.y()),
+    ),
+  )
 }

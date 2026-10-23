@@ -1,3 +1,4 @@
+///|
 test "affine2 identity" {
   let m = Affine2::identity()
   let p = @core.Point2D::new(3.0, 4.0)
@@ -6,6 +7,7 @@ test "affine2 identity" {
   assert_true((r.y() - 4.0).abs() < 0.0001)
 }
 
+///|
 test "affine2 translation" {
   let m = Affine2::translation(5.0, 3.0)
   let p = @core.Point2D::new(1.0, 2.0)
@@ -14,6 +16,7 @@ test "affine2 translation" {
   assert_true((r.y() - 5.0).abs() < 0.0001)
 }
 
+///|
 test "affine2 scale" {
   let m = Affine2::scale(2.0, 3.0)
   let p = @core.Point2D::new(1.0, 2.0)
@@ -22,6 +25,7 @@ test "affine2 scale" {
   assert_true((r.y() - 6.0).abs() < 0.0001)
 }
 
+///|
 test "affine2 inverse" {
   let m = Affine2::translation(5.0, 3.0)
   match m.inverse() {
@@ -35,6 +39,7 @@ test "affine2 inverse" {
   }
 }
 
+///|
 test "affine2 determinant" {
   let m = Affine2::scale(2.0, 3.0)
   let det = m.determinant()

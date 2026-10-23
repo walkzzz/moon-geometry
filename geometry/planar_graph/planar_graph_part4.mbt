@@ -6,7 +6,7 @@ pub fn PlanarGraph::is_connected(graph : PlanarGraph) -> Bool {
     return true
   }
   let visited = Array::make(n, false)
-  let queue : Array[Int] = [0]
+  let queue : Array[Int32] = [0]
   visited[0] = true
   while queue.length() > 0 {
     let v = queue.remove(0)

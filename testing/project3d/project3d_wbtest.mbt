@@ -1,3 +1,4 @@
+///|
 test "orthographic" {
   let p = @core.Point3D::new(1.0, 2.0, 3.0)
   let p2 = orthographic(p)
@@ -5,6 +6,7 @@ test "orthographic" {
   assert_true((p2.y() - 2.0).abs() < 0.0001)
 }
 
+///|
 test "perspective project" {
   let p = @core.Point3D::new(2.0, 4.0, 2.0)
   match perspective_project(p, 1.0) {
@@ -16,6 +18,7 @@ test "perspective project" {
   }
 }
 
+///|
 test "perspective zero z" {
   let p = @core.Point3D::new(1.0, 2.0, 0.0)
   match perspective_project(p, 1.0) {
@@ -24,6 +27,7 @@ test "perspective zero z" {
   }
 }
 
+///|
 test "orthographic batch" {
   let pts = [
     @core.Point3D::new(1.0, 2.0, 3.0),
@@ -33,11 +37,14 @@ test "orthographic batch" {
   assert_eq(result.length(), 2)
 }
 
+///|
 test "isometric" {
   let p = @core.Point3D::new(1.0, 0.0, 0.0)
   let p2 = isometric(p)
   assert_true(p2.x() > 0.0)
 }
+
+///|
 test "perspective batch" {
   let pts = [
     @core.Point3D::new(2.0, 4.0, 2.0),
@@ -48,6 +55,7 @@ test "perspective batch" {
   assert_eq(result.length(), 2)
 }
 
+///|
 test "project to plane" {
   let p = @core.Point3D::new(1.0, 1.0, 1.0)
   let normal = @core.Point3D::new(0.0, 0.0, 1.0)
@@ -55,6 +63,7 @@ test "project to plane" {
   assert_true(projected.z.abs() < 0.0001)
 }
 
+///|
 test "project to plane zero normal" {
   let p = @core.Point3D::new(1.0, 2.0, 3.0)
   let normal = @core.Point3D::new(0.0, 0.0, 0.0)
@@ -62,6 +71,7 @@ test "project to plane zero normal" {
   assert_true((projected.x - 1.0).abs() < 0.0001)
 }
 
+///|
 test "oblique" {
   let p = @core.Point3D::new(1.0, 2.0, 3.0)
   let p2 = oblique(p, 0.0, 0.0)

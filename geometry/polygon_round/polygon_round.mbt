@@ -8,6 +8,7 @@
 /// ## Complexity: O(n × k) where k = arc segments per corner
 /// ## 复杂度: O(n × k)，k = 每个角的弧段数
 
+///|
 /// |
 /// Round all corners of a polygon with given radius.
 /// 用给定半径圆角化多边形所有角。
@@ -19,7 +20,7 @@
 pub fn round_polygon(
   pts : Array[@core.Point2D],
   radius : Double,
-  segments : Int,
+  segments : Int32,
 ) -> Array[@core.Point2D] {
   let n = pts.length()
   let result : Array[@core.Point2D] = []
@@ -38,6 +39,7 @@ pub fn round_polygon(
   result
 }
 
+///|
 /// |
 /// Round a single corner defined by three points.
 /// 圆角化由三点定义的单个角。
@@ -53,7 +55,7 @@ pub fn round_corner(
   p2 : @core.Point2D,
   p3 : @core.Point2D,
   radius : Double,
-  segments : Int,
+  segments : Int32,
 ) -> Array[@core.Point2D] {
   let result : Array[@core.Point2D] = []
   let dx1 = p2.x() - p1.x()
@@ -121,10 +123,12 @@ pub fn round_corner(
   if delta < -3.141592653589793 {
     delta += 6.283185307179586
   }
-  for s in 0..=segments {
+  for s in 0..<=segments {
     let t = s.to_double() / segments.to_double()
     let a = start_angle + delta * t
-    result.push(@core.Point2D::new(cx + r * @math.cos(a), cy + r * @math.sin(a)))
+    result.push(
+      @core.Point2D::new(cx + r * @math.cos(a), cy + r * @math.sin(a)),
+    )
   }
   let _ = t1
   let _ = t2

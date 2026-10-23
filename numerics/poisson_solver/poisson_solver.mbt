@@ -3,7 +3,11 @@
 /// Poisson equation solver. / 泊松方程求解器。
 
 ///|
-pub fn poisson_jacobi(u : Array[Double], f : Array[Double], h : Double) -> Array[Double] {
+pub fn poisson_jacobi(
+  u : Array[Double],
+  f : Array[Double],
+  h : Double,
+) -> Array[Double] {
   let n = u.length()
   let h2 = h * h
   let result = Array::make(n, 0.0)

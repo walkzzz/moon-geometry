@@ -1,3 +1,4 @@
+///|
 test "rigid identity" {
   let r = Rigid::identity()
   let p = @core.Point2D::new(3.0, 4.0)
@@ -6,6 +7,7 @@ test "rigid identity" {
   assert_true((result.y() - 4.0).abs() < 0.0001)
 }
 
+///|
 test "rigid translation" {
   let r = Rigid::translation(5.0, 3.0)
   let p = @core.Point2D::new(1.0, 2.0)
@@ -14,6 +16,7 @@ test "rigid translation" {
   assert_true((result.y() - 5.0).abs() < 0.0001)
 }
 
+///|
 test "rigid rotation" {
   let r = Rigid::rotation(1.5707963267948966)
   let p = @core.Point2D::new(1.0, 0.0)
@@ -22,6 +25,7 @@ test "rigid rotation" {
   assert_true((result.y() - 1.0).abs() < 0.001)
 }
 
+///|
 test "rigid inverse" {
   let r = Rigid::translation(5.0, 3.0)
   let inv = r.inverse()
@@ -31,6 +35,7 @@ test "rigid inverse" {
   assert_true((result.y() - 2.0).abs() < 0.001)
 }
 
+///|
 test "rigid compose" {
   let r1 = Rigid::translation(3.0, 0.0)
   let r2 = Rigid::translation(0.0, 4.0)

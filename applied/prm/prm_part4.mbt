@@ -7,8 +7,8 @@ pub fn prm_query(
   obstacles : Array[Array[@core.Point2D]],
 ) -> PRMResult {
   let n = roadmap.nodes.length()
-  let start_neighbors : Array[(Int, Double)] = []
-  let goal_neighbors : Array[(Int, Double)] = []
+  let start_neighbors : Array[(Int32, Double)] = []
+  let goal_neighbors : Array[(Int32, Double)] = []
   for i in 0..<n {
     let ds = point_dist(start, roadmap.nodes[i])
     if !segment_hits_obstacle(start, roadmap.nodes[i], obstacles) {
@@ -22,7 +22,7 @@ pub fn prm_query(
   let total_n = n + 2
   let start_idx = n
   let goal_idx = n + 1
-  let adj : Array[Array[(Int, Double)]] = []
+  let adj : Array[Array[(Int32, Double)]] = []
   for i in 0..<n {
     adj.push(roadmap.edges[i])
   }
@@ -45,7 +45,7 @@ pub fn prm_query(
   if dist_arr[goal_idx] >= 1000000000000000000.0 {
     return PRMResult::new([], false, -1.0)
   }
-  let path_indices : Array[Int] = []
+  let path_indices : Array[Int32] = []
   let mut cur = goal_idx
   while cur != -1 {
     path_indices.insert(0, cur)
@@ -65,13 +65,14 @@ pub fn prm_query(
   PRMResult::new(path, true, dist_arr[goal_idx])
 }
 
+///|
 fn dijkstra_full(
-  n : Int,
-  adj : Array[Array[(Int, Double)]],
-  src : Int,
-) -> (Array[Double], Array[Int]) {
+  n : Int32,
+  adj : Array[Array[(Int32, Double)]],
+  src : Int32,
+) -> (Array[Double], Array[Int32]) {
   let dist : Array[Double] = []
-  let prev : Array[Int] = []
+  let prev : Array[Int32] = []
   let visited : Array[Bool] = []
   for _ in 0..<n {
     dist.push(1000000000000000000.0)

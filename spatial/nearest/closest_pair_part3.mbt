@@ -3,8 +3,8 @@
 /// 最近点对分治法的递归核心。
 fn closest_pair_rec(
   pts : Array[@core.Point2D],
-  lo : Int,
-  hi : Int,
+  lo : Int32,
+  hi : Int32,
 ) -> (@core.Point2D, @core.Point2D, Double)? {
   if hi - lo < 3 {
     return closest_pair_brute(pts, lo, hi)

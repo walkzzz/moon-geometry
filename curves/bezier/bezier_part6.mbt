@@ -1,7 +1,7 @@
 ///|
 /// Bounding box of cubic Bezier. Returns (min_x, min_y, max_x, max_y).
 /// 三次贝塞尔曲线包围盒，返回 (min_x, min_y, max_x, max_y)。
-pub impl @core.Bounded2D for Bezier3 with bbox(self) {
+pub impl @core.Bounded2D for Bezier3 with fn bbox(self) {
   let samples = 200
   let mut min_x = self.p0.x()
   let mut max_x = min_x

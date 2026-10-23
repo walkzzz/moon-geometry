@@ -24,7 +24,6 @@ pub fn convex_diameter_pair(
   (poly.get(best_i), poly.get(best_j))
 }
 
-
 ///|
 /// Compute the radius of the minimum enclosing circle (lower bound from diameter). / 由直径计算最小包围圆半径下界。
 pub fn convex_radius_lower_bound(poly : @core.Polygon) -> Double {

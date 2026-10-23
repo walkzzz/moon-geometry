@@ -31,7 +31,8 @@ pub fn rrt_star_plan(
       continue
     }
     let mut best_parent = near_idx
-    let mut best_cost = costs[near_idx] + point_dist(nodes[near_idx].point, new_pt)
+    let mut best_cost = costs[near_idx] +
+      point_dist(nodes[near_idx].point, new_pt)
     for i in 0..<nodes.length() {
       if i == near_idx {
         continue
@@ -39,7 +40,8 @@ pub fn rrt_star_plan(
       let d = point_dist(nodes[i].point, new_pt)
       if d <= rewire_radius {
         let c = costs[i] + d
-        if c < best_cost && !segment_hits_obstacle(nodes[i].point, new_pt, obstacles) {
+        if c < best_cost &&
+          !segment_hits_obstacle(nodes[i].point, new_pt, obstacles) {
           best_cost = c
           best_parent = i
         }
@@ -55,7 +57,8 @@ pub fn rrt_star_plan(
       let d = point_dist(nodes[i].point, new_pt)
       if d <= rewire_radius {
         let c = best_cost + d
-        if c < costs[i] && !segment_hits_obstacle(nodes[i].point, new_pt, obstacles) {
+        if c < costs[i] &&
+          !segment_hits_obstacle(nodes[i].point, new_pt, obstacles) {
           nodes[i] = RRTNode::new(nodes[i].point, new_idx)
           costs[i] = c
         }

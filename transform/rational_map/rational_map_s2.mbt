@@ -8,5 +8,9 @@ pub fn rational_eval(m : RationalMap, x : Double) -> Double {
   for i in 0..<m.den_coeffs.length() {
     den += m.den_coeffs[i] * pow(x, i)
   }
-  if den.abs() < 0.000000000001 { 0.0 } else { num / den }
+  if den.abs() < 0.000000000001 {
+    0.0
+  } else {
+    num / den
+  }
 }

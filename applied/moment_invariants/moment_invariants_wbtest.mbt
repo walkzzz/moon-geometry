@@ -1,3 +1,4 @@
+///|
 test "raw_moment basic" {
   let pts = [
     @core.Point2D::new(1.0, 0.0),
@@ -8,17 +9,16 @@ test "raw_moment basic" {
   assert_true((m00 - 3.0).abs() < 0.0001)
 }
 
+///|
 test "raw_moment first order" {
-  let pts = [
-    @core.Point2D::new(1.0, 2.0),
-    @core.Point2D::new(3.0, 4.0),
-  ]
+  let pts = [@core.Point2D::new(1.0, 2.0), @core.Point2D::new(3.0, 4.0)]
   let m10 = raw_moment(pts, 1, 0)
   let m01 = raw_moment(pts, 0, 1)
   assert_true((m10 - 4.0).abs() < 0.0001)
   assert_true((m01 - 6.0).abs() < 0.0001)
 }
 
+///|
 test "centroid basic" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -31,6 +31,7 @@ test "centroid basic" {
   assert_true((c.y() - 1.0).abs() < 0.0001)
 }
 
+///|
 test "central_moment zero first order" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -44,6 +45,7 @@ test "central_moment zero first order" {
   assert_true(mu01.abs() < 0.0001)
 }
 
+///|
 test "hu_moments count" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -55,6 +57,7 @@ test "hu_moments count" {
   assert_true(hu.length() == 7)
 }
 
+///|
 test "hu_moments translation invariant" {
   let pts1 = [
     @core.Point2D::new(0.0, 0.0),
@@ -75,6 +78,7 @@ test "hu_moments translation invariant" {
   }
 }
 
+///|
 test "zernike_moment basic" {
   let pts = [
     @core.Point2D::new(1.0, 0.0),
@@ -87,6 +91,7 @@ test "zernike_moment basic" {
   assert_true(im.abs() < 0.001)
 }
 
+///|
 test "zernike_magnitude rotation invariant" {
   let pts1 = [
     @core.Point2D::new(1.0, 0.0),
@@ -105,6 +110,7 @@ test "zernike_magnitude rotation invariant" {
   assert_true((mag1 - mag2).abs() < 0.001)
 }
 
+///|
 test "normalized_moment basic" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),

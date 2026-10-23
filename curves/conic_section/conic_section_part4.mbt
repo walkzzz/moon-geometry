@@ -2,7 +2,9 @@
 /// Asymptote lines of a hyperbola. / 双曲线的渐近线。
 /// Returns two lines (a, b, c) or None if not a hyperbola.
 /// 返回两条直线 (a, b, c)，非双曲线返回 None。
-pub fn Conic::asymptotes(conic : Conic) -> ((Double, Double, Double), (Double, Double, Double))? {
+pub fn Conic::asymptotes(
+  conic : Conic,
+) -> ((Double, Double, Double), (Double, Double, Double))? {
   let eps = 0.0000000001
   let disc = Conic::discriminant(conic)
   if disc <= eps {

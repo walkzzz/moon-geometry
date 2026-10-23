@@ -4,13 +4,11 @@ pub fn reed_shepp_path_length(path : RSPath) -> Double {
   path.total_length * path.radius
 }
 
-
 ///|
 /// Count segments in a Reeds-Shepp path. / 统计 Reeds-Shepp 路径段数。
-pub fn reed_shepp_segment_count(path : RSPath) -> Int {
+pub fn reed_shepp_segment_count(path : RSPath) -> Int32 {
   path.segments.length()
 }
-
 
 ///|
 /// Check if a Reeds-Shepp path contains backward motion. / 检查 Reeds-Shepp 路径是否包含后退运动。

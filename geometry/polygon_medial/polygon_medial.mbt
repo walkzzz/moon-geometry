@@ -9,6 +9,7 @@
 /// ## Complexity: O(n × s²) where s = sample count
 /// ## 复杂度: O(n × s²)，s = 采样数
 
+///|
 /// |
 /// Compute approximate medial axis as segments.
 /// 计算近似中轴线，返回线段数组。
@@ -16,7 +17,10 @@
 /// # Arguments / 参数
 /// - `poly`: input polygon / 输入多边形
 /// - `resolution`: grid resolution for sampling / 采样网格分辨率
-pub fn medial_axis(poly : @core.Polygon, resolution : Int) -> Array[@core.Segment] {
+pub fn medial_axis(
+  poly : @core.Polygon,
+  resolution : Int32,
+) -> Array[@core.Segment] {
   let n = poly.size()
   let result : Array[@core.Segment] = []
   if n < 3 || resolution < 2 {
@@ -69,8 +73,7 @@ pub fn medial_axis(poly : @core.Polygon, resolution : Int) -> Array[@core.Segmen
       let pa = medial_pts[a]
       let pb = medial_pts[b]
       let dist = ((pa.x() - pb.x()) * (pa.x() - pb.x()) +
-        (pa.y() - pb.y()) * (pa.y() - pb.y()))
-        .sqrt()
+      (pa.y() - pb.y()) * (pa.y() - pb.y())).sqrt()
       if dist < step * 1.8 {
         result.push(@core.Segment::new(pa, pb))
       }
@@ -79,6 +82,7 @@ pub fn medial_axis(poly : @core.Polygon, resolution : Int) -> Array[@core.Segmen
   result
 }
 
+///|
 /// |
 /// Sample points on the medial axis.
 /// 在中轴线上采样点。
@@ -88,7 +92,7 @@ pub fn medial_axis(poly : @core.Polygon, resolution : Int) -> Array[@core.Segmen
 /// - `n_samples`: number of sample points / 采样点数
 pub fn medial_axis_points(
   poly : @core.Polygon,
-  n_samples : Int,
+  n_samples : Int32,
 ) -> Array[@core.Point2D] {
   let n = poly.size()
   let result : Array[@core.Point2D] = []
@@ -115,7 +119,7 @@ pub fn medial_axis_points(
       max_y = p.y()
     }
   }
-  let res = ((n_samples * 2).to_double()).sqrt().to_int() + 1
+  let res = (n_samples * 2).to_double().sqrt().to_int() + 1
   let dx = (max_x - min_x) / res.to_double()
   let dy = (max_y - min_y) / res.to_double()
   let step = if dx < dy { dx } else { dy }
@@ -155,6 +159,7 @@ pub fn medial_axis_points(
   result
 }
 
+///|
 fn get_points(poly : @core.Polygon) -> Array[@core.Point2D] {
   let n = poly.size()
   let pts : Array[@core.Point2D] = []
@@ -164,6 +169,7 @@ fn get_points(poly : @core.Polygon) -> Array[@core.Point2D] {
   pts
 }
 
+///|
 fn is_interior(p : @core.Point2D, pts : Array[@core.Point2D]) -> Bool {
   let n = pts.length()
   let mut count = 0
@@ -185,26 +191,27 @@ fn is_interior(p : @core.Point2D, pts : Array[@core.Point2D]) -> Bool {
   count != 0
 }
 
-fn point_seg_dist(p : @core.Point2D, a : @core.Point2D, b : @core.Point2D) -> Double {
+///|
+fn point_seg_dist(
+  p : @core.Point2D,
+  a : @core.Point2D,
+  b : @core.Point2D,
+) -> Double {
   let dx = b.x() - a.x()
   let dy = b.y() - a.y()
   let len_sq = dx * dx + dy * dy
   if len_sq < 0.0000000001 {
-    return ((p.x() - a.x()) * (p.x() - a.x()) + (p.y() - a.y()) * (p.y() - a.y())).sqrt()
+    return ((p.x() - a.x()) * (p.x() - a.x()) +
+    (p.y() - a.y()) * (p.y() - a.y())).sqrt()
   }
   let t = ((p.x() - a.x()) * dx + (p.y() - a.y()) * dy) / len_sq
-  let tc = if t < 0.0 {
-    0.0
-  } else if t > 1.0 {
-    1.0
-  } else {
-    t
-  }
+  let tc = if t < 0.0 { 0.0 } else if t > 1.0 { 1.0 } else { t }
   let cx = a.x() + tc * dx
   let cy = a.y() + tc * dy
   ((p.x() - cx) * (p.x() - cx) + (p.y() - cy) * (p.y() - cy)).sqrt()
 }
 
+///|
 fn two_nearest_edge_dist(
   p : @core.Point2D,
   pts : Array[@core.Point2D],

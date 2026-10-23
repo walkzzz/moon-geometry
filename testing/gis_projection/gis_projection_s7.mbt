@@ -22,9 +22,8 @@ pub fn albers_equal_area_forward(
   let theta = n * (lon_r - lon0_r)
   let x = rho * @math.sin(theta)
   let y = rho0 - rho * @math.cos(theta)
-  { x, y }
+  { x, y, }
 }
-
 
 ///|
 /// Scale factor at a given latitude for Mercator. / Mercator 在给定纬度的比例因子。

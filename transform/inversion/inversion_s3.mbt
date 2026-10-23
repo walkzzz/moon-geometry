@@ -6,7 +6,6 @@ pub fn Inversion::power(inv : Inversion, p : @core.Point2D) -> Double {
   dx * dx + dy * dy - inv.radius * inv.radius
 }
 
-
 ///|
 /// Check if a point is inside the inversion circle. / 检查点是否在反演圆内。
 pub fn Inversion::is_inside(inv : Inversion, p : @core.Point2D) -> Bool {

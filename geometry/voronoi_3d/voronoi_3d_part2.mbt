@@ -3,7 +3,7 @@
 pub fn voronoi_3d(sites : Array[@core.Point3D]) -> Voronoi3D {
   let n = sites.length()
   if n == 0 {
-    return { sites: [], cells: [], vertices: [] }
+    return { sites: [], cells: [], vertices: [], }
   }
   let del = @delaunay_3d.delaunay_3d(sites)
   let voronoi_vertices : Array[@core.Point3D] = []
@@ -24,7 +24,7 @@ pub fn voronoi_3d(sites : Array[@core.Point3D]) -> Voronoi3D {
         cell_verts.push(voronoi_vertices[ti])
       }
     }
-    cells.push({ site_idx: i, vertices: cell_verts })
+    cells.push({ site_idx: i, vertices: cell_verts, })
   }
-  { sites: sites.copy(), cells, vertices: voronoi_vertices }
+  { sites: sites.copy(), cells, vertices: voronoi_vertices, }
 }

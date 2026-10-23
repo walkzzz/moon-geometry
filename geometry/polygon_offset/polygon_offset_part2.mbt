@@ -24,13 +24,9 @@ pub fn polygon_offset_area(
   area + perimeter * dist + 3.14159265358979323846 * dist * dist
 }
 
-
 ///|
 /// Check if an offset polygon is valid (non-degenerate). / 检查偏移多边形是否有效（非退化）。
-pub fn polygon_offset_valid(
-  poly : Array[@core.Point2D],
-  dist : Double,
-) -> Bool {
+pub fn polygon_offset_valid(poly : Array[@core.Point2D], dist : Double) -> Bool {
   let offset = polygon_offset_outward(poly, dist)
   offset.length() >= 3
 }

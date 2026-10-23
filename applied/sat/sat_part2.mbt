@@ -43,6 +43,7 @@ pub fn sat_collide_polygons(
   SATResult::new(true, min_overlap, sep_x, sep_y)
 }
 
+///|
 fn get_edge_axes(poly : Array[@core.Point2D]) -> Array[(Double, Double)] {
   let axes : Array[(Double, Double)] = []
   let n = poly.length()
@@ -59,6 +60,7 @@ fn get_edge_axes(poly : Array[@core.Point2D]) -> Array[(Double, Double)] {
   axes
 }
 
+///|
 fn project_polygon(
   poly : Array[@core.Point2D],
   ax : Double,
@@ -78,6 +80,7 @@ fn project_polygon(
   (min_val, max_val)
 }
 
+///|
 fn interval_overlap(
   min1 : Double,
   max1 : Double,

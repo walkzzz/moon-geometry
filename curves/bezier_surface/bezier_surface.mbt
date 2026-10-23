@@ -8,12 +8,13 @@
 /// ## Complexity: O(m × n) per evaluation
 /// ## 复杂度: 每次求值 O(m × n)
 
+///|
 /// |
 /// Compute Bernstein polynomial B(i, n, t).
 /// 计算伯恩斯坦多项式 B(i, n, t)。
 ///
 /// B(i, n, t) = C(n, i) * t^i * (1-t)^(n-i)
-pub fn bernstein(i : Int, n : Int, t : Double) -> Double {
+pub fn bernstein(i : Int32, n : Int32, t : Double) -> Double {
   let mut coeff = 1.0
   for k in 0..<i {
     coeff *= (n - k).to_double() / (k + 1).to_double()
@@ -24,11 +25,12 @@ pub fn bernstein(i : Int, n : Int, t : Double) -> Double {
   }
   let mut tni = 1.0
   for _ in 0..<(n - i) {
-    tni *= (1.0 - t)
+    tni *= 1.0 - t
   }
   coeff * ti * tni
 }
 
+///|
 /// |
 /// Evaluate a Bézier curve using de Casteljau algorithm.
 /// 使用 de Casteljau 算法求值贝塞尔曲线。
@@ -60,6 +62,7 @@ pub fn bezier_curve(
   pts[0]
 }
 
+///|
 /// |
 /// Evaluate a tensor product Bézier surface at (u, v).
 /// 在 (u, v) 处求值张量积贝塞尔曲面。
@@ -90,6 +93,7 @@ pub fn bezier_surface(
   (x, y, z)
 }
 
+///|
 /// |
 /// Evaluate a Bézier surface using de Casteljau in both directions.
 /// 在两个方向上使用 de Casteljau 求值贝塞尔曲面。
@@ -110,6 +114,7 @@ pub fn bezier_surface_decasteljau(
   bezier_curve(curves, u)
 }
 
+///|
 /// |
 /// Compute the derivative of a Bézier curve (hodograph).
 /// 计算贝塞尔曲线的导数（速端曲线）。
@@ -129,11 +134,18 @@ pub fn bezier_curve_derivative(
   for i in 0..<n {
     let (x0, y0, z0) = control_pts[i]
     let (x1, y1, z1) = control_pts[i + 1]
-    deriv_ctrl.push((n.to_double() * (x1 - x0), n.to_double() * (y1 - y0), n.to_double() * (z1 - z0)))
+    deriv_ctrl.push(
+      (
+        n.to_double() * (x1 - x0),
+        n.to_double() * (y1 - y0),
+        n.to_double() * (z1 - z0),
+      ),
+    )
   }
   bezier_curve(deriv_ctrl, t)
 }
 
+///|
 /// |
 /// Elevate the degree of a Bézier curve by one.
 /// 将贝塞尔曲线的次数提升一阶。
@@ -153,11 +165,13 @@ pub fn bezier_degree_elevate(
     let (x0, y0, z0) = control_pts[i - 1]
     let (x1, y1, z1) = control_pts[i]
     let alpha = i.to_double() / n.to_double()
-    result.push((
-      alpha * x0 + (1.0 - alpha) * x1,
-      alpha * y0 + (1.0 - alpha) * y1,
-      alpha * z0 + (1.0 - alpha) * z1,
-    ))
+    result.push(
+      (
+        alpha * x0 + (1.0 - alpha) * x1,
+        alpha * y0 + (1.0 - alpha) * y1,
+        alpha * z0 + (1.0 - alpha) * z1,
+      ),
+    )
   }
   result.push(control_pts[n - 1])
   result

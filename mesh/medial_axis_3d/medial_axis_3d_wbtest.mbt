@@ -1,3 +1,4 @@
+///|
 test "MedialBall3D construct" {
   let c = @core.Point3D::new(1.0, 2.0, 3.0)
   let ball = MedialBall3D::new(c, 5.0)
@@ -5,6 +6,7 @@ test "MedialBall3D construct" {
   assert_true((ball.center().x - 1.0).abs() < 0.0001)
 }
 
+///|
 test "medial_axis_from_pairs basic" {
   let pts = [
     @core.Point3D::new(0.0, 0.0, 0.0),
@@ -15,6 +17,7 @@ test "medial_axis_from_pairs basic" {
   assert_true((balls[0].radius() - 1.0).abs() < 0.001)
 }
 
+///|
 test "medial_axis_from_pairs triangle" {
   let pts = [
     @core.Point3D::new(0.0, 0.0, 0.0),
@@ -25,6 +28,7 @@ test "medial_axis_from_pairs triangle" {
   assert_true(balls.length() >= 1)
 }
 
+///|
 test "medial_axis_from_triples basic" {
   let pts = [
     @core.Point3D::new(0.0, 0.0, 0.0),
@@ -35,6 +39,7 @@ test "medial_axis_from_triples basic" {
   assert_true(balls.length() >= 1)
 }
 
+///|
 test "medial_axis_3d combined" {
   let pts = [
     @core.Point3D::new(0.0, 0.0, 0.0),
@@ -46,6 +51,7 @@ test "medial_axis_3d combined" {
   assert_true(balls.length() >= 1)
 }
 
+///|
 test "medial_axis_filter basic" {
   let balls : Array[MedialBall3D] = [
     MedialBall3D::new(@core.Point3D::new(0.0, 0.0, 0.0), 1.0),
@@ -56,6 +62,7 @@ test "medial_axis_filter basic" {
   assert_true(filtered.length() == 1)
 }
 
+///|
 test "medial_axis_sort basic" {
   let balls : Array[MedialBall3D] = [
     MedialBall3D::new(@core.Point3D::new(0.0, 0.0, 0.0), 1.0),
@@ -68,6 +75,7 @@ test "medial_axis_sort basic" {
   assert_true((sorted[2].radius() - 1.0).abs() < 0.0001)
 }
 
+///|
 test "medial_axis_from_pairs collinear" {
   let pts = [
     @core.Point3D::new(0.0, 0.0, 0.0),
@@ -78,6 +86,7 @@ test "medial_axis_from_pairs collinear" {
   assert_true(balls.length() >= 1)
 }
 
+///|
 test "medial_axis_3d empty" {
   let balls = medial_axis_3d([])
   assert_true(balls.length() == 0)

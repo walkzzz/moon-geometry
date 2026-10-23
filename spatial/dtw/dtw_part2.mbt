@@ -3,7 +3,7 @@
 pub fn dtw_windowed(
   c1 : Array[@core.Point2D],
   c2 : Array[@core.Point2D],
-  window : Int,
+  window : Int32,
 ) -> Double {
   let n = c1.length()
   let m = c2.length()

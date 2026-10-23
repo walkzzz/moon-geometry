@@ -22,7 +22,10 @@ pub fn clip_convex_by_line(
     if cur_in != nxt_in {
       let t = cur_val / (cur_val - nxt_val)
       result.push(
-        @core.Point2D::new(cur.x() + (nxt.x() - cur.x()) * t, cur.y() + (nxt.y() - cur.y()) * t),
+        @core.Point2D::new(
+          cur.x() + (nxt.x() - cur.x()) * t,
+          cur.y() + (nxt.y() - cur.y()) * t,
+        ),
       )
     }
   }

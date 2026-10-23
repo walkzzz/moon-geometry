@@ -7,14 +7,12 @@ pub(all) enum Orientation {
   Collinear
 } derive(Debug, Eq)
 
-
 ///|
 /// A polygon as an ordered sequence of vertices.
 /// 由有序顶点序列定义的多边形。
 pub struct Polygon {
   vertices : Array[Point2D]
 } derive(Debug)
-
 
 ///|
 /// Construct a polygon from a vertex array.
@@ -23,19 +21,17 @@ pub fn Polygon::new(vertices : Array[Point2D]) -> Polygon {
   { vertices, }
 }
 
-
 ///|
 /// Number of vertices.
 /// 顶点数量。
-pub fn Polygon::size(self : Polygon) -> Int {
+pub fn Polygon::size(self : Polygon) -> Int32 {
   self.vertices.length()
 }
-
 
 ///|
 /// Get the i-th vertex (with modular wraparound).
 /// 获取第 i 个顶点（带模环绕）。
-pub fn Polygon::get(self : Polygon, i : Int) -> Point2D {
+pub fn Polygon::get(self : Polygon, i : Int32) -> Point2D {
   let n = self.vertices.length()
   if n == 0 {
     abort("Polygon::get: empty polygon")
@@ -43,7 +39,6 @@ pub fn Polygon::get(self : Polygon, i : Int) -> Point2D {
   let idx = (i % n + n) % n
   self.vertices[idx]
 }
-
 
 ///|
 /// A triangle defined by three vertices.

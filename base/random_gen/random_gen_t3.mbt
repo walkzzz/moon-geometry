@@ -10,12 +10,11 @@ pub fn Rng::point2d(
   @core.Point2D::new(r.range_double(x_lo, x_hi), r.range_double(y_lo, y_hi))
 }
 
-
 ///|
 /// Generate n random 2D points in a rectangle. / 在矩形中生成 n 个随机二维点。
 pub fn Rng::random_points(
   r : Rng,
-  n : Int,
+  n : Int32,
   x_lo : Double,
   x_hi : Double,
   y_lo : Double,

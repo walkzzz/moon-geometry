@@ -5,7 +5,10 @@ pub fn simplify_by_edge_length(
   threshold : Double,
 ) -> @mesh_data.Mesh {
   let result = @mesh_data.Mesh::new()
-  let old_to_new : Array[Int] = Array::make(@mesh_data.Mesh::vertex_count(mesh), -1)
+  let old_to_new : Array[Int32] = Array::make(
+    @mesh_data.Mesh::vertex_count(mesh),
+    -1,
+  )
   for i in 0..<@mesh_data.Mesh::vertex_count(mesh) {
     let v = @mesh_data.Mesh::get_vertex(mesh, i)
     let mut keep = true

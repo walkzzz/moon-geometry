@@ -8,6 +8,7 @@
 /// ## Complexity: O(n × m × iter) for ICP
 /// ## 复杂度: ICP O(n × m × iter)
 
+///|
 /// |
 /// Find the closest point in target to a given source point.
 /// 在目标点云中查找离给定源点最近的点。
@@ -20,7 +21,9 @@ fn closest_point(
   let mut best = target[0]
   for q in target {
     let (qx, qy, qz) = q
-    let d = (px - qx) * (px - qx) + (py - qy) * (py - qy) + (pz - qz) * (pz - qz)
+    let d = (px - qx) * (px - qx) +
+      (py - qy) * (py - qy) +
+      (pz - qz) * (pz - qz)
     if d < best_d {
       best_d = d
       best = q
@@ -29,10 +32,13 @@ fn closest_point(
   best
 }
 
+///|
 /// |
 /// Compute centroid of a 3D point cloud.
 /// 计算 3D 点云的质心。
-pub fn centroid_3d(pts : Array[(Double, Double, Double)]) -> (Double, Double, Double) {
+pub fn centroid_3d(
+  pts : Array[(Double, Double, Double)],
+) -> (Double, Double, Double) {
   let n = pts.length()
   let mut sx = 0.0
   let mut sy = 0.0
@@ -46,6 +52,7 @@ pub fn centroid_3d(pts : Array[(Double, Double, Double)]) -> (Double, Double, Do
   (sx / n.to_double(), sy / n.to_double(), sz / n.to_double())
 }
 
+///|
 /// |
 /// Apply translation to a point cloud.
 /// 对点云应用平移变换。
@@ -67,6 +74,7 @@ pub fn translate_pts(
   result
 }
 
+///|
 /// |
 /// ICP (Iterative Closest Point) registration.
 /// ICP（迭代最近点）配准。
@@ -81,7 +89,7 @@ pub fn translate_pts(
 pub fn icp(
   source : Array[(Double, Double, Double)],
   target : Array[(Double, Double, Double)],
-  max_iter : Int,
+  max_iter : Int32,
 ) -> (Array[(Double, Double, Double)], (Double, Double, Double)) {
   let aligned : Array[(Double, Double, Double)] = []
   for p in source {
@@ -116,6 +124,7 @@ pub fn icp(
   (aligned, (total_tx, total_ty, total_tz))
 }
 
+///|
 /// |
 /// Compute RMS error between two point clouds (point-to-point).
 /// 计算两个点云之间的 RMS 误差（点到点）。

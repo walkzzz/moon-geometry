@@ -8,6 +8,7 @@
 /// ## Complexity: O(V + E)
 /// ## 复杂度: O(V + E)
 
+///|
 /// |
 /// Color a graph using greedy algorithm.
 /// 使用贪心算法着色图。
@@ -18,8 +19,8 @@
 ///
 /// Returns color assignment (0-indexed colors).
 /// 返回着色方案（0 索引颜色）。
-pub fn greedy_color(n : Int, adj : Array[Array[Int]]) -> Array[Int] {
-  let colors : Array[Int] = []
+pub fn greedy_color(n : Int32, adj : Array[Array[Int32]]) -> Array[Int32] {
+  let colors : Array[Int32] = []
   for _ in 0..<n {
     colors.push(-1)
   }
@@ -43,10 +44,11 @@ pub fn greedy_color(n : Int, adj : Array[Array[Int]]) -> Array[Int] {
   colors
 }
 
+///|
 /// |
 /// Count the number of distinct colors used.
 /// 计算使用的不同颜色数。
-pub fn chromatic_number_upper(n : Int, adj : Array[Array[Int]]) -> Int {
+pub fn chromatic_number_upper(n : Int32, adj : Array[Array[Int32]]) -> Int32 {
   let colors = greedy_color(n, adj)
   let mut max_c = 0
   for i in 0..<n {
@@ -57,10 +59,15 @@ pub fn chromatic_number_upper(n : Int, adj : Array[Array[Int]]) -> Int {
   max_c + 1
 }
 
+///|
 /// |
 /// Check if a coloring is valid.
 /// 检查着色是否有效。
-pub fn is_valid_coloring(n : Int, adj : Array[Array[Int]], colors : Array[Int]) -> Bool {
+pub fn is_valid_coloring(
+  n : Int32,
+  adj : Array[Array[Int32]],
+  colors : Array[Int32],
+) -> Bool {
   for v in 0..<n {
     for i in 0..<adj[v].length() {
       let u = adj[v][i]
@@ -72,11 +79,12 @@ pub fn is_valid_coloring(n : Int, adj : Array[Array[Int]], colors : Array[Int]) 
   true
 }
 
+///|
 /// |
 /// Check if graph is bipartite (2-colorable).
 /// 检查图是否为二部图（可 2 着色）。
-pub fn is_bipartite(n : Int, adj : Array[Array[Int]]) -> Bool {
-  let colors : Array[Int] = []
+pub fn is_bipartite(n : Int32, adj : Array[Array[Int32]]) -> Bool {
+  let colors : Array[Int32] = []
   for _ in 0..<n {
     colors.push(-1)
   }
@@ -85,7 +93,7 @@ pub fn is_bipartite(n : Int, adj : Array[Array[Int]]) -> Bool {
       continue
     }
     colors[start] = 0
-    let queue : Array[Int] = [start]
+    let queue : Array[Int32] = [start]
     while queue.length() > 0 {
       let v = queue.remove(0)
       ignore(queue.length())

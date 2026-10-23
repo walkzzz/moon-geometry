@@ -1,5 +1,15 @@
-///| Compute intersection point of segments a1-a2 and b1-b2. / 计算线段 a1-a2 与 b1-b2 的交点。
-pub fn robust_segment_intersect(a1x : Double, a1y : Double, a2x : Double, a2y : Double, b1x : Double, b1y : Double, b2x : Double, b2y : Double) -> (Double, Double, Bool) {
+///|
+/// Compute intersection point of segments a1-a2 and b1-b2. / 计算线段 a1-a2 与 b1-b2 的交点。
+pub fn robust_segment_intersect(
+  a1x : Double,
+  a1y : Double,
+  a2x : Double,
+  a2y : Double,
+  b1x : Double,
+  b1y : Double,
+  b2x : Double,
+  b2y : Double,
+) -> (Double, Double, Bool) {
   let d1x = a2x - a1x
   let d1y = a2y - a1y
   let d2x = b2x - b1x

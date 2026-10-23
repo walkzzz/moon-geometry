@@ -1100,7 +1100,7 @@ test "delaunay edge count formula" {
   ]
   let tris = delaunay_triangulation(pts)
   // Count unique edges
-  let edges : Array[(Int, Int)] = []
+  let edges : Array[(Int32, Int32)] = []
   for t in tris {
     let mut e1 = (t.a, t.b)
     let mut e2 = (t.b, t.c)
@@ -1140,7 +1140,7 @@ test "delaunay hull edges count" {
   ]
   let tris = delaunay_triangulation(pts)
   // Count edges that appear only once (hull edges)
-  let all_edges : Array[(Int, Int)] = []
+  let all_edges : Array[(Int32, Int32)] = []
   for t in tris {
     let mut e1 = (t.a, t.b)
     let mut e2 = (t.b, t.c)

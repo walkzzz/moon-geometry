@@ -18,7 +18,6 @@ pub fn hermite_derivative(
   )
 }
 
-
 ///|
 /// Compute Cardinal spline tangents (special case of Hermite). / 计算 Cardinal 样条切线（Hermite 特例）。
 pub fn cardinal_tangents(
@@ -31,19 +30,25 @@ pub fn cardinal_tangents(
   }
   let result : Array[@core.Point2D] = []
   let s = (1.0 - tension) / 2.0
-  result.push(@core.Point2D::new(
-    s * (points[1].x() - points[0].x()),
-    s * (points[1].y() - points[0].y()),
-  ))
+  result.push(
+    @core.Point2D::new(
+      s * (points[1].x() - points[0].x()),
+      s * (points[1].y() - points[0].y()),
+    ),
+  )
   for i in 1..<(n - 1) {
-    result.push(@core.Point2D::new(
-      s * (points[i + 1].x() - points[i - 1].x()),
-      s * (points[i + 1].y() - points[i - 1].y()),
-    ))
+    result.push(
+      @core.Point2D::new(
+        s * (points[i + 1].x() - points[i - 1].x()),
+        s * (points[i + 1].y() - points[i - 1].y()),
+      ),
+    )
   }
-  result.push(@core.Point2D::new(
-    s * (points[n - 1].x() - points[n - 2].x()),
-    s * (points[n - 1].y() - points[n - 2].y()),
-  ))
+  result.push(
+    @core.Point2D::new(
+      s * (points[n - 1].x() - points[n - 2].x()),
+      s * (points[n - 1].y() - points[n - 2].y()),
+    ),
+  )
   result
 }

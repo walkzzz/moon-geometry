@@ -2,12 +2,12 @@
 /// Harmonic parameterization (Tutte embedding with boundary on unit circle). / 调和参数化（Tutte 嵌入，边界在单位圆上）。
 pub fn harmonic_parametrize(
   vertices : Array[@core.Point3D],
-  faces : Array[(Int, Int, Int)],
-  boundary : Array[Int],
+  faces : Array[(Int32, Int32, Int32)],
+  boundary : Array[Int32],
 ) -> MeshParamResult {
   let n = vertices.length()
   if n == 0 {
-    return { uv: [], success: false }
+    return { uv: [], success: false, }
   }
   let uv = Array::make(n, UV::new(0.0, 0.0))
   let is_boundary = Array::make(n, false)
@@ -20,10 +20,10 @@ pub fn harmonic_parametrize(
   if m >= 3 {
     for i in 0..<m {
       let angle = 2.0 * 3.14159265358979323846 * i.to_double() / m.to_double()
-      uv[boundary[i]] = { u: @math.cos(angle), v: @math.sin(angle) }
+      uv[boundary[i]] = { u: @math.cos(angle), v: @math.sin(angle), }
     }
   }
-  let adj : Array[Array[Int]] = []
+  let adj : Array[Array[Int32]] = []
   for _ in 0..<n {
     adj.push([])
   }
@@ -53,17 +53,18 @@ pub fn harmonic_parametrize(
       if change > max_change {
         max_change = change
       }
-      uv[i] = { u: new_u, v: new_v }
+      uv[i] = { u: new_u, v: new_v, }
     }
     if max_change < 0.0000001 {
       ignore(iter)
       break
     }
   }
-  { uv, success: true }
+  { uv, success: true, }
 }
 
-fn add_adj(adj : Array[Array[Int]], a : Int, b : Int) -> Unit {
+///|
+fn add_adj(adj : Array[Array[Int32]], a : Int32, b : Int32) -> Unit {
   let mut found = false
   for x in adj[a] {
     if x == b {
@@ -71,7 +72,7 @@ fn add_adj(adj : Array[Array[Int]], a : Int, b : Int) -> Unit {
       break
     }
   }
-  if !(found) {
+  if !found {
     adj[a].push(b)
   }
   found = false
@@ -81,7 +82,7 @@ fn add_adj(adj : Array[Array[Int]], a : Int, b : Int) -> Unit {
       break
     }
   }
-  if !(found) {
+  if !found {
     adj[b].push(a)
   }
 }

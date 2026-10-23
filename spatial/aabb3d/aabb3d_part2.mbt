@@ -2,7 +2,14 @@
 /// Construct from a set of points. / 从点集构造。
 pub fn AABB3D::from_points(points : Array[@core.Point3D]) -> AABB3D {
   if points.length() == 0 {
-    return { min_x: 0.0, min_y: 0.0, min_z: 0.0, max_x: 0.0, max_y: 0.0, max_z: 0.0 }
+    return {
+      min_x: 0.0,
+      min_y: 0.0,
+      min_z: 0.0,
+      max_x: 0.0,
+      max_y: 0.0,
+      max_z: 0.0,
+    }
   }
   let mut min_x = points[0].x
   let mut min_y = points[0].y
@@ -30,5 +37,5 @@ pub fn AABB3D::from_points(points : Array[@core.Point3D]) -> AABB3D {
       max_z = p.z
     }
   }
-  { min_x, min_y, min_z, max_x, max_y, max_z }
+  { min_x, min_y, min_z, max_x, max_y, max_z, }
 }

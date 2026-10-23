@@ -10,6 +10,7 @@
 /// ## Complexity: O(n + r) where r = number of reflex vertices
 /// ## 复杂度: O(n + r)，r = 反射顶点数
 
+///|
 /// |
 /// Decompose polygon into convex pieces using Hertel-Mehlhorn.
 /// 使用 Hertel-Mehlhorn 分解多边形为凸块。
@@ -74,13 +75,15 @@ pub fn optimal_convex_decomp(
   result
 }
 
+///|
 /// |
 /// Count the minimum number of convex pieces needed.
 /// 计算所需的最少凸块数。
-pub fn decomp_count(pts : Array[@core.Point2D]) -> Int {
+pub fn decomp_count(pts : Array[@core.Point2D]) -> Int32 {
   optimal_convex_decomp(pts).length()
 }
 
+///|
 /// |
 /// Check if a polygon is convex.
 /// 检查多边形是否为凸多边形。
@@ -99,11 +102,7 @@ pub fn is_convex_polygon(pts : Array[@core.Point2D]) -> Bool {
     if cross.abs() < 0.0000000001 {
       continue
     }
-    let s = if cross > 0.0 {
-      1
-    } else {
-      -1
-    }
+    let s = if cross > 0.0 { 1 } else { -1 }
     if sign == 0 {
       sign = s
     } else if sign != s {
@@ -113,9 +112,10 @@ pub fn is_convex_polygon(pts : Array[@core.Point2D]) -> Bool {
   true
 }
 
-fn find_reflex_vertices(pts : Array[@core.Point2D]) -> Array[Int] {
+///|
+fn find_reflex_vertices(pts : Array[@core.Point2D]) -> Array[Int32] {
   let n = pts.length()
-  let result : Array[Int] = []
+  let result : Array[Int32] = []
   if n < 3 {
     return result
   }
@@ -129,11 +129,7 @@ fn find_reflex_vertices(pts : Array[@core.Point2D]) -> Array[Int] {
     if cross.abs() < 0.0000000001 {
       continue
     }
-    let s = if cross > 0.0 {
-      1
-    } else {
-      -1
-    }
+    let s = if cross > 0.0 { 1 } else { -1 }
     if sign == 0 {
       sign = s
     }
@@ -144,10 +140,8 @@ fn find_reflex_vertices(pts : Array[@core.Point2D]) -> Array[Int] {
   result
 }
 
-fn find_valid_cut(
-  pts : Array[@core.Point2D],
-  v : Int,
-) -> (Int, Int)? {
+///|
+fn find_valid_cut(pts : Array[@core.Point2D], v : Int32) -> (Int32, Int32)? {
   let n = pts.length()
   let vp = pts[(v - 1 + n) % n]
   let vc = pts[v]
@@ -170,7 +164,8 @@ fn find_valid_cut(
   None
 }
 
-fn is_diagonal(pts : Array[@core.Point2D], i : Int, j : Int) -> Bool {
+///|
+fn is_diagonal(pts : Array[@core.Point2D], i : Int32, j : Int32) -> Bool {
   let n = pts.length()
   let a = pts[i]
   let b = pts[j]
@@ -189,6 +184,7 @@ fn is_diagonal(pts : Array[@core.Point2D], i : Int, j : Int) -> Bool {
   true
 }
 
+///|
 fn segments_cross(
   a1 : @core.Point2D,
   a2 : @core.Point2D,
@@ -200,13 +196,14 @@ fn segments_cross(
   let d3 = @core.turn(a1, a2, b1)
   let d4 = @core.turn(a1, a2, b2)
   ((d1 > 0.0 && d2 < 0.0) || (d1 < 0.0 && d2 > 0.0)) &&
-    ((d3 > 0.0 && d4 < 0.0) || (d3 < 0.0 && d4 > 0.0))
+  ((d3 > 0.0 && d4 < 0.0) || (d3 < 0.0 && d4 > 0.0))
 }
 
+///|
 fn split_polygon(
   pts : Array[@core.Point2D],
-  a : Int,
-  b : Int,
+  a : Int32,
+  b : Int32,
 ) -> (Array[@core.Point2D], Array[@core.Point2D]) {
   let left : Array[@core.Point2D] = []
   let right : Array[@core.Point2D] = []

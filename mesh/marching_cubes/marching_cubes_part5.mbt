@@ -1,6 +1,6 @@
 ///|
 /// Count active (non-empty) voxel configurations. / 统计活动（非空）体素配置数。
-pub fn count_active_configs(grid : McGrid, isolevel : Double) -> Int {
+pub fn count_active_configs(grid : McGrid, isolevel : Double) -> Int32 {
   let mut count = 0
   for k in 0..<(grid.nz - 1) {
     for j in 0..<(grid.ny - 1) {
@@ -21,7 +21,13 @@ pub fn count_active_configs(grid : McGrid, isolevel : Double) -> Int {
   count
 }
 
-fn corner_offset(b : Int, i : Int, j : Int, k : Int) -> (Int, Int, Int) {
+///|
+fn corner_offset(
+  b : Int32,
+  i : Int32,
+  j : Int32,
+  k : Int32,
+) -> (Int32, Int32, Int32) {
   match b {
     0 => (i, j, k)
     1 => (i + 1, j, k)

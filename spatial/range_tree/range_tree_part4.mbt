@@ -4,8 +4,8 @@ pub fn range_query_y(
   tree : RangeTree,
   y_lo : Double,
   y_hi : Double,
-) -> Array[Int] {
-  let result : Array[Int] = []
+) -> Array[Int32] {
+  let result : Array[Int32] = []
   for i in 0..<tree.sorted_y.length() {
     let idx = tree.sorted_y[i]
     let py = tree.points[idx].y()
@@ -19,9 +19,8 @@ pub fn range_query_y(
   result
 }
 
-
 ///|
 /// Number of points in the tree. / 范围树中的点数。
-pub fn range_tree_size(tree : RangeTree) -> Int {
+pub fn range_tree_size(tree : RangeTree) -> Int32 {
   tree.points.length()
 }

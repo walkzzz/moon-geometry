@@ -3,10 +3,9 @@
 pub fn count_visible(
   segments : Array[LineSeg3D],
   triangles : Array[(@core.Point3D, @core.Point3D, @core.Point3D)],
-) -> Int {
+) -> Int32 {
   hidden_line_remove(segments, triangles).length()
 }
-
 
 ///|
 /// Roberts-style back-face cull: remove faces pointing away from viewer.

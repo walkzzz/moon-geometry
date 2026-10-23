@@ -3,8 +3,8 @@
 pub fn kdtree_range_query(
   nodes : Array[KDNode],
   rect : @core.Rectangle,
-) -> Array[Int] {
-  let result : Array[Int] = []
+) -> Array[Int32] {
+  let result : Array[Int32] = []
   if nodes.length() == 0 {
     return result
   }

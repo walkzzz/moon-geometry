@@ -1,5 +1,8 @@
 ///|
-pub fn apply_dirichlet(k : Array[Array[Double]], boundary_nodes : Array[Int]) -> Array[Array[Double]] {
+pub fn apply_dirichlet(
+  k : Array[Array[Double]],
+  boundary_nodes : Array[Int32],
+) -> Array[Array[Double]] {
   for i in 0..<boundary_nodes.length() {
     let idx = boundary_nodes[i]
     for j in 0..<k.length() {

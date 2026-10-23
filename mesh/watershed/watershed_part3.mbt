@@ -3,10 +3,10 @@
 /// dem: elevation grid (rows x cols), markers: marker labels (0 = no marker). / dem: 高程网格，markers: 标记标签（0 = 无标记）。
 /// Floods from markers following steepest descent. / 从标记出发沿最陡下降方向淹没。
 pub fn marker_watershed(
-  cols : Int,
-  rows : Int,
+  cols : Int32,
+  rows : Int32,
   dem : Array[Double],
-  markers : Array[Int],
+  markers : Array[Int32],
 ) -> WatershedResult {
   let n = cols * rows
   let labels = Array::make(n, 0)
@@ -18,7 +18,7 @@ pub fn marker_watershed(
   }
   // Priority flood: process cells from lowest elevation, BFS-like
   // Build index list sorted by elevation
-  let indices : Array[Int] = []
+  let indices : Array[Int32] = []
   for i in 0..<n {
     indices.push(i)
   }
@@ -45,7 +45,12 @@ pub fn marker_watershed(
     let mut best_elev = 0.0
     let mut has_best = false
     // Check 4 neighbors
-    let neighbors = [(col - 1, row), (col + 1, row), (col, row - 1), (col, row + 1)]
+    let neighbors = [
+      (col - 1, row),
+      (col + 1, row),
+      (col, row - 1),
+      (col, row + 1),
+    ]
     for nb in neighbors {
       let (nc, nr) = nb
       if nc >= 0 && nc < cols && nr >= 0 && nr < rows {
@@ -61,5 +66,5 @@ pub fn marker_watershed(
     }
     labels[idx] = best_label
   }
-  { cols, rows, labels }
+  { cols, rows, labels, }
 }

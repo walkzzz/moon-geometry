@@ -10,22 +10,17 @@ pub struct Ellipse {
   angle : Double
 } derive(Debug)
 
-
 ///|
 pub extend Ellipse with @moonbitlang/core/debug.Debug::{to_repr}
-
 
 ///|
 pub extend Ellipse with @core.Measurable::{area}
 
-
 ///|
 pub extend Ellipse with @core.PerimeterMeasurable::{perimeter}
 
-
 ///|
 pub extend Ellipse with @core.Containable::{contains}
-
 
 ///|
 /// Construct an ellipse. / 构造椭圆。

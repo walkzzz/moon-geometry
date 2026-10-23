@@ -8,7 +8,7 @@ pub fn PlanarGraph::from_polygon(
   if n < 3 {
     return graph
   }
-  let indices : Array[Int] = []
+  let indices : Array[Int32] = []
   for i in 0..<n {
     indices.push(graph.add_vertex(poly.get(i)))
   }

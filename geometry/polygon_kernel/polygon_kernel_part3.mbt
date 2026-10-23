@@ -1,8 +1,6 @@
 ///|
 /// Find a point in the kernel (centroid of kernel vertices). / 在核中找一点（核顶点的质心）。
-pub fn kernel_point(
-  poly : Array[@core.Point2D],
-) -> @core.Point2D? {
+pub fn kernel_point(poly : Array[@core.Point2D]) -> @core.Point2D? {
   let kernel = polygon_kernel(poly)
   if kernel.length() < 3 {
     return None

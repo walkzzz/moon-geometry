@@ -30,6 +30,7 @@ pub fn reed_shepp_shortest_path(
   RSPath::new(best.segments, best.total_length, radius)
 }
 
+///|
 fn rs_compute_candidates(
   alpha : Double,
   beta : Double,
@@ -46,6 +47,7 @@ fn rs_compute_candidates(
   rs_reflect(-beta, -alpha, d, results)
 }
 
+///|
 fn rs_timeflip(
   alpha : Double,
   beta : Double,
@@ -62,6 +64,7 @@ fn rs_timeflip(
   rs_LfSfRbSbLf(alpha, beta, d, results)
 }
 
+///|
 fn rs_reflect(
   alpha : Double,
   beta : Double,
@@ -78,6 +81,7 @@ fn rs_reflect(
   rs_LfSfRbSbLf(-alpha, -beta, d, results)
 }
 
+///|
 fn rs_LfSfRf(
   alpha : Double,
   beta : Double,
@@ -103,6 +107,7 @@ fn rs_LfSfRf(
   }
 }
 
+///|
 fn rs_LfSfLf(
   alpha : Double,
   beta : Double,
@@ -128,19 +133,37 @@ fn rs_LfSfLf(
   }
 }
 
+///|
 fn rs_LfRfLf(
   alpha : Double,
   beta : Double,
   d : Double,
   results : Array[RSPath],
 ) -> Unit {
-  let tmp = 4.0 - d * d + 2.0 * @math.cos(alpha - beta) + 2.0 * d * (@math.sin(alpha) + @math.sin(beta))
+  let tmp = 4.0 -
+    d * d +
+    2.0 * @math.cos(alpha - beta) +
+    2.0 * d * (@math.sin(alpha) + @math.sin(beta))
   if tmp < 0.0 {
     return
   }
   let p = tmp.sqrt()
-  let t = mod2pi(-alpha + @math.atan2(@math.cos(alpha) + @math.cos(beta), d + @math.sin(alpha) + @math.sin(beta)) - @math.atan2(2.0, p))
-  let q = mod2pi(mod2pi(beta) - @math.atan2(@math.cos(alpha) + @math.cos(beta), d + @math.sin(alpha) + @math.sin(beta)) - @math.atan2(2.0, p))
+  let t = mod2pi(
+    -alpha +
+    @math.atan2(
+      @math.cos(alpha) + @math.cos(beta),
+      d + @math.sin(alpha) + @math.sin(beta),
+    ) -
+    @math.atan2(2.0, p),
+  )
+  let q = mod2pi(
+    mod2pi(beta) -
+    @math.atan2(
+      @math.cos(alpha) + @math.cos(beta),
+      d + @math.sin(alpha) + @math.sin(beta),
+    ) -
+    @math.atan2(2.0, p),
+  )
   if t >= 0.0 && p >= 0.0 && q >= 0.0 {
     let segs = [
       RSSegment::new(Left, t, true),
@@ -151,18 +174,29 @@ fn rs_LfRfLf(
   }
 }
 
+///|
 fn rs_LfLfRf(
   alpha : Double,
   beta : Double,
   d : Double,
   results : Array[RSPath],
 ) -> Unit {
-  let tmp = 4.0 - d * d + 2.0 * @math.cos(alpha - beta) + 2.0 * d * (@math.sin(beta) - @math.sin(alpha))
+  let tmp = 4.0 -
+    d * d +
+    2.0 * @math.cos(alpha - beta) +
+    2.0 * d * (@math.sin(beta) - @math.sin(alpha))
   if tmp < 0.0 {
     return
   }
   let p = tmp.sqrt()
-  let t = mod2pi(alpha - @math.atan2(@math.cos(beta) - @math.cos(alpha), d - @math.sin(beta) + @math.sin(alpha)) + p / 2.0)
+  let t = mod2pi(
+    alpha -
+    @math.atan2(
+      @math.cos(beta) - @math.cos(alpha),
+      d - @math.sin(beta) + @math.sin(alpha),
+    ) +
+    p / 2.0,
+  )
   let q = mod2pi(alpha - beta - t + p)
   if t >= 0.0 && p >= 0.0 && q >= 0.0 {
     let segs = [
@@ -174,19 +208,37 @@ fn rs_LfLfRf(
   }
 }
 
+///|
 fn rs_LfRfRf(
   alpha : Double,
   beta : Double,
   d : Double,
   results : Array[RSPath],
 ) -> Unit {
-  let tmp = 4.0 - d * d + 2.0 * @math.cos(alpha - beta) - 2.0 * d * (@math.sin(alpha) + @math.sin(beta))
+  let tmp = 4.0 -
+    d * d +
+    2.0 * @math.cos(alpha - beta) -
+    2.0 * d * (@math.sin(alpha) + @math.sin(beta))
   if tmp < 0.0 {
     return
   }
   let p = tmp.sqrt()
-  let t = mod2pi(-alpha + @math.atan2(-@math.cos(alpha) - @math.cos(beta), d - @math.sin(alpha) - @math.sin(beta)) - @math.atan2(2.0, p))
-  let q = mod2pi(-beta + @math.atan2(-@math.cos(alpha) - @math.cos(beta), d - @math.sin(alpha) - @math.sin(beta)) - @math.atan2(2.0, p))
+  let t = mod2pi(
+    -alpha +
+    @math.atan2(
+      -@math.cos(alpha) - @math.cos(beta),
+      d - @math.sin(alpha) - @math.sin(beta),
+    ) -
+    @math.atan2(2.0, p),
+  )
+  let q = mod2pi(
+    -beta +
+    @math.atan2(
+      -@math.cos(alpha) - @math.cos(beta),
+      d - @math.sin(alpha) - @math.sin(beta),
+    ) -
+    @math.atan2(2.0, p),
+  )
   if t >= 0.0 && p >= 0.0 && q >= 0.0 {
     let segs = [
       RSSegment::new(Left, t, true),
@@ -197,6 +249,7 @@ fn rs_LfRfRf(
   }
 }
 
+///|
 fn rs_LfRbSbRf(
   alpha : Double,
   beta : Double,
@@ -223,6 +276,7 @@ fn rs_LfRbSbRf(
   }
 }
 
+///|
 fn rs_LfRfSbRf(
   alpha : Double,
   beta : Double,
@@ -249,6 +303,7 @@ fn rs_LfRfSbRf(
   }
 }
 
+///|
 fn rs_LfSfRbSbLf(
   alpha : Double,
   beta : Double,
@@ -263,8 +318,22 @@ fn rs_LfSfRbSbLf(
   if p < 0.0 {
     return
   }
-  let t = mod2pi(-alpha + @math.atan2(@math.cos(alpha) - @math.cos(beta), d + @math.sin(alpha) - @math.sin(beta)) - @math.atan2(2.0, p))
-  let q = mod2pi(beta - @math.atan2(@math.cos(alpha) - @math.cos(beta), d + @math.sin(alpha) - @math.sin(beta)) - @math.atan2(2.0, p))
+  let t = mod2pi(
+    -alpha +
+    @math.atan2(
+      @math.cos(alpha) - @math.cos(beta),
+      d + @math.sin(alpha) - @math.sin(beta),
+    ) -
+    @math.atan2(2.0, p),
+  )
+  let q = mod2pi(
+    beta -
+    @math.atan2(
+      @math.cos(alpha) - @math.cos(beta),
+      d + @math.sin(alpha) - @math.sin(beta),
+    ) -
+    @math.atan2(2.0, p),
+  )
   if t >= 0.0 && q >= 0.0 {
     let segs = [
       RSSegment::new(Left, t, true),

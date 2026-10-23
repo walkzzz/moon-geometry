@@ -1,7 +1,7 @@
 ///|
 /// Subdivide a quadratic Bezier at parameter t into two curves.
 /// Returns (left, right). / 在参数 t 处将二次贝塞尔曲线细分为两条。
-pub impl @core.Subdivisible for Bezier2 with subdivide(self, t) {
+pub impl @core.Subdivisible for Bezier2 with fn subdivide(self, t) {
   let u = 1.0 - t
   let q0 = @core.Point2D::new(
     u * self.p0.x() + t * self.p1.x(),
@@ -15,11 +15,10 @@ pub impl @core.Subdivisible for Bezier2 with subdivide(self, t) {
   (Bezier2::new(self.p0, q0, r), Bezier2::new(r, q1, self.p2))
 }
 
-
 ///|
 /// Subdivide a cubic Bezier at parameter t into two curves.
 /// Returns (left, right). / 在参数 t 处将三次贝塞尔曲线细分为两条。
-pub impl @core.Subdivisible for Bezier3 with subdivide(self, t) {
+pub impl @core.Subdivisible for Bezier3 with fn subdivide(self, t) {
   let u = 1.0 - t
   let q0 = @core.Point2D::new(
     u * self.p0.x() + t * self.p1.x(),

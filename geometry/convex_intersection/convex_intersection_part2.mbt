@@ -7,7 +7,6 @@ pub fn convex_polygons_intersect(
   convex_polygon_intersection(poly1, poly2).length() > 0
 }
 
-
 ///|
 /// Compute the area of intersection of two convex polygons. / 计算两个凸多边形交集的面积。
 pub fn intersection_area(

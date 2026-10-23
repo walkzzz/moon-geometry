@@ -8,6 +8,7 @@
 /// ## Complexity: O(n² × iter) for power iteration
 /// ## 复杂度: 幂迭代 O(n² × iter)
 
+///|
 /// |
 /// Power iteration to find largest eigenvalue.
 /// 幂迭代查找最大特征值。
@@ -18,8 +19,8 @@
 /// - `max_iter`: maximum iterations / 最大迭代数
 pub fn power_iteration(
   matrix : Array[Array[Double]],
-  n : Int,
-  max_iter : Int,
+  n : Int32,
+  max_iter : Int32,
 ) -> Double {
   let v : Array[Double] = []
   for _ in 0..<n {
@@ -44,13 +45,14 @@ pub fn power_iteration(
   eigenvalue
 }
 
+///|
 /// |
 /// Find all eigenvalues using Jacobi rotation (for symmetric matrices).
 /// 使用 Jacobi 旋转查找所有特征值（对称矩阵）。
 pub fn jacobi_eigenvalues(
   matrix : Array[Array[Double]],
-  n : Int,
-  max_iter : Int,
+  n : Int32,
+  max_iter : Int32,
 ) -> Array[Double] {
   let a : Array[Array[Double]] = []
   for i in 0..<n {
@@ -104,10 +106,11 @@ pub fn jacobi_eigenvalues(
   eigenvalues
 }
 
+///|
 /// |
 /// Compute trace of a matrix.
 /// 计算矩阵的迹。
-pub fn matrix_trace(matrix : Array[Array[Double]], n : Int) -> Double {
+pub fn matrix_trace(matrix : Array[Array[Double]], n : Int32) -> Double {
   let mut sum = 0.0
   for i in 0..<n {
     sum += matrix[i][i]
@@ -115,10 +118,11 @@ pub fn matrix_trace(matrix : Array[Array[Double]], n : Int) -> Double {
   sum
 }
 
+///|
 fn mat_vec_mul(
   matrix : Array[Array[Double]],
   v : Array[Double],
-  n : Int,
+  n : Int32,
 ) -> Array[Double] {
   let result : Array[Double] = []
   for i in 0..<n {
@@ -131,7 +135,8 @@ fn mat_vec_mul(
   result
 }
 
-fn dot(a : Array[Double], b : Array[Double], n : Int) -> Double {
+///|
+fn dot(a : Array[Double], b : Array[Double], n : Int32) -> Double {
   let mut sum = 0.0
   for i in 0..<n {
     sum += a[i] * b[i]
@@ -139,7 +144,8 @@ fn dot(a : Array[Double], b : Array[Double], n : Int) -> Double {
   sum
 }
 
-fn vec_norm(v : Array[Double], n : Int) -> Double {
+///|
+fn vec_norm(v : Array[Double], n : Int32) -> Double {
   let mut sum = 0.0
   for i in 0..<n {
     sum += v[i] * v[i]

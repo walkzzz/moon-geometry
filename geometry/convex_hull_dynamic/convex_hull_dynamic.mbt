@@ -5,9 +5,8 @@ pub struct DynamicHull {
   hull : Array[@core.Point2D]
 }
 
-
 ///|
 /// Create an empty dynamic convex hull. / 创建空的动态凸包。
 pub fn DynamicHull::new() -> DynamicHull {
-  { points: [], hull: [] }
+  { points: [], hull: [], }
 }

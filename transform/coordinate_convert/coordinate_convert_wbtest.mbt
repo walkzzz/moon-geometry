@@ -1,3 +1,4 @@
+///|
 test "wgs84 to ecef origin" {
   let g = Geodetic::new(0.0, 0.0, 0.0)
   let e = wgs84_to_ecef(g)
@@ -6,6 +7,7 @@ test "wgs84 to ecef origin" {
   assert_true((e.z - 0.0).abs() <= 0.001)
 }
 
+///|
 test "wgs84 to ecef north pole" {
   let g = Geodetic::new(90.0, 0.0, 0.0)
   let e = wgs84_to_ecef(g)
@@ -14,6 +16,7 @@ test "wgs84 to ecef north pole" {
   assert_true(e.z > 6350000.0)
 }
 
+///|
 test "ecef to wgs84 roundtrip" {
   let g = Geodetic::new(45.0, 90.0, 100.0)
   let e = wgs84_to_ecef(g)
@@ -23,6 +26,7 @@ test "ecef to wgs84 roundtrip" {
   assert_true((g2.h - 100.0).abs() <= 0.001)
 }
 
+///|
 test "ecef to wgs84 origin" {
   let e = ECEF::new(6378137.0, 0.0, 0.0)
   let g = ecef_to_wgs84(e)
@@ -31,6 +35,7 @@ test "ecef to wgs84 origin" {
   assert_true((g.h - 0.0).abs() <= 0.001)
 }
 
+///|
 test "cgcs2000 to ecef origin" {
   let g = Geodetic::new(0.0, 0.0, 0.0)
   let e = cgcs2000_to_ecef(g)
@@ -39,6 +44,7 @@ test "cgcs2000 to ecef origin" {
   assert_true((e.z - 0.0).abs() <= 0.001)
 }
 
+///|
 test "cgcs2000 roundtrip" {
   let g = Geodetic::new(30.0, 120.0, 50.0)
   let e = cgcs2000_to_ecef(g)
@@ -48,6 +54,7 @@ test "cgcs2000 roundtrip" {
   assert_true((g2.h - 50.0).abs() <= 0.001)
 }
 
+///|
 test "wgs84 to cgcs2000 roundtrip" {
   let g = Geodetic::new(40.0, 116.0, 30.0)
   let g2 = wgs84_to_cgcs2000(g)
@@ -57,6 +64,7 @@ test "wgs84 to cgcs2000 roundtrip" {
   assert_true((g3.h - 30.0).abs() <= 0.001)
 }
 
+///|
 test "wgs84 cgcs2000 nearly identical" {
   let g = Geodetic::new(40.0, 116.0, 0.0)
   let g2 = wgs84_to_cgcs2000(g)
@@ -64,11 +72,13 @@ test "wgs84 cgcs2000 nearly identical" {
   assert_true((g2.lon - g.lon).abs() < 0.001)
 }
 
+///|
 test "ecef distance same point" {
   let e = ECEF::new(6378137.0, 0.0, 0.0)
   assert_true((ecef_distance(e, e) - 0.0).abs() <= 0.001)
 }
 
+///|
 test "ecef distance basic" {
   let e1 = ECEF::new(6378137.0, 0.0, 0.0)
   let e2 = ECEF::new(0.0, 6378137.0, 0.0)

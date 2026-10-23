@@ -16,11 +16,8 @@ pub fn point_set_equal(
     let mut found = false
     for j in 0..<b.length() {
       if !used[j] {
-        if @core.approx_eq(a[i].x(), b[j].x(), eps) && @core.approx_eq(
-          a[i].y(),
-          b[j].y(),
-          eps,
-        ) {
+        if @core.approx_eq(a[i].x(), b[j].x(), eps) &&
+          @core.approx_eq(a[i].y(), b[j].y(), eps) {
           used[j] = true
           found = true
           break

@@ -1,3 +1,4 @@
+///|
 test "convex width square" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -10,6 +11,7 @@ test "convex width square" {
   assert_true((w - 4.0).abs() < 0.01)
 }
 
+///|
 test "convex max width" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -22,6 +24,7 @@ test "convex max width" {
   assert_true((w - 6.0).abs() < 0.01)
 }
 
+///|
 test "convex aspect ratio" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -34,6 +37,7 @@ test "convex aspect ratio" {
   assert_true((r - 2.0).abs() < 0.01)
 }
 
+///|
 test "convex width triangle" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
@@ -45,6 +49,7 @@ test "convex width triangle" {
   assert_true(w > 0.0)
 }
 
+///|
 test "convex width degenerate" {
   let pts = [@core.Point2D::new(0.0, 0.0)]
   let poly = @core.Polygon::new(pts)

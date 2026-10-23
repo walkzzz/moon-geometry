@@ -9,11 +9,16 @@
 pub fn icp_point_to_point(
   source : Array[@core.Point3D],
   target : Array[@core.Point3D],
-  max_iter : Int,
+  max_iter : Int32,
 ) -> IcpResult {
   let n = source.length()
   if n == 0 || target.length() == 0 {
-    return IcpResult::new(mat3_identity(), @core.Point3D::new(0.0, 0.0, 0.0), 0.0, 0)
+    return IcpResult::new(
+      mat3_identity(),
+      @core.Point3D::new(0.0, 0.0, 0.0),
+      0.0,
+      0,
+    )
   }
   let rot = mat3_identity()
   let trans = @core.Point3D::new(0.0, 0.0, 0.0)
@@ -28,7 +33,7 @@ pub fn icp_point_to_point(
   for iter in 0..<max_iter {
     iter_done = iter + 1
     let match_tgt : Array[@core.Point3D] = []
-    let match_idx : Array[Int] = []
+    let match_idx : Array[Int32] = []
     for p in aligned {
       let j = closest_idx(target, p)
       match_idx.push(j)

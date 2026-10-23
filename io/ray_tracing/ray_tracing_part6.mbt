@@ -4,7 +4,7 @@
 pub fn ray_nearest_triangle(
   r : Ray3,
   triangles : Array[(@core.Point3D, @core.Point3D, @core.Point3D)],
-) -> (Double, Int)? {
+) -> (Double, Int32)? {
   let mut best_t = -1.0
   let mut best_i = -1
   for i in 0..<triangles.length() {

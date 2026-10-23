@@ -1,3 +1,4 @@
+///|
 test "is_y_monotone_square" {
   let sq = [
     @core.Point2D::new(0.0, 0.0),
@@ -8,6 +9,7 @@ test "is_y_monotone_square" {
   assert_true(is_y_monotone(sq))
 }
 
+///|
 test "is_x_monotone_square" {
   let sq = [
     @core.Point2D::new(0.0, 0.0),
@@ -18,6 +20,7 @@ test "is_x_monotone_square" {
   assert_true(is_x_monotone(sq))
 }
 
+///|
 test "is_y_monotone_non_monotone" {
   let poly = [
     @core.Point2D::new(0.0, 0.0),
@@ -30,6 +33,7 @@ test "is_y_monotone_non_monotone" {
   assert_false(is_y_monotone(poly))
 }
 
+///|
 test "triangulate_monotone_triangle" {
   let tri = [
     @core.Point2D::new(0.0, 0.0),
@@ -40,6 +44,7 @@ test "triangulate_monotone_triangle" {
   assert_true(tris.length() == 1)
 }
 
+///|
 test "monotone_triangulate_count" {
   let sq = [
     @core.Point2D::new(0.0, 0.0),

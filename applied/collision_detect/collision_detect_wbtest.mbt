@@ -1,21 +1,25 @@
+///|
 test "aabb_overlap basic" {
   let a = AABB::new(0.0, 0.0, 2.0, 2.0)
   let b = AABB::new(1.0, 1.0, 3.0, 3.0)
   assert_true(aabb_overlap(a, b))
 }
 
+///|
 test "aabb_overlap disjoint" {
   let a = AABB::new(0.0, 0.0, 1.0, 1.0)
   let b = AABB::new(2.0, 2.0, 3.0, 3.0)
   assert_false(aabb_overlap(a, b))
 }
 
+///|
 test "aabb_contains basic" {
   let box = AABB::new(0.0, 0.0, 4.0, 4.0)
   assert_true(aabb_contains(box, 2.0, 2.0))
   assert_false(aabb_contains(box, 5.0, 5.0))
 }
 
+///|
 test "broad_phase_aabb basic" {
   let boxes = [
     AABB::new(0.0, 0.0, 2.0, 2.0),
@@ -26,6 +30,7 @@ test "broad_phase_aabb basic" {
   assert_true(pairs.length() >= 1)
 }
 
+///|
 test "segment_segment_collide crossing" {
   let a1 = @core.Point2D::new(0.0, 0.0)
   let a2 = @core.Point2D::new(2.0, 2.0)
@@ -34,6 +39,7 @@ test "segment_segment_collide crossing" {
   assert_true(segment_segment_collide(a1, a2, b1, b2))
 }
 
+///|
 test "segment_segment_collide parallel" {
   let a1 = @core.Point2D::new(0.0, 0.0)
   let a2 = @core.Point2D::new(2.0, 0.0)
@@ -42,6 +48,7 @@ test "segment_segment_collide parallel" {
   assert_false(segment_segment_collide(a1, a2, b1, b2))
 }
 
+///|
 test "point_in_polygon basic" {
   let poly = [
     @core.Point2D::new(0.0, 0.0),
@@ -53,6 +60,7 @@ test "point_in_polygon basic" {
   assert_false(point_in_polygon(@core.Point2D::new(5.0, 5.0), poly))
 }
 
+///|
 test "circle_circle_collide basic" {
   let c1 = @core.Point2D::new(0.0, 0.0)
   let c2 = @core.Point2D::new(3.0, 0.0)
@@ -60,6 +68,7 @@ test "circle_circle_collide basic" {
   assert_false(circle_circle_collide(c1, 1.0, c2, 1.0))
 }
 
+///|
 test "polygon_polygon_collide overlapping" {
   let poly1 = [
     @core.Point2D::new(0.0, 0.0),
@@ -76,6 +85,7 @@ test "polygon_polygon_collide overlapping" {
   assert_true(polygon_polygon_collide(poly1, poly2))
 }
 
+///|
 test "aabb_intersection overlapping" {
   let a = AABB::new(0.0, 0.0, 4.0, 4.0)
   let b = AABB::new(2.0, 2.0, 6.0, 6.0)
@@ -86,6 +96,7 @@ test "aabb_intersection overlapping" {
   }
 }
 
+///|
 test "aabb_union basic" {
   let a = AABB::new(0.0, 0.0, 2.0, 2.0)
   let b = AABB::new(1.0, 1.0, 3.0, 3.0)
@@ -94,16 +105,20 @@ test "aabb_union basic" {
   assert_true((u.max_x - 3.0).abs() < 0.001)
 }
 
+///|
 test "aabb_area basic" {
   let box = AABB::new(0.0, 0.0, 4.0, 3.0)
   assert_true((aabb_area(box) - 12.0).abs() < 0.001)
 }
 
+///|
 test "aabb_from_center basic" {
   let box = AABB::from_center(5.0, 5.0, 2.0, 3.0)
   assert_true((box.min_x - 3.0).abs() < 0.001)
   assert_true((box.max_x - 7.0).abs() < 0.001)
 }
+
+///|
 test "aabb_from_polygon basic" {
   let poly = [
     @core.Point2D::new(1.0, 2.0),
@@ -117,6 +132,7 @@ test "aabb_from_polygon basic" {
   assert_true((box.max_y - 7.0).abs() < 0.001)
 }
 
+///|
 test "segment_polygon_collide crossing" {
   let poly = [
     @core.Point2D::new(0.0, 0.0),
@@ -129,6 +145,7 @@ test "segment_polygon_collide crossing" {
   assert_true(segment_polygon_collide(a, b, poly))
 }
 
+///|
 test "segment_polygon_collide disjoint" {
   let poly = [
     @core.Point2D::new(0.0, 0.0),
@@ -141,6 +158,7 @@ test "segment_polygon_collide disjoint" {
   assert_false(segment_polygon_collide(a, b, poly))
 }
 
+///|
 test "circle_polygon_collide inside" {
   let poly = [
     @core.Point2D::new(0.0, 0.0),
@@ -152,6 +170,7 @@ test "circle_polygon_collide inside" {
   assert_true(circle_polygon_collide(center, 0.5, poly))
 }
 
+///|
 test "circle_polygon_collide disjoint" {
   let poly = [
     @core.Point2D::new(0.0, 0.0),
@@ -163,6 +182,7 @@ test "circle_polygon_collide disjoint" {
   assert_false(circle_polygon_collide(center, 0.5, poly))
 }
 
+///|
 test "aabb_polygon_collide overlapping" {
   let box = AABB::new(1.0, 1.0, 3.0, 3.0)
   let poly = [
@@ -174,6 +194,7 @@ test "aabb_polygon_collide overlapping" {
   assert_true(aabb_polygon_collide(box, poly))
 }
 
+///|
 test "aabb_polygon_collide disjoint" {
   let box = AABB::new(10.0, 10.0, 12.0, 12.0)
   let poly = [

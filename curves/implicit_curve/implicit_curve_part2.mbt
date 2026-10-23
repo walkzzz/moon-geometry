@@ -6,7 +6,7 @@ pub fn newton_correct(
   fx : (Double, Double) -> Double,
   fy : (Double, Double) -> Double,
   p : @core.Point2D,
-  max_iter : Int,
+  max_iter : Int32,
 ) -> @core.Point2D {
   let mut x = p.x()
   let mut y = p.y()
@@ -27,7 +27,6 @@ pub fn newton_correct(
   }
   @core.Point2D::new(x, y)
 }
-
 
 ///|
 /// Tangent direction at a point on the curve. / 曲线上一点处的切线方向。
