@@ -21,6 +21,17 @@ test "remove coincident points" {
 }
 
 ///|
+test "remove coincident points boundary: dist exactly equals tol" {
+  let pts = [
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(1.0, 0.0),
+    @core.Point2D::new(2.0, 0.0),
+  ]
+  let cleaned = remove_coincident_points(pts, 1.0)
+  assert_eq(cleaned.length(), 2)
+}
+
+///|
 test "detect small angles" {
   let pts = [
     @core.Point2D::new(0.0, 0.0),
