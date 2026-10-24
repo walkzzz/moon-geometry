@@ -78,3 +78,49 @@ test "aabb_tree_query_point_miss" {
   let result = query_point_aabb(nodes, p)
   assert_eq(result.length(), 0)
 }
+///|
+test "aabb_tree_split_y_direction" {
+  let rects = [
+    @core.Rectangle::new(0.0, 0.0, 1.0, 4.0),
+    @core.Rectangle::new(0.0, 6.0, 1.0, 10.0),
+  ]
+  let nodes = build_aabb_tree(rects)
+  assert_eq(count_leaves(nodes), 2)
+}
+
+///|
+test "aabb_tree_left_empty_branch" {
+  let rects = [
+    @core.Rectangle::new(0.0, 0.0, 10.0, 1.0),
+    @core.Rectangle::new(1.0, 0.0, 9.0, 1.0),
+  ]
+  let nodes = build_aabb_tree(rects)
+  assert_eq(count_leaves(nodes), 2)
+}
+
+///|
+test "aabb_tree_count_leaves_empty" {
+  let rects : Array[@core.Rectangle] = []
+  let nodes = build_aabb_tree(rects)
+  assert_eq(count_leaves(nodes), 0)
+}
+
+///|
+test "aabb_tree_query_point_empty" {
+  let rects : Array[@core.Rectangle] = []
+  let nodes = build_aabb_tree(rects)
+  let p = @core.Point2D::new(0.0, 0.0)
+  let result = query_point_aabb(nodes, p)
+  assert_eq(result.length(), 0)
+}
+
+///|
+test "aabb_tree_build_three" {
+  let rects = [
+    @core.Rectangle::new(0.0, 0.0, 1.0, 1.0),
+    @core.Rectangle::new(2.0, 0.0, 3.0, 1.0),
+    @core.Rectangle::new(4.0, 0.0, 5.0, 1.0),
+  ]
+  let nodes = build_aabb_tree(rects)
+  assert_eq(count_leaves(nodes), 3)
+}

@@ -99,3 +99,46 @@ test "GeomError Debug to_repr all variants" {
   ignore(DegenerateGeometry("m").to_repr())
   ignore(InvalidParameter("m").to_repr())
 }
+///|
+test "GeomError to_message prefix check" {
+  assert_true(EmptyInput.to_message().has_prefix("Empty"))
+  assert_true(InsufficientInput("x").to_message().has_prefix("Insufficient"))
+  assert_true(DegenerateGeometry("x").to_message().has_prefix("Degenerate"))
+  assert_true(NumericalFailure("x").to_message().has_prefix("Numerical"))
+  assert_true(InvalidParameter("x").to_message().has_prefix("Invalid"))
+  assert_true(TopologyError("x").to_message().has_prefix("Topology"))
+  assert_true(IoError("x").to_message().has_prefix("I/O"))
+}
+
+///|
+test "GeomError Eq symmetric" {
+  let a = InvalidParameter("a")
+  let b = InvalidParameter("a")
+  assert_true(a == b && b == a)
+  let c = TopologyError("c")
+  assert_true(a != c && c != a)
+}
+
+///|
+test "GeomError Debug repr nonempty" {
+  ignore(EmptyInput.to_repr())
+  ignore(InsufficientInput("m").to_repr())
+  ignore(DegenerateGeometry("m").to_repr())
+  ignore(NumericalFailure("m").to_repr())
+  ignore(InvalidParameter("m").to_repr())
+  ignore(TopologyError("m").to_repr())
+  ignore(IoError("m").to_repr())
+}
+
+///|
+test "GeomError Eq method explicit" {
+  assert_true(GeomError::equal(EmptyInput, EmptyInput))
+  assert_true(GeomError::not_equal(EmptyInput, IoError("x")))
+}
+
+///|
+test "GeomError to_message concat" {
+  let m1 = NumericalFailure("fail")
+  let m2 = TopologyError("topo")
+  assert_true(m1.to_message() != m2.to_message())
+}
