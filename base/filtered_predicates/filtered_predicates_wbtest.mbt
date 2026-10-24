@@ -11,6 +11,7 @@ test "perturbation_orientation" {
   assert_eq(perturbation_orientation(0.5, 0.001), 1)
   assert_eq(perturbation_orientation(-0.5, 0.001), -1)
 }
+
 ///|
 test "perturbation_orientation zero" {
   assert_eq(perturbation_orientation(0.0, 0.001), 0)

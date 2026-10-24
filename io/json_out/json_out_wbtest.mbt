@@ -44,6 +44,7 @@ test "scene to json" {
   assert_true(json.contains("\"segments\""))
   assert_true(json.contains("\"circles\""))
 }
+
 ///|
 test "segment to json" {
   let s = @core.Segment::new(
@@ -69,10 +70,7 @@ test "rectangle to json" {
 
 ///|
 test "points to json" {
-  let pts = [
-    @core.Point2D::new(0.0, 0.0),
-    @core.Point2D::new(1.0, 1.0),
-  ]
+  let pts = [@core.Point2D::new(0.0, 0.0), @core.Point2D::new(1.0, 1.0)]
   let json = points_to_json(pts)
   assert_true(json.contains("["))
   assert_true(json.contains("]"))

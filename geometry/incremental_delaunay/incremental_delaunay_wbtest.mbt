@@ -35,6 +35,7 @@ test "incremental delaunay remove" {
   d.remove(3)
   assert_eq(d.vertex_count(), 3)
 }
+
 ///|
 test "incremental delaunay new empty" {
   let d = IncrementalDelaunay::new()

@@ -49,6 +49,7 @@ test "similarity compose" {
   assert_true((r.x() - 6.0).abs() < 0.001)
   assert_true((r.y() - 6.0).abs() < 0.001)
 }
+
 ///|
 test "similarity translation" {
   let s = Similarity::translation(5.0, 3.0)

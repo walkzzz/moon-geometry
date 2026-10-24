@@ -52,6 +52,7 @@ test "snap_to_zero" {
   assert_eq(snap_to_zero(0.0000001, tol), 0.0)
   assert_eq(snap_to_zero(0.1, tol), 0.1)
 }
+
 ///|
 test "points_coincide boundary: dist exactly equals tol" {
   let tol = ToleranceCtx::custom(1.0)
@@ -70,6 +71,7 @@ test "orient_with_tol boundary: area exactly equals tol" {
   let c = @core.Point2D::new(0.0, 1.0)
   assert_eq(orient_with_tol(a, b, c, tol), 0)
 }
+
 ///|
 test "ToleranceCtx::strict" {
   let tol = ToleranceCtx::strict()

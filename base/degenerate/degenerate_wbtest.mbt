@@ -52,6 +52,7 @@ test "DegenerateType variants" {
   ignore(SelfIntersecting)
   ignore(CoincidentPoints)
 }
+
 ///|
 test "DegenerateType Eq" {
   assert_true(CollinearPoints == CollinearPoints)

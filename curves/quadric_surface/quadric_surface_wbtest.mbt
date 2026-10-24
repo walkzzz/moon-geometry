@@ -231,3 +231,98 @@ test "quadric normal general point" {
   let mag = (n.x * n.x + n.y * n.y + n.z * n.z).sqrt()
   assert_true((mag - 1.0).abs() < 0.000000001)
 }
+
+///|
+test "quadric classify degenerate no linear trace zero" {
+  let q = Quadric::new(1.0, -1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0)
+  let qt = Quadric::classify(q)
+  assert_true(
+    match qt {
+      Degenerate => true
+      _ => false
+    },
+  )
+}
+
+///|
+test "quadric eigen disc positive three distinct roots" {
+  let q = Quadric::new(1.0, 2.0, 3.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0)
+  let qt = Quadric::classify(q)
+  assert_true(
+    match qt {
+      Ellipsoid => true
+      _ => false
+    },
+  )
+}
+
+///|
+test "quadric eigen disc zero repeated root" {
+  let q = Quadric::new(1.0, 1.0, 2.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0)
+  let qt = Quadric::classify(q)
+  assert_true(
+    match qt {
+      Ellipsoid => true
+      _ => false
+    },
+  )
+}
+
+///|
+test "quadric centered verifies j value" {
+  let q = Quadric::new(1.0, 1.0, 1.0, 0.0, 0.0, 0.0, -2.0, -4.0, -6.0, 3.0)
+  let cq = Quadric::centered(q)
+  let center = @core.Point3D::new(1.0, 2.0, 3.0)
+  let nf = Quadric::eval(q, center)
+  assert_true((cq.j - nf).abs() < 0.000000001)
+  assert_true(cq.g.abs() < 0.000000001)
+  assert_true(cq.h.abs() < 0.000000001)
+  assert_true(cq.i.abs() < 0.000000001)
+}
+
+///|
+test "quadric eval with cross terms" {
+  let q = Quadric::new(1.0, 1.0, 1.0, 2.0, 2.0, 2.0, 0.0, 0.0, 0.0, 0.0)
+  let p = @core.Point3D::new(1.0, 1.0, 1.0)
+  let v = Quadric::eval(q, p)
+  assert_true((v - 9.0).abs() < 0.000000001)
+}
+
+///|
+test "quadric gradient with linear terms" {
+  let q = Quadric::new(1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 2.0, 4.0, 6.0, 0.0)
+  let p = @core.Point3D::new(0.0, 0.0, 0.0)
+  let g = Quadric::gradient(q, p)
+  assert_true((g.x - 2.0).abs() < 0.000000001)
+  assert_true((g.y - 4.0).abs() < 0.000000001)
+  assert_true((g.z - 6.0).abs() < 0.000000001)
+}
+
+///|
+test "quadric quadratic det zero" {
+  let q = Quadric::new(1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0)
+  let d = Quadric::quadratic_det(q)
+  assert_true(d.abs() < 0.000000001)
+}
+
+///|
+test "quadric normal with cross terms" {
+  let q = Quadric::new(1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, -1.0)
+  let p = @core.Point3D::new(1.0, 0.0, 0.0)
+  let n = Quadric::normal(q, p)
+  let mag = (n.x * n.x + n.y * n.y + n.z * n.z).sqrt()
+  assert_true((mag - 1.0).abs() < 0.000000001)
+}
+
+///|
+test "quadric on_surface with cross terms" {
+  let q = Quadric::new(0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0)
+  let p = @core.Point3D::new(1.0, 1.0, 0.0)
+  assert_true(Quadric::on_surface(q, p, 0.000000001))
+}
+
+///|
+test "quadric trace negative" {
+  let q = Quadric::new(-1.0, -2.0, -3.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+  assert_true((Quadric::trace(q) - -6.0).abs() < 0.000000001)
+}

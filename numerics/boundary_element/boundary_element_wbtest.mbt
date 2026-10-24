@@ -15,6 +15,7 @@ test "bem_error" {
   let e = bem_error([1.0, 2.0], [1.0, 2.0])
   assert_true(e.abs() < 0.001)
 }
+
 ///|
 test "bem_matrix_entry" {
   let e = bem_matrix_entry(1.0, 2.0)

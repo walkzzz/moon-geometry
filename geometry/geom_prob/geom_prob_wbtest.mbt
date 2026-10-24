@@ -14,6 +14,7 @@ test "bertrand probability" {
 test "geometric probability hit" {
   assert_eq(geometric_probability_hit(1.0, 4.0), 0.25)
 }
+
 ///|
 test "random chord length" {
   assert_eq(random_chord_length(2.0), 4.0)

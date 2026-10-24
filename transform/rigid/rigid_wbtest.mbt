@@ -45,6 +45,7 @@ test "rigid compose" {
   assert_true((result.x() - 3.0).abs() < 0.001)
   assert_true((result.y() - 4.0).abs() < 0.001)
 }
+
 ///|
 test "rigid apply batch" {
   let r = Rigid::translation(1.0, 1.0)

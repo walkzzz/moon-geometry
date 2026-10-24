@@ -14,6 +14,7 @@ test "expected degree" {
   let d = expected_degree(10, 0.5, 1.0)
   assert_true(d > 0.0)
 }
+
 ///|
 test "coverage threshold" {
   let r = coverage_threshold(100, 1.0)

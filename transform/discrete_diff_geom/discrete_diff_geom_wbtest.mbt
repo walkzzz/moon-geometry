@@ -17,6 +17,7 @@ test "discrete curvature" {
   let expected = 2.0 * @math.PI - 3.0
   assert_true((k - expected).abs() < 1.0e-10)
 }
+
 ///|
 test "holonomy" {
   let h = holonomy([1.0, 2.0, 3.0])

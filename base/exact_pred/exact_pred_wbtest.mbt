@@ -13,6 +13,7 @@ test "exact collinear" {
 test "exact left of line" {
   assert_true(exact_left_of_line(0.0, 1.0, 0.0, 0.0, 1.0, 0.0))
 }
+
 ///|
 test "exact orientation cw" {
   assert_eq(exact_orientation(0.0, 0.0, 0.0, 1.0, 1.0, 0.0), -1)

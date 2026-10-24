@@ -50,6 +50,7 @@ test "inversion is inside" {
   let p2 = @core.Point2D::new(3.0, 0.0)
   assert_false(inv.is_inside(p2))
 }
+
 ///|
 test "inversion apply batch" {
   let inv = Inversion::new(@core.Point2D::new(0.0, 0.0), 1.0)

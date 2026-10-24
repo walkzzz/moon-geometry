@@ -30,6 +30,7 @@ test "interval_midpoint" {
   let i = Interval::new(1.0, 3.0)
   assert_true((interval_midpoint(i) - 2.0).abs() < 0.001)
 }
+
 ///|
 test "Interval::new reversed args" {
   let i = Interval::new(5.0, 1.0)
@@ -53,7 +54,7 @@ test "interval_sub" {
 ///|
 test "interval_sub negative" {
   let r = interval_sub(Interval::new(-1.0, 1.0), Interval::new(-1.0, 1.0))
-  assert_true((r.lo - (-2.0)).abs() < 0.001)
+  assert_true((r.lo - -2.0).abs() < 0.001)
   assert_true((r.hi - 2.0).abs() < 0.001)
 }
 
@@ -72,14 +73,14 @@ test "interval_width zero" {
 ///|
 test "interval_mul negative" {
   let r = interval_mul(Interval::new(-2.0, -1.0), Interval::new(3.0, 4.0))
-  assert_true((r.lo - (-8.0)).abs() < 0.001)
-  assert_true((r.hi - (-3.0)).abs() < 0.001)
+  assert_true((r.lo - -8.0).abs() < 0.001)
+  assert_true((r.hi - -3.0).abs() < 0.001)
 }
 
 ///|
 test "interval_mul mixed signs" {
   let r = interval_mul(Interval::new(-1.0, 2.0), Interval::new(-3.0, 4.0))
-  assert_true((r.lo - (-6.0)).abs() < 0.001)
+  assert_true((r.lo - -6.0).abs() < 0.001)
   assert_true((r.hi - 8.0).abs() < 0.001)
 }
 
@@ -95,6 +96,6 @@ test "interval_contains boundary" {
 ///|
 test "interval_add negative" {
   let r = interval_add(Interval::new(-2.0, -1.0), Interval::new(-4.0, -3.0))
-  assert_true((r.lo - (-6.0)).abs() < 0.001)
-  assert_true((r.hi - (-4.0)).abs() < 0.001)
+  assert_true((r.lo - -6.0).abs() < 0.001)
+  assert_true((r.hi - -4.0).abs() < 0.001)
 }

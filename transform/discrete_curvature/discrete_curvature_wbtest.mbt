@@ -15,6 +15,7 @@ test "angle_defect" {
 test "voronoi_area" {
   assert_true((voronoi_area(2.0) - 0.5).abs() < 0.001)
 }
+
 ///|
 test "discrete_mean_curvature" {
   let h = discrete_mean_curvature(1.0, [1.0, 2.0], [0.5, 0.5])

@@ -24,6 +24,7 @@ test "orient_normal" {
   )
   assert_true(n.z < 0.0)
 }
+
 ///|
 test "estimate_normal empty neighbors" {
   let c = @core.Point3D::new(0.0, 0.0, 0.0)

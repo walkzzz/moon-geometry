@@ -133,6 +133,7 @@ test "conic axis aligned" {
   let (aligned, _theta) = Conic::axis_aligned(c)
   assert_true(aligned.b.abs() < 0.000000001)
 }
+
 ///|
 test "conic det3 unit circle" {
   let c = Conic::new(1.0, 0.0, 1.0, 0.0, 0.0, -1.0)

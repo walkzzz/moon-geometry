@@ -37,6 +37,7 @@ test "exact_collinear" {
   let c = @core.Point2D::new(2.0, 0.0)
   assert_true(exact_collinear(a, b, c))
 }
+
 ///|
 test "exact_collinear false" {
   let a = @core.Point2D::new(0.0, 0.0)
