@@ -72,3 +72,124 @@ test "interval: swapped construction" {
   assert_true((i.lo - 1.0).abs() < 0.001)
   assert_true((i.hi - 5.0).abs() < 0.001)
 }
+///|
+test "interval: empty interval" {
+  let i = Interval::new(3.0, 3.0)
+  assert_true(Interval::contains(i, 3.0))
+  assert_false(Interval::contains(i, 2.9))
+  assert_true((Interval::length(i) - 0.0).abs() < 0.001)
+}
+
+///|
+test "interval: negative interval" {
+  let i = Interval::new(-5.0, -1.0)
+  assert_true(Interval::contains(i, -3.0))
+  assert_false(Interval::contains(i, 0.0))
+  assert_true((Interval::length(i) - 4.0).abs() < 0.001)
+}
+
+///|
+test "interval: midpoint negative" {
+  let i = Interval::new(-4.0, 4.0)
+  assert_true(Interval::midpoint(i).abs() < 0.001)
+}
+
+///|
+test "interval: union disjoint" {
+  let a = Interval::new(1.0, 2.0)
+  let b = Interval::new(5.0, 7.0)
+  let r = Interval::union(a, b)
+  assert_true((r.lo - 1.0).abs() < 0.001)
+  assert_true((r.hi - 7.0).abs() < 0.001)
+}
+
+///|
+test "interval: union same" {
+  let a = Interval::new(1.0, 5.0)
+  let r = Interval::union(a, a)
+  assert_true((r.lo - 1.0).abs() < 0.001)
+  assert_true((r.hi - 5.0).abs() < 0.001)
+}
+
+///|
+test "interval: intersect touching" {
+  let a = Interval::new(1.0, 3.0)
+  let b = Interval::new(3.0, 5.0)
+  match Interval::intersect(a, b) {
+    Some(r) => {
+      assert_true((r.lo - 3.0).abs() < 0.001)
+      assert_true((r.hi - 3.0).abs() < 0.001)
+    }
+    None => assert_true(false)
+  }
+}
+
+///|
+test "interval: intersect contained" {
+  let a = Interval::new(1.0, 10.0)
+  let b = Interval::new(3.0, 5.0)
+  match Interval::intersect(a, b) {
+    Some(r) => {
+      assert_true((r.lo - 3.0).abs() < 0.001)
+      assert_true((r.hi - 5.0).abs() < 0.001)
+    }
+    None => assert_true(false)
+  }
+}
+
+///|
+test "interval: intersect same" {
+  let a = Interval::new(2.0, 6.0)
+  match Interval::intersect(a, a) {
+    Some(r) => {
+      assert_true((r.lo - 2.0).abs() < 0.001)
+      assert_true((r.hi - 6.0).abs() < 0.001)
+    }
+    None => assert_true(false)
+  }
+}
+
+///|
+test "interval: overlaps touching" {
+  let a = Interval::new(1.0, 3.0)
+  let b = Interval::new(3.0, 5.0)
+  assert_true(Interval::overlaps(a, b))
+}
+
+///|
+test "interval: overlaps same" {
+  let a = Interval::new(1.0, 5.0)
+  assert_true(Interval::overlaps(a, a))
+}
+
+///|
+test "interval: contains boundary" {
+  let i = Interval::new(1.0, 5.0)
+  assert_true(Interval::contains(i, 1.0))
+  assert_true(Interval::contains(i, 5.0))
+}
+
+///|
+test "interval: contains_interval same" {
+  let a = Interval::new(1.0, 5.0)
+  assert_true(Interval::contains_interval(a, a))
+}
+
+///|
+test "interval: contains_interval empty" {
+  let a = Interval::new(1.0, 5.0)
+  let b = Interval::new(3.0, 3.0)
+  assert_true(Interval::contains_interval(a, b))
+}
+
+///|
+test "interval: length negative range" {
+  let i = Interval::new(-3.0, 2.0)
+  assert_true((Interval::length(i) - 5.0).abs() < 0.001)
+}
+
+///|
+test "interval: midpoint basic" {
+  let i = Interval::new(0.0, 10.0)
+  assert_true((Interval::midpoint(i) - 5.0).abs() < 0.001)
+}

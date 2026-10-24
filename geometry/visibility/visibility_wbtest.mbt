@@ -221,3 +221,85 @@ test "visibility_polygon empty" {
   let vis = visibility_polygon(poly, @core.Point2D::new(0.0, 0.0))
   assert_true(vis.length() == 0)
 }
+///|
+test "visibility_polygon cross branch" {
+  let poly = [
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(4.0, 0.0),
+    @core.Point2D::new(4.0, 4.0),
+    @core.Point2D::new(2.0, 1.0),
+    @core.Point2D::new(0.0, 4.0),
+  ]
+  let vis = visibility_polygon(poly, @core.Point2D::new(2.0, 3.0))
+  assert_true(vis.length() >= 3)
+}
+
+///|
+test "is_visible collinear diagonal" {
+  let poly = [
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(4.0, 0.0),
+    @core.Point2D::new(4.0, 4.0),
+    @core.Point2D::new(0.0, 4.0),
+  ]
+  assert_true(
+    is_visible(poly, @core.Point2D::new(0.0, 0.0), @core.Point2D::new(4.0, 4.0)),
+  )
+}
+
+///|
+test "visibility_polygon_convex concave partial" {
+  let poly = [
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(4.0, 0.0),
+    @core.Point2D::new(4.0, 4.0),
+    @core.Point2D::new(2.0, 1.0),
+    @core.Point2D::new(0.0, 4.0),
+  ]
+  let vis = visibility_polygon_convex(poly, @core.Point2D::new(2.0, 3.0))
+  assert_true(vis.length() >= 1)
+}
+
+///|
+test "visible_vertex_count triangle" {
+  let tri = [
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(4.0, 0.0),
+    @core.Point2D::new(2.0, 4.0),
+  ]
+  let count = visible_vertex_count(tri, @core.Point2D::new(2.0, 1.0))
+  assert_true(count == 3)
+}
+
+///|
+test "is_visible edge touch" {
+  let poly = [
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(4.0, 0.0),
+    @core.Point2D::new(4.0, 4.0),
+    @core.Point2D::new(0.0, 4.0),
+  ]
+  assert_true(
+    is_visible(poly, @core.Point2D::new(2.0, 0.0), @core.Point2D::new(2.0, 4.0)),
+  )
+}
+
+///|
+test "visibility_polygon pentagon" {
+  let poly = [
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(4.0, 0.0),
+    @core.Point2D::new(5.0, 3.0),
+    @core.Point2D::new(2.0, 5.0),
+    @core.Point2D::new(-1.0, 3.0),
+  ]
+  let vis = visibility_polygon(poly, @core.Point2D::new(2.0, 2.0))
+  assert_true(vis.length() >= 3)
+}
+
+///|
+test "visible_vertex_count single point" {
+  let poly = [@core.Point2D::new(0.0, 0.0)]
+  let count = visible_vertex_count(poly, @core.Point2D::new(0.0, 0.0))
+  assert_true(count == 0)
+}

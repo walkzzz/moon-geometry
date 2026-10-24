@@ -173,3 +173,99 @@ test "poly_roots trailing zeros" {
   let roots = poly_roots(coeffs)
   ignore(roots)
 }
+///|
+test "poly_roots cubic three roots" {
+  let coeffs = [-6.0, 11.0, -6.0, 1.0]
+  let roots = poly_roots(coeffs)
+  assert_true(roots.length() >= 1)
+}
+
+///|
+test "poly_roots all zero coeffs" {
+  let coeffs = [0.0, 0.0, 0.0]
+  let roots = poly_roots(coeffs)
+  assert_eq(roots.length(), 0)
+}
+
+///|
+test "poly_roots quartic" {
+  let coeffs = [4.0, 0.0, -5.0, 0.0, 1.0]
+  let roots = poly_roots(coeffs)
+  assert_true(roots.length() >= 1)
+}
+
+///|
+test "poly_mul empty first" {
+  let r = poly_mul([], [1.0, 2.0])
+  assert_eq(r.length(), 1)
+}
+
+///|
+test "poly_mul empty second" {
+  let r = poly_mul([1.0, 2.0], [])
+  assert_eq(r.length(), 1)
+}
+
+///|
+test "poly_mul both empty" {
+  let r = poly_mul([], [])
+  assert_eq(r.length(), 0)
+}
+
+///|
+test "poly_add second longer" {
+  let a = [1.0, 2.0]
+  let b = [3.0, 4.0, 5.0, 6.0]
+  let r = poly_add(a, b)
+  assert_eq(r.length(), 4)
+  assert_true((r[0] - 4.0).abs() < 0.001)
+  assert_true((r[3] - 6.0).abs() < 0.001)
+}
+
+///|
+test "poly_derivative cubic" {
+  let deriv = poly_derivative([1.0, 2.0, 3.0, 4.0])
+  assert_eq(deriv.length(), 3)
+  assert_true((deriv[0] - 2.0).abs() < 0.001)
+  assert_true((deriv[1] - 6.0).abs() < 0.001)
+  assert_true((deriv[2] - 12.0).abs() < 0.001)
+}
+
+///|
+test "poly_eval high degree" {
+  let coeffs = [1.0, 0.0, 0.0, 0.0, 0.0, 1.0]
+  let result = poly_eval(coeffs, 2.0)
+  assert_true((result - 33.0).abs() < 0.001)
+}
+
+///|
+test "poly_roots cubic with zero root" {
+  let coeffs = [0.0, -3.0, 0.0, 1.0]
+  let roots = poly_roots(coeffs)
+  assert_true(roots.length() >= 1)
+}
+
+///|
+test "poly_roots degree two double root" {
+  let coeffs = [4.0, -4.0, 1.0]
+  let roots = poly_roots(coeffs)
+  assert_eq(roots.length(), 2)
+}
+
+///|
+test "poly_eval large coefficients" {
+  let coeffs = [100.0, 200.0, 300.0]
+  let result = poly_eval(coeffs, 10.0)
+  assert_true((result - 32100.0).abs() < 0.001)
+}
+
+///|
+test "poly_mul three polynomials" {
+  let a = [1.0, 1.0]
+  let b = [1.0, 1.0]
+  let r = poly_mul(a, b)
+  assert_eq(r.length(), 3)
+  assert_true((r[0] - 1.0).abs() < 0.001)
+  assert_true((r[1] - 2.0).abs() < 0.001)
+  assert_true((r[2] - 1.0).abs() < 0.001)
+}
