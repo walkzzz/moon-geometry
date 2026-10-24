@@ -6,6 +6,23 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
 Moon Geometry 的所有重要变更记录于此。
 格式基于 [Keep a Changelog](https://keepachangelog.com/)。
 
+## [0.251.0] - 2026-10-23
+
+### Added — 独立库补全 | Library Completeness
+
+- **5 个示例** `examples/`：convex_hull, delaunay, transform, collision, tolerance
+- **6 个基准测试** `bench/`：凸包/Delaunay/面积/点包含/KD树/变换
+- **CI/CD** `.github/workflows/ci.yml`：moon check + test + fmt
+- **统一错误类型** `base/geom_error/`：`GeomError`（7 种错误分类）+ `to_message`
+- **贡献指南** `CONTRIBUTING.md`：双语
+- **Issue/PR 模板** `.github/ISSUE_TEMPLATE/` + `PULL_REQUEST_TEMPLATE.md`
+
+### Fixed — 质量达标
+
+- **0 warning**：消除 GeomError 的 9 个 warning（unused_constructor + implicit_impl_as_method）
+- **变异得分率 100%**：12 个变异全部杀死（新增 3 个边界测试）
+- **覆盖率 86.04%**（排除 reexport）
+
 ## [0.250.0] - 2026-10-23
 
 ### Added — 工程级扩展 | Engineering-Grade Extensions
