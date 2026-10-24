@@ -251,3 +251,144 @@ test "simplify_topology_preserve complex shape" {
   assert_true(result.length() >= 3)
   assert_true(result.length() <= 6)
 }
+///|
+test "point_line_dist basic" {
+  let a = @core.Point2D::new(0.0, 0.0)
+  let b = @core.Point2D::new(4.0, 0.0)
+  let p = @core.Point2D::new(2.0, 3.0)
+  let d = point_line_dist(p, a, b)
+  assert_true((d - 3.0).abs() < 0.001)
+}
+
+///|
+test "point_line_dist zero length" {
+  let a = @core.Point2D::new(1.0, 1.0)
+  let p = @core.Point2D::new(4.0, 5.0)
+  let d = point_line_dist(p, a, a)
+  assert_true((d - 5.0).abs() < 0.001)
+}
+
+///|
+test "point_line_dist on line" {
+  let a = @core.Point2D::new(0.0, 0.0)
+  let b = @core.Point2D::new(4.0, 0.0)
+  let p = @core.Point2D::new(2.0, 0.0)
+  let d = point_line_dist(p, a, b)
+  assert_true(d < 0.001)
+}
+
+///|
+test "triangle_area basic" {
+  let a = @core.Point2D::new(0.0, 0.0)
+  let b = @core.Point2D::new(4.0, 0.0)
+  let c = @core.Point2D::new(0.0, 3.0)
+  let area = triangle_area(a, b, c)
+  assert_true((area - 6.0).abs() < 0.001)
+}
+
+///|
+test "triangle_area degenerate" {
+  let a = @core.Point2D::new(0.0, 0.0)
+  let b = @core.Point2D::new(1.0, 0.0)
+  let c = @core.Point2D::new(2.0, 0.0)
+  let area = triangle_area(a, b, c)
+  assert_true(area < 0.001)
+}
+
+///|
+test "has_self_intersection none" {
+  let pts = [
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(4.0, 0.0),
+    @core.Point2D::new(4.0, 4.0),
+    @core.Point2D::new(0.0, 4.0),
+  ]
+  assert_false(has_self_intersection(pts))
+}
+
+///|
+test "has_self_intersection yes" {
+  let pts = [
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(4.0, 4.0),
+    @core.Point2D::new(4.0, 0.0),
+    @core.Point2D::new(0.0, 4.0),
+  ]
+  assert_true(has_self_intersection(pts))
+}
+
+///|
+test "has_self_intersection triangle" {
+  let pts = [
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(1.0, 0.0),
+    @core.Point2D::new(1.0, 1.0),
+  ]
+  assert_false(has_self_intersection(pts))
+}
+
+///|
+test "segments_intersect crossing" {
+  let a1 = @core.Point2D::new(0.0, 0.0)
+  let a2 = @core.Point2D::new(2.0, 2.0)
+  let b1 = @core.Point2D::new(0.0, 2.0)
+  let b2 = @core.Point2D::new(2.0, 0.0)
+  assert_true(segments_intersect(a1, a2, b1, b2))
+}
+
+///|
+test "segments_intersect not crossing" {
+  let a1 = @core.Point2D::new(0.0, 0.0)
+  let a2 = @core.Point2D::new(1.0, 1.0)
+  let b1 = @core.Point2D::new(2.0, 2.0)
+  let b2 = @core.Point2D::new(3.0, 3.0)
+  assert_false(segments_intersect(a1, a2, b1, b2))
+}
+
+///|
+test "segments_intersect parallel" {
+  let a1 = @core.Point2D::new(0.0, 0.0)
+  let a2 = @core.Point2D::new(2.0, 0.0)
+  let b1 = @core.Point2D::new(0.0, 1.0)
+  let b2 = @core.Point2D::new(2.0, 1.0)
+  assert_false(segments_intersect(a1, a2, b1, b2))
+}
+
+///|
+test "simplify_topology_preserve self intersecting input" {
+  let pts = [
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(2.0, 2.0),
+    @core.Point2D::new(4.0, 0.0),
+    @core.Point2D::new(4.0, 4.0),
+    @core.Point2D::new(0.0, 4.0),
+  ]
+  let result = simplify_topology_preserve(pts, 0.5)
+  assert_true(result.length() >= 3)
+}
+
+///|
+test "simplify_visvalingam removes middle collinear" {
+  let pts = [
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(1.0, 0.0),
+    @core.Point2D::new(2.0, 0.0),
+    @core.Point2D::new(3.0, 0.0),
+  ]
+  let result = simplify_visvalingam(pts, 3)
+  assert_eq(result.length(), 3)
+}
+
+///|
+test "douglas_peucker single point" {
+  let pts = [@core.Point2D::new(0.0, 0.0)]
+  let result = douglas_peucker(pts, 0.1)
+  assert_eq(result.length(), 1)
+}
+
+///|
+test "douglas_peucker two vertices" {
+  let pts = [@core.Point2D::new(0.0, 0.0), @core.Point2D::new(1.0, 1.0)]
+  let result = douglas_peucker(pts, 0.1)
+  assert_eq(result.length(), 2)
+}
