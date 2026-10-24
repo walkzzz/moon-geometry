@@ -326,3 +326,101 @@ test "quadric trace negative" {
   let q = Quadric::new(-1.0, -2.0, -3.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
   assert_true((Quadric::trace(q) - -6.0).abs() < 0.000000001)
 }
+
+///|
+test "quadric classify degenerate positive definite" {
+  let q = Quadric::new(1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0)
+  let qt = Quadric::classify(q)
+  assert_true(
+    match qt {
+      Degenerate => true
+      _ => false
+    },
+  )
+}
+
+///|
+test "quadric eval at origin" {
+  let q = Quadric::new(1.0, 2.0, 3.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 5.0)
+  let p = @core.Point3D::new(0.0, 0.0, 0.0)
+  let v = Quadric::eval(q, p)
+  assert_true((v - 5.0).abs() < 0.000000001)
+}
+
+///|
+test "quadric gradient at origin no linear" {
+  let q = Quadric::new(1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0)
+  let p = @core.Point3D::new(0.0, 0.0, 0.0)
+  let g = Quadric::gradient(q, p)
+  assert_true(g.x.abs() < 0.000000001)
+  assert_true(g.y.abs() < 0.000000001)
+  assert_true(g.z.abs() < 0.000000001)
+}
+
+///|
+test "quadric normal at origin zero" {
+  let q = Quadric::new(1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0)
+  let p = @core.Point3D::new(0.0, 0.0, 0.0)
+  let n = Quadric::normal(q, p)
+  assert_true(n.x.abs() < 0.000000001)
+  assert_true(n.y.abs() < 0.000000001)
+  assert_true(n.z.abs() < 0.000000001)
+}
+
+///|
+test "quadric center at origin" {
+  let q = Quadric::new(1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0)
+  match Quadric::center(q) {
+    Some(c) => {
+      assert_true(c.x.abs() < 0.000000001)
+      assert_true(c.y.abs() < 0.000000001)
+      assert_true(c.z.abs() < 0.000000001)
+    }
+    None => assert_true(false)
+  }
+}
+
+///|
+test "quadric trace zero" {
+  let q = Quadric::new(1.0, 1.0, -2.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+  assert_true(Quadric::trace(q).abs() < 0.000000001)
+}
+
+///|
+test "quadric quadratic det negative" {
+  let q = Quadric::new(1.0, 1.0, -1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0)
+  let d = Quadric::quadratic_det(q)
+  assert_true(d < 0.0)
+}
+
+///|
+test "quadric on surface z axis" {
+  let q = Quadric::new(1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0)
+  let p = @core.Point3D::new(0.0, 0.0, 1.0)
+  assert_true(Quadric::on_surface(q, p, 0.000000001))
+}
+
+///|
+test "quadric centered preserves quadratic" {
+  let q = Quadric::new(2.0, 2.0, 2.0, 0.0, 0.0, 0.0, -4.0, -6.0, -8.0, 5.0)
+  let cq = Quadric::centered(q)
+  assert_true((cq.a - 2.0).abs() < 0.000000001)
+  assert_true((cq.b - 2.0).abs() < 0.000000001)
+  assert_true((cq.c - 2.0).abs() < 0.000000001)
+}
+
+///|
+test "quadric eval negative point" {
+  let q = Quadric::new(1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0)
+  let p = @core.Point3D::new(-1.0, 0.0, 0.0)
+  let v = Quadric::eval(q, p)
+  assert_true(v.abs() < 0.000000001)
+}
+
+///|
+test "quadric gradient negative point" {
+  let q = Quadric::new(1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0)
+  let p = @core.Point3D::new(-1.0, 0.0, 0.0)
+  let g = Quadric::gradient(q, p)
+  assert_true((g.x + 2.0).abs() < 0.000000001)
+}

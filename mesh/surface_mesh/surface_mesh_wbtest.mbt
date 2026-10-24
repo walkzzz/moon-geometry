@@ -48,6 +48,7 @@ test "mesh_bounding_box basic" {
   assert_true((max_x - 1.0).abs() < 0.0001)
   assert_true((min_z - -3.0).abs() < 0.0001)
 }
+
 ///|
 test "vertex_normal basic" {
   let verts = [(0.0, 0.0, 0.0), (1.0, 0.0, 0.0), (0.0, 1.0, 0.0)]

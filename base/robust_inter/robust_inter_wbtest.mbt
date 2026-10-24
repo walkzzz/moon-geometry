@@ -18,6 +18,7 @@ test "robust line line" {
 test "robust point on segment" {
   assert_true(robust_point_on_segment(0.5, 0.5, 0.0, 0.0, 1.0, 1.0))
 }
+
 ///|
 test "robust segment intersect parallel" {
   let (_, _, ok) = robust_segment_intersect(

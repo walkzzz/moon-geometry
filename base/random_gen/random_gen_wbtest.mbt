@@ -34,6 +34,7 @@ test "rng convex polygon" {
   let poly = r.random_convex_polygon(5, 10.0)
   assert_eq(poly.length(), 5)
 }
+
 ///|
 test "rng range double" {
   let r = Rng::new(42U)

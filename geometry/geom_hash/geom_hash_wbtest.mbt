@@ -16,6 +16,7 @@ test "similarity score" {
   let s = similarity_score([1, 2, 3, 4], [1, 0, 3, 0])
   assert_eq(s, 0.5)
 }
+
 ///|
 test "hash_point_2d negative" {
   let (hx, hy) = hash_point_2d(-5.5, -3.2, 1.0)

@@ -32,6 +32,7 @@ test "principal_curvatures" {
   assert_true((k1 + k2 - 4.0).abs() < 0.001)
   assert_true((k1 * k2 - 1.0).abs() < 0.001)
 }
+
 ///|
 test "estimate_gaussian_curvature few neighbors" {
   let c = @core.Point3D::new(0.0, 0.0, 0.0)

@@ -37,6 +37,7 @@ test "uniform_knots basic" {
   assert_true(knots[0].abs() < 0.0000001)
   assert_true((knots[6] - 1.0).abs() < 0.0000001)
 }
+
 ///|
 test "bspline_basis degree 1" {
   let knots = [0.0, 0.0, 1.0, 1.0]

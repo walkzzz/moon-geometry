@@ -15,6 +15,7 @@ test "point_in_triangle" {
   let v = point_in_triangle((0.25, 0.25), (0.0, 0.0), (1.0, 0.0), (0.0, 1.0))
   assert_true(v)
 }
+
 ///|
 test "bresenham_line vertical" {
   let pts = bresenham_line(0, 0, 0, 2)
@@ -61,7 +62,12 @@ test "barycentric_coord center" {
 
 ///|
 test "barycentric_coord vertex" {
-  let (u, v, w) = barycentric_coord((0.0, 0.0), (0.0, 0.0), (1.0, 0.0), (0.0, 1.0))
+  let (u, v, w) = barycentric_coord(
+    (0.0, 0.0),
+    (0.0, 0.0),
+    (1.0, 0.0),
+    (0.0, 1.0),
+  )
   assert_true((u - 1.0).abs() < 0.0001)
   assert_true((v - 0.0).abs() < 0.0001)
   assert_true((w - 0.0).abs() < 0.0001)
@@ -69,7 +75,12 @@ test "barycentric_coord vertex" {
 
 ///|
 test "barycentric_coord degenerate" {
-  let (u, v, w) = barycentric_coord((0.5, 0.0), (0.0, 0.0), (1.0, 0.0), (2.0, 0.0))
+  let (u, v, w) = barycentric_coord(
+    (0.5, 0.0),
+    (0.0, 0.0),
+    (1.0, 0.0),
+    (2.0, 0.0),
+  )
   assert_true((u - 0.0).abs() < 0.0001)
   assert_true((v - 0.0).abs() < 0.0001)
   assert_true((w - 0.0).abs() < 0.0001)

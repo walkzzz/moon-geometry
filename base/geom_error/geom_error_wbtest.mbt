@@ -99,6 +99,7 @@ test "GeomError Debug to_repr all variants" {
   ignore(DegenerateGeometry("m").to_repr())
   ignore(InvalidParameter("m").to_repr())
 }
+
 ///|
 test "GeomError to_message prefix check" {
   assert_true(EmptyInput.to_message().has_prefix("Empty"))
@@ -141,4 +142,36 @@ test "GeomError to_message concat" {
   let m1 = NumericalFailure("fail")
   let m2 = TopologyError("topo")
   assert_true(m1.to_message() != m2.to_message())
+}
+
+///|
+test "_suppress_unused_geom_error callable" {
+  _suppress_unused_geom_error()
+}
+
+///|
+test "GeomError to_message nonempty all" {
+  assert_true(EmptyInput.to_message().length() > 0)
+  assert_true(InsufficientInput("x").to_message().length() > 0)
+  assert_true(DegenerateGeometry("x").to_message().length() > 0)
+  assert_true(NumericalFailure("x").to_message().length() > 0)
+  assert_true(InvalidParameter("x").to_message().length() > 0)
+  assert_true(TopologyError("x").to_message().length() > 0)
+  assert_true(IoError("x").to_message().length() > 0)
+}
+
+///|
+test "GeomError Eq transitive" {
+  let a = InvalidParameter("same")
+  let b = InvalidParameter("same")
+  let c = InvalidParameter("same")
+  assert_true(a == b && b == c && a == c)
+}
+
+///|
+test "GeomError Debug repr string content" {
+  let r = EmptyInput.to_repr().to_string()
+  assert_true(r.length() > 0)
+  let r2 = IoError("detail").to_repr().to_string()
+  assert_true(r2.contains("detail"))
 }

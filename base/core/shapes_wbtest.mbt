@@ -168,3 +168,108 @@ test "Rectangle::union area" {
   assert_true(approx_eq(u.min_y, 0.0, 0.000000001))
   assert_true(approx_eq(u.max_y, 3.0, 0.000000001))
 }
+
+///|
+test "Polygon::new and size" {
+  let p = Polygon::new([
+    Point2D::new(0.0, 0.0),
+    Point2D::new(1.0, 0.0),
+    Point2D::new(1.0, 1.0),
+  ])
+  assert_eq(p.size(), 3)
+}
+
+///|
+test "Polygon::get normal" {
+  let p = Polygon::new([
+    Point2D::new(0.0, 0.0),
+    Point2D::new(1.0, 0.0),
+    Point2D::new(1.0, 1.0),
+  ])
+  let v0 = p.get(0)
+  assert_true(approx_eq(v0.x(), 0.0, 0.000000001))
+  let v2 = p.get(2)
+  assert_true(approx_eq(v2.y(), 1.0, 0.000000001))
+}
+
+///|
+test "Polygon::get wraparound" {
+  let p = Polygon::new([Point2D::new(0.0, 0.0), Point2D::new(1.0, 0.0)])
+  let v = p.get(2)
+  assert_true(approx_eq(v.x(), 0.0, 0.000000001))
+  let v2 = p.get(-1)
+  assert_true(approx_eq(v2.x(), 1.0, 0.000000001))
+}
+
+///|
+test "Polygon::get negative wraparound" {
+  let p = Polygon::new([
+    Point2D::new(0.0, 0.0),
+    Point2D::new(1.0, 0.0),
+    Point2D::new(2.0, 0.0),
+  ])
+  let v = p.get(-3)
+  assert_true(approx_eq(v.x(), 0.0, 0.000000001))
+}
+
+///|
+test "Rectangle::width and height" {
+  let r = Rectangle::new(0.0, 0.0, 4.0, 3.0)
+  assert_true(approx_eq(r.width(), 4.0, 0.000000001))
+  assert_true(approx_eq(r.height(), 3.0, 0.000000001))
+}
+
+///|
+test "Orientation variants" {
+  assert_true(Clockwise == Clockwise)
+  assert_true(Clockwise != CounterClockwise)
+  assert_true(Clockwise != Collinear)
+  assert_true(CounterClockwise != Collinear)
+  ignore(Collinear.to_repr())
+}
+
+///|
+test "Rectangle::from_corners same order" {
+  let r = Rectangle::from_corners(
+    Point2D::new(0.0, 0.0),
+    Point2D::new(4.0, 3.0),
+  )
+  assert_true(approx_eq(r.min_y, 0.0, 0.000000001))
+  assert_true(approx_eq(r.max_y, 3.0, 0.000000001))
+}
+
+///|
+test "Rectangle::contains boundary" {
+  let r = Rectangle::new(0.0, 0.0, 4.0, 3.0)
+  assert_true(r.contains(Point2D::new(0.0, 0.0)))
+  assert_true(r.contains(Point2D::new(4.0, 3.0)))
+  assert_false(r.contains(Point2D::new(-0.1, 0.0)))
+}
+
+///|
+test "Rectangle::intersection touching edge" {
+  let r1 = Rectangle::new(0.0, 0.0, 2.0, 2.0)
+  let r2 = Rectangle::new(2.0, 0.0, 4.0, 2.0)
+  match r1.intersection(r2) {
+    Some(r) => assert_true(approx_eq(r.min_x, 2.0, 0.000000001))
+    None => assert_true(false)
+  }
+}
+
+///|
+test "Triangle::signed_area collinear" {
+  let t = Triangle::new(
+    Point2D::new(0.0, 0.0),
+    Point2D::new(1.0, 0.0),
+    Point2D::new(2.0, 0.0),
+  )
+  assert_true(approx_eq(t.signed_area(), 0.0, 0.000000001))
+  assert_true(approx_eq(t.area(), 0.0, 0.000000001))
+}
+
+///|
+test "Circle::area zero radius" {
+  let c = Circle::new(Point2D::new(0.0, 0.0), 0.0)
+  assert_true(approx_eq(c.area(), 0.0, 0.000000001))
+  assert_true(approx_eq(c.perimeter(), 0.0, 0.000000001))
+}

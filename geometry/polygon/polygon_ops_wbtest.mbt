@@ -318,3 +318,98 @@ test "polygon_orientation collinear extra" {
   ])
   assert_eq(polygon_orientation(poly), @core.Collinear)
 }
+
+///|
+test "polygon_centroid empty" {
+  let poly = @core.Polygon::new([])
+  let c = polygon_centroid(poly)
+  assert_true(@core.approx_eq(c.x(), 0.0, 0.000000001))
+  assert_true(@core.approx_eq(c.y(), 0.0, 0.000000001))
+}
+
+///|
+test "polygon_centroid two vertices" {
+  let poly = @core.Polygon::new([
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(4.0, 6.0),
+  ])
+  let c = polygon_centroid(poly)
+  assert_true(@core.approx_eq(c.x(), 2.0, 0.000000001))
+  assert_true(@core.approx_eq(c.y(), 3.0, 0.000000001))
+}
+
+///|
+test "polygon_centroid degenerate collinear" {
+  let poly = @core.Polygon::new([
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(1.0, 1.0),
+    @core.Point2D::new(2.0, 2.0),
+    @core.Point2D::new(3.0, 3.0),
+  ])
+  let c = polygon_centroid(poly)
+  assert_true(@core.approx_eq(c.x(), 1.5, 0.000000001))
+  assert_true(@core.approx_eq(c.y(), 1.5, 0.000000001))
+}
+
+///|
+test "polygon_perimeter empty" {
+  let poly = @core.Polygon::new([])
+  assert_true(@core.approx_eq(polygon_perimeter(poly), 0.0, 0.000000001))
+}
+
+///|
+test "polygon_signed_area empty" {
+  let poly = @core.Polygon::new([])
+  assert_true(@core.approx_eq(polygon_signed_area(poly), 0.0, 0.000000001))
+}
+
+///|
+test "polygon_area empty" {
+  let poly = @core.Polygon::new([])
+  assert_true(@core.approx_eq(polygon_area(poly), 0.0, 0.000000001))
+}
+
+///|
+test "polygon_orientation empty" {
+  let poly = @core.Polygon::new([])
+  assert_eq(polygon_orientation(poly), @core.Collinear)
+}
+
+///|
+test "is_convex triangle three vertices" {
+  let poly = @core.Polygon::new([
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(1.0, 0.0),
+    @core.Point2D::new(0.0, 1.0),
+  ])
+  assert_true(is_convex(poly))
+}
+
+///|
+test "is_convex empty" {
+  let poly = @core.Polygon::new([])
+  assert_false(is_convex(poly))
+}
+
+///|
+test "point_in_polygon empty polygon" {
+  let poly = @core.Polygon::new([])
+  assert_false(point_in_polygon(@core.Point2D::new(0.0, 0.0), poly))
+}
+
+///|
+test "simplify_polygon two vertices" {
+  let poly = @core.Polygon::new([
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(1.0, 1.0),
+  ])
+  let simplified = simplify_polygon(poly, 0.1)
+  assert_eq(simplified.length(), 2)
+}
+
+///|
+test "simplify_polygon empty" {
+  let poly = @core.Polygon::new([])
+  let simplified = simplify_polygon(poly, 0.1)
+  assert_eq(simplified.length(), 0)
+}

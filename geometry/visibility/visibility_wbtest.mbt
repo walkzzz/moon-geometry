@@ -70,12 +70,10 @@ test "visibility_polygon_general" {
   let vis = visibility_polygon(sq, @core.Point2D::new(2.0, 2.0))
   assert_true(vis.length() >= 3)
 }
+
 ///|
 test "is_visible degenerate polygon" {
-  let poly = [
-    @core.Point2D::new(0.0, 0.0),
-    @core.Point2D::new(1.0, 0.0),
-  ]
+  let poly = [@core.Point2D::new(0.0, 0.0), @core.Point2D::new(1.0, 0.0)]
   assert_false(
     is_visible(poly, @core.Point2D::new(0.0, 0.0), @core.Point2D::new(1.0, 0.0)),
   )
@@ -96,20 +94,14 @@ test "is_visible parallel edges" {
 
 ///|
 test "visibility_polygon_convex degenerate" {
-  let poly = [
-    @core.Point2D::new(0.0, 0.0),
-    @core.Point2D::new(1.0, 0.0),
-  ]
+  let poly = [@core.Point2D::new(0.0, 0.0), @core.Point2D::new(1.0, 0.0)]
   let vis = visibility_polygon_convex(poly, @core.Point2D::new(0.5, 0.5))
   assert_true(vis.length() == 0)
 }
 
 ///|
 test "visibility_polygon degenerate" {
-  let poly = [
-    @core.Point2D::new(0.0, 0.0),
-    @core.Point2D::new(1.0, 0.0),
-  ]
+  let poly = [@core.Point2D::new(0.0, 0.0), @core.Point2D::new(1.0, 0.0)]
   let vis = visibility_polygon(poly, @core.Point2D::new(0.5, 0.5))
   assert_true(vis.length() == 0)
 }
@@ -132,4 +124,100 @@ test "visible_vertex_count empty" {
   let poly : Array[@core.Point2D] = []
   let count = visible_vertex_count(poly, @core.Point2D::new(0.0, 0.0))
   assert_true(count == 0)
+}
+
+///|
+test "is_visible empty polygon" {
+  let poly : Array[@core.Point2D] = []
+  assert_false(
+    is_visible(poly, @core.Point2D::new(0.0, 0.0), @core.Point2D::new(1.0, 1.0)),
+  )
+}
+
+///|
+test "is_visible triangle all visible" {
+  let tri = [
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(4.0, 0.0),
+    @core.Point2D::new(2.0, 4.0),
+  ]
+  assert_true(
+    is_visible(tri, @core.Point2D::new(2.0, 1.0), @core.Point2D::new(1.0, 1.0)),
+  )
+}
+
+///|
+test "is_visible same point" {
+  let sq = [
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(4.0, 0.0),
+    @core.Point2D::new(4.0, 4.0),
+    @core.Point2D::new(0.0, 4.0),
+  ]
+  assert_true(
+    is_visible(sq, @core.Point2D::new(2.0, 2.0), @core.Point2D::new(2.0, 2.0)),
+  )
+}
+
+///|
+test "visibility_polygon_convex triangle" {
+  let tri = [
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(4.0, 0.0),
+    @core.Point2D::new(2.0, 4.0),
+  ]
+  let vis = visibility_polygon_convex(tri, @core.Point2D::new(2.0, 1.0))
+  assert_true(vis.length() == 3)
+}
+
+///|
+test "visibility_polygon_convex concave polygon" {
+  let poly = [
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(4.0, 0.0),
+    @core.Point2D::new(4.0, 4.0),
+    @core.Point2D::new(2.0, 2.0),
+    @core.Point2D::new(0.0, 4.0),
+  ]
+  let vis = visibility_polygon_convex(poly, @core.Point2D::new(0.5, 0.5))
+  assert_true(vis.length() >= 1)
+}
+
+///|
+test "visibility_polygon triangle" {
+  let tri = [
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(4.0, 0.0),
+    @core.Point2D::new(2.0, 4.0),
+  ]
+  let vis = visibility_polygon(tri, @core.Point2D::new(2.0, 1.0))
+  assert_true(vis.length() == 3)
+}
+
+///|
+test "visible_vertex_count concave" {
+  let poly = [
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(4.0, 0.0),
+    @core.Point2D::new(4.0, 4.0),
+    @core.Point2D::new(2.0, 2.0),
+    @core.Point2D::new(0.0, 4.0),
+  ]
+  let count = visible_vertex_count(poly, @core.Point2D::new(0.5, 0.5))
+  assert_true(count >= 1)
+  assert_true(count <= 5)
+}
+
+///|
+test "visibility_polygon_convex empty" {
+  let poly : Array[@core.Point2D] = []
+  let vis = visibility_polygon_convex(poly, @core.Point2D::new(0.0, 0.0))
+  assert_true(vis.length() == 0)
+}
+
+///|
+test "visibility_polygon empty" {
+  let poly : Array[@core.Point2D] = []
+  let vis = visibility_polygon(poly, @core.Point2D::new(0.0, 0.0))
+  assert_true(vis.length() == 0)
 }

@@ -15,6 +15,7 @@ test "filter result" {
   assert_eq(filter_result(5.0, 1.0), 1)
   assert_eq(filter_result(-5.0, 1.0), -1)
 }
+
 ///|
 test "static filter bound empty" {
   let b = static_filter_bound([])

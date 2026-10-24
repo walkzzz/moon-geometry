@@ -78,6 +78,7 @@ test "aabb_tree_query_point_miss" {
   let result = query_point_aabb(nodes, p)
   assert_eq(result.length(), 0)
 }
+
 ///|
 test "aabb_tree_split_y_direction" {
   let rects = [

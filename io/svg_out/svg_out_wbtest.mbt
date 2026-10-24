@@ -49,6 +49,7 @@ test "svg document" {
   assert_true(doc.contains("</svg>"))
   assert_true(doc.contains("<polygon"))
 }
+
 ///|
 test "svg_point" {
   let p = @core.Point2D::new(10.0, 20.0)

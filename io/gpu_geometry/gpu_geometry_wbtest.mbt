@@ -16,6 +16,7 @@ test "meshlet_bounds" {
   assert_true(center.0 > 0.99 && center.0 < 1.01)
   assert_true(r > 0.99 && r < 1.01)
 }
+
 ///|
 test "morton_code_2d larger" {
   let m = morton_code_2d(2, 0)
