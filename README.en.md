@@ -5,7 +5,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![MoonBit](https://img.shields.io/badge/MoonBit-0.1.20260920-blue.svg)](https://moonbitlang.com)
-[![Tests](https://img.shields.io/badge/tests-2307-brightgreen.svg)]()
+[![Tests](https://img.shields.io/badge/tests-3156-brightgreen.svg)]()
 [![Targets](https://img.shields.io/badge/targets-native%20%7C%20wasm--gc%20%7C%20js%20%7C%20wasm-green.svg)]()
 
 Moon Geometry is a **pure MoonBit** computational geometry library with **zero C FFI dependencies**, supporting all four backends (3natively. It provides reusable geometric algorithm primitives for CAD, collision detection, GIS, path planning, and image processing.
@@ -38,6 +38,9 @@ Moon Geometry 是一个**纯 MoonBit** 实现的计算几何库，**零 C FFI �
 - **Degenerate robustness | 退化构型鲁棒性**: detect collinear/overlap/zero-area/self-intersect/small-angle, remove coincident points
 - **Topology validation | 拓扑一致性验证**: closed manifold check, non-manifold edges, dangling edges, isolated vertices, normal consistency
 - **Incremental computation | 增量计算**: incremental Delaunay with dynamic insert/remove, supports interactive editing
+- **Remeshing | 重网格化**: isotropic remeshing with edge split/collapse to target length
+- **Non-manifold repair | 非流形修复**: detect and repair non-manifold edges by vertex duplication
+- **CAD extrude/sweep | CAD 拉伸/扫掠**: extrude 2D polygon along axis/direction, sweep profile along 3D path, revolve around axis
 
 ## Installation | 安装
 
@@ -47,7 +50,7 @@ moon add walkzzz/moon-geometry
 
 ## Project Structure | 项目结构
 
-283 modules organized into 24 domain categories | 283 个模块按 24 个领域分类组织：
+287 modules organized into 10 domain categories | 287 个模块按 10 个领域分类组织：
 
 ```
 src/
@@ -206,14 +209,14 @@ Full interface in `.mbti` files. 完整接口见 `.mbti` 文件。
 ## Tests | 测试
 
 ```bash
-moon test                          # all 2307 tests | 全部 2307 测试
+moon test                          # all 3156 tests | 全部 3156 测试
 moon test --target native          # verify each backend | 四目标分别验证
 moon test --target wasm-gc
 moon test --target js
 moon test --target wasm
 ```
 
-All four targets pass: 2307 × 4 = 9228. 四目标全绿：2307 × 4 = 9228。
+All four targets pass: 3156 × 4 = 12624. 四目标全绿：3156 × 4 = 12624。
 
 ## Roadmap | 交付路线图
 

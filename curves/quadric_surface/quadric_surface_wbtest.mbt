@@ -424,6 +424,7 @@ test "quadric gradient negative point" {
   let g = Quadric::gradient(q, p)
   assert_true((g.x + 2.0).abs() < 0.000000001)
 }
+
 ///|
 test "quadric classify f0 positive pos1 neg2 ellipsoid" {
   let q = Quadric::new(-1.0, -1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0)

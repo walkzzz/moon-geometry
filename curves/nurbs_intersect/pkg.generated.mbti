@@ -1,0 +1,21 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/curves/nurbs_intersect"
+
+import {
+  "walkzzz/moon-geometry/base/core",
+}
+
+// Values
+pub fn nurbs_bbox(Array[@core.Point2D]) -> (Double, Double, Double, Double)
+
+pub fn nurbs_line_intersect(Array[@core.Point2D], Array[Double], Int32, @core.Point2D, @core.Point2D) -> Array[@core.Point2D]
+
+pub fn nurbs_subdivide(Array[@core.Point2D], Array[Double], Int32, Double) -> (Array[@core.Point2D], Array[Double], Array[@core.Point2D], Array[Double])
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

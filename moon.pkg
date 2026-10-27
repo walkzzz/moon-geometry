@@ -282,4 +282,8 @@ import {
   "walkzzz/moon-geometry/mesh/topology_check",
   "walkzzz/moon-geometry/geometry/incremental_delaunay",
   "walkzzz/moon-geometry/base/geom_error",
+  "walkzzz/moon-geometry/mesh/remesh",
+  "walkzzz/moon-geometry/mesh/nonmanifold_repair",
+  "walkzzz/moon-geometry/mesh/cad_extrude",
+  "walkzzz/moon-geometry/mesh/cad_sweep",
 }

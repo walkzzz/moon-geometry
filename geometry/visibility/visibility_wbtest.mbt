@@ -221,6 +221,7 @@ test "visibility_polygon empty" {
   let vis = visibility_polygon(poly, @core.Point2D::new(0.0, 0.0))
   assert_true(vis.length() == 0)
 }
+
 ///|
 test "visibility_polygon cross branch" {
   let poly = [

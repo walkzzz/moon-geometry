@@ -51,6 +51,7 @@ test "point_cloud_size" {
   ]
   assert_eq(point_cloud_size(pts), 2)
 }
+
 ///|
 test "point_cloud_centroid empty" {
   let c = point_cloud_centroid([])

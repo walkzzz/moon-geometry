@@ -1,0 +1,15 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/mesh/nonmanifold_repair"
+
+// Values
+pub fn count_nonmanifold_edges(Array[(Int32, Int32, Int32)]) -> Int32
+
+pub fn repair_nonmanifold_edges(Array[(Int32, Int32, Int32)]) -> Array[(Int32, Int32, Int32)]
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

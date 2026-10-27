@@ -85,6 +85,7 @@ test "ray_polygon_not_contains" {
   ])
   assert_false(ray_polygon_contains(r, poly))
 }
+
 ///|
 test "ray_polygon_intersect" {
   let r = Ray::new(@core.Point2D::new(0.5, 0.5), @core.Point2D::new(1.0, 0.0))

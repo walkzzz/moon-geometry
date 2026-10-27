@@ -263,6 +263,7 @@ test "icp rms error symmetric" {
   let err = icp_rms_error(a, b)
   assert_true((err - 3.5355).abs() < 0.01)
 }
+
 ///|
 test "mat3_identity basic" {
   let m = mat3_identity()

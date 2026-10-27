@@ -142,6 +142,7 @@ test "ray nearest triangle" {
     None => assert_true(false)
   }
 }
+
 ///|
 test "ray eval negative t" {
   let r = Ray3::new(

@@ -148,6 +148,7 @@ test "douglas_peucker large epsilon" {
   let result = douglas_peucker(pts, 10.0)
   assert_true(result.length() <= 2)
 }
+
 ///|
 test "simplify_visvalingam remove last point" {
   let pts = [
@@ -251,6 +252,7 @@ test "simplify_topology_preserve complex shape" {
   assert_true(result.length() >= 3)
   assert_true(result.length() <= 6)
 }
+
 ///|
 test "point_line_dist basic" {
   let a = @core.Point2D::new(0.0, 0.0)

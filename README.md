@@ -5,7 +5,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![MoonBit](https://img.shields.io/badge/MoonBit-0.1.20260920-blue.svg)](https://moonbitlang.com)
-[![Tests](https://img.shields.io/badge/tests-2307-brightgreen.svg)]()
+[![Tests](https://img.shields.io/badge/tests-3156-brightgreen.svg)]()
 [![Targets](https://img.shields.io/badge/targets-native%20%7C%20wasm--gc%20%7C%20js%20%7C%20wasm-green.svg)]()
 
 Moon Geometry 是一个**纯 MoonBit** 实现的计算几何库，**零 C FFI 依赖**，四目标（native / wasm-gc / js / wasm）原生支持。为 CAD、碰撞检测、GIS、路径规划、图像处理等场景提供可复用的几何算法基础组件。
@@ -38,6 +38,9 @@ Moon Geometry is a **pure MoonBit** computational geometry library with **zero C
 - **退化构型鲁棒性 | Degenerate robustness**: detect collinear/overlap/zero-area/self-intersect/small-angle, remove coincident points | 检测共线/重叠/零面积/自交/极小角度，移除重合点
 - **拓扑一致性验证 | Topology validation**: closed manifold check, non-manifold edges, dangling edges, isolated vertices, normal consistency | 闭合流形检测、非流形边、悬挂边、孤立顶点、法向一致性
 - **增量计算 | Incremental computation**: incremental Delaunay with dynamic insert/remove, supports interactive editing | 增量 Delaunay 动态插入/删除，支持交互式编辑
+- **重网格化 | Remeshing**: isotropic remeshing with edge split/collapse to target length | 各向同性重网格化，边分割/折叠至目标长度
+- **非流形修复 | Non-manifold repair**: detect and repair non-manifold edges by vertex duplication | 检测并修复非流形边，通过顶点复制
+- **CAD 拉伸/扫掠 | CAD extrude/sweep**: extrude 2D polygon along axis/direction, sweep profile along 3D path, revolve around axis | 2D 多边形沿轴/方向拉伸，轮廓沿 3D 路径扫描，绕轴旋转
 
 ## 安装 | Installation
 
@@ -47,7 +50,7 @@ moon add walkzzz/moon-geometry
 
 ## 项目结构 | Project Structure
 
-283 个模块按 10 个领域分类组织 | 283 modules organized into 10 domain categories：
+287 个模块按 10 个领域分类组织 | 287 modules organized into 10 domain categories：
 
 ```
 base/          # (32) Core types & robust arithmetic | 基础类型与鲁棒算术
@@ -55,7 +58,7 @@ geometry/      # (65) Convex hull, polygon, triangulation, computational geometr
 transform/     # (19) Geometric transforms & differential geometry | 几何变换与微分几何
 spatial/       # (30) Spatial data structures & distance metrics | 空间数据结构与距离度量
 curves/        # (27) Curves, splines & algebraic geometry | 曲线、样条与代数几何
-mesh/          # (27) Mesh processing & topological data analysis | 网格处理与拓扑数据分析
+mesh/          # (31) Mesh processing & topological data analysis | 网格处理与拓扑数据分析
 numerics/      # (24) Numerical optimization & PDE solvers | 数值优化与偏微分方程求解
 applied/       # (29) Robotics, ML, point cloud & statistics | 机器人、机器学习、点云与统计
 io/            # (18) File I/O & graphics rendering | 文件输入输出与图形渲染

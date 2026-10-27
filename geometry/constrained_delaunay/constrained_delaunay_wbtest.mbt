@@ -91,6 +91,7 @@ test "constrained_delaunay with multiple constraints" {
   assert_eq(cd.constraint_count(), 4)
   assert_true(cd.triangle_count() >= 2)
 }
+
 ///|
 test "circumcenter basic" {
   let a = @core.Point2D::new(0.0, 0.0)

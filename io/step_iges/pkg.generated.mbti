@@ -1,0 +1,20 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/io/step_iges"
+
+// Values
+pub fn parse_step(String) -> Array[StepEntity]
+
+pub fn write_step(Array[StepEntity]) -> String
+
+// Errors
+
+// Types and methods
+pub struct StepEntity {
+  entity_type : String
+  params : Array[String]
+}
+pub fn StepEntity::new(String, Array[String]) -> Self
+
+// Type aliases
+
+// Traits

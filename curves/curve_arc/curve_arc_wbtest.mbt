@@ -39,6 +39,7 @@ test "arc_length_empty" {
   let pts : Array[@core.Point2D] = []
   assert_true(arc_length(pts) == 0.0)
 }
+
 ///|
 test "arc_length single point" {
   let pts = [@core.Point2D::new(1.0, 2.0)]

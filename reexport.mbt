@@ -11579,3 +11579,73 @@ pub type GeomError = @geom_error.GeomError
 pub fn geom_error_to_message(err : GeomError) -> String {
   @geom_error.GeomError::to_message(err)
 }
+// ========== remesh ==========
+
+///|
+/// Isotropic remeshing: split edges longer than target*1.5 and collapse edges shorter than target*0.5. / 各向同性重网格化：分割超过 target*1.5 的长边，折叠小于 target*0.5 的短边。
+pub fn remesh(
+  vertices : Array[Point3D],
+  faces : Array[(Int32, Int32, Int32)],
+  target_edge : Double,
+  iterations : Int32,
+) -> (Array[Point3D], Array[(Int32, Int32, Int32)]) {
+  @remesh.remesh(vertices, faces, target_edge, iterations)
+}
+
+// ========== nonmanifold_repair ==========
+
+///|
+/// Count non-manifold edges (edges shared by more than 2 faces). / 统计非流形边（被超过2个面共享的边）。
+pub fn count_nonmanifold_edges(faces : Array[(Int32, Int32, Int32)]) -> Int32 {
+  @nonmanifold_repair.count_nonmanifold_edges(faces)
+}
+
+///|
+/// Repair non-manifold edges by duplicating vertices for faces sharing non-manifold edges. / 通过为共享非流形边的面复制顶点来修复非流形边。
+pub fn repair_nonmanifold_edges(
+  faces : Array[(Int32, Int32, Int32)],
+) -> Array[(Int32, Int32, Int32)] {
+  @nonmanifold_repair.repair_nonmanifold_edges(faces)
+}
+
+// ========== cad_extrude ==========
+
+///|
+/// Extrude a 2D polygon along the Z axis to create a 3D mesh. / 将2D多边形沿Z轴拉伸创建3D网格。
+pub fn extrude_polygon(
+  points : Array[Point2D],
+  height : Double,
+) -> (Array[Point3D], Array[(Int32, Int32, Int32)]) {
+  @cad_extrude.extrude_polygon(points, height)
+}
+
+///|
+/// Extrude a 2D profile along a 3D direction for a given distance. / 将2D轮廓沿3D方向拉伸指定距离。
+pub fn extrude_profile(
+  points : Array[Point2D],
+  dir : Point3D,
+  dist : Double,
+) -> (Array[Point3D], Array[(Int32, Int32, Int32)]) {
+  @cad_extrude.extrude_profile(points, dir, dist)
+}
+
+// ========== cad_sweep ==========
+
+///|
+/// Sweep a 2D profile along a 3D path to create a mesh. / 将2D轮廓沿3D路径扫描创建网格。
+pub fn sweep_profile(
+  profile : Array[Point2D],
+  path : Array[Point3D],
+) -> (Array[Point3D], Array[(Int32, Int32, Int32)]) {
+  @cad_sweep.sweep_profile(profile, path)
+}
+
+///|
+/// Revolve a 2D profile around an axis to create a surface of revolution. / 将2D轮廓绕轴旋转创建回转面。
+pub fn revolve_profile(
+  profile : Array[Point2D],
+  axis : Point3D,
+  angle : Double,
+) -> (Array[Point3D], Array[(Int32, Int32, Int32)]) {
+  @cad_sweep.revolve_profile(profile, axis, angle)
+}

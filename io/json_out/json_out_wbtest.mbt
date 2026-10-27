@@ -96,6 +96,7 @@ test "triangle to json" {
   assert_true(json.contains("\"b\""))
   assert_true(json.contains("\"c\""))
 }
+
 ///|
 test "point2d to json negative" {
   let p = @core.Point2D::new(-3.0, -4.5)
@@ -143,10 +144,7 @@ test "scene to json all empty" {
 
 ///|
 test "scene to json multi elements" {
-  let pts = [
-    @core.Point2D::new(0.0, 0.0),
-    @core.Point2D::new(1.0, 1.0),
-  ]
+  let pts = [@core.Point2D::new(0.0, 0.0), @core.Point2D::new(1.0, 1.0)]
   let segs = [
     @core.Segment::new(
       @core.Point2D::new(0.0, 0.0),

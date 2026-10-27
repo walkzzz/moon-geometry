@@ -92,6 +92,7 @@ test "dxf write contains section" {
   assert_true(s.contains("SECTION"))
   assert_true(s.contains("ENDSEC"))
 }
+
 ///|
 test "pd positive integer" {
   assert_true((pd("42".to_string_view()) - 42.0).abs() < 0.001)

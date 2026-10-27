@@ -46,6 +46,7 @@ test "ball_tree many points" {
   let tree = ball_tree_build(pts)
   assert_eq(ball_tree_count(tree), 20)
 }
+
 ///|
 test "ball_tree knn k1" {
   let pts = [
@@ -61,10 +62,7 @@ test "ball_tree knn k1" {
 
 ///|
 test "ball_tree knn k larger than points" {
-  let pts = [
-    @core.Point2D::new(0.0, 0.0),
-    @core.Point2D::new(1.0, 1.0),
-  ]
+  let pts = [@core.Point2D::new(0.0, 0.0), @core.Point2D::new(1.0, 1.0)]
   let tree = ball_tree_build(pts)
   let nn = ball_tree_knn(tree, @core.Point2D::new(0.0, 0.0), 5)
   assert_eq(nn.length(), 2)

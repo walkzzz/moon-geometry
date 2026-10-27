@@ -6,6 +6,21 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
 Moon Geometry 的所有重要变更记录于此。
 格式基于 [Keep a Changelog](https://keepachangelog.com/)。
 
+## [0.252.0] - 2026-10-27
+
+### Added — 网格处理补全 | Mesh Processing Completeness
+
+- **重网格化** `mesh/remesh/`：各向同性重网格化（split long edges + collapse short edges）
+- **非流形修复** `mesh/nonmanifold_repair/`：统计非流形边 + 通过复制顶点修复
+- **CAD 拉伸** `mesh/cad_extrude/`：2D 多边形沿 Z 轴拉伸 + 沿 3D 方向拉伸
+- **CAD 扫掠** `mesh/cad_sweep/`：2D 轮廓沿 3D 路径扫描 + 绕轴旋转创建回转面
+- 新模块已添加到根 `moon.pkg` 和 `reexport.mbt`
+
+### Fixed — 质量达标
+
+- 修复 `nonmanifold_repair` 的 2 个 `unused_mut` warning
+- **3156 测试全通过**（+49 个白盒测试）
+
 ## [0.251.0] - 2026-10-23
 
 ### Added — 独立库补全 | Library Completeness

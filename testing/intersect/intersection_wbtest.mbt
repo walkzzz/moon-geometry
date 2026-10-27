@@ -304,6 +304,7 @@ test "line_segment_intersection no intersection" {
   )
   assert_true(line_segment_intersection(line, seg) is None)
 }
+
 ///|
 test "segment_intersection collinear no overlap none" {
   let s1 = @core.Segment::new(

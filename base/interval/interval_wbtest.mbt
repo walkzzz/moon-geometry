@@ -72,6 +72,7 @@ test "interval: swapped construction" {
   assert_true((i.lo - 1.0).abs() < 0.001)
   assert_true((i.hi - 5.0).abs() < 0.001)
 }
+
 ///|
 test "interval: empty interval" {
   let i = Interval::new(3.0, 3.0)

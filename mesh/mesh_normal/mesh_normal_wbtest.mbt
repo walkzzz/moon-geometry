@@ -51,6 +51,7 @@ test "face area" {
   let area = face_area(m, 0)
   assert_true((area - 8.0).abs() < 0.001)
 }
+
 ///|
 test "face normal normalized" {
   let m = @mesh_data.Mesh::new()

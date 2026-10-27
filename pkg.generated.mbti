@@ -688,6 +688,8 @@ pub fn count_intersections(Array[@core.Segment]) -> Int32
 
 pub fn count_leaves(Array[@aabb_tree.AABBNode]) -> Int32
 
+pub fn count_nonmanifold_edges(Array[(Int32, Int32, Int32)]) -> Int32
+
 pub fn count_visible(Array[@hidden_line.LineSeg3D], Array[(@core.Point3D, @core.Point3D, @core.Point3D)]) -> Int32
 
 pub fn cover_area_rectangles(Array[@core.Point2D]) -> Double
@@ -1003,6 +1005,10 @@ pub fn extract_contours(@contour_line.ContourGrid, Array[Double]) -> Array[(Doub
 pub fn extract_faces(Array[@core.Point2D], Array[(Int32, Int32)]) -> Array[@face_extract.Face]
 
 pub fn extreme_point(@core.Polygon, @core.Point2D) -> Int32
+
+pub fn extrude_polygon(Array[@core.Point2D], Double) -> (Array[@core.Point3D], Array[(Int32, Int32, Int32)])
+
+pub fn extrude_profile(Array[@core.Point2D], @core.Point3D, Double) -> (Array[@core.Point3D], Array[(Int32, Int32, Int32)])
 
 pub fn face_area(@face_extract.Face) -> Double
 
@@ -2380,6 +2386,8 @@ pub fn regular_triangulation(Array[@power_diagram.WeightedPoint]) -> Array[(Int3
 
 pub fn reinitialize_step(Double, Double, Int32) -> Double
 
+pub fn remesh(Array[@core.Point3D], Array[(Int32, Int32, Int32)], Double, Int32) -> (Array[@core.Point3D], Array[(Int32, Int32, Int32)])
+
 pub fn remove_coincident_points(Array[@core.Point2D], Double) -> Array[@core.Point2D]
 
 pub fn remove_degenerate_faces(Array[@core.Point3D], Array[(Int32, Int32, Int32)], Double) -> (Array[(Int32, Int32, Int32)], Int32)
@@ -2388,11 +2396,15 @@ pub fn removed_count(Int32, Int32) -> Int32
 
 pub fn repair_mesh(Array[@core.Point3D], Array[(Int32, Int32, Int32)], Double) -> @mesh_repair.MeshRepairResult
 
+pub fn repair_nonmanifold_edges(Array[(Int32, Int32, Int32)]) -> Array[(Int32, Int32, Int32)]
+
 pub fn resample_bilinear(@raster_ops.Raster, Int32, Int32) -> @raster_ops.Raster
 
 pub fn resample_nearest(@raster_ops.Raster, Int32, Int32) -> @raster_ops.Raster
 
 pub fn resultant(Array[Double], Array[Double]) -> Double
+
+pub fn revolve_profile(Array[@core.Point2D], @core.Point3D, Double) -> (Array[@core.Point3D], Array[(Int32, Int32, Int32)])
 
 pub fn rigid_apply(@rigid.Rigid, @core.Point2D) -> @core.Point2D
 
@@ -2765,6 +2777,8 @@ pub fn svg_line(@core.Point2D, @core.Point2D, @svg_out.SvgSettings) -> String
 pub fn svg_polygon(Array[@core.Point2D], @svg_out.SvgSettings) -> String
 
 pub fn svg_settings_default() -> @svg_out.SvgSettings
+
+pub fn sweep_profile(Array[@core.Point2D], Array[@core.Point3D]) -> (Array[@core.Point3D], Array[(Int32, Int32, Int32)])
 
 pub fn sweep_update(Double, Double, Double, Double, Double) -> Double
 

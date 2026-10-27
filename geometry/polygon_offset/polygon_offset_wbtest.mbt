@@ -55,6 +55,7 @@ test "polygon_offset_empty" {
   let offset = polygon_offset_outward(empty, 1.0)
   assert_true(offset.length() == 0)
 }
+
 ///|
 test "polygon_offset_outward triangle" {
   let tri = [

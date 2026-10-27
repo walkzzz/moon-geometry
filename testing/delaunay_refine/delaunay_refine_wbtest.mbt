@@ -48,6 +48,7 @@ test "delaunay_refine no refinement" {
   let refined = delaunay_refine(pts, 10.0, 3)
   assert_eq(refined.length(), 3)
 }
+
 ///|
 test "triangle_count_less_than_three" {
   let pts = [@core.Point2D::new(0.0, 0.0), @core.Point2D::new(1.0, 1.0)]

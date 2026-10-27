@@ -15,6 +15,7 @@ test "max_persistence" {
   let d = [PersistencePoint::new(0.0, 2.0), PersistencePoint::new(1.0, 4.0)]
   assert_true((max_persistence(d) - 3.0).abs() < 0.001)
 }
+
 ///|
 test "diagram_dimension" {
   let d = [PersistencePoint::new(0.0, 1.0), PersistencePoint::new(2.0, 5.0)]
@@ -42,7 +43,7 @@ test "is_essential_not_essential" {
 ///|
 test "persistence_negative" {
   let p = PersistencePoint::new(3.0, 1.0)
-  assert_true((persistence(p) - (-2.0)).abs() < 0.001)
+  assert_true((persistence(p) - -2.0).abs() < 0.001)
 }
 
 ///|

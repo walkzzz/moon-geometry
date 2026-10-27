@@ -20,6 +20,7 @@ test "rational_mul" {
 test "rational_equal" {
   assert_true(rational_equal(Rational::new(1, 2), Rational::new(2, 4)))
 }
+
 ///|
 test "rational_sub" {
   let r = rational_sub(Rational::new(1, 2), Rational::new(1, 3))

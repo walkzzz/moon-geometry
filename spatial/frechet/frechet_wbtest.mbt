@@ -31,6 +31,7 @@ test "frechet_distance_empty" {
   let c : Array[@core.Point2D] = []
   assert_true(frechet_distance(c, c) == 0.0)
 }
+
 ///|
 test "frechet_distance single to single" {
   let c1 = [@core.Point2D::new(0.0, 0.0)]
@@ -56,10 +57,7 @@ test "frechet_distance multi point" {
 ///|
 test "frechet_distance single to multi" {
   let c1 = [@core.Point2D::new(0.0, 0.0)]
-  let c2 = [
-    @core.Point2D::new(0.0, 0.0),
-    @core.Point2D::new(3.0, 4.0),
-  ]
+  let c2 = [@core.Point2D::new(0.0, 0.0), @core.Point2D::new(3.0, 4.0)]
   // Fréchet from single point to curve = max distance to any point
   assert_true((frechet_distance(c1, c2) - 5.0).abs() < 0.001)
 }

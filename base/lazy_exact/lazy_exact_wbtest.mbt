@@ -9,6 +9,7 @@ test "lazy_error" {
   let le = LazyExact::new(3.14, 3.14159)
   assert_true(lazy_error(le) > 0.0)
 }
+
 ///|
 test "lazy_approx" {
   let le = LazyExact::new(3.14, 3.14159)

@@ -48,6 +48,7 @@ test "centroid" {
   assert_true((c.x() - 2.0).abs() < 0.001)
   assert_true((c.y() - 2.0).abs() < 0.001)
 }
+
 ///|
 test "smallest enclosing circle empty" {
   let c = smallest_enclosing_circle([])
@@ -98,10 +99,7 @@ test "min area rect single" {
 
 ///|
 test "min area rect negative" {
-  let pts = [
-    @core.Point2D::new(-3.0, -5.0),
-    @core.Point2D::new(2.0, 4.0),
-  ]
+  let pts = [@core.Point2D::new(-3.0, -5.0), @core.Point2D::new(2.0, 4.0)]
   let r = min_area_rect(pts)
   assert_true((r.min_x - -3.0).abs() < 0.001)
   assert_true((r.max_x - 2.0).abs() < 0.001)
@@ -156,10 +154,7 @@ test "closest_to_centroid basic" {
 
 ///|
 test "closest_to_centroid symmetric" {
-  let pts = [
-    @core.Point2D::new(-2.0, 0.0),
-    @core.Point2D::new(2.0, 0.0),
-  ]
+  let pts = [@core.Point2D::new(-2.0, 0.0), @core.Point2D::new(2.0, 0.0)]
   match closest_to_centroid(pts) {
     Some(_) => assert_true(true)
     None => assert_true(false)

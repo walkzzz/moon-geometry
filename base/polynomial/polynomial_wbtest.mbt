@@ -173,6 +173,7 @@ test "poly_roots trailing zeros" {
   let roots = poly_roots(coeffs)
   ignore(roots)
 }
+
 ///|
 test "poly_roots cubic three roots" {
   let coeffs = [-6.0, 11.0, -6.0, 1.0]

@@ -45,6 +45,7 @@ test "affine2 determinant" {
   let det = m.determinant()
   assert_true((det - 6.0).abs() < 0.0001)
 }
+
 ///|
 test "affine2 shear" {
   let m = Affine2::shear(1.0, 0.0)

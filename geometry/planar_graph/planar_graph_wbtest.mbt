@@ -56,6 +56,7 @@ test "planar graph from polygon" {
   assert_eq(PlanarGraph::edge_count(g2), 4)
   assert_eq(PlanarGraph::face_count(g2), 2)
 }
+
 ///|
 test "planar graph degree" {
   let g = PlanarGraph::new()
@@ -123,10 +124,7 @@ test "planar graph face count disconnected" {
 ///|
 test "planar graph from polygon too few" {
   let g = PlanarGraph::new()
-  let pts = [
-    @core.Point2D::new(0.0, 0.0),
-    @core.Point2D::new(1.0, 0.0),
-  ]
+  let pts = [@core.Point2D::new(0.0, 0.0), @core.Point2D::new(1.0, 0.0)]
   let poly = @core.Polygon::new(pts)
   let g2 = PlanarGraph::from_polygon(g, poly)
   // n < 3 → returns original graph unchanged

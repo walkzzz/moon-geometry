@@ -1,0 +1,21 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "walkzzz/moon-geometry/io/volume_format"
+
+// Values
+pub fn write_vtk_ascii(VolumeData) -> String
+
+// Errors
+
+// Types and methods
+pub struct VolumeData {
+  dims : (Int32, Int32, Int32)
+  spacing : (Double, Double, Double)
+  data : Array[Double]
+}
+pub fn VolumeData::get(Self, Int32, Int32, Int32) -> Double
+pub fn VolumeData::new((Int32, Int32, Int32), (Double, Double, Double)) -> Self
+pub fn VolumeData::set(Self, Int32, Int32, Int32, Double) -> Unit
+
+// Type aliases
+
+// Traits
