@@ -125,3 +125,29 @@ test "aabb_tree_build_three" {
   let nodes = build_aabb_tree(rects)
   assert_eq(count_leaves(nodes), 3)
 }
+
+///|
+test "aabb_tree_query_recursive_invalid_index" {
+  // Cover defensive guard `node_idx < 0 || node_idx >= nodes.length()`
+  // in query_recursive by passing out-of-range indices directly.
+  let rects = [@core.Rectangle::new(0.0, 0.0, 1.0, 1.0)]
+  let nodes = build_aabb_tree(rects)
+  let result : Array[Int32] = []
+  query_recursive(nodes, -1, @core.Rectangle::new(0.0, 0.0, 2.0, 2.0), result)
+  assert_eq(result.length(), 0)
+  query_recursive(nodes, 100, @core.Rectangle::new(0.0, 0.0, 2.0, 2.0), result)
+  assert_eq(result.length(), 0)
+}
+
+///|
+test "aabb_tree_query_point_recursive_invalid_index" {
+  // Cover defensive guard `node_idx < 0 || node_idx >= nodes.length()`
+  // in query_point_recursive by passing out-of-range indices directly.
+  let rects = [@core.Rectangle::new(0.0, 0.0, 1.0, 1.0)]
+  let nodes = build_aabb_tree(rects)
+  let result : Array[Int32] = []
+  query_point_recursive(nodes, -1, @core.Point2D::new(0.5, 0.5), result)
+  assert_eq(result.length(), 0)
+  query_point_recursive(nodes, 100, @core.Point2D::new(0.5, 0.5), result)
+  assert_eq(result.length(), 0)
+}

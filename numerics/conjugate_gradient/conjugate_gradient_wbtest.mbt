@@ -100,3 +100,85 @@ test "jacobi_preconditioner basic" {
   assert_true((z[0] - 1.0).abs() < 0.000001)
   assert_true((z[1] - 1.0).abs() < 0.000001)
 }
+
+///|
+test "cg_linear indefinite matrix pap_zero" {
+  // Indefinite A gives p^T A p = 0, hitting `pap.abs() < 1e-16` break.
+  let a = [[1.0, 0.0], [0.0, -1.0]]
+  let b = [1.0, 1.0]
+  let x = cg_linear(a, b, [0.0, 0.0], 50)
+  // Breaks on first iteration before updating x.
+  assert_true(x[0].abs() < 0.000001)
+  assert_true(x[1].abs() < 0.000001)
+}
+
+///|
+test "pcg_linear already solved" {
+  // x0 is the exact solution -> residual 0 -> rsold < 1e-16 -> return x.
+  let a = [[2.0, 0.0], [0.0, 2.0]]
+  let b = [4.0, 6.0]
+  let m_inv = jacobi_preconditioner(a, 2)
+  let x = pcg_linear(a, b, m_inv, [2.0, 3.0], 50)
+  assert_true((x[0] - 2.0).abs() < 0.000001)
+  assert_true((x[1] - 3.0).abs() < 0.000001)
+}
+
+///|
+test "pcg_linear indefinite matrix pap_zero" {
+  // Indefinite A with identity preconditioner gives pap = 0 -> break.
+  let a = [[1.0, 0.0], [0.0, -1.0]]
+  let b = [1.0, 1.0]
+  let m_inv = fn(r : Array[Double]) -> Array[Double] { [r[0], r[1]] }
+  let x = pcg_linear(a, b, m_inv, [0.0, 0.0], 50)
+  assert_true(x[0].abs() < 0.000001)
+  assert_true(x[1].abs() < 0.000001)
+}
+
+///|
+test "nonlinear_cg already optimal" {
+  // x0 is the minimizer -> grad = 0 -> gnorm_sq < 1e-16 -> return x.
+  let f = fn(x : Array[Double]) -> Double { x[0] * x[0] + x[1] * x[1] }
+  let grad = fn(x : Array[Double]) -> Array[Double] { [2.0 * x[0], 2.0 * x[1]] }
+  let x = nonlinear_cg(f, grad, [0.0, 0.0], 50)
+  assert_true(x[0].abs() < 0.000001)
+  assert_true(x[1].abs() < 0.000001)
+}
+
+///|
+test "nonlinear_cg not accepted breaks" {
+  // Inconsistent grad (ascent direction) makes Armijo fail every trial,
+  // so `!accepted` -> break and x stays at the initial point.
+  let f = fn(x : Array[Double]) -> Double { x[0] * x[0] }
+  let grad = fn(x : Array[Double]) -> Array[Double] { [-2.0 * x[0]] }
+  let x = nonlinear_cg(f, grad, [1.0], 50)
+  assert_true((x[0] - 1.0).abs() < 0.000001)
+}
+
+///|
+test "nonlinear_cg multi_iteration pr_update" {
+  // Ill-conditioned quadratic needs >1 CG iteration, exercising the
+  // Polak-Ribiere beta update and p/g copy branches.
+  let f = fn(x : Array[Double]) -> Double { x[0] * x[0] + 10.0 * x[1] * x[1] }
+  let grad = fn(x : Array[Double]) -> Array[Double] {
+    [2.0 * x[0], 20.0 * x[1]]
+  }
+  let x = nonlinear_cg(f, grad, [10.0, 1.0], 100)
+  assert_true(x[0].abs() < 0.01)
+  assert_true(x[1].abs() < 0.01)
+}
+
+///|
+test "nonlinear_cg slope_reset_branch" {
+  // Strongly nonlinear f=x^4+y^4 produces a PR direction with positive
+  // slope, triggering the `slope >= 0.0` reset of p to -g.
+  let f = fn(x : Array[Double]) -> Double {
+    x[0] * x[0] * x[0] * x[0] + x[1] * x[1] * x[1] * x[1]
+  }
+  let grad = fn(x : Array[Double]) -> Array[Double] {
+    [4.0 * x[0] * x[0] * x[0], 4.0 * x[1] * x[1] * x[1]]
+  }
+  let x = nonlinear_cg(f, grad, [2.0, 1.0], 100)
+  // Objective must decrease from the starting value f(2,1)=17.
+  let fx = x[0] * x[0] * x[0] * x[0] + x[1] * x[1] * x[1] * x[1]
+  assert_true(fx < 17.0)
+}

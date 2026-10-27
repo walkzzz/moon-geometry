@@ -185,3 +185,141 @@ test "bezier3: degenerate single point" {
   assert_true(@core.approx_eq(v.y(), 7.0, 0.001))
   assert_true(@core.approx_eq(b.length(), 0.0, 0.001))
 }
+
+///|
+test "bezier2: bbox x-extremum below min" {
+  let b = Bezier2::new(
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(-2.0, 0.0),
+    @core.Point2D::new(0.0, 0.0),
+  )
+  let (min_x, min_y, max_x, max_y) = b.bbox()
+  assert_true(@core.approx_eq(min_x, -1.0, 0.001))
+  assert_true(@core.approx_eq(max_x, 0.0, 0.001))
+  assert_true(@core.approx_eq(min_y, 0.0, 0.001))
+  assert_true(@core.approx_eq(max_y, 0.0, 0.001))
+}
+
+///|
+test "bezier2: bbox x-extremum above max" {
+  let b = Bezier2::new(
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(2.0, 0.0),
+    @core.Point2D::new(0.0, 0.0),
+  )
+  let (min_x, _, max_x, _) = b.bbox()
+  assert_true(@core.approx_eq(min_x, 0.0, 0.001))
+  assert_true(@core.approx_eq(max_x, 1.0, 0.001))
+}
+
+///|
+test "bezier2: bbox y-extremum below min" {
+  let b = Bezier2::new(
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(0.0, -2.0),
+    @core.Point2D::new(0.0, 0.0),
+  )
+  let (_, min_y, _, max_y) = b.bbox()
+  assert_true(@core.approx_eq(min_y, -1.0, 0.001))
+  assert_true(@core.approx_eq(max_y, 0.0, 0.001))
+}
+
+///|
+test "bezier2: bbox dx-branch t out of range" {
+  let b = Bezier2::new(
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(1.0, 0.0),
+    @core.Point2D::new(3.0, 0.0),
+  )
+  let (_, _, max_x, _) = b.bbox()
+  assert_true(@core.approx_eq(max_x, 3.0, 0.001))
+}
+
+///|
+test "bezier2: bbox dy-branch t out of range" {
+  let b = Bezier2::new(
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(0.0, 1.0),
+    @core.Point2D::new(0.0, 3.0),
+  )
+  let (_, _, _, max_y) = b.bbox()
+  assert_true(@core.approx_eq(max_y, 3.0, 0.001))
+}
+
+///|
+test "bezier2: bbox p2 below min" {
+  let b = Bezier2::new(
+    @core.Point2D::new(2.0, 2.0),
+    @core.Point2D::new(1.0, 1.0),
+    @core.Point2D::new(0.0, 0.0),
+  )
+  let (min_x, min_y, max_x, max_y) = b.bbox()
+  assert_true(@core.approx_eq(min_x, 0.0, 0.001))
+  assert_true(@core.approx_eq(min_y, 0.0, 0.001))
+  assert_true(@core.approx_eq(max_x, 2.0, 0.001))
+  assert_true(@core.approx_eq(max_y, 2.0, 0.001))
+}
+
+///|
+test "bezier2: bbox p2 above max y" {
+  let b = Bezier2::new(
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(1.0, 1.0),
+    @core.Point2D::new(2.0, 2.0),
+  )
+  let (_, _, max_x, max_y) = b.bbox()
+  assert_true(@core.approx_eq(max_x, 2.0, 0.001))
+  assert_true(@core.approx_eq(max_y, 2.0, 0.001))
+}
+
+///|
+test "bezier2: derivative at end" {
+  let b = Bezier2::new(
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(1.0, 2.0),
+    @core.Point2D::new(3.0, 0.0),
+  )
+  let d = b.derivative(1.0)
+  assert_true(@core.approx_eq(d.x(), 4.0, 0.001))
+  assert_true(@core.approx_eq(d.y(), -4.0, 0.001))
+}
+
+///|
+test "bezier3: derivative at end" {
+  let b = Bezier3::new(
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(1.0, 3.0),
+    @core.Point2D::new(2.0, 3.0),
+    @core.Point2D::new(3.0, 0.0),
+  )
+  let d = b.derivative(1.0)
+  assert_true(@core.approx_eq(d.x(), 3.0, 0.001))
+  assert_true(@core.approx_eq(d.y(), -9.0, 0.001))
+}
+
+///|
+test "bezier2: subdivide at endpoints" {
+  let b = Bezier2::new(
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(1.0, 2.0),
+    @core.Point2D::new(3.0, 0.0),
+  )
+  let (left, _) = b.subdivide(0.0)
+  let start = left.eval(0.0)
+  assert_true(@core.approx_eq(start.x(), 0.0, 0.001))
+  assert_true(@core.approx_eq(start.y(), 0.0, 0.001))
+}
+
+///|
+test "bezier3: subdivide at endpoints" {
+  let b = Bezier3::new(
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(1.0, 3.0),
+    @core.Point2D::new(2.0, 3.0),
+    @core.Point2D::new(3.0, 0.0),
+  )
+  let (_, right) = b.subdivide(1.0)
+  let end = right.eval(1.0)
+  assert_true(@core.approx_eq(end.x(), 3.0, 0.001))
+  assert_true(@core.approx_eq(end.y(), 0.0, 0.001))
+}

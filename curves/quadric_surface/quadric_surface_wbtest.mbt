@@ -563,3 +563,66 @@ test "quadric center with cross terms" {
     None => assert_true(false)
   }
 }
+
+///|
+test "quadric eigen triple negative root" {
+  // Negative definite with triple eigenvalue -2 -> degenerate under classify
+  let q = Quadric::new(-2.0, -2.0, -2.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0)
+  let qt = Quadric::classify(q)
+  assert_true(
+    match qt {
+      Degenerate => true
+      _ => false
+    },
+  )
+}
+
+///|
+test "quadric eigen disc zero negative repeated" {
+  // Eigenvalues -1, -1, -2 (repeated root, negative)
+  let q = Quadric::new(-1.0, -1.0, -2.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0)
+  let qt = Quadric::classify(q)
+  assert_true(
+    match qt {
+      Degenerate => true
+      _ => false
+    },
+  )
+}
+
+///|
+test "quadric eigen disc positive negative roots" {
+  // Eigenvalues -1, -2, -3 (three distinct negative roots)
+  let q = Quadric::new(-1.0, -2.0, -3.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0)
+  let qt = Quadric::classify(q)
+  assert_true(
+    match qt {
+      Degenerate => true
+      _ => false
+    },
+  )
+}
+
+///|
+test "quadric normal with cross and linear" {
+  let q = Quadric::new(1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0)
+  let p = @core.Point3D::new(1.0, 1.0, 1.0)
+  let n = Quadric::normal(q, p)
+  let mag = (n.x * n.x + n.y * n.y + n.z * n.z).sqrt()
+  assert_true((mag - 1.0).abs() < 0.000000001)
+}
+
+///|
+test "quadric eval all zero coefficients" {
+  let q = Quadric::new(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+  let p = @core.Point3D::new(5.0, 7.0, 9.0)
+  let v = Quadric::eval(q, p)
+  assert_true(v.abs() < 0.000000001)
+}
+
+///|
+test "quadric on_surface exact boundary" {
+  let q = Quadric::new(1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0)
+  let p = @core.Point3D::new(0.0, 0.0, 1.0)
+  assert_true(Quadric::on_surface(q, p, 0.0))
+}
