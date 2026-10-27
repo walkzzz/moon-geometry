@@ -19,8 +19,8 @@ Moon Geometry 的所有重要变更记录于此。
 ### Fixed — 质量达标
 
 - 修复 `nonmanifold_repair` 的 2 个 `unused_mut` warning
-- **3500 测试全通过**（+393 个白盒测试，覆盖率 ~94%）
-- 覆盖率提升覆盖 25+ 模块：io（geojson/ply/gltf/stl/step_iges）、mesh（betti/reeb/persistent/marching/quality/alpha）、applied（icp/collision/gjk/config/sat）、curves（bezier/resultant/reed_shepp/quadric/curvature_scale/path_smooth）、geometry（polygon_medial/convex_polygon/centroidal_voronoi/monotone/polygon_round）、spatial（ball_tree/aabb_tree/vp_tree）、numerics（newton/conjugate_gradient）、testing（gis_buffer）、transform（procrustes）
+- **3667 测试全通过**（+560 个白盒测试，覆盖率 94.79%）
+- 覆盖率提升覆盖 40+ 模块：io（geojson/ply/gltf/stl/step_iges/hough/raster）、mesh（betti/reeb/persistent/marching/quality/alpha）、applied（icp/collision/gjk/config/sat）、curves（bezier/resultant/reed_shepp/quadric/curvature_scale/path_smooth/dubins/implicit）、geometry（polygon_medial/convex_polygon/centroidal_voronoi/monotone/polygon_round/separating/decomp_opt/triangulate_fast/convex_sum/skeleton/simplify）、spatial（ball_tree/aabb_tree/vp_tree/skip_quadtree/bvh）、numerics（newton/conjugate_gradient）、testing（gis_buffer/mock_geometric）、transform（procrustes）
 
 ## [0.251.0] - 2026-10-23
 
