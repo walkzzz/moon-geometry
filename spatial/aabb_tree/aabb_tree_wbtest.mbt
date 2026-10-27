@@ -151,3 +151,23 @@ test "aabb_tree_query_point_recursive_invalid_index" {
   query_point_recursive(nodes, 100, @core.Point2D::new(0.5, 0.5), result)
   assert_eq(result.length(), 0)
 }
+
+///|
+test "aabb_tree_right_empty_unreachable" {
+  // 注: L87-100 的 right_indices.length() == 0 分支为不可达死代码。
+  // 证明: split 维度的 max 矩形 M 满足 M.min >= min_val, 故
+  //   M 质心 = (M.min + max_val)/2 >= (min_val + max_val)/2 = mid_val
+  //   => M 进入 right_indices, right_indices 恒非空。
+  // 此测试构造最接近触发该分支的场景(所有质心 == mid_val 全入 right, 触发 left_empty)
+  // 以验证 build 在退化分裂下仍正确, 但 right_empty 分支无法被覆盖。
+  let rects = [
+    @core.Rectangle::new(0.0, 0.0, 10.0, 1.0),
+    @core.Rectangle::new(1.0, 0.0, 9.0, 1.0),
+    @core.Rectangle::new(2.0, 0.0, 8.0, 1.0),
+  ]
+  let nodes = build_aabb_tree(rects)
+  // 所有矩形质心 x 均为 5 == mid_val => 全入 right, left_empty 分支将 right 一半移入 left
+  assert_eq(count_leaves(nodes), 3)
+  let result = query_aabb(nodes, @core.Rectangle::new(0.0, 0.0, 5.0, 1.0))
+  assert_true(result.length() > 0)
+}

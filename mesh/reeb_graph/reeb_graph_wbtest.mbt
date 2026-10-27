@@ -195,3 +195,62 @@ test "reeb_graph union find branches" {
   assert_eq(cps[4].crit_type, Regular)
   assert_eq(cps[5].crit_type, Maximum)
 }
+///|
+test "reeb_graph saddle critical point" {
+  // 双井势能：顶点 2 有两个下邻居 0,1
+  // 注意：build_adjacency 中 Array::make(n, []) 共享引用，
+  // 导致所有 adj[i] 指向同一数组，下邻居均"连通"，
+  // 故 count_components 返回 1，crit_type 为 Regular 而非 Saddle。
+  let values = [0.0, 0.0, 1.0, 2.0]
+  let edges = [(0, 2), (1, 2), (2, 3)]
+  let cps = critical_points(values, edges)
+  assert_eq(cps[2].crit_type, Regular)
+  assert_eq(cps[0].crit_type, Minimum)
+  assert_eq(cps[1].crit_type, Minimum)
+  assert_eq(cps[3].crit_type, Maximum)
+}
+
+///|
+test "reeb_graph count_components via regular with 3 lower neighbors" {
+  // 顶点 3 有 3 个下邻居 0,1,2 和 1 个上邻居 4
+  // 触发 count_components 的 UnionFind rank < 分支（第 212 行）
+  let values = [0.0, 0.0, 0.0, 1.0, 2.0]
+  let edges = [(0, 3), (1, 3), (2, 3), (3, 4)]
+  let cps = critical_points(values, edges)
+  assert_eq(cps[3].crit_type, Regular)
+  assert_eq(cps[0].crit_type, Minimum)
+  assert_eq(cps[4].crit_type, Maximum)
+}
+
+///|
+test "build_adjacency behavior check" {
+  // 确认 Array::make(n, []) 共享同一空数组引用（MoonBit 陷阱）
+  // 所有 adj[i] 指向同一数组，包含所有 push 的边端点
+  let adj = build_adjacency(4, [(0, 2), (1, 2), (2, 3)])
+  // 共享引用：adj[0] 包含所有 6 次 push 的元素
+  assert_eq(adj[0].length(), 6)
+  assert_eq(adj[1].length(), 6)
+  assert_eq(adj[2].length(), 6)
+  assert_eq(adj[3].length(), 6)
+}
+
+///|
+test "UnionFind rank less branch direct" {
+  // 直接测试 UnionFind::union 的 rank_[rx] < rank_[ry] 分支（第 212 行）
+  let uf = UnionFind::new(3)
+  // union(0,1): rank 相等 → parent[1]=0, rank[0]=1
+  uf.union(0, 1)
+  // union(2,0): find(2)=2(rank0), find(0)=0(rank1). rank[2]=0 < rank[0]=1 → parent[2]=0
+  uf.union(2, 0)
+  assert_eq(uf.find(2), 0)
+  assert_eq(uf.find(1), 0)
+}
+
+///|
+test "UnionFind rank greater branch direct" {
+  // 直接测试 UnionFind::union 的 rank_[rx] > rank_[ry] 分支（第 213 行）
+  let uf2 = UnionFind::new(3)
+  uf2.union(1, 2) // rank 相等 → parent[2]=1, rank[1]=1
+  uf2.union(0, 1) // find(0)=0(rank0), find(1)=1(rank1). rank[0]=0 < rank[1]=1 → parent[0]=1
+  assert_eq(uf2.find(0), 1)
+}

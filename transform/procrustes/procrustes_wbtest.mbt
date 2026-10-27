@@ -123,3 +123,58 @@ test "procrustes_analyze basic" {
   let aligned = procrustes_analyze([shape1, shape2], 5)
   assert_true(aligned.length() == 2)
 }
+
+///|
+test "procrustes accessors" {
+  // 覆盖 L36,42,48,54,60: rotation()/tx()/ty()/scale()/error() 访问器方法
+  let src = [
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(1.0, 0.0),
+    @core.Point2D::new(0.0, 1.0),
+  ]
+  let tgt = [
+    @core.Point2D::new(5.0, 3.0),
+    @core.Point2D::new(6.0, 3.0),
+    @core.Point2D::new(5.0, 4.0),
+  ]
+  let r = procrustes(src, tgt)
+  // 调用访问器方法（而非直接读字段）
+  let _rot = r.rotation()
+  let _tx = r.tx()
+  let _ty = r.ty()
+  let _scale = r.scale()
+  let _err = r.error()
+  assert_true(_err < 0.001)
+  assert_true((_tx - 5.0).abs() < 0.001)
+  assert_true((_ty - 3.0).abs() < 0.001)
+  assert_true((_scale - 1.0).abs() < 0.001)
+  ignore(_rot)
+}
+
+///|
+test "procrustes single point degenerate" {
+  // 覆盖 L107,108 (rotation=0 分支: den≈0 && num≈0) 与 L113 (scale=1 分支: src_norm_sq<eps)
+  // 单点去质心后为零向量 => num=den=0, src_norm_sq=0
+  let src = [@core.Point2D::new(5.0, 5.0)]
+  let tgt = [@core.Point2D::new(5.0, 5.0)]
+  let r = procrustes(src, tgt)
+  assert_true((r.rotation() - 0.0).abs() < 0.001)
+  assert_true((r.scale() - 1.0).abs() < 0.001)
+  assert_true(r.error() < 0.001)
+}
+
+///|
+test "procrustes_analyze empty shapes" {
+  // 覆盖 L174: n_shapes == 0 => return []
+  let aligned = procrustes_analyze([], 5)
+  assert_eq(aligned.length(), 0)
+}
+
+///|
+test "procrustes_analyze empty shape triggers centroid empty" {
+  // 覆盖 L68: centroid([]) => return (0.0, 0.0)
+  // shapes 非空但首个 shape 为空数组 => centroid 对空数组求值
+  let aligned = procrustes_analyze([[]], 5)
+  assert_eq(aligned.length(), 1)
+  assert_eq(aligned[0].length(), 0)
+}
