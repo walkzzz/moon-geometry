@@ -541,3 +541,144 @@ test "icp_apply empty" {
   let applied = icp_apply([], result)
   assert_eq(applied.length(), 0)
 }
+
+///|
+/// 触发 kabsch 中 det < 0 的反射修正分支（行 200-211）。
+/// 源与目标手性相反（z 轴反射），最优旋转行列式为负，需翻转最小特征值对应向量。
+/// 使用不对称点使 H^T*H 特征值分散，覆盖寻找最小特征值的循环（行 202-207）。
+test "kabsch reflection det negative" {
+  let src = [
+    @core.Point3D::new(2.0, 0.0, 0.0),
+    @core.Point3D::new(0.0, 1.0, 0.0),
+    @core.Point3D::new(0.0, 0.0, 3.0),
+    @core.Point3D::new(1.0, 1.0, 1.0),
+  ]
+  let tgt = [
+    @core.Point3D::new(2.0, 0.0, 0.0),
+    @core.Point3D::new(0.0, 1.0, 0.0),
+    @core.Point3D::new(0.0, 0.0, -3.0),
+    @core.Point3D::new(1.0, 1.0, -1.0),
+  ]
+  let r = kabsch(src, tgt)
+  assert_eq(r.length(), 9)
+  // 反射矩阵：z 轴翻转，r[8] 应近似 -1
+  assert_true((r[8] + 1.0).abs() < 0.05)
+  // x、y 轴保持
+  assert_true((r[0] - 1.0).abs() < 0.05)
+  assert_true((r[4] - 1.0).abs() < 0.05)
+}
+
+///|
+/// 另一组反射点，确保最小特征值位于不同索引，覆盖行 204。
+test "kabsch reflection alternate points" {
+  let src = [
+    @core.Point3D::new(3.0, 0.0, 0.0),
+    @core.Point3D::new(0.0, 2.0, 0.0),
+    @core.Point3D::new(0.0, 0.0, 1.0),
+    @core.Point3D::new(1.0, 2.0, 3.0),
+    @core.Point3D::new(2.0, 1.0, 0.0),
+  ]
+  let tgt = [
+    @core.Point3D::new(3.0, 0.0, 0.0),
+    @core.Point3D::new(0.0, 2.0, 0.0),
+    @core.Point3D::new(0.0, 0.0, -1.0),
+    @core.Point3D::new(1.0, 2.0, -3.0),
+    @core.Point3D::new(2.0, 1.0, 0.0),
+  ]
+  let r = kabsch(src, tgt)
+  assert_eq(r.length(), 9)
+  // z 轴反射
+  assert_true((r[8] + 1.0).abs() < 0.1)
+}
+
+///|
+/// 触发 solve_linear 部分选主元与行交换分支（行 354、362）。
+/// 对角元为 0，消元时需在第一列中选主元并交换两行。
+test "solve_linear partial pivoting row swap" {
+  let a = [[0.0, 1.0], [1.0, 0.0]]
+  let b = [1.0, 2.0]
+  match solve_linear(a, b) {
+    Some(x) => {
+      // 交换后等价于 x + 0*y = 2, 0*x + y = 1
+      assert_true((x[0] - 2.0).abs() < 0.0001)
+      assert_true((x[1] - 1.0).abs() < 0.0001)
+    }
+    None => assert_true(false)
+  }
+}
+
+///|
+/// 触发 solve_linear 3x3 选主元（行 354）。
+test "solve_linear 3x3 partial pivoting" {
+  let a = [[0.0, 1.0, 1.0], [1.0, 0.0, 1.0], [1.0, 1.0, 0.0]]
+  let b = [2.0, 2.0, 2.0]
+  match solve_linear(a, b) {
+    Some(x) => {
+      assert_true((x[0] - 1.0).abs() < 0.0001)
+      assert_true((x[1] - 1.0).abs() < 0.0001)
+      assert_true((x[2] - 1.0).abs() < 0.0001)
+    }
+    None => assert_true(false)
+  }
+}
+
+///|
+/// 触发 icp_point_to_plane 中 solve_linear 返回 Some 的分支（行 469-481）。
+/// 法向量方向各异，使 6x6 AtA 矩阵非奇异，线性系统可解。
+test "icp_point_to_plane solvable some branch" {
+  let target = [
+    @core.Point3D::new(0.0, 0.0, 0.0),
+    @core.Point3D::new(1.0, 0.0, 0.0),
+    @core.Point3D::new(0.0, 1.0, 0.0),
+    @core.Point3D::new(0.0, 0.0, 1.0),
+    @core.Point3D::new(1.0, 1.0, 0.0),
+    @core.Point3D::new(1.0, 0.0, 1.0),
+    @core.Point3D::new(0.0, 1.0, 1.0),
+    @core.Point3D::new(1.0, 1.0, 1.0),
+  ]
+  let normals = [
+    @core.Point3D::new(1.0, 0.0, 0.0),
+    @core.Point3D::new(0.0, 1.0, 0.0),
+    @core.Point3D::new(0.0, 0.0, 1.0),
+    @core.Point3D::new(1.0, 1.0, 0.0),
+    @core.Point3D::new(1.0, 0.0, 1.0),
+    @core.Point3D::new(0.0, 1.0, 1.0),
+    @core.Point3D::new(1.0, 1.0, 1.0),
+    @core.Point3D::new(1.0, 2.0, 3.0),
+  ]
+  let source = [
+    @core.Point3D::new(0.1, 0.1, 0.1),
+    @core.Point3D::new(1.1, 0.1, 0.1),
+    @core.Point3D::new(0.1, 1.1, 0.1),
+    @core.Point3D::new(0.1, 0.1, 1.1),
+    @core.Point3D::new(1.1, 1.1, 0.1),
+    @core.Point3D::new(1.1, 0.1, 1.1),
+    @core.Point3D::new(0.1, 1.1, 1.1),
+    @core.Point3D::new(1.1, 1.1, 1.1),
+  ]
+  let result = icp_point_to_plane(source, target, normals, 30)
+  assert_true(result.iterations >= 1)
+}
+
+///|
+/// 触发 icp_point_to_plane 收敛提前退出分支（行 482-484）。
+/// 源与目标几乎重合，首轮即收敛。
+test "icp_point_to_plane convergence break" {
+  let target = [
+    @core.Point3D::new(0.0, 0.0, 0.0),
+    @core.Point3D::new(1.0, 0.0, 0.0),
+    @core.Point3D::new(0.0, 1.0, 0.0),
+    @core.Point3D::new(0.0, 0.0, 1.0),
+    @core.Point3D::new(1.0, 1.0, 1.0),
+  ]
+  let normals = [
+    @core.Point3D::new(1.0, 0.0, 0.0),
+    @core.Point3D::new(0.0, 1.0, 0.0),
+    @core.Point3D::new(0.0, 0.0, 1.0),
+    @core.Point3D::new(1.0, 1.0, 0.0),
+    @core.Point3D::new(1.0, 1.0, 1.0),
+  ]
+  // 源与目标完全一致，应立即收敛
+  let result = icp_point_to_plane(target, target, normals, 50)
+  assert_true(result.iterations >= 1)
+}

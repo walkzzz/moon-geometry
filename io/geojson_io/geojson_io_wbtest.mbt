@@ -258,3 +258,249 @@ test "geojson roundtrip linestring" {
     _ => assert_true(false)
   }
 }
+
+///|
+test "geojson multilinestring multiple lines separator" {
+  let line1 = [@core.Point2D::new(0.0, 0.0), @core.Point2D::new(1.0, 0.0)]
+  let line2 = [@core.Point2D::new(0.0, 1.0), @core.Point2D::new(1.0, 1.0)]
+  let s = geojson_multilinestring([line1, line2])
+  assert_true(s.contains("],["))
+}
+
+///|
+test "geojson multipolygon multiple polygons separator" {
+  let ring1 = [
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(1.0, 0.0),
+    @core.Point2D::new(0.0, 0.0),
+  ]
+  let ring2 = [
+    @core.Point2D::new(2.0, 2.0),
+    @core.Point2D::new(3.0, 2.0),
+    @core.Point2D::new(2.0, 2.0),
+  ]
+  let s = geojson_multipolygon([[ring1], [ring2]])
+  assert_true(s.contains("]],[["))
+}
+
+///|
+test "geojson multipolygon multiple rings separator" {
+  let ring1 = [
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(1.0, 0.0),
+    @core.Point2D::new(0.0, 0.0),
+  ]
+  let ring2 = [
+    @core.Point2D::new(0.5, 0.5),
+    @core.Point2D::new(0.6, 0.5),
+    @core.Point2D::new(0.5, 0.5),
+  ]
+  let s = geojson_multipolygon([[ring1, ring2]])
+  assert_true(s.contains("],["))
+}
+
+///|
+test "geojson parse point with spaces" {
+  let text = "{\"type\":\"Point\",\"coordinates\": [ 3.0 , 4.0 ] }"
+  match geojson_parse(text) {
+    Some(GeoPoint(p)) => {
+      assert_true(@core.approx_eq(p.x(), 3.0, 0.000001))
+      assert_true(@core.approx_eq(p.y(), 4.0, 0.000001))
+    }
+    _ => assert_true(false)
+  }
+}
+
+///|
+test "geojson parse point with decimal" {
+  let text = "{\"type\":\"Point\",\"coordinates\":[1.25,2.75]}"
+  match geojson_parse(text) {
+    Some(GeoPoint(p)) => {
+      assert_true(@core.approx_eq(p.x(), 1.25, 0.000001))
+      assert_true(@core.approx_eq(p.y(), 2.75, 0.000001))
+    }
+    _ => assert_true(false)
+  }
+}
+
+///|
+test "geojson parse point negative" {
+  let text = "{\"type\":\"Point\",\"coordinates\":[-1.5,-2.5]}"
+  match geojson_parse(text) {
+    Some(GeoPoint(p)) => {
+      assert_true(@core.approx_eq(p.x(), -1.5, 0.000001))
+      assert_true(@core.approx_eq(p.y(), -2.5, 0.000001))
+    }
+    _ => assert_true(false)
+  }
+}
+
+///|
+test "geojson parse point with plus sign" {
+  let text = "{\"type\":\"Point\",\"coordinates\":[+3.0,+4.0]}"
+  match geojson_parse(text) {
+    Some(GeoPoint(p)) => {
+      assert_true(@core.approx_eq(p.x(), 3.0, 0.000001))
+      assert_true(@core.approx_eq(p.y(), 4.0, 0.000001))
+    }
+    _ => assert_true(false)
+  }
+}
+
+///|
+test "geojson parse point not array returns none" {
+  let text = "{\"type\":\"Point\",\"coordinates\":5.0}"
+  match geojson_parse(text) {
+    None => assert_true(true)
+    _ => assert_true(false)
+  }
+}
+
+///|
+test "geojson parse linestring not array returns none" {
+  let text = "{\"type\":\"LineString\",\"coordinates\":5.0}"
+  match geojson_parse(text) {
+    None => assert_true(true)
+    _ => assert_true(false)
+  }
+}
+
+///|
+test "geojson parse polygon not array returns none" {
+  let text = "{\"type\":\"Polygon\",\"coordinates\":5.0}"
+  match geojson_parse(text) {
+    None => assert_true(true)
+    _ => assert_true(false)
+  }
+}
+
+///|
+test "geojson parse multipoint not array returns none" {
+  let text = "{\"type\":\"MultiPoint\",\"coordinates\":5.0}"
+  match geojson_parse(text) {
+    None => assert_true(true)
+    _ => assert_true(false)
+  }
+}
+
+///|
+test "geojson parse multilinestring not array returns none" {
+  let text = "{\"type\":\"MultiLineString\",\"coordinates\":5.0}"
+  match geojson_parse(text) {
+    None => assert_true(true)
+    _ => assert_true(false)
+  }
+}
+
+///|
+test "geojson parse multipolygon not array returns none" {
+  let text = "{\"type\":\"MultiPolygon\",\"coordinates\":5.0}"
+  match geojson_parse(text) {
+    None => assert_true(true)
+    _ => assert_true(false)
+  }
+}
+
+///|
+test "geojson parse point array too short" {
+  let text = "{\"type\":\"Point\",\"coordinates\":[1.0]}"
+  match geojson_parse(text) {
+    None => assert_true(true)
+    _ => assert_true(false)
+  }
+}
+
+///|
+test "geojson parse point array non-number elements" {
+  let text = "{\"type\":\"Point\",\"coordinates\":[[1.0,2.0]]}"
+  match geojson_parse(text) {
+    None => assert_true(true)
+    _ => assert_true(false)
+  }
+}
+
+///|
+test "geojson parse linestring with non-array element" {
+  let text = "{\"type\":\"LineString\",\"coordinates\":[1.0,2.0]}"
+  match geojson_parse(text) {
+    Some(GeoLineString(pts)) => assert_eq(pts.length(), 0)
+    _ => assert_true(false)
+  }
+}
+
+///|
+test "geojson parse polygon with non-array element" {
+  let text = "{\"type\":\"Polygon\",\"coordinates\":[1.0,2.0]}"
+  match geojson_parse(text) {
+    Some(GeoPolygon(rings)) => assert_eq(rings.length(), 0)
+    _ => assert_true(false)
+  }
+}
+
+///|
+test "geojson parse multipolygon with non-array element" {
+  let text = "{\"type\":\"MultiPolygon\",\"coordinates\":[1.0,2.0]}"
+  match geojson_parse(text) {
+    Some(GeoMultiPolygon(polys)) => assert_eq(polys.length(), 0)
+    _ => assert_true(false)
+  }
+}
+
+///|
+test "geojson parse nested empty array" {
+  let text = "{\"type\":\"LineString\",\"coordinates\":[[]]}"
+  match geojson_parse(text) {
+    Some(GeoLineString(pts)) => assert_eq(pts.length(), 0)
+    _ => assert_true(false)
+  }
+}
+
+///|
+test "geojson parse deeply nested arrays" {
+  let text = "{\"type\":\"MultiPolygon\",\"coordinates\":[[[[1,2]]]]}"
+  match geojson_parse(text) {
+    Some(GeoMultiPolygon(polys)) => assert_eq(polys.length(), 1)
+    _ => assert_true(false)
+  }
+}
+
+///|
+test "geojson parse coordinates at end no value" {
+  let text = "{\"type\":\"Point\",\"coordinates\":"
+  match geojson_parse(text) {
+    None => assert_true(true)
+    _ => assert_true(false)
+  }
+}
+
+///|
+test "geojson pts_to_json multiple points separator" {
+  let pts = [
+    @core.Point2D::new(1.0, 2.0),
+    @core.Point2D::new(3.0, 4.0),
+    @core.Point2D::new(5.0, 6.0),
+  ]
+  let s = geojson_linestring(pts)
+  assert_true(s.contains("],["))
+}
+
+///|
+test "geojson parse point with newlines and tabs" {
+  let text = "{\"type\":\"Point\",\"coordinates\":[\n\t3.0,\n\t4.0\n]}"
+  match geojson_parse(text) {
+    Some(GeoPoint(p)) => {
+      assert_true(@core.approx_eq(p.x(), 3.0, 0.000001))
+      assert_true(@core.approx_eq(p.y(), 4.0, 0.000001))
+    }
+    _ => assert_true(false)
+  }
+}
+
+///|
+test "geojson parse empty coordinates array" {
+  let text = "{\"type\":\"Point\",\"coordinates\":[]}"
+  match geojson_parse(text) {
+    None => assert_true(true)
+    _ => assert_true(false)
+  }
+}
