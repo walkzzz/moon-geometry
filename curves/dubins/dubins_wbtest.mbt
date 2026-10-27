@@ -82,3 +82,52 @@ test "dubins_sample start point" {
     assert_true((points[0].x() - 2.0).abs() < 0.1)
   }
 }
+
+///|
+test "dubins_shortest_path rsl negative tmp" {
+  // d=0, alpha=pi/2, beta=3pi/2 -> RSL tmp < 0
+  let start = DubinsPose::new(0.0, 0.0, 1.5707963267948966)
+  let goal = DubinsPose::new(0.0, 0.0, 4.71238898038469)
+  let path = dubins_shortest_path(start, goal, 1.0)
+  assert_true(dubins_segment_count(path) >= 1)
+}
+
+///|
+test "dubins_sample with right segment" {
+  // Construct a path with explicit Right segment to cover Right branch
+  let segs = [
+    DubinsSegment::new(Right, 1.0),
+    DubinsSegment::new(Straight, 2.0),
+    DubinsSegment::new(Left, 1.0),
+  ]
+  let path = DubinsPath::new(segs, 4.0, 1.0)
+  let start = DubinsPose::new(0.0, 0.0, 0.0)
+  let points = dubins_sample(path, start, 10)
+  assert_eq(points.length(), 10)
+}
+
+///|
+test "dubins_sample right turn path" {
+  let start = DubinsPose::new(0.0, 0.0, 0.0)
+  let goal = DubinsPose::new(1.0, -1.0, -1.5707963267948966)
+  let path = dubins_shortest_path(start, goal, 1.0)
+  let points = dubins_sample(path, start, 10)
+  assert_true(points.length() == 10)
+}
+
+///|
+test "dubins_sample single sample" {
+  let start = DubinsPose::new(0.0, 0.0, 0.0)
+  let goal = DubinsPose::new(10.0, 0.0, 0.0)
+  let path = dubins_shortest_path(start, goal, 1.0)
+  let points = dubins_sample(path, start, 1)
+  assert_eq(points.length(), 1)
+}
+
+///|
+test "dubins_shortest_path backward direction" {
+  let start = DubinsPose::new(0.0, 0.0, 3.141592653589793)
+  let goal = DubinsPose::new(10.0, 0.0, 3.141592653589793)
+  let path = dubins_shortest_path(start, goal, 1.0)
+  assert_true(dubins_segment_count(path) >= 1)
+}

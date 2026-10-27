@@ -195,6 +195,7 @@ test "reeb_graph union find branches" {
   assert_eq(cps[4].crit_type, Regular)
   assert_eq(cps[5].crit_type, Maximum)
 }
+
 ///|
 test "reeb_graph saddle critical point" {
   // 双井势能：顶点 2 有两个下邻居 0,1

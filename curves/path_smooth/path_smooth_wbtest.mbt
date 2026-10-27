@@ -107,3 +107,114 @@ test "path_max_deviation basic" {
   let dev = path_max_deviation(original, smoothed)
   assert_true(dev < 0.001)
 }
+
+///|
+test "smooth_path single point" {
+  let path = [@core.Point2D::new(1.0, 2.0)]
+  let config = SmoothConfig::new(10, 0.0, true)
+  let smoothed = smooth_path(path, config)
+  assert_eq(smoothed.length(), 1)
+}
+
+///|
+test "smooth_path empty path" {
+  let path : Array[@core.Point2D] = []
+  let config = SmoothConfig::new(10, 0.0, true)
+  let smoothed = smooth_path(path, config)
+  assert_eq(smoothed.length(), 0)
+}
+
+///|
+test "smooth_path no preserve endpoints" {
+  let path = [
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(5.0, 5.0),
+    @core.Point2D::new(10.0, 0.0),
+  ]
+  let config = SmoothConfig::new(10, 0.0, false)
+  let smoothed = smooth_path(path, config)
+  assert_true(smoothed.length() > 0)
+}
+
+///|
+test "bspline_smooth single point" {
+  let path = [@core.Point2D::new(1.0, 2.0)]
+  let smoothed = bspline_smooth(path, 10)
+  assert_eq(smoothed.length(), 1)
+}
+
+///|
+test "bspline_smooth empty path" {
+  let path : Array[@core.Point2D] = []
+  let smoothed = bspline_smooth(path, 10)
+  assert_eq(smoothed.length(), 0)
+}
+
+///|
+test "smooth_preserve_keypoints single point" {
+  let path = [@core.Point2D::new(1.0, 2.0)]
+  let smoothed = smooth_preserve_keypoints(path, [0], 10)
+  assert_eq(smoothed.length(), 1)
+}
+
+///|
+test "smooth_preserve_keypoints unsorted keypoints" {
+  let path = [
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(2.0, 2.0),
+    @core.Point2D::new(4.0, 0.0),
+    @core.Point2D::new(6.0, 2.0),
+    @core.Point2D::new(8.0, 0.0),
+  ]
+  let smoothed = smooth_preserve_keypoints(path, [4, 0, 2], 10)
+  assert_true(smoothed.length() > 0)
+  assert_true((smoothed[0].x() - 0.0).abs() < 0.001)
+}
+
+///|
+test "smooth_preserve_keypoints without last index" {
+  let path = [
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(2.0, 2.0),
+    @core.Point2D::new(4.0, 0.0),
+    @core.Point2D::new(6.0, 2.0),
+    @core.Point2D::new(8.0, 0.0),
+  ]
+  let smoothed = smooth_preserve_keypoints(path, [2], 10)
+  assert_true(smoothed.length() > 0)
+}
+
+///|
+test "smooth_preserve_keypoints adjacent keypoints" {
+  let path = [
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(2.0, 2.0),
+    @core.Point2D::new(4.0, 0.0),
+    @core.Point2D::new(6.0, 2.0),
+    @core.Point2D::new(8.0, 0.0),
+  ]
+  let smoothed = smooth_preserve_keypoints(path, [0, 1], 10)
+  assert_true(smoothed.length() > 0)
+}
+
+///|
+test "simplify_path short path" {
+  let path = [@core.Point2D::new(0.0, 0.0), @core.Point2D::new(1.0, 1.0)]
+  let simplified = simplify_path(path, 0.001)
+  assert_eq(simplified.length(), 2)
+}
+
+///|
+test "simplify_path single point" {
+  let path = [@core.Point2D::new(0.0, 0.0)]
+  let simplified = simplify_path(path, 0.001)
+  assert_eq(simplified.length(), 1)
+}
+
+///|
+test "path_max_deviation different paths" {
+  let original = [@core.Point2D::new(0.0, 0.0), @core.Point2D::new(5.0, 5.0)]
+  let smoothed = [@core.Point2D::new(0.0, 1.0), @core.Point2D::new(5.0, 6.0)]
+  let dev = path_max_deviation(original, smoothed)
+  assert_true(dev > 0.5)
+}

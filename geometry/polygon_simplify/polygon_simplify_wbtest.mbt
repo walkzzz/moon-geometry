@@ -394,3 +394,92 @@ test "douglas_peucker two vertices" {
   let result = douglas_peucker(pts, 0.1)
   assert_eq(result.length(), 2)
 }
+
+///|
+test "simplify_topology_preserve collinear large eps" {
+  let pts = [
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(1.0, 0.0),
+    @core.Point2D::new(2.0, 0.0),
+    @core.Point2D::new(3.0, 0.0),
+    @core.Point2D::new(4.0, 0.0),
+  ]
+  let result = simplify_topology_preserve(pts, 10.0)
+  assert_eq(result.length(), 5)
+}
+
+///|
+test "simplify_visvalingam remove first point" {
+  let pts = [
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(10.0, 0.0),
+    @core.Point2D::new(10.0, 10.0),
+    @core.Point2D::new(0.0, 100.0),
+    @core.Point2D::new(5.0, 0.0),
+  ]
+  let result = simplify_visvalingam(pts, 4)
+  assert_eq(result.length(), 4)
+}
+
+///|
+test "simplify_topology_preserve single vertex" {
+  let pts = [@core.Point2D::new(0.0, 0.0)]
+  let result = simplify_topology_preserve(pts, 0.1)
+  assert_eq(result.length(), 1)
+}
+
+///|
+test "douglas_peucker collinear all points" {
+  let pts = [
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(1.0, 0.0),
+    @core.Point2D::new(2.0, 0.0),
+    @core.Point2D::new(3.0, 0.0),
+    @core.Point2D::new(4.0, 0.0),
+  ]
+  let result = douglas_peucker(pts, 0.01)
+  assert_true(result.length() <= 2)
+}
+
+///|
+test "has_self_intersection pentagon no intersection" {
+  let pts = [
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(4.0, 0.0),
+    @core.Point2D::new(5.0, 3.0),
+    @core.Point2D::new(2.0, 5.0),
+    @core.Point2D::new(-1.0, 3.0),
+  ]
+  assert_false(has_self_intersection(pts))
+}
+
+///|
+test "simplify_visvalingam single vertex" {
+  let pts = [@core.Point2D::new(0.0, 0.0)]
+  let result = simplify_visvalingam(pts, 3)
+  assert_eq(result.length(), 1)
+}
+
+///|
+test "simplify_topology_preserve all collinear returns copy" {
+  let pts = [
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(1.0, 0.0),
+    @core.Point2D::new(2.0, 0.0),
+    @core.Point2D::new(3.0, 0.0),
+  ]
+  let result = simplify_topology_preserve(pts, 100.0)
+  assert_eq(result.length(), 4)
+}
+
+///|
+test "douglas_peucker four collinear vertices" {
+  let pts = [
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(1.0, 0.0),
+    @core.Point2D::new(2.0, 0.0),
+    @core.Point2D::new(3.0, 0.0),
+  ]
+  let result = douglas_peucker(pts, 0.01)
+  assert_true(result.length() <= 2)
+}

@@ -125,3 +125,69 @@ test "surface project already on surface" {
   assert_true((proj.y - 0.0).abs() < 0.000000001)
   assert_true((proj.z - 1.0).abs() < 0.000000001)
 }
+
+///|
+fn zero_f(_x : Double, _y : Double, _z : Double) -> Double {
+  0.0
+}
+
+///|
+test "surface normal zero gradient" {
+  let p = @core.Point3D::new(1.0, 1.0, 1.0)
+  let n = surface_normal(zero_f, zero_f, zero_f, p)
+  assert_true(n.x.abs() < 0.000000001)
+  assert_true(n.y.abs() < 0.000000001)
+  assert_true(n.z.abs() < 0.000000001)
+}
+
+///|
+test "surface gaussian curvature zero gradient" {
+  let p = @core.Point3D::new(1.0, 1.0, 1.0)
+  let k = gaussian_curvature(
+    zero_f, zero_f, zero_f, zero_f, zero_f, zero_f, zero_f, zero_f, zero_f, p,
+  )
+  assert_true(k.abs() < 0.000000001)
+}
+
+///|
+test "surface mean curvature zero gradient" {
+  let p = @core.Point3D::new(1.0, 1.0, 1.0)
+  let h = mean_curvature(zero_f, zero_f, zero_f, zero_f, zero_f, zero_f, p)
+  assert_true(h.abs() < 0.000000001)
+}
+
+///|
+test "surface principal curvatures disc negative" {
+  // k_mean^2 < k_gauss -> disc < 0
+  let (k1, k2) = principal_curvatures(2.0, 1.0)
+  assert_true((k1 - 1.0).abs() < 0.000000001)
+  assert_true((k2 - 1.0).abs() < 0.000000001)
+}
+
+///|
+test "surface project zero gradient" {
+  // f = constant nonzero, gradient = 0 -> g2 < eps
+  fn const_f(_x : Double, _y : Double, _z : Double) -> Double {
+    5.0
+  }
+  let p = @core.Point3D::new(1.0, 1.0, 1.0)
+  let proj = project_to_surface(const_f, zero_f, zero_f, zero_f, p, 10)
+  assert_true((proj.x - 1.0).abs() < 0.000000001)
+  assert_true((proj.y - 1.0).abs() < 0.000000001)
+  assert_true((proj.z - 1.0).abs() < 0.000000001)
+}
+
+///|
+test "surface project max iterations" {
+  // f = x^2 + y^2 + z^2 + 1 (no root), gradient never zero
+  // Project from far point, may not converge in few iterations
+  fn no_root_f(x : Double, y : Double, z : Double) -> Double {
+    x * x + y * y + z * z + 1.0
+  }
+  let p = @core.Point3D::new(2.0, 2.0, 2.0)
+  let proj = project_to_surface(
+    no_root_f, sphere_fx, sphere_fy, sphere_fz, p, 2,
+  )
+  // Should return after max_iter without converging (point moved)
+  assert_true((proj.x - 2.0).abs() > 0.001)
+}

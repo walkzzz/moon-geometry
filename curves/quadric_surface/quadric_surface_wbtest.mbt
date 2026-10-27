@@ -626,3 +626,163 @@ test "quadric on_surface exact boundary" {
   let p = @core.Point3D::new(0.0, 0.0, 1.0)
   assert_true(Quadric::on_surface(q, p, 0.0))
 }
+
+///|
+test "quadric eigen near triple root disc negative" {
+  // Near triple eigenvalue 1 -> disc slightly negative due to floating point
+  let q = Quadric::new(1.0, 1.0, 1.0000001, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0)
+  let qt = Quadric::classify(q)
+  assert_true(
+    match qt {
+      Ellipsoid => true
+      _ => false
+    },
+  )
+}
+
+///|
+test "quadric eigen near triple negative root disc negative" {
+  // Near triple eigenvalue -1 -> disc slightly negative, neg = 3
+  let q = Quadric::new(
+    -1.0, -1.0, -1.0000001, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0,
+  )
+  let qt = Quadric::classify(q)
+  assert_true(
+    match qt {
+      Degenerate => true
+      _ => false
+    },
+  )
+}
+
+///|
+test "quadric eigen disc positive arg in range" {
+  // Eigenvalues 1, 2, 4 -> disc > 0, arg in (-1, 1)
+  let q = Quadric::new(1.0, 2.0, 4.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0)
+  let qt = Quadric::classify(q)
+  assert_true(
+    match qt {
+      Ellipsoid => true
+      _ => false
+    },
+  )
+}
+
+///|
+test "quadric eigen disc positive mixed signs" {
+  // Eigenvalues -1, 2, 3 -> disc > 0, pos=2, neg=1
+  let q = Quadric::new(-1.0, 2.0, 3.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0)
+  let qt = Quadric::classify(q)
+  assert_true(
+    match qt {
+      HyperboloidOneSheet => true
+      _ => false
+    },
+  )
+}
+
+///|
+test "quadric classify f0 positive pos2 neg1 hyperboloid two sheets" {
+  // f0 > 0, pos=2, neg=1 -> HyperboloidTwoSheets
+  // Eigenvalues 1, 1, -1; f0 = j = 0.5 > 0
+  let q = Quadric::new(1.0, 1.0, -1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.5)
+  let qt = Quadric::classify(q)
+  assert_true(
+    match qt {
+      HyperboloidTwoSheets => true
+      _ => false
+    },
+  )
+}
+
+///|
+test "quadric eigen disc positive two pos one neg f0 negative" {
+  // Eigenvalues 1, 2, -1 (pos=2, neg=1), f0 = j = -1 < 0 -> HyperboloidOneSheet
+  let q = Quadric::new(1.0, 2.0, -1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0)
+  let qt = Quadric::classify(q)
+  assert_true(
+    match qt {
+      HyperboloidOneSheet => true
+      _ => false
+    },
+  )
+}
+
+///|
+test "quadric eigen disc zero with cross terms" {
+  // Repeated root with cross terms
+  let q = Quadric::new(2.0, 2.0, 2.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0)
+  let qt = Quadric::classify(q)
+  assert_true(
+    match qt {
+      Ellipsoid => true
+      _ => false
+    },
+  )
+}
+
+///|
+test "quadric classify f0 positive pos3 degenerate cross" {
+  // f0 > 0, pos=3 -> Degenerate, with cross terms
+  let q = Quadric::new(1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 1.0)
+  let qt = Quadric::classify(q)
+  assert_true(
+    match qt {
+      Degenerate => true
+      _ => false
+    },
+  )
+}
+
+///|
+test "quadric eigen disc positive with cross terms" {
+  // Cross terms to trigger disc > 0 with distinct eigenvalues
+  let q = Quadric::new(3.0, 1.0, 2.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0)
+  let qt = Quadric::classify(q)
+  assert_true(
+    match qt {
+      Ellipsoid => true
+      _ => false
+    },
+  )
+}
+
+///|
+test "quadric eigen disc positive hyperboloid with cross" {
+  // Hyperboloid with cross terms, disc > 0
+  let q = Quadric::new(3.0, 1.0, -2.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0)
+  let qt = Quadric::classify(q)
+  assert_true(
+    match qt {
+      HyperboloidOneSheet => true
+      HyperboloidTwoSheets => true
+      _ => false
+    },
+  )
+}
+
+///|
+test "quadric eigen near double root disc negative" {
+  // Near double eigenvalue with perturbation -> disc may go negative
+  let q = Quadric::new(2.0, 2.0, 2.000001, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0)
+  let qt = Quadric::classify(q)
+  assert_true(
+    match qt {
+      Ellipsoid => true
+      _ => false
+    },
+  )
+}
+
+///|
+test "quadric eigen near double negative root disc negative" {
+  // Near double negative eigenvalue -> disc may go negative, neg = 3
+  let q = Quadric::new(-2.0, -2.0, -2.000001, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0)
+  let qt = Quadric::classify(q)
+  assert_true(
+    match qt {
+      Degenerate => true
+      _ => false
+    },
+  )
+}
