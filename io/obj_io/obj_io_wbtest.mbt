@@ -255,3 +255,38 @@ test "obj face construct" {
   ])
   assert_eq(f.verts.length(), 2)
 }
+
+///|
+test "pd with plus sign" {
+  assert_true((pd("+42".to_string_view()) - 42.0).abs() < 0.001)
+}
+
+///|
+test "pd int part break on non digit" {
+  assert_true((pd("12abc".to_string_view()) - 12.0).abs() < 0.001)
+}
+
+///|
+test "pd frac part break on non digit" {
+  assert_true((pd("3.14abc".to_string_view()) - 3.14).abs() < 0.001)
+}
+
+///|
+test "pd scientific with plus exponent" {
+  assert_true((pd("1e+3".to_string_view()) - 1000.0).abs() < 0.001)
+}
+
+///|
+test "pi empty string" {
+  assert_eq(pi("".to_string_view()), 0)
+}
+
+///|
+test "pi negative integer" {
+  assert_eq(pi("-42".to_string_view()), -42)
+}
+
+///|
+test "pi with plus sign" {
+  assert_eq(pi("+42".to_string_view()), 42)
+}

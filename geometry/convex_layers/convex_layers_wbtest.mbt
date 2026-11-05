@@ -60,3 +60,46 @@ test "convex layers triangle" {
   ]
   assert_eq(layer_count(pts), 1)
 }
+
+///|
+test "convex layers collinear points" {
+  let pts = [
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(1.0, 0.0),
+    @core.Point2D::new(2.0, 0.0),
+    @core.Point2D::new(3.0, 0.0),
+  ]
+  let layers = convex_layers(pts)
+  assert_eq(layers.length(), 0)
+}
+
+///|
+test "convex layers same x different y" {
+  let pts = [
+    @core.Point2D::new(0.0, 2.0),
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(0.0, 1.0),
+    @core.Point2D::new(2.0, 1.0),
+  ]
+  let layers = convex_layers(pts)
+  assert_true(layers.length() >= 1)
+}
+
+///|
+test "convex layers duplicate points" {
+  let pts = [
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(1.0, 1.0),
+    @core.Point2D::new(2.0, 2.0),
+  ]
+  let layers = convex_layers(pts)
+  ignore(layers)
+}
+
+///|
+test "outermost layer too few points" {
+  let pts = [@core.Point2D::new(0.0, 0.0), @core.Point2D::new(1.0, 1.0)]
+  let outer = outermost_layer(pts)
+  assert_eq(outer.length(), 0)
+}

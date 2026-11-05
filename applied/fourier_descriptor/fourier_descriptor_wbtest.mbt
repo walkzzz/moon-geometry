@@ -126,3 +126,31 @@ test "fourier_invariant empty" {
   let inv = fourier_invariant([])
   assert_true(inv.length() == 0)
 }
+
+///|
+test "fourier_descriptors single point" {
+  let pts = [@core.Point2D::new(1.0, 2.0)]
+  let fd = fourier_descriptors(pts)
+  assert_true(fd.length() == 1)
+}
+
+///|
+test "fourier_invariant zero magnitude" {
+  let pts = [
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(0.0, 0.0),
+  ]
+  let inv = fourier_invariant(pts)
+  assert_true(inv.length() >= 1)
+  for v in inv {
+    assert_true(v.abs() < 0.001)
+  }
+}
+
+///|
+test "fourier_reconstruct empty coeffs" {
+  let result = fourier_reconstruct([], 4)
+  assert_true(result.length() == 0)
+}

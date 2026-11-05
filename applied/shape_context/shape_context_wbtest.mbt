@@ -109,3 +109,36 @@ test "shape_context translation invariance" {
   let d = shape_context_distance(sc1[0], sc2[0])
   assert_true(d < 0.001)
 }
+
+///|
+test "shape_context duplicate points" {
+  let pts = [
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(1.0, 0.0),
+  ]
+  let sc = shape_context(pts, 5, 8)
+  assert_true(sc.length() == 3)
+}
+
+///|
+test "shape_context tiny distance variation" {
+  let pts = [
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(1.0, 0.0),
+    @core.Point2D::new(1.0000000000001, 0.0),
+  ]
+  let sc = shape_context(pts, 1, 8)
+  assert_true(sc.length() == 3)
+}
+
+///|
+test "shape_context theta near 2pi" {
+  let pts = [
+    @core.Point2D::new(0.0, 0.0),
+    @core.Point2D::new(1.0, -0.0000000000000001),
+    @core.Point2D::new(2.0, 0.0),
+  ]
+  let sc = shape_context(pts, 5, 8)
+  assert_true(sc.length() == 3)
+}

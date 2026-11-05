@@ -85,3 +85,59 @@ test "PowerDiagram::new" {
   let pd = PowerDiagram::new()
   assert_eq(pd.cell_count(), 0)
 }
+
+///|
+test "power_diagram cell clipped to empty" {
+  let sites = [
+    WeightedPoint::new(@core.Point2D::new(5.0, 5.0), 0.0),
+    WeightedPoint::new(@core.Point2D::new(5.0, 5.0), 100.0),
+    WeightedPoint::new(@core.Point2D::new(0.0, 0.0), 0.0),
+  ]
+  let bounds = (@core.Point2D::new(0.0, 0.0), @core.Point2D::new(10.0, 10.0))
+  let pd = power_diagram(sites, bounds)
+  let area = power_cell_area(pd, 0)
+  assert_true(area.abs() < 0.001)
+}
+
+///|
+test "regular_triangulation too few sites" {
+  let sites = [
+    WeightedPoint::new(@core.Point2D::new(0.0, 0.0), 0.0),
+    WeightedPoint::new(@core.Point2D::new(1.0, 0.0), 0.0),
+  ]
+  let tris = regular_triangulation(sites)
+  assert_eq(tris.length(), 0)
+}
+
+///|
+test "regular_triangulation collinear sites" {
+  let sites = [
+    WeightedPoint::new(@core.Point2D::new(0.0, 0.0), 0.0),
+    WeightedPoint::new(@core.Point2D::new(1.0, 0.0), 0.0),
+    WeightedPoint::new(@core.Point2D::new(2.0, 0.0), 0.0),
+  ]
+  let tris = regular_triangulation(sites)
+  assert_eq(tris.length(), 0)
+}
+
+///|
+test "regular_triangulation with interior point" {
+  let sites = [
+    WeightedPoint::new(@core.Point2D::new(0.0, 0.0), 0.0),
+    WeightedPoint::new(@core.Point2D::new(4.0, 0.0), 0.0),
+    WeightedPoint::new(@core.Point2D::new(2.0, 4.0), 0.0),
+    WeightedPoint::new(@core.Point2D::new(2.0, 1.0), 0.0),
+  ]
+  let tris = regular_triangulation(sites)
+  ignore(tris)
+}
+
+///|
+test "circumcenter2d degenerate collinear" {
+  let a = @core.Point2D::new(0.0, 0.0)
+  let b = @core.Point2D::new(1.0, 0.0)
+  let c = @core.Point2D::new(2.0, 0.0)
+  let center = circumcenter2d(a, b, c)
+  assert_true((center.x() - 1.0).abs() < 0.001)
+  assert_true(center.y().abs() < 0.001)
+}

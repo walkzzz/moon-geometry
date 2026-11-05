@@ -193,3 +193,27 @@ test "dxf parse negative coords" {
   let d = dxf_parse(text)
   assert_eq(DxfDocument::entity_count(d), 1)
 }
+
+///|
+test "dxf parse trailing entity without endsec" {
+  let text = "0\nSECTION\n2\nENTITIES\n0\nLINE\n10\n1\n20\n2\n30\n3\n11\n4\n21\n5\n31\n6\n"
+  let d = dxf_parse(text)
+  assert_eq(DxfDocument::entity_count(d), 1)
+}
+
+///|
+test "dxf pd int part break on non digit" {
+  assert_true((pd("12abc".to_string_view()) - 12.0).abs() < 0.001)
+}
+
+///|
+test "dxf pd frac part break on non digit" {
+  assert_true((pd("3.14xyz".to_string_view()) - 3.14).abs() < 0.001)
+}
+
+///|
+test "dxf parse trailing unknown entity without endsec" {
+  let text = "0\nSECTION\n2\nENTITIES\n0\nUNKNOWN\n10\n1\n20\n2\n"
+  let d = dxf_parse(text)
+  assert_eq(DxfDocument::entity_count(d), 0)
+}
